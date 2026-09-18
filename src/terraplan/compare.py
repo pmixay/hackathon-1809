@@ -6,12 +6,12 @@ from pathlib import Path
 
 from .engine import Result
 
-YEAR_METRICS = [("demand_total_t", "Demand total, t"), ("served_total_t", "Served total, t"), ("service_level_total", "SL total"),
-                ("service_level_critical", "SL critical"), ("shortage_total_t", "Shortage, t"), ("throughput_t", "Delivered (actual), t"),
-                ("losses_t", "Losses, t"), ("loss_ratio", "Losses/throughput"), ("opening_t", "Opening stock, t"), ("closing_t", "Closing stock, t"),
-                ("reserve_required_t", "45-day reserve, t")]
-FIN_METRICS = [("procurement_mln", "Procurement, mln"), ("reservation_mln", "Reservation, mln"), ("holding_mln", "Holding, mln"),
-               ("fixed_opex_mln", "Fixed OPEX, mln"), ("capex_mln", "CAPEX, mln"), ("total_mln", "Total, mln"), ("pv_total_mln", "PV total, mln")]
+YEAR_METRICS = [("demand_total_t", "Спрос, т"), ("served_total_t", "Обслужено, т"), ("service_level_total", "Уровень сервиса общий"),
+                ("service_level_critical", "Уровень сервиса критический"), ("shortage_total_t", "Дефицит, т"), ("throughput_t", "Поступление (факт), т"),
+                ("losses_t", "Потери, т"), ("loss_ratio", "Потери / поступление"), ("opening_t", "Запас на начало, т"), ("closing_t", "Запас на конец, т"),
+                ("reserve_required_t", "45-дневный резерв, т")]
+FIN_METRICS = [("procurement_mln", "Закупка, млн"), ("reservation_mln", "Резервирование, млн"), ("holding_mln", "Хранение, млн"),
+               ("fixed_opex_mln", "Постоянный OPEX, млн"), ("capex_mln", "CAPEX, млн"), ("total_mln", "Итого, млн"), ("pv_total_mln", "PV итого, млн")]
 KPI_METRICS = ["total_cost_mln", "pv_cost_mln", "cost_per_served_t_mln", "pv_cost_per_served_t_mln", "served_total_t", "shortage_total_t",
                "shortage_critical_t", "min_service_level_total", "min_service_level_critical", "losses_total_t", "capex_total_mln",
                "take_or_pay_idle_t", "hard_violations", "guideline_violations"]
@@ -75,7 +75,9 @@ def write_comparison(rows: list[dict], path_csv: str | Path, path_md: str | Path
     if path_md:
         fmt = lambda v: f"{v:,.3f}" if isinstance(v, float) else ("" if v is None else str(v))
         la, lb = (rows[0]["label_a"], rows[0]["label_b"]) if rows else ("A", "B")
-        lines = [f"# Comparison: {la} vs {lb}", "", "| Section | Metric | Year | " + la + " | " + lb + " | Δ (B−A) |", "|---|---|---:|---:|---:|---:|"]
+        lines = [f"# Сравнение: {la} и {lb}", "", "Разделы: kpi — итоговые показатели; yearly — по годам; finance — финансы по годам; "
+                 "decision:* — решения, которые различаются (заказы, резервирования, инвестиции); violation — нарушения (кроме предупреждений).", "",
+                 "| Раздел | Метрика | Год | " + la + " | " + lb + " | Δ (B−A) |", "|---|---|---:|---:|---:|---:|"]
         for r in rows:
             lines.append(f"| {r['section']} | {r['metric']} | {r['year']} | {fmt(r['a'])} | {fmt(r['b'])} | {fmt(r['delta'])} |")
         Path(path_md).write_text("\n".join(lines) + "\n", encoding="utf-8")

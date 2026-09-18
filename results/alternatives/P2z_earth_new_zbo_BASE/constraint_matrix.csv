@@ -26,12 +26,12 @@ BASE,P2z_earth_new_zbo,RESERVE_45D,2037,opening_stock_vs_45d_reserve_t,23.424908
 BASE,P2z_earth_new_zbo,RESERVE_45D,2038,opening_stock_vs_45d_reserve_t,30.822244,30.821918,>=,True,hard,physical
 BASE,P2z_earth_new_zbo,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,39.452388,39.452055,>=,True,hard,physical
 BASE,P2z_earth_new_zbo,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,48.082528,48.082192,>=,True,hard,physical
-BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
+BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P2z_earth_new_zbo,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
 BASE,P2z_earth_new_zbo,STORAGE_OVERFLOW,2035,max_end_of_month_stock_t,17.260439,70.000000,<=,True,hard,monthly
 BASE,P2z_earth_new_zbo,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
 BASE,P2z_earth_new_zbo,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
@@ -47,14 +47,14 @@ BASE,P2z_earth_new_zbo,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,1
 BASE,P2z_earth_new_zbo,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P2z_earth_new_zbo,CAPACITY_EXCEEDED,2037,reserved_C_t_per_year,13.189000,130.000000,<=,True,hard,Earth-New
 BASE,P2z_earth_new_zbo,ORDER_EXCEEDS_RESERVATION,2037,ordered_C_t,13.188200,13.189000,<=,True,hard,Earth-New
-BASE,P2z_earth_new_zbo,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+BASE,P2z_earth_new_zbo,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P2z_earth_new_zbo,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P2z_earth_new_zbo,STORAGE_OVERFLOW,2038,max_end_of_month_stock_t,39.452388,120.000000,<=,True,hard,monthly
 BASE,P2z_earth_new_zbo,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P2z_earth_new_zbo,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P2z_earth_new_zbo,CAPACITY_EXCEEDED,2038,reserved_C_t_per_year,71.772000,130.000000,<=,True,hard,Earth-New
 BASE,P2z_earth_new_zbo,ORDER_EXCEEDS_RESERVATION,2038,ordered_C_t,71.771400,71.772000,<=,True,hard,Earth-New
-BASE,P2z_earth_new_zbo,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+BASE,P2z_earth_new_zbo,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P2z_earth_new_zbo,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P2z_earth_new_zbo,STORAGE_OVERFLOW,2039,max_end_of_month_stock_t,48.082528,120.000000,<=,True,hard,monthly
 BASE,P2z_earth_new_zbo,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core

@@ -14,9 +14,9 @@
   },
   "plan_sha256": "d74ec1f25290750352640d0b33aadc09fcaac5f4c5fa99988638c01903a62faa",
   "scenario_sha256": "d2942ec9fd63937842db6e3c3cedc7b53ee194fd156c005e9d47e0fe77f32fc8",
-  "assumptions_sha256": "af06908a1d3b694399cfceab2489ac14bf5fd00f7a5a517da2862f9af2192f16",
-  "kpi_sha256": "0c5bd54037ef9de53d4656c7af82635767432fc6dcf11875da7d36c380140eab",
+  "assumptions_sha256": "6c1081064dfa43c139d0f8273cded44a5a7736a41ed5eb2d83a23dea31ffc6a3",
+  "kpi_sha256": "3c4b71d7e86ee91ecd7900df9fbc9211061b8c08137cdcb00b9dbe3552fe9af7",
   "kpi_precision": 6,
   "random_seed": null,
-  "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to 6 decimals before hashing, which absorbs last-bit differences of float summation between Python versions)"
+  "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)"
 }

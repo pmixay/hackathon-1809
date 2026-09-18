@@ -1,139 +1,139 @@
 section,metric,year,a,b,delta,label_a,label_b
-kpi,total_cost_mln,,11167.303284,13993.387780,2826.084496,fixed/STRESS,reactive/STRESS
-kpi,pv_cost_mln,,9031.624801,11135.161077,2103.536276,fixed/STRESS,reactive/STRESS
-kpi,cost_per_served_t_mln,,8.187277,9.127311,0.940034,fixed/STRESS,reactive/STRESS
-kpi,pv_cost_per_served_t_mln,,6.621510,7.263008,0.641497,fixed/STRESS,reactive/STRESS
-kpi,served_total_t,,1363.982586,1533.133625,169.151040,fixed/STRESS,reactive/STRESS
-kpi,shortage_total_t,,170.017414,0.866375,-169.151040,fixed/STRESS,reactive/STRESS
-kpi,shortage_critical_t,,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-kpi,min_service_level_total,,0.812473,0.996987,0.184513,fixed/STRESS,reactive/STRESS
-kpi,min_service_level_critical,,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-kpi,losses_total_t,,28.592174,31.318235,2.726062,fixed/STRESS,reactive/STRESS
-kpi,capex_total_mln,,1430.000000,1430.000000,0.000000,fixed/STRESS,reactive/STRESS
-kpi,take_or_pay_idle_t,,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-kpi,hard_violations,,3,1,-2,fixed/STRESS,reactive/STRESS
-kpi,guideline_violations,,3,0,-3,fixed/STRESS,reactive/STRESS
-yearly,"Demand total, t",2035,100.000000,100.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Served total, t",2035,100.000000,100.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,SL total,2035,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,SL critical,2035,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Shortage, t",2035,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Delivered (actual), t",2035,109.876000,109.876000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Losses, t",2035,4.944420,4.944420,0.000000,fixed/STRESS,reactive/STRESS
-yearly,Losses/throughput,2035,0.045000,0.045000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Opening stock, t",2035,12.328859,12.328859,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Closing stock, t",2035,17.260439,17.260439,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"45-day reserve, t",2035,12.328767,12.328767,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Demand total, t",2036,140.000000,140.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Served total, t",2036,140.000000,140.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,SL total,2036,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,SL critical,2036,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Shortage, t",2036,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Delivered (actual), t",2036,153.051800,153.051800,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Losses, t",2036,6.887331,6.887331,0.000000,fixed/STRESS,reactive/STRESS
-yearly,Losses/throughput,2036,0.045000,0.045000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Opening stock, t",2036,17.260439,17.260439,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Closing stock, t",2036,23.424908,23.424908,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"45-day reserve, t",2036,17.260274,17.260274,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Demand total, t",2037,190.000000,190.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Served total, t",2037,190.000000,190.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,SL total,2037,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,SL critical,2037,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Shortage, t",2037,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Delivered (actual), t",2037,203.188200,203.188200,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Losses, t",2037,5.790864,5.790864,0.000000,fixed/STRESS,reactive/STRESS
-yearly,Losses/throughput,2037,0.028500,0.028500,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Opening stock, t",2037,23.424908,23.424908,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Closing stock, t",2037,30.822244,30.822244,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"45-day reserve, t",2037,23.424658,23.424658,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Demand total, t",2038,287.500000,287.500000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Served total, t",2038,244.992388,286.633625,41.641238,fixed/STRESS,reactive/STRESS
-yearly,SL total,2038,0.852147,0.996987,0.144839,fixed/STRESS,reactive/STRESS
-yearly,SL critical,2038,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Shortage, t",2038,42.507612,0.866375,-41.641238,fixed/STRESS,reactive/STRESS
-yearly,"Delivered (actual), t",2038,216.771400,304.839700,88.068300,fixed/STRESS,reactive/STRESS
-yearly,"Losses, t",2038,2.601257,3.658076,1.056820,fixed/STRESS,reactive/STRESS
-yearly,Losses/throughput,2038,0.012000,0.012000,-0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Opening stock, t",2038,30.822244,30.822244,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Closing stock, t",2038,0.000000,45.370243,45.370243,fixed/STRESS,reactive/STRESS
-yearly,"45-day reserve, t",2038,35.445205,35.445205,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Demand total, t",2039,368.000000,368.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Served total, t",2039,298.990141,368.000000,69.009859,fixed/STRESS,reactive/STRESS
-yearly,SL total,2039,0.812473,1.000000,0.187527,fixed/STRESS,reactive/STRESS
-yearly,SL critical,2039,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Shortage, t",2039,69.009859,0.000000,-69.009859,fixed/STRESS,reactive/STRESS
-yearly,"Delivered (actual), t",2039,302.621600,382.514800,79.893200,fixed/STRESS,reactive/STRESS
-yearly,"Losses, t",2039,3.631459,4.590178,0.958718,fixed/STRESS,reactive/STRESS
-yearly,Losses/throughput,2039,0.012000,0.012000,-0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Opening stock, t",2039,0.000000,45.370243,45.370243,fixed/STRESS,reactive/STRESS
-yearly,"Closing stock, t",2039,0.000000,55.294865,55.294865,fixed/STRESS,reactive/STRESS
-yearly,"45-day reserve, t",2039,45.369863,45.369863,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Demand total, t",2040,448.500000,448.500000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Served total, t",2040,390.000057,448.500000,58.499943,fixed/STRESS,reactive/STRESS
-yearly,SL total,2040,0.869565,1.000000,0.130435,fixed/STRESS,reactive/STRESS
-yearly,SL critical,2040,1.000000,1.000000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Shortage, t",2040,58.499943,0.000000,-58.499943,fixed/STRESS,reactive/STRESS
-yearly,"Delivered (actual), t",2040,394.736900,453.947200,59.210300,fixed/STRESS,reactive/STRESS
-yearly,"Losses, t",2040,4.736843,5.447366,0.710524,fixed/STRESS,reactive/STRESS
-yearly,Losses/throughput,2040,0.012000,0.012000,0.000000,fixed/STRESS,reactive/STRESS
-yearly,"Opening stock, t",2040,0.000000,55.294865,55.294865,fixed/STRESS,reactive/STRESS
-yearly,"Closing stock, t",2040,0.000000,55.294699,55.294699,fixed/STRESS,reactive/STRESS
-yearly,"45-day reserve, t",2040,55.294521,55.294521,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Procurement, mln",2035,796.128420,796.128420,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Reservation, mln",2035,51.380670,51.380670,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Holding, mln",2035,10.652147,10.652147,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Fixed OPEX, mln",2035,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"CAPEX, mln",2035,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Total, mln",2035,858.161237,858.161237,0.000000,fixed/STRESS,reactive/STRESS
-finance,"PV total, mln",2035,858.161237,858.161237,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Procurement, mln",2036,948.921160,948.921160,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Reservation, mln",2036,68.873400,68.873400,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Holding, mln",2036,14.646725,14.646725,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Fixed OPEX, mln",2036,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"CAPEX, mln",2036,1250.000000,1250.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Total, mln",2036,2282.441285,2282.441285,0.000000,fixed/STRESS,reactive/STRESS
-finance,"PV total, mln",2036,2113.371560,2113.371560,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Procurement, mln",2037,1295.374980,1295.374980,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Reservation, mln",2037,87.478350,87.478350,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Holding, mln",2037,18.925506,18.925506,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Fixed OPEX, mln",2037,6.000000,6.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"CAPEX, mln",2037,180.000000,180.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Total, mln",2037,1587.778836,1587.778836,0.000000,fixed/STRESS,reactive/STRESS
-finance,"PV total, mln",2037,1361.264434,1361.264434,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Procurement, mln",2038,1553.728350,2638.317790,1084.589440,fixed/STRESS,reactive/STRESS
-finance,"Reservation, mln",2038,72.797400,117.297400,44.500000,fixed/STRESS,reactive/STRESS
-finance,"Holding, mln",2038,2.968616,14.129080,11.160464,fixed/STRESS,reactive/STRESS
-finance,"Fixed OPEX, mln",2038,82.000000,82.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"CAPEX, mln",2038,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Total, mln",2038,1711.494366,2851.744270,1140.249904,fixed/STRESS,reactive/STRESS
-finance,"PV total, mln",2038,1358.639408,2263.806545,905.167137,fixed/STRESS,reactive/STRESS
-finance,"Procurement, mln",2039,2084.165300,2972.977150,888.811850,fixed/STRESS,reactive/STRESS
-finance,"Reservation, mln",2039,88.893300,100.877400,11.984100,fixed/STRESS,reactive/STRESS
-finance,"Holding, mln",2039,0.000000,36.239439,36.239439,fixed/STRESS,reactive/STRESS
-finance,"Fixed OPEX, mln",2039,82.000000,82.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"CAPEX, mln",2039,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Total, mln",2039,2255.058600,3192.093989,937.035389,fixed/STRESS,reactive/STRESS
-finance,"PV total, mln",2039,1657.535391,2346.284375,688.748984,fixed/STRESS,reactive/STRESS
-finance,"Procurement, mln",2040,2292.158410,2985.474120,693.315710,fixed/STRESS,reactive/STRESS
-finance,"Reservation, mln",2040,98.210550,113.881800,15.671250,fixed/STRESS,reactive/STRESS
-finance,"Holding, mln",2040,0.000000,39.812243,39.812243,fixed/STRESS,reactive/STRESS
-finance,"Fixed OPEX, mln",2040,82.000000,82.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"CAPEX, mln",2040,0.000000,0.000000,0.000000,fixed/STRESS,reactive/STRESS
-finance,"Total, mln",2040,2472.368960,3221.168163,748.799203,fixed/STRESS,reactive/STRESS
-finance,"PV total, mln",2040,1682.652771,2192.272926,509.620155,fixed/STRESS,reactive/STRESS
-decision:order,ordered_t B,2038,0,48.877600,48.877600,fixed/STRESS,reactive/STRESS
-decision:order,ordered_t B,2039,22.621600,102.514800,79.893200,fixed/STRESS,reactive/STRESS
-decision:order,ordered_t B,2040,84.736900,110.000000,25.263100,fixed/STRESS,reactive/STRESS
-decision:order,ordered_t E,2038,0,39.190300,39.190300,fixed/STRESS,reactive/STRESS
-decision:order,ordered_t E,2040,0,33.947400,33.947400,fixed/STRESS,reactive/STRESS
-decision:reservation,reserved_t B,2038,0,110.000000,110.000000,fixed/STRESS,reactive/STRESS
-decision:reservation,reserved_t B,2039,22.622000,102.516000,79.894000,fixed/STRESS,reactive/STRESS
-decision:reservation,reserved_t B,2040,84.737000,110.000000,25.263000,fixed/STRESS,reactive/STRESS
-decision:reservation,reserved_t E,2038,0,80.000000,80.000000,fixed/STRESS,reactive/STRESS
-decision:reservation,reserved_t E,2040,0,33.948000,33.948000,fixed/STRESS,reactive/STRESS
-violation,BASE_TOTAL_SERVICE,2038,yes,,,fixed/STRESS,reactive/STRESS
-violation,BASE_TOTAL_SERVICE,2039,yes,,,fixed/STRESS,reactive/STRESS
-violation,BASE_TOTAL_SERVICE,2040,yes,,,fixed/STRESS,reactive/STRESS
-violation,RESERVE_45D,2038,yes,yes,,fixed/STRESS,reactive/STRESS
-violation,RESERVE_45D,2039,yes,,,fixed/STRESS,reactive/STRESS
-violation,RESERVE_45D,2040,yes,,,fixed/STRESS,reactive/STRESS
+kpi,total_cost_mln,,11167.303284,13993.515237,2826.211954,без изменений/STRESS,реактивный/STRESS
+kpi,pv_cost_mln,,9031.624801,11135.262960,2103.638159,без изменений/STRESS,реактивный/STRESS
+kpi,cost_per_served_t_mln,,8.187277,9.127394,0.940117,без изменений/STRESS,реактивный/STRESS
+kpi,pv_cost_per_served_t_mln,,6.621510,7.263074,0.641564,без изменений/STRESS,реактивный/STRESS
+kpi,served_total_t,,1363.982586,1533.133625,169.151040,без изменений/STRESS,реактивный/STRESS
+kpi,shortage_total_t,,170.017414,0.866375,-169.151040,без изменений/STRESS,реактивный/STRESS
+kpi,shortage_critical_t,,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+kpi,min_service_level_total,,0.812473,0.996987,0.184513,без изменений/STRESS,реактивный/STRESS
+kpi,min_service_level_critical,,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+kpi,losses_total_t,,28.592174,31.318327,2.726154,без изменений/STRESS,реактивный/STRESS
+kpi,capex_total_mln,,1430.000000,1430.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+kpi,take_or_pay_idle_t,,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+kpi,hard_violations,,3,1,-2,без изменений/STRESS,реактивный/STRESS
+kpi,guideline_violations,,3,0,-3,без изменений/STRESS,реактивный/STRESS
+yearly,"Спрос, т",2035,100.000000,100.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Обслужено, т",2035,100.000000,100.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса общий,2035,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса критический,2035,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Дефицит, т",2035,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Поступление (факт), т",2035,109.876000,109.876000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Потери, т",2035,4.944420,4.944420,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Потери / поступление,2035,0.045000,0.045000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на начало, т",2035,12.328859,12.328859,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на конец, т",2035,17.260439,17.260439,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"45-дневный резерв, т",2035,12.328767,12.328767,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Спрос, т",2036,140.000000,140.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Обслужено, т",2036,140.000000,140.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса общий,2036,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса критический,2036,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Дефицит, т",2036,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Поступление (факт), т",2036,153.051800,153.051800,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Потери, т",2036,6.887331,6.887331,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Потери / поступление,2036,0.045000,0.045000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на начало, т",2036,17.260439,17.260439,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на конец, т",2036,23.424908,23.424908,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"45-дневный резерв, т",2036,17.260274,17.260274,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Спрос, т",2037,190.000000,190.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Обслужено, т",2037,190.000000,190.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса общий,2037,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса критический,2037,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Дефицит, т",2037,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Поступление (факт), т",2037,203.188200,203.188200,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Потери, т",2037,5.790864,5.790864,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,Потери / поступление,2037,0.028500,0.028500,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на начало, т",2037,23.424908,23.424908,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на конец, т",2037,30.822244,30.822244,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"45-дневный резерв, т",2037,23.424658,23.424658,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Спрос, т",2038,287.500000,287.500000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Обслужено, т",2038,244.992388,286.633625,41.641238,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса общий,2038,0.852147,0.996987,0.144839,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса критический,2038,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Дефицит, т",2038,42.507612,0.866375,-41.641238,без изменений/STRESS,реактивный/STRESS
+yearly,"Поступление (факт), т",2038,216.771400,304.848600,88.077200,без изменений/STRESS,реактивный/STRESS
+yearly,"Потери, т",2038,2.601257,3.658183,1.056926,без изменений/STRESS,реактивный/STRESS
+yearly,Потери / поступление,2038,0.012000,0.012000,-0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на начало, т",2038,30.822244,30.822244,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на конец, т",2038,0.000000,45.379036,45.379036,без изменений/STRESS,реактивный/STRESS
+yearly,"45-дневный резерв, т",2038,35.445205,35.445205,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Спрос, т",2039,368.000000,368.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Обслужено, т",2039,298.990141,368.000000,69.009859,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса общий,2039,0.812473,1.000000,0.187527,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса критический,2039,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Дефицит, т",2039,69.009859,0.000000,-69.009859,без изменений/STRESS,реактивный/STRESS
+yearly,"Поступление (факт), т",2039,302.621600,382.514800,79.893200,без изменений/STRESS,реактивный/STRESS
+yearly,"Потери, т",2039,3.631459,4.590178,0.958718,без изменений/STRESS,реактивный/STRESS
+yearly,Потери / поступление,2039,0.012000,0.012000,-0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на начало, т",2039,0.000000,45.379036,45.379036,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на конец, т",2039,0.000000,55.303658,55.303658,без изменений/STRESS,реактивный/STRESS
+yearly,"45-дневный резерв, т",2039,45.369863,45.369863,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Спрос, т",2040,448.500000,448.500000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Обслужено, т",2040,390.000057,448.500000,58.499943,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса общий,2040,0.869565,1.000000,0.130435,без изменений/STRESS,реактивный/STRESS
+yearly,Уровень сервиса критический,2040,1.000000,1.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Дефицит, т",2040,58.499943,0.000000,-58.499943,без изменений/STRESS,реактивный/STRESS
+yearly,"Поступление (факт), т",2040,394.736900,453.946000,59.209100,без изменений/STRESS,реактивный/STRESS
+yearly,"Потери, т",2040,4.736843,5.447352,0.710509,без изменений/STRESS,реактивный/STRESS
+yearly,Потери / поступление,2040,0.012000,0.012000,0.000000,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на начало, т",2040,0.000000,55.303658,55.303658,без изменений/STRESS,реактивный/STRESS
+yearly,"Запас на конец, т",2040,0.000000,55.302306,55.302306,без изменений/STRESS,реактивный/STRESS
+yearly,"45-дневный резерв, т",2040,55.294521,55.294521,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Закупка, млн",2035,796.128420,796.128420,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Резервирование, млн",2035,51.380670,51.380670,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Хранение, млн",2035,10.652147,10.652147,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Постоянный OPEX, млн",2035,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"CAPEX, млн",2035,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Итого, млн",2035,858.161237,858.161237,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"PV итого, млн",2035,858.161237,858.161237,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Закупка, млн",2036,948.921160,948.921160,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Резервирование, млн",2036,68.873400,68.873400,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Хранение, млн",2036,14.646725,14.646725,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Постоянный OPEX, млн",2036,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"CAPEX, млн",2036,1250.000000,1250.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Итого, млн",2036,2282.441285,2282.441285,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"PV итого, млн",2036,2113.371560,2113.371560,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Закупка, млн",2037,1295.374980,1295.374980,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Резервирование, млн",2037,87.478350,87.478350,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Хранение, млн",2037,18.925506,18.925506,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Постоянный OPEX, млн",2037,6.000000,6.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"CAPEX, млн",2037,180.000000,180.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Итого, млн",2037,1587.778836,1587.778836,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"PV итого, млн",2037,1361.264434,1361.264434,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Закупка, млн",2038,1553.728350,2638.447200,1084.718850,без изменений/STRESS,реактивный/STRESS
+finance,"Резервирование, млн",2038,72.797400,117.297400,44.500000,без изменений/STRESS,реактивный/STRESS
+finance,"Хранение, млн",2038,2.968616,14.130292,11.161677,без изменений/STRESS,реактивный/STRESS
+finance,"Постоянный OPEX, млн",2038,82.000000,82.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"CAPEX, млн",2038,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Итого, млн",2038,1711.494366,2851.874892,1140.380527,без изменений/STRESS,реактивный/STRESS
+finance,"PV итого, млн",2038,1358.639408,2263.910237,905.270829,без изменений/STRESS,реактивный/STRESS
+finance,"Закупка, млн",2039,2084.165300,2972.977150,888.811850,без изменений/STRESS,реактивный/STRESS
+finance,"Резервирование, млн",2039,88.893300,100.877400,11.984100,без изменений/STRESS,реактивный/STRESS
+finance,"Хранение, млн",2039,0.000000,36.245770,36.245770,без изменений/STRESS,реактивный/STRESS
+finance,"Постоянный OPEX, млн",2039,82.000000,82.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"CAPEX, млн",2039,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Итого, млн",2039,2255.058600,3192.100320,937.041720,без изменений/STRESS,реактивный/STRESS
+finance,"PV итого, млн",2039,1657.535391,2346.289028,688.753637,без изменений/STRESS,реактивный/STRESS
+finance,"Закупка, млн",2040,2292.158410,2985.458720,693.300310,без изменений/STRESS,реактивный/STRESS
+finance,"Резервирование, млн",2040,98.210550,113.881800,15.671250,без изменений/STRESS,реактивный/STRESS
+finance,"Хранение, млн",2040,0.000000,39.818147,39.818147,без изменений/STRESS,реактивный/STRESS
+finance,"Постоянный OPEX, млн",2040,82.000000,82.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"CAPEX, млн",2040,0.000000,0.000000,0.000000,без изменений/STRESS,реактивный/STRESS
+finance,"Итого, млн",2040,2472.368960,3221.158667,748.789707,без изменений/STRESS,реактивный/STRESS
+finance,"PV итого, млн",2040,1682.652771,2192.266464,509.613693,без изменений/STRESS,реактивный/STRESS
+decision:order,ordered_t B,2038,0,48.877200,48.877200,без изменений/STRESS,реактивный/STRESS
+decision:order,ordered_t B,2039,22.621600,102.514800,79.893200,без изменений/STRESS,реактивный/STRESS
+decision:order,ordered_t B,2040,84.736900,109.999200,25.262300,без изменений/STRESS,реактивный/STRESS
+decision:order,ordered_t E,2038,0,39.200000,39.200000,без изменений/STRESS,реактивный/STRESS
+decision:order,ordered_t E,2040,0,33.946800,33.946800,без изменений/STRESS,реактивный/STRESS
+decision:reservation,reserved_t B,2038,0,110.000000,110.000000,без изменений/STRESS,реактивный/STRESS
+decision:reservation,reserved_t B,2039,22.622000,102.516000,79.894000,без изменений/STRESS,реактивный/STRESS
+decision:reservation,reserved_t B,2040,84.737000,110.000000,25.263000,без изменений/STRESS,реактивный/STRESS
+decision:reservation,reserved_t E,2038,0,80.000000,80.000000,без изменений/STRESS,реактивный/STRESS
+decision:reservation,reserved_t E,2040,0,33.948000,33.948000,без изменений/STRESS,реактивный/STRESS
+violation,BASE_TOTAL_SERVICE,2038,yes,,,без изменений/STRESS,реактивный/STRESS
+violation,BASE_TOTAL_SERVICE,2039,yes,,,без изменений/STRESS,реактивный/STRESS
+violation,BASE_TOTAL_SERVICE,2040,yes,,,без изменений/STRESS,реактивный/STRESS
+violation,RESERVE_45D,2038,yes,yes,,без изменений/STRESS,реактивный/STRESS
+violation,RESERVE_45D,2039,yes,,,без изменений/STRESS,реактивный/STRESS
+violation,RESERVE_45D,2040,yes,,,без изменений/STRESS,реактивный/STRESS

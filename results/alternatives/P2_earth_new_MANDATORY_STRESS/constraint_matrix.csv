@@ -26,12 +26,12 @@ MANDATORY_STRESS,P2_earth_new,RESERVE_45D,2037,opening_stock_vs_45d_reserve_t,23
 MANDATORY_STRESS,P2_earth_new,RESERVE_45D,2038,opening_stock_vs_45d_reserve_t,30.822262,35.445205,>=,False,hard,physical
 MANDATORY_STRESS,P2_earth_new,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,1.952402,45.369863,>=,False,hard,physical
 MANDATORY_STRESS,P2_earth_new,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,0.000000,55.294521,>=,False,hard,physical
-MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
+MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P2_earth_new,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
 MANDATORY_STRESS,P2_earth_new,STRESS_LOSS_LIMIT,2038,losses_divided_by_throughput,0.045000,0.020000,<=,False,hard,
 MANDATORY_STRESS,P2_earth_new,STRESS_LOSS_LIMIT,2039,losses_divided_by_throughput,0.045000,0.020000,<=,False,hard,
 MANDATORY_STRESS,P2_earth_new,STRESS_LOSS_LIMIT,2040,losses_divided_by_throughput,0.045000,0.020000,<=,False,hard,
@@ -50,14 +50,14 @@ MANDATORY_STRESS,P2_earth_new,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.0
 MANDATORY_STRESS,P2_earth_new,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P2_earth_new,CAPACITY_EXCEEDED,2037,reserved_C_t_per_year,16.699000,130.000000,<=,True,hard,Earth-New
 MANDATORY_STRESS,P2_earth_new,ORDER_EXCEEDS_RESERVATION,2037,ordered_C_t,16.698800,16.699000,<=,True,hard,Earth-New
-MANDATORY_STRESS,P2_earth_new,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+MANDATORY_STRESS,P2_earth_new,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P2_earth_new,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P2_earth_new,STORAGE_OVERFLOW,2038,max_end_of_month_stock_t,28.416440,70.000000,<=,True,hard,monthly
 MANDATORY_STRESS,P2_earth_new,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P2_earth_new,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P2_earth_new,CAPACITY_EXCEEDED,2038,reserved_C_t_per_year,80.817000,130.000000,<=,True,hard,Earth-New
 MANDATORY_STRESS,P2_earth_new,ORDER_EXCEEDS_RESERVATION,2038,ordered_C_t,80.816900,80.817000,<=,True,hard,Earth-New
-MANDATORY_STRESS,P2_earth_new,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+MANDATORY_STRESS,P2_earth_new,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P2_earth_new,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P2_earth_new,STORAGE_OVERFLOW,2039,max_end_of_month_stock_t,0.000000,70.000000,<=,True,hard,monthly
 MANDATORY_STRESS,P2_earth_new,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core

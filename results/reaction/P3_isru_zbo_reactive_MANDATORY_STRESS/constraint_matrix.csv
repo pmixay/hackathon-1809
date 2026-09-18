@@ -24,14 +24,14 @@ MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2035,opening_stock_vs_45d_rese
 MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2036,opening_stock_vs_45d_reserve_t,17.260439,17.260274,>=,True,hard,physical
 MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2037,opening_stock_vs_45d_reserve_t,23.424908,23.424658,>=,True,hard,physical
 MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2038,opening_stock_vs_45d_reserve_t,30.822244,35.445205,>=,False,hard,physical
-MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,45.370243,45.369863,>=,True,hard,physical
-MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,55.294865,55.294521,>=,True,hard,physical
-MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.136314,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.075691,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
+MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,45.379036,45.369863,>=,True,hard,physical
+MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,55.303658,55.294521,>=,True,hard,physical
+MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.136348,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+MANDATORY_STRESS,P3_isru_zbo_reactive,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.075690,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
 MANDATORY_STRESS,P3_isru_zbo_reactive,STRESS_LOSS_LIMIT,2038,losses_divided_by_throughput,0.012000,0.020000,<=,True,hard,
 MANDATORY_STRESS,P3_isru_zbo_reactive,STRESS_LOSS_LIMIT,2039,losses_divided_by_throughput,0.012000,0.020000,<=,True,hard,
 MANDATORY_STRESS,P3_isru_zbo_reactive,STRESS_LOSS_LIMIT,2040,losses_divided_by_throughput,0.012000,0.020000,<=,True,hard,
@@ -52,18 +52,18 @@ MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2037,reserved_B_t_per_ye
 MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2037,ordered_B_t,13.188200,13.189000,<=,True,hard,Earth-Flex
 MANDATORY_STRESS,P3_isru_zbo_reactive,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P3_isru_zbo_reactive,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
-MANDATORY_STRESS,P3_isru_zbo_reactive,STORAGE_OVERFLOW,2038,max_end_of_month_stock_t,45.370243,120.000000,<=,True,hard,monthly
+MANDATORY_STRESS,P3_isru_zbo_reactive,STORAGE_OVERFLOW,2038,max_end_of_month_stock_t,45.379036,120.000000,<=,True,hard,monthly
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,161.772000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,161.771400,161.772000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2038,reserved_B_t_per_year,110.000000,110.000000,<=,True,hard,Earth-Flex
-MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2038,ordered_B_t,48.877600,110.000000,<=,True,hard,Earth-Flex
+MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2038,ordered_B_t,48.877200,110.000000,<=,True,hard,Earth-Flex
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2038,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
 MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2038,ordered_D_t,100.000000,100.000000,<=,True,hard,Lunar-ISRU
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2038,reserved_E_t_per_year,80.000000,80.000000,<=,True,hard,Emergency
-MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2038,ordered_E_t,39.190300,80.000000,<=,True,hard,Emergency
+MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2038,ordered_E_t,39.200000,80.000000,<=,True,hard,Emergency
 MANDATORY_STRESS,P3_isru_zbo_reactive,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P3_isru_zbo_reactive,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
-MANDATORY_STRESS,P3_isru_zbo_reactive,STORAGE_OVERFLOW,2039,max_end_of_month_stock_t,55.294865,120.000000,<=,True,hard,monthly
+MANDATORY_STRESS,P3_isru_zbo_reactive,STORAGE_OVERFLOW,2039,max_end_of_month_stock_t,55.303658,120.000000,<=,True,hard,monthly
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2039,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2039,reserved_B_t_per_year,102.516000,110.000000,<=,True,hard,Earth-Flex
@@ -72,14 +72,14 @@ MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2039,reserved_D_t_per_ye
 MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2039,ordered_D_t,120.000000,120.000000,<=,True,hard,Lunar-ISRU
 MANDATORY_STRESS,P3_isru_zbo_reactive,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P3_isru_zbo_reactive,SOURCE_NOT_AVAILABLE,2039,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
-MANDATORY_STRESS,P3_isru_zbo_reactive,STORAGE_OVERFLOW,2040,max_end_of_month_stock_t,55.294851,120.000000,<=,True,hard,monthly
+MANDATORY_STRESS,P3_isru_zbo_reactive,STORAGE_OVERFLOW,2040,max_end_of_month_stock_t,55.303545,120.000000,<=,True,hard,monthly
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2040,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2040,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2040,reserved_B_t_per_year,110.000000,110.000000,<=,True,hard,Earth-Flex
-MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2040,ordered_B_t,110.000000,110.000000,<=,True,hard,Earth-Flex
+MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2040,ordered_B_t,109.999200,110.000000,<=,True,hard,Earth-Flex
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2040,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
 MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2040,ordered_D_t,120.000000,120.000000,<=,True,hard,Lunar-ISRU
 MANDATORY_STRESS,P3_isru_zbo_reactive,CAPACITY_EXCEEDED,2040,reserved_E_t_per_year,33.948000,80.000000,<=,True,hard,Emergency
-MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2040,ordered_E_t,33.947400,33.948000,<=,True,hard,Emergency
+MANDATORY_STRESS,P3_isru_zbo_reactive,ORDER_EXCEEDS_RESERVATION,2040,ordered_E_t,33.946800,33.948000,<=,True,hard,Emergency
 MANDATORY_STRESS,P3_isru_zbo_reactive,LEAD_TIME_VIOLATED,2040,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P3_isru_zbo_reactive,SOURCE_NOT_AVAILABLE,2040,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,

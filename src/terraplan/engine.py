@@ -156,8 +156,8 @@ class Result:
     check_matrix: list = field(default_factory=list)     # every rule x year with actual, limit, ok (passed checks included)
     deliveries: list = field(default_factory=list)       # order calendar: delivery month, order placement month, lead time
     units: dict = field(default_factory=lambda: {
-        "fuel": "t", "money": "mln conventional units, constant 2035 prices", "capacity": "t/year",
-        "reservation_rate": "mln per (t/year)", "service_level": "share 0..1", "time_step": "calendar month"})
+        "fuel": "т", "money": "млн у.е., постоянные цены 2035 г.", "capacity": "т/год",
+        "reservation_rate": "млн у.е. за (т/год)", "service_level": "доля 0..1", "time_step": "календарный месяц"})
 
     @property
     def feasible(self) -> bool:
@@ -202,7 +202,7 @@ def lead_months(source: Source, a: Assumptions) -> int:
         return int(math.ceil(v / float(a.days_per_month) - EPS))
     if unit == "year":
         return int(math.ceil(v * 12 - EPS))
-    raise ValueError(f"unknown lead time unit {unit}")
+    raise ValueError(f"неизвестная единица срока поставки (lead_time_unit): {unit}")
 
 
 # --------------------------------------------------------------------------- engine
@@ -235,20 +235,22 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
     commissioning: dict[str, Optional[int]] = {}
     opex_streams: list[tuple[int, float, str]] = []              # (from_idx, mln_per_year, id)
     inv_records: list[InvestmentRecord] = []
+    decision_idx: dict[str, int] = {}                             # investment_id -> exercise / CAPEX month
     for inv in plan.investments:
         opt = case.investments[inv.investment_id]
         dec_idx = midx(inv.decision_year, inv.decision_month)
+        decision_idx[opt.investment_id] = dec_idx
         opt_idx = midx(inv.option_year, inv.option_month) if inv.option_year is not None else dec_idx
         note = ""
         if opt.option_fee_mln > 0:
-            capex_events.append((opt_idx, opt.option_fee_mln, opt.investment_id, "option fee"))
+            capex_events.append((opt_idx, opt.option_fee_mln, opt.investment_id, "плата за опцион"))
         if opt.exercise_cost_mln > 0:
-            capex_events.append((dec_idx, opt.exercise_cost_mln, opt.investment_id, "exercise / CAPEX"))
+            capex_events.append((dec_idx, opt.exercise_cost_mln, opt.investment_id, "реализация / CAPEX"))
         comm: Optional[int]
         if opt.investment_id in sto_link:                      # storage modernization (ZBO)
             so = case.storage[sto_link[opt.investment_id]]
             if inv.decision_year < so.available_from_year:
-                add("INVESTMENT_TIMING", "hard", f"{opt.name}: option is available from {so.available_from_year}, decision dated {ym_str(dec_idx)}",
+                add("INVESTMENT_TIMING", "hard", f"{opt.name}: опция доступна с {so.available_from_year} г., решение датировано {ym_str(dec_idx)}",
                     year=inv.decision_year, month=inv.decision_month, actual=inv.decision_year, limit=so.available_from_year)
             comm = dec_idx + int(a.zbo_commissioning_lag_months)
         elif opt.investment_id in inv_to_source:               # capacity-creating investment
@@ -256,10 +258,10 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             if s.available_from_year is not None:              # Lunar-ISRU style: fixed start year, financing deadline
                 deadline = parse_ym(a.isru_financing_deadline)
                 if dec_idx > deadline:
-                    add("INVESTMENT_TIMING", "hard", f"{opt.name}: CAPEX must be financed by {ym_str(deadline)}, decision dated {ym_str(dec_idx)}; source {s.name} is not available",
+                    add("INVESTMENT_TIMING", "hard", f"{opt.name}: CAPEX должен быть профинансирован не позднее {ym_str(deadline)}, решение датировано {ym_str(dec_idx)}; источник {s.name} недоступен",
                         year=inv.decision_year, month=inv.decision_month, source_id=s.source_id)
                     comm = None
-                    note = "not commissioned: financed too late"
+                    note = "не введён: финансирование позже срока"
                 else:
                     comm = max(dec_idx, midx(s.available_from_year, 1))
             else:                                              # Earth-New style: decision + lead time
@@ -304,6 +306,29 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
 
     avail_idx: dict[str, Optional[int]] = {k: first_delivery_idx(s) for k, s in case.sources.items()}
 
+    def order_terms(s: Source) -> tuple[int, int, str]:
+        """Условия заказа для источника: (срок поставки в месяцах, самая ранняя допустимая дата заказа, пояснение).
+
+        Обычные каналы (A, B, E): срок поставки организатора, заказы с начала подготовительного периода.
+        Lunar-ISRU (фиксированный год ввода): срок поставки после ввода (1–2 мес.), заказы с месяца ввода.
+        Earth-New (срок 18–24 мес. — это подготовка после реализации опциона): решение о реализации и есть заказ
+        первых поставок; после ввода действует допущение earth_new_post_commissioning_lead_months.
+        """
+        link = src_link.get(s.source_id)
+        if not link:
+            lt = lead_months(s, a)
+            return lt, prep_start, f"срок поставки {lt} мес.; заказы с {ym_str(prep_start)}"
+        comm = commissioning.get(link)
+        if comm is None:
+            return lead_months(s, a), prep_start, "источник не введён (инвестиция отсутствует или профинансирована слишком поздно)"
+        if s.available_from_year is not None:
+            lt = lead_months(s, a)
+            return lt, comm, f"ввод {ym_str(comm)}; срок поставки после ввода {lt} мес."
+        lt = int(a.earth_new_post_commissioning_lead_months)
+        prep = lead_months(s, a)
+        return lt, comm, (f"ввод {ym_str(comm)} = решение {ym_str(decision_idx.get(link))} + {prep} мес. подготовки; "
+                          f"срок заказа после ввода {lt} мес. (допущение earth_new_post_commissioning_lead_months)")
+
     # ---- delivery schedule ---------------------------------------------------
     schedule: dict[int, dict[str, float]] = {}
     ordered_by_sy: dict[tuple[str, int], float] = {}
@@ -316,8 +341,8 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         if o.ordered_t <= EPS:
             continue
         if not avail_months:
-            add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name}: {o.ordered_t:.3f} t ordered for {o.year} but the source cannot deliver in that year"
-                + (f" (first delivery {ym_str(fa)})" if fa is not None else " (required investment missing or financed too late)"),
+            add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name}: заказано {o.ordered_t:.3f} т на {o.year} г., но источник не может поставлять в этом году"
+                + (f" (первая возможная поставка {ym_str(fa)})" if fa is not None else " (требуемая инвестиция отсутствует или профинансирована слишком поздно)"),
                 year=o.year, source_id=s.source_id, actual=o.ordered_t, limit=0.0, excess=o.ordered_t)
             continue
         if o.profile == "monthly" and o.monthly_t:
@@ -326,7 +351,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 if q <= EPS:
                     continue
                 if i not in avail_months:
-                    add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name}: {q:.3f} t scheduled for {ym_str(i)} before first possible delivery {ym_str(fa)}",
+                    add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name}: {q:.3f} т запланировано на {ym_str(i)}, раньше первой возможной поставки {ym_str(fa)}",
                         year=o.year, month=k + 1, source_id=s.source_id, actual=q, limit=0.0, excess=q)
                     continue
                 schedule.setdefault(i, {})[s.source_id] = schedule.get(i, {}).get(s.source_id, 0.0) + q
@@ -334,16 +359,14 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             q = o.ordered_t / len(avail_months)
             for i in avail_months:
                 schedule.setdefault(i, {})[s.source_id] = schedule.get(i, {}).get(s.source_id, 0.0) + q
-        # lead-time check: order placement date must fall inside the preparatory period or later,
-        # and, for sources unlocked by an investment, not before commissioning.
-        lt = lead_months(s, a)
-        link = src_link.get(s.source_id)
-        earliest_order = prep_start if not link else (commissioning.get(link) or prep_start)
+        # lead-time check: the order placement date (delivery - lead time) must not precede the earliest
+        # allowed order date (preparatory period start, or commissioning for investment-unlocked sources).
+        lt, earliest_order, _ = order_terms(s)
         first_month = min(i for i in avail_months if schedule.get(i, {}).get(s.source_id, 0) > EPS) if any(
             schedule.get(i, {}).get(s.source_id, 0) > EPS for i in avail_months) else None
-        if first_month is not None and not link and first_month - lt < earliest_order:
-            add("LEAD_TIME_VIOLATED", "hard", f"{s.name}: delivery in {ym_str(first_month)} needs an order by {ym_str(first_month - lt)} "
-                f"(lead time {lt} months), before the preparatory period starts {ym_str(earliest_order)}",
+        if first_month is not None and first_month - lt < earliest_order:
+            add("LEAD_TIME_VIOLATED", "hard", f"{s.name}: поставка в {ym_str(first_month)} требует заказа не позднее {ym_str(first_month - lt)} "
+                f"(срок поставки {lt} мес.), то есть раньше самой ранней допустимой даты заказа {ym_str(earliest_order)}",
                 year=o.year, month=ym(first_month)[1], source_id=s.source_id, actual=first_month - lt, limit=earliest_order)
 
     # ---- order calendar (delivery month -> order placement month) -------------------
@@ -353,13 +376,12 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             if q <= EPS:
                 continue
             s_ = case.sources[k]
-            lt = lead_months(s_, a)
-            link = src_link.get(k)
-            earliest = prep_start if not link else (commissioning.get(link) or prep_start)
+            lt, earliest, note_ = order_terms(s_)
             placement = idx - lt
             deliveries.append(dict(source_id=k, name=s_.name, year=ym(idx)[0], month=ym(idx)[1], delivery_month=ym_str(idx),
                                    planned_t=q, actual_t=q * scenario.delivery_share(s_, ym(idx)[0]), lead_time_months=lt,
-                                   order_placement_month=ym_str(placement), earliest_allowed_order=ym_str(earliest), lead_time_ok=placement >= earliest))
+                                   order_placement_month=ym_str(placement), earliest_allowed_order=ym_str(earliest), lead_time_ok=placement >= earliest,
+                                   lead_time_note=note_))
 
     # ---- preparatory period: opening stock -------------------------------------
     prep_records: list[SourceYearRecord] = []
@@ -370,12 +392,12 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         d_idx = midx(st.delivery_year, st.delivery_month)
         fa = avail_idx[st.source_id]
         if fa is None or d_idx < fa or src_link.get(st.source_id):
-            add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name}: cannot deliver opening stock in {ym_str(d_idx)} (source not available in the preparatory period)",
+            add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name}: не может поставить начальный запас в {ym_str(d_idx)} (источник недоступен в подготовительный период)",
                 year=st.delivery_year, month=st.delivery_month, source_id=s.source_id, actual=st.tons)
             continue
         lt = lead_months(s, a)
         if d_idx - lt < prep_start:
-            add("LEAD_TIME_VIOLATED", "hard", f"{s.name}: opening stock delivery {ym_str(d_idx)} needs an order by {ym_str(d_idx - lt)}, before preparatory period start {ym_str(prep_start)}",
+            add("LEAD_TIME_VIOLATED", "hard", f"{s.name}: поставка начального запаса {ym_str(d_idx)} требует заказа не позднее {ym_str(d_idx - lt)}, раньше начала подготовительного периода {ym_str(prep_start)}",
                 year=st.delivery_year, month=st.delivery_month, source_id=s.source_id, actual=d_idx - lt, limit=prep_start)
         mode = storage_at(d_idx)
         losses = rules.losses_on_throughput(st.tons, mode.loss_rate_on_throughput)
@@ -390,7 +412,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                                              scenario.price_mult(s, y0), st.tons, 0.0, proc, resv))
     cap0 = storage_at(start_idx).capacity_t
     if opening_inventory > cap0 + EPS:
-        add("STORAGE_OVERFLOW", "hard", f"opening stock {opening_inventory:.3f} t exceeds storage capacity {cap0:.1f} t at {y0}-01",
+        add("STORAGE_OVERFLOW", "hard", f"начальный запас {opening_inventory:.3f} т превышает ёмкость хранилища {cap0:.1f} т на {y0}-01",
             year=y0, month=1, actual=opening_inventory, limit=cap0, excess=opening_inventory - cap0)
 
     # ---- monthly simulation ----------------------------------------------------
@@ -417,10 +439,10 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         months.append(MonthRecord(y, mo, mode.storage_id, mode.capacity_t, mode.loss_rate_on_throughput, inv, fsum(planned.values()),
                                   thr, losses, available, d, c, served, served_c, shortage, shortage_c, closing, holding, dict(actual)))
         if closing > mode.capacity_t + EPS:
-            add("STORAGE_OVERFLOW", "hard", f"end-of-month stock {closing:.3f} t exceeds {mode.name} capacity {mode.capacity_t:.1f} t in {ym_str(idx)}",
+            add("STORAGE_OVERFLOW", "hard", f"запас на конец месяца {closing:.3f} т превышает ёмкость хранилища {mode.name} {mode.capacity_t:.1f} т в {ym_str(idx)}",
                 year=y, month=mo, actual=closing, limit=mode.capacity_t, excess=closing - mode.capacity_t)
         elif available > mode.capacity_t + EPS:
-            add("INTRA_MONTH_PEAK", "warning", f"stock after inflow {available:.3f} t exceeds {mode.name} capacity {mode.capacity_t:.1f} t within {ym_str(idx)} (before withdrawals)",
+            add("INTRA_MONTH_PEAK", "warning", f"запас после поступления {available:.3f} т превышает ёмкость хранилища {mode.name} {mode.capacity_t:.1f} т внутри {ym_str(idx)} (до выдачи потребителям)",
                 year=y, month=mo, actual=available, limit=mode.capacity_t, excess=available - mode.capacity_t)
         inv = closing
 
@@ -460,16 +482,16 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             actual_del = fsum(mrec.inflow_by_source.get(k, 0.0) for mrec in months if mrec.year == y)
             share = scenario.delivery_share(s, y)
             if reserved > s.capacity_t_per_year + EPS:
-                add("CAPACITY_EXCEEDED", "hard", f"{s.name} {y}: reserved {reserved:.3f} t/yr exceeds capacity {s.capacity_t_per_year:.1f} t/yr",
+                add("CAPACITY_EXCEEDED", "hard", f"{s.name} {y}: зарезервировано {reserved:.3f} т/год, что превышает мощность {s.capacity_t_per_year:.1f} т/год",
                     year=y, source_id=k, actual=reserved, limit=s.capacity_t_per_year, excess=reserved - s.capacity_t_per_year)
             if reserved > EPS and n_avail == 0:
-                add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name} {y}: capacity reserved but the source is not available in {y}"
-                    + (f" (first delivery {ym_str(fa)})" if fa is not None else " (investment missing or financed too late)"),
+                add("SOURCE_NOT_AVAILABLE", "hard", f"{s.name} {y}: мощность зарезервирована, но источник недоступен в {y} г."
+                    + (f" (первая возможная поставка {ym_str(fa)})" if fa is not None else " (инвестиция отсутствует или профинансирована слишком поздно)"),
                     year=y, source_id=k, actual=reserved, limit=0.0, excess=reserved)
             reserved_period = reserved * f
             if ordered > reserved_period + 1e-6:
-                add("ORDER_EXCEEDS_RESERVATION", "hard", f"{s.name} {y}: ordered {ordered:.3f} t exceeds contractually available {reserved_period:.3f} t "
-                    f"(reserved {reserved:.1f} t/yr x {f:.3f} of year)", year=y, source_id=k, actual=ordered, limit=reserved_period, excess=ordered - reserved_period)
+                add("ORDER_EXCEEDS_RESERVATION", "hard", f"{s.name} {y}: заказано {ordered:.3f} т, что превышает контрактно доступный объём {reserved_period:.3f} т "
+                    f"(резерв {reserved:.1f} т/год × {f:.3f} года)", year=y, source_id=k, actual=ordered, limit=reserved_period, excess=ordered - reserved_period)
             pm = scenario.price_mult(s, y)
             price = s.variable_cost_mln_per_t * pm
             q_pay = rules.take_or_pay_volume(ordered, reserved_period, s.take_or_pay_share)
@@ -501,7 +523,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         finance.append(FinanceYear(y, proc, resv, hold, opex, capex, total, df, total * df, cum_capex))
     for i, amt, inv_id, label in capex_events:
         if ym(i)[0] < y0 or ym(i)[0] > yN:
-            add("INVESTMENT_TIMING", "hard", f"{inv_id} {label} {amt:.1f} mln dated {ym_str(i)} is outside the horizon {y0}-{yN}", year=ym(i)[0], actual=amt)
+            add("INVESTMENT_TIMING", "hard", f"{inv_id}: {label} {amt:.1f} млн датирован {ym_str(i)}, вне горизонта {y0}–{yN}", year=ym(i)[0], actual=amt)
 
     # ---- constraint checks from constraints.csv ------------------------------------
     for c in case.constraints.values():
@@ -511,17 +533,17 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             for yr in year_records:
                 val = yr.service_level_total if c.metric == "total_service_level" else yr.service_level_critical
                 if val + EPS < c.value:
-                    kind = "total" if c.metric == "total_service_level" else "critical"
-                    short = yr.shortage_total_t if kind == "total" else yr.shortage_critical_t
-                    add(c.constraint_id, sev, f"{yr.year}: {kind} service level {val:.4f} < {c.value:.2f} (shortage {short:.3f} t)"
-                        + ("" if sev == "hard" else " [guideline in this scenario]"), year=yr.year, actual=val, limit=c.value, excess=c.value - val)
+                    kind = "общий" if c.metric == "total_service_level" else "критический"
+                    short = yr.shortage_total_t if c.metric == "total_service_level" else yr.shortage_critical_t
+                    add(c.constraint_id, sev, f"{yr.year}: {kind} уровень сервиса {val:.4f} < {c.value:.2f} (дефицит {short:.3f} т)"
+                        + ("" if sev == "hard" else " [в этом сценарии — ориентир, не жёсткое ограничение]"), year=yr.year, actual=val, limit=c.value, excess=c.value - val)
         elif c.metric == "cumulative_capex":
             if not applies:
                 continue
             through = int(c.period.split("_")[-1]) if c.period.startswith("through_") else yN
             cum = fsum(fy.capex_mln for fy in finance if fy.year <= through)
             if cum > c.value + EPS:
-                add(c.constraint_id, "hard", f"cumulative CAPEX through {through} = {cum:.1f} mln exceeds limit {c.value:.0f} mln",
+                add(c.constraint_id, "hard", f"накопленный CAPEX до конца {through} г. = {cum:.1f} млн превышает лимит {c.value:.0f} млн",
                     year=through, actual=cum, limit=c.value, excess=cum - c.value)
         elif c.metric == "reserve_equivalent_days":
             if not applies:
@@ -534,9 +556,10 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                     lt_days = max((lead_months(case.sources[e], a) for e in emergency_ids), default=2) * 30.4167
                     cover = yr.demand_total_t * lt_days / 365.0
                     ok = yr.opening_t + TOL_T >= cover and e_res + TOL_T >= yr.reserve_required_t
-                    detail = f"; contracted-equivalent test: stock {yr.opening_t:.2f} t vs lead-time cover {cover:.2f} t, reserved Emergency {e_res:.1f} t/yr vs R {yr.reserve_required_t:.2f} t"
+                    detail = (f"; проверка контрактного эквивалента: запас {yr.opening_t:.2f} т против покрытия срока поставки Emergency {cover:.2f} т, "
+                              f"зарезервировано Emergency {e_res:.1f} т/год против R {yr.reserve_required_t:.2f} т")
                 if not ok:
-                    add(c.constraint_id, "hard", f"{yr.year}-01: physical stock {yr.opening_t:.3f} t < 45-day reserve {yr.reserve_required_t:.3f} t{detail}",
+                    add(c.constraint_id, "hard", f"{yr.year}-01: физический запас {yr.opening_t:.3f} т < 45-дневного резерва {yr.reserve_required_t:.3f} т{detail}",
                         year=yr.year, month=1, actual=yr.opening_t, limit=yr.reserve_required_t, excess=yr.reserve_required_t - yr.opening_t)
         elif c.metric == "emergency_base_channel_consecutive_years":
             if not applies:
@@ -551,18 +574,18 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 else:
                     cur = []
             if best > c.value:
-                add(c.constraint_id, "hard", f"Emergency is the base channel (> {emergency_threshold:.0%} of demand) for {best} consecutive years {best_years}, limit {int(c.value)}",
+                add(c.constraint_id, "hard", f"Emergency является базовым каналом (> {emergency_threshold:.0%} спроса) {best} года подряд {best_years}, лимит {int(c.value)}",
                     year=best_years[0], actual=best, limit=c.value, excess=best - c.value)
         elif c.metric == "losses_divided_by_throughput":
             pass  # driven by the scenario's loss_ceiling block below
         else:
-            add("UNSUPPORTED_CONSTRAINT", "warning", f"constraint {c.constraint_id} with metric {c.metric!r} is not implemented by the engine", actual=c.value)
+            add("UNSUPPORTED_CONSTRAINT", "warning", f"ограничение {c.constraint_id} с метрикой {c.metric!r} не реализовано в движке (показано, а не проигнорировано)", actual=c.value)
     if scenario.loss_ceiling_enabled:
         lim = float(scenario.loss_ceiling.get("max_losses_divided_by_throughput"))
         from_year = int(scenario.loss_ceiling.get("from_year", y0))
         for yr in year_records:
             if yr.year >= from_year and yr.throughput_t > 0 and yr.loss_ratio > lim + EPS:
-                add("STRESS_LOSS_LIMIT", "hard", f"{yr.year}: losses/throughput {yr.loss_ratio:.4f} > {lim:.2f} ({yr.losses_t:.3f} t of {yr.throughput_t:.3f} t)",
+                add("STRESS_LOSS_LIMIT", "hard", f"{yr.year}: потери/поступление {yr.loss_ratio:.4f} > {lim:.2f} ({yr.losses_t:.3f} т из {yr.throughput_t:.3f} т)",
                     year=yr.year, actual=yr.loss_ratio, limit=lim, excess=yr.loss_ratio - lim)
 
     # ---- check matrix: every rule x year, passed or not ------------------------------------
@@ -587,8 +610,8 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 mrow(c.constraint_id, yr.year, "opening_stock_vs_45d_reserve_t", yr.opening_t, yr.reserve_required_t, ">=", ok, "hard", plan.reserve_mode)
         elif c.metric == "emergency_base_channel_consecutive_years" and applies:
             for yr in year_records:
-                mrow(c.constraint_id, yr.year, "emergency_share_of_demand", yr.emergency_share_of_demand, emergency_threshold, "<= (else counts as base year)",
-                     not any(v.rule_id == c.constraint_id and v.year == yr.year for v in viol), "hard", f"max {int(c.value)} consecutive base years")
+                mrow(c.constraint_id, yr.year, "emergency_share_of_demand", yr.emergency_share_of_demand, emergency_threshold, "<= (иначе год считается базовым для Emergency)",
+                     not any(v.rule_id == c.constraint_id and v.year == yr.year for v in viol), "hard", f"не более {int(c.value)} базовых лет подряд")
     if scenario.loss_ceiling_enabled:
         lim = float(scenario.loss_ceiling.get("max_losses_divided_by_throughput")); from_year = int(scenario.loss_ceiling.get("from_year", y0))
         for yr in year_records:

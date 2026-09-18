@@ -96,7 +96,7 @@ def recalc(result_dir: Path, case_dir: Path) -> list[str]:
 if __name__ == "__main__":
     rd = Path(sys.argv[1]); cd = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("data/case")
     probs = recalc(rd, cd)
-    print(f"independent recalculation of {rd}: {'PASS' if not probs else 'FAIL'}")
+    print(f"независимый пересчёт по CSV {rd}: {'ПРОЙДЕНО' if not probs else 'ОШИБКА'}")
     for p in probs:
         print("  ", p)
     sys.exit(1 if probs else 0)

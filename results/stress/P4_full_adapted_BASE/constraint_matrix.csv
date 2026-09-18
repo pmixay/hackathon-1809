@@ -26,12 +26,12 @@ BASE,P4_full_adapted,RESERVE_45D,2037,opening_stock_vs_45d_reserve_t,23.424908,2
 BASE,P4_full_adapted,RESERVE_45D,2038,opening_stock_vs_45d_reserve_t,35.445516,30.821918,>=,True,hard,physical
 BASE,P4_full_adapted,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,127.330269,39.452055,>=,True,hard,physical
 BASE,P4_full_adapted,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,214.894990,48.082192,>=,True,hard,physical
-BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
+BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
+BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.000000,0.200000,<= (иначе год считается базовым для Emergency),True,hard,не более 2 базовых лет подряд
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2035,max_end_of_month_stock_t,17.260439,70.000000,<=,True,hard,monthly
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
@@ -47,7 +47,7 @@ BASE,P4_full_adapted,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,190
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2037,reserved_C_t_per_year,17.948000,130.000000,<=,True,hard,Earth-New
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2037,ordered_C_t,17.947100,17.948000,<=,True,hard,Earth-New
-BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2038,max_end_of_month_stock_t,127.330269,120.000000,<=,False,hard,monthly
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
@@ -56,7 +56,7 @@ BASE,P4_full_adapted,CAPACITY_EXCEEDED,2038,reserved_C_t_per_year,56.038000,130.
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2038,ordered_C_t,56.037200,56.038000,<=,True,hard,Earth-New
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2038,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2038,ordered_D_t,100.000000,100.000000,<=,True,hard,Lunar-ISRU
-BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2039,max_end_of_month_stock_t,214.894990,120.000000,<=,False,hard,monthly
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core

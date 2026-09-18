@@ -22,14 +22,26 @@ jobs:
         run: python -m pip install --disable-pip-version-check -e . pytest
       - name: Organizer control vectors V01-V10
         run: python -m terraplan control-cases
-      - name: Unit and integration tests
+      - name: Unit and integration tests (incl. verify + independent recalculation of every committed results/ directory)
         run: python -m pytest -q
-      - name: Verify committed results and independent CSV recalculation
+      - name: Verify every committed result directory from the CLI
         run: |
-          python -m terraplan verify results/alternatives/P3_isru_zbo_BASE
-          python -m terraplan verify results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS
-          python tests/independent_recalc.py results/alternatives/P3_isru_zbo_BASE
-          python tests/independent_recalc.py results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          dirs = sorted(p.parent for p in Path("results").rglob("run_manifest.json"))
+          bad = 0
+          for d in dirs:
+              case = json.loads((d / "run_manifest.json").read_text(encoding="utf-8")).get("case_dir", "data/case")
+              for cmd in ([sys.executable, "-m", "terraplan", "verify", str(d), "--case", case],
+                          [sys.executable, "tests/independent_recalc.py", str(d), case]):
+                  r = subprocess.run(cmd, capture_output=True, text=True)
+                  last = (r.stdout.strip().splitlines() or [r.stderr.strip()])[-1]
+                  print(f"{d}: {last}")
+                  bad += int(r.returncode != 0)
+          print(f"{len(dirs)} каталогов результатов проверено, ошибок: {bad}")
+          sys.exit(1 if bad or not dirs else 0)
+          PY
       - name: Reproducibility smoke run (BASE + MANDATORY_STRESS)
         run: |
           python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE --out /tmp/ci_base --no-xlsx

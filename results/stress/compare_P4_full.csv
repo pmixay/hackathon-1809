@@ -1,141 +1,141 @@
 section,metric,year,a,b,delta,label_a,label_b
-kpi,total_cost_mln,,11278.068364,13112.382132,1834.313769,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,pv_cost_mln,,9213.380708,10578.227923,1364.847215,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,cost_per_served_t_mln,,8.268484,8.547837,0.279353,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,pv_cost_per_served_t_mln,,6.754764,6.895846,0.141082,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,served_total_t,,1363.982586,1534.000000,170.017414,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,shortage_total_t,,170.017414,0.000000,-170.017414,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,shortage_critical_t,,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,min_service_level_total,,0.812473,1.000000,0.187527,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,min_service_level_critical,,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,losses_total_t,,28.592174,31.408237,2.816064,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,capex_total_mln,,1790.000000,1790.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,take_or_pay_idle_t,,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,hard_violations,,3,0,-3,P4_full fixed/STRESS,P4_full adapted/STRESS
-kpi,guideline_violations,,3,0,-3,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Demand total, t",2035,100.000000,100.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Served total, t",2035,100.000000,100.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL total,2035,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL critical,2035,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Shortage, t",2035,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Delivered (actual), t",2035,109.876000,109.876000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Losses, t",2035,4.944420,4.944420,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,Losses/throughput,2035,0.045000,0.045000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Opening stock, t",2035,12.328859,12.328859,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Closing stock, t",2035,17.260439,17.260439,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"45-day reserve, t",2035,12.328767,12.328767,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Demand total, t",2036,140.000000,140.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Served total, t",2036,140.000000,140.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL total,2036,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL critical,2036,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Shortage, t",2036,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Delivered (actual), t",2036,153.051800,153.051800,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Losses, t",2036,6.887331,6.887331,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,Losses/throughput,2036,0.045000,0.045000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Opening stock, t",2036,17.260439,17.260439,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Closing stock, t",2036,23.424908,23.424908,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"45-day reserve, t",2036,17.260274,17.260274,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Demand total, t",2037,190.000000,190.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Served total, t",2037,190.000000,190.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL total,2037,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL critical,2037,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Shortage, t",2037,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Delivered (actual), t",2037,203.188200,207.947100,4.758900,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Losses, t",2037,5.790864,5.926492,0.135629,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,Losses/throughput,2037,0.028500,0.028500,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Opening stock, t",2037,23.424908,23.424908,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Closing stock, t",2037,30.822244,35.445516,4.623271,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"45-day reserve, t",2037,23.424658,23.424658,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Demand total, t",2038,287.500000,287.500000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Served total, t",2038,244.992388,287.500000,42.507612,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL total,2038,0.852147,1.000000,0.147853,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL critical,2038,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Shortage, t",2038,42.507612,0.000000,-42.507612,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Delivered (actual), t",2038,216.771400,301.037200,84.265800,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Losses, t",2038,2.601257,3.612446,1.011190,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,Losses/throughput,2038,0.012000,0.012000,-0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Opening stock, t",2038,30.822244,35.445516,4.623271,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Closing stock, t",2038,0.000000,45.370269,45.370269,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"45-day reserve, t",2038,35.445205,35.445205,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Demand total, t",2039,368.000000,368.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Served total, t",2039,298.990141,368.000000,69.009859,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL total,2039,0.812473,1.000000,0.187527,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL critical,2039,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Shortage, t",2039,69.009859,0.000000,-69.009859,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Delivered (actual), t",2039,302.621600,382.514900,79.893300,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Losses, t",2039,3.631459,4.590179,0.958720,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,Losses/throughput,2039,0.012000,0.012000,-0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Opening stock, t",2039,0.000000,45.370269,45.370269,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Closing stock, t",2039,0.000000,55.294990,55.294990,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"45-day reserve, t",2039,45.369863,45.369863,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Demand total, t",2040,448.500000,448.500000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Served total, t",2040,390.000057,448.500000,58.499943,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL total,2040,0.869565,1.000000,0.130435,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,SL critical,2040,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Shortage, t",2040,58.499943,0.000000,-58.499943,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Delivered (actual), t",2040,394.736900,453.947400,59.210500,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Losses, t",2040,4.736843,5.447369,0.710526,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,Losses/throughput,2040,0.012000,0.012000,-0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Opening stock, t",2040,0.000000,55.294990,55.294990,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"Closing stock, t",2040,0.000000,55.295022,55.295022,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,"45-day reserve, t",2040,55.294521,55.294521,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Procurement, mln",2035,796.128420,796.128420,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Reservation, mln",2035,51.380670,51.380670,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Holding, mln",2035,10.652147,10.652147,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Fixed OPEX, mln",2035,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2035,360.000000,360.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Total, mln",2035,1218.161237,1218.161237,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"PV total, mln",2035,1218.161237,1218.161237,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Procurement, mln",2036,948.921160,948.921160,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Reservation, mln",2036,68.873400,68.873400,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Holding, mln",2036,14.646725,14.646725,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Fixed OPEX, mln",2036,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2036,1250.000000,1250.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Total, mln",2036,2282.441285,2282.441285,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"PV total, mln",2036,2113.371560,2113.371560,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Procurement, mln",2037,1271.636220,1305.424410,33.788190,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Reservation, mln",2037,89.456700,90.884400,1.427700,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Holding, mln",2037,18.925506,20.575750,1.650244,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Fixed OPEX, mln",2037,6.000000,6.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2037,180.000000,180.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Total, mln",2037,1566.018426,1602.884560,36.866134,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"PV total, mln",2037,1342.608390,1374.215157,31.606768,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Procurement, mln",2038,1553.728350,2170.364120,616.635770,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Reservation, mln",2038,72.797400,102.311400,29.514000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Holding, mln",2038,2.968616,25.833283,22.864667,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Fixed OPEX, mln",2038,82.000000,82.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2038,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Total, mln",2038,1711.494366,2380.508803,669.014437,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"PV total, mln",2038,1358.639408,1889.724638,531.085230,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Procurement, mln",2039,1993.113360,2560.355790,567.242430,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Reservation, mln",2039,92.286600,116.254500,23.967900,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Holding, mln",2039,0.000000,36.239493,36.239493,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Fixed OPEX, mln",2039,82.000000,82.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2039,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Total, mln",2039,2167.399960,2794.849783,627.449823,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"PV total, mln",2039,1593.103674,2054.298025,461.194351,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Procurement, mln",2040,2139.631990,2585.131860,445.499870,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Reservation, mln",2040,110.921100,126.592200,15.671100,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Holding, mln",2040,0.000000,39.812404,39.812404,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Fixed OPEX, mln",2040,82.000000,82.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2040,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"Total, mln",2040,2332.553090,2833.536464,500.983374,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"PV total, mln",2040,1587.496439,1928.457306,340.960867,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:order,ordered_t A,2038,161.771400,190.000000,28.228600,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:order,ordered_t B,2040,0,13.947400,13.947400,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:order,ordered_t C,2037,13.188200,17.947100,4.758900,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:order,ordered_t C,2038,0,56.037200,56.037200,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:order,ordered_t C,2039,22.621600,102.514900,79.893300,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:order,ordered_t C,2040,84.736900,130.000000,45.263100,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:reservation,reserved_t A,2038,161.772000,190.000000,28.228000,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:reservation,reserved_t B,2040,0,13.948000,13.948000,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:reservation,reserved_t C,2037,13.189000,17.948000,4.759000,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:reservation,reserved_t C,2038,0,56.038000,56.038000,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:reservation,reserved_t C,2039,22.622000,102.515000,79.893000,P4_full fixed/STRESS,P4_full adapted/STRESS
-decision:reservation,reserved_t C,2040,84.737000,130.000000,45.263000,P4_full fixed/STRESS,P4_full adapted/STRESS
-violation,BASE_TOTAL_SERVICE,2038,yes,,,P4_full fixed/STRESS,P4_full adapted/STRESS
-violation,BASE_TOTAL_SERVICE,2039,yes,,,P4_full fixed/STRESS,P4_full adapted/STRESS
-violation,BASE_TOTAL_SERVICE,2040,yes,,,P4_full fixed/STRESS,P4_full adapted/STRESS
-violation,RESERVE_45D,2038,yes,,,P4_full fixed/STRESS,P4_full adapted/STRESS
-violation,RESERVE_45D,2039,yes,,,P4_full fixed/STRESS,P4_full adapted/STRESS
-violation,RESERVE_45D,2040,yes,,,P4_full fixed/STRESS,P4_full adapted/STRESS
+kpi,total_cost_mln,,11278.068364,13112.382132,1834.313769,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,pv_cost_mln,,9213.380708,10578.227923,1364.847215,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,cost_per_served_t_mln,,8.268484,8.547837,0.279353,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,pv_cost_per_served_t_mln,,6.754764,6.895846,0.141082,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,served_total_t,,1363.982586,1534.000000,170.017414,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,shortage_total_t,,170.017414,0.000000,-170.017414,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,shortage_critical_t,,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,min_service_level_total,,0.812473,1.000000,0.187527,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,min_service_level_critical,,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,losses_total_t,,28.592174,31.408237,2.816064,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,capex_total_mln,,1790.000000,1790.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,take_or_pay_idle_t,,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,hard_violations,,3,0,-3,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+kpi,guideline_violations,,3,0,-3,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Спрос, т",2035,100.000000,100.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Обслужено, т",2035,100.000000,100.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса общий,2035,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса критический,2035,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Дефицит, т",2035,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Поступление (факт), т",2035,109.876000,109.876000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Потери, т",2035,4.944420,4.944420,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Потери / поступление,2035,0.045000,0.045000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на начало, т",2035,12.328859,12.328859,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на конец, т",2035,17.260439,17.260439,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"45-дневный резерв, т",2035,12.328767,12.328767,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Спрос, т",2036,140.000000,140.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Обслужено, т",2036,140.000000,140.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса общий,2036,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса критический,2036,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Дефицит, т",2036,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Поступление (факт), т",2036,153.051800,153.051800,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Потери, т",2036,6.887331,6.887331,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Потери / поступление,2036,0.045000,0.045000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на начало, т",2036,17.260439,17.260439,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на конец, т",2036,23.424908,23.424908,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"45-дневный резерв, т",2036,17.260274,17.260274,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Спрос, т",2037,190.000000,190.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Обслужено, т",2037,190.000000,190.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса общий,2037,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса критический,2037,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Дефицит, т",2037,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Поступление (факт), т",2037,203.188200,207.947100,4.758900,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Потери, т",2037,5.790864,5.926492,0.135629,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Потери / поступление,2037,0.028500,0.028500,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на начало, т",2037,23.424908,23.424908,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на конец, т",2037,30.822244,35.445516,4.623271,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"45-дневный резерв, т",2037,23.424658,23.424658,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Спрос, т",2038,287.500000,287.500000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Обслужено, т",2038,244.992388,287.500000,42.507612,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса общий,2038,0.852147,1.000000,0.147853,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса критический,2038,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Дефицит, т",2038,42.507612,0.000000,-42.507612,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Поступление (факт), т",2038,216.771400,301.037200,84.265800,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Потери, т",2038,2.601257,3.612446,1.011190,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Потери / поступление,2038,0.012000,0.012000,-0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на начало, т",2038,30.822244,35.445516,4.623271,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на конец, т",2038,0.000000,45.370269,45.370269,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"45-дневный резерв, т",2038,35.445205,35.445205,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Спрос, т",2039,368.000000,368.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Обслужено, т",2039,298.990141,368.000000,69.009859,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса общий,2039,0.812473,1.000000,0.187527,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса критический,2039,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Дефицит, т",2039,69.009859,0.000000,-69.009859,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Поступление (факт), т",2039,302.621600,382.514900,79.893300,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Потери, т",2039,3.631459,4.590179,0.958720,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Потери / поступление,2039,0.012000,0.012000,-0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на начало, т",2039,0.000000,45.370269,45.370269,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на конец, т",2039,0.000000,55.294990,55.294990,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"45-дневный резерв, т",2039,45.369863,45.369863,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Спрос, т",2040,448.500000,448.500000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Обслужено, т",2040,390.000057,448.500000,58.499943,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса общий,2040,0.869565,1.000000,0.130435,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Уровень сервиса критический,2040,1.000000,1.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Дефицит, т",2040,58.499943,0.000000,-58.499943,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Поступление (факт), т",2040,394.736900,453.947400,59.210500,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Потери, т",2040,4.736843,5.447369,0.710526,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,Потери / поступление,2040,0.012000,0.012000,-0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на начало, т",2040,0.000000,55.294990,55.294990,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"Запас на конец, т",2040,0.000000,55.295022,55.295022,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+yearly,"45-дневный резерв, т",2040,55.294521,55.294521,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Закупка, млн",2035,796.128420,796.128420,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Резервирование, млн",2035,51.380670,51.380670,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Хранение, млн",2035,10.652147,10.652147,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2035,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"CAPEX, млн",2035,360.000000,360.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Итого, млн",2035,1218.161237,1218.161237,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"PV итого, млн",2035,1218.161237,1218.161237,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Закупка, млн",2036,948.921160,948.921160,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Резервирование, млн",2036,68.873400,68.873400,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Хранение, млн",2036,14.646725,14.646725,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2036,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"CAPEX, млн",2036,1250.000000,1250.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Итого, млн",2036,2282.441285,2282.441285,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"PV итого, млн",2036,2113.371560,2113.371560,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Закупка, млн",2037,1271.636220,1305.424410,33.788190,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Резервирование, млн",2037,89.456700,90.884400,1.427700,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Хранение, млн",2037,18.925506,20.575750,1.650244,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2037,6.000000,6.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"CAPEX, млн",2037,180.000000,180.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Итого, млн",2037,1566.018426,1602.884560,36.866134,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"PV итого, млн",2037,1342.608390,1374.215157,31.606768,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Закупка, млн",2038,1553.728350,2170.364120,616.635770,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Резервирование, млн",2038,72.797400,102.311400,29.514000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Хранение, млн",2038,2.968616,25.833283,22.864667,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2038,82.000000,82.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"CAPEX, млн",2038,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Итого, млн",2038,1711.494366,2380.508803,669.014437,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"PV итого, млн",2038,1358.639408,1889.724638,531.085230,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Закупка, млн",2039,1993.113360,2560.355790,567.242430,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Резервирование, млн",2039,92.286600,116.254500,23.967900,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Хранение, млн",2039,0.000000,36.239493,36.239493,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2039,82.000000,82.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"CAPEX, млн",2039,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Итого, млн",2039,2167.399960,2794.849783,627.449823,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"PV итого, млн",2039,1593.103674,2054.298025,461.194351,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Закупка, млн",2040,2139.631990,2585.131860,445.499870,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Резервирование, млн",2040,110.921100,126.592200,15.671100,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Хранение, млн",2040,0.000000,39.812404,39.812404,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2040,82.000000,82.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"CAPEX, млн",2040,0.000000,0.000000,0.000000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"Итого, млн",2040,2332.553090,2833.536464,500.983374,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+finance,"PV итого, млн",2040,1587.496439,1928.457306,340.960867,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:order,ordered_t A,2038,161.771400,190.000000,28.228600,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:order,ordered_t B,2040,0,13.947400,13.947400,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:order,ordered_t C,2037,13.188200,17.947100,4.758900,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:order,ordered_t C,2038,0,56.037200,56.037200,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:order,ordered_t C,2039,22.621600,102.514900,79.893300,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:order,ordered_t C,2040,84.736900,130.000000,45.263100,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:reservation,reserved_t A,2038,161.772000,190.000000,28.228000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:reservation,reserved_t B,2040,0,13.948000,13.948000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:reservation,reserved_t C,2037,13.189000,17.948000,4.759000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:reservation,reserved_t C,2038,0,56.038000,56.038000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:reservation,reserved_t C,2039,22.622000,102.515000,79.893000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+decision:reservation,reserved_t C,2040,84.737000,130.000000,45.263000,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+violation,BASE_TOTAL_SERVICE,2038,yes,,,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+violation,BASE_TOTAL_SERVICE,2039,yes,,,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+violation,BASE_TOTAL_SERVICE,2040,yes,,,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+violation,RESERVE_45D,2038,yes,,,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+violation,RESERVE_45D,2039,yes,,,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
+violation,RESERVE_45D,2040,yes,,,P4_full без изменений/STRESS,P4_full адаптированный/STRESS
