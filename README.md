@@ -76,6 +76,6 @@ Choosing between P2z and P3 is a robustness question, not a price question — s
 
 ## Ограничения прототипа / Prototype limits
 
-Web UI is at mock-up stage (`docs/ui_mockups/`); operations run through the CLI and plan JSON files.
+Web UI is at mock-up stage (`docs/ui_mockups/index.html`, 7 screens, preview https://claude.ai/artifact/94xJiuJBULiYuiZf3BGrjp); operations run through the CLI and plan JSON files.
 No optimizer (greedy merit-order builder only). Monte Carlo / reverse stress and the geopolitics bonus module
 are planned (see `docs/TEAM.md`). No secrets, no external services; runs offline.

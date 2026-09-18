@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TerraPlan — макет интерфейса</title>
+<meta name="description" content="UI mockup for TerraPlan: orbital propellant depot supply planning tool, CosmoHackathon 2026 case 2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ Design tokens ============ */
+:root{
+  color-scheme: light;
+  --bg:#f9f9f7;
+  --surface:#fcfcfb;
+  --surface-2:#ffffff;
+  --text:#0b0b0b;
+  --text-2:#52514e;
+  --muted:#898781;
+  --grid:#e1e0d9;
+  --axis:#c3c2b7;
+  --border:rgba(11,11,11,0.10);
+  --border-strong:rgba(11,11,11,0.18);
+  --good:#0ca30c;
+  --warning:#fab219;
+  --serious:#ec835a;
+  --critical:#d03b3b;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+  --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --div-low:#2a78d6; --div-high:#e34948; --div-mid:#f0efec;
+  --chip-case-bg:#e7f0fb; --chip-case-fg:#184f95;
+  --chip-decision-bg:#e4f5e9; --chip-decision-fg:#0b6b2e;
+  --chip-assume-bg:#fdf1dc; --chip-assume-fg:#8a5a00;
+  --radius:12px;
+  --shadow:0 1px 2px rgba(11,11,11,0.06), 0 8px 24px rgba(11,11,11,0.05);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --bg:#0d0d0d;
+    --surface:#1a1a19;
+    --surface-2:#202220;
+    --text:#ffffff;
+    --text-2:#c3c2b7;
+    --muted:#93918a;
+    --grid:#2c2c2a;
+    --axis:#383835;
+    --border:rgba(255,255,255,0.12);
+    --border-strong:rgba(255,255,255,0.22);
+    --good:#0ca30c;
+    --warning:#fab219;
+    --serious:#ec835a;
+    --critical:#e66767;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+    --s6:#008300; --s7:#9085e9; --s8:#e66767;
+    --div-low:#3987e5; --div-high:#e66767; --div-mid:#383835;
+    --chip-case-bg:#16324f; --chip-case-fg:#9ec5f4;
+    --chip-decision-bg:#123a24; --chip-decision-fg:#79d99a;
+    --chip-assume-bg:#3a2c0c; --chip-assume-fg:#f0c168;
+    --shadow:0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+  }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-weight:600;margin:0 0 8px;letter-spacing:-0.01em;}
+h1{font-size:20px;}
+h2{font-size:17px;}
+h3{font-size:14px;color:var(--text-2);text-transform:none;}
+p{margin:0 0 10px;color:var(--text-2);}
+a{color:var(--s1);}
+small{color:var(--muted);}
+.tabular{font-variant-numeric:tabular-nums;}
+
+/* ============ Shell layout ============ */
+.shell{display:flex;min-height:100vh;align-items:stretch;}
+.sidebar{
+  width:248px;flex-shrink:0;background:var(--surface);
+  border-right:1px solid var(--border);
+  padding:18px 14px;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.brand{display:flex;align-items:baseline;gap:8px;padding:2px 8px 16px;}
+.brand .name{font-size:18px;font-weight:700;}
+.brand .tag{font-size:11px;color:var(--muted);}
+.nav{display:flex;flex-direction:column;gap:2px;}
+.nav button{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+  background:transparent;border:none;border-radius:8px;padding:10px 10px;
+  font-family:inherit;font-size:13.5px;color:var(--text-2);cursor:pointer;
+}
+.nav button .ico{font-size:15px;width:18px;text-align:center;flex-shrink:0;}
+.nav button:hover{background:var(--surface-2);color:var(--text);}
+.nav button.active{background:var(--s1);color:#fff;}
+.nav-note{margin-top:14px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:11px;color:var(--muted);}
+
+.main{flex:1;min-width:0;padding:24px 28px 40px;max-width:1320px;}
+.screen{display:none;}
+.screen.active{display:block;}
+.screen-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+.screen-head .subtitle{font-size:12px;color:var(--muted);}
+
+footer.app-footer{
+  margin-top:36px;padding-top:14px;border-top:1px solid var(--border);
+  color:var(--muted);font-size:12px;
+}
+
+/* ============ Generic components ============ */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.card + .card{margin-top:16px;}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.row.between{justify-content:space-between;}
+.grid{display:grid;gap:14px;}
+.grid.cols-2{grid-template-columns:1fr 1fr;}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+@media (max-width:900px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr;}}
+
+.section-gap{margin-top:22px;}
+
+.btn{
+  font-family:inherit;font-size:13px;font-weight:600;border-radius:8px;padding:9px 14px;
+  border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);cursor:pointer;
+}
+.btn:hover{border-color:var(--s1);color:var(--s1);}
+.btn.primary{background:var(--s1);border-color:var(--s1);color:#fff;}
+.btn.primary:hover{opacity:0.92;color:#fff;}
+.btn:disabled{opacity:0.5;cursor:not-allowed;}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+
+select, input[type=number], input[type=text]{
+  font-family:inherit;font-size:13px;background:var(--surface-2);color:var(--text);
+  border:1px solid var(--border-strong);border-radius:6px;padding:7px 9px;
+  width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+label.field-label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;}
+.field{display:flex;flex-direction:column;min-width:0;flex:1 1 150px;max-width:280px;}
+
+/* segmented control */
+.segmented{display:inline-flex;border:1px solid var(--border-strong);border-radius:8px;overflow:hidden;}
+.segmented button{
+  font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border:none;background:var(--surface-2);
+  color:var(--text-2);cursor:pointer;border-right:1px solid var(--border);
+}
+.segmented button:last-child{border-right:none;}
+.segmented button.active{background:var(--s1);color:#fff;}
+
+/* status chips: CASE_INPUT / TEAM_DECISION / TEAM_ASSUMPTION */
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;letter-spacing:.02em;
+  border-radius:5px;padding:2px 7px;white-space:nowrap;}
+.chip.case{background:var(--chip-case-bg);color:var(--chip-case-fg);}
+.chip.decision{background:var(--chip-decision-bg);color:var(--chip-decision-fg);}
+.chip.assume{background:var(--chip-assume-bg);color:var(--chip-assume-fg);}
+.chip-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text-2);align-items:center;}
+.chip-legend .item{display:flex;align-items:center;gap:6px;}
+
+/* KPI tiles */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+@media (max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:640px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+.kpi-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:13px 14px;min-height:86px;display:flex;flex-direction:column;justify-content:space-between;}
+.kpi-tile .label{font-size:11px;color:var(--muted);line-height:1.3;}
+.kpi-tile .value{font-size:21px;font-weight:700;margin-top:4px;}
+.kpi-tile .value .unit{font-size:11px;font-weight:500;color:var(--muted);margin-left:3px;}
+.kpi-tile .sub{font-size:11px;color:var(--text-2);margin-top:2px;}
+.kpi-tile.meter .track{height:6px;border-radius:3px;background:var(--grid);margin-top:6px;overflow:hidden;}
+.kpi-tile.meter .fill{height:100%;background:var(--s1);}
+.kpi-tile.meter .fill.warn{background:var(--warning);}
+.kpi-tile.meter .fill.bad{background:var(--critical);}
+
+/* status pill (feasible / infeasible) with icon + text, never color alone */
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;border-radius:20px;padding:5px 12px;}
+.status-pill.ok{background:color-mix(in srgb, var(--good) 15%, transparent);color:var(--good);}
+.status-pill.bad{background:color-mix(in srgb, var(--critical) 15%, transparent);color:var(--critical);}
+
+/* severity badges */
+.sev{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;white-space:nowrap;}
+.sev .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.sev.hard{color:var(--critical);}
+.sev.hard .dot{background:var(--critical);}
+.sev.guideline{color:#a97400;}
+.sev.guideline .dot{background:var(--warning);}
+@media (prefers-color-scheme: dark){.sev.guideline{color:var(--warning);}}
+.sev.warning{color:var(--serious);}
+.sev.warning .dot{background:var(--serious);}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface);}
+table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:560px;}
+table.wide{min-width:900px;}
+th,td{padding:8px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--grid);}
+th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.02em;position:sticky;top:0;background:var(--surface);}
+th:first-child, td:first-child{text-align:left;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--surface-2);}
+td.na{color:var(--muted);}
+td.bad-cell{color:var(--critical);font-weight:700;}
+td.good-cell{color:var(--good);font-weight:600;}
+
+/* Plan grid (editable) */
+.plan-grid-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface);}
+table.plangrid{min-width:900px;}
+table.plangrid td, table.plangrid th{text-align:center;}
+table.plangrid td.src-cell{text-align:left;font-weight:600;}
+.cellpair{display:flex;flex-direction:column;gap:3px;align-items:center;}
+.cellpair input{width:64px;text-align:right;padding:4px 6px;font-size:12px;}
+.cellpair .k{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;}
+.cell-empty{color:var(--muted);font-size:12px;}
+
+/* contract cards */
+.contract-card{border:1px solid var(--border);border-radius:var(--radius);padding:14px;background:var(--surface);}
+.contract-card .head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.contract-card .swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+.contract-card dl{display:grid;grid-template-columns:1fr;margin:0;font-size:12.5px;}
+.contract-card dt{color:var(--muted);font-size:10.5px;margin-top:7px;min-width:0;overflow-wrap:anywhere;word-break:break-word;}
+.contract-card dt:first-child{margin-top:0;}
+.contract-card dd{margin:1px 0 0;text-align:left;font-weight:600;min-width:0;overflow-wrap:anywhere;word-break:break-word;}
+.contract-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+
+/* timeline */
+.tl-wrap{margin-top:8px;}
+.tl-axis{position:relative;height:20px;border-bottom:1px solid var(--axis);margin-bottom:6px;}
+.tl-axis span{position:absolute;transform:translateX(-50%);font-size:10.5px;color:var(--muted);bottom:2px;}
+.tl-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.tl-row .tl-label{width:140px;flex-shrink:0;font-size:12px;font-weight:600;}
+.tl-track{position:relative;flex:1;height:26px;background:var(--surface-2);border-radius:6px;border:1px solid var(--border);}
+.tl-mark{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;border:2px solid var(--surface);}
+.tl-bar{position:absolute;top:6px;height:14px;border-radius:4px;opacity:.85;}
+.tl-mark.decision{background:var(--s1);}
+.tl-mark.commission{background:var(--s3);}
+.tl-legend{display:flex;gap:16px;font-size:11px;color:var(--text-2);margin-top:4px;}
+.tl-legend .item{display:flex;align-items:center;gap:5px;}
+.tl-legend .dot{width:10px;height:10px;border-radius:50%;}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,12px);
+  background:var(--text);color:var(--bg);padding:12px 18px;border-radius:10px;
+  font-size:13px;font-weight:500;box-shadow:var(--shadow);opacity:0;pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;z-index:50;max-width:90vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translate(-50%,0);}
+
+/* chart chrome */
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 14px 6px;}
+.chart-card h3{margin-bottom:2px;}
+.chart-note{font-size:11px;color:var(--muted);margin:2px 0 10px;}
+svg.chart{width:100%;height:auto;display:block;}
+svg.chart text{font-family:'Inter',system-ui,sans-serif;fill:var(--text-2);}
+svg.chart .grid-line{stroke:var(--grid);stroke-width:1;}
+svg.chart .axis-line{stroke:var(--axis);stroke-width:1;}
+svg.chart .tick-label{font-size:10px;fill:var(--muted);}
+svg.chart .value-label{font-size:10px;fill:var(--text-2);font-weight:600;}
+.legend-row{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--text-2);padding:8px 2px 10px;}
+.legend-row .item{display:flex;align-items:center;gap:6px;}
+.legend-row .sw{width:11px;height:11px;border-radius:3px;flex-shrink:0;}
+.legend-row .ln{width:16px;height:2px;border-radius:1px;flex-shrink:0;}
+.placeholder-note{padding:26px 10px;text-align:center;color:var(--muted);font-size:12.5px;border:1px dashed var(--border-strong);border-radius:10px;}
+
+/* protocol / risk / stakeholder cards */
+.proto-card dl{display:grid;grid-template-columns:180px minmax(0,1fr);gap:6px 12px;font-size:12.5px;margin:0;}
+.proto-card dt{color:var(--muted);}
+.proto-card dd{margin:0;min-width:0;overflow-wrap:anywhere;word-break:break-word;}
+code.cmd{display:block;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;
+  font-family:'SFMono-Regular',Consolas,Menlo,monospace;font-size:11.5px;overflow-x:auto;color:var(--text);white-space:pre;}
+.err-block{background:var(--surface-2);border:1px solid var(--critical);border-radius:8px;padding:10px 12px;
+  font-family:Consolas,Menlo,monospace;font-size:12px;color:var(--text);white-space:pre-wrap;}
+.err-good-label, .err-bad-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;display:block;}
+.err-good-label{color:var(--good);}
+.err-bad-label{color:var(--muted);}
+.err-bad-example{opacity:.6;font-family:Consolas,Menlo,monospace;font-size:12px;padding:10px 12px;border:1px dashed var(--border-strong);border-radius:8px;text-decoration:line-through;}
+
+.stake-card{border:1px solid var(--border);border-radius:var(--radius);padding:14px;background:var(--surface);}
+.stake-card h4{margin:0 0 6px;font-size:13.5px;}
+.stake-card .arrow-line{font-size:12px;color:var(--text-2);margin-bottom:4px;}
+.stake-card .arrow-line b{color:var(--text);}
+
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:10px;}
+.form-grid .field{max-width:none;}
+
+@media (max-width:720px){
+  .shell{flex-direction:column;}
+  .sidebar{
+    width:100%;height:auto;position:static;border-right:none;border-bottom:1px solid var(--border);
+    padding:12px;
+  }
+  .brand{padding:0 4px 10px;}
+  .nav{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:2px;-webkit-overflow-scrolling:touch;}
+  .nav button{white-space:nowrap;flex-shrink:0;}
+  .nav-note{display:none;}
+  .main{padding:16px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ Sidebar / nav ============ -->
+  <nav class="sidebar" aria-label="Разделы TerraPlan">
+    <div class="brand"><span class="name">TerraPlan</span><span class="tag">v0.1 · макет</span></div>
+    <div class="nav" id="nav">
+      <button data-screen="s1" class="active"><span class="ico">&#128202;</span>Рабочее место оператора</button>
+      <button data-screen="s2"><span class="ico">&#128196;</span>План и контракты</button>
+      <button data-screen="s3"><span class="ico">&#9888;</span>Проверка ограничений</button>
+      <button data-screen="s4"><span class="ico">&#8644;</span>Сравнение сценариев</button>
+      <button data-screen="s5"><span class="ico">&#128225;</span>Стресс-тесты и чувствительность</button>
+      <button data-screen="s6"><span class="ico">&#128737;</span>Риски и стейкхолдеры</button>
+      <button data-screen="s7"><span class="ico">&#128190;</span>Сохранение, выгрузка, расширение</button>
+    </div>
+    <div class="nav-note">Кейс 2 «Топливный космоконтур 2035», CosmoHackathon 2026. Горизонт 2035–2040. Все числа — из <code>results/</code> этого репозитория.</div>
+  </nav>
+
+  <!-- ============ Main content ============ -->
+  <main class="main">
+
+    <!-- SCREEN 1 — DASHBOARD -->
+    <section class="screen active" id="s1">
+      <div class="screen-head">
+        <div>
+          <h1>Рабочее место оператора</h1>
+          <div class="subtitle">Dashboard · сценарий, план, KPI, физика запаса, стоимость</div>
+        </div>
+        <span class="status-pill" id="feasPill">— </span>
+      </div>
+
+      <div class="card">
+        <div class="row between">
+          <div class="row">
+            <div class="field">
+              <label class="field-label">Сценарий</label>
+              <div class="segmented" id="scenarioToggle">
+                <button data-scenario="BASE" class="active">BASE</button>
+                <button data-scenario="STRESS">MANDATORY_STRESS</button>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">План</label>
+              <select id="planSelect" title="Выбор плана">
+                <option value="P1_earth_only">P1 — только Земля</option>
+                <option value="P2_earth_new">P2 — Земля + Earth-New</option>
+                <option value="P2z_earth_new_zbo">P2z — Земля + New + ZBO</option>
+                <option value="P3_isru_zbo" selected>P3 — Земля + ISRU + ZBO ★</option>
+                <option value="P4_full">P4 — полный портфель</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn primary" id="btnRecalc">Пересчитать</button>
+        </div>
+        <p style="margin-top:10px;font-size:11.5px;">Для STRESS показан результат <b>адаптированного</b> плана, если он существует (P2z, P3, P4); для P1 и P2 адаптированного варианта нет — показан тот же (fixed) план под стрессом, поэтому он не проходит все ограничения. Детальная помесячная и постатейная раскладка (графики ниже) подключена только для плана P3.</p>
+      </div>
+
+      <div class="section-gap">
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </div>
+
+      <div class="section-gap grid cols-2">
+        <div class="chart-card">
+          <h3>Поставки по источникам по годам</h3>
+          <div class="chart-note">Фактически доставленный объём (delivered), т/год, по источникам A/B/D. Источник: source_schedule.</div>
+          <div id="chartSupply"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Запас vs 45-дневный резерв</h3>
+          <div class="chart-note">Помесячная траектория физического запаса на конец месяца vs пороговое значение R45 на начало года.</div>
+          <div id="chartInventory"></div>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <div class="chart-card">
+          <h3>Разбивка стоимости по годам</h3>
+          <div class="chart-note">Procurement / Reservation / Holding / Fixed OPEX / CAPEX, млн, константные цены 2035 г.</div>
+          <div id="chartCost"></div>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Годовой баланс (сжатая таблица)</h2>
+        <div class="table-wrap">
+          <table id="yearlyTable"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2 — PLAN & CONTRACTS -->
+    <section class="screen" id="s2">
+      <div class="screen-head">
+        <div>
+          <h1>План и контракты</h1>
+          <div class="subtitle">Editor · план P3_isru_zbo (BASE) — резервирование, заказы, инвестиции, запас</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chip-legend">
+          <span class="item"><span class="chip case">CASE_INPUT</span> данные организатора, не меняются в контрольных прогонах</span>
+          <span class="item"><span class="chip decision">TEAM_DECISION</span> решения плана: резервирование, заказы, запас, инвестиции</span>
+          <span class="item"><span class="chip assume">TEAM_ASSUMPTION</span> допущения команды (ставка, lead-time, правила) — см. <code>configs/assumptions.yaml</code></span>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Резервирование и заказы по источникам и годам <span class="chip decision">TEAM_DECISION</span></h2>
+        <p style="font-size:12px;">Ячейки редактируемы (макет — без пересчёта). Верхнее значение — reserved_capacity_t, нижнее — ordered_t. «—» — источник не задействован в этом году плана.</p>
+        <div class="plan-grid-wrap">
+          <table class="plangrid" id="planGrid"></table>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Контракты по источникам <span class="chip case">CASE_INPUT</span> + <span class="chip assume">TEAM_ASSUMPTION</span></h2>
+        <p style="font-size:12px;">Кейс не называет конкретных контрагентов — поле «контрагент» заполняется оператором. Надёжность (reliability) — справочные метаданные риска; в BASE она НЕ применяется как множитель к доставке (см. правило 19 контрольного README).</p>
+        <div class="contract-grid" id="contractCards"></div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Инвестиции и ввод мощности <span class="chip decision">TEAM_DECISION</span> / <span class="chip case">CASE_INPUT</span></h2>
+        <div class="card tl-wrap">
+          <div class="tl-axis" id="tlAxis"></div>
+          <div id="tlRows"></div>
+          <div class="tl-legend">
+            <span class="item"><span class="dot" style="background:var(--s1)"></span>решение / CAPEX</span>
+            <span class="item"><span class="dot" style="background:var(--s3)"></span>ввод в эксплуатацию (commissioning)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-gap grid cols-2">
+        <div class="card">
+          <h2>Начальный запас (opening stock) <span class="chip decision">TEAM_DECISION</span></h2>
+          <div id="openingStockBox"></div>
+        </div>
+        <div class="card">
+          <h2>Режим резерва и правило распределения <span class="chip decision">TEAM_DECISION</span></h2>
+          <div id="reserveModeBox"></div>
+        </div>
+      </div>
+
+      <div class="section-gap btn-row">
+        <button class="btn primary" id="btnRecalc2">Пересчитать</button>
+        <button class="btn" id="btnSavePlan">Сохранить план</button>
+        <button class="btn" id="btnOpenPlan">Открыть план</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 3 — CONSTRAINT CHECKS -->
+    <section class="screen" id="s3">
+      <div class="screen-head">
+        <div>
+          <h1>Проверка ограничений</h1>
+          <div class="subtitle">Constraint checks · нарушения с годом, значением и причиной</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chip-legend">
+          <span class="item"><span class="sev hard"><span class="dot"></span>hard — жёсткое</span> план недопустим, пока не устранено</span>
+          <span class="item"><span class="sev guideline"><span class="dot"></span>guideline — рекомендательное</span> в MANDATORY_STRESS не блокирует план, но фиксируется</span>
+          <span class="item"><span class="sev warning"><span class="dot"></span>warning — предупреждение</span> информирует, не блокирует</span>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Нарушения: план P3_isru_zbo под MANDATORY_STRESS, <u>без адаптации</u> (fixed)</h2>
+        <p style="font-size:12px;">Тот же набор решений, что и в BASE, запущенный в сценарии MANDATORY_STRESS. После адаптации решений (вкладка «Сравнение сценариев») все нарушения ниже устраняются.</p>
+        <div class="table-wrap">
+          <table class="wide" id="violTable"></table>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Пример ошибки ввода (валидация формы)</h2>
+        <div class="card">
+          <p style="font-size:12px;">Живой пример: оставьте «Резерв мощности» пустым и нажмите «Проверить ввод», либо введите значение выше максимума мощности источника.</p>
+          <div class="form-grid">
+            <div class="field">
+              <label class="field-label">Источник</label>
+              <select id="valSource">
+                <option value="A" data-cap="190">A — Earth-Core (190 т/год)</option>
+                <option value="B" data-cap="110">B — Earth-Flex (110 т/год)</option>
+                <option value="C" data-cap="130">C — Earth-New (130 т/год)</option>
+                <option value="D" data-cap="120">D — Lunar-ISRU (120 т/год)</option>
+                <option value="E" data-cap="80">E — Emergency (80 т/год)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Год</label>
+              <select id="valYear">
+                <option>2035</option><option>2036</option><option selected>2036</option><option>2037</option>
+                <option>2038</option><option>2039</option><option>2040</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Резерв мощности, т/год</label>
+              <input type="text" id="valInput" placeholder="оставьте пустым для примера ошибки">
+            </div>
+            <div class="field" style="justify-content:flex-end;">
+              <button class="btn primary" id="btnValidate">Проверить ввод</button>
+            </div>
+          </div>
+          <div id="valResult"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 4 — SCENARIO COMPARISON -->
+    <section class="screen" id="s4">
+      <div class="screen-head">
+        <div>
+          <h1>Сравнение сценариев</h1>
+          <div class="subtitle">BASE vs MANDATORY_STRESS · план как есть (fixed) vs адаптированный план</div>
+        </div>
+        <button class="btn primary" id="btnExportCompare">Выгрузить сравнение (CSV/XLSX)</button>
+      </div>
+
+      <div class="card">
+        <p style="font-size:12px;margin:0;">Столбцы: <b>BASE</b> — план P3_isru_zbo в номинальном сценарии; <b>STRESS (fixed)</b> — те же решения под MANDATORY_STRESS без изменений; <b>STRESS (адаптирован)</b> — план P3_isru_zbo_adapted, скорректированный под стресс. Δ считается между fixed и адаптированным (как в <code>results/stress/compare_P3_isru_zbo.md</code>).</p>
+      </div>
+
+      <div class="section-gap">
+        <h2>KPI</h2>
+        <div class="table-wrap"><table class="wide" id="compareKpiTable"></table></div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Годовой баланс: fixed vs адаптирован</h2>
+        <div class="table-wrap"><table class="wide" id="compareYearlyTable"></table></div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Что изменилось в решениях</h2>
+        <div class="table-wrap"><table class="wide" id="compareDecisionsTable"></table></div>
+        <p style="font-size:11.5px;margin-top:8px;">Инвестиции не менялись: Lunar-ISRU — решение 2036-01, ZBO — решение 2037-07 (одинаково в BASE и в адаптированном плане).</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 5 — STRESS & SENSITIVITY -->
+    <section class="screen" id="s5">
+      <div class="screen-head">
+        <div>
+          <h1>Стресс-тесты и чувствительность</h1>
+          <div class="subtitle">Пороги устойчивости, tornado-диаграмма, протокол воспроизведения</div>
+        </div>
+      </div>
+
+      <h2>Пороги (thresholds)</h2>
+      <div class="table-wrap"><table class="wide" id="thresholdTable"></table></div>
+
+      <div class="section-gap chart-card">
+        <h3>Tornado-диаграмма — влияние параметров на PV стоимость</h3>
+        <div class="chart-note">Базовый план P3_isru_zbo (BASE), r = 8%. База: 8 638,9 млн PV. Синий — эффект низкого значения параметра, красный — высокого.</div>
+        <div id="chartTornado"></div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Ранжирование альтернатив по PV при разных ставках дисконтирования (BASE)</h2>
+        <div class="table-wrap"><table id="rankingTable"></table></div>
+      </div>
+
+      <div class="section-gap grid cols-2">
+        <div class="card proto-card">
+          <h2>Протокол теста 1 — MANDATORY_STRESS</h2>
+          <dl>
+            <dt>Цель</dt><dd>Проверить, держит ли план P3_isru_zbo обязательные условия стресса (спрос ×1.15 с 2038, цена Earth-Core/Flex ×1.25 в 2038–2039, ISRU 55%/75% плана, потолок потерь 2%).</dd>
+            <dt>Варьируемый параметр</dt><dd>Полный пакет MANDATORY_STRESS (не изолированный параметр)</dd>
+            <dt>Сохраняемые условия</dt><dd>CAPEX, тарифы резервирования, инвестиционные решения — без изменений</dd>
+            <dt>Метрика</dt><dd>SL_total, SL_critical, 45-дневный резерв, losses/throughput</dd>
+            <dt>Критерий нарушения</dt><dd>SL_total &lt; 0.97 (guideline в стрессе) или физический запас &lt; R45 (hard)</dd>
+            <dt>Команда воспроизведения</dt><dd><code class="cmd">python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATORY_STRESS --out results/repro_stress</code></dd>
+          </dl>
+        </div>
+        <div class="card proto-card">
+          <h2>Протокол теста 2 — чувствительность ISRU 2038</h2>
+          <dl>
+            <dt>Цель</dt><dd>Найти долю фактической поставки Lunar-ISRU в 2038, при которой fixed-план ещё держит ограничения</dd>
+            <dt>Варьируемый параметр</dt><dd>isru_delivery_share_2038, диапазон 0.30…1.00</dd>
+            <dt>Сохраняемые условия</dt><dd>План P3_isru_zbo фиксирован (без пересборки), прочие условия BASE</dd>
+            <dt>Метрика</dt><dd>PV cost, факт нарушения RESERVE_45D / BASE_TOTAL_SERVICE</dd>
+            <dt>Критерий нарушения</dt><dd>доля &lt; 0.95 → дефицит 2038 превышает буфер запаса</dd>
+            <dt>Команда воспроизведения</dt><dd><code class="cmd">python experiments/run_sensitivity.py</code></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 6 — RISKS & STAKEHOLDERS -->
+    <section class="screen" id="s6">
+      <div class="screen-head">
+        <div>
+          <h1>Риски и стейкхолдеры</h1>
+          <div class="subtitle">Реестр рисков, карта стейкхолдеров, геополитический модуль</div>
+        </div>
+      </div>
+
+      <h2>Реестр рисков <small>(вероятность и последствия — оценка команды, если не отмечено иное)</small></h2>
+      <div class="table-wrap"><table class="wide" id="riskTable"></table></div>
+
+      <div class="section-gap">
+        <h2>Карта стейкхолдеров</h2>
+        <div class="contract-grid" id="stakeCards"></div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Геополитический модуль (бонус) <span class="chip assume">на копии данных</span></h2>
+        <div class="card">
+          <p style="font-size:12px;">Причинная цепочка: событие → затронутая компонента цены/канала → пересчёт → эффект на стоимость/снабжение/стейкхолдеров. Расчёт выполняется на копии данных; контрольные прогоны BASE/MANDATORY_STRESS всегда используют исходные <code>data/case/*.csv</code>.</p>
+          <div class="form-grid">
+            <div class="field" style="min-width:260px;">
+              <label class="field-label">Событие</label>
+              <select id="geoEvent">
+                <option value="stress">Ценовой шок Earth-Core/Earth-Flex ×1.25 (2038–2039) — как в MANDATORY_STRESS</option>
+                <option value="custom">Свой сценарий (заполнить поля ниже)</option>
+              </select>
+            </div>
+            <div class="field"><label class="field-label">Затронутые каналы</label><input type="text" id="geoChannels" value="A, B" disabled></div>
+            <div class="field"><label class="field-label">Компонента цены</label><input type="text" id="geoComponent" value="variable_cost_mln_per_t" disabled></div>
+            <div class="field"><label class="field-label">Период</label><input type="text" id="geoPeriod" value="2038–2039" disabled></div>
+            <div class="field"><label class="field-label">Множитель / диапазон</label><input type="text" id="geoMult" value="×1.25" disabled></div>
+            <div class="field"><label class="field-label">Источник / допущение</label><input type="text" id="geoSource" value="CASE_INPUT: сценарий MANDATORY_STRESS" disabled></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn primary" id="btnGeoApply">Применить на копии</button>
+            <button class="btn" id="btnGeoRestore">Восстановить исходные цены</button>
+            <button class="btn" id="btnGeoToggle">До / после</button>
+          </div>
+          <div id="geoResult" class="section-gap" style="display:none;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 7 — SAVE / EXPORT / EXTEND -->
+    <section class="screen" id="s7">
+      <div class="screen-head">
+        <div>
+          <h1>Сохранение, выгрузка, расширение</h1>
+          <div class="subtitle">Сохранённые планы, экспорт, расширение датасета на копии</div>
+        </div>
+      </div>
+
+      <h2>Сохранённые планы</h2>
+      <div class="table-wrap"><table class="wide" id="savedPlansTable"></table></div>
+
+      <div class="section-gap grid cols-3">
+        <div class="card">
+          <h2>CSV-набор</h2>
+          <p style="font-size:12px;">kpi.csv, yearly_balance.csv, source_schedule.csv, financial_breakdown.csv, inventory_trace.csv, investments.csv, constraint_checks.csv, assumptions.csv</p>
+          <button class="btn primary" id="btnExportCsv">Выгрузить CSV-набор</button>
+        </div>
+        <div class="card">
+          <h2>XLSX</h2>
+          <p style="font-size:12px;">results.xlsx — единая книга со всеми листами набора, для проверки без скриптов.</p>
+          <button class="btn primary" id="btnExportXlsx">Выгрузить XLSX</button>
+        </div>
+        <div class="card">
+          <h2>JSON-конверт</h2>
+          <p style="font-size:12px;">export_envelope.json: scenario_id, plan_id, units, assumptions_reference, yearly_balance, source_schedule, inventory_trace, financial_breakdown, constraint_checks, risk_register, kpi, investments.</p>
+          <button class="btn primary" id="btnExportJson">Выгрузить export_envelope.json</button>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <h2>Расширение датасета (на копии)</h2>
+        <div class="card">
+          <p style="font-size:12px;">Контрольные прогоны BASE и MANDATORY_STRESS всегда выполняются на исходных <code>data/case/*.csv</code>. Расширение — только на копии: <code>results/extensibility/case_copy/</code>.</p>
+          <div class="grid cols-2">
+            <div>
+              <h3 style="margin-bottom:6px;">Добавить источник Source-X <span class="chip assume">TEAM_ASSUMPTION</span></h3>
+              <div class="table-wrap" style="margin-bottom:10px;">
+                <table>
+                  <tr><th>Параметр</th><th>Значение</th></tr>
+                  <tr><td>Мощность</td><td class="tabular">60 т/год</td></tr>
+                  <tr><td>Переменная стоимость</td><td class="tabular">5.5 млн/т</td></tr>
+                  <tr><td>Доступен с</td><td class="tabular">2039</td></tr>
+                </table>
+              </div>
+              <button class="btn" id="btnAddSourceX">Добавить Source-X на копии</button>
+            </div>
+            <div>
+              <h3 style="margin-bottom:6px;">Добавить 2041 год <span class="chip assume">TEAM_ASSUMPTION</span></h3>
+              <div class="table-wrap" style="margin-bottom:10px;">
+                <table>
+                  <tr><th>Параметр</th><th>Значение</th></tr>
+                  <tr><td>Спрос всего</td><td class="tabular">450 т</td></tr>
+                  <tr><td>Критический спрос</td><td class="tabular">290 т</td></tr>
+                  <tr><td>Обоснование</td><td>+15% экстраполяция 2040</td></tr>
+                </table>
+              </div>
+              <button class="btn" id="btnAdd2041">Добавить 2041 год на копии</button>
+            </div>
+          </div>
+          <div class="section-gap">
+            <h3>Предпросмотр результата на копии (уже рассчитан)</h3>
+            <div id="extPreview"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer">TerraPlan v0.1 — макет интерфейса; числа из results/ (BASE: P3_isru_zbo; STRESS: P3_isru_zbo_adapted)</footer>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script id="tp-data" type="application/json">{"plans":{"P1_earth_only":{"BASE":{"plan_id":"P1_earth_only","variant":"base","feasible":false,"hard_violations":2,"guideline_violations":0,"kpi":{"total_cost_mln":9879.472,"pv_cost_mln":7857.38,"cost_per_served_t_mln":7.644,"pv_cost_per_served_t_mln":6.079,"served_total_t":1292.452,"demand_total_t":1390.0,"shortage_total_t":97.548,"shortage_critical_t":0.0,"min_service_level_total":0.75,"min_service_level_critical":1.0,"losses_total_t":60.32,"capex_total_mln":0.0,"procurement_total_mln":9282.939,"reservation_total_mln":509.881,"holding_total_mln":86.651,"fixed_opex_total_mln":0.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":206.7,"losses":9.3,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"BASE"},{"year":2038,"demand":250.0,"critical":170.0,"served":250.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":270.8,"losses":12.19,"open":30.8,"close":39.5,"r45":30.8,"reserve_ok":true,"storage":"BASE"},{"year":2039,"demand":320.0,"critical":210.0,"served":320.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":300.0,"losses":13.5,"open":39.5,"close":6.0,"r45":39.5,"reserve_ok":true,"storage":"BASE"},{"year":2040,"demand":390.0,"critical":250.0,"served":292.5,"sl_total":0.75,"sl_crit":1.0,"shortage":97.5,"inflow":300.0,"losses":13.5,"open":6.0,"close":0.0,"r45":48.1,"reserve_ok":false,"storage":"BASE"}]},"STRESS":{"plan_id":"P1_earth_only","variant":"fixed","feasible":false,"hard_violations":6,"guideline_violations":2,"kpi":{"total_cost_mln":10863.074,"pv_cost_mln":8607.464,"cost_per_served_t_mln":8.405,"pv_cost_per_served_t_mln":6.66,"served_total_t":1292.452,"demand_total_t":1534.0,"shortage_total_t":241.548,"shortage_critical_t":1.0,"min_service_level_total":0.639,"min_service_level_critical":0.997,"losses_total_t":60.32,"capex_total_mln":0.0,"procurement_total_mln":10296.507,"reservation_total_mln":509.881,"holding_total_mln":56.685,"fixed_opex_total_mln":0.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":206.7,"losses":9.3,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"BASE"},{"year":2038,"demand":287.5,"critical":195.5,"served":287.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":270.8,"losses":12.19,"open":30.8,"close":2.0,"r45":35.4,"reserve_ok":false,"storage":"BASE"},{"year":2039,"demand":368.0,"critical":241.5,"served":288.5,"sl_total":0.784,"sl_crit":1.0,"shortage":79.5,"inflow":300.0,"losses":13.5,"open":2.0,"close":0.0,"r45":45.4,"reserve_ok":false,"storage":"BASE"},{"year":2040,"demand":448.5,"critical":287.5,"served":286.5,"sl_total":0.639,"sl_crit":0.997,"shortage":162.0,"inflow":300.0,"losses":13.5,"open":0.0,"close":0.0,"r45":55.3,"reserve_ok":false,"storage":"BASE"}]}},"P2_earth_new":{"BASE":{"plan_id":"P2_earth_new","variant":"base","feasible":true,"hard_violations":0,"guideline_violations":0,"kpi":{"total_cost_mln":11079.235,"pv_cost_mln":8779.822,"cost_per_served_t_mln":7.971,"pv_cost_per_served_t_mln":6.316,"served_total_t":1390.0,"demand_total_t":1390.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":67.182,"capex_total_mln":360.0,"procurement_total_mln":9996.593,"reservation_total_mln":586.383,"holding_total_mln":136.259,"fixed_opex_total_mln":0.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":206.7,"losses":9.3,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"BASE"},{"year":2038,"demand":250.0,"critical":170.0,"served":250.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":270.8,"losses":12.19,"open":30.8,"close":39.5,"r45":30.8,"reserve_ok":true,"storage":"BASE"},{"year":2039,"demand":320.0,"critical":210.0,"served":320.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":344.1,"losses":15.49,"open":39.5,"close":48.1,"r45":39.5,"reserve_ok":true,"storage":"BASE"},{"year":2040,"demand":390.0,"critical":250.0,"served":390.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":408.4,"losses":18.38,"open":48.1,"close":48.1,"r45":48.1,"reserve_ok":true,"storage":"BASE"}]},"STRESS":{"plan_id":"P2_earth_new","variant":"fixed","feasible":false,"hard_violations":6,"guideline_violations":2,"kpi":{"total_cost_mln":11642.318,"pv_cost_mln":9212.113,"cost_per_served_t_mln":8.096,"pv_cost_per_served_t_mln":6.406,"served_total_t":1438.083,"demand_total_t":1534.0,"shortage_total_t":95.917,"shortage_critical_t":0.0,"min_service_level_total":0.87,"min_service_level_critical":1.0,"losses_total_t":67.182,"capex_total_mln":360.0,"procurement_total_mln":10639.25,"reservation_total_mln":586.383,"holding_total_mln":56.685,"fixed_opex_total_mln":0.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":206.7,"losses":9.3,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"BASE"},{"year":2038,"demand":287.5,"critical":195.5,"served":287.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":270.8,"losses":12.19,"open":30.8,"close":2.0,"r45":35.4,"reserve_ok":false,"storage":"BASE"},{"year":2039,"demand":368.0,"critical":241.5,"served":330.6,"sl_total":0.898,"sl_crit":1.0,"shortage":37.4,"inflow":344.1,"losses":15.49,"open":2.0,"close":0.0,"r45":45.4,"reserve_ok":false,"storage":"BASE"},{"year":2040,"demand":448.5,"critical":287.5,"served":390.0,"sl_total":0.87,"sl_crit":1.0,"shortage":58.5,"inflow":408.4,"losses":18.38,"open":0.0,"close":0.0,"r45":55.3,"reserve_ok":false,"storage":"BASE"}]}},"P2z_earth_new_zbo":{"BASE":{"plan_id":"P2z_earth_new_zbo","variant":"base","feasible":true,"hard_violations":0,"guideline_violations":0,"kpi":{"total_cost_mln":10980.255,"pv_cost_mln":8729.404,"cost_per_served_t_mln":7.899,"pv_cost_per_served_t_mln":6.28,"served_total_t":1390.0,"demand_total_t":1390.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":29.492,"capex_total_mln":540.0,"procurement_total_mln":9683.753,"reservation_total_mln":578.846,"holding_total_mln":135.655,"fixed_opex_total_mln":42.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":203.2,"losses":5.79,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"ZBO"},{"year":2038,"demand":250.0,"critical":170.0,"served":250.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":261.8,"losses":3.14,"open":30.8,"close":39.5,"r45":30.8,"reserve_ok":true,"storage":"ZBO"},{"year":2039,"demand":320.0,"critical":210.0,"served":320.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":332.6,"losses":3.99,"open":39.5,"close":48.1,"r45":39.5,"reserve_ok":true,"storage":"ZBO"},{"year":2040,"demand":390.0,"critical":250.0,"served":390.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":394.7,"losses":4.74,"open":48.1,"close":48.1,"r45":48.1,"reserve_ok":true,"storage":"ZBO"}]},"STRESS":{"plan_id":"P2z_earth_new_zbo_adapted","variant":"adapted","feasible":true,"hard_violations":0,"guideline_violations":0,"kpi":{"total_cost_mln":12811.646,"pv_cost_mln":10097.472,"cost_per_served_t_mln":8.352,"pv_cost_per_served_t_mln":6.582,"served_total_t":1534.0,"demand_total_t":1534.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":31.121,"capex_total_mln":540.0,"procurement_total_mln":11482.316,"reservation_total_mln":604.827,"holding_total_mln":142.503,"fixed_opex_total_mln":42.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":207.9,"losses":5.93,"open":23.4,"close":35.4,"r45":23.4,"reserve_ok":true,"storage":"ZBO"},{"year":2038,"demand":287.5,"critical":195.5,"served":287.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":301.0,"losses":3.61,"open":35.4,"close":45.4,"r45":35.4,"reserve_ok":true,"storage":"ZBO"},{"year":2039,"demand":368.0,"critical":241.5,"served":368.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":382.5,"losses":4.59,"open":45.4,"close":55.3,"r45":45.4,"reserve_ok":true,"storage":"ZBO"},{"year":2040,"demand":448.5,"critical":287.5,"served":448.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":430.0,"losses":5.16,"open":55.3,"close":31.6,"r45":55.3,"reserve_ok":true,"storage":"ZBO"}]}},"P3_isru_zbo":{"BASE":{"plan_id":"P3_isru_zbo","variant":"base","feasible":true,"hard_violations":0,"guideline_violations":0,"kpi":{"total_cost_mln":10654.259,"pv_cost_mln":8638.857,"cost_per_served_t_mln":7.665,"pv_cost_per_served_t_mln":6.215,"served_total_t":1390.0,"demand_total_t":1390.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":29.492,"capex_total_mln":1430.0,"procurement_total_mln":8374.898,"reservation_total_mln":467.634,"holding_total_mln":129.727,"fixed_opex_total_mln":252.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":203.2,"losses":5.79,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"ZBO"},{"year":2038,"demand":250.0,"critical":170.0,"served":250.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":261.8,"losses":3.14,"open":30.8,"close":39.5,"r45":30.8,"reserve_ok":true,"storage":"ZBO"},{"year":2039,"demand":320.0,"critical":210.0,"served":320.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":332.6,"losses":3.99,"open":39.5,"close":48.1,"r45":39.5,"reserve_ok":true,"storage":"ZBO"},{"year":2040,"demand":390.0,"critical":250.0,"served":390.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":394.7,"losses":4.74,"open":48.1,"close":48.1,"r45":48.1,"reserve_ok":true,"storage":"ZBO"}],"finance":[{"year":2035,"procurement":796.1,"reservation":51.4,"holding":10.7,"fixed_opex":0.0,"capex":0.0,"total":858.2,"pv":858.2},{"year":2036,"procurement":948.9,"reservation":68.9,"holding":14.6,"fixed_opex":0.0,"capex":1250.0,"total":2282.4,"pv":2113.4},{"year":2037,"procurement":1295.4,"reservation":87.5,"holding":18.9,"fixed_opex":6.0,"capex":180.0,"total":1587.8,"pv":1361.3},{"year":2038,"procurement":1303.0,"reservation":72.8,"holding":19.4,"fixed_opex":82.0,"capex":0.0,"total":1477.2,"pv":1172.6},{"year":2039,"procurement":1739.3,"reservation":88.9,"holding":31.5,"fixed_opex":82.0,"capex":0.0,"total":1941.7,"pv":1427.2},{"year":2040,"procurement":2292.2,"reservation":98.2,"holding":34.6,"fixed_opex":82.0,"capex":0.0,"total":2507.0,"pv":1706.2}],"source_schedule":[{"year":2035,"source":"Earth-Core","reserved":109.9,"ordered":109.9,"delivered":109.9,"price":6.2,"payable":109.9,"procurement":681.2,"reservation":49.4},{"year":2036,"source":"Earth-Core","reserved":153.1,"ordered":153.1,"delivered":153.1,"price":6.2,"payable":153.1,"procurement":948.9,"reservation":68.9},{"year":2037,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":6.2,"payable":190.0,"procurement":1178.0,"reservation":85.5},{"year":2037,"source":"Earth-Flex","reserved":13.2,"ordered":13.2,"delivered":13.2,"price":8.9,"payable":13.2,"procurement":117.4,"reservation":2.0},{"year":2038,"source":"Earth-Core","reserved":161.8,"ordered":161.8,"delivered":161.8,"price":6.2,"payable":161.8,"procurement":1003.0,"reservation":72.8},{"year":2038,"source":"Lunar-ISRU","reserved":120.0,"ordered":100.0,"delivered":100.0,"price":3.0,"payable":100.0,"procurement":300.0,"reservation":0.0},{"year":2039,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":6.2,"payable":190.0,"procurement":1178.0,"reservation":85.5},{"year":2039,"source":"Earth-Flex","reserved":22.6,"ordered":22.6,"delivered":22.6,"price":8.9,"payable":22.6,"procurement":201.3,"reservation":3.4},{"year":2039,"source":"Lunar-ISRU","reserved":120.0,"ordered":120.0,"delivered":120.0,"price":3.0,"payable":120.0,"procurement":360.0,"reservation":0.0},{"year":2040,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":6.2,"payable":190.0,"procurement":1178.0,"reservation":85.5},{"year":2040,"source":"Earth-Flex","reserved":84.7,"ordered":84.7,"delivered":84.7,"price":8.9,"payable":84.7,"procurement":754.2,"reservation":12.7},{"year":2040,"source":"Lunar-ISRU","reserved":120.0,"ordered":120.0,"delivered":120.0,"price":3.0,"payable":120.0,"procurement":360.0,"reservation":0.0}]},"STRESS":{"plan_id":"P3_isru_zbo_adapted","variant":"adapted","feasible":true,"hard_violations":0,"guideline_violations":0,"kpi":{"total_cost_mln":13291.585,"pv_cost_mln":10636.655,"cost_per_served_t_mln":8.665,"pv_cost_per_served_t_mln":6.934,"served_total_t":1534.0,"demand_total_t":1534.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":31.001,"capex_total_mln":1430.0,"procurement_total_mln":10968.671,"reservation_total_mln":505.229,"holding_total_mln":135.685,"fixed_opex_total_mln":252.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":207.9,"losses":5.93,"open":23.4,"close":35.4,"r45":23.4,"reserve_ok":true,"storage":"ZBO"},{"year":2038,"demand":287.5,"critical":195.5,"served":287.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":301.0,"losses":3.61,"open":35.4,"close":45.4,"r45":35.4,"reserve_ok":true,"storage":"ZBO"},{"year":2039,"demand":368.0,"critical":241.5,"served":368.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":382.5,"losses":4.59,"open":45.4,"close":55.3,"r45":45.4,"reserve_ok":true,"storage":"ZBO"},{"year":2040,"demand":448.5,"critical":287.5,"served":448.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":420.0,"losses":5.04,"open":55.3,"close":21.8,"r45":55.3,"reserve_ok":true,"storage":"ZBO"}],"finance":[{"year":2035,"procurement":796.1,"reservation":51.4,"holding":10.7,"fixed_opex":0.0,"capex":0.0,"total":858.2,"pv":858.2},{"year":2036,"procurement":948.9,"reservation":68.9,"holding":14.6,"fixed_opex":0.0,"capex":1250.0,"total":2282.4,"pv":2113.4},{"year":2037,"procurement":1337.7,"reservation":88.2,"holding":20.6,"fixed_opex":6.0,"capex":180.0,"total":1632.5,"pv":1399.6},{"year":2038,"procurement":2395.9,"reservation":93.9,"holding":25.8,"fixed_opex":82.0,"capex":0.0,"total":2597.7,"pv":2062.1},{"year":2039,"procurement":2973.0,"reservation":100.9,"holding":36.2,"fixed_opex":82.0,"capex":0.0,"total":3192.1,"pv":2346.3},{"year":2040,"procurement":2517.0,"reservation":102.0,"holding":27.7,"fixed_opex":82.0,"capex":0.0,"total":2728.7,"pv":1857.1}],"source_schedule":[{"year":2035,"source":"Earth-Core","reserved":109.9,"ordered":109.9,"delivered":109.9,"price":6.2,"payable":109.9,"procurement":681.2,"reservation":49.4},{"year":2036,"source":"Earth-Core","reserved":153.1,"ordered":153.1,"delivered":153.1,"price":6.2,"payable":153.1,"procurement":948.9,"reservation":68.9},{"year":2037,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":6.2,"payable":190.0,"procurement":1178.0,"reservation":85.5},{"year":2037,"source":"Earth-Flex","reserved":17.9,"ordered":17.9,"delivered":17.9,"price":8.9,"payable":17.9,"procurement":159.7,"reservation":2.7},{"year":2038,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":7.75,"payable":190.0,"procurement":1472.5,"reservation":85.5},{"year":2038,"source":"Earth-Flex","reserved":56.0,"ordered":56.0,"delivered":56.0,"price":11.12,"payable":56.0,"procurement":623.4,"reservation":8.4},{"year":2038,"source":"Lunar-ISRU","reserved":120.0,"ordered":100.0,"delivered":55.0,"price":3.0,"payable":100.0,"procurement":300.0,"reservation":0.0},{"year":2039,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":7.75,"payable":190.0,"procurement":1472.5,"reservation":85.5},{"year":2039,"source":"Earth-Flex","reserved":102.5,"ordered":102.5,"delivered":102.5,"price":11.12,"payable":102.5,"procurement":1140.5,"reservation":15.4},{"year":2039,"source":"Lunar-ISRU","reserved":120.0,"ordered":120.0,"delivered":90.0,"price":3.0,"payable":120.0,"procurement":360.0,"reservation":0.0},{"year":2040,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":6.2,"payable":190.0,"procurement":1178.0,"reservation":85.5},{"year":2040,"source":"Earth-Flex","reserved":110.0,"ordered":110.0,"delivered":110.0,"price":8.9,"payable":110.0,"procurement":979.0,"reservation":16.5},{"year":2040,"source":"Lunar-ISRU","reserved":120.0,"ordered":120.0,"delivered":120.0,"price":3.0,"payable":120.0,"procurement":360.0,"reservation":0.0}]}},"P4_full":{"BASE":{"plan_id":"P4_full","variant":"base","feasible":true,"hard_violations":0,"guideline_violations":0,"kpi":{"total_cost_mln":10815.357,"pv_cost_mln":8857.609,"cost_per_served_t_mln":7.781,"pv_cost_per_served_t_mln":6.372,"served_total_t":1390.0,"demand_total_t":1390.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":29.492,"capex_total_mln":1790.0,"procurement_total_mln":8157.914,"reservation_total_mln":485.716,"holding_total_mln":129.727,"fixed_opex_total_mln":252.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":203.2,"losses":5.79,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"ZBO"},{"year":2038,"demand":250.0,"critical":170.0,"served":250.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":261.8,"losses":3.14,"open":30.8,"close":39.5,"r45":30.8,"reserve_ok":true,"storage":"ZBO"},{"year":2039,"demand":320.0,"critical":210.0,"served":320.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":332.6,"losses":3.99,"open":39.5,"close":48.1,"r45":39.5,"reserve_ok":true,"storage":"ZBO"},{"year":2040,"demand":390.0,"critical":250.0,"served":390.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":394.7,"losses":4.74,"open":48.1,"close":48.1,"r45":48.1,"reserve_ok":true,"storage":"ZBO"}]},"STRESS":{"plan_id":"P4_full_adapted","variant":"adapted","feasible":true,"hard_violations":0,"guideline_violations":0,"kpi":{"total_cost_mln":13112.382,"pv_cost_mln":10578.228,"cost_per_served_t_mln":8.548,"pv_cost_per_served_t_mln":6.896,"served_total_t":1534.0,"demand_total_t":1534.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":31.408,"capex_total_mln":1790.0,"procurement_total_mln":10366.326,"reservation_total_mln":556.297,"holding_total_mln":147.76,"fixed_opex_total_mln":252.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":207.9,"losses":5.93,"open":23.4,"close":35.4,"r45":23.4,"reserve_ok":true,"storage":"ZBO"},{"year":2038,"demand":287.5,"critical":195.5,"served":287.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":301.0,"losses":3.61,"open":35.4,"close":45.4,"r45":35.4,"reserve_ok":true,"storage":"ZBO"},{"year":2039,"demand":368.0,"critical":241.5,"served":368.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":382.5,"losses":4.59,"open":45.4,"close":55.3,"r45":45.4,"reserve_ok":true,"storage":"ZBO"},{"year":2040,"demand":448.5,"critical":287.5,"served":448.5,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":453.9,"losses":5.45,"open":55.3,"close":55.3,"r45":55.3,"reserve_ok":true,"storage":"ZBO"}]}}},"p3_fixed_stress":{"plan_id":"P3_isru_zbo","variant":"fixed","feasible":false,"hard_violations":3,"guideline_violations":3,"kpi":{"total_cost_mln":11167.303,"pv_cost_mln":9031.625,"cost_per_served_t_mln":8.187,"pv_cost_per_served_t_mln":6.622,"served_total_t":1363.983,"demand_total_t":1534.0,"shortage_total_t":170.017,"shortage_critical_t":0.0,"min_service_level_total":0.812,"min_service_level_critical":1.0,"losses_total_t":28.592,"capex_total_mln":1430.0,"procurement_total_mln":8970.477,"reservation_total_mln":467.634,"holding_total_mln":47.193,"fixed_opex_total_mln":252.0},"yearly":[{"year":2035,"demand":100.0,"critical":80.0,"served":100.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":109.9,"losses":4.94,"open":12.3,"close":17.3,"r45":12.3,"reserve_ok":true,"storage":"BASE"},{"year":2036,"demand":140.0,"critical":105.0,"served":140.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":153.1,"losses":6.89,"open":17.3,"close":23.4,"r45":17.3,"reserve_ok":true,"storage":"BASE"},{"year":2037,"demand":190.0,"critical":135.0,"served":190.0,"sl_total":1.0,"sl_crit":1.0,"shortage":0.0,"inflow":203.2,"losses":5.79,"open":23.4,"close":30.8,"r45":23.4,"reserve_ok":true,"storage":"ZBO"},{"year":2038,"demand":287.5,"critical":195.5,"served":245.0,"sl_total":0.852,"sl_crit":1.0,"shortage":42.5,"inflow":216.8,"losses":2.6,"open":30.8,"close":0.0,"r45":35.4,"reserve_ok":false,"storage":"ZBO"},{"year":2039,"demand":368.0,"critical":241.5,"served":299.0,"sl_total":0.812,"sl_crit":1.0,"shortage":69.0,"inflow":302.6,"losses":3.63,"open":0.0,"close":0.0,"r45":45.4,"reserve_ok":false,"storage":"ZBO"},{"year":2040,"demand":448.5,"critical":287.5,"served":390.0,"sl_total":0.87,"sl_crit":1.0,"shortage":58.5,"inflow":394.7,"losses":4.74,"open":0.0,"close":0.0,"r45":55.3,"reserve_ok":false,"storage":"ZBO"}],"finance":[{"year":2035,"procurement":796.1,"reservation":51.4,"holding":10.7,"fixed_opex":0.0,"capex":0.0,"total":858.2,"pv":858.2},{"year":2036,"procurement":948.9,"reservation":68.9,"holding":14.6,"fixed_opex":0.0,"capex":1250.0,"total":2282.4,"pv":2113.4},{"year":2037,"procurement":1295.4,"reservation":87.5,"holding":18.9,"fixed_opex":6.0,"capex":180.0,"total":1587.8,"pv":1361.3},{"year":2038,"procurement":1553.7,"reservation":72.8,"holding":3.0,"fixed_opex":82.0,"capex":0.0,"total":1711.5,"pv":1358.6},{"year":2039,"procurement":2084.2,"reservation":88.9,"holding":0.0,"fixed_opex":82.0,"capex":0.0,"total":2255.1,"pv":1657.5},{"year":2040,"procurement":2292.2,"reservation":98.2,"holding":0.0,"fixed_opex":82.0,"capex":0.0,"total":2472.4,"pv":1682.7}],"source_schedule":[{"year":2035,"source":"Earth-Core","reserved":109.9,"ordered":109.9,"delivered":109.9,"price":6.2,"payable":109.9,"procurement":681.2,"reservation":49.4},{"year":2036,"source":"Earth-Core","reserved":153.1,"ordered":153.1,"delivered":153.1,"price":6.2,"payable":153.1,"procurement":948.9,"reservation":68.9},{"year":2037,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":6.2,"payable":190.0,"procurement":1178.0,"reservation":85.5},{"year":2037,"source":"Earth-Flex","reserved":13.2,"ordered":13.2,"delivered":13.2,"price":8.9,"payable":13.2,"procurement":117.4,"reservation":2.0},{"year":2038,"source":"Earth-Core","reserved":161.8,"ordered":161.8,"delivered":161.8,"price":7.75,"payable":161.8,"procurement":1253.7,"reservation":72.8},{"year":2038,"source":"Lunar-ISRU","reserved":120.0,"ordered":100.0,"delivered":55.0,"price":3.0,"payable":100.0,"procurement":300.0,"reservation":0.0},{"year":2039,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":7.75,"payable":190.0,"procurement":1472.5,"reservation":85.5},{"year":2039,"source":"Earth-Flex","reserved":22.6,"ordered":22.6,"delivered":22.6,"price":11.12,"payable":22.6,"procurement":251.7,"reservation":3.4},{"year":2039,"source":"Lunar-ISRU","reserved":120.0,"ordered":120.0,"delivered":90.0,"price":3.0,"payable":120.0,"procurement":360.0,"reservation":0.0},{"year":2040,"source":"Earth-Core","reserved":190.0,"ordered":190.0,"delivered":190.0,"price":6.2,"payable":190.0,"procurement":1178.0,"reservation":85.5},{"year":2040,"source":"Earth-Flex","reserved":84.7,"ordered":84.7,"delivered":84.7,"price":8.9,"payable":84.7,"procurement":754.2,"reservation":12.7},{"year":2040,"source":"Lunar-ISRU","reserved":120.0,"ordered":120.0,"delivered":120.0,"price":3.0,"payable":120.0,"procurement":360.0,"reservation":0.0}],"constraint_checks":[{"rule":"BASE_TOTAL_SERVICE","severity":"guideline","year":"2038","month":"","source":"","actual":"0.852","limit":"0.970","excess":"0.118","message":"2038: total service level 0.8521 < 0.97 (shortage 42.508 t) [guideline in this scenario]"},{"rule":"BASE_TOTAL_SERVICE","severity":"guideline","year":"2039","month":"","source":"","actual":"0.812","limit":"0.970","excess":"0.158","message":"2039: total service level 0.8125 < 0.97 (shortage 69.010 t) [guideline in this scenario]"},{"rule":"BASE_TOTAL_SERVICE","severity":"guideline","year":"2040","month":"","source":"","actual":"0.870","limit":"0.970","excess":"0.100","message":"2040: total service level 0.8696 < 0.97 (shortage 58.500 t) [guideline in this scenario]"},{"rule":"RESERVE_45D","severity":"hard","year":"2038","month":"1","source":"","actual":"30.822","limit":"35.445","excess":"4.623","message":"2038-01: physical stock 30.822 t < 45-day reserve 35.445 t"},{"rule":"RESERVE_45D","severity":"hard","year":"2039","month":"1","source":"","actual":"0.000","limit":"45.370","excess":"45.370","message":"2039-01: physical stock 0.000 t < 45-day reserve 45.370 t"},{"rule":"RESERVE_45D","severity":"hard","year":"2040","month":"1","source":"","actual":"0.000","limit":"55.295","excess":"55.295","message":"2040-01: physical stock 0.000 t < 45-day reserve 55.295 t"}]},"monthly":{"BASE":[{"year":2035,"month":1,"opening":12.33,"closing":12.74,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":2,"opening":12.74,"closing":13.15,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":3,"opening":13.15,"closing":13.56,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":4,"opening":13.56,"closing":13.97,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":5,"opening":13.97,"closing":14.38,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":6,"opening":14.38,"closing":14.79,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":7,"opening":14.79,"closing":15.21,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":8,"opening":15.21,"closing":15.62,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":9,"opening":15.62,"closing":16.03,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":10,"opening":16.03,"closing":16.44,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":11,"opening":16.44,"closing":16.85,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":12,"opening":16.85,"closing":17.26,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":1,"opening":17.26,"closing":17.77,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":2,"opening":17.77,"closing":18.29,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":3,"opening":18.29,"closing":18.8,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":4,"opening":18.8,"closing":19.32,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":5,"opening":19.32,"closing":19.83,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":6,"opening":19.83,"closing":20.34,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":7,"opening":20.34,"closing":20.86,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":8,"opening":20.86,"closing":21.37,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":9,"opening":21.37,"closing":21.88,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":10,"opening":21.88,"closing":22.4,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":11,"opening":22.4,"closing":22.91,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":12,"opening":22.91,"closing":23.42,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":1,"opening":23.42,"closing":23.76,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":2,"opening":23.76,"closing":24.1,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":3,"opening":24.1,"closing":24.44,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":4,"opening":24.44,"closing":24.77,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":5,"opening":24.77,"closing":25.11,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":6,"opening":25.11,"closing":25.45,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":7,"opening":25.45,"closing":26.34,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":8,"opening":26.34,"closing":27.24,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":9,"opening":27.24,"closing":28.13,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":10,"opening":28.13,"closing":29.03,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":11,"opening":29.03,"closing":29.93,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":12,"opening":29.93,"closing":30.82,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":1,"opening":30.82,"closing":23.31,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":2,"opening":23.31,"closing":15.79,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":3,"opening":15.79,"closing":18.16,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":4,"opening":18.16,"closing":20.53,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":5,"opening":20.53,"closing":22.89,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":6,"opening":22.89,"closing":25.26,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":7,"opening":25.26,"closing":27.62,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":8,"opening":27.62,"closing":29.99,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":9,"opening":29.99,"closing":32.35,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":10,"opening":32.35,"closing":34.72,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":11,"opening":34.72,"closing":37.09,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":12,"opening":37.09,"closing":39.45,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":1,"opening":39.45,"closing":40.17,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":2,"opening":40.17,"closing":40.89,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":3,"opening":40.89,"closing":41.61,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":4,"opening":41.61,"closing":42.33,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":5,"opening":42.33,"closing":43.05,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":6,"opening":43.05,"closing":43.77,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":7,"opening":43.77,"closing":44.49,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":8,"opening":44.49,"closing":45.21,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":9,"opening":45.21,"closing":45.92,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":10,"opening":45.92,"closing":46.64,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":11,"opening":46.64,"closing":47.36,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":12,"opening":47.36,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":1,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":2,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":3,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":4,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":5,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":6,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":7,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":8,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":9,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":10,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":11,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":12,"opening":48.08,"closing":48.08,"capacity":120.0,"mode":"ZBO"}],"STRESS":[{"year":2035,"month":1,"opening":12.33,"closing":12.74,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":2,"opening":12.74,"closing":13.15,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":3,"opening":13.15,"closing":13.56,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":4,"opening":13.56,"closing":13.97,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":5,"opening":13.97,"closing":14.38,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":6,"opening":14.38,"closing":14.79,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":7,"opening":14.79,"closing":15.21,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":8,"opening":15.21,"closing":15.62,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":9,"opening":15.62,"closing":16.03,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":10,"opening":16.03,"closing":16.44,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":11,"opening":16.44,"closing":16.85,"capacity":70.0,"mode":"BASE"},{"year":2035,"month":12,"opening":16.85,"closing":17.26,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":1,"opening":17.26,"closing":17.77,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":2,"opening":17.77,"closing":18.29,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":3,"opening":18.29,"closing":18.8,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":4,"opening":18.8,"closing":19.32,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":5,"opening":19.32,"closing":19.83,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":6,"opening":19.83,"closing":20.34,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":7,"opening":20.34,"closing":20.86,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":8,"opening":20.86,"closing":21.37,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":9,"opening":21.37,"closing":21.88,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":10,"opening":21.88,"closing":22.4,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":11,"opening":22.4,"closing":22.91,"capacity":70.0,"mode":"BASE"},{"year":2036,"month":12,"opening":22.91,"closing":23.42,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":1,"opening":23.42,"closing":24.14,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":2,"opening":24.14,"closing":24.86,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":3,"opening":24.86,"closing":25.57,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":4,"opening":25.57,"closing":26.29,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":5,"opening":26.29,"closing":27.0,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":6,"opening":27.0,"closing":27.72,"capacity":70.0,"mode":"BASE"},{"year":2037,"month":7,"opening":27.72,"closing":29.01,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":8,"opening":29.01,"closing":30.29,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":9,"opening":30.29,"closing":31.58,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":10,"opening":31.58,"closing":32.87,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":11,"opening":32.87,"closing":34.16,"capacity":120.0,"mode":"ZBO"},{"year":2037,"month":12,"opening":34.16,"closing":35.45,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":1,"opening":35.45,"closing":31.74,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":2,"opening":31.74,"closing":28.04,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":3,"opening":28.04,"closing":29.78,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":4,"opening":29.78,"closing":31.51,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":5,"opening":31.51,"closing":33.24,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":6,"opening":33.24,"closing":34.97,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":7,"opening":34.97,"closing":36.71,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":8,"opening":36.71,"closing":38.44,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":9,"opening":38.44,"closing":40.17,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":10,"opening":40.17,"closing":41.9,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":11,"opening":41.9,"closing":43.64,"capacity":120.0,"mode":"ZBO"},{"year":2038,"month":12,"opening":43.64,"closing":45.37,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":1,"opening":45.37,"closing":46.2,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":2,"opening":46.2,"closing":47.02,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":3,"opening":47.02,"closing":47.85,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":4,"opening":47.85,"closing":48.68,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":5,"opening":48.68,"closing":49.51,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":6,"opening":49.51,"closing":50.33,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":7,"opening":50.33,"closing":51.16,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":8,"opening":51.16,"closing":51.99,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":9,"opening":51.99,"closing":52.81,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":10,"opening":52.81,"closing":53.64,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":11,"opening":53.64,"closing":54.47,"capacity":120.0,"mode":"ZBO"},{"year":2039,"month":12,"opening":54.47,"closing":55.29,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":1,"opening":55.29,"closing":52.5,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":2,"opening":52.5,"closing":49.7,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":3,"opening":49.7,"closing":46.91,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":4,"opening":46.91,"closing":44.11,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":5,"opening":44.11,"closing":41.32,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":6,"opening":41.32,"closing":38.52,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":7,"opening":38.52,"closing":35.73,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":8,"opening":35.73,"closing":32.93,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":9,"opening":32.93,"closing":30.14,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":10,"opening":30.14,"closing":27.34,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":11,"opening":27.34,"closing":24.55,"capacity":120.0,"mode":"ZBO"},{"year":2040,"month":12,"opening":24.55,"closing":21.75,"capacity":120.0,"mode":"ZBO"}]},"case":{"demand":[{"year":2035,"total":100.0,"critical":80.0,"low":80.0,"high":110.0},{"year":2036,"total":140.0,"critical":105.0,"low":112.0,"high":154.0},{"year":2037,"total":190.0,"critical":135.0,"low":152.0,"high":209.0},{"year":2038,"total":250.0,"critical":170.0,"low":200.0,"high":312.5},{"year":2039,"total":320.0,"critical":210.0,"low":256.0,"high":400.0},{"year":2040,"total":390.0,"critical":250.0,"low":312.0,"high":487.5}],"sources":[{"source_id":"A","name":"Earth-Core","capacity_t_per_year":"190","variable_cost_mln_per_t":"6.2","reservation_rate_mln_per_t_year_capacity":"0.45","take_or_pay_share":"0.70","lead_time_min_value":"12","lead_time_max_value":"12","lead_time_unit":"month","reliability_profile":"constant:0.96","available_from_year":"2035","status":"CASE_INPUT","notes":"long-term Earth-to-orbit channel"},{"source_id":"B","name":"Earth-Flex","capacity_t_per_year":"110","variable_cost_mln_per_t":"8.9","reservation_rate_mln_per_t_year_capacity":"0.15","take_or_pay_share":"0.00","lead_time_min_value":"4","lead_time_max_value":"4","lead_time_unit":"month","reliability_profile":"constant:0.985","available_from_year":"2035","status":"CASE_INPUT","notes":"flexible Earth-to-orbit channel"},{"source_id":"C","name":"Earth-New","capacity_t_per_year":"130","variable_cost_mln_per_t":"7.1","reservation_rate_mln_per_t_year_capacity":"0.30","take_or_pay_share":"0.50","lead_time_min_value":"18","lead_time_max_value":"24","lead_time_unit":"month","reliability_profile":"first_operating_year:0.88;later:0.94","available_from_year":"","status":"CASE_INPUT","notes":"capacity available only after option exercise and preparation"},{"source_id":"D","name":"Lunar-ISRU","capacity_t_per_year":"120","variable_cost_mln_per_t":"3.0","reservation_rate_mln_per_t_year_capacity":"0.00","take_or_pay_share":"0.00","lead_time_min_value":"1","lead_time_max_value":"2","lead_time_unit":"month","reliability_profile":"2038:0.78;2039:0.90;2040:0.93","available_from_year":"2038","status":"CASE_INPUT","notes":"available after required CAPEX financing and commissioning"},{"source_id":"E","name":"Emergency","capacity_t_per_year":"80","variable_cost_mln_per_t":"13.8","reservation_rate_mln_per_t_year_capacity":"0.35","take_or_pay_share":"0.00","lead_time_min_value":"6","lead_time_max_value":"6","lead_time_unit":"week","reliability_profile":"constant:0.995","available_from_year":"2035","status":"CASE_INPUT","notes":"authoritative organizer lead time is six weeks"}],"storage":[{"storage_id":"BASE","name":"Base storage","capacity_t":"70","loss_rate_on_throughput":"0.045","holding_cost_mln_per_t_year":"0.72","capex_mln":"0","fixed_opex_mln_per_year":"0","available_from_year":"2035","status":"CASE_INPUT","notes":"existing storage"},{"storage_id":"ZBO","name":"ZBO modernization","capacity_t":"120","loss_rate_on_throughput":"0.012","holding_cost_mln_per_t_year":"0.72","capex_mln":"180","fixed_opex_mln_per_year":"12","available_from_year":"2036","status":"CASE_INPUT","notes":"case-model coefficient; not a universal real ZBO performance claim"}],"investments":[{"investment_id":"EARTH_NEW","name":"Earth-New option","option_fee_mln":"90","exercise_cost_mln":"270","total_capex_mln":"360","commissioning_rule":"18-24 months after exercise/preparation decision","fixed_opex_mln_per_year":"0","status":"CASE_INPUT","notes":"do not add another 360 on top of 90+270"},{"investment_id":"LUNAR_ISRU","name":"Lunar-ISRU pilot","option_fee_mln":"0","exercise_cost_mln":"1250","total_capex_mln":"1250","commissioning_rule":"must be financed before 2038; available from 2038","fixed_opex_mln_per_year":"70","status":"CASE_INPUT","notes":"capacity effect is defined in supply_sources.csv"},{"investment_id":"ZBO","name":"ZBO modernization","option_fee_mln":"0","exercise_cost_mln":"180","total_capex_mln":"180","commissioning_rule":"option available from 2036","fixed_opex_mln_per_year":"12","status":"CASE_INPUT","notes":"capacity becomes 120 t; loss rate becomes 1.2% of throughput"}],"constraints":[{"constraint_id":"BASE_CRITICAL_SERVICE","metric":"critical_service_level","operator":">=","value":"0.99","unit":"share","period":"annual","scenario":"BASE","severity":"hard","status":"CASE_INPUT","description":"critical demand service minimum"},{"constraint_id":"BASE_TOTAL_SERVICE","metric":"total_service_level","operator":">=","value":"0.97","unit":"share","period":"annual","scenario":"BASE","severity":"hard","status":"CASE_INPUT","description":"total demand service minimum"},{"constraint_id":"CAPEX_2037","metric":"cumulative_capex","operator":"<=","value":"1800","unit":"mln_units","period":"through_2037","scenario":"ALL","severity":"hard","status":"CASE_INPUT","description":"CAPEX through end-2037"},{"constraint_id":"CAPEX_2040","metric":"cumulative_capex","operator":"<=","value":"2800","unit":"mln_units","period":"through_2040","scenario":"ALL","severity":"hard","status":"CASE_INPUT","description":"total CAPEX through 2040"},{"constraint_id":"RESERVE_45D","metric":"reserve_equivalent_days","operator":">=","value":"45","unit":"days","period":"annual","scenario":"ALL","severity":"hard","status":"CASE_INPUT","description":"physical stock or demonstrably equivalent contracted emergency reserve"},{"constraint_id":"EMERGENCY_BASE_STREAK","metric":"emergency_base_channel_consecutive_years","operator":"<=","value":"2","unit":"years","period":"2035_2040","scenario":"ALL","severity":"hard","status":"CASE_INPUT","description":"Emergency cannot serve as the base channel for more than two consecutive years"},{"constraint_id":"STRESS_LOSS_LIMIT","metric":"losses_divided_by_throughput","operator":"<=","value":"0.02","unit":"share","period":"2038_2040","scenario":"MANDATORY_STRESS","severity":"hard","status":"CASE_INPUT","description":"applies from 2038 in mandatory stress only"}]},"plan_p3":{"capacity_reservations":[{"source_id":"A","year":2035,"reserved_capacity_t":109.876},{"source_id":"A","year":2036,"reserved_capacity_t":153.052},{"source_id":"A","year":2037,"reserved_capacity_t":190.0},{"source_id":"B","year":2037,"reserved_capacity_t":13.189},{"source_id":"D","year":2038,"reserved_capacity_t":120.0},{"source_id":"A","year":2038,"reserved_capacity_t":161.772},{"source_id":"D","year":2039,"reserved_capacity_t":120.0},{"source_id":"A","year":2039,"reserved_capacity_t":190.0},{"source_id":"B","year":2039,"reserved_capacity_t":22.622},{"source_id":"D","year":2040,"reserved_capacity_t":120.0},{"source_id":"A","year":2040,"reserved_capacity_t":190.0},{"source_id":"B","year":2040,"reserved_capacity_t":84.737}],"supply_orders":[{"source_id":"A","year":2035,"ordered_t":109.876,"profile":"uniform"},{"source_id":"A","year":2036,"ordered_t":153.052,"profile":"uniform"},{"source_id":"A","year":2037,"ordered_t":190.0,"profile":"uniform"},{"source_id":"B","year":2037,"ordered_t":13.188,"profile":"uniform"},{"source_id":"D","year":2038,"ordered_t":100.0,"profile":"uniform"},{"source_id":"A","year":2038,"ordered_t":161.771,"profile":"uniform"},{"source_id":"D","year":2039,"ordered_t":120.0,"profile":"uniform"},{"source_id":"A","year":2039,"ordered_t":190.0,"profile":"uniform"},{"source_id":"B","year":2039,"ordered_t":22.622,"profile":"uniform"},{"source_id":"D","year":2040,"ordered_t":120.0,"profile":"uniform"},{"source_id":"A","year":2040,"ordered_t":190.0,"profile":"uniform"},{"source_id":"B","year":2040,"ordered_t":84.737,"profile":"uniform"}],"investments":[{"investment_id":"LUNAR_ISRU","decision_year":2036,"decision_month":1},{"investment_id":"ZBO","decision_year":2037,"decision_month":7}],"inventory_policy":{"opening_stock":[{"source_id":"B","tons":12.91,"delivery_year":2034,"delivery_month":12}],"reserve_mode":"physical","allocation_rule":"critical_first"}},"plan_p3_adapted":{"capacity_reservations":[{"source_id":"A","year":2035,"reserved_capacity_t":109.876},{"source_id":"A","year":2036,"reserved_capacity_t":153.052},{"source_id":"A","year":2037,"reserved_capacity_t":190.0},{"source_id":"B","year":2037,"reserved_capacity_t":17.948},{"source_id":"D","year":2038,"reserved_capacity_t":120.0},{"source_id":"A","year":2038,"reserved_capacity_t":190.0},{"source_id":"B","year":2038,"reserved_capacity_t":56.038},{"source_id":"D","year":2039,"reserved_capacity_t":120.0},{"source_id":"A","year":2039,"reserved_capacity_t":190.0},{"source_id":"B","year":2039,"reserved_capacity_t":102.515},{"source_id":"D","year":2040,"reserved_capacity_t":120.0},{"source_id":"A","year":2040,"reserved_capacity_t":190.0},{"source_id":"B","year":2040,"reserved_capacity_t":110.0}],"supply_orders":[{"source_id":"A","year":2035,"ordered_t":109.876,"profile":"uniform"},{"source_id":"A","year":2036,"ordered_t":153.052,"profile":"uniform"},{"source_id":"A","year":2037,"ordered_t":190.0,"profile":"uniform"},{"source_id":"B","year":2037,"ordered_t":17.947,"profile":"uniform"},{"source_id":"D","year":2038,"ordered_t":100.0,"profile":"uniform"},{"source_id":"A","year":2038,"ordered_t":190.0,"profile":"uniform"},{"source_id":"B","year":2038,"ordered_t":56.037,"profile":"uniform"},{"source_id":"D","year":2039,"ordered_t":120.0,"profile":"uniform"},{"source_id":"A","year":2039,"ordered_t":190.0,"profile":"uniform"},{"source_id":"B","year":2039,"ordered_t":102.515,"profile":"uniform"},{"source_id":"D","year":2040,"ordered_t":120.0,"profile":"uniform"},{"source_id":"A","year":2040,"ordered_t":190.0,"profile":"uniform"},{"source_id":"B","year":2040,"ordered_t":110.0,"profile":"uniform"}],"investments":[{"investment_id":"LUNAR_ISRU","decision_year":2036,"decision_month":1},{"investment_id":"ZBO","decision_year":2037,"decision_month":7}],"inventory_policy":{"opening_stock":[{"source_id":"B","tons":12.91,"delivery_year":2034,"delivery_month":12}],"reserve_mode":"physical","allocation_rule":"critical_first"}},"sensitivity":{"thresholds":[{"param":"demand_multiplier","range":"0.80..1.30","threshold_fixed_plan":"1.0500","threshold_replanned":"1.3000","note":"fixed plan breaks when demand exceeds ordered volumes; re-planned plan breaks when reserved capacity (A+B+D) is exhausted"},{"param":"isru_delivery_share_2038","range":"0.30..1.00","threshold_fixed_plan":"0.9500","threshold_replanned":"","note":"largest share at which the fixed plan still breaks; below it the 2038 shortfall exceeds the reserve cushion"},{"param":"earth_price_multiplier","range":"0.80..1.50","threshold_fixed_plan":"","threshold_replanned":"","note":"pure cost effect; no physical constraint depends on price"},{"param":"discount_rate_real","range":"0.00..0.12","threshold_fixed_plan":"","threshold_replanned":"","note":"affects PV only; ranking of alternatives must be re-checked at each rate (see summary.md)"},{"param":"zbo_commissioning_lag_months","range":"0..12","threshold_fixed_plan":"10","threshold_replanned":"","note":"ZBO decided 2037-07; a lag beyond the threshold leaves base-storage months in 2038 and breaks the 2 % loss ceiling"}],"tornado":[{"param":"demand_multiplier","low":"0.8000","high":"1.3000","pv_low":"8979.5487","pv_base":"8638.8569","pv_high":"8538.5045"},{"param":"isru_delivery_share_2038","low":"0.3000","high":"1.0000","pv_low":"8586.8211","pv_base":"8638.8569","pv_high":"8638.8569"},{"param":"earth_price_multiplier","low":"0.8000","high":"1.5000","pv_low":"7456.7811","pv_base":"8638.8569","pv_high":"11594.0466"},{"param":"discount_rate_real","low":"0.0000","high":"0.1200","pv_low":"10654.2588","pv_base":"8638.8569","pv_high":"7869.7719"}],"ranking_header":["r","P1_earth_only","P2_earth_new","P2z_earth_new_zbo","P3_isru_zbo","P4_full"],"ranking_rows":[["0.00","9,879 (infeasible)","11,079","10,980","10,654","10,815"],["0.04","8,775 (infeasible)","9,820","9,748","9,554","9,747"],["0.08","7,857 (infeasible)","8,780","8,729","8,639","8,858"],["0.12","7,089 (infeasible)","7,914","7,880","7,870","8,109"]]},"extension":{"source_x":{"capacity_t_per_year":60,"variable_cost_mln_per_t":5.5,"available_from_year":2039},"year2041":{"total_t":450,"critical_t":290,"growth_note":"+15% extrapolation of 2040"},"run":{"plan_id":"P3_isru_zbo_ext2041","scenario_id":"TEAM_2041_SOURCE_X","kpi":{"total_cost_mln":13273.298,"pv_cost_mln":10271.043,"cost_per_served_t_mln":7.214,"pv_cost_per_served_t_mln":5.582,"served_total_t":1840.0,"demand_total_t":1840.0,"shortage_total_t":0.0,"shortage_critical_t":0.0,"min_service_level_total":1.0,"min_service_level_critical":1.0,"losses_total_t":35.048,"capex_total_mln":1430.0,"procurement_total_mln":10763.099,"reservation_total_mln":573.863,"holding_total_mln":172.336,"fixed_opex_total_mln":334.0},"feasible":true}},"manifests":[{"plan_id":"P1_earth_only","scenario_id":"BASE","generated_at":"2026-09-18T16:35:43+00:00","kpi_sha256":"67656834488af916c2daef737ec7b0d9b71fa3e9b9d3197c0b60564e5b0f9936","plan_sha256":"1509ccdbb83688e994390b7905147a680e7c4265d95a774fc2b79e2757ff2ffa"},{"plan_id":"P2_earth_new","scenario_id":"BASE","generated_at":"2026-09-18T16:35:44+00:00","kpi_sha256":"692505aacaf806b440992a490c88f7f9c29837a4976cc86299458a8e14a17c98","plan_sha256":"cd0c4a85d90ee1fbc7fd47e4e7cd063becdf10a0362f74c606b70cd2163b18e0"},{"plan_id":"P2z_earth_new_zbo","scenario_id":"BASE","generated_at":"2026-09-18T16:35:44+00:00","kpi_sha256":"f811ac063bdb44941da0f14bacf0953b00b22ec973e624a6c65a1fea34b37fc0","plan_sha256":"7cd2017b8457e1d37da8f8af136b2244c1b28f9f8407af8d949eda3a7b366765"},{"plan_id":"P2z_earth_new_zbo_adapted","scenario_id":"MANDATORY_STRESS","generated_at":"2026-09-18T16:35:44+00:00","kpi_sha256":"ad27b6b66794a75c1580977d3bfb2efeb20df832be0430ec84f1b2e5076e5917","plan_sha256":"04a51893cad45469b4bbba469f221b5638d4348fceb70e1bb43485348a837bf2"},{"plan_id":"P3_isru_zbo","scenario_id":"BASE","generated_at":"2026-09-18T16:35:44+00:00","kpi_sha256":"f3562630ad6d441db9e35c473b06a6df1d7500ecb2cad347a32a43885956fadb","plan_sha256":"4f3d809aa92a7fab422252e77d3f2525845a9bda0b31d92901c44a70bf7142b0"},{"plan_id":"P3_isru_zbo","scenario_id":"MANDATORY_STRESS","generated_at":"2026-09-18T16:35:44+00:00","kpi_sha256":"7cf4870dcdb1083dadfe8c39223f7d089ea2de9bf6ef8cb479802681c878cdf5","plan_sha256":"4f3d809aa92a7fab422252e77d3f2525845a9bda0b31d92901c44a70bf7142b0"},{"plan_id":"P3_isru_zbo_adapted","scenario_id":"MANDATORY_STRESS","generated_at":"2026-09-18T16:35:45+00:00","kpi_sha256":"cd21c37dfc23fb873e75f95b051d608f617bf1ad48a4d699141d7580360c3f01","plan_sha256":"a2de1e13790f946a486fa66d02e259e582928ac63a60078c30f0f2cd3b5fa9c2"},{"plan_id":"P4_full","scenario_id":"BASE","generated_at":"2026-09-18T16:35:44+00:00","kpi_sha256":"819a49f5cbe84fc8ab810afa8a680d32667a6ce1654a80803f89b70fec57f869","plan_sha256":"c51af17be0ae522a370b0861091f6f326f153068f98dac090b4180f48728bd53"},{"plan_id":"P4_full_adapted","scenario_id":"MANDATORY_STRESS","generated_at":"2026-09-18T16:35:45+00:00","kpi_sha256":"88b8c01c92e4d044f025cb0e8861d3d53c82ed608a8e110ce28f8412cc121ae1","plan_sha256":"20954dc1bfdb25cf4d5769413e0a5a2f93669171cf178863c697447e0a0c8bf3"},{"plan_id":"P3_isru_zbo_ext2041","scenario_id":"TEAM_2041_SOURCE_X","generated_at":"2026-09-18T16:35:45+00:00","kpi_sha256":"7585b1ac3529c061989db232ce24f5d882ff4d7302b3850d5b22b34162581bb8","plan_sha256":"693e1dd7638579b7922a67d35e8aba40d0d45b85841adacfd2d9d7762d2778e8"}]}</script>
+<script>
+(function(){
+"use strict";
+
+var TP = JSON.parse(document.getElementById('tp-data').textContent);
+var SOURCE_NAME = {A:'Earth-Core', B:'Earth-Flex', C:'Earth-New', D:'Lunar-ISRU', E:'Emergency'};
+var SOURCE_COLOR_VAR = {A:'--s1', B:'--s2', C:'--s3', D:'--s4', E:'--s5'};
+function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function fmt(n, d){ if(n===null||n===undefined||isNaN(n)) return '—'; d = (d===undefined)?1:d;
+  return Number(n).toLocaleString('ru-RU', {minimumFractionDigits:d, maximumFractionDigits:d}); }
+function fmtInt(n){ return fmt(n,0); }
+function pct(n){ if(n===null||n===undefined) return '—'; return (n*100).toFixed(1)+'%'; }
+function esc(s){ return (s===null||s===undefined) ? '' : String(s); }
+
+/* ---------------- Toast ---------------- */
+var toastEl = document.getElementById('toast');
+var toastTimer = null;
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 3600);
+}
+
+/* ---------------- Nav / tabs ---------------- */
+var navButtons = document.querySelectorAll('#nav button');
+navButtons.forEach(function(b){
+  b.addEventListener('click', function(){
+    navButtons.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+    document.getElementById(b.dataset.screen).classList.add('active');
+    try{ localStorage.setItem('tp_active_screen', b.dataset.screen); }catch(e){}
+    window.scrollTo(0,0);
+  });
+});
+try{
+  var savedScreen = localStorage.getItem('tp_active_screen');
+  if(savedScreen && document.getElementById(savedScreen)){
+    var btn = document.querySelector('#nav button[data-screen="'+savedScreen+'"]');
+    if(btn) btn.click();
+  }
+}catch(e){}
+
+/* ================= SCREEN 1 : DASHBOARD ================= */
+var state = { scenario:'BASE', plan:'P3_isru_zbo' };
+
+function getPlanEntry(){
+  var p = TP.plans[state.plan];
+  return p ? p[state.scenario] : null;
+}
+
+function renderFeasPill(entry){
+  var el = document.getElementById('feasPill');
+  if(!entry){ el.className='status-pill bad'; el.textContent='нет данных'; return; }
+  if(entry.feasible){
+    el.className='status-pill ok';
+    el.innerHTML = '&#10003; выполнимо &middot; 0 hard / 0 guideline';
+  } else {
+    el.className='status-pill bad';
+    el.innerHTML = '&#10007; невыполнимо &middot; '+entry.hard_violations+' hard / '+entry.guideline_violations+' guideline';
+  }
+}
+
+function kpiTile(label, valueHtml, sub){
+  return '<div class="kpi-tile"><div class="label">'+label+'</div><div class="value">'+valueHtml+'</div>'+
+    (sub? '<div class="sub">'+sub+'</div>' : '')+'</div>';
+}
+
+function renderKpis(entry){
+  var grid = document.getElementById('kpiGrid');
+  if(!entry){ grid.innerHTML = '<div class="placeholder-note">Нет данных KPI для этой комбинации плана/сценария.</div>'; return; }
+  var k = entry.kpi;
+  var capexHtml = '<div class="kpi-tile meter"><div class="label">CAPEX использовано / лимит, млн</div>'+
+    '<div class="value">'+fmt(k.capex_total_mln,0)+'<span class="unit">млн</span></div>'+
+    '<div class="sub tabular">к 2037: '+fmt(k.capex_total_mln,0)+' / 1800</div>'+
+    '<div class="track"><div class="fill'+(k.capex_total_mln>1800?' bad':'')+'" style="width:'+Math.min(100,k.capex_total_mln/1800*100)+'%"></div></div>'+
+    '<div class="sub tabular">к 2040: '+fmt(k.capex_total_mln,0)+' / 2800</div>'+
+    '<div class="track"><div class="fill'+(k.capex_total_mln>2800?' bad':'')+'" style="width:'+Math.min(100,k.capex_total_mln/2800*100)+'%"></div></div>'+
+    '</div>';
+  var html = '';
+  html += kpiTile('Приведённая стоимость (PV), млн', fmt(k.pv_cost_mln,0), 'номинал: '+fmt(k.total_cost_mln,0)+' млн');
+  html += kpiTile('Стоимость на т поставленного топлива', fmt(k.cost_per_served_t_mln,2)+'<span class="unit">млн/т</span>', 'PV/т: '+fmt(k.pv_cost_per_served_t_mln,2));
+  html += kpiTile('Min. service level, всего / крит.', pct(k.min_service_level_total)+' / '+pct(k.min_service_level_critical), 'served '+fmt(k.served_total_t,0)+' т из '+fmt(k.demand_total_t,0)+' т');
+  html += kpiTile('Дефицит (shortage)', fmt(k.shortage_total_t,1)+'<span class="unit">т всего</span>', 'критический дефицит: '+fmt(k.shortage_critical_t,1)+' т');
+  html += capexHtml;
+  html += kpiTile('Потери на хранении', fmt(k.losses_total_t,1)+'<span class="unit">т</span>', 'holding+fixed OPEX: '+fmt(k.holding_total_mln+k.fixed_opex_total_mln,0)+' млн');
+  grid.innerHTML = html;
+}
+
+function renderYearlyTable(entry){
+  var t = document.getElementById('yearlyTable');
+  if(!entry || !entry.yearly || !entry.yearly.length){ t.innerHTML='<tr><td>Нет данных</td></tr>'; return; }
+  var rows = entry.yearly;
+  var head = '<thead><tr><th>Год</th><th>Спрос всего</th><th>Крит.</th><th>Обслужено</th><th>SL всего</th><th>SL крит.</th>'+
+    '<th>Потери</th><th>Запас нач.</th><th>Запас кон.</th><th>Резерв R45</th><th>Резерв OK</th></tr></thead>';
+  var body = '<tbody>';
+  rows.forEach(function(r){
+    var okCell = r.reserve_ok ? '<span class="sev" style="color:var(--good)">&#10003; да</span>' : '<span class="sev hard"><span class="dot"></span>нет</span>';
+    body += '<tr><td>'+r.year+'</td><td class="tabular">'+fmt(r.demand,1)+'</td><td class="tabular">'+fmt(r.critical,1)+'</td>'+
+      '<td class="tabular">'+fmt(r.served,1)+'</td><td class="tabular'+(r.sl_total<0.97?' bad-cell':'')+'">'+pct(r.sl_total)+'</td>'+
+      '<td class="tabular">'+pct(r.sl_crit)+'</td><td class="tabular">'+fmt(r.losses,2)+'</td>'+
+      '<td class="tabular">'+fmt(r.open,1)+'</td><td class="tabular">'+fmt(r.close,1)+'</td><td class="tabular">'+fmt(r.r45,1)+'</td>'+
+      '<td>'+okCell+'</td></tr>';
+  });
+  body += '</tbody>';
+  t.innerHTML = head+body;
+}
+
+/* ---- SVG chart helpers ---- */
+function svgOpen(w,h){ return '<svg class="chart" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMinYMin meet">'; }
+function niceMax(v){ if(v<=0) return 10; var p=Math.pow(10,Math.floor(Math.log10(v))); var n=v/p;
+  var step = n<=1?1:(n<=2?2:(n<=5?5:10)); return step*p; }
+
+function renderStackedBar(containerId, years, series, opts){
+  opts = opts||{};
+  var W=680,H=260, padL=46,padR=10,padT=14,padB=28;
+  var plotW=W-padL-padR, plotH=H-padT-padB;
+  var totals = years.map(function(y,i){ return series.reduce(function(s,ser){return s+(ser.values[i]||0);},0); });
+  var maxV = niceMax(Math.max.apply(null, totals.concat([1])) * 1.15);
+  var bw = plotW/years.length*0.56;
+  var svg = svgOpen(W,H);
+  var steps=4;
+  for(var g=0; g<=steps; g++){
+    var val = maxV*g/steps;
+    var y = padT+plotH-(val/maxV)*plotH;
+    svg += '<line class="grid-line" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+y+'" y2="'+y+'"/>';
+    svg += '<text class="tick-label" x="'+(padL-6)+'" y="'+(y+3)+'" text-anchor="end">'+fmtInt(val)+'</text>';
+  }
+  svg += '<line class="axis-line" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+(padT+plotH)+'" y2="'+(padT+plotH)+'"/>';
+  years.forEach(function(yr,i){
+    var slotW = plotW/years.length;
+    var x0 = padL + i*slotW + (slotW-bw)/2;
+    var yCursor = padT+plotH;
+    series.forEach(function(ser){
+      var v = ser.values[i]||0;
+      if(v<=0) return;
+      var segH = (v/maxV)*plotH;
+      yCursor -= segH;
+      svg += '<rect x="'+x0+'" y="'+(yCursor+1)+'" width="'+bw+'" height="'+Math.max(0,segH-2)+'" rx="3" fill="'+ser.color+'">'+
+        '<title>'+ser.label+' '+yr+': '+fmt(v,1)+' '+(opts.unit||'т')+'</title></rect>';
+    });
+    if(totals[i]>0){
+      svg += '<text class="value-label" x="'+(x0+bw/2)+'" y="'+(padT+plotH-(totals[i]/maxV)*plotH-5)+'" text-anchor="middle">'+fmtInt(totals[i])+'</text>';
+    }
+    svg += '<text class="tick-label" x="'+(x0+bw/2)+'" y="'+(padT+plotH+16)+'" text-anchor="middle">'+yr+'</text>';
+  });
+  svg += '</svg>';
+  var legend = '<div class="legend-row">'+series.map(function(s){
+    return '<span class="item"><span class="sw" style="background:'+s.color+'"></span>'+s.label+'</span>';
+  }).join('')+'</div>';
+  document.getElementById(containerId).innerHTML = svg+legend;
+}
+
+function renderLineInventory(containerId, monthly, yearly){
+  if(!monthly || !monthly.length){
+    document.getElementById(containerId).innerHTML = '<div class="placeholder-note">Помесячная детализация запаса в макете подключена только для плана P3_isru_zbo. Для остальных планов см. results/&lt;plan&gt;_&lt;scenario&gt;/inventory_trace.csv.</div>';
+    return;
+  }
+  var W=680,H=260, padL=44,padR=10,padT=14,padB=26;
+  var plotW=W-padL-padR, plotH=H-padT-padB;
+  var n = monthly.length;
+  var maxV = niceMax(Math.max.apply(null, monthly.map(function(m){return Math.max(m.closing,m.capacity);})) * 1.1);
+  function xAt(i){ return padL + (i/(n-1))*plotW; }
+  function yAt(v){ return padT + plotH - (v/maxV)*plotH; }
+  var svg = svgOpen(W,H);
+  var steps=4;
+  for(var g=0; g<=steps; g++){
+    var val = maxV*g/steps;
+    var y = yAt(val);
+    svg += '<line class="grid-line" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+y+'" y2="'+y+'"/>';
+    svg += '<text class="tick-label" x="'+(padL-6)+'" y="'+(y+3)+'" text-anchor="end">'+fmtInt(val)+'</text>';
+  }
+  svg += '<line class="axis-line" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+(padT+plotH)+'" y2="'+(padT+plotH)+'"/>';
+  // year tick labels (January of each year) + vertical separators
+  var seen = {};
+  monthly.forEach(function(m,i){
+    if(m.month===1){
+      svg += '<line class="grid-line" x1="'+xAt(i)+'" x2="'+xAt(i)+'" y1="'+padT+'" y2="'+(padT+plotH)+'" stroke-dasharray="2,3"/>';
+      svg += '<text class="tick-label" x="'+xAt(i)+'" y="'+(padT+plotH+15)+'" text-anchor="middle">'+m.year+'</text>';
+    }
+  });
+  // R45 threshold step-line, from yearly.r45 held constant across the year
+  var r45path = '';
+  yearly.forEach(function(yr){
+    var idxStart = monthly.findIndex(function(m){return m.year===yr.year && m.month===1;});
+    var idxEnd = monthly.findIndex(function(m){return m.year===yr.year && m.month===12;});
+    if(idxStart<0) return;
+    r45path += (r45path===''?'M':'L') + xAt(idxStart)+' '+yAt(yr.r45)+' ';
+    r45path += 'L'+xAt(idxEnd)+' '+yAt(yr.r45)+' ';
+  });
+  svg += '<path d="'+r45path+'" fill="none" stroke="var(--div-high)" stroke-width="2" stroke-dasharray="6,4"/>';
+  // closing stock line
+  var path = monthly.map(function(m,i){ return (i===0?'M':'L')+xAt(i)+' '+yAt(m.closing); }).join(' ');
+  svg += '<path d="'+path+'" fill="none" stroke="var(--s1)" stroke-width="2"/>';
+  // Jan markers colored by reserve_ok
+  yearly.forEach(function(yr){
+    var idx = monthly.findIndex(function(m){return m.year===yr.year && m.month===1;});
+    if(idx<0) return;
+    var col = yr.reserve_ok ? 'var(--good)' : 'var(--critical)';
+    svg += '<circle cx="'+xAt(idx)+'" cy="'+yAt(monthly[idx].opening)+'" r="4" fill="'+col+'" stroke="var(--surface)" stroke-width="2">'+
+      '<title>'+yr.year+' на начало года: '+fmt(monthly[idx].opening,1)+' т, R45='+fmt(yr.r45,1)+' т, резерв '+(yr.reserve_ok?'OK':'НАРУШЕН')+'</title></circle>';
+  });
+  svg += '</svg>';
+  var legend = '<div class="legend-row">'+
+    '<span class="item"><span class="ln" style="background:var(--s1)"></span>запас на конец месяца</span>'+
+    '<span class="item"><span class="ln" style="background:var(--div-high);border-top:2px dashed var(--div-high);height:0;"></span>45-дневный резерв R45 (по годам)</span>'+
+    '<span class="item"><span class="sw" style="background:var(--good);border-radius:50%;"></span>резерв OK на 1 января</span>'+
+    '<span class="item"><span class="sw" style="background:var(--critical);border-radius:50%;"></span>резерв нарушен</span>'+
+    '</div>';
+  document.getElementById(containerId).innerHTML = svg+legend;
+}
+
+function renderCostBreakdown(containerId, entry){
+  if(!entry || !entry.finance){
+    document.getElementById(containerId).innerHTML = '<div class="placeholder-note">Постатейная разбивка стоимости по годам в макете подключена только для плана P3_isru_zbo. Для остальных планов — итоговые KPI выше и results/alternatives/&lt;plan&gt;_&lt;scenario&gt;/summary.md.</div>';
+    return;
+  }
+  var years = entry.finance.map(function(f){return f.year;});
+  var series = [
+    {key:'procurement', label:'Procurement', color:'var(--s1)'},
+    {key:'reservation', label:'Reservation', color:'var(--s2)'},
+    {key:'holding', label:'Holding', color:'var(--s3)'},
+    {key:'fixed_opex', label:'Fixed OPEX', color:'var(--s4)'},
+    {key:'capex', label:'CAPEX', color:'var(--s5)'},
+  ].map(function(s){ return {label:s.label, color:s.color, values: entry.finance.map(function(f){return f[s.key];})}; });
+  renderStackedBar(containerId, years, series, {unit:'млн'});
+}
+
+function renderSupplyChart(containerId, entry){
+  if(!entry || !entry.source_schedule){
+    document.getElementById(containerId).innerHTML = '<div class="placeholder-note">Постатейная раскладка поставок по источникам в макете подключена только для плана P3_isru_zbo. Для остальных планов см. results/alternatives/&lt;plan&gt;_&lt;scenario&gt;/source_schedule.csv.</div>';
+    return;
+  }
+  var years = entry.yearly.map(function(y){return y.year;});
+  var srcIds = ['A','B','C','D','E'];
+  var bySrc = {};
+  entry.source_schedule.forEach(function(r){
+    var id = Object.keys(SOURCE_NAME).find(function(k){return SOURCE_NAME[k]===r.source;}) || r.source;
+    bySrc[id] = bySrc[id] || {};
+    bySrc[id][r.year] = r.delivered;
+  });
+  var series = srcIds.filter(function(id){return bySrc[id];}).map(function(id){
+    return {label: id+' · '+SOURCE_NAME[id], color:'var('+SOURCE_COLOR_VAR[id]+')',
+      values: years.map(function(y){ return (bySrc[id][y]||0); })};
+  });
+  renderStackedBar(containerId, years, series, {unit:'т'});
+}
+
+function refreshDashboard(){
+  var entry = getPlanEntry();
+  renderFeasPill(entry);
+  renderKpis(entry);
+  renderYearlyTable(entry);
+  renderSupplyChart('chartSupply', entry);
+  renderCostBreakdown('chartCost', entry);
+  var monthly = (state.plan==='P3_isru_zbo') ? TP.monthly[state.scenario] : null;
+  renderLineInventory('chartInventory', monthly, entry? entry.yearly : []);
+}
+
+document.querySelectorAll('#scenarioToggle button').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('#scenarioToggle button').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    state.scenario = b.dataset.scenario;
+    refreshDashboard();
+  });
+});
+document.getElementById('planSelect').addEventListener('change', function(e){
+  state.plan = e.target.value;
+  refreshDashboard();
+});
+document.getElementById('btnRecalc').addEventListener('click', function(){
+  toast('Пересчитано: план '+state.plan+', сценарий '+state.scenario+'. В макете используются готовые числа из results/.');
+});
+document.getElementById('btnRecalc2').addEventListener('click', function(){
+  toast('Пересчитано (макет). Реальный движок: python -m terraplan run --plan ... --scenario ...');
+});
+document.getElementById('btnSavePlan').addEventListener('click', function(){
+  toast('План «P3_isru_zbo» сохранён (макет — файл не создаётся). См. вкладку «Сохранение, выгрузка, расширение».');
+});
+document.getElementById('btnOpenPlan').addEventListener('click', function(){
+  toast('Открыт план «P3_isru_zbo» (BASE), sha256 4f3d809a… — см. список сохранённых планов.');
+});
+
+refreshDashboard();
+
+/* ================= SCREEN 2 : PLAN GRID / CONTRACTS / INVESTMENTS ================= */
+function buildPlanGrid(){
+  var years = [2035,2036,2037,2038,2039,2040];
+  var srcIds = ['A','B','C','D','E'];
+  var res = {}, ord = {};
+  TP.plan_p3.capacity_reservations.forEach(function(r){ res[r.source_id+'-'+r.year] = r.reserved_capacity_t; });
+  TP.plan_p3.supply_orders.forEach(function(r){ ord[r.source_id+'-'+r.year] = r.ordered_t; });
+  var head = '<thead><tr><th>Источник</th>'+years.map(function(y){return '<th>'+y+'</th>';}).join('')+'</tr></thead>';
+  var body = '<tbody>';
+  srcIds.forEach(function(id){
+    body += '<tr><td class="src-cell">'+id+' · '+SOURCE_NAME[id]+'</td>';
+    years.forEach(function(y){
+      var key = id+'-'+y;
+      if(res[key]===undefined && ord[key]===undefined){
+        body += '<td><span class="cell-empty">—</span></td>';
+      } else {
+        body += '<td><div class="cellpair">'+
+          '<span class="k">резерв т/год</span><input type="text" value="'+ (res[key]!==undefined? fmt(res[key],1):'') +'" data-field="reserved" data-key="'+key+'">'+
+          '<span class="k">заказ т</span><input type="text" value="'+ (ord[key]!==undefined? fmt(ord[key],1):'') +'" data-field="ordered" data-key="'+key+'">'+
+          '</div></td>';
+      }
+    });
+    body += '</tr>';
+  });
+  body += '</tbody>';
+  document.getElementById('planGrid').innerHTML = head+body;
+  document.querySelectorAll('#planGrid input').forEach(function(inp){
+    inp.addEventListener('change', function(){ toast('Изменено (макет, без пересчёта): '+inp.dataset.key+' / '+inp.dataset.field+' = '+inp.value); });
+  });
+}
+buildPlanGrid();
+
+function buildContractCards(){
+  var wrap = document.getElementById('contractCards');
+  var html = '';
+  TP.case.sources.forEach(function(s){
+    var id = s.source_id;
+    var used = TP.plan_p3.capacity_reservations.some(function(r){return r.source_id===id;});
+    var leadUnitRu = {month:'мес.', week:'нед.'}[s.lead_time_unit] || s.lead_time_unit;
+    var leadStr = (s.lead_time_min_value===s.lead_time_max_value) ? (s.lead_time_min_value+' '+leadUnitRu) : (s.lead_time_min_value+'–'+s.lead_time_max_value+' '+leadUnitRu);
+    html += '<div class="contract-card"><div class="head"><span class="swatch" style="background:var('+SOURCE_COLOR_VAR[id]+')"></span>'+
+      '<b>'+id+' · '+s.name+'</b>'+(used?'<span class="chip decision" style="margin-left:auto;">в плане P3</span>':'<span class="chip assume" style="margin-left:auto;">не задействован в P3</span>')+'</div>'+
+      '<dl>'+
+      '<dt>Контрагент</dt><dd>— (кейс не задаёт имя)</dd>'+
+      '<dt>Мощность <span class="chip case" style="font-size:9px;">CASE</span></dt><dd class="tabular">'+s.capacity_t_per_year+' т/год</dd>'+
+      '<dt>Цена <span class="chip case" style="font-size:9px;">CASE</span></dt><dd class="tabular">'+s.variable_cost_mln_per_t+' млн/т</dd>'+
+      '<dt>Резервирование <span class="chip case" style="font-size:9px;">CASE</span></dt><dd class="tabular">'+s.reservation_rate_mln_per_t_year_capacity+' млн/(т/год)</dd>'+
+      '<dt>Take-or-pay <span class="chip case" style="font-size:9px;">CASE</span></dt><dd class="tabular">'+(parseFloat(s.take_or_pay_share)*100).toFixed(0)+'%</dd>'+
+      '<dt>Lead time <span class="chip case" style="font-size:9px;">CASE</span></dt><dd class="tabular">'+leadStr+'</dd>'+
+      '<dt>Надёжность (справочно)</dt><dd style="font-size:11px;font-weight:500;">'+s.reliability_profile+'</dd>'+
+      '<dt>Оплата <span class="chip assume" style="font-size:9px;">ASSUMPTION</span></dt><dd style="font-size:11px;font-weight:500;">Q_pay = max(заказ, TOP-доля × резерв)</dd>'+
+      '<dt>Ответственность <span class="chip assume" style="font-size:9px;">ASSUMPTION</span></dt><dd style="font-size:11px;font-weight:500;">возврат по недопоставке не предусмотрен</dd>'+
+      '<dt>Пересмотр <span class="chip assume" style="font-size:9px;">ASSUMPTION</span></dt><dd style="font-size:11px;font-weight:500;">ежегодно, на начало года</dd>'+
+      '</dl></div>';
+  });
+  wrap.innerHTML = html;
+}
+buildContractCards();
+
+function buildInvestmentTimeline(){
+  var years = [2035,2036,2037,2038,2039,2040,2041];
+  var axis = document.getElementById('tlAxis');
+  var axisHtml = '';
+  years.forEach(function(y,i){ axisHtml += '<span style="left:'+(i/(years.length-1)*100)+'%">'+y+'</span>'; });
+  axis.innerHTML = axisHtml;
+  function pctX(y){ return (y-2035)/(years[years.length-1]-2035)*100; }
+  var rows = [
+    {label:'Lunar-ISRU (1250 млн)', decision:{y:2036,m:1}, commission:{y:2038,m:1}, note:'CAPEX до 2037-12 обязателен по кейсу'},
+    {label:'ZBO (180 млн)', decision:{y:2037,m:7}, commission:{y:2037,m:7}, note:'lag=0 (TEAM_ASSUMPTION)'},
+    {label:'Earth-New опция (90+270)', decision:null, commission:null, note:'не задействовано в плане P3'},
+  ];
+  var html = '';
+  rows.forEach(function(r){
+    html += '<div class="tl-row"><div class="tl-label">'+r.label+'</div><div class="tl-track">';
+    if(r.decision){
+      var x1 = pctX(r.decision.y + (r.decision.m-1)/12);
+      html += '<div class="tl-mark decision" style="left:'+x1+'%" title="Решение: '+r.decision.y+'-'+String(r.decision.m).padStart(2,'0')+'"></div>';
+    }
+    if(r.commission){
+      var x2 = pctX(r.commission.y + (r.commission.m-1)/12);
+      html += '<div class="tl-mark commission" style="left:'+x2+'%" title="Ввод: '+r.commission.y+'-'+String(r.commission.m).padStart(2,'0')+'"></div>';
+    }
+    if(!r.decision && !r.commission){
+      html += '<div style="position:absolute;inset:0;display:flex;align-items:center;padding-left:8px;color:var(--muted);font-size:11px;">'+r.note+'</div>';
+    }
+    html += '</div></div>';
+  });
+  document.getElementById('tlRows').innerHTML = html;
+}
+buildInvestmentTimeline();
+
+function buildOpeningStock(){
+  var os = TP.plan_p3.inventory_policy.opening_stock[0];
+  document.getElementById('openingStockBox').innerHTML =
+    '<div class="table-wrap"><table><tr><th>Источник</th><th>Объём</th><th>Дата поставки</th></tr>'+
+    '<tr><td>'+os.source_id+' · '+SOURCE_NAME[os.source_id]+'</td><td class="tabular">'+fmt(os.tons,2)+' т</td>'+
+    '<td class="tabular">'+os.delivery_year+'-'+String(os.delivery_month).padStart(2,'0')+'</td></tr></table></div>'+
+    '<p style="font-size:11.5px;margin-top:8px;">Подготовительная закупка, учтена в финансовом году 2035; резервирование на 1 год (opening_stock_reservation_years=1.0, TEAM_ASSUMPTION).</p>';
+}
+buildOpeningStock();
+function buildReserveMode(){
+  var ip = TP.plan_p3.inventory_policy;
+  document.getElementById('reserveModeBox').innerHTML =
+    '<div class="table-wrap"><table><tr><th>Параметр</th><th>Значение</th></tr>'+
+    '<tr><td>Режим резерва</td><td>'+ip.reserve_mode+' (физический запас)</td></tr>'+
+    '<tr><td>Правило распределения</td><td>'+ip.allocation_rule+' (критический спрос первым)</td></tr></table></div>';
+}
+buildReserveMode();
+
+/* ================= SCREEN 3 : VIOLATIONS ================= */
+function sevBadge(sev){
+  var icon = sev==='hard' ? '&#9940;' : (sev==='guideline' ? '&#9888;' : '&#8505;');
+  var ruLabel = sev==='hard' ? 'hard — жёсткое' : (sev==='guideline' ? 'guideline — рекомендательное' : 'warning — предупреждение');
+  return '<span class="sev '+sev+'"><span class="dot"></span>'+icon+' '+ruLabel+'</span>';
+}
+function buildViolationsTable(){
+  var rows = TP.p3_fixed_stress.constraint_checks;
+  var head = '<thead><tr><th>Правило</th><th>Серьёзность</th><th>Год</th><th>Месяц</th><th>Источник</th><th>Факт</th><th>Лимит</th><th>Excess</th><th style="text-align:left;">Причина</th></tr></thead>';
+  var body = '<tbody>';
+  rows.forEach(function(r){
+    body += '<tr><td>'+r.rule+'</td><td>'+sevBadge(r.severity)+'</td><td class="tabular">'+r.year+'</td>'+
+      '<td class="tabular na">'+(r.month||'—')+'</td><td class="na">'+(r.source||'—')+'</td>'+
+      '<td class="tabular bad-cell">'+r.actual+'</td><td class="tabular">'+r.limit+'</td><td class="tabular bad-cell">'+r.excess+'</td>'+
+      '<td style="text-align:left;white-space:normal;min-width:320px;">'+r.message+'</td></tr>';
+  });
+  body += '</tbody>';
+  document.getElementById('violTable').innerHTML = head+body;
+}
+buildViolationsTable();
+
+document.getElementById('btnValidate').addEventListener('click', function(){
+  var srcSel = document.getElementById('valSource');
+  var src = srcSel.value;
+  var srcLabel = src+' — '+SOURCE_NAME[src];
+  var cap = parseFloat(srcSel.selectedOptions[0].dataset.cap);
+  var year = document.getElementById('valYear').value;
+  var raw = document.getElementById('valInput').value.trim();
+  var box = document.getElementById('valResult');
+  if(raw===''){
+    box.innerHTML = '<div class="section-gap"><span class="err-good-label">Хороший формат (rule + period + value)</span>'+
+      '<div class="err-block sev hard" style="display:block;">&#9940; INPUT_INCOMPLETE\nsource='+srcLabel+'\nyear='+year+'\nfield=reserved_capacity_t\nmessage=Неполный ввод: не указан reserved_capacity_t для '+SOURCE_NAME[src]+' '+year+'</div>'+
+      '<div class="section-gap"><span class="err-bad-label">Плохой формат (для сравнения, НЕ используется)</span><div class="err-bad-example">Error 400</div></div>'+
+      '</div>';
+    return;
+  }
+  var val = parseFloat(raw.replace(',','.'));
+  if(isNaN(val)){
+    box.innerHTML = '<div class="section-gap err-block sev hard" style="display:block;">&#9940; INPUT_INVALID\nsource='+srcLabel+'\nyear='+year+'\nvalue="'+raw+'"\nmessage=Значение должно быть числом (т/год)</div>';
+    return;
+  }
+  if(val>cap){
+    box.innerHTML = '<div class="section-gap"><span class="err-good-label">CAPACITY_EXCEEDED</span>'+
+      '<div class="err-block sev hard" style="display:block;">&#9940; CAPACITY_EXCEEDED\nsource='+srcLabel+'\nyear='+year+'\nreserved='+val+'\nmaximum='+cap+'\nexcess='+(val-cap).toFixed(1)+'</div></div>';
+    return;
+  }
+  toast('Ввод корректен: '+srcLabel+', '+year+', резерв '+val+' т/год ≤ '+cap+' т/год.');
+  box.innerHTML = '';
+});
+
+/* ================= SCREEN 4 : COMPARISON ================= */
+function buildCompareKpi(){
+  var base = TP.plans.P3_isru_zbo.BASE.kpi;
+  var fixed = TP.p3_fixed_stress.kpi;
+  var adapted = TP.plans.P3_isru_zbo.STRESS.kpi;
+  var rows = [
+    ['total_cost_mln','Итоговая стоимость, млн',0],
+    ['pv_cost_mln','PV стоимость, млн',0],
+    ['cost_per_served_t_mln','Стоимость на т, млн/т',3],
+    ['served_total_t','Обслужено, т',0],
+    ['shortage_total_t','Дефицит, т',1],
+    ['min_service_level_total','SL всего',3],
+    ['min_service_level_critical','SL критический',3],
+    ['losses_total_t','Потери, т',1],
+    ['capex_total_mln','CAPEX, млн',0],
+  ];
+  var head = '<thead><tr><th>KPI</th><th>BASE</th><th>STRESS (fixed)</th><th>STRESS (адаптирован)</th><th>Δ адапт.−fixed</th></tr></thead>';
+  var body = '<tbody>';
+  rows.forEach(function(r){
+    var key=r[0], label=r[1], d=r[2];
+    var vb=base[key], vf=fixed[key], va=adapted[key];
+    var delta = va-vf;
+    var deltaCls = Math.abs(delta)<1e-9 ? '' : (delta>0 ? 'good-cell' : 'bad-cell');
+    body += '<tr><td>'+label+'</td><td class="tabular">'+fmt(vb,d)+'</td><td class="tabular">'+fmt(vf,d)+'</td>'+
+      '<td class="tabular">'+fmt(va,d)+'</td><td class="tabular '+deltaCls+'">'+(delta>=0?'+':'')+fmt(delta,d)+'</td></tr>';
+  });
+  body += '<tr><td>Нарушения hard / guideline</td><td class="tabular">0 / 0</td>'+
+    '<td class="tabular bad-cell">'+TP.p3_fixed_stress.hard_violations+' / '+TP.p3_fixed_stress.guideline_violations+'</td>'+
+    '<td class="tabular good-cell">0 / 0</td><td class="tabular good-cell">−'+TP.p3_fixed_stress.hard_violations+' / −'+TP.p3_fixed_stress.guideline_violations+'</td></tr>';
+  body += '</tbody>';
+  document.getElementById('compareKpiTable').innerHTML = head+body;
+}
+buildCompareKpi();
+
+function buildCompareYearly(){
+  var fixedY = TP.p3_fixed_stress.yearly;
+  var adaptY = TP.plans.P3_isru_zbo.STRESS.yearly;
+  var head = '<thead><tr><th>Год</th><th>SL всего (fixed)</th><th>SL всего (адапт.)</th><th>Дефицит, т (fixed)</th><th>Дефицит, т (адапт.)</th>'+
+    '<th>Запас кон., т (fixed)</th><th>Запас кон., т (адапт.)</th><th>Резерв OK (fixed)</th><th>Резерв OK (адапт.)</th></tr></thead>';
+  var body = '<tbody>';
+  fixedY.forEach(function(f,i){
+    var a = adaptY[i];
+    body += '<tr><td>'+f.year+'</td>'+
+      '<td class="tabular'+(f.sl_total<0.97?' bad-cell':'')+'">'+pct(f.sl_total)+'</td><td class="tabular good-cell">'+pct(a.sl_total)+'</td>'+
+      '<td class="tabular'+(f.shortage>0?' bad-cell':'')+'">'+fmt(f.shortage,1)+'</td><td class="tabular">'+fmt(a.shortage,1)+'</td>'+
+      '<td class="tabular">'+fmt(f.close,1)+'</td><td class="tabular">'+fmt(a.close,1)+'</td>'+
+      '<td>'+(f.reserve_ok?'да':'<span class="bad-cell">нет</span>')+'</td><td>'+(a.reserve_ok?'<span class="good-cell">да</span>':'нет')+'</td></tr>';
+  });
+  body += '</tbody>';
+  document.getElementById('compareYearlyTable').innerHTML = head+body;
+}
+buildCompareYearly();
+
+function buildCompareDecisions(){
+  var fixedRes = {}, fixedOrd = {}, adaptRes = {}, adaptOrd = {};
+  TP.plan_p3.capacity_reservations.forEach(function(r){ fixedRes[r.source_id+'-'+r.year]=r.reserved_capacity_t; });
+  TP.plan_p3.supply_orders.forEach(function(r){ fixedOrd[r.source_id+'-'+r.year]=r.ordered_t; });
+  TP.plan_p3_adapted.capacity_reservations.forEach(function(r){ adaptRes[r.source_id+'-'+r.year]=r.reserved_capacity_t; });
+  TP.plan_p3_adapted.supply_orders.forEach(function(r){ adaptOrd[r.source_id+'-'+r.year]=r.ordered_t; });
+  var keys = Array.from(new Set(Object.keys(fixedOrd).concat(Object.keys(adaptOrd))));
+  var reasons = {
+    'A-2038':'Резерв Earth-Core доведён до максимума мощности (190 т/год) — компенсация недопоставки ISRU (55% плана) и роста спроса ×1.15.',
+    'B-2037':'Небольшое увеличение заказа Earth-Flex — начальная подстройка под возросший приток декабря 2037.',
+    'B-2038':'Заказ Earth-Flex открыт с нуля до 56 т — покрытие дефицита от недопоставки ISRU в 2038 (55% плана).',
+    'B-2039':'Заказ Earth-Flex увеличен в ~4.5 раза — компенсация недопоставки ISRU (75% плана) и спроса ×1.15.',
+    'B-2040':'Заказ Earth-Flex увеличен на ~25 т — удержание SL и 45-дневного резерва при спросе ×1.15.'
+  };
+  var head = '<thead><tr><th>Год</th><th>Источник</th><th>Fixed, т</th><th>Адаптирован, т</th><th>Δ, т</th><th style="text-align:left;">Причина</th></tr></thead>';
+  var body='<tbody>';
+  keys.sort().forEach(function(k){
+    var vf = fixedOrd[k]||0, va = adaptOrd[k]||0;
+    var delta = va-vf;
+    if(Math.abs(delta)<0.05) return;
+    var parts = k.split('-'); var src=parts[0], yr=parts[1];
+    body += '<tr><td class="tabular">'+yr+'</td><td>'+src+' · '+SOURCE_NAME[src]+'</td><td class="tabular">'+fmt(vf,1)+'</td>'+
+      '<td class="tabular">'+fmt(va,1)+'</td><td class="tabular good-cell">+'+fmt(delta,1)+'</td>'+
+      '<td style="text-align:left;white-space:normal;min-width:320px;">'+(reasons[k]||'корректировка резерва/заказа под MANDATORY_STRESS')+'</td></tr>';
+  });
+  body += '</tbody>';
+  document.getElementById('compareDecisionsTable').innerHTML = head+body;
+}
+buildCompareDecisions();
+
+document.getElementById('btnExportCompare').addEventListener('click', function(){
+  toast('Экспорт сравнения подготовлен: results/stress/compare_P3_isru_zbo.csv и .md (макет).');
+});
+
+/* ================= SCREEN 5 : SENSITIVITY ================= */
+function buildThresholdTable(){
+  var head = '<thead><tr><th style="text-align:left;">Параметр</th><th>Диапазон</th><th>Порог (fixed план)</th><th>Порог (переплан.)</th><th style="text-align:left;">Пояснение</th></tr></thead>';
+  var body='<tbody>';
+  TP.sensitivity.thresholds.forEach(function(r){
+    body += '<tr><td style="text-align:left;">'+r.param+'</td><td class="tabular">'+r.range+'</td>'+
+      '<td class="tabular">'+(r.threshold_fixed_plan||'—')+'</td><td class="tabular">'+(r.threshold_replanned||'—')+'</td>'+
+      '<td style="text-align:left;white-space:normal;min-width:280px;">'+r.note+'</td></tr>';
+  });
+  body+='</tbody>';
+  document.getElementById('thresholdTable').innerHTML = head+body;
+}
+buildThresholdTable();
+
+function buildTornado(){
+  var rows = TP.sensitivity.tornado.map(function(r){
+    return {param:r.param, low:parseFloat(r.low), high:parseFloat(r.high), pvLow:parseFloat(r.pv_low), pvBase:parseFloat(r.pv_base), pvHigh:parseFloat(r.pv_high)};
+  });
+  var base = rows[0].pvBase;
+  var allVals = rows.reduce(function(a,r){return a.concat([r.pvLow,r.pvHigh,base]);},[]);
+  var minV = Math.min.apply(null,allVals)*0.95, maxV = Math.max.apply(null,allVals)*1.05;
+  var W=680, rowH=42, padL=190, padR=70, padT=10, padB=26;
+  var H = padT+padB+rows.length*rowH;
+  var plotW = W-padL-padR;
+  function xAt(v){ return padL + (v-minV)/(maxV-minV)*plotW; }
+  var svg = svgOpen(W,H);
+  var baseX = xAt(base);
+  svg += '<line class="axis-line" x1="'+baseX+'" x2="'+baseX+'" y1="'+padT+'" y2="'+(padT+rows.length*rowH)+'" stroke-dasharray="3,3"/>';
+  svg += '<text class="tick-label" x="'+baseX+'" y="'+(padT+rows.length*rowH+14)+'" text-anchor="middle">база '+fmtInt(base)+'</text>';
+  rows.forEach(function(r,i){
+    var y = padT + i*rowH + rowH/2;
+    svg += '<text class="tick-label" x="'+(padL-10)+'" y="'+(y+3)+'" text-anchor="end" style="font-size:11px;">'+r.param+'</text>';
+    var xLow = xAt(r.pvLow), xHigh = xAt(r.pvHigh);
+    var barH = 14;
+    svg += '<rect x="'+Math.min(baseX,xLow)+'" y="'+(y-barH/2)+'" width="'+Math.abs(baseX-xLow)+'" height="'+barH+'" rx="3" fill="var(--div-low)">'+
+      '<title>'+r.param+' = '+r.low+' → PV '+fmt(r.pvLow,0)+' млн</title></rect>';
+    svg += '<rect x="'+Math.min(baseX,xHigh)+'" y="'+(y-barH/2)+'" width="'+Math.abs(baseX-xHigh)+'" height="'+barH+'" rx="3" fill="var(--div-high)">'+
+      '<title>'+r.param+' = '+r.high+' → PV '+fmt(r.pvHigh,0)+' млн</title></rect>';
+    if(Math.abs(xHigh-xLow) < 46){
+      var xOut = Math.max(xLow,xHigh,baseX)+6;
+      svg += '<text class="value-label" x="'+xOut+'" y="'+(y+3)+'" text-anchor="start">'+fmtInt(r.pvLow)+' … '+fmtInt(r.pvHigh)+'</text>';
+    } else {
+      svg += '<text class="value-label" x="'+(xLow)+'" y="'+(y-barH/2-4)+'" text-anchor="middle">'+fmtInt(r.pvLow)+'</text>';
+      svg += '<text class="value-label" x="'+(xHigh)+'" y="'+(y-barH/2-4)+'" text-anchor="middle">'+fmtInt(r.pvHigh)+'</text>';
+    }
+  });
+  svg += '</svg>';
+  var legend = '<div class="legend-row">'+
+    '<span class="item"><span class="sw" style="background:var(--div-low)"></span>PV при низком значении параметра</span>'+
+    '<span class="item"><span class="sw" style="background:var(--div-high)"></span>PV при высоком значении параметра</span></div>';
+  document.getElementById('chartTornado').innerHTML = svg+legend;
+}
+buildTornado();
+
+function buildRankingTable(){
+  var head = '<thead><tr>'+TP.sensitivity.ranking_header.map(function(h,i){return '<th'+(i===0?' style="text-align:left;"':'')+'>'+(i===0?'r (ставка)':h)+'</th>';}).join('')+'</tr></thead>';
+  var body='<tbody>';
+  TP.sensitivity.ranking_rows.forEach(function(row){
+    body += '<tr>'+row.map(function(c,i){return '<td'+(i===0?' style="text-align:left;"':'')+' class="tabular">'+c+'</td>';}).join('')+'</tr>';
+  });
+  body+='</tbody>';
+  document.getElementById('rankingTable').innerHTML = head+body;
+}
+buildRankingTable();
+
+/* ================= SCREEN 6 : RISKS / STAKEHOLDERS / GEOPOLITICS ================= */
+var RISKS = [
+  {event:'Недопоставка Lunar-ISRU в 2038–2039', cause:'Задержка ввода лунной инфраструктуры / технологический риск ISRU', param:'isru_delivery_share_2038 (CASE_INPUT: 55% в 2038, 75% в 2039)', period:'2038–2039',
+    prob:'оценка команды: диапазон уже задан кейсом как обязательный стресс-сценарий (55%/75%)', conseq:'без адаптации: shortage 2038=42.5 т, 2039=69.0 т; SL_total падает до 0.81; PV +1 605 млн при адаптации',
+    dep:'зависит от решения по ZBO и наличия резерва Earth-Flex', owner:'Оператор снабжения', mitigation:'довыбор Earth-Core до 190 т/год + разбронирование Earth-Flex (см. «Сравнение сценариев»)', residual:'устранено в адаптированном плане (0 hard violations)'},
+  {event:'Ценовой шок Earth-Core/Earth-Flex', cause:'геополитика/рынок запуска — рост переменной стоимости топлива', param:'earth_price_multiplier (TEAM sensitivity 0.8…1.5×)', period:'2038–2040 (пример стресса: 2038–2039 ×1.25)',
+    prob:'оценка команды по диапазону чувствительности', conseq:'PV cost: 7 457 млн (×0.8) … 11 594 млн (×1.5) при базе 8 639 млн — swing 4 137 млн, крупнейший в tornado',
+    dep:'не связан с физическими ограничениями — чисто финансовый эффект', owner:'Финансовый директор / оператор контрактов', mitigation:'диверсификация каналов (ISRU по 3.0 млн/т не подвержен ценовому шоку)', residual:'высокий — чисто ценовой риск не хеджируется физическим планом'},
+  {event:'Задержка ввода ZBO модернизации', cause:'технологическая/подрядная задержка ввода хранилища', param:'zbo_commissioning_lag_months (TEAM_ASSUMPTION, диапазон 0…12)', period:'после решения 2037-07',
+    prob:'оценка команды: порог для fixed-плана — 10 месяцев лага', conseq:'лаг &gt;10 мес. оставляет базовое хранилище (4.5% потерь) в 2038 → нарушение STRESS_LOSS_LIMIT (потолок 2% с 2038)',
+    dep:'связан с решением об ISRU (совместное давление на резерв 2038)', owner:'Инвестиционный блок / подрядчик ZBO', mitigation:'принять решение по ZBO не позднее 2037-07 (запас 5 мес. до порога)', residual:'средний — зависит от подрядчика, не полностью в контроле оператора'},
+  {event:'Спрос выше high-варианта кейса', cause:'ускоренный рост цислунарной программы сверх прогноза', param:'demand_multiplier (TEAM sensitivity 0.8…1.3×)', period:'с 2038',
+    prob:'оценка команды: порог fixed-плана 1.05×, порог переплан. плана 1.3×', conseq:'при fixed-плане срыв ограничений начинается уже при ×1.05 (выше ordered volumes); при переплан. плане запас держится до ×1.3',
+    dep:'ограничено мощностью резерва A+B+D (максимум 190+110+120=420 т/год к 2040)', owner:'Стратегическое планирование', mitigation:'заблаговременное бронирование мощности Earth-Flex как буфера', residual:'низкий при активном переплане, высокий при статичном плане'},
+  {event:'Срыв поставки по Emergency (6-недельный lead time)', cause:'Emergency используется как крайний резерв — реальный lead time может исполняться позже контрактного', param:'lead_time (CASE_INPUT: 6 недель) / EMERGENCY_BASE_STREAK (CASE_INPUT: ≤2 года подряд)', period:'в любой год, если канал E активирован',
+    prob:'оценка команды: не откалибровано в текущем плане P3 (канал E не используется)', conseq:'если контрактный резерв Emergency не покрывает 6 недель ожидания — эквивалент 45-дневного резерва не засчитывается (RESERVE_45D остаётся hard)', dep:'зависит от emergency_reserve_equivalence (TEAM_ASSUMPTION)', owner:'Оператор снабжения', mitigation:'не использовать Emergency как базовый канал &gt;2 года подряд; держать физический запас, а не только контрактный', residual:'план P3 не использует канал E — риск неактуален в текущей конфигурации'},
+];
+function buildRiskTable(){
+  var head = '<thead><tr>'+['Событие','Причина','Параметр','Период','Вероятность (база/диапазон)','Последствие (т/млн/SL)','Зависимости','Владелец','Митигация','Остаточный риск']
+    .map(function(h,i){return '<th'+(i===0?' style="text-align:left;"':'')+' style="text-align:left;white-space:normal;min-width:160px;">'+h+'</th>';}).join('')+'</tr></thead>';
+  var body='<tbody>';
+  RISKS.forEach(function(r){
+    body += '<tr>'+['event','cause','param','period','prob','conseq','dep','owner','mitigation','residual'].map(function(k){
+      return '<td style="text-align:left;white-space:normal;min-width:160px;">'+r[k]+'</td>';
+    }).join('')+'</tr>';
+  });
+  body+='</tbody>';
+  document.getElementById('riskTable').innerHTML = head+body;
+}
+buildRiskTable();
+
+var STAKES = [
+  {name:'Оператор депо', interest:'выполнимый план в пределах CAPEX и контрактов', metric:'PV cost, CAPEX vs лимит (1800/2800), feasibility', clause:'CAPEX_2037 / CAPEX_2040 (hard, все сценарии)'},
+  {name:'Критические потребители', interest:'гарантированная доставка критического груза', metric:'SL_critical ≥ 0.99 (BASE)', clause:'BASE_CRITICAL_SERVICE (hard в BASE, guideline в STRESS)'},
+  {name:'Коммерческие потребители', interest:'предсказуемый общий сервис', metric:'SL_total ≥ 0.97 (BASE)', clause:'BASE_TOTAL_SERVICE (hard в BASE, guideline в STRESS)'},
+  {name:'Поставщики запуска/топлива (A–E)', interest:'исполнение take-or-pay и резервирования', metric:'Q_pay = max(заказ, TOP-доля×резерв)', clause:'take_or_pay_share и reservation_rate по каждому источнику (CASE_INPUT)'},
+  {name:'Финансирующая сторона', interest:'CAPEX по графику, окупаемость инвестиций', metric:'CAPEX по годам, PV_t = CF_t/(1+r)^(t-t0)', clause:'CAPEX_2037/2040; сроки LUNAR_ISRU (до 2037-12), ZBO (от 2036)'},
+];
+function buildStakeCards(){
+  document.getElementById('stakeCards').innerHTML = STAKES.map(function(s){
+    return '<div class="stake-card"><h4>'+s.name+'</h4>'+
+      '<div class="arrow-line"><b>Интерес:</b> '+s.interest+'</div>'+
+      '<div class="arrow-line"><b>Метрика:</b> '+s.metric+'</div>'+
+      '<div class="arrow-line"><b>Пункт контракта/ограничение:</b> '+s.clause+'</div></div>';
+  }).join('');
+}
+buildStakeCards();
+
+document.getElementById('geoEvent').addEventListener('change', function(e){
+  var isCustom = e.target.value==='custom';
+  ['geoChannels','geoComponent','geoPeriod','geoMult','geoSource'].forEach(function(id){
+    var el = document.getElementById(id);
+    el.disabled = !isCustom;
+    if(isCustom) el.value='';
+  });
+});
+document.getElementById('btnGeoApply').addEventListener('click', function(){
+  var box = document.getElementById('geoResult');
+  box.style.display='block';
+  box.innerHTML = '<div class="card">'+
+    '<p style="font-size:12px;margin-bottom:8px;">Причинная цепочка: событие «'+document.getElementById('geoEvent').selectedOptions[0].text+'» → цена A/B ×'+document.getElementById('geoMult').value+' → пересчёт финансового блока (копия данных).</p>'+
+    '<div class="row" style="gap:24px;">'+
+    '<div><div class="label" style="font-size:11px;color:var(--muted);">До (база PV, r=8%)</div><div style="font-size:20px;font-weight:700;">8 638,9 <span style="font-size:11px;color:var(--muted);">млн</span></div></div>'+
+    '<div><div class="label" style="font-size:11px;color:var(--muted);">После — ориентир из чувствительности (при ×1.5 к переменной цене)</div><div style="font-size:20px;font-weight:700;color:var(--critical);">11 594 <span style="font-size:11px;color:var(--muted);">млн</span></div></div>'+
+    '</div><p style="font-size:11px;margin-top:8px;">Точный эффект при ×1.25 требует отдельного пересчёта; ориентир взят из готового sensitivity-теста earth_price_multiplier (results/sensitivity/tornado.csv) — не выдаётся за точное значение для ×1.25.</p></div>';
+  toast('Применено на копии данных. Контрольные BASE/MANDATORY_STRESS не изменены.');
+});
+document.getElementById('btnGeoRestore').addEventListener('click', function(){
+  document.getElementById('geoResult').style.display='none';
+  toast('Цены восстановлены к CASE_INPUT (Earth-Core 6.2, Earth-Flex 8.9 млн/т).');
+});
+document.getElementById('btnGeoToggle').addEventListener('click', function(){
+  var box = document.getElementById('geoResult');
+  if(box.style.display==='none' || !box.innerHTML){ document.getElementById('btnGeoApply').click(); }
+  else { box.style.display = (box.style.display==='none')?'block':'none'; }
+});
+
+/* ================= SCREEN 7 : SAVE / EXPORT / EXTEND ================= */
+function buildSavedPlans(){
+  var head = '<thead><tr><th style="text-align:left;">Plan ID</th><th style="text-align:left;">Сценарий</th><th>Время расчёта (UTC)</th><th style="text-align:left;">sha256 (kpi)</th></tr></thead>';
+  var body='<tbody>';
+  TP.manifests.forEach(function(m){
+    var ts = m.generated_at ? m.generated_at.replace('T',' ').replace('+00:00',' UTC') : '—';
+    body += '<tr><td style="text-align:left;">'+m.plan_id+'</td><td style="text-align:left;">'+m.scenario_id+'</td>'+
+      '<td class="tabular">'+ts+'</td><td style="text-align:left;font-family:monospace;font-size:11px;" title="'+m.kpi_sha256+'">'+m.kpi_sha256.slice(0,16)+'…</td></tr>';
+  });
+  body+='</tbody>';
+  document.getElementById('savedPlansTable').innerHTML = head+body;
+}
+buildSavedPlans();
+
+document.getElementById('btnExportCsv').addEventListener('click', function(){
+  toast('CSV-набор подготовлен: kpi.csv, yearly_balance.csv, source_schedule.csv, financial_breakdown.csv, inventory_trace.csv, investments.csv, constraint_checks.csv, assumptions.csv (макет).');
+});
+document.getElementById('btnExportXlsx').addEventListener('click', function(){
+  toast('results.xlsx подготовлен со всеми листами набора (макет).');
+});
+document.getElementById('btnExportJson').addEventListener('click', function(){
+  toast('export_envelope.json подготовлен: scenario_id, plan_id, units, assumptions_reference, yearly_balance, source_schedule, inventory_trace, financial_breakdown, constraint_checks, risk_register, kpi, investments (макет).');
+});
+document.getElementById('btnAddSourceX').addEventListener('click', function(){
+  toast('Source-X (60 т/год, 5.5 млн/т, с 2039) добавлен в results/extensibility/case_copy/. Контрольные прогоны BASE/MANDATORY_STRESS не изменены.');
+});
+document.getElementById('btnAdd2041').addEventListener('click', function(){
+  toast('2041 год (450 т всего / 290 т критич., TEAM_ASSUMPTION +15%) добавлен на копии данных.');
+});
+function buildExtPreview(){
+  var r = TP.extension.run;
+  document.getElementById('extPreview').innerHTML =
+    '<div class="table-wrap"><table><tr><th style="text-align:left;">Plan / сценарий</th><th>Выполнимо</th><th>Обслужено, т (2035–2041)</th><th>PV cost, млн</th></tr>'+
+    '<tr><td style="text-align:left;">'+r.plan_id+' / '+r.scenario_id+'</td><td>'+(r.feasible?'да':'нет')+'</td>'+
+    '<td class="tabular">'+fmt(r.kpi.served_total_t,0)+'</td><td class="tabular">'+fmt(r.kpi.pv_cost_mln,0)+'</td></tr></table></div>'+
+    '<p style="font-size:11px;margin-top:6px;">Источник: results/extensibility/run/export_envelope.json (уже посчитан в репозитории).</p>';
+}
+buildExtPreview();
+
+})();
+</script>
+</body>
+</html>
