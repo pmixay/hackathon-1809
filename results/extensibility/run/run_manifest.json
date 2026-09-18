@@ -3,7 +3,8 @@
   "python": "3.11.15",
   "plan_id": "P3_isru_zbo_ext2041",
   "scenario_id": "TEAM_2041_SOURCE_X",
-  "case_dir": "/home/user/hackathon-1809/results/extensibility/case_copy",
+  "case_dir": "results/extensibility/case_copy",
+  "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/extensibility/case_copy",
   "case_file_sha256": {
     "demand.csv": "170771fbe4f8d6e6a620d833ef45d2d2a922b1aa2d6b510b64a17ed7bbb94d12",
     "supply_sources.csv": "2a68ffc3280b3d4ba8251484fb373477ebe7658fff93c242831ea9501836ceb6",

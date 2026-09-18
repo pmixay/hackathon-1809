@@ -66,6 +66,20 @@ def cmd_compare(args: argparse.Namespace) -> int:
     return 0
 
 
+def _resolve_case_dir(manifest: dict, result_dir: Path) -> Path:
+    """Manifest path as given; else the same relative path from the repo root above the result dir; else data/case."""
+    cand = [Path(manifest.get("case_dir", "data/case")), Path(manifest.get("case_dir_absolute_at_run", ""))]
+    for anc in [result_dir.resolve()] + list(result_dir.resolve().parents):
+        if (anc / "pyproject.toml").exists():
+            cand.append(anc / manifest.get("case_dir", "data/case"))
+            cand.append(anc / "data" / "case")
+    cand.append(Path("data/case"))
+    for p in cand:
+        if str(p) and (p / "demand.csv").exists():
+            return p
+    raise CaseError(f"cannot locate the case directory for {result_dir}; pass --case")
+
+
 def cmd_verify(args: argparse.Namespace) -> int:
     """Re-run a result directory from its own plan/scenario/assumptions and compare with what was exported."""
     from .assumptions import Assumptions
@@ -75,7 +89,8 @@ def cmd_verify(args: argparse.Namespace) -> int:
     d = Path(args.result_dir)
     manifest = json.loads((d / "run_manifest.json").read_text(encoding="utf-8"))
     stored = load_result(d)
-    case = load_case(args.case or manifest["case_dir"])
+    case_dir = args.case or _resolve_case_dir(manifest, d)
+    case = load_case(case_dir)
     plan = plan_from_dict(json.loads((d / "plan.json").read_text(encoding="utf-8")), str(d / "plan.json"))
     scenario = scenario_from_dict(json.loads((d / "scenario.json").read_text(encoding="utf-8")), str(d / "scenario.json"))
     res = simulate(case, plan, scenario, Assumptions(stored.assumptions))

@@ -39,6 +39,15 @@ def kpi_hash(kpi: dict) -> str:
     return hashlib.sha256(json.dumps(rounded, sort_keys=True).encode()).hexdigest()
 
 
+def repo_relative(path: str | Path) -> str:
+    """Path relative to the enclosing repo root (directory holding pyproject.toml), else as given. Portable manifests."""
+    p = Path(path).resolve()
+    for anc in [p] + list(p.parents):
+        if (anc / "pyproject.toml").exists():
+            return p.relative_to(anc).as_posix()
+    return str(path)
+
+
 def _sha256(path: str | Path) -> str:
     p = Path(path)
     if not p.exists():
@@ -92,7 +101,7 @@ def write_results(res: Result, out_dir: str | Path, xlsx: bool = True, risk_regi
     (out / "export_envelope.json").write_text(json.dumps(export_envelope(res, risk_register), ensure_ascii=False, indent=1), encoding="utf-8")
     manifest = {
         "terraplan_version": __version__, "python": platform.python_version(), "plan_id": res.plan_id, "scenario_id": res.scenario_id,
-        "case_dir": res.case_dir, "case_file_sha256": {name: _sha256(Path(res.case_dir) / name) for name in
+        "case_dir": repo_relative(res.case_dir), "case_dir_absolute_at_run": str(Path(res.case_dir).resolve()), "case_file_sha256": {name: _sha256(Path(res.case_dir) / name) for name in
             ("demand.csv", "supply_sources.csv", "storage_options.csv", "investment_options.csv", "constraints.csv")},
         "plan_sha256": hashlib.sha256(json.dumps(res.plan, sort_keys=True).encode()).hexdigest(),
         "scenario_sha256": hashlib.sha256(json.dumps(res.scenario, sort_keys=True, default=str).encode()).hexdigest(),
