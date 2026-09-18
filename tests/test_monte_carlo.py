@@ -1,6 +1,7 @@
 """EXP-10: shock semantics, independent balance/cost checks, pairing and replay."""
 import csv
 import json
+import copy
 import sys
 from dataclasses import replace
 from pathlib import Path
@@ -75,7 +76,17 @@ def test_saved_exp08_plans_and_reference_controls(experiment, root):
     plans = experiment["manifest"]["plans"]
     for name, plan in plans.items():
         saved = json.loads((root / f"results/protection_measures/{name}.plan.json").read_text(encoding="utf-8"))
-        assert plan == saved
+        # Python versions can differ in the last bit of monthly float sums.
+        # Compare the declared annual volume tightly, retaining exact equality
+        # for monthly profiles and every other decision and metadata field.
+        normalized = copy.deepcopy(plan)
+        orders = normalized["decisions"]["supply_orders"]
+        saved_orders = saved["decisions"]["supply_orders"]
+        assert len(orders) == len(saved_orders)
+        for order, saved_order in zip(orders, saved_orders):
+            assert order["ordered_t"] == pytest.approx(saved_order["ordered_t"], rel=0, abs=1e-12)
+            order["ordered_t"] = saved_order["ordered_t"]
+        assert normalized == saved
     reference = {r["variant"]: r for r in experiment["report"]["reference"]}
     assert all(not r["failed"] for r in reference.values())
     assert reference["without_measure"]["pv_cost_mln"] == pytest.approx(10636.655, abs=0.001)
