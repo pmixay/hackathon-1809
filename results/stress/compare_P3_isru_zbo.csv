@@ -53,7 +53,7 @@ yearly,SL critical,2038,1.000000,1.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_i
 yearly,"Shortage, t",2038,42.507612,0.000000,-42.507612,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 yearly,"Delivered (actual), t",2038,216.771400,301.037200,84.265800,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 yearly,"Losses, t",2038,2.601257,3.612446,1.011190,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
-yearly,Losses/throughput,2038,0.012000,0.012000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
+yearly,Losses/throughput,2038,0.012000,0.012000,-0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 yearly,"Opening stock, t",2038,30.822244,35.445516,4.623271,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 yearly,"Closing stock, t",2038,0.000000,45.370269,45.370269,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 yearly,"45-day reserve, t",2038,35.445205,35.445205,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
@@ -83,7 +83,7 @@ finance,"Procurement, mln",2035,796.128420,796.128420,0.000000,P3_isru_zbo fixed
 finance,"Reservation, mln",2035,51.380670,51.380670,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Holding, mln",2035,10.652147,10.652147,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2035,0.000000,0.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
-finance,"CAPEX, mln",2035,0,0,0,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
+finance,"CAPEX, mln",2035,0.000000,0.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Total, mln",2035,858.161237,858.161237,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"PV total, mln",2035,858.161237,858.161237,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Procurement, mln",2036,948.921160,948.921160,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
@@ -104,21 +104,21 @@ finance,"Procurement, mln",2038,1553.728350,2395.913850,842.185500,P3_isru_zbo f
 finance,"Reservation, mln",2038,72.797400,93.905700,21.108300,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Holding, mln",2038,2.968616,25.833283,22.864667,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2038,82.000000,82.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
-finance,"CAPEX, mln",2038,0,0,0,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
+finance,"CAPEX, mln",2038,0.000000,0.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Total, mln",2038,1711.494366,2597.652833,886.158467,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"PV total, mln",2038,1358.639408,2062.100569,703.461162,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Procurement, mln",2039,2084.165300,2972.978262,888.812962,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Reservation, mln",2039,88.893300,100.877250,11.983950,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Holding, mln",2039,0.000000,36.239493,36.239493,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2039,82.000000,82.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
-finance,"CAPEX, mln",2039,0,0,0,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
+finance,"CAPEX, mln",2039,0.000000,0.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Total, mln",2039,2255.058600,3192.095006,937.036406,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"PV total, mln",2039,1657.535391,2346.285122,688.749732,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Procurement, mln",2040,2292.158410,2517.000000,224.841590,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Reservation, mln",2040,98.210550,102.000000,3.789450,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Holding, mln",2040,0.000000,27.737993,27.737993,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2040,82.000000,82.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
-finance,"CAPEX, mln",2040,0,0,0,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
+finance,"CAPEX, mln",2040,0.000000,0.000000,0.000000,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"Total, mln",2040,2472.368960,2728.737993,256.369033,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 finance,"PV total, mln",2040,1682.652771,1857.133227,174.480456,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS
 decision:order,ordered_t A,2038,161.771400,190.000000,28.228600,P3_isru_zbo fixed/STRESS,P3_isru_zbo adapted/STRESS

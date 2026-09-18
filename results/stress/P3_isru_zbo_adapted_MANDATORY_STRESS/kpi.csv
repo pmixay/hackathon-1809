@@ -14,7 +14,7 @@ MANDATORY_STRESS,P3_isru_zbo_adapted,min_service_level_critical,1.000000
 MANDATORY_STRESS,P3_isru_zbo_adapted,losses_total_t,31.000869
 MANDATORY_STRESS,P3_isru_zbo_adapted,throughput_total_t,1574.427000
 MANDATORY_STRESS,P3_isru_zbo_adapted,capex_total_mln,1430.000000
-MANDATORY_STRESS,P3_isru_zbo_adapted,procurement_total_mln,10968.670882
+MANDATORY_STRESS,P3_isru_zbo_adapted,procurement_total_mln,10968.670883
 MANDATORY_STRESS,P3_isru_zbo_adapted,reservation_total_mln,505.229220
 MANDATORY_STRESS,P3_isru_zbo_adapted,holding_total_mln,135.685391
 MANDATORY_STRESS,P3_isru_zbo_adapted,fixed_opex_total_mln,252.000000

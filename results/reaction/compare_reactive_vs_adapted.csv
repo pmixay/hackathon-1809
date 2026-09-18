@@ -53,7 +53,7 @@ yearly,SL critical,2038,1.000000,1.000000,0.000000,reactive/STRESS,pre-committed
 yearly,"Shortage, t",2038,0.866375,0.000000,-0.866375,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Delivered (actual), t",2038,304.839700,301.037200,-3.802500,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Losses, t",2038,3.658076,3.612446,-0.045630,reactive/STRESS,pre-committed adapted/STRESS
-yearly,Losses/throughput,2038,0.012000,0.012000,-0.000000,reactive/STRESS,pre-committed adapted/STRESS
+yearly,Losses/throughput,2038,0.012000,0.012000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Opening stock, t",2038,30.822244,35.445516,4.623271,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Closing stock, t",2038,45.370243,45.370269,0.000027,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"45-day reserve, t",2038,35.445205,35.445205,0.000000,reactive/STRESS,pre-committed adapted/STRESS
@@ -75,7 +75,7 @@ yearly,SL critical,2040,1.000000,1.000000,0.000000,reactive/STRESS,pre-committed
 yearly,"Shortage, t",2040,0.000000,0.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Delivered (actual), t",2040,453.947200,420.000000,-33.947200,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Losses, t",2040,5.447366,5.040000,-0.407366,reactive/STRESS,pre-committed adapted/STRESS
-yearly,Losses/throughput,2040,0.012000,0.012000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
+yearly,Losses/throughput,2040,0.012000,0.012000,-0.000000,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Opening stock, t",2040,55.294865,55.294990,0.000126,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"Closing stock, t",2040,55.294699,21.754990,-33.539708,reactive/STRESS,pre-committed adapted/STRESS
 yearly,"45-day reserve, t",2040,55.294521,55.294521,0.000000,reactive/STRESS,pre-committed adapted/STRESS
@@ -83,7 +83,7 @@ finance,"Procurement, mln",2035,796.128420,796.128420,0.000000,reactive/STRESS,p
 finance,"Reservation, mln",2035,51.380670,51.380670,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Holding, mln",2035,10.652147,10.652147,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Fixed OPEX, mln",2035,0.000000,0.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
-finance,"CAPEX, mln",2035,0,0,0,reactive/STRESS,pre-committed adapted/STRESS
+finance,"CAPEX, mln",2035,0.000000,0.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Total, mln",2035,858.161237,858.161237,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"PV total, mln",2035,858.161237,858.161237,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Procurement, mln",2036,948.921160,948.921160,0.000000,reactive/STRESS,pre-committed adapted/STRESS
@@ -104,21 +104,21 @@ finance,"Procurement, mln",2038,2638.317790,2395.913850,-242.403940,reactive/STR
 finance,"Reservation, mln",2038,117.297400,93.905700,-23.391700,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Holding, mln",2038,14.129080,25.833283,11.704203,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Fixed OPEX, mln",2038,82.000000,82.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
-finance,"CAPEX, mln",2038,0,0,0,reactive/STRESS,pre-committed adapted/STRESS
+finance,"CAPEX, mln",2038,0.000000,0.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Total, mln",2038,2851.744270,2597.652833,-254.091437,reactive/STRESS,pre-committed adapted/STRESS
 finance,"PV total, mln",2038,2263.806545,2062.100569,-201.705975,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Procurement, mln",2039,2972.977150,2972.978262,0.001113,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Reservation, mln",2039,100.877400,100.877250,-0.000150,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Holding, mln",2039,36.239439,36.239493,0.000055,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Fixed OPEX, mln",2039,82.000000,82.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
-finance,"CAPEX, mln",2039,0,0,0,reactive/STRESS,pre-committed adapted/STRESS
+finance,"CAPEX, mln",2039,0.000000,0.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Total, mln",2039,3192.093989,3192.095006,0.001017,reactive/STRESS,pre-committed adapted/STRESS
 finance,"PV total, mln",2039,2346.284375,2346.285122,0.000748,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Procurement, mln",2040,2985.474120,2517.000000,-468.474120,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Reservation, mln",2040,113.881800,102.000000,-11.881800,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Holding, mln",2040,39.812243,27.737993,-12.074250,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Fixed OPEX, mln",2040,82.000000,82.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
-finance,"CAPEX, mln",2040,0,0,0,reactive/STRESS,pre-committed adapted/STRESS
+finance,"CAPEX, mln",2040,0.000000,0.000000,0.000000,reactive/STRESS,pre-committed adapted/STRESS
 finance,"Total, mln",2040,3221.168163,2728.737993,-492.430170,reactive/STRESS,pre-committed adapted/STRESS
 finance,"PV total, mln",2040,2192.272926,1857.133227,-335.139699,reactive/STRESS,pre-committed adapted/STRESS
 decision:order,ordered_t A,2038,161.771400,190.000000,28.228600,reactive/STRESS,pre-committed adapted/STRESS

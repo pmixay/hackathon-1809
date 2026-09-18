@@ -53,7 +53,7 @@ yearly,SL critical,2038,1.000000,1.000000,0.000000,P4_full fixed/STRESS,P4_full 
 yearly,"Shortage, t",2038,42.507612,0.000000,-42.507612,P4_full fixed/STRESS,P4_full adapted/STRESS
 yearly,"Delivered (actual), t",2038,216.771400,301.037200,84.265800,P4_full fixed/STRESS,P4_full adapted/STRESS
 yearly,"Losses, t",2038,2.601257,3.612446,1.011190,P4_full fixed/STRESS,P4_full adapted/STRESS
-yearly,Losses/throughput,2038,0.012000,0.012000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
+yearly,Losses/throughput,2038,0.012000,0.012000,-0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
 yearly,"Opening stock, t",2038,30.822244,35.445516,4.623271,P4_full fixed/STRESS,P4_full adapted/STRESS
 yearly,"Closing stock, t",2038,0.000000,45.370269,45.370269,P4_full fixed/STRESS,P4_full adapted/STRESS
 yearly,"45-day reserve, t",2038,35.445205,35.445205,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
@@ -104,21 +104,21 @@ finance,"Procurement, mln",2038,1553.728350,2170.364120,616.635770,P4_full fixed
 finance,"Reservation, mln",2038,72.797400,102.311400,29.514000,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Holding, mln",2038,2.968616,25.833283,22.864667,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Fixed OPEX, mln",2038,82.000000,82.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2038,0,0,0,P4_full fixed/STRESS,P4_full adapted/STRESS
+finance,"CAPEX, mln",2038,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Total, mln",2038,1711.494366,2380.508803,669.014437,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"PV total, mln",2038,1358.639408,1889.724638,531.085230,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Procurement, mln",2039,1993.113360,2560.355790,567.242430,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Reservation, mln",2039,92.286600,116.254500,23.967900,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Holding, mln",2039,0.000000,36.239493,36.239493,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Fixed OPEX, mln",2039,82.000000,82.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2039,0,0,0,P4_full fixed/STRESS,P4_full adapted/STRESS
+finance,"CAPEX, mln",2039,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Total, mln",2039,2167.399960,2794.849783,627.449823,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"PV total, mln",2039,1593.103674,2054.298025,461.194351,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Procurement, mln",2040,2139.631990,2585.131860,445.499870,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Reservation, mln",2040,110.921100,126.592200,15.671100,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Holding, mln",2040,0.000000,39.812404,39.812404,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Fixed OPEX, mln",2040,82.000000,82.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
-finance,"CAPEX, mln",2040,0,0,0,P4_full fixed/STRESS,P4_full adapted/STRESS
+finance,"CAPEX, mln",2040,0.000000,0.000000,0.000000,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"Total, mln",2040,2332.553090,2833.536464,500.983374,P4_full fixed/STRESS,P4_full adapted/STRESS
 finance,"PV total, mln",2040,1587.496439,1928.457306,340.960867,P4_full fixed/STRESS,P4_full adapted/STRESS
 decision:order,ordered_t A,2038,161.771400,190.000000,28.228600,P4_full fixed/STRESS,P4_full adapted/STRESS

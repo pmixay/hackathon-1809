@@ -16,7 +16,7 @@ Feasible: **NO** — hard violations: 3, guideline: 3, warnings: 0
 | min_service_level_critical | 1.000 |
 | losses_total_t | 28.592 |
 | capex_total_mln | 1,790.000 |
-| procurement_total_mln | 8,703.160 |
+| procurement_total_mln | 8,703.159 |
 | reservation_total_mln | 485.716 |
 | holding_total_mln | 47.193 |
 | fixed_opex_total_mln | 252.000 |

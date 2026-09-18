@@ -9,6 +9,7 @@ Time step: calendar month. Absolute month index = year*12 + (month-1). Demand is
 from __future__ import annotations
 
 import math
+from math import fsum
 from dataclasses import dataclass, field, asdict
 from typing import Optional
 
@@ -400,7 +401,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         mode = storage_at(idx)
         planned = schedule.get(idx, {})
         actual = {k: q * scenario.delivery_share(case.sources[k], y) for k, q in planned.items()}
-        thr = sum(actual.values())
+        thr = fsum(actual.values())
         losses = rules.losses_on_throughput(thr, mode.loss_rate_on_throughput)
         d = dem_total(y) / 12.0
         c = dem_crit(y) / 12.0
@@ -413,7 +414,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         shortage_c = max(0.0, c - served_c)
         closing = rules.material_balance(inv, thr, losses, served)
         holding = mode.holding_cost_mln_per_t_year * 0.5 * (inv + closing) / 12.0
-        months.append(MonthRecord(y, mo, mode.storage_id, mode.capacity_t, mode.loss_rate_on_throughput, inv, sum(planned.values()),
+        months.append(MonthRecord(y, mo, mode.storage_id, mode.capacity_t, mode.loss_rate_on_throughput, inv, fsum(planned.values()),
                                   thr, losses, available, d, c, served, served_c, shortage, shortage_c, closing, holding, dict(actual)))
         if closing > mode.capacity_t + EPS:
             add("STORAGE_OVERFLOW", "hard", f"end-of-month stock {closing:.3f} t exceeds {mode.name} capacity {mode.capacity_t:.1f} t in {ym_str(idx)}",
@@ -431,19 +432,19 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
     for y in years:
         ms = [m for m in months if m.year == y]
         D, C = dem_total(y), dem_crit(y)
-        served = sum(m.served_t for m in ms)
-        served_c = sum(m.served_critical_t for m in ms)
-        thr = sum(m.throughput_t for m in ms)
-        losses = sum(m.losses_t for m in ms)
+        served = fsum(m.served_t for m in ms)
+        served_c = fsum(m.served_critical_t for m in ms)
+        thr = fsum(m.throughput_t for m in ms)
+        losses = fsum(m.losses_t for m in ms)
         R = rules.reserve_45d(D, reserve_days)
         opening = ms[0].opening_t
         closing = ms[-1].closing_t
         residual = opening + thr - losses - served - closing
-        e_ordered = sum(ordered_by_sy.get((e, y), 0.0) for e in emergency_ids)
+        e_ordered = fsum(ordered_by_sy.get((e, y), 0.0) for e in emergency_ids)
         year_records.append(YearRecord(
             y, D, C, served, served_c, rules.service_level(served, D), rules.service_level(served_c, C),
-            max(0.0, D - served), max(0.0, C - served_c), opening, closing, sum(m.planned_inflow_t for m in ms), thr, losses,
-            (losses / thr) if thr > 0 else 0.0, R, opening + TOL_T >= R, sum(0.5 * (m.opening_t + m.closing_t) for m in ms) / len(ms),
+            max(0.0, D - served), max(0.0, C - served_c), opening, closing, fsum(m.planned_inflow_t for m in ms), thr, losses,
+            (losses / thr) if thr > 0 else 0.0, R, opening + TOL_T >= R, fsum(0.5 * (m.opening_t + m.closing_t) for m in ms) / len(ms),
             ms[-1].storage_mode, ms[-1].storage_capacity_t, (e_ordered / D) if D > 0 else 0.0, residual))
 
     # ---- contracts, procurement, reservation per source-year ----------------------
@@ -455,8 +456,8 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             f = n_avail / 12.0
             reserved = plan.reserved(k, y)
             ordered = ordered_by_sy.get((k, y), 0.0)
-            planned_del = sum(schedule.get(midx(y, m), {}).get(k, 0.0) for m in range(1, 13))
-            actual_del = sum(mrec.inflow_by_source.get(k, 0.0) for mrec in months if mrec.year == y)
+            planned_del = fsum(schedule.get(midx(y, m), {}).get(k, 0.0) for m in range(1, 13))
+            actual_del = fsum(mrec.inflow_by_source.get(k, 0.0) for mrec in months if mrec.year == y)
             share = scenario.delivery_share(s, y)
             if reserved > s.capacity_t_per_year + EPS:
                 add("CAPACITY_EXCEEDED", "hard", f"{s.name} {y}: reserved {reserved:.3f} t/yr exceeds capacity {s.capacity_t_per_year:.1f} t/yr",
@@ -483,17 +484,17 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
     finance: list[FinanceYear] = []
     cum_capex = 0.0
     for y in years:
-        proc = sum(sy.procurement_mln for sy in source_years if sy.year == y and sy.period == "year")
-        resv = sum(sy.reservation_payment_mln for sy in source_years if sy.year == y and sy.period == "year")
+        proc = fsum(sy.procurement_mln for sy in source_years if sy.year == y and sy.period == "year")
+        resv = fsum(sy.reservation_payment_mln for sy in source_years if sy.year == y and sy.period == "year")
         if y == y0:
             proc += prep_procurement
             resv += prep_reservation
-        hold = sum(m.holding_cost_mln for m in months if m.year == y)
+        hold = fsum(m.holding_cost_mln for m in months if m.year == y)
         opex = 0.0
         for from_idx, per_year, _ in opex_streams:
             active = sum(1 for m in range(1, 13) if midx(y, m) >= from_idx)
             opex += per_year * active / 12.0
-        capex = sum(amt for i, amt, _, _ in capex_events if ym(i)[0] == y)
+        capex = fsum(amt for i, amt, _, _ in capex_events if ym(i)[0] == y)
         cum_capex += capex
         total = proc + resv + hold + opex + capex
         df = 1.0 / (1.0 + r) ** (y - t0 + timing_offset)
@@ -518,7 +519,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             if not applies:
                 continue
             through = int(c.period.split("_")[-1]) if c.period.startswith("through_") else yN
-            cum = sum(fy.capex_mln for fy in finance if fy.year <= through)
+            cum = fsum(fy.capex_mln for fy in finance if fy.year <= through)
             if cum > c.value + EPS:
                 add(c.constraint_id, "hard", f"cumulative CAPEX through {through} = {cum:.1f} mln exceeds limit {c.value:.0f} mln",
                     year=through, actual=cum, limit=c.value, excess=cum - c.value)
@@ -529,7 +530,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 ok = yr.reserve_ok
                 detail = ""
                 if not ok and plan.reserve_mode == "emergency_contract":
-                    e_res = sum(plan.reserved(e, yr.year) for e in emergency_ids)
+                    e_res = fsum(plan.reserved(e, yr.year) for e in emergency_ids)
                     lt_days = max((lead_months(case.sources[e], a) for e in emergency_ids), default=2) * 30.4167
                     cover = yr.demand_total_t * lt_days / 365.0
                     ok = yr.opening_t + TOL_T >= cover and e_res + TOL_T >= yr.reserve_required_t
@@ -609,24 +610,24 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         mrow("SOURCE_NOT_AVAILABLE", y, "all_orders_from_available_sources", 1.0 if av_ok else 0.0, 1.0, "==", av_ok, "hard")
 
     # ---- KPIs -------------------------------------------------------------------------
-    total_cost = sum(f_.total_mln for f_ in finance)
-    pv_cost = sum(f_.pv_total_mln for f_ in finance)
-    served_all = sum(yr.served_total_t for yr in year_records)
+    total_cost = fsum(f_.total_mln for f_ in finance)
+    pv_cost = fsum(f_.pv_total_mln for f_ in finance)
+    served_all = fsum(yr.served_total_t for yr in year_records)
     kpi = {
         "total_cost_mln": total_cost, "pv_cost_mln": pv_cost, "discount_rate_real": r,
-        "demand_total_t": sum(yr.demand_total_t for yr in year_records), "served_total_t": served_all,
-        "served_critical_t": sum(yr.served_critical_t for yr in year_records),
-        "shortage_total_t": sum(yr.shortage_total_t for yr in year_records),
-        "shortage_critical_t": sum(yr.shortage_critical_t for yr in year_records),
+        "demand_total_t": fsum(yr.demand_total_t for yr in year_records), "served_total_t": served_all,
+        "served_critical_t": fsum(yr.served_critical_t for yr in year_records),
+        "shortage_total_t": fsum(yr.shortage_total_t for yr in year_records),
+        "shortage_critical_t": fsum(yr.shortage_critical_t for yr in year_records),
         "cost_per_served_t_mln": (total_cost / served_all) if served_all > 0 else float("nan"),
         "pv_cost_per_served_t_mln": (pv_cost / served_all) if served_all > 0 else float("nan"),
         "min_service_level_total": min(yr.service_level_total for yr in year_records),
         "min_service_level_critical": min(yr.service_level_critical for yr in year_records),
-        "losses_total_t": sum(yr.losses_t for yr in year_records), "throughput_total_t": sum(yr.throughput_t for yr in year_records),
-        "capex_total_mln": sum(f_.capex_mln for f_ in finance), "procurement_total_mln": sum(f_.procurement_mln for f_ in finance),
-        "reservation_total_mln": sum(f_.reservation_mln for f_ in finance), "holding_total_mln": sum(f_.holding_mln for f_ in finance),
-        "fixed_opex_total_mln": sum(f_.fixed_opex_mln for f_ in finance),
-        "take_or_pay_idle_t": sum(sy.take_or_pay_idle_t for sy in source_years if sy.period == "year"),
+        "losses_total_t": fsum(yr.losses_t for yr in year_records), "throughput_total_t": fsum(yr.throughput_t for yr in year_records),
+        "capex_total_mln": fsum(f_.capex_mln for f_ in finance), "procurement_total_mln": fsum(f_.procurement_mln for f_ in finance),
+        "reservation_total_mln": fsum(f_.reservation_mln for f_ in finance), "holding_total_mln": fsum(f_.holding_mln for f_ in finance),
+        "fixed_opex_total_mln": fsum(f_.fixed_opex_mln for f_ in finance),
+        "take_or_pay_idle_t": fsum(sy.take_or_pay_idle_t for sy in source_years if sy.period == "year"),
         "opening_inventory_t": opening_inventory, "closing_inventory_t": months[-1].closing_t,
         "hard_violations": sum(1 for v in viol if v.severity == "hard"),
         "guideline_violations": sum(1 for v in viol if v.severity == "guideline"),

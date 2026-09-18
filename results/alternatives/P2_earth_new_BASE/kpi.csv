@@ -11,7 +11,7 @@ BASE,P2_earth_new,cost_per_served_t_mln,7.970673
 BASE,P2_earth_new,pv_cost_per_served_t_mln,6.316418
 BASE,P2_earth_new,min_service_level_total,1.000000
 BASE,P2_earth_new,min_service_level_critical,1.000000
-BASE,P2_earth_new,losses_total_t,67.182116
+BASE,P2_earth_new,losses_total_t,67.182115
 BASE,P2_earth_new,throughput_total_t,1492.935900
 BASE,P2_earth_new,capex_total_mln,360.000000
 BASE,P2_earth_new,procurement_total_mln,9996.593410

@@ -45,7 +45,7 @@
 | yearly | Shortage, t | 2037 | 0.000 | 0.000 | 0.000 |
 | yearly | Delivered (actual), t | 2037 | 203.188 | 207.947 | 4.759 |
 | yearly | Losses, t | 2037 | 5.791 | 5.926 | 0.136 |
-| yearly | Losses/throughput | 2037 | 0.028 | 0.029 | 0.000 |
+| yearly | Losses/throughput | 2037 | 0.028 | 0.028 | 0.000 |
 | yearly | Opening stock, t | 2037 | 23.425 | 23.425 | 0.000 |
 | yearly | Closing stock, t | 2037 | 30.822 | 35.446 | 4.623 |
 | yearly | 45-day reserve, t | 2037 | 23.425 | 23.425 | 0.000 |
@@ -54,9 +54,9 @@
 | yearly | SL total | 2038 | 0.997 | 1.000 | 0.003 |
 | yearly | SL critical | 2038 | 1.000 | 1.000 | 0.000 |
 | yearly | Shortage, t | 2038 | 0.866 | 0.000 | -0.866 |
-| yearly | Delivered (actual), t | 2038 | 304.840 | 301.037 | -3.802 |
+| yearly | Delivered (actual), t | 2038 | 304.840 | 301.037 | -3.803 |
 | yearly | Losses, t | 2038 | 3.658 | 3.612 | -0.046 |
-| yearly | Losses/throughput | 2038 | 0.012 | 0.012 | -0.000 |
+| yearly | Losses/throughput | 2038 | 0.012 | 0.012 | 0.000 |
 | yearly | Opening stock, t | 2038 | 30.822 | 35.446 | 4.623 |
 | yearly | Closing stock, t | 2038 | 45.370 | 45.370 | 0.000 |
 | yearly | 45-day reserve, t | 2038 | 35.445 | 35.445 | 0.000 |
@@ -78,7 +78,7 @@
 | yearly | Shortage, t | 2040 | 0.000 | 0.000 | 0.000 |
 | yearly | Delivered (actual), t | 2040 | 453.947 | 420.000 | -33.947 |
 | yearly | Losses, t | 2040 | 5.447 | 5.040 | -0.407 |
-| yearly | Losses/throughput | 2040 | 0.012 | 0.012 | 0.000 |
+| yearly | Losses/throughput | 2040 | 0.012 | 0.012 | -0.000 |
 | yearly | Opening stock, t | 2040 | 55.295 | 55.295 | 0.000 |
 | yearly | Closing stock, t | 2040 | 55.295 | 21.755 | -33.540 |
 | yearly | 45-day reserve, t | 2040 | 55.295 | 55.295 | 0.000 |
@@ -86,7 +86,7 @@
 | finance | Reservation, mln | 2035 | 51.381 | 51.381 | 0.000 |
 | finance | Holding, mln | 2035 | 10.652 | 10.652 | 0.000 |
 | finance | Fixed OPEX, mln | 2035 | 0.000 | 0.000 | 0.000 |
-| finance | CAPEX, mln | 2035 | 0 | 0 | 0 |
+| finance | CAPEX, mln | 2035 | 0.000 | 0.000 | 0.000 |
 | finance | Total, mln | 2035 | 858.161 | 858.161 | 0.000 |
 | finance | PV total, mln | 2035 | 858.161 | 858.161 | 0.000 |
 | finance | Procurement, mln | 2036 | 948.921 | 948.921 | 0.000 |
@@ -107,21 +107,21 @@
 | finance | Reservation, mln | 2038 | 117.297 | 93.906 | -23.392 |
 | finance | Holding, mln | 2038 | 14.129 | 25.833 | 11.704 |
 | finance | Fixed OPEX, mln | 2038 | 82.000 | 82.000 | 0.000 |
-| finance | CAPEX, mln | 2038 | 0 | 0 | 0 |
+| finance | CAPEX, mln | 2038 | 0.000 | 0.000 | 0.000 |
 | finance | Total, mln | 2038 | 2,851.744 | 2,597.653 | -254.091 |
 | finance | PV total, mln | 2038 | 2,263.807 | 2,062.101 | -201.706 |
 | finance | Procurement, mln | 2039 | 2,972.977 | 2,972.978 | 0.001 |
 | finance | Reservation, mln | 2039 | 100.877 | 100.877 | -0.000 |
 | finance | Holding, mln | 2039 | 36.239 | 36.239 | 0.000 |
 | finance | Fixed OPEX, mln | 2039 | 82.000 | 82.000 | 0.000 |
-| finance | CAPEX, mln | 2039 | 0 | 0 | 0 |
+| finance | CAPEX, mln | 2039 | 0.000 | 0.000 | 0.000 |
 | finance | Total, mln | 2039 | 3,192.094 | 3,192.095 | 0.001 |
 | finance | PV total, mln | 2039 | 2,346.284 | 2,346.285 | 0.001 |
 | finance | Procurement, mln | 2040 | 2,985.474 | 2,517.000 | -468.474 |
 | finance | Reservation, mln | 2040 | 113.882 | 102.000 | -11.882 |
 | finance | Holding, mln | 2040 | 39.812 | 27.738 | -12.074 |
 | finance | Fixed OPEX, mln | 2040 | 82.000 | 82.000 | 0.000 |
-| finance | CAPEX, mln | 2040 | 0 | 0 | 0 |
+| finance | CAPEX, mln | 2040 | 0.000 | 0.000 | 0.000 |
 | finance | Total, mln | 2040 | 3,221.168 | 2,728.738 | -492.430 |
 | finance | PV total, mln | 2040 | 2,192.273 | 1,857.133 | -335.140 |
 | decision:order | ordered_t A | 2038 | 161.771 | 190.000 | 28.229 |

@@ -13,7 +13,7 @@ BASE,P1_earth_only,min_service_level_total,0.749878
 BASE,P1_earth_only,min_service_level_critical,1.000000
 BASE,P1_earth_only,losses_total_t,60.319958
 BASE,P1_earth_only,throughput_total_t,1340.443500
-BASE,P1_earth_only,capex_total_mln,0
+BASE,P1_earth_only,capex_total_mln,0.000000
 BASE,P1_earth_only,procurement_total_mln,9282.939310
 BASE,P1_earth_only,reservation_total_mln,509.881470
 BASE,P1_earth_only,holding_total_mln,86.651033

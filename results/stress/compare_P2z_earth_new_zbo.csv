@@ -64,7 +64,7 @@ yearly,SL critical,2039,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRES
 yearly,"Shortage, t",2039,37.417472,0.000000,-37.417472,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 yearly,"Delivered (actual), t",2039,332.621600,382.514900,49.893300,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 yearly,"Losses, t",2039,3.991459,4.590179,0.598720,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,Losses/throughput,2039,0.012000,0.012000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
+yearly,Losses/throughput,2039,0.012000,0.012000,-0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 yearly,"Opening stock, t",2039,1.952388,45.370269,43.417882,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 yearly,"Closing stock, t",2039,0.000000,55.294990,55.294990,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 yearly,"45-day reserve, t",2039,45.369863,45.369863,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
@@ -90,7 +90,7 @@ finance,"Procurement, mln",2036,948.921160,948.921160,0.000000,P2z_earth_new_zbo
 finance,"Reservation, mln",2036,68.873400,68.873400,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Holding, mln",2036,14.646725,14.646725,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2036,0,0,0,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
+finance,"CAPEX, mln",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Total, mln",2036,1032.441285,1032.441285,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"PV total, mln",2036,955.964153,955.964153,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Procurement, mln",2037,1271.636220,1305.424410,33.788190,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
@@ -104,21 +104,21 @@ finance,"Procurement, mln",2038,1982.076940,2260.864120,278.787180,P2z_earth_new
 finance,"Reservation, mln",2038,107.031600,118.811400,11.779800,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Holding, mln",2038,11.798867,29.093683,17.294815,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2038,12.000000,12.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2038,0,0,0,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
+finance,"CAPEX, mln",2038,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Total, mln",2038,2112.907407,2420.769203,307.861795,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"PV total, mln",2038,1677.294022,1921.684641,244.390619,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Procurement, mln",2039,2535.915300,3090.978262,555.062962,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Reservation, mln",2039,126.393300,133.877250,7.483950,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Holding, mln",2039,0.058572,36.239493,36.180922,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2039,12.000000,12.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2039,0,0,0,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
+finance,"CAPEX, mln",2039,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Total, mln",2039,2674.367172,3273.095006,598.727834,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"PV total, mln",2039,1965.739708,2405.822540,440.082832,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Procurement, mln",2040,2766.158410,3080.000000,313.841590,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Reservation, mln",2040,135.710550,141.000000,5.289450,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Holding, mln",2040,0.000000,31.294793,31.294793,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Fixed OPEX, mln",2040,12.000000,12.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2040,0,0,0,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
+finance,"CAPEX, mln",2040,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"Total, mln",2040,2913.868960,3264.294793,350.425833,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 finance,"PV total, mln",2040,1983.130253,2221.624186,238.493934,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
 decision:order,ordered_t B,2039,12.621600,62.514900,49.893300,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
