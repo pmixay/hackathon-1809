@@ -45,6 +45,7 @@ class Order:
     ordered_t: float
     profile: str = "uniform"                  # uniform over available months, or "monthly"
     monthly_t: Optional[list[float]] = None   # 12 values when profile == "monthly"
+    reactive: bool = False                    # order placed only after the event observed in inventory_policy.observation_month
 
 
 @dataclass
@@ -75,6 +76,7 @@ class Plan:
     opening_stock: list[OpeningStock] = field(default_factory=list)
     reserve_mode: str = "physical"            # physical | emergency_contract
     allocation_rule: str = "critical_first"
+    observation_month: Optional[str] = None   # "YYYY-MM": reactive orders cannot be placed before this month (reaction-time check)
     meta: dict = field(default_factory=dict)
 
     # ---- convenience ----------------------------------------------------
@@ -92,11 +94,12 @@ class Plan:
             "plan_id": self.plan_id, "scenario_id": self.scenario_id, "description": self.description,
             "decisions": {
                 "capacity_reservations": [asdict(r) for r in self.reservations],
-                "supply_orders": [{k: v for k, v in asdict(o).items() if v is not None} for o in self.orders],
+                "supply_orders": [{k: v for k, v in asdict(o).items() if v is not None and not (k == "reactive" and not v)} for o in self.orders],
                 "investments": [{k: v for k, v in asdict(i).items() if v is not None} for i in self.investments],
                 "inventory_policy": {
                     "opening_stock": [asdict(s) for s in self.opening_stock],
                     "reserve_mode": self.reserve_mode, "allocation_rule": self.allocation_rule,
+                    **({"observation_month": self.observation_month} if self.observation_month else {}),
                 },
             },
             "meta": self.meta,
@@ -169,7 +172,10 @@ def plan_from_dict(data: dict, source_file: str = "") -> Plan:
             monthly = None
         else:
             raise PlanError(f"{c}: неизвестный профиль {profile!r} (допустимо: uniform | monthly)")
-        orders.append(Order(str(_req(o, "source_id", c)), _year(_req(o, "year", c), "year", c), ordered, profile, monthly))
+        reactive = o.get("reactive", False)
+        if not isinstance(reactive, bool):
+            raise PlanError(f"{c}: поле 'reactive' должно быть true|false, получено {reactive!r}")
+        orders.append(Order(str(_req(o, "source_id", c)), _year(_req(o, "year", c), "year", c), ordered, profile, monthly, reactive))
     investments = []
     for i, inv in enumerate(dec["investments"]):
         c = f"{ctx}: investments[{i}]"
@@ -192,9 +198,17 @@ def plan_from_dict(data: dict, source_file: str = "") -> Plan:
     alloc = str(pol.get("allocation_rule", "critical_first"))
     if alloc not in ("critical_first", "proportional"):
         raise PlanError(f"{ctx}: inventory_policy.allocation_rule должен быть critical_first | proportional, получено {alloc!r}")
+    obs = pol.get("observation_month")
+    if obs is not None:
+        obs = str(obs)
+        parts = obs.split("-")
+        if len(parts) != 2 or not (parts[0].isdigit() and parts[1].isdigit() and 1 <= int(parts[1]) <= 12):
+            raise PlanError(f"{ctx}: inventory_policy.observation_month должен иметь вид ГГГГ-ММ, получено {obs!r}")
+    if any(o.reactive for o in orders) and obs is None:
+        raise PlanError(f"{ctx}: заказы с reactive=true требуют inventory_policy.observation_month (месяц наблюдения события)")
     return Plan(plan_id=plan_id, scenario_id=str(data.get("scenario_id", "BASE")), description=str(data.get("description", "")),
                 reservations=reservations, orders=orders, investments=investments, opening_stock=opening,
-                reserve_mode=reserve_mode, allocation_rule=alloc, meta=dict(data.get("meta") or {}))
+                reserve_mode=reserve_mode, allocation_rule=alloc, observation_month=obs, meta=dict(data.get("meta") or {}))
 
 
 def validate_plan(plan: Plan, case: Case) -> None:

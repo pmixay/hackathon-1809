@@ -2873,6 +2873,16 @@
     "uniform"
    ],
    "justification": "Конвенция организатора — равномерный спрос внутри года, 365 дней."
+  },
+  "undelivered_volume_paid": {
+   "value": true,
+   "unit": "логическое",
+   "status": "CASE_INPUT",
+   "range": [
+    true,
+    false
+   ],
+   "justification": "Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо только в отдельном исследовательском контрактном сценарии и не является условием организатора.\n"
   }
  },
  "scenario": {
@@ -3391,79 +3401,79 @@
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2035,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2036,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2037,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2038,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2039,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2040,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2035,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 18.986406499999987,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2035-12, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3512,13 +3522,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2036,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 25.76724599999997,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2036-12, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3567,13 +3577,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2037,
-   "metric": "max_end_of_month_stock_t",
-   "actual": 38.52756784999997,
+   "metric": "end_of_month_stock_t_in_worst_month",
+   "actual": 30.26421324999996,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2037-06, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3644,13 +3654,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2038,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 49.31529624999996,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2038-12, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3743,13 +3753,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2039,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 60.10297224999979,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2039-12, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3842,13 +3852,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2040,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 54.05797224999979,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2040-01, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",

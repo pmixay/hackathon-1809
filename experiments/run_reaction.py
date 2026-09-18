@@ -86,10 +86,10 @@ def main() -> None:
         if total <= 1e-9:
             continue
         monthly_r = [math.floor(v * 1e4) / 1e4 for v in monthly]        # 4-decimal profile as saved in plan.json, rounded DOWN so the sum never exceeds capacity
-        new_orders.append(Order(sid, y, float(sum(monthly_r)), "monthly", monthly_r))   # ordered_t == sum of the saved months -> the plan reopens exactly
+        new_orders.append(Order(sid, y, float(sum(monthly_r)), "monthly", monthly_r, reactive=True))   # ordered_t == sum of the saved months -> the plan reopens exactly; reactive -> engine checks the order date against the observation month
         new_resv.append(Reservation(sid, y, min(case.sources[sid].capacity_t_per_year, max(resv.get((sid, y), 0.0), round(max(monthly) * 12 + 1e-3, 3)))))
     reactive = Plan(plan_id=f"{PLAN}_reactive", scenario_id="MANDATORY_STRESS", description="P3 с реакцией после наблюдения недопоставки ISRU (2038-03): Earth-Flex с 2038-07, Emergency с 2038-05",
-                    reservations=new_resv, orders=new_orders, investments=fixed.investments, opening_stock=fixed.opening_stock,
+                    reservations=new_resv, orders=new_orders, investments=fixed.investments, opening_stock=fixed.opening_stock, observation_month="2038-03",
                     meta={"experiment": "EXP-06", "observation_month": "2038-03", "levers": {"B": "4 months", "E": "2 months"}, "status": "TEAM_DECISION"})
     save_plan(reactive, PLANS / f"{PLAN}_reactive.json")
     r_react = run_and_save(case, reactive, stress, a, RESULTS / "reaction" / f"{PLAN}_reactive_MANDATORY_STRESS")

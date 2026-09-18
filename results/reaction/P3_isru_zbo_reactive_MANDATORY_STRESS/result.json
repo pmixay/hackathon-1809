@@ -2898,6 +2898,16 @@
     "uniform"
    ],
    "justification": "Конвенция организатора — равномерный спрос внутри года, 365 дней."
+  },
+  "undelivered_volume_paid": {
+   "value": true,
+   "unit": "логическое",
+   "status": "CASE_INPUT",
+   "range": [
+    true,
+    false
+   ],
+   "justification": "Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо только в отдельном исследовательском контрактном сценарии и не является условием организатора.\n"
   }
  },
  "scenario": {
@@ -3120,7 +3130,8 @@
       9.1666,
       6.1054,
       6.1054
-     ]
+     ],
+     "reactive": true
     },
     {
      "source_id": "B",
@@ -3140,7 +3151,8 @@
       8.5429,
       8.5429,
       8.5429
-     ]
+     ],
+     "reactive": true
     },
     {
      "source_id": "B",
@@ -3160,7 +3172,8 @@
       9.1666,
       9.1666,
       9.1666
-     ]
+     ],
+     "reactive": true
     },
     {
      "source_id": "E",
@@ -3180,7 +3193,8 @@
       5.867,
       0.0,
       0.0
-     ]
+     ],
+     "reactive": true
     },
     {
      "source_id": "E",
@@ -3200,7 +3214,8 @@
       2.8289,
       2.8289,
       2.8289
-     ]
+     ],
+     "reactive": true
     }
    ],
    "investments": [
@@ -3225,7 +3240,8 @@
      }
     ],
     "reserve_mode": "physical",
-    "allocation_rule": "critical_first"
+    "allocation_rule": "critical_first",
+    "observation_month": "2038-03"
    }
   },
   "meta": {
@@ -3539,68 +3555,68 @@
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2035,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2036,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2037,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2038,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.1363478260869565,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.136"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2039,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2040,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.07568963210702342,
-   "limit": 0.2,
-   "operator": "<= (иначе год считается базовым для Emergency)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "не более 2 базовых лет подряд"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.076"
   },
   {
    "rule_id": "STRESS_LOSS_LIMIT",
@@ -3638,13 +3654,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2035,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 17.260439000000027,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2035-12, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3693,13 +3709,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2036,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 23.424908000000073,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2036-12, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3748,13 +3764,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2037,
-   "metric": "max_end_of_month_stock_t",
-   "actual": 30.82224430000005,
+   "metric": "end_of_month_stock_t_in_worst_month",
+   "actual": 25.447273500000065,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2037-06, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3825,13 +3841,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2038,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 45.37903573333334,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2038-12, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3946,13 +3962,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2039,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 55.303658133333315,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2039-12, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -4045,13 +4061,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2040,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 55.303545466666655,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2040-01, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -4959,9 +4975,9 @@
    "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-03",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5001,9 +5017,9 @@
    "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-04",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5029,9 +5045,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-03",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5057,9 +5073,9 @@
    "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-05",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5085,9 +5101,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-04",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5113,9 +5129,9 @@
    "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-06",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5141,9 +5157,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-05",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5169,9 +5185,9 @@
    "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-07",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5197,9 +5213,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-06",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5225,9 +5241,9 @@
    "actual_t": 5.867,
    "lead_time_months": 2,
    "order_placement_month": "2038-08",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5253,9 +5269,9 @@
    "actual_t": 6.1054,
    "lead_time_months": 4,
    "order_placement_month": "2038-07",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5295,9 +5311,9 @@
    "actual_t": 6.1054,
    "lead_time_months": 4,
    "order_placement_month": "2038-08",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5337,9 +5353,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-09",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5379,9 +5395,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-10",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5421,9 +5437,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-11",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5463,9 +5479,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-12",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5505,9 +5521,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-01",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5547,9 +5563,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-02",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5589,9 +5605,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-03",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5631,9 +5647,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-04",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5673,9 +5689,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-05",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5715,9 +5731,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-06",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5757,9 +5773,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-07",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5799,9 +5815,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-08",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5841,9 +5857,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-09",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5869,9 +5885,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2039-11",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5897,9 +5913,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-10",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5925,9 +5941,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2039-12",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5953,9 +5969,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-11",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5981,9 +5997,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-01",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6009,9 +6025,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-12",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6037,9 +6053,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-02",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6065,9 +6081,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-01",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6093,9 +6109,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-03",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6121,9 +6137,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-02",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6149,9 +6165,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-04",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6177,9 +6193,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-03",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6205,9 +6221,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-05",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6233,9 +6249,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-04",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6261,9 +6277,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-06",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6289,9 +6305,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-05",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6317,9 +6333,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-07",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6345,9 +6361,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-06",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6373,9 +6389,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-08",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6401,9 +6417,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-07",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6429,9 +6445,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-09",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6457,9 +6473,9 @@
    "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-08",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6485,9 +6501,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-10",
-   "earliest_allowed_order": "2034-01",
+   "earliest_allowed_order": "2038-03",
    "lead_time_ok": true,
-   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01"
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   }
  ]
 }

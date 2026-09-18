@@ -88,7 +88,7 @@ def test_committed_results_reproduce(root):
 
 
 MATRIX_YEAR_RULES = {"BASE_TOTAL_SERVICE", "BASE_CRITICAL_SERVICE", "RESERVE_45D", "STRESS_LOSS_LIMIT", "CAPACITY_EXCEEDED",
-                     "ORDER_EXCEEDS_RESERVATION", "LEAD_TIME_VIOLATED", "SOURCE_NOT_AVAILABLE"}
+                     "ORDER_EXCEEDS_RESERVATION", "LEAD_TIME_VIOLATED", "SOURCE_NOT_AVAILABLE", "STORAGE_OVERFLOW"}
 
 
 def test_check_matrix_agrees_with_violation_list(case, base, stress, assumptions, root):
@@ -103,6 +103,9 @@ def test_check_matrix_agrees_with_violation_list(case, base, stress, assumptions
                 m_years = {m["year"] for m in res.check_matrix if m["rule_id"] == rule and not m["ok"]}
                 v_years = {v.year for v in res.violations if v.rule_id == rule and v.severity != "warning"}
                 assert m_years == v_years, (pf.name, sc.scenario_id, rule, m_years, v_years)
+            for rule in {m["rule_id"] for m in res.check_matrix}:      # rule level: a VIOLATED row exists iff a violation of that rule exists
+                assert any(not m["ok"] for m in res.check_matrix if m["rule_id"] == rule) == any(
+                    v.rule_id == rule and v.severity != "warning" for v in res.violations), (pf.name, sc.scenario_id, rule)
 
 
 def test_earth_new_order_calendar_is_consistent(case, base, assumptions, root):

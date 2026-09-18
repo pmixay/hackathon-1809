@@ -52,6 +52,8 @@ DEFAULTS: dict[str, dict[str, Any]] = {
         justification="Хранение начисляется с 2035-01; время хранения в подготовительном периоде не оплачивается (несущественно, < 1 месяца)."),
     "intra_year_demand_profile": dict(value="uniform", unit="enum", status="CASE_INPUT", range=["uniform"],
         justification="Конвенция организатора: равномерный спрос внутри года, 365 дней."),
+    "undelivered_volume_paid": dict(value=True, unit="логическое", status="CASE_INPUT", range=[True, False],
+        justification="Контрольное правило организатора: оплачивается заказанный объём, недопоставка в стрессе платёж не возвращает; false — только для исследовательских контрактных сценариев."),
 }
 
 

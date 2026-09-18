@@ -159,7 +159,8 @@
           9.1666,
           6.1054,
           6.1054
-        ]
+        ],
+        "reactive": true
       },
       {
         "source_id": "B",
@@ -179,7 +180,8 @@
           8.5429,
           8.5429,
           8.5429
-        ]
+        ],
+        "reactive": true
       },
       {
         "source_id": "B",
@@ -199,7 +201,8 @@
           9.1666,
           9.1666,
           9.1666
-        ]
+        ],
+        "reactive": true
       },
       {
         "source_id": "E",
@@ -219,7 +222,8 @@
           5.867,
           0.0,
           0.0
-        ]
+        ],
+        "reactive": true
       },
       {
         "source_id": "E",
@@ -239,7 +243,8 @@
           2.8289,
           2.8289,
           2.8289
-        ]
+        ],
+        "reactive": true
       }
     ],
     "investments": [
@@ -264,7 +269,8 @@
         }
       ],
       "reserve_mode": "physical",
-      "allocation_rule": "critical_first"
+      "allocation_rule": "critical_first",
+      "observation_month": "2038-03"
     }
   },
   "meta": {
