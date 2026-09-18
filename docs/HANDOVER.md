@@ -20,8 +20,8 @@
   invalid input, archive download and mobile layout. Reproduce with `tests/ui_smoke.cjs`.
 - UI-export KPIs equal a direct `simulate()` call. An extracted UI archive passes CLI `verify`.
 - The working application uses local assets and the existing engine, with no extra web dependency.
-- Source calculations retain other roles' open work: final strategy selection, additional risk
-  methods and management-note completion. The presentation discloses these limits.
+- R3's EXP-07–10 analyses are integrated. Final strategy selection, extension to alternative
+  strategies, geopolitics and management-note completion remain open.
 
 ## GitVerse publication status
 

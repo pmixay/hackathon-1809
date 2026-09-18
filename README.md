@@ -90,5 +90,6 @@ not exact boundaries (`results/sensitivity/`). Stress-adapted P2z/P3/P4 overflow
 Web UI is available via `python -m terraplan ui`; `docs/ui_mockups/` contains the historical design reference.
 It serves one local operator, retains the last 12 calculations until server shutdown, and saves work via downloaded files.
 GitVerse publication remains pending a team repository URL; the configured origin is GitHub.
-No optimizer (greedy merit-order builder only). Monte Carlo / reverse stress and the geopolitics bonus module
-are planned (see `docs/TEAM.md`). No secrets, no external services; runs offline.
+No optimizer (greedy merit-order builder only). Reverse stress, protection measures, Earth-New delay and
+seeded Monte Carlo are implemented in EXP-07–10; their distributions remain TEAM_ASSUMPTION.
+The geopolitics bonus module is planned. No secrets, no external services; runs offline.
