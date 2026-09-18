@@ -25,3 +25,5 @@ MANDATORY_STRESS,P3_isru_zbo,hard_violations,3
 MANDATORY_STRESS,P3_isru_zbo,guideline_violations,3
 MANDATORY_STRESS,P3_isru_zbo,warnings,0
 MANDATORY_STRESS,P3_isru_zbo,feasible,False
+MANDATORY_STRESS,P3_isru_zbo,checks_total,78
+MANDATORY_STRESS,P3_isru_zbo,checks_passed,72

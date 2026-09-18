@@ -25,3 +25,5 @@ TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,hard_violations,0
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,guideline_violations,0
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,warnings,0
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,feasible,True
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,checks_total,92
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,checks_passed,92

@@ -25,3 +25,5 @@ TEAM_HIGH_DEMAND,P2z_earth_new_zbo,hard_violations,6
 TEAM_HIGH_DEMAND,P2z_earth_new_zbo,guideline_violations,4
 TEAM_HIGH_DEMAND,P2z_earth_new_zbo,warnings,0
 TEAM_HIGH_DEMAND,P2z_earth_new_zbo,feasible,False
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,checks_total,75
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,checks_passed,63

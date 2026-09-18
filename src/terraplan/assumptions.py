@@ -16,6 +16,8 @@ DEFAULTS: dict[str, dict[str, Any]] = {
         justification="Real rate for infrastructure with technology risk; same rate for all alternatives. Sensitivity 0-12%."),
     "discount_t0_year": dict(value=2035, unit="year", status="TEAM_ASSUMPTION", range=[2035, 2035],
         justification="Cash flows are annual sums dated at the start of each year; PV exponent = year - 2035."),
+    "discount_timing": dict(value="start", unit="enum start|mid|end", status="TEAM_ASSUMPTION", range=["start", "mid", "end"],
+        justification="Moment within the year to which annual cash flows are dated: start (exponent y-2035), mid (+0.5) or end (+1). Same for all alternatives."),
     "prep_period_start": dict(value="2034-01", unit="YYYY-MM", status="TEAM_ASSUMPTION", range=["2033-01", "2034-12"],
         justification="Earliest month an order can be placed in the preparatory period; Earth-Core needs 12 months before 2035-01."),
     "lead_time_policy": dict(value="max", unit="enum min|max|mean", status="TEAM_ASSUMPTION", range=["min", "max", "mean"],

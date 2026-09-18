@@ -14,6 +14,12 @@ discount_t0_year:
   status: TEAM_ASSUMPTION
   range: [2035, 2035]
   justification: Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035).
+discount_timing:
+  value: start
+  unit: enum start|mid|end
+  status: TEAM_ASSUMPTION
+  range: [start, mid, end]
+  justification: Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives.
 prep_period_start:
   value: "2034-01"
   unit: YYYY-MM

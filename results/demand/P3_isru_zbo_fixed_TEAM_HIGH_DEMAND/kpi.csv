@@ -25,3 +25,5 @@ TEAM_HIGH_DEMAND,P3_isru_zbo,hard_violations,6
 TEAM_HIGH_DEMAND,P3_isru_zbo,guideline_violations,5
 TEAM_HIGH_DEMAND,P3_isru_zbo,warnings,0
 TEAM_HIGH_DEMAND,P3_isru_zbo,feasible,False
+TEAM_HIGH_DEMAND,P3_isru_zbo,checks_total,75
+TEAM_HIGH_DEMAND,P3_isru_zbo,checks_passed,64

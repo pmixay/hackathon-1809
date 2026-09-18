@@ -25,3 +25,5 @@ MANDATORY_STRESS,P4_full_adapted,hard_violations,0
 MANDATORY_STRESS,P4_full_adapted,guideline_violations,0
 MANDATORY_STRESS,P4_full_adapted,warnings,0
 MANDATORY_STRESS,P4_full_adapted,feasible,True
+MANDATORY_STRESS,P4_full_adapted,checks_total,82
+MANDATORY_STRESS,P4_full_adapted,checks_passed,80

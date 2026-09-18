@@ -62,6 +62,88 @@ Feasible: **YES** — hard violations: 0, guideline: 0, warnings: 0
 | 2040 | Earth-Flex | 110.0 | 110.0 | 110.0 | 8.90 | 110.0 | 979.0 | 16.5 |
 | 2040 | Earth-New | 130.0 | 130.0 | 130.0 | 7.10 | 130.0 | 923.0 | 39.0 |
 
+## Check matrix (every rule x year)
+
+| Rule | Year | Metric | Actual | Limit | Op | Result | Severity |
+|---|---:|---|---:|---:|---|:---:|---|
+| BASE_CRITICAL_SERVICE | 2035 | critical_service_level | 1.0000 | 0.9900 | >= | OK | guideline |
+| BASE_CRITICAL_SERVICE | 2036 | critical_service_level | 1.0000 | 0.9900 | >= | OK | guideline |
+| BASE_CRITICAL_SERVICE | 2037 | critical_service_level | 1.0000 | 0.9900 | >= | OK | guideline |
+| BASE_CRITICAL_SERVICE | 2038 | critical_service_level | 1.0000 | 0.9900 | >= | OK | guideline |
+| BASE_CRITICAL_SERVICE | 2039 | critical_service_level | 1.0000 | 0.9900 | >= | OK | guideline |
+| BASE_CRITICAL_SERVICE | 2040 | critical_service_level | 1.0000 | 0.9900 | >= | OK | guideline |
+| BASE_TOTAL_SERVICE | 2035 | total_service_level | 1.0000 | 0.9700 | >= | OK | guideline |
+| BASE_TOTAL_SERVICE | 2036 | total_service_level | 1.0000 | 0.9700 | >= | OK | guideline |
+| BASE_TOTAL_SERVICE | 2037 | total_service_level | 1.0000 | 0.9700 | >= | OK | guideline |
+| BASE_TOTAL_SERVICE | 2038 | total_service_level | 1.0000 | 0.9700 | >= | OK | guideline |
+| BASE_TOTAL_SERVICE | 2039 | total_service_level | 1.0000 | 0.9700 | >= | OK | guideline |
+| BASE_TOTAL_SERVICE | 2040 | total_service_level | 0.9948 | 0.9700 | >= | OK | guideline |
+| CAPEX_2037 | 2035 | cumulative_capex | 360.0000 | 1800.0000 | <= | OK | hard |
+| CAPEX_2037 | 2036 | cumulative_capex | 360.0000 | 1800.0000 | <= | OK | hard |
+| CAPEX_2037 | 2037 | cumulative_capex | 540.0000 | 1800.0000 | <= | OK | hard |
+| CAPEX_2040 | 2035 | cumulative_capex | 360.0000 | 2800.0000 | <= | OK | hard |
+| CAPEX_2040 | 2036 | cumulative_capex | 360.0000 | 2800.0000 | <= | OK | hard |
+| CAPEX_2040 | 2037 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
+| CAPEX_2040 | 2038 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
+| CAPEX_2040 | 2039 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
+| CAPEX_2040 | 2040 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
+| RESERVE_45D | 2035 | opening_stock_vs_45d_reserve_t | 13.5617 | 13.5616 | >= | OK | hard |
+| RESERVE_45D | 2036 | opening_stock_vs_45d_reserve_t | 18.9864 | 18.9863 | >= | OK | hard |
+| RESERVE_45D | 2037 | opening_stock_vs_45d_reserve_t | 25.7672 | 25.7671 | >= | OK | hard |
+| RESERVE_45D | 2038 | opening_stock_vs_45d_reserve_t | 38.5276 | 38.5274 | >= | OK | hard |
+| RESERVE_45D | 2039 | opening_stock_vs_45d_reserve_t | 49.3153 | 49.3151 | >= | OK | hard |
+| RESERVE_45D | 2040 | opening_stock_vs_45d_reserve_t | 60.1030 | 60.1027 | >= | OK | hard |
+| EMERGENCY_BASE_STREAK | 2035 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
+| EMERGENCY_BASE_STREAK | 2036 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
+| EMERGENCY_BASE_STREAK | 2037 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
+| EMERGENCY_BASE_STREAK | 2038 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
+| EMERGENCY_BASE_STREAK | 2039 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
+| EMERGENCY_BASE_STREAK | 2040 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
+| STORAGE_OVERFLOW | 2035 | max_end_of_month_stock_t | 18.9864 | 70.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2035 | reserved_A_t_per_year | 120.8640 | 190.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2035 | ordered_A_t | 120.8636 | 120.8640 | <= | OK | hard |
+| LEAD_TIME_VIOLATED | 2035 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
+| SOURCE_NOT_AVAILABLE | 2035 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
+| STORAGE_OVERFLOW | 2036 | max_end_of_month_stock_t | 25.7672 | 70.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2036 | reserved_A_t_per_year | 168.3570 | 190.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2036 | ordered_A_t | 168.3569 | 168.3570 | <= | OK | hard |
+| LEAD_TIME_VIOLATED | 2036 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
+| SOURCE_NOT_AVAILABLE | 2036 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
+| STORAGE_OVERFLOW | 2037 | max_end_of_month_stock_t | 38.5276 | 70.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2037 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2037 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2037 | reserved_C_t_per_year | 38.2660 | 130.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2037 | ordered_C_t | 38.2659 | 38.2660 | <= | OK | hard |
+| LEAD_TIME_VIOLATED | 2037 | all_deliveries_ordered_within_lead_time | 0.0000 | 1.0000 | == | VIOLATED | hard |
+| SOURCE_NOT_AVAILABLE | 2037 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
+| STORAGE_OVERFLOW | 2038 | max_end_of_month_stock_t | 49.3153 | 120.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2038 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2038 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2038 | reserved_B_t_per_year | 7.2150 | 110.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2038 | ordered_B_t | 7.2143 | 7.2150 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2038 | reserved_C_t_per_year | 130.0000 | 130.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2038 | ordered_C_t | 130.0000 | 130.0000 | <= | OK | hard |
+| LEAD_TIME_VIOLATED | 2038 | all_deliveries_ordered_within_lead_time | 0.0000 | 1.0000 | == | VIOLATED | hard |
+| SOURCE_NOT_AVAILABLE | 2038 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
+| STORAGE_OVERFLOW | 2039 | max_end_of_month_stock_t | 60.1030 | 120.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2039 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2039 | reserved_B_t_per_year | 95.7770 | 110.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_B_t | 95.7770 | 95.7770 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2039 | reserved_C_t_per_year | 130.0000 | 130.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_C_t | 130.0000 | 130.0000 | <= | OK | hard |
+| LEAD_TIME_VIOLATED | 2039 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
+| SOURCE_NOT_AVAILABLE | 2039 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
+| STORAGE_OVERFLOW | 2040 | max_end_of_month_stock_t | 54.8813 | 120.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2040 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2040 | reserved_B_t_per_year | 110.0000 | 110.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_B_t | 110.0000 | 110.0000 | <= | OK | hard |
+| CAPACITY_EXCEEDED | 2040 | reserved_C_t_per_year | 130.0000 | 130.0000 | <= | OK | hard |
+| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_C_t | 130.0000 | 130.0000 | <= | OK | hard |
+| LEAD_TIME_VIOLATED | 2040 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
+| SOURCE_NOT_AVAILABLE | 2040 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
+
 ## Constraint checks
 
 No violations.

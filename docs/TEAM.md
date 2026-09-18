@@ -33,4 +33,5 @@ architecture, R3 writes stress/risk sections, R4 writes UI/functionality, budget
 ## Current status (2026-09-18)
 
 - Repo bootstrapped, organizer materials and literature laid in, engine + tests + first experiments running (see `README.md`).
+- **R1 done**: monthly engine, V01–V10, 33 tests (boundary, invalid input, extensibility, export parity, golden, manual check), full check matrix per year, delivery/order calendar, discount-timing option, `verify` command, CSV-only independent recalculation, constraints catalogue, architecture doc, CI with reproducibility check. **R1 waiting on others**: final plan choice (R2) to freeze numbers; UI (R4) to call `simulate()`; stress protocol additions (R3) for Monte Carlo seeds in the manifest.
 - Open: UI implementation on top of the engine, presentation, self-found sources, Monte Carlo / reverse stress, geopolitics module.

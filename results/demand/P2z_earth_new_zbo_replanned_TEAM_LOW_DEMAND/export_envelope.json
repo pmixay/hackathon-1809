@@ -32,6 +32,17 @@
     ],
     "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
    },
+   "discount_timing": {
+    "value": "start",
+    "unit": "enum start|mid|end",
+    "status": "TEAM_ASSUMPTION",
+    "range": [
+     "start",
+     "mid",
+     "end"
+    ],
+    "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+   },
    "prep_period_start": {
     "value": "2034-01",
     "unit": "YYYY-MM",
@@ -2877,7 +2888,9 @@
   "hard_violations": 0,
   "guideline_violations": 0,
   "warnings": 0,
-  "feasible": true
+  "feasible": true,
+  "checks_total": 69,
+  "checks_passed": 68
  },
  "investments": [
   {
@@ -2907,6 +2920,6 @@
    "note": ""
   }
  ],
- "generated_at": "2026-09-18T20:00:09+00:00",
+ "generated_at": "2026-09-18T20:16:07+00:00",
  "terraplan_version": "0.1.0"
 }

@@ -2,6 +2,7 @@ key,value,unit,status,range,justification
 discount_rate_real,0.08,share per year (real),TEAM_ASSUMPTION,"[0.0, 0.15]","Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.
 "
 discount_t0_year,2035,year,TEAM_ASSUMPTION,"[2035, 2035]",Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035).
+discount_timing,"""start""",enum start|mid|end,TEAM_ASSUMPTION,"[""start"", ""mid"", ""end""]",Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives.
 prep_period_start,"""2034-01""",YYYY-MM,TEAM_ASSUMPTION,"[""2033-01"", ""2034-12""]",Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01).
 lead_time_policy,"""max""",enum min|max|mean,TEAM_ASSUMPTION,"[""min"", ""max"", ""mean""]","Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
 weeks_per_month,4.345,weeks,TEAM_ASSUMPTION,"[4.0, 4.5]",365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months.

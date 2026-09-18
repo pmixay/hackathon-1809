@@ -25,3 +25,5 @@ BASE,P3_isru_zbo_adapted,hard_violations,25
 BASE,P3_isru_zbo_adapted,guideline_violations,0
 BASE,P3_isru_zbo_adapted,warnings,3
 BASE,P3_isru_zbo_adapted,feasible,False
+BASE,P3_isru_zbo_adapted,checks_total,77
+BASE,P3_isru_zbo_adapted,checks_passed,74

@@ -25,3 +25,5 @@ BASE,P2z_earth_new_zbo_adapted,hard_violations,17
 BASE,P2z_earth_new_zbo_adapted,guideline_violations,0
 BASE,P2z_earth_new_zbo_adapted,warnings,5
 BASE,P2z_earth_new_zbo_adapted,feasible,False
+BASE,P2z_earth_new_zbo_adapted,checks_total,75
+BASE,P2z_earth_new_zbo_adapted,checks_passed,71

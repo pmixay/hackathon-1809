@@ -25,3 +25,5 @@ MANDATORY_STRESS,P1_earth_only,hard_violations,6
 MANDATORY_STRESS,P1_earth_only,guideline_violations,2
 MANDATORY_STRESS,P1_earth_only,warnings,0
 MANDATORY_STRESS,P1_earth_only,feasible,False
+MANDATORY_STRESS,P1_earth_only,checks_total,74
+MANDATORY_STRESS,P1_earth_only,checks_passed,66

@@ -4,6 +4,7 @@
   python -m terraplan run --plan ... --scenario configs/scenarios/mandatory_stress.yaml --out ...
   python -m terraplan compare results/P3_BASE results/P3_STRESS --out results/compare_P3
   python -m terraplan validate --plan configs/plans/P3.json
+  python -m terraplan verify results/alternatives/P3_isru_zbo_BASE      # reproducibility proof
   python -m terraplan control-cases
   python -m terraplan info
 """
@@ -65,6 +66,47 @@ def cmd_compare(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_verify(args: argparse.Namespace) -> int:
+    """Re-run a result directory from its own plan/scenario/assumptions and compare with what was exported."""
+    from .assumptions import Assumptions
+    from .export import kpi_hash
+    from .plan import plan_from_dict
+    from .scenario import scenario_from_dict
+    d = Path(args.result_dir)
+    manifest = json.loads((d / "run_manifest.json").read_text(encoding="utf-8"))
+    stored = load_result(d)
+    case = load_case(args.case or manifest["case_dir"])
+    plan = plan_from_dict(json.loads((d / "plan.json").read_text(encoding="utf-8")), str(d / "plan.json"))
+    scenario = scenario_from_dict(json.loads((d / "scenario.json").read_text(encoding="utf-8")), str(d / "scenario.json"))
+    res = simulate(case, plan, scenario, Assumptions(stored.assumptions))
+    tol = float(args.tolerance)
+    problems = []
+    if kpi_hash(res.kpi) != manifest["kpi_sha256"]:
+        problems.append("kpi_sha256 differs from run_manifest.json")
+    for k, v in res.kpi.items():
+        w = stored.kpi.get(k)
+        if isinstance(v, float) and isinstance(w, float) and v == v and abs(v - w) > tol:
+            problems.append(f"kpi {k}: recomputed {v} vs exported {w}")
+    for a_, b_ in zip(res.years, stored.years):
+        for f in ("served_total_t", "losses_t", "closing_t", "shortage_total_t"):
+            if abs(getattr(a_, f) - getattr(b_, f)) > tol:
+                problems.append(f"{a_.year} {f}: {getattr(a_, f)} vs {getattr(b_, f)}")
+    for a_, b_ in zip(res.finance, stored.finance):
+        if abs(a_.total_mln - b_.total_mln) > tol:
+            problems.append(f"{a_.year} total_mln: {a_.total_mln} vs {b_.total_mln}")
+    n_bal = sum(1 for m in res.months if abs(m.opening_t + m.throughput_t - m.losses_t - m.served_t - m.closing_t) > 1e-9)
+    if n_bal:
+        problems.append(f"material balance identity fails in {n_bal} months")
+    print(f"verify {d}: plan {res.plan_id} / {res.scenario_id}; {len(res.months)} months, {len(res.check_matrix)} checks "
+          f"({res.kpi['checks_passed']} passed); balance identity OK in all months; tolerance {tol}")
+    if problems:
+        for p_ in problems:
+            print("  FAIL:", p_)
+        return 1
+    print("  PASS: recomputed results match the exported ones; kpi_sha256 matches run_manifest.json")
+    return 0
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     case = load_case(args.case)
     plan = load_plan(args.plan, case)
@@ -106,6 +148,8 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("dir_a"); c.add_argument("dir_b"); c.add_argument("--out", required=True); c.set_defaults(fn=cmd_compare)
     v = sub.add_parser("validate", help="validate a plan file against the case")
     v.add_argument("--plan", required=True); _common(v); v.set_defaults(fn=cmd_validate)
+    vf = sub.add_parser("verify", help="re-run an exported result directory and confirm it reproduces (reproducibility proof)")
+    vf.add_argument("result_dir"); vf.add_argument("--case", default=None); vf.add_argument("--tolerance", default="1e-6"); vf.set_defaults(fn=cmd_verify)
     cc = sub.add_parser("control-cases", help="run organizer control vectors V01-V10")
     cc.add_argument("--expected", default="tests/fixtures/expected_checks.json"); cc.set_defaults(fn=cmd_control_cases)
     i = sub.add_parser("info", help="print the loaded case"); _common(i); i.set_defaults(fn=cmd_info)

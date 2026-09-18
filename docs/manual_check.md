@@ -1,6 +1,6 @@
 # Independent manual check — plan P3_isru_zbo, year 2035, BASE
 
-Hand calculation (calculator, no code) versus engine output `results/alternatives/P3_isru_zbo_BASE/`.
+Hand calculation (calculator, no code) versus engine output `results/alternatives/P3_isru_zbo_BASE/`. The same expected values are asserted automatically in `tests/test_verification.py::test_manual_hand_check_2035`; a CSV-only recalculation of any exported run is `python tests/independent_recalc.py <results_dir>`.
 
 Inputs: demand 2035 = 100 t (critical 80); base storage loss 4.5 %, holding 0.72 mln/t-yr; Earth-Core 6.2 mln/t,
 reservation 0.45; Earth-Flex 8.9, reservation 0.15; 45-day reserve R = D × 45/365.

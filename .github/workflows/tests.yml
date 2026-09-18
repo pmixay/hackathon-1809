@@ -24,6 +24,12 @@ jobs:
         run: python -m terraplan control-cases
       - name: Unit and integration tests
         run: python -m pytest -q
+      - name: Verify committed results and independent CSV recalculation
+        run: |
+          python -m terraplan verify results/alternatives/P3_isru_zbo_BASE
+          python -m terraplan verify results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS
+          python tests/independent_recalc.py results/alternatives/P3_isru_zbo_BASE
+          python tests/independent_recalc.py results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS
       - name: Reproducibility smoke run (BASE + MANDATORY_STRESS)
         run: |
           python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE --out /tmp/ci_base --no-xlsx

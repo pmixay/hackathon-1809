@@ -62,8 +62,10 @@ def result_tables(res: Result) -> dict[str, list[dict]]:
     inv = [dict(tag, **asdict(i)) for i in res.investments]
     assumptions = [dict(key=k, value=json.dumps(v.get("value"), ensure_ascii=False), unit=v.get("unit", ""), status=v.get("status", ""),
                         range=json.dumps(v.get("range"), ensure_ascii=False), justification=v.get("justification", "")) for k, v in res.assumptions.items()]
+    matrix = [dict(tag, **m) for m in res.check_matrix]
+    deliveries = [dict(tag, **d) for d in res.deliveries]
     return {"yearly_balance": years, "inventory_trace": months, "source_schedule": src, "financial_breakdown": fin,
-            "constraint_checks": checks, "kpi": kpi, "investments": inv, "assumptions": assumptions}
+            "constraint_checks": checks, "constraint_matrix": matrix, "delivery_schedule": deliveries, "kpi": kpi, "investments": inv, "assumptions": assumptions}
 
 
 def export_envelope(res: Result, risk_register: list[dict] | None = None) -> dict:
@@ -156,6 +158,10 @@ def _write_summary_md(res: Result, path: Path) -> None:
         if s.period != "year" or (s.reserved_capacity_t <= 0 and s.ordered_t <= 0):
             continue
         lines.append(f"| {s.year} | {s.name} | {s.reserved_capacity_t:.1f} | {s.ordered_t:.1f} | {s.actual_delivery_t:.1f} | {s.price_mln_per_t:.2f} | {s.payable_volume_t:.1f} | {s.procurement_mln:.1f} | {s.reservation_payment_mln:.1f} |")
+    lines += ["", "## Check matrix (every rule x year)", "", "| Rule | Year | Metric | Actual | Limit | Op | Result | Severity |", "|---|---:|---|---:|---:|---|:---:|---|"]
+    for m in res.check_matrix:
+        fa = lambda x: f"{x:.4f}" if isinstance(x, float) else str(x)
+        lines.append(f"| {m['rule_id']} | {m['year']} | {m['metric']} | {fa(m['actual'])} | {fa(m['limit'])} | {m['operator']} | {'OK' if m['ok'] else 'VIOLATED'} | {m['severity']} |")
     lines += ["", "## Constraint checks", ""]
     if not res.violations:
         lines.append("No violations.")
@@ -175,6 +181,7 @@ def result_from_dict(d: dict) -> Result:
         source_years=[SourceYearRecord(**s) for s in d["source_years"]], finance=[FinanceYear(**f) for f in d["finance"]],
         investments=[InvestmentRecord(**i) for i in d["investments"]], violations=[Violation(**v) for v in d["violations"]],
         kpi=d["kpi"], assumptions=d["assumptions"], scenario=d["scenario"], plan=d["plan"], units=d.get("units", {}),
+        check_matrix=d.get("check_matrix", []), deliveries=d.get("deliveries", []),
     )
 
 

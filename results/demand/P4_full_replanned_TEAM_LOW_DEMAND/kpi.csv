@@ -25,3 +25,5 @@ TEAM_LOW_DEMAND,P4_full_team_low_demand,hard_violations,0
 TEAM_LOW_DEMAND,P4_full_team_low_demand,guideline_violations,0
 TEAM_LOW_DEMAND,P4_full_team_low_demand,warnings,0
 TEAM_LOW_DEMAND,P4_full_team_low_demand,feasible,True
+TEAM_LOW_DEMAND,P4_full_team_low_demand,checks_total,71
+TEAM_LOW_DEMAND,P4_full_team_low_demand,checks_passed,71

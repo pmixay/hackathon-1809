@@ -25,3 +25,5 @@ BASE,P1_earth_only,hard_violations,2
 BASE,P1_earth_only,guideline_violations,0
 BASE,P1_earth_only,warnings,0
 BASE,P1_earth_only,feasible,False
+BASE,P1_earth_only,checks_total,71
+BASE,P1_earth_only,checks_passed,69

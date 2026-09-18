@@ -25,3 +25,5 @@ BASE,P4_full,hard_violations,0
 BASE,P4_full,guideline_violations,0
 BASE,P4_full,warnings,0
 BASE,P4_full,feasible,True
+BASE,P4_full,checks_total,75
+BASE,P4_full,checks_passed,74

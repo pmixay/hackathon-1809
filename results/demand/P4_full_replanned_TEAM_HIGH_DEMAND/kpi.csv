@@ -25,3 +25,5 @@ TEAM_HIGH_DEMAND,P4_full_team_high_demand,hard_violations,0
 TEAM_HIGH_DEMAND,P4_full_team_high_demand,guideline_violations,0
 TEAM_HIGH_DEMAND,P4_full_team_high_demand,warnings,0
 TEAM_HIGH_DEMAND,P4_full_team_high_demand,feasible,True
+TEAM_HIGH_DEMAND,P4_full_team_high_demand,checks_total,79
+TEAM_HIGH_DEMAND,P4_full_team_high_demand,checks_passed,77

@@ -152,6 +152,8 @@ class Result:
     assumptions: dict
     scenario: dict
     plan: dict
+    check_matrix: list = field(default_factory=list)     # every rule x year with actual, limit, ok (passed checks included)
+    deliveries: list = field(default_factory=list)       # order calendar: delivery month, order placement month, lead time
     units: dict = field(default_factory=lambda: {
         "fuel": "t", "money": "mln conventional units, constant 2035 prices", "capacity": "t/year",
         "reservation_rate": "mln per (t/year)", "service_level": "share 0..1", "time_step": "calendar month"})
@@ -343,6 +345,21 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 f"(lead time {lt} months), before the preparatory period starts {ym_str(earliest_order)}",
                 year=o.year, month=ym(first_month)[1], source_id=s.source_id, actual=first_month - lt, limit=earliest_order)
 
+    # ---- order calendar (delivery month -> order placement month) -------------------
+    deliveries: list[dict] = []
+    for idx in sorted(schedule):
+        for k, q in sorted(schedule[idx].items()):
+            if q <= EPS:
+                continue
+            s_ = case.sources[k]
+            lt = lead_months(s_, a)
+            link = src_link.get(k)
+            earliest = prep_start if not link else (commissioning.get(link) or prep_start)
+            placement = idx - lt
+            deliveries.append(dict(source_id=k, name=s_.name, year=ym(idx)[0], month=ym(idx)[1], delivery_month=ym_str(idx),
+                                   planned_t=q, actual_t=q * scenario.delivery_share(s_, ym(idx)[0]), lead_time_months=lt,
+                                   order_placement_month=ym_str(placement), earliest_allowed_order=ym_str(earliest), lead_time_ok=placement >= earliest))
+
     # ---- preparatory period: opening stock -------------------------------------
     prep_records: list[SourceYearRecord] = []
     opening_inventory = 0.0
@@ -462,6 +479,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
     # ---- finance -----------------------------------------------------------------
     r = float(a.discount_rate_real)
     t0 = int(a.discount_t0_year)
+    timing_offset = {"start": 0.0, "mid": 0.5, "end": 1.0}[str(a.get("discount_timing", "start"))]
     finance: list[FinanceYear] = []
     cum_capex = 0.0
     for y in years:
@@ -478,7 +496,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         capex = sum(amt for i, amt, _, _ in capex_events if ym(i)[0] == y)
         cum_capex += capex
         total = proc + resv + hold + opex + capex
-        df = 1.0 / (1.0 + r) ** (y - t0)
+        df = 1.0 / (1.0 + r) ** (y - t0 + timing_offset)
         finance.append(FinanceYear(y, proc, resv, hold, opex, capex, total, df, total * df, cum_capex))
     for i, amt, inv_id, label in capex_events:
         if ym(i)[0] < y0 or ym(i)[0] > yN:
@@ -546,6 +564,50 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 add("STRESS_LOSS_LIMIT", "hard", f"{yr.year}: losses/throughput {yr.loss_ratio:.4f} > {lim:.2f} ({yr.losses_t:.3f} t of {yr.throughput_t:.3f} t)",
                     year=yr.year, actual=yr.loss_ratio, limit=lim, excess=yr.loss_ratio - lim)
 
+    # ---- check matrix: every rule x year, passed or not ------------------------------------
+    matrix: list[dict] = []
+    def mrow(rule, year, metric, actual, limit, op, ok, severity, scope=""):
+        matrix.append(dict(rule_id=rule, year=year, metric=metric, actual=actual, limit=limit, operator=op, ok=bool(ok), severity=severity, scope=scope))
+    for c in case.constraints.values():
+        applies = c.scenario in ("ALL", sid)
+        if c.metric in ("total_service_level", "critical_service_level"):
+            sev = "hard" if (applies and scenario.service_thresholds_hard) else "guideline"
+            for yr in year_records:
+                val = yr.service_level_total if c.metric == "total_service_level" else yr.service_level_critical
+                mrow(c.constraint_id, yr.year, c.metric, val, c.value, ">=", val + EPS >= c.value, sev)
+        elif c.metric == "cumulative_capex" and applies:
+            through = int(c.period.split("_")[-1]) if c.period.startswith("through_") else yN
+            for fy in finance:
+                if fy.year <= through:
+                    mrow(c.constraint_id, fy.year, "cumulative_capex", fy.cumulative_capex_mln, c.value, "<=", fy.cumulative_capex_mln <= c.value + EPS, "hard", f"through_{through}")
+        elif c.metric == "reserve_equivalent_days" and applies:
+            for yr in year_records:
+                ok = yr.reserve_ok or not any(v.rule_id == c.constraint_id and v.year == yr.year for v in viol)
+                mrow(c.constraint_id, yr.year, "opening_stock_vs_45d_reserve_t", yr.opening_t, yr.reserve_required_t, ">=", ok, "hard", plan.reserve_mode)
+        elif c.metric == "emergency_base_channel_consecutive_years" and applies:
+            for yr in year_records:
+                mrow(c.constraint_id, yr.year, "emergency_share_of_demand", yr.emergency_share_of_demand, emergency_threshold, "<= (else counts as base year)",
+                     not any(v.rule_id == c.constraint_id and v.year == yr.year for v in viol), "hard", f"max {int(c.value)} consecutive base years")
+    if scenario.loss_ceiling_enabled:
+        lim = float(scenario.loss_ceiling.get("max_losses_divided_by_throughput")); from_year = int(scenario.loss_ceiling.get("from_year", y0))
+        for yr in year_records:
+            if yr.year >= from_year:
+                mrow("STRESS_LOSS_LIMIT", yr.year, "losses_divided_by_throughput", yr.loss_ratio, lim, "<=", yr.loss_ratio <= lim + EPS, "hard")
+    for y in years:
+        ms = [m for m in months if m.year == y]
+        peak = max(m.closing_t for m in ms); cap = min(m.storage_capacity_t for m in ms)
+        mrow("STORAGE_OVERFLOW", y, "max_end_of_month_stock_t", peak, cap, "<=", peak <= cap + EPS, "hard", "monthly")
+        for k, s_ in case.sources.items():
+            res_ = plan.reserved(k, y)
+            if res_ > EPS or ordered_by_sy.get((k, y), 0.0) > EPS:
+                mrow("CAPACITY_EXCEEDED", y, f"reserved_{k}_t_per_year", res_, s_.capacity_t_per_year, "<=", res_ <= s_.capacity_t_per_year + EPS, "hard", s_.name)
+                sy = next(x for x in source_years if x.period == "year" and x.source_id == k and x.year == y)
+                mrow("ORDER_EXCEEDS_RESERVATION", y, f"ordered_{k}_t", sy.ordered_t, sy.reserved_period_t, "<=", sy.ordered_t <= sy.reserved_period_t + 1e-6, "hard", s_.name)
+        lt_ok = all(d["lead_time_ok"] for d in deliveries if d["year"] == y) and not any(v.rule_id == "LEAD_TIME_VIOLATED" and v.year == y for v in viol)
+        av_ok = not any(v.rule_id == "SOURCE_NOT_AVAILABLE" and v.year == y for v in viol)
+        mrow("LEAD_TIME_VIOLATED", y, "all_deliveries_ordered_within_lead_time", 1.0 if lt_ok else 0.0, 1.0, "==", lt_ok, "hard")
+        mrow("SOURCE_NOT_AVAILABLE", y, "all_orders_from_available_sources", 1.0 if av_ok else 0.0, 1.0, "==", av_ok, "hard")
+
     # ---- KPIs -------------------------------------------------------------------------
     total_cost = sum(f_.total_mln for f_ in finance)
     pv_cost = sum(f_.pv_total_mln for f_ in finance)
@@ -571,8 +633,10 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         "warnings": sum(1 for v in viol if v.severity == "warning"),
     }
     kpi["feasible"] = kpi["hard_violations"] == 0
+    kpi["checks_total"] = len(matrix)
+    kpi["checks_passed"] = sum(1 for m in matrix if m["ok"])
     return Result(plan.plan_id, sid, scenario.label, case.source_dir, months, year_records, source_years, finance, inv_records, viol, kpi,
-                  a.to_dict(), scenario.to_dict(), plan.to_dict())
+                  a.to_dict(), scenario.to_dict(), plan.to_dict(), matrix, deliveries)
 
 
 def result_to_dict(res: Result) -> dict:
@@ -583,4 +647,5 @@ def result_to_dict(res: Result) -> dict:
         "source_years": [asdict(s) for s in res.source_years], "finance": [asdict(f) for f in res.finance],
         "investments": [asdict(i) for i in res.investments], "violations": [asdict(v) for v in res.violations],
         "assumptions": res.assumptions, "scenario": res.scenario, "plan": res.plan,
+        "check_matrix": res.check_matrix, "deliveries": res.deliveries,
     }
