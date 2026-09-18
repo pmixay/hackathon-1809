@@ -156,6 +156,14 @@ def cmd_info(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="terraplan", description=f"TerraPlan {__version__} — orbital depot supply planning circuit")
     sub = p.add_subparsers(dest="cmd", required=True)
+    ui = sub.add_parser("ui", help="start the offline operator interface on localhost")
+    ui.add_argument("--root", default=".", help="project root containing data/ and configs/")
+    ui.add_argument("--port", type=int, default=8765)
+    def cmd_ui(args):
+        from .web import serve
+        serve(args.root, args.port)
+        return 0
+    ui.set_defaults(fn=cmd_ui)
     r = sub.add_parser("run", help="simulate a plan under a scenario and export results")
     r.add_argument("--plan", required=True); r.add_argument("--scenario", required=True); r.add_argument("--out", required=True)
     r.add_argument("--no-xlsx", action="store_true"); _common(r); r.set_defaults(fn=cmd_run)

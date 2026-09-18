@@ -8,15 +8,16 @@ Lunar-ISRU, ZBO), потери хранения, экономика (CAPEX/OPEX,
 проверка ограничений с указанием года, величины и причины, сравнение стандартного и обязательного стрессового
 сценариев, сохранение/повторное открытие плана и выгрузка CSV/XLSX/JSON.
 
-*English:* TerraPlan is a Python calculation core + CLI (UI in progress) that turns operator decisions
+*English:* TerraPlan is a Python calculation core + CLI + local browser UI that turns operator decisions
 (reservations, orders, stock policy, investments) into a monthly material balance, costs, service levels and
 constraint checks for the 2035–2040 orbital-depot supply case. Everything is deterministic and reproducible.
 
 ## Быстрый старт / Quick start
 
 ```bash
-python -m pip install -e .                      # Python ≥ 3.10; deps: pyyaml, openpyxl (pytest for tests)
-python -m pytest -q                             # 26 tests incl. organizer control vectors V01–V10
+python -m pip install -e ".[dev]"                # Python ≥ 3.10; pyyaml, openpyxl, pytest
+python -m terraplan ui                          # open http://127.0.0.1:8765; Ctrl+C to stop
+python -m pytest -q                             # engine + UI tests, organizer vectors V01–V10
 python -m terraplan control-cases               # prints V01–V10 PASS/FAIL
 python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE             --out results/demo_BASE
 python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
@@ -28,6 +29,12 @@ python experiments/run_all.py                   # EXP-01 … EXP-06, regenerates
 
 Exit code of `run` is 0 when the plan is feasible, 2 when hard constraints are violated (violations are printed
 with rule id, year, actual value, limit and reason), 3 on invalid input (message names the missing/conflicting field).
+
+The browser UI runs offline after installation. Edit orders, reservations, investments, opening stock and
+contract parameters on a data copy; calculate, inspect violations, pin A and compare with B. Save/reopen a
+workspace JSON or download CSV/XLSX/JSON results. Operator walkthrough: [docs/operator_guide.md](docs/operator_guide.md).
+Presentation: [12-slide PowerPoint](docs/presentation/TerraPlan.pptx). Delivery and remaining publication step:
+[docs/HANDOVER.md](docs/HANDOVER.md).
 
 ## Порядок проверки (для жюри) / Verification order
 
@@ -80,6 +87,8 @@ not exact boundaries (`results/sensitivity/`). Stress-adapted P2z/P3/P4 overflow
 
 ## Ограничения прототипа / Prototype limits
 
-Web UI is at mock-up stage (`docs/ui_mockups/index.html`, 7 screens, preview https://claude.ai/artifact/94xJiuJBULiYuiZf3BGrjp); operations run through the CLI and plan JSON files.
+Web UI is available via `python -m terraplan ui`; `docs/ui_mockups/` contains the historical design reference.
+It serves one local operator, retains the last 12 calculations until server shutdown, and saves work via downloaded files.
+GitVerse publication remains pending a team repository URL; the configured origin is GitHub.
 No optimizer (greedy merit-order builder only). Monte Carlo / reverse stress and the geopolitics bonus module
 are planned (see `docs/TEAM.md`). No secrets, no external services; runs offline.

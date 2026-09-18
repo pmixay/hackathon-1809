@@ -18,7 +18,7 @@ Deliverables (all mandatory):
 |---|---|---|
 | 1 | Management note, 8–12 pages + 1-page scenario comparison | `docs/management_note.md`, `docs/one_pager_scenarios.md` |
 | 2 | Working digital circuit with source code, data, configs, saved plans for both scenarios, test protocols, run instructions | `src/terraplan`, `data/`, `configs/`, `results/`, `README.md` |
-| 3 | Presentation ≤ 12 slides | `docs/presentation/` (to do) |
+| 3 | Presentation ≤ 12 slides | `docs/presentation/TerraPlan.pptx` (12 slides, reproducible builder alongside) |
 | 4 | Reproducible calculations: BASE, stress, low/high demand, own risks, extended horizon (on a data copy) | `experiments/`, `results/` |
 | 5 | Supply chain diagram, contract/financial architecture, budget & roadmap 2035–2040 | `docs/architecture.md`, `docs/management_note.md` |
 | 6 | Risk register with computed consequences; stakeholder map; KPIs with formulas | `docs/risk_register.md`, `docs/stakeholders.md` |
