@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import hashlib
 import json
 import math
 import platform
@@ -18,6 +17,7 @@ from dataclasses import asdict, replace
 from pathlib import Path
 
 from common import ASSUMPTIONS, CASE_DIR, PLANS, RESULTS, ROOT, load_all, scenario
+from provenance import HASH_FORMAT, SCHEMA_VERSION, input_hashes, sha256, write_json, write_text
 from run_reverse_stress import failure_violations
 from terraplan.case import load_case
 from terraplan.engine import simulate
@@ -108,7 +108,7 @@ def chronological_failures(result, reference):
 
 def write_csv(path, rows):
     with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -135,6 +135,12 @@ def run_experiment(out):
             justification="EXP-09 overlay applied to Earth-New source lead times on a case copy; not a core-engine parameter")
         res = simulate(modified, plan, sc, a)
         write_results(res, run_dir, xlsx=False)
+        # Adapt only the file-hash portion of this experiment's standard manifest.
+        # Core semantic plan/scenario/assumption/KPI hashes retain their own format.
+        case_hashes = {p.name: sha256(p) for p in sorted((run_dir / "case").glob("*.csv"))}
+        core_manifest = json.loads((run_dir / "run_manifest.json").read_text(encoding="utf-8"))
+        core_manifest.update(case_file_hash_format=HASH_FORMAT, case_file_sha256=case_hashes)
+        write_json(run_dir / "run_manifest.json", core_manifest)
         violations = chronological_failures(res, reference)
         first = violations[0] if violations else None
         reserve_violations = [v for v in violations if v.rule_id == "RESERVE_45D"]
@@ -167,12 +173,12 @@ def run_experiment(out):
                          first_reserve_violation=asdict(reserve_violations[0]) if reserve_violations else None,
                          violations=[asdict(v) for v in violations],
                          source_schedule=[asdict(s) for s in c_rows],
-                         case_sha256={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((run_dir / "case").glob("*.csv"))}))
+                          case_sha256=case_hashes))
     paths = [PLAN_PATH, ASSUMPTIONS, Path(base.source_file), Path(__file__), ROOT / "experiments/common.py",
              ROOT / "experiments/run_reverse_stress.py"]
     paths += sorted(CASE_DIR.glob("*.csv")) + sorted((ROOT / "src/terraplan").glob("*.py"))
     report = dict(experiment_id="EXP-09", python=platform.python_version(), random_seed=None,
-                  input_sha256={p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
+                  schema_version=SCHEMA_VERSION, hash_format=HASH_FORMAT, input_sha256=input_hashes(paths),
                   method=dict(status="TEAM_ASSUMPTION", plan=original.plan_id, reference="BASE", delays_months=list(DELAYS),
                               factor="only Earth-New preparation lead time on a copy of case data",
                               scheduling="freeze original C monthly delivery slots; no catch-up or substitution",
@@ -183,7 +189,7 @@ def run_experiment(out):
                               reproducibility="summary CSV/JSON deterministic; standard export envelope contains generation timestamps"),
                   original_plan=original.to_dict(), frozen_plan=plan.to_dict(), reference_kpi=reference.kpi,
                   comparison=comparison, yearly=yearly, runs=runs)
-    (out / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    write_json(out / "report.json", report)
     write_csv(out / "comparison.csv", comparison)
     write_csv(out / "yearly.csv", yearly)
     lines = ["# EXP-09 Earth-New preparation delay: fixed P2z / BASE", "",
@@ -206,7 +212,7 @@ def run_experiment(out):
               "  Replay with: python -m terraplan verify results/earth_new_delay/delay_03m --case results/earth_new_delay/delay_03m/case",
               "- The scenario IDs are TEAM_*; service failures count in the experiment even when the engine labels them guidelines."]
     text = "\n".join(lines) + "\n"
-    (out / "summary.md").write_text(text, encoding="utf-8")
+    write_text(out / "summary.md", text)
     return report, text
 
 

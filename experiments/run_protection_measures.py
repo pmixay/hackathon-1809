@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import hashlib
 import json
 import math
 import platform
@@ -17,6 +16,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from common import ASSUMPTIONS, PLANS, RESULTS, ROOT, load_all, scenario
+from provenance import HASH_FORMAT, SCHEMA_VERSION, input_hashes, write_json, write_text
 from run_reverse_stress import RAYS, YEARS, bisect_boundary, failure_violations, shocked_scenario
 from terraplan.engine import simulate
 from terraplan.plan import Reservation, load_plan
@@ -194,7 +194,7 @@ def analyze(target=DEFAULT_TARGET):
              ROOT / "experiments/run_reverse_stress.py", ROOT / "experiments/common.py"]
     paths += sorted((ROOT / "data/case").glob("*.csv")) + sorted((ROOT / "src/terraplan").glob("*.py"))
     return dict(experiment_id="EXP-08", python=platform.python_version(), random_seed=None,
-                input_sha256={p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
+                schema_version=SCHEMA_VERSION, hash_format=HASH_FORMAT, input_sha256=input_hashes(paths),
                 method=dict(status="TEAM_ASSUMPTION", target=target, uncertainty_set=f"0 <= d,s <= {target}",
                             reference="MANDATORY_STRESS; same shock definition and failure criterion as EXP-07",
                             rationale="operational protection target, not an empirical probability or a global cost optimum",
@@ -213,7 +213,7 @@ def analyze(target=DEFAULT_TARGET):
 
 def write_csv(path, rows):
     with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -221,7 +221,7 @@ def write_csv(path, rows):
 def write_report(report, out):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+    write_json(out / "report.json", report)
     write_csv(out / "sizing.csv", report["trials"])
     rows, boundaries = [], []
     for name, variant in report["variants"].items():
@@ -238,7 +238,7 @@ def write_report(report, out):
                                    first_rule=first.get("rule_id"), first_year=first.get("year"), first_month=first.get("month"),
                                    actual=first.get("actual"), limit=first.get("limit"), excess=first.get("excess")))
         # Standalone plans can be reopened with the existing CLI and any scenario.
-        (out / f"{name}.plan.json").write_text(json.dumps(variant["plan"], indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        write_json(out / f"{name}.plan.json", variant["plan"])
     write_csv(out / "comparison.csv", rows)
     write_csv(out / "boundary.csv", boundaries)
     lines = ["# EXP-08 P3 protection measures: without -> with", "",
@@ -265,7 +265,7 @@ def write_report(report, out):
               "- report.json contains input/code hashes, assumptions, plans, yearly finance/reserves, target violations and delivery calendars.",
               "  Units of shock coordinates in CSV/JSON are fractions, not percent. No probability model is used."]
     text = "\n".join(lines) + "\n"
-    (out / "summary.md").write_text(text, encoding="utf-8")
+    write_text(out / "summary.md", text)
     return text
 
 

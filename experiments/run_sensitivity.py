@@ -6,7 +6,9 @@ Parameters and ranges (TEAM_ASSUMPTION ranges, see experiments/README.md):
   Earth-Core/Flex variable price mult.   0.80 .. 1.50   fixed plan
   real discount rate                     0.00 .. 0.12   fixed plan
   ZBO commissioning lag (months)         0 .. 12        fixed plan, under MANDATORY_STRESS (loss ceiling)
-Threshold = first grid value at which a hard violation or a service level below 0.97/0.99 appears.
+Reported thresholds are adverse GRID observations, not exact continuous boundaries. Re-planned
+P3 at demand x1.25 passes constraints but already has shortage; x1.30 fails. ZBO's threshold
+is specific to the annual loss check; this BASE plan already fails other stress checks at lag 0.
 Outputs: results/sensitivity/sweep_<param>.csv, tornado.csv, summary.md
 """
 from __future__ import annotations
@@ -60,7 +62,7 @@ def main() -> None:
             thr_replan = x
     write_table(rows, RESULTS / "sensitivity" / "sweep_demand_multiplier.csv")
     summary.append(dict(param="demand_multiplier", range="0.80..1.30", threshold_fixed_plan=thr_fixed, threshold_replanned=thr_replan,
-                        note="fixed plan breaks when demand exceeds ordered volumes; re-planned plan breaks when reserved capacity (A+B+D) is exhausted"))
+                        note="first failed adverse grid points; not exact boundaries; re-planned x1.25 passes constraints with 12.437 t shortage and 97.45% minimum annual service; x1.30 fails"))
     tornado.append(dict(param="demand_multiplier", low=0.80, high=1.30, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 2. ISRU delivery share 2038
@@ -75,7 +77,7 @@ def main() -> None:
             break
     write_table(rows, RESULTS / "sensitivity" / "sweep_isru_share_2038.csv")
     summary.append(dict(param="isru_delivery_share_2038", range="0.30..1.00", threshold_fixed_plan=thr, threshold_replanned=None,
-                        note="largest share at which the fixed plan still breaks; below it the 2038 shortfall exceeds the reserve cushion"))
+                        note="largest sampled share failing reserve checks; 1.00 passes and 0.95 fails; exact boundary between them not searched"))
     tornado.append(dict(param="isru_delivery_share_2038", low=0.30, high=1.00, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 3. Core/Flex price multiplier
@@ -107,7 +109,7 @@ def main() -> None:
             thr = lag
     write_table(rows, RESULTS / "sensitivity" / "sweep_zbo_lag_stress.csv")
     summary.append(dict(param="zbo_commissioning_lag_months", range="0..12", threshold_fixed_plan=thr, threshold_replanned=None,
-                        note="ZBO decided 2037-07; a lag beyond the threshold leaves base-storage months in 2038 and breaks the 2 % loss ceiling"))
+                        note="first annual loss-check failure at lag 10; lags 7-9 still pass that check; reserve/service already fail at lag 0; ZBO decision 2037-07"))
 
     # ranking of alternatives across discount rates
     rank_rows = []

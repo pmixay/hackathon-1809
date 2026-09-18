@@ -13,6 +13,7 @@ from run_monte_carlo import (MODES, analyze, compare_outputs, metric_summary, pr
                              result_row, sample_factors, sample_scenario, sha256,
                              wilson_interval, write_report)
 from run_reverse_stress import failure_violations
+from provenance import normalized_bytes
 from terraplan.engine import Violation, simulate
 
 
@@ -185,6 +186,10 @@ def test_full_small_replay_hashes_and_tamper_detection(experiment, tmp_path, roo
     replay = analyze(24, 203510, first / "samples.csv")
     assert replay == experiment
     write_report(replay, second)
+    compare_outputs(second, first)
+    # A Windows checkout may rewrite all artifacts, including CSV and manifest.
+    for path in second.iterdir():
+        path.write_bytes(normalized_bytes(path.read_bytes()).replace(b"\n", b"\r\n"))
     compare_outputs(second, first)
     manifest = json.loads((first / "run_manifest.json").read_text(encoding="utf-8"))
     for name, digest in manifest["input_sha256"].items():

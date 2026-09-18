@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import hashlib
 import json
 import math
 import platform
@@ -18,6 +17,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from common import ASSUMPTIONS, PLANS, RESULTS, ROOT, load_all, scenario
+from provenance import HASH_FORMAT, SCHEMA_VERSION, input_hashes, write_json, write_text
 from terraplan import __version__
 from terraplan.engine import EPS, TOL_T, simulate
 from terraplan.plan import load_plan
@@ -127,7 +127,7 @@ def analyze(max_shock=DEFAULT_MAX_SHOCK, tolerance=DEFAULT_TOLERANCE):
     paths += sorted((ROOT / "data/case").glob("*.csv")) + sorted((ROOT / "src/terraplan").glob("*.py"))
     return dict(
         experiment_id="EXP-07", python=platform.python_version(), terraplan_version=__version__, random_seed=None,
-        input_sha256={p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
+        schema_version=SCHEMA_VERSION, hash_format=HASH_FORMAT, input_sha256=input_hashes(paths),
         method=dict(status="TEAM_ASSUMPTION", metric="L_inf = max(demand_increase, isru_relative_reduction)",
                     reference="MANDATORY_STRESS", years=list(YEARS), domain=[0, max_shock], tolerance=tolerance,
                     rays=RAYS, failure="any hard violation OR annual total/critical service guideline violation",
@@ -146,10 +146,10 @@ def write_report(report, out):
     out.mkdir(parents=True, exist_ok=True)
     # Do not use common.write_table: its four-decimal rounding hides this tiny boundary.
     with (out / "boundary.csv").open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(report["boundary"][0]))
+        writer = csv.DictWriter(f, fieldnames=list(report["boundary"][0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(report["boundary"])
-    (out / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    write_json(out / "report.json", report)
     lines = ["# EXP-07 Reverse stress: fixed P3_isru_zbo_adapted", "",
              "Reference: MANDATORY_STRESS. Additional shocks in 2038-2040: demand *= 1+d; ISRU share *= 1-s.",
              "Failure: any hard violation or annual service below the 97%/99% guidelines (engine tolerances apply).",
@@ -178,7 +178,7 @@ def write_report(report, out):
               "The strict failure boundary is reported as an interval, not an exact attained minimum.",
               "report.json contains input/code hashes, snapshots, tolerances, endpoint scenarios/KPIs and all minimum-witness violations."]
     summary = "\n".join(lines) + "\n"
-    (out / "summary.md").write_text(summary, encoding="utf-8")
+    write_text(out / "summary.md", summary)
     return summary
 
 

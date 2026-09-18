@@ -1,6 +1,5 @@
 """EXP-07: shock isolation, analytical reserve boundary and reproducible CLI report."""
 import csv
-import hashlib
 import json
 import subprocess
 import sys
@@ -13,6 +12,7 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
 
 from run_reverse_stress import RAYS, bisect_boundary, failure_violations, shocked_scenario
+from provenance import sha256
 from terraplan.engine import TOL_T, Violation, simulate
 from terraplan.plan import load_plan, plan_from_dict
 from terraplan.scenario import scenario_from_dict
@@ -129,7 +129,7 @@ def test_cli_reproducibility_and_replay_of_exported_endpoints(tmp_path, root, ca
         assert (dirs[0] / name).read_bytes() == (dirs[1] / name).read_bytes()
     report = json.loads((dirs[0] / "report.json").read_text(encoding="utf-8"))
     for path, digest in report["input_sha256"].items():
-        assert hashlib.sha256((root / path).read_bytes()).hexdigest() == digest
+        assert sha256(root / path) == digest
     assert report["random_seed"] is None
     plan = plan_from_dict(report["plan"])
     minimum = report["minimum"]

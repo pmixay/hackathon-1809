@@ -1,12 +1,15 @@
-"""EXP-06: observe-then-react under MANDATORY_STRESS (no foresight of the stress).
+"""EXP-06: conditional recovery benchmark with delayed activation in MANDATORY_STRESS.
 
-Decisions taken before the shock are frozen as in the BASE plan (P3): Earth-Core reservations/orders for
-2038 and 2039 (12-month lead, TOP), ISRU orders, investments, 2037 closing stock (30.8 t = BASE reserve).
+Earth-Core reservations/orders for ALL years, ISRU orders, investments and pre-2038 orders/stock
+are frozen as in the BASE plan (P3; 2037 closing stock 30.8 t = BASE reserve).
 The ISRU shortfall is observed at the first ISRU delivery, 2038-03. From then on only two levers react,
 each after its own lead time: Earth-Flex (4 months -> extra deliveries from 2038-07) and Emergency
-(6 weeks = 2 months -> from 2038-05). Earth-Core for 2040 may be re-ordered (12-month lead) up to capacity.
+(6 weeks = 2 months -> from 2038-05). Core is unchanged (already at capacity in 2040).
 Reaction rule: each month from the reaction date, add the cheapest available extra delivery so that the
 end-of-month stock follows the stress reserve trajectory (linear path to next year's 45-day reserve).
+Sizing uses the FULL future stress trace, not an information-at-order-date policy. The final-year
+target retains 55.295 t, versus 21.755 t in the capacity-limited adapted comparison plan; the PV
+difference is therefore not a pure value-of-information estimate. See experiments/README.md.
 Outputs: results/reaction/ (fixed, reactive, pre-committed adapted runs + comparison + summary).
 """
 from __future__ import annotations
@@ -40,7 +43,7 @@ def main() -> None:
             extra[(sid, y)] = monthly
     cap = {sid: case.sources[sid].capacity_t_per_year / 12.0 for sid, _ in LEVERS}
     first = {sid: OBSERVE + lt for sid, lt in LEVERS}
-    # Earth-Core 2040 can still be raised (ordered by 2039-01 at the latest for 2040-01 delivery): allow up to capacity
+    # Core is unchanged; in the saved BASE plan it already reaches 190 t in 2040.
     # walk the stress simulation month by month, adding deliveries where the stock trajectory falls short
     inv = None
     trace = {(m.year, m.month): m for m in r_fixed.months}

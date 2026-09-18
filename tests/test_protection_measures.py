@@ -8,6 +8,7 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
 
 from run_protection_measures import analyze, early_zbo_plan, inventory_plan, reservation_plan, write_report
+from provenance import sha256
 from run_reverse_stress import failure_violations, shocked_scenario
 from terraplan.engine import simulate
 from terraplan.plan import load_plan, plan_from_dict
@@ -126,12 +127,10 @@ def test_costs_and_new_frontiers_replay(report, case, stress, assumptions):
 
 
 def test_inputs_unchanged_and_report_reproducible(report, root, case, tmp_path):
-    import hashlib
-
     original = load_plan(root / "configs/plans/P3_isru_zbo_adapted.json", case)
     assert original.to_dict() == report["variants"]["without_measure"]["plan"]
     for path, digest in report["input_sha256"].items():
-        assert hashlib.sha256((root / path).read_bytes()).hexdigest() == digest
+        assert sha256(root / path) == digest
     # Replay the entire computation, not just the serialization of one result.
     assert analyze() == report
     for directory in (tmp_path / "a", tmp_path / "b"):

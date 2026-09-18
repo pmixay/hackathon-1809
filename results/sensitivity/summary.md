@@ -6,11 +6,11 @@ Reference PV cost (BASE, r=8 %): 8,638.9 mln
 
 | Parameter | Range | Threshold (fixed plan) | Threshold (re-planned) | Note |
 |---|---|---:|---:|---|
-| demand_multiplier | 0.80..1.30 | 1.05 | 1.3 | fixed plan breaks when demand exceeds ordered volumes; re-planned plan breaks when reserved capacity (A+B+D) is exhausted |
-| isru_delivery_share_2038 | 0.30..1.00 | 0.95 | — | largest share at which the fixed plan still breaks; below it the 2038 shortfall exceeds the reserve cushion |
+| demand_multiplier | 0.80..1.30 | 1.05 | 1.3 | first failed adverse grid points; not exact boundaries; re-planned x1.25 passes constraints with 12.437 t shortage and 97.45% minimum annual service; x1.30 fails |
+| isru_delivery_share_2038 | 0.30..1.00 | 0.95 | — | largest sampled share failing reserve checks; 1.00 passes and 0.95 fails; exact boundary between them not searched |
 | earth_price_multiplier | 0.80..1.50 | — | — | pure cost effect; no physical constraint depends on price |
 | discount_rate_real | 0.00..0.12 | — | — | affects PV only; ranking of alternatives must be re-checked at each rate (see summary.md) |
-| zbo_commissioning_lag_months | 0..12 | 10 | — | ZBO decided 2037-07; a lag beyond the threshold leaves base-storage months in 2038 and breaks the 2 % loss ceiling |
+| zbo_commissioning_lag_months | 0..12 | 10 | — | first annual loss-check failure at lag 10; lags 7-9 still pass that check; reserve/service already fail at lag 0; ZBO decision 2037-07 |
 
 ## Tornado (PV cost, mln)
 

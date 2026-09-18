@@ -2,6 +2,7 @@
 
 Every experiment is a script; re-running it regenerates `results/<experiment>/` deterministically.
 EXP-10 uses a recorded random seed and common samples; EXP-01–09 have no random sampling.
+Determinism here refers to calculations; standard core export envelopes include timestamps.
 Format of each protocol follows the case: goal, varied parameters and their origin, kept conditions, plan under test,
 metrics, violation criterion, reproduction.
 
@@ -14,7 +15,7 @@ lead-time policy max, ZBO lag 0), engine `src/terraplan`, time step month.
 | EXP-02 | `run_stress_adaptation.py` | quantify stress consequences and the effect of changing decisions | plan orders/reservations/opening stock re-planned for the stress environment; investments unchanged | mandatory stress multipliers exactly as given; budgets & capacities unchanged | P2z, P3, P4: fixed vs adapted; adapted also run in BASE (cost of hedging) | same + deltas | same | `results/stress/` |
 | EXP-03 | `run_demand_sensitivity.py` | low / high demand checks | demand variant (organizer columns), critical share preserved | prices, capacities, stress not applied | fixed BASE plan and re-planned | same | same (guideline) | `results/demand/` |
 | EXP-04 | `run_sensitivity.py` | one-at-a-time sensitivity with thresholds | demand ×0.8–1.3; ISRU share 2038 0.3–1.0; Core/Flex price ×0.8–1.5; r 0–12 %; ZBO lag 0–12 mo (in stress) | everything else as BASE | P3 fixed (and re-planned for demand) | PV, shortage, min SL, hard violations | first grid value with a hard violation or SL below threshold | `results/sensitivity/` (sweep_*.csv, thresholds.csv, tornado.csv, summary.md) |
-| EXP-06 | `run_reaction.py` | show reaction times and already-taken commitments under stress (no foresight) | only Earth-Flex (from 2038-07) and Emergency (from 2038-05) orders after the ISRU shortfall is observed at 2038-03; monthly profiles | everything decided before 2038-03 frozen as in the BASE plan (Core 2038–2039, ISRU, investments, 2037 stock) | P3 fixed vs reactive vs pre-committed adapted | same + shortage by month, Emergency share | same | `results/reaction/` |
+| EXP-06 | `run_reaction.py` | conditional recovery benchmark with delayed activation; full future stress trajectory used to size orders | only Earth-Flex (from 2038-07) and Emergency (from 2038-05) deliveries after observation at 2038-03; monthly profiles | Core orders for ALL years, ISRU, investments and pre-2038 orders/stock fixed as in BASE | P3 fixed vs recovery vs pre-committed adapted; terminal stocks differ | same + shortage by month, Emergency share, terminal stock | same | `results/reaction/` |
 | EXP-05 | `run_extensibility.py` | dataset extension on a copy | +Source-X (60 t/yr, 5.5 mln/t, from 2039), +2041 demand 450/290 t | original constraints, engine unchanged | P3 extended | run completes, Source-X used, 2041 computed | — | `results/extensibility/` |
 
 ## Reading the outputs
@@ -26,13 +27,39 @@ lead-time policy max, ZBO lag 0), engine `src/terraplan`, time step month.
 ## Findings so far (2026-09-18)
 
 1. Earth-only (P1) cannot serve 2040 (capacity 300 t/yr vs ~408 t gross need) — infeasible in BASE.
-2. Every stress-feasible plan needs ZBO before 2038 (loss ceiling 2 %). ZBO also pays for itself in BASE (P2z cheaper than P2 by 50 mln PV).
+2. ZBO is needed to meet the annual stress loss ceiling with continued inflows; commissioning before 2038 is a conservative planning target, not an exact engine deadline. For the tested BASE P3 in stress, lags 7–9 still pass the annual loss check, lag 10 first fails it; reserve/service already fail at lag 0. P2z is cheaper than P2 in BASE by 50 mln PV.
 3. Cheapest BASE plan: P3 ISRU+ZBO (8 639 mln PV) vs P2z Earth-New+ZBO (8 729) — difference 90 mln.
 4. Same plans adapted to stress: P2z 10 097 < P4 10 578 < P3 10 637 mln PV. ISRU's 1250 CAPEX + 70/yr OPEX is not recovered within 2035–2040 when it delivers 55 %/75 % in 2038–2039 and Earth prices are shocked.
-5. Fixed plans have zero slack: P3 breaks at demand ×1.05 or ISRU 2038 share 0.95 (RESERVE_45D). Re-planned P3 holds up to ×1.25 demand; at ×1.30 reserved capacity A+B+D is exhausted.
-6. In stress 2040 all Earth channels (A 190 + B 110 + C 130 = 430) or A+B+D (420) are at capacity; closing stock falls below the 45-day level at end-2040 — 2041 continuity requires Emergency (≤ 2 years) or both Earth-New and ISRU.
-7. Under low demand a fixed plan overfills the depot (STORAGE_OVERFLOW) — Earth-Flex orders must be cut; TOP on Earth-Core limits how far.
-8. EXP-06: reacting only after the ISRU shortfall is observed (2038-03) keeps service at 0.997 (0.9 t short in 2038-04 before Flex/Emergency arrive) but costs 11 135 mln PV vs 10 637 for the pre-committed adaptation (+500 mln: Emergency 39 t in 2038 at 13.8, extra Flex) and cannot repair the 2038-01 reserve (30.8 t < 35.4 t) decided in 2037. Foresight of the stress is worth ≈ 500 mln PV; the cheapest hedge is the 2037 stock top-up (4.6 t).
+5. EXP-04 first sampled adverse failures for fixed BASE P3: demand ×1.05 or ISRU 2038 share 0.95. These are grid observations, not exact boundaries. Re-planned P3 passes constraints at ×1.25 with 12.437 t shortage (min annual service 97.45%); ×1.30 fails. Passing constraints does not imply zero shortage.
+6. In stress 2040 Earth A+B+C (430 t/yr) or A+B+D (420) reach capacity; the adapted P3 closes with 21.755 t. Continuation at comparable demand would require added supply/stock; a 2041 recovery choice among the original sources is not calculated. EXP-05 demonstrates extensibility with synthetic Source-X on a different, non-mandatory-stress background.
+7. Under low demand a fixed plan overfills the depot. EXP-03 has zero TOP idle volume with unchanged orders; advance re-planning reduces orders AND reservations. An operational order-cut policy under frozen contracts remains untested.
+8. EXP-06 is a conditional recovery benchmark: observe in March 2038, permit Emergency from May and Flex from July, size orders using the entire known future stress trajectory. It yields min annual service 0.996987 and 0.866 t shortage, but cannot repair the January 2038 reserve. PV 11 135.161 vs 10 636.655 gives a 498.506 mln difference, not pure value of foresight: terminal stocks are 55.295 vs 21.755 t, including 33.947 t extra Emergency in 2040. Equal terminal conditions and an information-at-order-date policy are needed for a value-of-information claim. No cheapest-hedge claim follows from this comparison.
+9. EXP-02 adapted plans are not universal hedges: in BASE P2z has 17 and P3/P4 each 25 hard overflow violations (`results/stress/summary.csv`). EXP-07's stress-adapted P3 boundary is about 0.0000551373% per physical shock, reflecting only 0.47 kg reserve slack at 2040-01.
+
+## Portable provenance (EXP-07–10)
+
+```bash
+python experiments/provenance.py
+```
+
+- Report/manifest schema version **2**, hash format **`sha256-utf8-lf-v1`**: decode UTF-8,
+  convert CRLF and CR to LF, encode UTF-8, SHA-256. No whitespace trimming, rounding,
+  JSON reordering or removal of the final newline. Real content changes still fail verification.
+- New experimental CSV/JSON/text outputs use LF. Git checkout may change EOL; verification
+  compares exact normalized text. Input hashes include the shared `experiments/provenance.py`.
+- The command validates saved input/code hashes for all four experiments, EXP-09 case-copy
+  hashes and EXP-10's eight output hashes. Tests validate the delivered reports, not only fresh
+  reports, and emulate both LF and CRLF checkouts including input/code files.
+- The audit refresh re-ran EXP-07–10 with the current assumption registry. EXP-07–09 now include
+  the three EXP-10 registry entries in their snapshots; these keys have no effect on their calculations.
+  Numerical results are unchanged. This replaces stale historical input hashes with hashes of
+  inputs actually used in the refreshed runs; it is not a blind re-signing of old results.
+- EXP-09's per-run standard manifests get portable `case_file_sha256` with a separate
+  `case_file_hash_format` marker. Core semantic plan/scenario/assumption/KPI hashes and the
+  `terraplan verify` calculation check retain their own formats. Core code is unchanged.
+- `--compare` for EXP-10 checks normalized artifacts and manifests with the same recorded
+  runtime/package versions. Different versions remain visible and may require numerical
+  comparison; portability of EOL hashes is not a promise of cross-version byte identity.
 
 ## EXP-07: reverse stress of the adapted P3
 
@@ -65,7 +92,7 @@ python -m pytest -q tests/test_reverse_stress.py
 - **Outputs:** `boundary.csv` (full-precision coordinates, first rule/year/month, actual/limit/excess),
   `summary.md`, deterministic `report.json` (plan/scenario/assumption snapshots, input and code hashes,
   method, tolerances, baseline reserves/KPIs, minimum-witness scenarios/KPIs/violations).
-  Repeat the command with another `--out` to compare outputs byte-for-byte in the same environment.
+  Repeat the command with another `--out` to compare outputs after UTF-8/LF normalization in the same environment.
   No random sampling or seed; `run_all.py` also includes EXP-07. This experiment uses compact CSV/JSON
   reports rather than the full per-run XLSX bundle. Tiny thresholds reflect rounding slack, not a
   meaningful operational safety margin; the passing/failing interval is retained instead of rounding to zero.
@@ -193,10 +220,11 @@ python -m pytest -q tests/test_monte_carlo.py
 - **Artifacts:** `samples.csv` saves uniforms and transforms at full precision; `runs.csv`
   saves every plan/sample result and simultaneous first violations; `comparison.csv`,
   `report.json`, `summary.md`, three standalone plans. `run_manifest.json` contains N/seed,
-  generator/draw order, Python/package/model versions, input/code/output SHA-256, method,
+  generator/draw order, Python/package/model versions, normalized input/code/output SHA-256, method,
   plan/scenario/assumption snapshots and replay commands. It has no timestamp or output path.
   `--replay-samples` validates the saved sample against the declared N/seed/assumptions;
-  `--compare` checks every artifact and manifest byte-for-byte in the same environment.
+  `--compare` validates saved inputs and checks every artifact and manifest after LF normalization
+  with the same recorded runtime versions; see the portable-provenance section above.
   The manifest does not hash itself. Standard core exporter manifests are not used for EXP-10.
 - **Limits:** frequencies describe the chosen conditional model, not real-world risk
   probabilities. Wilson intervals measure sampling error only (~0.98 pp maximum half-width

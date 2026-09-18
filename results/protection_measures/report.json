@@ -2,31 +2,34 @@
   "experiment_id": "EXP-08",
   "python": "3.11.9",
   "random_seed": null,
+  "schema_version": 2,
+  "hash_format": "sha256-utf8-lf-v1",
   "input_sha256": {
-    "configs/plans/P3_isru_zbo_adapted.json": "c2f19b6baef07e2bc77cad128f6d6fdb58cd59bcc8c9b366a971d6024b11b77e",
-    "configs/assumptions.yaml": "366b7eea885f09346ea5fb3387d0871a882f53d232b98a1c8311cde4109e4d60",
-    "configs/scenarios/mandatory_stress.yaml": "60f3f1d3241828b1d34c0583b4b1b38006e9ba42e45119d1010031151a59508b",
-    "experiments/run_protection_measures.py": "72ccc1c312b1b157c1791d9583231168236e93f9aff38d96e3de1ffcea68b06c",
-    "experiments/run_reverse_stress.py": "6b81436e6e8cc18c2947e56ee1fafe83fc0b0ca92b2ea05f4209f2a0990b4f1e",
-    "experiments/common.py": "00a200f73b8a64049a5e8d9d5de7b0ef9f47a02987076e9750c418d942405954",
-    "data/case/constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786",
-    "data/case/demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
-    "data/case/investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
-    "data/case/storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
-    "data/case/supply_sources.csv": "311f37a5587fa1617d61681d678ead52f119fbc78a06746029054132961ac8e5",
-    "src/terraplan/__init__.py": "baedc3e66dce29038f226ffbcd4a72fbff9dc8871ed47853fccc72c10429e4c1",
-    "src/terraplan/__main__.py": "cc36d1f1da5e1ca95540e39554500c99d6059f1df24f6532b224312d358188f0",
-    "src/terraplan/assumptions.py": "a977d2e646dda6e328b40b00eae5864c1df878fe01fdac7a59665075cfd03ba3",
-    "src/terraplan/case.py": "d9b7d0927a77b563eb28b1a40b06b0ff73f47f0a628f5c357c45d6d66b20e6e0",
-    "src/terraplan/cli.py": "a3b1e871517e82f3223dcedb952ecd7fc76dc5035e0baced6a397875ed37f5d0",
-    "src/terraplan/compare.py": "391b580157e500e15116b90813afaf3fe81088c89a99ebf7ef7a977ffbfa00a6",
-    "src/terraplan/control_cases.py": "5d4264fff0b394d2004e1d362e7c3d10d7699a4f376113b4628774d20a85c735",
-    "src/terraplan/engine.py": "773696b5eeae8c64b753007c50b6cfc1867df14ef3c52f2b30576abc5e93e043",
-    "src/terraplan/export.py": "91240d9d3d3e272b5c7311c7d52d62843eeebf2047bd0bb88f5ee2794fd80e95",
-    "src/terraplan/plan.py": "f3e65d747110be5ddbd111d823fa0c4128cab1c71152c55b346fbce1eb7416dd",
-    "src/terraplan/planner.py": "7e44b55669528aec2be4f9a4643c15566e85caeca40df15429220695710268ea",
-    "src/terraplan/rules.py": "4d67a403ed2c605aa05cb7c5f97ce1000eb7389979ff0cb53ca0470f9dfcb9c0",
-    "src/terraplan/scenario.py": "1c3cdf810b675d8fbca023252704b01481eadb315f6f62cf103626ee8f7a994a"
+    "configs/plans/P3_isru_zbo_adapted.json": "8f02f34578008083ac79a9c2655319e00ec15b3d8ecff6c20a33af88d16c3551",
+    "configs/assumptions.yaml": "4834052f94f690c0f38a832d4ebeb8afb0e07a8cd04a5172254e004a3793b823",
+    "configs/scenarios/mandatory_stress.yaml": "312b097486d7940c92f70f9180b5d32141d27f1a9a7294f166f6bfeb5ca6a7f7",
+    "experiments/run_protection_measures.py": "fc2c277d7632fafc7039c4c91574abd4d12087632ccf7e9af9015ae38a0481ee",
+    "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
+    "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
+    "data/case/constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
+    "data/case/demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
+    "data/case/investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
+    "data/case/storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
+    "data/case/supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
+    "src/terraplan/__init__.py": "873d78613516449449c8cbbf79d692bde383b1c11313f4e27f196e88a8a1eddb",
+    "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
+    "src/terraplan/assumptions.py": "2ca192cd3f1eb5ae139e8e3bb8de51849ef16bda6175bf265dd6f83fb3346c87",
+    "src/terraplan/case.py": "337fc16f805fd4a7f643cb9b3aae223a3b951ad2266d3507a17d1edd3c4edfed",
+    "src/terraplan/cli.py": "7b68e7267a7adf04177474c7568e79de0616ecd76e6339cdf24cbcdd71be2a93",
+    "src/terraplan/compare.py": "8117c371f5632965e9b50eb1d62f3947a5e5abdbe2e10968e0616ed391b81e18",
+    "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
+    "src/terraplan/engine.py": "6e0e4a1cc7b80cb299aea8da19e8d7f89ff573f080259ea680422dd8e1a3493a",
+    "src/terraplan/export.py": "a40da5f8e3b68c386ca8e7ced9c0cec3658ed3e9c958c57d0616af2b0d089f90",
+    "src/terraplan/plan.py": "08c72e8a3091b45e8908f61b4d1ade07e012498befe9de2191a8648fe0f83def",
+    "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
+    "src/terraplan/rules.py": "3c637c332eeb0dd41f0e453cd3ac8be4d4b773d33f78e2ed4b672469c7ff3c36",
+    "src/terraplan/scenario.py": "d2bceff86a21fd8824f39e1d9bc8a25ae4885edf0e3f571a8e93c9e331c0bf50",
+    "experiments/provenance.py": "0696bf17ac5705e664c5548d792f856f8c4c8924defa4e2a222cc38f7a3040e0"
   },
   "method": {
     "status": "TEAM_ASSUMPTION",
@@ -410,6 +413,36 @@
         "uniform"
       ],
       "justification": "Organizer convention — uniform demand within the year, 365 days."
+    },
+    "exp10_demand_max": {
+      "unit": "additional relative demand increase",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        0.02
+      ],
+      "justification": "EXP-10 only: uniform U(0, value), multiplying both mandatory-stress total and critical demand in 2038-2040. One persistent draw per realization; independent of ISRU and price in the primary model. Diagnostic shares the demand uniform with ISRU. Range brackets EXP-08's 1% target; illustrative conditional uncertainty, not calibrated organizer probabilities. Core ignores this key.\n",
+      "value": 0.02
+    },
+    "exp10_isru_reduction_max": {
+      "unit": "additional relative reduction of actual ISRU delivery share",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        0.02
+      ],
+      "justification": "EXP-10 only: uniform U(0, value), multiplying mandatory-stress ISRU shares by 1-s in 2038-2040. One persistent draw; reliability is not multiplied again. Independent primary model, comonotonic demand/ISRU diagnostic; price independent in both. No random Core capacity outages are included.\n",
+      "value": 0.02
+    },
+    "exp10_price_half_range": {
+      "unit": "relative variable-price deviation from mandatory stress",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        -0.1,
+        0.1
+      ],
+      "justification": "EXP-10 only: uniform U(-value, value), one common persistent price draw for Core and Flex in 2038-2039, independent of physical factors. Multiplies the existing 1.25 stress multiplier. Illustrative economic range without empirical calibration; not a capacity or delivery shock.\n",
+      "value": 0.1
     }
   },
   "selections": {

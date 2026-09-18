@@ -12,9 +12,9 @@
 
 ## How risk changes shift the balance (from experiments)
 
-- ISRU shortfall (R1): the operator absorbs +1 605 mln PV to protect critical and total service (adapted P3); without adaptation commercial consumers lose 170 t and critical service still holds (critical_first). Contract lever: no-pay-for-undelivered clause moves ~180 mln (3.0 × 60 t undelivered) back to the ISRU supplier — research scenario.
+- Joint mandatory stress (R1 ISRU + R2 demand + R4 prices): pre-committed P3 adaptation costs +1 605.030 mln PV against the fixed plan in the SAME stress; without adaptation commercial consumers lose 170.017 t and critical service still holds. These are not isolated R1 effects. A proposed no-pay-for-undelivered clause would cover (100−55)+(120−90)=75 t of ISRU in 2038–2039, or 225 mln nominal at 3 mln/t (`results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS/source_schedule.csv`). This is conditional contract arithmetic, not a simulated refund/PV benefit or a negotiated term.
 - Earth price shock (R4): cost lands on the operator (and through tariffs on consumers); Earth-New and ISRU shares are the hedge; suppliers A/B gain.
-- Demand below base (R3): TOP on Earth-Core makes the operator pay for 70 % of reserved volume — the supplier keeps revenue, the operator pays for flexibility it does not use.
+- Demand below base (R3): with unchanged orders, EXP-03 has overflow and higher holding cost, but zero TOP idle volume. Cutting orders while reservations stay fixed could create TOP idle payments (Core floor 70%); that operational contract scenario is not demonstrated by the advance re-planning of both orders and reservations in EXP-03.
 
 ## MCDA (to do, R2)
 

@@ -2,7 +2,9 @@
 
 Adapted plan = the same strategy re-planned against the stress environment (demand x1.15 from 2038,
 ISRU 55 %/75 %, price x1.25): larger 2037 closing stock (pre-committed), extra Earth-Flex / Emergency
-orders in 2038-2039 (reactive within their 4-month / 6-week lead times). Investments are NOT changed.
+orders sized with advance knowledge, respecting source lead times (not post-observation reaction).
+P3 uses extra Core/Flex and no Emergency. Investments are NOT changed. All adapted plans are
+also evaluated in BASE, where the saved fixed orders cause storage overflow (17/25/25 hard checks).
 Outputs: results/stress/<plan>_adapted_MANDATORY_STRESS/, results/stress/compare_<plan>.{csv,md}, summary.
 """
 from common import PLANS, RESULTS, STRATEGIES, kpi_row, load_all, run_and_save, scenario, write_table

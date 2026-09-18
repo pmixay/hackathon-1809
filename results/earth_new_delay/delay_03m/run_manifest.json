@@ -6,17 +6,18 @@
   "case_dir": "results/earth_new_delay/delay_03m/case",
   "case_dir_absolute_at_run": "C:\\Users\\alikh\\OneDrive\\Desktop\\projects\\hackathon-1809\\results\\earth_new_delay\\delay_03m\\case",
   "case_file_sha256": {
-    "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
-    "supply_sources.csv": "2f95a0175ff02c644aed8450d655bd0a78dc43d5f56221a7f3a3cf5cf847085b",
-    "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
-    "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
-    "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786"
+    "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
+    "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
+    "investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
+    "storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
+    "supply_sources.csv": "26b0a8309712345dbdaa0726ec1a974024e2297b54f9f9f43e4198d42c6ec238"
   },
   "plan_sha256": "a5cb983b2bcbda34824015815a2a9092273e73ca90242511ebac41fe29a5f5fb",
   "scenario_sha256": "95d9dc15fec278387d0837529c224516c551b3f2364870aa5fe120c6c59d7d16",
-  "assumptions_sha256": "3c0f8bbe10a78837cee90e4b95973d32b997203a3b09bacd9f3d45a35e5a611f",
+  "assumptions_sha256": "c5f2bf1834694b7a11cf53cab40e60bfe2808a8ec6f67661b70ce684b6d8fd5c",
   "kpi_sha256": "452a1b986c0554549519c727e7e07768553a89685e82ad7fce2606a921aa778b",
   "kpi_precision": 6,
   "random_seed": null,
-  "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to 6 decimals before hashing, which absorbs last-bit differences of float summation between Python versions)"
+  "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to 6 decimals before hashing, which absorbs last-bit differences of float summation between Python versions)",
+  "case_file_hash_format": "sha256-utf8-lf-v1"
 }

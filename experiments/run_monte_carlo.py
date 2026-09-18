@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import hashlib
 import json
 import math
 import platform
@@ -19,6 +18,7 @@ from pathlib import Path
 from statistics import NormalDist
 
 from common import ASSUMPTIONS, CASE_DIR, PLANS, RESULTS, ROOT, load_all, scenario
+from provenance import HASH_FORMAT, SCHEMA_VERSION, input_hashes, sha256, verify_saved, write_text
 from run_protection_measures import early_zbo_plan, inventory_plan
 from run_reverse_stress import SERVICE_RULES, YEARS, failure_violations, shocked_scenario
 from terraplan import __version__
@@ -155,10 +155,6 @@ def summarize(rows):
     return summaries
 
 
-def sha256(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-
-
 def package_versions():
     versions = {}
     for name in ("PyYAML", "openpyxl", "pytest"):
@@ -226,14 +222,14 @@ def analyze(n=DEFAULT_N, seed=DEFAULT_SEED, replay_samples=None):
              ROOT / "experiments/run_protection_measures.py", ROOT / "experiments/run_all.py",
              ROOT / "requirements.txt"]
     paths += sorted(CASE_DIR.glob("*.csv")) + sorted((ROOT / "src/terraplan").glob("*.py"))
-    manifest = dict(experiment_id="EXP-10", schema_version=1, method=method,
+    manifest = dict(experiment_id="EXP-10", schema_version=SCHEMA_VERSION, hash_format=HASH_FORMAT, method=method,
                     python=platform.python_version(), python_implementation=platform.python_implementation(),
                     terraplan_version=__version__, packages=package_versions(),
-                    input_sha256={p.relative_to(ROOT).as_posix(): sha256(p) for p in paths},
+                    input_sha256=input_hashes(paths),
                     assumptions=assumptions.entries, reference_scenario=stress.to_dict(),
                     plans={name: plan.to_dict() for name, plan in plans.items()},
                     reproduction=f"python experiments/run_monte_carlo.py --n {n} --seed {seed} --out results/monte_carlo",
-                    replay="add --replay-samples <original>/samples.csv --out <other-dir> --compare <original>; compare is byte-for-byte")
+                    replay="add --replay-samples <original>/samples.csv --out <other-dir> --compare <original>; exact UTF-8 comparison after LF normalization; same recorded runtime versions")
     return dict(manifest=manifest, samples=samples, runs=rows,
                 report=dict(experiment_id="EXP-10", method=method, reference=reference, comparison=summarize(rows)))
 
@@ -282,7 +278,8 @@ def summary_text(report):
               "- Frequencies are conditional on MANDATORY_STRESS and TEAM_ASSUMPTION ranges; they are not real-world risk probabilities or evidence of BASE feasibility.",
               "- samples.csv retains latent uniforms and both dependence transforms; runs.csv contains every realization, all first causes and paired cost deltas.",
               "- report.json contains reference controls, reason/date counts and mean/min/max/P5/P50/P95 for all severity and cost metrics.",
-              "- run_manifest.json records parameters, versions, input/code/output SHA-256, plan/scenario/assumption snapshots. No timestamps or output paths enter its hashes."]
+              "- run_manifest.json records parameters, versions, input/code/output SHA-256, plan/scenario/assumption snapshots. No timestamps or output paths enter its hashes.",
+              "- Hash format sha256-utf8-lf-v1 normalizes CRLF/CR to LF only; all other bytes remain significant. Saved-input verification: python experiments/provenance.py."]
     return "\n".join(lines) + "\n"
 
 
@@ -291,7 +288,7 @@ def write_report(data, out):
     out.mkdir(parents=True, exist_ok=True)
     files = []
     def write_json(name, obj):
-        (out / name).write_text(json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+        write_text(out / name, json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
         files.append(name)
     def write_csv(name, rows):
         with (out / name).open("w", encoding="utf-8", newline="") as f:
@@ -314,7 +311,7 @@ def write_report(data, out):
     for name, plan in data["manifest"]["plans"].items():
         write_json(f"{name}.plan.json", plan)
     text = summary_text(report)
-    (out / "summary.md").write_text(text, encoding="utf-8")
+    write_text(out / "summary.md", text)
     files.append("summary.md")
     manifest = dict(data["manifest"], output_sha256={name: sha256(out / name) for name in sorted(files)})
     write_json("run_manifest.json", manifest)
@@ -323,11 +320,12 @@ def write_report(data, out):
 
 def compare_outputs(out, original):
     out, original = Path(out), Path(original)
-    manifest = json.loads((out / "run_manifest.json").read_text(encoding="utf-8"))
+    manifest = verify_saved(out)
+    verify_saved(original)
     for name, digest in manifest["output_sha256"].items():
         if sha256(out / name) != digest or sha256(original / name) != digest:
             raise ValueError(f"reproducibility mismatch: {name}")
-    if (out / "run_manifest.json").read_bytes() != (original / "run_manifest.json").read_bytes():
+    if sha256(out / "run_manifest.json") != sha256(original / "run_manifest.json"):
         raise ValueError("reproducibility mismatch: run_manifest.json")
 
 
@@ -337,7 +335,7 @@ def main(argv=None):
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--out", type=Path, default=RESULTS / "monte_carlo")
     parser.add_argument("--replay-samples", type=Path, help="replay saved CSV, verifying it against declared n/seed/assumptions")
-    parser.add_argument("--compare", type=Path, help="verify all output bytes against an earlier run")
+    parser.add_argument("--compare", type=Path, help="verify saved inputs and all outputs after UTF-8/LF normalization")
     args = parser.parse_args(argv)
     if args.compare and args.compare.resolve() == args.out.resolve():
         parser.error("--compare must differ from --out")
@@ -350,7 +348,7 @@ def main(argv=None):
         parser.error(str(exc))
     print(text)
     if args.compare:
-        print("Reproducibility verified: every artifact and manifest is byte-identical.")
+        print("Reproducibility verified: inputs validated; every artifact and manifest matches after LF normalization.")
 
 
 if __name__ == "__main__":

@@ -19,7 +19,9 @@ flowchart LR
 ```
 
 Critical dependencies: ISRU capacity exists only if 1250 mln is paid by 2037-12; Earth-New capacity only 24 months
-after exercise; stress loss ceiling (≤ 2 % from 2038) is met only with ZBO commissioned before 2038.
+after exercise. Stress losses are checked annually (≤ 2 % from 2038), weighted by actual throughput.
+ZBO by 2038-01 is a conservative target, not the exact annual-check deadline: EXP-04 lags 7–9
+from a 2037-07 decision still pass the loss check, while lag 10 fails it. Other constraints need separate checks.
 
 ## 2. Data flow and blocks
 

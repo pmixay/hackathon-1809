@@ -67,3 +67,4 @@ First failure (simultaneous causes kept together):
 - samples.csv retains latent uniforms and both dependence transforms; runs.csv contains every realization, all first causes and paired cost deltas.
 - report.json contains reference controls, reason/date counts and mean/min/max/P5/P50/P95 for all severity and cost metrics.
 - run_manifest.json records parameters, versions, input/code/output SHA-256, plan/scenario/assumption snapshots. No timestamps or output paths enter its hashes.
+- Hash format sha256-utf8-lf-v1 normalizes CRLF/CR to LF only; all other bytes remain significant. Saved-input verification: python experiments/provenance.py.

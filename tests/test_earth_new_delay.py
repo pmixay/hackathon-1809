@@ -1,5 +1,4 @@
 """EXP-09: isolated commissioning delay, frozen slots, finance and export replay."""
-import hashlib
 import json
 import sys
 from dataclasses import asdict
@@ -10,6 +9,7 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "experiments"))
 
 from run_earth_new_delay import DELAYS, copy_delayed_case, run_experiment
+from provenance import sha256
 from independent_recalc import recalc
 from terraplan.case import load_case
 from terraplan.cli import main as cli_main
@@ -124,7 +124,7 @@ def test_export_verify_independent_csv_and_repeatability(experiment, tmp_path, r
         assert cli_main(["verify", str(folder), "--case", str(folder / "case")]) == 0
         assert recalc(folder, folder / "case") == []
     for path, digest in report["input_sha256"].items():
-        assert hashlib.sha256((root / path).read_bytes()).hexdigest() == digest
+        assert sha256(root / path) == digest
     second = tmp_path / "repeat"
     report2, _ = run_experiment(second)
     assert report == report2

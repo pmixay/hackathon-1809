@@ -72,9 +72,11 @@ Protocols of every experiment: `experiments/README.md`. Methods and formulas: `d
 | P3 ISRU + ZBO | **8 639** | yes | 3 hard violations, shortage 170 t | 10 637 |
 | P4 Earth-New + ISRU + ZBO | 8 858 | yes | 3 hard violations, shortage 170 t | 10 578 |
 
-ZBO is required by every stress-feasible plan (base storage loses 4.5 % > 2 % ceiling from 2038). A plan
-built for BASE carries no slack: it breaks at +5 % demand or a 5 % ISRU shortfall (`results/sensitivity/`).
-Choosing between P2z and P3 is a robustness question, not a price question — see `docs/management_note.md`.
+ZBO is needed for the annual stress loss ceiling with continued supply (4.5 % base losses > 2 %).
+Startup before 2038 is a conservative target; the actual check is annual losses / throughput.
+For fixed BASE P3, +5 % demand / 5 % ISRU shortfall are the first failed adverse grid points,
+not exact boundaries (`results/sensitivity/`). Stress-adapted P2z/P3/P4 overflow in BASE with
+17/25/25 hard violations; no universal robust policy has been demonstrated. See `docs/management_note.md`.
 
 ## Ограничения прототипа / Prototype limits
 
