@@ -1,0 +1,3021 @@
+{
+  "experiment_id": "EXP-09",
+  "python": "3.11.9",
+  "random_seed": null,
+  "input_sha256": {
+    "configs/plans/P2z_earth_new_zbo.json": "1a3119ae262e7d142f5a380f9626b6ebcd3f6b7f8037188bb0fc6593ae191ff5",
+    "configs/assumptions.yaml": "366b7eea885f09346ea5fb3387d0871a882f53d232b98a1c8311cde4109e4d60",
+    "configs/scenarios/base.yaml": "993aa5f878daf6437e6905d74d0649a82b580030ef3a008677b8a33b8f59b04a",
+    "experiments/run_earth_new_delay.py": "34ba21b2cd1577b52a6aecceea441d807a470e717e98ace334c197582523cb7b",
+    "experiments/common.py": "00a200f73b8a64049a5e8d9d5de7b0ef9f47a02987076e9750c418d942405954",
+    "experiments/run_reverse_stress.py": "6b81436e6e8cc18c2947e56ee1fafe83fc0b0ca92b2ea05f4209f2a0990b4f1e",
+    "data/case/constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786",
+    "data/case/demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+    "data/case/investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+    "data/case/storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+    "data/case/supply_sources.csv": "311f37a5587fa1617d61681d678ead52f119fbc78a06746029054132961ac8e5",
+    "src/terraplan/__init__.py": "baedc3e66dce29038f226ffbcd4a72fbff9dc8871ed47853fccc72c10429e4c1",
+    "src/terraplan/__main__.py": "cc36d1f1da5e1ca95540e39554500c99d6059f1df24f6532b224312d358188f0",
+    "src/terraplan/assumptions.py": "a977d2e646dda6e328b40b00eae5864c1df878fe01fdac7a59665075cfd03ba3",
+    "src/terraplan/case.py": "d9b7d0927a77b563eb28b1a40b06b0ff73f47f0a628f5c357c45d6d66b20e6e0",
+    "src/terraplan/cli.py": "a3b1e871517e82f3223dcedb952ecd7fc76dc5035e0baced6a397875ed37f5d0",
+    "src/terraplan/compare.py": "391b580157e500e15116b90813afaf3fe81088c89a99ebf7ef7a977ffbfa00a6",
+    "src/terraplan/control_cases.py": "5d4264fff0b394d2004e1d362e7c3d10d7699a4f376113b4628774d20a85c735",
+    "src/terraplan/engine.py": "773696b5eeae8c64b753007c50b6cfc1867df14ef3c52f2b30576abc5e93e043",
+    "src/terraplan/export.py": "91240d9d3d3e272b5c7311c7d52d62843eeebf2047bd0bb88f5ee2794fd80e95",
+    "src/terraplan/plan.py": "f3e65d747110be5ddbd111d823fa0c4128cab1c71152c55b346fbce1eb7416dd",
+    "src/terraplan/planner.py": "7e44b55669528aec2be4f9a4643c15566e85caeca40df15429220695710268ea",
+    "src/terraplan/rules.py": "4d67a403ed2c605aa05cb7c5f97ce1000eb7389979ff0cb53ca0470f9dfcb9c0",
+    "src/terraplan/scenario.py": "1c3cdf810b675d8fbca023252704b01481eadb315f6f62cf103626ee8f7a994a"
+  },
+  "method": {
+    "status": "TEAM_ASSUMPTION",
+    "plan": "P2z_earth_new_zbo",
+    "reference": "BASE",
+    "delays_months": [
+      0,
+      3,
+      6,
+      12
+    ],
+    "factor": "only Earth-New preparation lead time on a copy of case data",
+    "scheduling": "freeze original C monthly delivery slots; no catch-up or substitution",
+    "contracts": "original orders and investment payment dates frozen; no refund for missed fuel; reservation prorated by engine availability",
+    "failure": "hard violations or 97%/99% service guidelines; earliest year/month, annual checks at December",
+    "first_violation_timing": "year-only C unavailability is dated by the first missed frozen delivery; engine exports unchanged",
+    "costs": "engine cash costs only; no invented delay penalties, compensation or mission-loss valuation",
+    "reproducibility": "summary CSV/JSON deterministic; standard export envelope contains generation timestamps"
+  },
+  "original_plan": {
+    "plan_id": "P2z_earth_new_zbo",
+    "scenario_id": "BASE",
+    "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling)",
+    "decisions": {
+      "capacity_reservations": [
+        {
+          "source_id": "A",
+          "year": 2035,
+          "reserved_capacity_t": 109.876
+        },
+        {
+          "source_id": "A",
+          "year": 2036,
+          "reserved_capacity_t": 153.052
+        },
+        {
+          "source_id": "A",
+          "year": 2037,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2037,
+          "reserved_capacity_t": 13.189
+        },
+        {
+          "source_id": "A",
+          "year": 2038,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2038,
+          "reserved_capacity_t": 71.772
+        },
+        {
+          "source_id": "A",
+          "year": 2039,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2039,
+          "reserved_capacity_t": 130.0
+        },
+        {
+          "source_id": "B",
+          "year": 2039,
+          "reserved_capacity_t": 12.622
+        },
+        {
+          "source_id": "A",
+          "year": 2040,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2040,
+          "reserved_capacity_t": 130.0
+        },
+        {
+          "source_id": "B",
+          "year": 2040,
+          "reserved_capacity_t": 74.737
+        }
+      ],
+      "supply_orders": [
+        {
+          "source_id": "A",
+          "year": 2035,
+          "ordered_t": 109.876,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2036,
+          "ordered_t": 153.0518,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2037,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2037,
+          "ordered_t": 13.1882,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2038,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2038,
+          "ordered_t": 71.7714,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2039,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2039,
+          "ordered_t": 130.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "B",
+          "year": 2039,
+          "ordered_t": 12.6216,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2040,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2040,
+          "ordered_t": 130.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "B",
+          "year": 2040,
+          "ordered_t": 74.7369,
+          "profile": "uniform"
+        }
+      ],
+      "investments": [
+        {
+          "investment_id": "EARTH_NEW",
+          "decision_year": 2035,
+          "decision_month": 1,
+          "option_year": 2035,
+          "option_month": 1
+        },
+        {
+          "investment_id": "ZBO",
+          "decision_year": 2037,
+          "decision_month": 7
+        }
+      ],
+      "inventory_policy": {
+        "opening_stock": [
+          {
+            "source_id": "B",
+            "tons": 12.9098,
+            "delivery_year": 2034,
+            "delivery_month": 12
+          }
+        ],
+        "reserve_mode": "physical",
+        "allocation_rule": "critical_first"
+      }
+    },
+    "meta": {
+      "builder": "greedy_merit_order",
+      "strategy": {
+        "plan_id": "P2z_earth_new_zbo",
+        "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling)",
+        "reservation_caps": {
+          "A": 190,
+          "B": 110,
+          "C": 130
+        }
+      },
+      "stress_aware": false,
+      "builder_notes": [],
+      "status": "TEAM_DECISION"
+    }
+  },
+  "frozen_plan": {
+    "plan_id": "P2z_earth_new_zbo_fixed_calendar",
+    "scenario_id": "BASE",
+    "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling)",
+    "decisions": {
+      "capacity_reservations": [
+        {
+          "source_id": "A",
+          "year": 2035,
+          "reserved_capacity_t": 109.876
+        },
+        {
+          "source_id": "A",
+          "year": 2036,
+          "reserved_capacity_t": 153.052
+        },
+        {
+          "source_id": "A",
+          "year": 2037,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2037,
+          "reserved_capacity_t": 13.189
+        },
+        {
+          "source_id": "A",
+          "year": 2038,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2038,
+          "reserved_capacity_t": 71.772
+        },
+        {
+          "source_id": "A",
+          "year": 2039,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2039,
+          "reserved_capacity_t": 130.0
+        },
+        {
+          "source_id": "B",
+          "year": 2039,
+          "reserved_capacity_t": 12.622
+        },
+        {
+          "source_id": "A",
+          "year": 2040,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "C",
+          "year": 2040,
+          "reserved_capacity_t": 130.0
+        },
+        {
+          "source_id": "B",
+          "year": 2040,
+          "reserved_capacity_t": 74.737
+        }
+      ],
+      "supply_orders": [
+        {
+          "source_id": "A",
+          "year": 2035,
+          "ordered_t": 109.876,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2036,
+          "ordered_t": 153.0518,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2037,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2037,
+          "ordered_t": 13.1882,
+          "profile": "monthly",
+          "monthly_t": [
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668,
+            1.0990166666666668
+          ]
+        },
+        {
+          "source_id": "A",
+          "year": 2038,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2038,
+          "ordered_t": 71.7714,
+          "profile": "monthly",
+          "monthly_t": [
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095,
+            5.98095
+          ]
+        },
+        {
+          "source_id": "A",
+          "year": 2039,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2039,
+          "ordered_t": 130.0,
+          "profile": "monthly",
+          "monthly_t": [
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334
+          ]
+        },
+        {
+          "source_id": "B",
+          "year": 2039,
+          "ordered_t": 12.6216,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2040,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "C",
+          "year": 2040,
+          "ordered_t": 130.0,
+          "profile": "monthly",
+          "monthly_t": [
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334,
+            10.833333333333334
+          ]
+        },
+        {
+          "source_id": "B",
+          "year": 2040,
+          "ordered_t": 74.7369,
+          "profile": "uniform"
+        }
+      ],
+      "investments": [
+        {
+          "investment_id": "EARTH_NEW",
+          "decision_year": 2035,
+          "decision_month": 1,
+          "option_year": 2035,
+          "option_month": 1
+        },
+        {
+          "investment_id": "ZBO",
+          "decision_year": 2037,
+          "decision_month": 7
+        }
+      ],
+      "inventory_policy": {
+        "opening_stock": [
+          {
+            "source_id": "B",
+            "tons": 12.9098,
+            "delivery_year": 2034,
+            "delivery_month": 12
+          }
+        ],
+        "reserve_mode": "physical",
+        "allocation_rule": "critical_first"
+      }
+    },
+    "meta": {
+      "builder": "greedy_merit_order",
+      "strategy": {
+        "plan_id": "P2z_earth_new_zbo",
+        "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling)",
+        "reservation_caps": {
+          "A": 190,
+          "B": 110,
+          "C": 130
+        }
+      },
+      "stress_aware": false,
+      "builder_notes": [],
+      "status": "TEAM_DECISION",
+      "experiment": "EXP-09",
+      "fixed_calendar": true,
+      "missed_slot_policy": "unavailable slots lost; no catch-up, refund or substitute orders"
+    }
+  },
+  "reference_kpi": {
+    "total_cost_mln": 10980.254866178,
+    "pv_cost_mln": 8729.403761679878,
+    "discount_rate_real": 0.08,
+    "demand_total_t": 1390.0,
+    "served_total_t": 1390.0,
+    "served_critical_t": 950.0,
+    "shortage_total_t": 0.0,
+    "shortage_critical_t": 0.0,
+    "cost_per_served_t_mln": 7.899463932502158,
+    "pv_cost_per_served_t_mln": 6.280146591136603,
+    "min_service_level_total": 1.0,
+    "min_service_level_critical": 1.0,
+    "losses_total_t": 29.4921735,
+    "throughput_total_t": 1455.2459,
+    "capex_total_mln": 540.0,
+    "procurement_total_mln": 9683.75339,
+    "reservation_total_mln": 578.84622,
+    "holding_total_mln": 135.65525617800043,
+    "fixed_opex_total_mln": 42.0,
+    "take_or_pay_idle_t": 0.0,
+    "opening_inventory_t": 12.328859000000001,
+    "closing_inventory_t": 48.082585500000306,
+    "hard_violations": 0,
+    "guideline_violations": 0,
+    "warnings": 0,
+    "feasible": true,
+    "checks_total": 75,
+    "checks_passed": 73
+  },
+  "comparison": [
+    {
+      "delay_months": 0,
+      "commissioning": "2037-01",
+      "missed_earth_new_t": 0.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "",
+      "max_reserve_gap_t": 0.0,
+      "total_cost_mln": 10980.254866178,
+      "pv_cost_mln": 8729.403761679878,
+      "delta_total_mln": 0.0,
+      "delta_pv_mln": 0.0,
+      "hard_violations": 0,
+      "guideline_violations": 0,
+      "first_rule": null,
+      "first_year": null,
+      "first_month": null
+    },
+    {
+      "delay_months": 3,
+      "commissioning": "2037-04",
+      "missed_earth_new_t": 3.2970499999999987,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "2038;2039;2040",
+      "max_reserve_gap_t": 3.1483562582191205,
+      "total_cost_mln": 10970.480866305501,
+      "pv_cost_mln": 8721.846099703494,
+      "delta_total_mln": -9.77399987249919,
+      "delta_pv_mln": -7.557661976383315,
+      "hard_violations": 7,
+      "guideline_violations": 0,
+      "first_rule": "SOURCE_NOT_AVAILABLE",
+      "first_year": 2037,
+      "first_month": 1
+    },
+    {
+      "delay_months": 6,
+      "commissioning": "2037-07",
+      "missed_earth_new_t": 6.594099999999999,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "2038;2039;2040",
+      "max_reserve_gap_t": 6.297039008219112,
+      "total_cost_mln": 10961.273629328,
+      "pv_cost_mln": 8714.7743455589,
+      "delta_total_mln": -18.98123685000064,
+      "delta_pv_mln": -14.629416120977112,
+      "hard_violations": 10,
+      "guideline_violations": 0,
+      "first_rule": "SOURCE_NOT_AVAILABLE",
+      "first_year": 2037,
+      "first_month": 1
+    },
+    {
+      "delay_months": 12,
+      "commissioning": "2038-01",
+      "missed_earth_new_t": 13.1882,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "2038;2039;2040",
+      "max_reserve_gap_t": 12.812009808219084,
+      "total_cost_mln": 10944.050247656001,
+      "pv_cost_mln": 8701.708813056419,
+      "delta_total_mln": -36.20461852199878,
+      "delta_pv_mln": -27.694948623458913,
+      "hard_violations": 6,
+      "guideline_violations": 0,
+      "first_rule": "SOURCE_NOT_AVAILABLE",
+      "first_year": 2037,
+      "first_month": 1
+    }
+  ],
+  "yearly": [
+    {
+      "delay_months": 0,
+      "year": 2035,
+      "demand_t": 100.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 12.328859000000001,
+      "reserve_required_t": 12.32876712328767,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 17.260439000000027
+    },
+    {
+      "delay_months": 0,
+      "year": 2036,
+      "demand_t": 140.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 17.260439000000027,
+      "reserve_required_t": 17.26027397260274,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 23.424908000000073
+    },
+    {
+      "delay_months": 0,
+      "year": 2037,
+      "demand_t": 190.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 23.424908000000073,
+      "reserve_required_t": 23.424657534246574,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 30.82224430000005
+    },
+    {
+      "delay_months": 0,
+      "year": 2038,
+      "demand_t": 250.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 30.82224430000005,
+      "reserve_required_t": 30.82191780821918,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 39.45238750000013
+    },
+    {
+      "delay_months": 0,
+      "year": 2039,
+      "demand_t": 320.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 39.45238750000013,
+      "reserve_required_t": 39.45205479452055,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 48.08252830000018
+    },
+    {
+      "delay_months": 0,
+      "year": 2040,
+      "demand_t": 390.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 48.08252830000018,
+      "reserve_required_t": 48.082191780821915,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 48.082585500000306
+    },
+    {
+      "delay_months": 3,
+      "year": 2035,
+      "demand_t": 100.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 12.328859000000001,
+      "reserve_required_t": 12.32876712328767,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 17.260439000000027
+    },
+    {
+      "delay_months": 3,
+      "year": 2036,
+      "demand_t": 140.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 17.260439000000027,
+      "reserve_required_t": 17.26027397260274,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 23.424908000000073
+    },
+    {
+      "delay_months": 3,
+      "year": 2037,
+      "demand_t": 190.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 23.424908000000073,
+      "reserve_required_t": 23.424657534246574,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 27.67356155000006
+    },
+    {
+      "delay_months": 3,
+      "year": 2038,
+      "demand_t": 250.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 27.67356155000006,
+      "reserve_required_t": 30.82191780821918,
+      "reserve_ok": false,
+      "reserve_gap_t": 3.1483562582191205,
+      "closing_t": 36.303704750000136
+    },
+    {
+      "delay_months": 3,
+      "year": 2039,
+      "demand_t": 320.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 36.303704750000136,
+      "reserve_required_t": 39.45205479452055,
+      "reserve_ok": false,
+      "reserve_gap_t": 3.148350044520413,
+      "closing_t": 44.933845550000186
+    },
+    {
+      "delay_months": 3,
+      "year": 2040,
+      "demand_t": 390.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 44.933845550000186,
+      "reserve_required_t": 48.082191780821915,
+      "reserve_ok": false,
+      "reserve_gap_t": 3.14834623082173,
+      "closing_t": 44.9339027500003
+    },
+    {
+      "delay_months": 6,
+      "year": 2035,
+      "demand_t": 100.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 12.328859000000001,
+      "reserve_required_t": 12.32876712328767,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 17.260439000000027
+    },
+    {
+      "delay_months": 6,
+      "year": 2036,
+      "demand_t": 140.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 17.260439000000027,
+      "reserve_required_t": 17.26027397260274,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 23.424908000000073
+    },
+    {
+      "delay_months": 6,
+      "year": 2037,
+      "demand_t": 190.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 23.424908000000073,
+      "reserve_required_t": 23.424657534246574,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 24.524878800000067
+    },
+    {
+      "delay_months": 6,
+      "year": 2038,
+      "demand_t": 250.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 24.524878800000067,
+      "reserve_required_t": 30.82191780821918,
+      "reserve_ok": false,
+      "reserve_gap_t": 6.297039008219112,
+      "closing_t": 33.155022000000145
+    },
+    {
+      "delay_months": 6,
+      "year": 2039,
+      "demand_t": 320.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 33.155022000000145,
+      "reserve_required_t": 39.45205479452055,
+      "reserve_ok": false,
+      "reserve_gap_t": 6.297032794520405,
+      "closing_t": 41.785162800000194
+    },
+    {
+      "delay_months": 6,
+      "year": 2040,
+      "demand_t": 390.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 41.785162800000194,
+      "reserve_required_t": 48.082191780821915,
+      "reserve_ok": false,
+      "reserve_gap_t": 6.297028980821722,
+      "closing_t": 41.78522000000032
+    },
+    {
+      "delay_months": 12,
+      "year": 2035,
+      "demand_t": 100.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 12.328859000000001,
+      "reserve_required_t": 12.32876712328767,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 17.260439000000027
+    },
+    {
+      "delay_months": 12,
+      "year": 2036,
+      "demand_t": 140.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 17.260439000000027,
+      "reserve_required_t": 17.26027397260274,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 23.424908000000073
+    },
+    {
+      "delay_months": 12,
+      "year": 2037,
+      "demand_t": 190.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 23.424908000000073,
+      "reserve_required_t": 23.424657534246574,
+      "reserve_ok": true,
+      "reserve_gap_t": 0.0,
+      "closing_t": 18.009908000000095
+    },
+    {
+      "delay_months": 12,
+      "year": 2038,
+      "demand_t": 250.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 18.009908000000095,
+      "reserve_required_t": 30.82191780821918,
+      "reserve_ok": false,
+      "reserve_gap_t": 12.812009808219084,
+      "closing_t": 26.64005120000017
+    },
+    {
+      "delay_months": 12,
+      "year": 2039,
+      "demand_t": 320.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 26.64005120000017,
+      "reserve_required_t": 39.45205479452055,
+      "reserve_ok": false,
+      "reserve_gap_t": 12.81200359452038,
+      "closing_t": 35.270192000000165
+    },
+    {
+      "delay_months": 12,
+      "year": 2040,
+      "demand_t": 390.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "service_total": 1.0,
+      "service_critical": 1.0,
+      "opening_t": 35.270192000000165,
+      "reserve_required_t": 48.082191780821915,
+      "reserve_ok": false,
+      "reserve_gap_t": 12.81199978082175,
+      "closing_t": 35.27024920000028
+    }
+  ],
+  "runs": [
+    {
+      "delay_months": 0,
+      "commissioning": "2037-01",
+      "missed_earth_new_t": 0.0,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "",
+      "max_reserve_gap_t": 0.0,
+      "total_cost_mln": 10980.254866178,
+      "pv_cost_mln": 8729.403761679878,
+      "delta_total_mln": 0.0,
+      "delta_pv_mln": 0.0,
+      "hard_violations": 0,
+      "guideline_violations": 0,
+      "first_rule": null,
+      "first_year": null,
+      "first_month": null,
+      "result_dir": "delay_00m",
+      "kpi": {
+        "total_cost_mln": 10980.254866178,
+        "pv_cost_mln": 8729.403761679878,
+        "discount_rate_real": 0.08,
+        "demand_total_t": 1390.0,
+        "served_total_t": 1390.0,
+        "served_critical_t": 950.0,
+        "shortage_total_t": 0.0,
+        "shortage_critical_t": 0.0,
+        "cost_per_served_t_mln": 7.899463932502158,
+        "pv_cost_per_served_t_mln": 6.280146591136603,
+        "min_service_level_total": 1.0,
+        "min_service_level_critical": 1.0,
+        "losses_total_t": 29.4921735,
+        "throughput_total_t": 1455.2459,
+        "capex_total_mln": 540.0,
+        "procurement_total_mln": 9683.75339,
+        "reservation_total_mln": 578.84622,
+        "holding_total_mln": 135.65525617800043,
+        "fixed_opex_total_mln": 42.0,
+        "take_or_pay_idle_t": 0.0,
+        "opening_inventory_t": 12.328859000000001,
+        "closing_inventory_t": 48.082585500000306,
+        "hard_violations": 0,
+        "guideline_violations": 0,
+        "warnings": 0,
+        "feasible": true,
+        "checks_total": 75,
+        "checks_passed": 73
+      },
+      "scenario": {
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_00M",
+        "label": "Earth-New preparation delay 0 months; BASE demand/prices",
+        "status": "TEAM_ASSUMPTION",
+        "demand_multiplier": {
+          "default": 1.0
+        },
+        "critical_demand_multiplier": null,
+        "variable_price_multiplier": {
+          "default": 1.0
+        },
+        "actual_delivery_share": {
+          "default": 1.0
+        },
+        "loss_ceiling": {
+          "enabled": false
+        },
+        "demand_variant": "base",
+        "enforce_service_thresholds": null,
+        "notes": [
+          "BASE does not apply reliability as an automatic delivery multiplier."
+        ],
+        "changes": [
+          {
+            "status": "TEAM_ASSUMPTION",
+            "source_id": "C",
+            "delay_months": 0,
+            "applied_to": "case copy: C lead_time_min_value and lead_time_max_value",
+            "original_preparation_months": "18..24",
+            "frozen": "investment dates, orders, reservations and delivery slots",
+            "missed_slots": "lost, no catch-up or compensation"
+          }
+        ]
+      },
+      "assumptions": {
+        "discount_rate_real": {
+          "value": 0.08,
+          "unit": "share per year (real)",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            0.15
+          ],
+          "justification": "Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.\n"
+        },
+        "discount_t0_year": {
+          "value": 2035,
+          "unit": "year",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            2035,
+            2035
+          ],
+          "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
+        },
+        "discount_timing": {
+          "value": "start",
+          "unit": "enum start|mid|end",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "start",
+            "mid",
+            "end"
+          ],
+          "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+        },
+        "prep_period_start": {
+          "value": "2034-01",
+          "unit": "YYYY-MM",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "2033-01",
+            "2034-12"
+          ],
+          "justification": "Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01)."
+        },
+        "lead_time_policy": {
+          "value": "max",
+          "unit": "enum min|max|mean",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "justification": "Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+        },
+        "weeks_per_month": {
+          "value": 4.345,
+          "unit": "weeks",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            4.0,
+            4.5
+          ],
+          "justification": "365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months."
+        },
+        "days_per_month": {
+          "value": 30.4167,
+          "unit": "days",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            28,
+            31
+          ],
+          "justification": "365/12; day-denominated lead times converted with ceil."
+        },
+        "zbo_commissioning_lag_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity."
+        },
+        "earth_new_post_commissioning_lead_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation."
+        },
+        "isru_commissioning_month": {
+          "value": "2038-01",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2038-01",
+            "2038-01"
+          ],
+          "justification": "Lunar-ISRU available from 2038 once CAPEX is financed before 2038."
+        },
+        "isru_financing_deadline": {
+          "value": "2037-12",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2037-12",
+            "2037-12"
+          ],
+          "justification": "CAPEX 1250 must be financed before 2038."
+        },
+        "source_investment_link": {
+          "value": {
+            "C": "EARTH_NEW",
+            "D": "LUNAR_ISRU"
+          },
+          "unit": "map source_id -> investment_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX."
+        },
+        "storage_investment_link": {
+          "value": {
+            "ZBO": "ZBO"
+          },
+          "unit": "map investment_id -> storage_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+        },
+        "emergency_base_share_threshold": {
+          "value": 0.2,
+          "unit": "share of annual total demand",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.1,
+            0.5
+          ],
+          "justification": "Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand."
+        },
+        "holding_cost_averaging": {
+          "value": "trapezoid_monthly",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "trapezoid_monthly"
+          ],
+          "justification": "Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12."
+        },
+        "storage_capacity_check": {
+          "value": "end_of_month_hard_peak_warning",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity."
+        },
+        "emergency_reserve_equivalence": {
+          "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+          "unit": "rule",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y."
+        },
+        "opening_stock_reservation_years": {
+          "value": 1.0,
+          "unit": "years",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            1.0
+          ],
+          "justification": "The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035."
+        },
+        "prep_period_holding_charged": {
+          "value": false,
+          "unit": "bool",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            true,
+            false
+          ],
+          "justification": "Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged."
+        },
+        "intra_year_demand_profile": {
+          "value": "uniform",
+          "unit": "enum",
+          "status": "CASE_INPUT",
+          "range": [
+            "uniform"
+          ],
+          "justification": "Organizer convention — uniform demand within the year, 365 days."
+        },
+        "earth_new_preparation_delay_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            3,
+            6,
+            12
+          ],
+          "justification": "EXP-09 overlay applied to Earth-New source lead times on a case copy; not a core-engine parameter"
+        }
+      },
+      "delta_components_mln": {
+        "procurement_total_mln": 0.0,
+        "reservation_total_mln": 0.0,
+        "holding_total_mln": 0.0,
+        "fixed_opex_total_mln": 0.0,
+        "capex_total_mln": 0.0
+      },
+      "first_violation": null,
+      "first_reserve_violation": null,
+      "violations": [],
+      "source_schedule": [
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2035,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2036,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2037,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 13.189,
+          "reserved_period_t": 13.189,
+          "ordered_t": 13.1882,
+          "planned_delivery_t": 13.188200000000002,
+          "actual_delivery_t": 13.188200000000002,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 13.1882,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 93.63622,
+          "reservation_payment_mln": 3.9566999999999997
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2038,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 71.772,
+          "reserved_period_t": 71.772,
+          "ordered_t": 71.7714,
+          "planned_delivery_t": 71.7714,
+          "actual_delivery_t": 71.7714,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 71.7714,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 509.57694,
+          "reservation_payment_mln": 21.5316
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2039,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2040,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        }
+      ],
+      "case_sha256": {
+        "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786",
+        "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+        "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+        "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+        "supply_sources.csv": "311f37a5587fa1617d61681d678ead52f119fbc78a06746029054132961ac8e5"
+      }
+    },
+    {
+      "delay_months": 3,
+      "commissioning": "2037-04",
+      "missed_earth_new_t": 3.2970499999999987,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "2038;2039;2040",
+      "max_reserve_gap_t": 3.1483562582191205,
+      "total_cost_mln": 10970.480866305501,
+      "pv_cost_mln": 8721.846099703494,
+      "delta_total_mln": -9.77399987249919,
+      "delta_pv_mln": -7.557661976383315,
+      "hard_violations": 7,
+      "guideline_violations": 0,
+      "first_rule": "SOURCE_NOT_AVAILABLE",
+      "first_year": 2037,
+      "first_month": 1,
+      "result_dir": "delay_03m",
+      "kpi": {
+        "total_cost_mln": 10970.480866305501,
+        "pv_cost_mln": 8721.846099703494,
+        "discount_rate_real": 0.08,
+        "demand_total_t": 1390.0,
+        "served_total_t": 1390.0,
+        "served_critical_t": 950.0,
+        "shortage_total_t": 0.0,
+        "shortage_critical_t": 0.0,
+        "cost_per_served_t_mln": 7.892432277917627,
+        "pv_cost_per_served_t_mln": 6.274709424247118,
+        "min_service_level_total": 1.0,
+        "min_service_level_critical": 1.0,
+        "losses_total_t": 29.34380625,
+        "throughput_total_t": 1451.94885,
+        "capex_total_mln": 540.0,
+        "procurement_total_mln": 9683.75339,
+        "reservation_total_mln": 577.857045,
+        "holding_total_mln": 126.87043130550045,
+        "fixed_opex_total_mln": 42.0,
+        "take_or_pay_idle_t": 0.0,
+        "opening_inventory_t": 12.328859000000001,
+        "closing_inventory_t": 44.9339027500003,
+        "hard_violations": 7,
+        "guideline_violations": 0,
+        "warnings": 0,
+        "feasible": false,
+        "checks_total": 75,
+        "checks_passed": 67
+      },
+      "scenario": {
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+        "label": "Earth-New preparation delay 3 months; BASE demand/prices",
+        "status": "TEAM_ASSUMPTION",
+        "demand_multiplier": {
+          "default": 1.0
+        },
+        "critical_demand_multiplier": null,
+        "variable_price_multiplier": {
+          "default": 1.0
+        },
+        "actual_delivery_share": {
+          "default": 1.0
+        },
+        "loss_ceiling": {
+          "enabled": false
+        },
+        "demand_variant": "base",
+        "enforce_service_thresholds": null,
+        "notes": [
+          "BASE does not apply reliability as an automatic delivery multiplier."
+        ],
+        "changes": [
+          {
+            "status": "TEAM_ASSUMPTION",
+            "source_id": "C",
+            "delay_months": 3,
+            "applied_to": "case copy: C lead_time_min_value and lead_time_max_value",
+            "original_preparation_months": "18..24",
+            "frozen": "investment dates, orders, reservations and delivery slots",
+            "missed_slots": "lost, no catch-up or compensation"
+          }
+        ]
+      },
+      "assumptions": {
+        "discount_rate_real": {
+          "value": 0.08,
+          "unit": "share per year (real)",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            0.15
+          ],
+          "justification": "Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.\n"
+        },
+        "discount_t0_year": {
+          "value": 2035,
+          "unit": "year",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            2035,
+            2035
+          ],
+          "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
+        },
+        "discount_timing": {
+          "value": "start",
+          "unit": "enum start|mid|end",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "start",
+            "mid",
+            "end"
+          ],
+          "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+        },
+        "prep_period_start": {
+          "value": "2034-01",
+          "unit": "YYYY-MM",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "2033-01",
+            "2034-12"
+          ],
+          "justification": "Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01)."
+        },
+        "lead_time_policy": {
+          "value": "max",
+          "unit": "enum min|max|mean",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "justification": "Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+        },
+        "weeks_per_month": {
+          "value": 4.345,
+          "unit": "weeks",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            4.0,
+            4.5
+          ],
+          "justification": "365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months."
+        },
+        "days_per_month": {
+          "value": 30.4167,
+          "unit": "days",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            28,
+            31
+          ],
+          "justification": "365/12; day-denominated lead times converted with ceil."
+        },
+        "zbo_commissioning_lag_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity."
+        },
+        "earth_new_post_commissioning_lead_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation."
+        },
+        "isru_commissioning_month": {
+          "value": "2038-01",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2038-01",
+            "2038-01"
+          ],
+          "justification": "Lunar-ISRU available from 2038 once CAPEX is financed before 2038."
+        },
+        "isru_financing_deadline": {
+          "value": "2037-12",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2037-12",
+            "2037-12"
+          ],
+          "justification": "CAPEX 1250 must be financed before 2038."
+        },
+        "source_investment_link": {
+          "value": {
+            "C": "EARTH_NEW",
+            "D": "LUNAR_ISRU"
+          },
+          "unit": "map source_id -> investment_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX."
+        },
+        "storage_investment_link": {
+          "value": {
+            "ZBO": "ZBO"
+          },
+          "unit": "map investment_id -> storage_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+        },
+        "emergency_base_share_threshold": {
+          "value": 0.2,
+          "unit": "share of annual total demand",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.1,
+            0.5
+          ],
+          "justification": "Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand."
+        },
+        "holding_cost_averaging": {
+          "value": "trapezoid_monthly",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "trapezoid_monthly"
+          ],
+          "justification": "Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12."
+        },
+        "storage_capacity_check": {
+          "value": "end_of_month_hard_peak_warning",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity."
+        },
+        "emergency_reserve_equivalence": {
+          "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+          "unit": "rule",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y."
+        },
+        "opening_stock_reservation_years": {
+          "value": 1.0,
+          "unit": "years",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            1.0
+          ],
+          "justification": "The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035."
+        },
+        "prep_period_holding_charged": {
+          "value": false,
+          "unit": "bool",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            true,
+            false
+          ],
+          "justification": "Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged."
+        },
+        "intra_year_demand_profile": {
+          "value": "uniform",
+          "unit": "enum",
+          "status": "CASE_INPUT",
+          "range": [
+            "uniform"
+          ],
+          "justification": "Organizer convention — uniform demand within the year, 365 days."
+        },
+        "earth_new_preparation_delay_months": {
+          "value": 3,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            3,
+            6,
+            12
+          ],
+          "justification": "EXP-09 overlay applied to Earth-New source lead times on a case copy; not a core-engine parameter"
+        }
+      },
+      "delta_components_mln": {
+        "procurement_total_mln": 0.0,
+        "reservation_total_mln": -0.9891750000000457,
+        "holding_total_mln": -8.784824872499982,
+        "fixed_opex_total_mln": 0.0,
+        "capex_total_mln": 0.0
+      },
+      "first_violation": {
+        "rule_id": "SOURCE_NOT_AVAILABLE",
+        "severity": "hard",
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+        "message": "Earth-New: 1.099 t scheduled for 2037-01 before first possible delivery 2037-04",
+        "year": 2037,
+        "month": 1,
+        "source_id": "C",
+        "actual": 1.0990166666666668,
+        "limit": 0.0,
+        "excess": 1.0990166666666668
+      },
+      "first_reserve_violation": {
+        "rule_id": "RESERVE_45D",
+        "severity": "hard",
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+        "message": "2038-01: physical stock 27.674 t < 45-day reserve 30.822 t",
+        "year": 2038,
+        "month": 1,
+        "source_id": null,
+        "actual": 27.67356155000006,
+        "limit": 30.82191780821918,
+        "excess": 3.1483562582191205
+      },
+      "violations": [
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-01 before first possible delivery 2037-04",
+          "year": 2037,
+          "month": 1,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-02 before first possible delivery 2037-04",
+          "year": 2037,
+          "month": 2,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-03 before first possible delivery 2037-04",
+          "year": 2037,
+          "month": 3,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "ORDER_EXCEEDS_RESERVATION",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+          "message": "Earth-New 2037: ordered 13.188 t exceeds contractually available 9.892 t (reserved 13.2 t/yr x 0.750 of year)",
+          "year": 2037,
+          "month": null,
+          "source_id": "C",
+          "actual": 13.1882,
+          "limit": 9.89175,
+          "excess": 3.29645
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+          "message": "2038-01: physical stock 27.674 t < 45-day reserve 30.822 t",
+          "year": 2038,
+          "month": 1,
+          "source_id": null,
+          "actual": 27.67356155000006,
+          "limit": 30.82191780821918,
+          "excess": 3.1483562582191205
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+          "message": "2039-01: physical stock 36.304 t < 45-day reserve 39.452 t",
+          "year": 2039,
+          "month": 1,
+          "source_id": null,
+          "actual": 36.303704750000136,
+          "limit": 39.45205479452055,
+          "excess": 3.148350044520413
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_03M",
+          "message": "2040-01: physical stock 44.934 t < 45-day reserve 48.082 t",
+          "year": 2040,
+          "month": 1,
+          "source_id": null,
+          "actual": 44.933845550000186,
+          "limit": 48.082191780821915,
+          "excess": 3.14834623082173
+        }
+      ],
+      "source_schedule": [
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2035,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2036,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2037,
+          "period": "year",
+          "available_months": 9,
+          "period_fraction": 0.75,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 13.189,
+          "reserved_period_t": 9.89175,
+          "ordered_t": 13.1882,
+          "planned_delivery_t": 9.891150000000001,
+          "actual_delivery_t": 9.891150000000001,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 13.1882,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 93.63622,
+          "reservation_payment_mln": 2.9675249999999997
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2038,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 71.772,
+          "reserved_period_t": 71.772,
+          "ordered_t": 71.7714,
+          "planned_delivery_t": 71.7714,
+          "actual_delivery_t": 71.7714,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 71.7714,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 509.57694,
+          "reservation_payment_mln": 21.5316
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2039,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2040,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        }
+      ],
+      "case_sha256": {
+        "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786",
+        "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+        "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+        "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+        "supply_sources.csv": "2f95a0175ff02c644aed8450d655bd0a78dc43d5f56221a7f3a3cf5cf847085b"
+      }
+    },
+    {
+      "delay_months": 6,
+      "commissioning": "2037-07",
+      "missed_earth_new_t": 6.594099999999999,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "2038;2039;2040",
+      "max_reserve_gap_t": 6.297039008219112,
+      "total_cost_mln": 10961.273629328,
+      "pv_cost_mln": 8714.7743455589,
+      "delta_total_mln": -18.98123685000064,
+      "delta_pv_mln": -14.629416120977112,
+      "hard_violations": 10,
+      "guideline_violations": 0,
+      "first_rule": "SOURCE_NOT_AVAILABLE",
+      "first_year": 2037,
+      "first_month": 1,
+      "result_dir": "delay_06m",
+      "kpi": {
+        "total_cost_mln": 10961.273629328,
+        "pv_cost_mln": 8714.7743455589,
+        "discount_rate_real": 0.08,
+        "demand_total_t": 1390.0,
+        "served_total_t": 1390.0,
+        "served_critical_t": 950.0,
+        "shortage_total_t": 0.0,
+        "shortage_critical_t": 0.0,
+        "cost_per_served_t_mln": 7.885808366423022,
+        "pv_cost_per_served_t_mln": 6.269621831337338,
+        "min_service_level_total": 1.0,
+        "min_service_level_critical": 1.0,
+        "losses_total_t": 29.195439,
+        "throughput_total_t": 1448.6518,
+        "capex_total_mln": 540.0,
+        "procurement_total_mln": 9683.75339,
+        "reservation_total_mln": 576.86787,
+        "holding_total_mln": 118.65236932800046,
+        "fixed_opex_total_mln": 42.0,
+        "take_or_pay_idle_t": 0.0,
+        "opening_inventory_t": 12.328859000000001,
+        "closing_inventory_t": 41.78522000000032,
+        "hard_violations": 10,
+        "guideline_violations": 0,
+        "warnings": 0,
+        "feasible": false,
+        "checks_total": 75,
+        "checks_passed": 67
+      },
+      "scenario": {
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+        "label": "Earth-New preparation delay 6 months; BASE demand/prices",
+        "status": "TEAM_ASSUMPTION",
+        "demand_multiplier": {
+          "default": 1.0
+        },
+        "critical_demand_multiplier": null,
+        "variable_price_multiplier": {
+          "default": 1.0
+        },
+        "actual_delivery_share": {
+          "default": 1.0
+        },
+        "loss_ceiling": {
+          "enabled": false
+        },
+        "demand_variant": "base",
+        "enforce_service_thresholds": null,
+        "notes": [
+          "BASE does not apply reliability as an automatic delivery multiplier."
+        ],
+        "changes": [
+          {
+            "status": "TEAM_ASSUMPTION",
+            "source_id": "C",
+            "delay_months": 6,
+            "applied_to": "case copy: C lead_time_min_value and lead_time_max_value",
+            "original_preparation_months": "18..24",
+            "frozen": "investment dates, orders, reservations and delivery slots",
+            "missed_slots": "lost, no catch-up or compensation"
+          }
+        ]
+      },
+      "assumptions": {
+        "discount_rate_real": {
+          "value": 0.08,
+          "unit": "share per year (real)",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            0.15
+          ],
+          "justification": "Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.\n"
+        },
+        "discount_t0_year": {
+          "value": 2035,
+          "unit": "year",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            2035,
+            2035
+          ],
+          "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
+        },
+        "discount_timing": {
+          "value": "start",
+          "unit": "enum start|mid|end",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "start",
+            "mid",
+            "end"
+          ],
+          "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+        },
+        "prep_period_start": {
+          "value": "2034-01",
+          "unit": "YYYY-MM",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "2033-01",
+            "2034-12"
+          ],
+          "justification": "Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01)."
+        },
+        "lead_time_policy": {
+          "value": "max",
+          "unit": "enum min|max|mean",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "justification": "Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+        },
+        "weeks_per_month": {
+          "value": 4.345,
+          "unit": "weeks",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            4.0,
+            4.5
+          ],
+          "justification": "365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months."
+        },
+        "days_per_month": {
+          "value": 30.4167,
+          "unit": "days",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            28,
+            31
+          ],
+          "justification": "365/12; day-denominated lead times converted with ceil."
+        },
+        "zbo_commissioning_lag_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity."
+        },
+        "earth_new_post_commissioning_lead_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation."
+        },
+        "isru_commissioning_month": {
+          "value": "2038-01",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2038-01",
+            "2038-01"
+          ],
+          "justification": "Lunar-ISRU available from 2038 once CAPEX is financed before 2038."
+        },
+        "isru_financing_deadline": {
+          "value": "2037-12",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2037-12",
+            "2037-12"
+          ],
+          "justification": "CAPEX 1250 must be financed before 2038."
+        },
+        "source_investment_link": {
+          "value": {
+            "C": "EARTH_NEW",
+            "D": "LUNAR_ISRU"
+          },
+          "unit": "map source_id -> investment_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX."
+        },
+        "storage_investment_link": {
+          "value": {
+            "ZBO": "ZBO"
+          },
+          "unit": "map investment_id -> storage_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+        },
+        "emergency_base_share_threshold": {
+          "value": 0.2,
+          "unit": "share of annual total demand",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.1,
+            0.5
+          ],
+          "justification": "Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand."
+        },
+        "holding_cost_averaging": {
+          "value": "trapezoid_monthly",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "trapezoid_monthly"
+          ],
+          "justification": "Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12."
+        },
+        "storage_capacity_check": {
+          "value": "end_of_month_hard_peak_warning",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity."
+        },
+        "emergency_reserve_equivalence": {
+          "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+          "unit": "rule",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y."
+        },
+        "opening_stock_reservation_years": {
+          "value": 1.0,
+          "unit": "years",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            1.0
+          ],
+          "justification": "The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035."
+        },
+        "prep_period_holding_charged": {
+          "value": false,
+          "unit": "bool",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            true,
+            false
+          ],
+          "justification": "Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged."
+        },
+        "intra_year_demand_profile": {
+          "value": "uniform",
+          "unit": "enum",
+          "status": "CASE_INPUT",
+          "range": [
+            "uniform"
+          ],
+          "justification": "Organizer convention — uniform demand within the year, 365 days."
+        },
+        "earth_new_preparation_delay_months": {
+          "value": 6,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            3,
+            6,
+            12
+          ],
+          "justification": "EXP-09 overlay applied to Earth-New source lead times on a case copy; not a core-engine parameter"
+        }
+      },
+      "delta_components_mln": {
+        "procurement_total_mln": 0.0,
+        "reservation_total_mln": -1.9783499999999776,
+        "holding_total_mln": -17.002886849999967,
+        "fixed_opex_total_mln": 0.0,
+        "capex_total_mln": 0.0
+      },
+      "first_violation": {
+        "rule_id": "SOURCE_NOT_AVAILABLE",
+        "severity": "hard",
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+        "message": "Earth-New: 1.099 t scheduled for 2037-01 before first possible delivery 2037-07",
+        "year": 2037,
+        "month": 1,
+        "source_id": "C",
+        "actual": 1.0990166666666668,
+        "limit": 0.0,
+        "excess": 1.0990166666666668
+      },
+      "first_reserve_violation": {
+        "rule_id": "RESERVE_45D",
+        "severity": "hard",
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+        "message": "2038-01: physical stock 24.525 t < 45-day reserve 30.822 t",
+        "year": 2038,
+        "month": 1,
+        "source_id": null,
+        "actual": 24.524878800000067,
+        "limit": 30.82191780821918,
+        "excess": 6.297039008219112
+      },
+      "violations": [
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-01 before first possible delivery 2037-07",
+          "year": 2037,
+          "month": 1,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-02 before first possible delivery 2037-07",
+          "year": 2037,
+          "month": 2,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-03 before first possible delivery 2037-07",
+          "year": 2037,
+          "month": 3,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-04 before first possible delivery 2037-07",
+          "year": 2037,
+          "month": 4,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-05 before first possible delivery 2037-07",
+          "year": 2037,
+          "month": 5,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "Earth-New: 1.099 t scheduled for 2037-06 before first possible delivery 2037-07",
+          "year": 2037,
+          "month": 6,
+          "source_id": "C",
+          "actual": 1.0990166666666668,
+          "limit": 0.0,
+          "excess": 1.0990166666666668
+        },
+        {
+          "rule_id": "ORDER_EXCEEDS_RESERVATION",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "Earth-New 2037: ordered 13.188 t exceeds contractually available 6.595 t (reserved 13.2 t/yr x 0.500 of year)",
+          "year": 2037,
+          "month": null,
+          "source_id": "C",
+          "actual": 13.1882,
+          "limit": 6.5945,
+          "excess": 6.5937
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "2038-01: physical stock 24.525 t < 45-day reserve 30.822 t",
+          "year": 2038,
+          "month": 1,
+          "source_id": null,
+          "actual": 24.524878800000067,
+          "limit": 30.82191780821918,
+          "excess": 6.297039008219112
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "2039-01: physical stock 33.155 t < 45-day reserve 39.452 t",
+          "year": 2039,
+          "month": 1,
+          "source_id": null,
+          "actual": 33.155022000000145,
+          "limit": 39.45205479452055,
+          "excess": 6.297032794520405
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+          "message": "2040-01: physical stock 41.785 t < 45-day reserve 48.082 t",
+          "year": 2040,
+          "month": 1,
+          "source_id": null,
+          "actual": 41.785162800000194,
+          "limit": 48.082191780821915,
+          "excess": 6.297028980821722
+        }
+      ],
+      "source_schedule": [
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2035,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2036,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2037,
+          "period": "year",
+          "available_months": 6,
+          "period_fraction": 0.5,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 13.189,
+          "reserved_period_t": 6.5945,
+          "ordered_t": 13.1882,
+          "planned_delivery_t": 6.594100000000001,
+          "actual_delivery_t": 6.594100000000001,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 13.1882,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 93.63622,
+          "reservation_payment_mln": 1.9783499999999998
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2038,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 71.772,
+          "reserved_period_t": 71.772,
+          "ordered_t": 71.7714,
+          "planned_delivery_t": 71.7714,
+          "actual_delivery_t": 71.7714,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 71.7714,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 509.57694,
+          "reservation_payment_mln": 21.5316
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2039,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2040,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        }
+      ],
+      "case_sha256": {
+        "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786",
+        "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+        "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+        "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+        "supply_sources.csv": "c29464387c3885e9921fccfc3fb2a5c879ca56005231078df461b7b099b39b4b"
+      }
+    },
+    {
+      "delay_months": 12,
+      "commissioning": "2038-01",
+      "missed_earth_new_t": 13.1882,
+      "shortage_t": 0.0,
+      "critical_shortage_t": 0.0,
+      "min_service_total": 1.0,
+      "min_service_critical": 1.0,
+      "reserve_failed_years": "2038;2039;2040",
+      "max_reserve_gap_t": 12.812009808219084,
+      "total_cost_mln": 10944.050247656001,
+      "pv_cost_mln": 8701.708813056419,
+      "delta_total_mln": -36.20461852199878,
+      "delta_pv_mln": -27.694948623458913,
+      "hard_violations": 6,
+      "guideline_violations": 0,
+      "first_rule": "SOURCE_NOT_AVAILABLE",
+      "first_year": 2037,
+      "first_month": 1,
+      "result_dir": "delay_12m",
+      "kpi": {
+        "total_cost_mln": 10944.050247656001,
+        "pv_cost_mln": 8701.708813056419,
+        "discount_rate_real": 0.08,
+        "demand_total_t": 1390.0,
+        "served_total_t": 1390.0,
+        "served_critical_t": 950.0,
+        "shortage_total_t": 0.0,
+        "shortage_critical_t": 0.0,
+        "cost_per_served_t_mln": 7.873417444356836,
+        "pv_cost_per_served_t_mln": 6.260222167666488,
+        "min_service_level_total": 1.0,
+        "min_service_level_critical": 1.0,
+        "losses_total_t": 29.116309800000003,
+        "throughput_total_t": 1442.0577,
+        "capex_total_mln": 540.0,
+        "procurement_total_mln": 9683.75339,
+        "reservation_total_mln": 574.8895200000001,
+        "holding_total_mln": 103.40733765600045,
+        "fixed_opex_total_mln": 42.0,
+        "take_or_pay_idle_t": 0.0,
+        "opening_inventory_t": 12.328859000000001,
+        "closing_inventory_t": 35.27024920000028,
+        "hard_violations": 6,
+        "guideline_violations": 0,
+        "warnings": 0,
+        "feasible": false,
+        "checks_total": 75,
+        "checks_passed": 67
+      },
+      "scenario": {
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+        "label": "Earth-New preparation delay 12 months; BASE demand/prices",
+        "status": "TEAM_ASSUMPTION",
+        "demand_multiplier": {
+          "default": 1.0
+        },
+        "critical_demand_multiplier": null,
+        "variable_price_multiplier": {
+          "default": 1.0
+        },
+        "actual_delivery_share": {
+          "default": 1.0
+        },
+        "loss_ceiling": {
+          "enabled": false
+        },
+        "demand_variant": "base",
+        "enforce_service_thresholds": null,
+        "notes": [
+          "BASE does not apply reliability as an automatic delivery multiplier."
+        ],
+        "changes": [
+          {
+            "status": "TEAM_ASSUMPTION",
+            "source_id": "C",
+            "delay_months": 12,
+            "applied_to": "case copy: C lead_time_min_value and lead_time_max_value",
+            "original_preparation_months": "18..24",
+            "frozen": "investment dates, orders, reservations and delivery slots",
+            "missed_slots": "lost, no catch-up or compensation"
+          }
+        ]
+      },
+      "assumptions": {
+        "discount_rate_real": {
+          "value": 0.08,
+          "unit": "share per year (real)",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            0.15
+          ],
+          "justification": "Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.\n"
+        },
+        "discount_t0_year": {
+          "value": 2035,
+          "unit": "year",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            2035,
+            2035
+          ],
+          "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
+        },
+        "discount_timing": {
+          "value": "start",
+          "unit": "enum start|mid|end",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "start",
+            "mid",
+            "end"
+          ],
+          "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+        },
+        "prep_period_start": {
+          "value": "2034-01",
+          "unit": "YYYY-MM",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "2033-01",
+            "2034-12"
+          ],
+          "justification": "Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01)."
+        },
+        "lead_time_policy": {
+          "value": "max",
+          "unit": "enum min|max|mean",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "justification": "Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+        },
+        "weeks_per_month": {
+          "value": 4.345,
+          "unit": "weeks",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            4.0,
+            4.5
+          ],
+          "justification": "365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months."
+        },
+        "days_per_month": {
+          "value": 30.4167,
+          "unit": "days",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            28,
+            31
+          ],
+          "justification": "365/12; day-denominated lead times converted with ceil."
+        },
+        "zbo_commissioning_lag_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity."
+        },
+        "earth_new_post_commissioning_lead_months": {
+          "value": 0,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            12
+          ],
+          "justification": "The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation."
+        },
+        "isru_commissioning_month": {
+          "value": "2038-01",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2038-01",
+            "2038-01"
+          ],
+          "justification": "Lunar-ISRU available from 2038 once CAPEX is financed before 2038."
+        },
+        "isru_financing_deadline": {
+          "value": "2037-12",
+          "unit": "YYYY-MM",
+          "status": "CASE_INPUT",
+          "range": [
+            "2037-12",
+            "2037-12"
+          ],
+          "justification": "CAPEX 1250 must be financed before 2038."
+        },
+        "source_investment_link": {
+          "value": {
+            "C": "EARTH_NEW",
+            "D": "LUNAR_ISRU"
+          },
+          "unit": "map source_id -> investment_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX."
+        },
+        "storage_investment_link": {
+          "value": {
+            "ZBO": "ZBO"
+          },
+          "unit": "map investment_id -> storage_id",
+          "status": "CASE_INPUT",
+          "range": null,
+          "justification": "ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+        },
+        "emergency_base_share_threshold": {
+          "value": 0.2,
+          "unit": "share of annual total demand",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.1,
+            0.5
+          ],
+          "justification": "Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand."
+        },
+        "holding_cost_averaging": {
+          "value": "trapezoid_monthly",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            "trapezoid_monthly"
+          ],
+          "justification": "Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12."
+        },
+        "storage_capacity_check": {
+          "value": "end_of_month_hard_peak_warning",
+          "unit": "enum",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity."
+        },
+        "emergency_reserve_equivalence": {
+          "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+          "unit": "rule",
+          "status": "TEAM_ASSUMPTION",
+          "range": null,
+          "justification": "Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y."
+        },
+        "opening_stock_reservation_years": {
+          "value": 1.0,
+          "unit": "years",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0.0,
+            1.0
+          ],
+          "justification": "The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035."
+        },
+        "prep_period_holding_charged": {
+          "value": false,
+          "unit": "bool",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            true,
+            false
+          ],
+          "justification": "Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged."
+        },
+        "intra_year_demand_profile": {
+          "value": "uniform",
+          "unit": "enum",
+          "status": "CASE_INPUT",
+          "range": [
+            "uniform"
+          ],
+          "justification": "Organizer convention — uniform demand within the year, 365 days."
+        },
+        "earth_new_preparation_delay_months": {
+          "value": 12,
+          "unit": "months",
+          "status": "TEAM_ASSUMPTION",
+          "range": [
+            0,
+            3,
+            6,
+            12
+          ],
+          "justification": "EXP-09 overlay applied to Earth-New source lead times on a case copy; not a core-engine parameter"
+        }
+      },
+      "delta_components_mln": {
+        "procurement_total_mln": 0.0,
+        "reservation_total_mln": -3.9566999999999553,
+        "holding_total_mln": -32.24791852199998,
+        "fixed_opex_total_mln": 0.0,
+        "capex_total_mln": 0.0
+      },
+      "first_violation": {
+        "rule_id": "SOURCE_NOT_AVAILABLE",
+        "severity": "hard",
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+        "message": "Earth-New: 13.188 t ordered for 2037 but the source cannot deliver in that year (first delivery 2038-01) [EXP-09: month dated from first missed frozen delivery slot]",
+        "year": 2037,
+        "month": 1,
+        "source_id": "C",
+        "actual": 13.1882,
+        "limit": 0.0,
+        "excess": 13.1882
+      },
+      "first_reserve_violation": {
+        "rule_id": "RESERVE_45D",
+        "severity": "hard",
+        "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+        "message": "2038-01: physical stock 18.010 t < 45-day reserve 30.822 t",
+        "year": 2038,
+        "month": 1,
+        "source_id": null,
+        "actual": 18.009908000000095,
+        "limit": 30.82191780821918,
+        "excess": 12.812009808219084
+      },
+      "violations": [
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+          "message": "Earth-New: 13.188 t ordered for 2037 but the source cannot deliver in that year (first delivery 2038-01) [EXP-09: month dated from first missed frozen delivery slot]",
+          "year": 2037,
+          "month": 1,
+          "source_id": "C",
+          "actual": 13.1882,
+          "limit": 0.0,
+          "excess": 13.1882
+        },
+        {
+          "rule_id": "SOURCE_NOT_AVAILABLE",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+          "message": "Earth-New 2037: capacity reserved but the source is not available in 2037 (first delivery 2038-01) [EXP-09: month dated from first missed frozen delivery slot]",
+          "year": 2037,
+          "month": 1,
+          "source_id": "C",
+          "actual": 13.189,
+          "limit": 0.0,
+          "excess": 13.189
+        },
+        {
+          "rule_id": "ORDER_EXCEEDS_RESERVATION",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+          "message": "Earth-New 2037: ordered 13.188 t exceeds contractually available 0.000 t (reserved 13.2 t/yr x 0.000 of year)",
+          "year": 2037,
+          "month": null,
+          "source_id": "C",
+          "actual": 13.1882,
+          "limit": 0.0,
+          "excess": 13.1882
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+          "message": "2038-01: physical stock 18.010 t < 45-day reserve 30.822 t",
+          "year": 2038,
+          "month": 1,
+          "source_id": null,
+          "actual": 18.009908000000095,
+          "limit": 30.82191780821918,
+          "excess": 12.812009808219084
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+          "message": "2039-01: physical stock 26.640 t < 45-day reserve 39.452 t",
+          "year": 2039,
+          "month": 1,
+          "source_id": null,
+          "actual": 26.64005120000017,
+          "limit": 39.45205479452055,
+          "excess": 12.81200359452038
+        },
+        {
+          "rule_id": "RESERVE_45D",
+          "severity": "hard",
+          "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
+          "message": "2040-01: physical stock 35.270 t < 45-day reserve 48.082 t",
+          "year": 2040,
+          "month": 1,
+          "source_id": null,
+          "actual": 35.270192000000165,
+          "limit": 48.082191780821915,
+          "excess": 12.81199978082175
+        }
+      ],
+      "source_schedule": [
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2035,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2036,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 0,
+          "reserved_period_t": 0.0,
+          "ordered_t": 0.0,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 0.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 0.0,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2037,
+          "period": "year",
+          "available_months": 0,
+          "period_fraction": 0.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 13.189,
+          "reserved_period_t": 0.0,
+          "ordered_t": 13.1882,
+          "planned_delivery_t": 0.0,
+          "actual_delivery_t": 0.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 13.1882,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 93.63622,
+          "reservation_payment_mln": 0.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2038,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 71.772,
+          "reserved_period_t": 71.772,
+          "ordered_t": 71.7714,
+          "planned_delivery_t": 71.7714,
+          "actual_delivery_t": 71.7714,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 71.7714,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 509.57694,
+          "reservation_payment_mln": 21.5316
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2039,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        },
+        {
+          "source_id": "C",
+          "name": "Earth-New",
+          "year": 2040,
+          "period": "year",
+          "available_months": 12,
+          "period_fraction": 1.0,
+          "capacity_t_per_year": 130.0,
+          "reserved_capacity_t": 130.0,
+          "reserved_period_t": 130.0,
+          "ordered_t": 130.0,
+          "planned_delivery_t": 130.0,
+          "actual_delivery_t": 130.0,
+          "delivery_share": 1.0,
+          "price_mln_per_t": 7.1,
+          "price_multiplier": 1.0,
+          "payable_volume_t": 130.0,
+          "take_or_pay_idle_t": 0.0,
+          "procurement_mln": 923.0,
+          "reservation_payment_mln": 39.0
+        }
+      ],
+      "case_sha256": {
+        "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786",
+        "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+        "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+        "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+        "supply_sources.csv": "5885e680693c4baf6969362cb784352224fdc7265a9e8a0b0503c23cb402dca9"
+      }
+    }
+  ]
+}

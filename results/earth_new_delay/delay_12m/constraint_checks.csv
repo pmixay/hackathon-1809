@@ -1,0 +1,7 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,hard,Earth-New: 13.188 t ordered for 2037 but the source cannot deliver in that year (first delivery 2038-01),2037,,C,13.188200,0.000000,13.188200
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,hard,Earth-New 2037: capacity reserved but the source is not available in 2037 (first delivery 2038-01),2037,,C,13.189000,0.000000,13.189000
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,hard,Earth-New 2037: ordered 13.188 t exceeds contractually available 0.000 t (reserved 13.2 t/yr x 0.000 of year),2037,,C,13.188200,0.000000,13.188200
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,RESERVE_45D,hard,2038-01: physical stock 18.010 t < 45-day reserve 30.822 t,2038,1,,18.009908,30.821918,12.812010
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,RESERVE_45D,hard,2039-01: physical stock 26.640 t < 45-day reserve 39.452 t,2039,1,,26.640051,39.452055,12.812004
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,RESERVE_45D,hard,2040-01: physical stock 35.270 t < 45-day reserve 48.082 t,2040,1,,35.270192,48.082192,12.812000

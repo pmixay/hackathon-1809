@@ -1,0 +1,22 @@
+{
+  "terraplan_version": "0.1.0",
+  "python": "3.11.9",
+  "plan_id": "P2z_earth_new_zbo_fixed_calendar",
+  "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+  "case_dir": "results/earth_new_delay/delay_06m/case",
+  "case_dir_absolute_at_run": "C:\\Users\\alikh\\OneDrive\\Desktop\\projects\\hackathon-1809\\results\\earth_new_delay\\delay_06m\\case",
+  "case_file_sha256": {
+    "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+    "supply_sources.csv": "c29464387c3885e9921fccfc3fb2a5c879ca56005231078df461b7b099b39b4b",
+    "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+    "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+    "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786"
+  },
+  "plan_sha256": "a5cb983b2bcbda34824015815a2a9092273e73ca90242511ebac41fe29a5f5fb",
+  "scenario_sha256": "b0fd51ce36d23f89456b31d33c54d232740769731c99ee28c05300cc450485cb",
+  "assumptions_sha256": "292c6b66d299f0fd1915a630ffda898e74550da405769979f60043584976bef7",
+  "kpi_sha256": "d6c18e2119c557dae6b22246f6676d88e3282d5fd079e50bc9710ab16d5b00ba",
+  "kpi_precision": 6,
+  "random_seed": null,
+  "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to 6 decimals before hashing, which absorbs last-bit differences of float summation between Python versions)"
+}

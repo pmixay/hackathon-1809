@@ -109,3 +109,31 @@ intra_year_demand_profile:
   unit: enum
   status: CASE_INPUT
   justification: Organizer convention — uniform demand within the year, 365 days.
+exp10_demand_max:
+  value: 0.02
+  unit: additional relative demand increase
+  status: TEAM_ASSUMPTION
+  range: [0.0, 0.02]
+  justification: >
+    EXP-10 only: uniform U(0, value), multiplying both mandatory-stress total and critical demand
+    in 2038-2040. One persistent draw per realization; independent of ISRU and price in the primary
+    model. Diagnostic shares the demand uniform with ISRU. Range brackets EXP-08's 1% target;
+    illustrative conditional uncertainty, not calibrated organizer probabilities. Core ignores this key.
+exp10_isru_reduction_max:
+  value: 0.02
+  unit: additional relative reduction of actual ISRU delivery share
+  status: TEAM_ASSUMPTION
+  range: [0.0, 0.02]
+  justification: >
+    EXP-10 only: uniform U(0, value), multiplying mandatory-stress ISRU shares by 1-s in 2038-2040.
+    One persistent draw; reliability is not multiplied again. Independent primary model, comonotonic
+    demand/ISRU diagnostic; price independent in both. No random Core capacity outages are included.
+exp10_price_half_range:
+  value: 0.10
+  unit: relative variable-price deviation from mandatory stress
+  status: TEAM_ASSUMPTION
+  range: [-0.10, 0.10]
+  justification: >
+    EXP-10 only: uniform U(-value, value), one common persistent price draw for Core and Flex in
+    2038-2039, independent of physical factors. Multiplies the existing 1.25 stress multiplier.
+    Illustrative economic range without empirical calibration; not a capacity or delivery shock.

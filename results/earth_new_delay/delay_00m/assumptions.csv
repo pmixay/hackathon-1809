@@ -1,0 +1,23 @@
+key,value,unit,status,range,justification
+discount_rate_real,0.08,share per year (real),TEAM_ASSUMPTION,"[0.0, 0.15]","Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.
+"
+discount_t0_year,2035,year,TEAM_ASSUMPTION,"[2035, 2035]",Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035).
+discount_timing,"""start""",enum start|mid|end,TEAM_ASSUMPTION,"[""start"", ""mid"", ""end""]",Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives.
+prep_period_start,"""2034-01""",YYYY-MM,TEAM_ASSUMPTION,"[""2033-01"", ""2034-12""]",Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01).
+lead_time_policy,"""max""",enum min|max|mean,TEAM_ASSUMPTION,"[""min"", ""max"", ""mean""]","Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+weeks_per_month,4.345,weeks,TEAM_ASSUMPTION,"[4.0, 4.5]",365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months.
+days_per_month,30.4167,days,TEAM_ASSUMPTION,"[28, 31]",365/12; day-denominated lead times converted with ceil.
+zbo_commissioning_lag_months,0,months,TEAM_ASSUMPTION,"[0, 12]",Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity.
+earth_new_post_commissioning_lead_months,0,months,TEAM_ASSUMPTION,"[0, 12]",The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation.
+isru_commissioning_month,"""2038-01""",YYYY-MM,CASE_INPUT,"[""2038-01"", ""2038-01""]",Lunar-ISRU available from 2038 once CAPEX is financed before 2038.
+isru_financing_deadline,"""2037-12""",YYYY-MM,CASE_INPUT,"[""2037-12"", ""2037-12""]",CAPEX 1250 must be financed before 2038.
+source_investment_link,"{""C"": ""EARTH_NEW"", ""D"": ""LUNAR_ISRU""}",map source_id -> investment_id,CASE_INPUT,null,Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX.
+storage_investment_link,"{""ZBO"": ""ZBO""}",map investment_id -> storage_id,CASE_INPUT,null,"ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+emergency_base_share_threshold,0.2,share of annual total demand,TEAM_ASSUMPTION,"[0.1, 0.5]",Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand.
+holding_cost_averaging,"""trapezoid_monthly""",enum,TEAM_ASSUMPTION,"[""trapezoid_monthly""]",Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12.
+storage_capacity_check,"""end_of_month_hard_peak_warning""",enum,TEAM_ASSUMPTION,null,Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity.
+emergency_reserve_equivalence,"""stock_covers_lead_time_and_reserved_capacity_covers_45d""",rule,TEAM_ASSUMPTION,null,Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y.
+opening_stock_reservation_years,1.0,years,TEAM_ASSUMPTION,"[0.0, 1.0]",The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035.
+prep_period_holding_charged,false,bool,TEAM_ASSUMPTION,"[true, false]",Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged.
+intra_year_demand_profile,"""uniform""",enum,CASE_INPUT,"[""uniform""]","Organizer convention — uniform demand within the year, 365 days."
+earth_new_preparation_delay_months,0,months,TEAM_ASSUMPTION,"[0, 3, 6, 12]",EXP-09 overlay applied to Earth-New source lead times on a case copy; not a core-engine parameter

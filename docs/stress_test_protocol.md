@@ -1,6 +1,8 @@
-# Stress-test methodology and protocols (copy of experiments/README.md)
+# Stress-test methodology and protocols
 
-Every experiment is a script; re-running it regenerates `results/<experiment>/` deterministically (no random seeds).
+The current authoritative protocols, including EXP-07–10, are in [experiments/README.md](../experiments/README.md).
+The EXP-01–06 material below is the earlier protocol snapshot.
+EXP-10 uses a fixed seed and saved common samples; EXP-01–09 have no random sampling.
 Format of each protocol follows the case: goal, varied parameters and their origin, kept conditions, plan under test,
 metrics, violation criterion, reproduction.
 
@@ -35,6 +37,10 @@ lead-time policy max, ZBO lag 0), engine `src/terraplan`, time step month.
 
 ## To do (R3)
 
-- Reverse stress: smallest combination (ISRU share, demand) that breaks the adapted plan.
-- Monte Carlo on ISRU delivery share and Earth-Core availability with disclosed distributions, N, seed, CI.
+- EXP-07 reverse stress, EXP-08 protection measures, EXP-09 Earth-New delay and EXP-10 Monte Carlo
+  are implemented; see the authoritative protocols and `results/` summaries.
+- EXP-10 resolves the old factor-set ambiguity: demand + ISRU actual delivery + Core/Flex prices
+  on MANDATORY_STRESS, not stochastic Core capacity availability. N=10,000 per dependence
+  model, seed=203510, 95% Wilson intervals, conditional TEAM_ASSUMPTION frequencies only.
+- Open: event-based Core availability and reactive policies; reverse stress for alternative strategies.
 - Geopolitics module: event → price component multiplier on a data copy, before/after, restore.

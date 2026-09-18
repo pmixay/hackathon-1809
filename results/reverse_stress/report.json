@@ -1,0 +1,1062 @@
+{
+  "experiment_id": "EXP-07",
+  "python": "3.11.9",
+  "terraplan_version": "0.1.0",
+  "random_seed": null,
+  "input_sha256": {
+    "configs/plans/P3_isru_zbo_adapted.json": "c2f19b6baef07e2bc77cad128f6d6fdb58cd59bcc8c9b366a971d6024b11b77e",
+    "configs/scenarios/mandatory_stress.yaml": "60f3f1d3241828b1d34c0583b4b1b38006e9ba42e45119d1010031151a59508b",
+    "configs/assumptions.yaml": "366b7eea885f09346ea5fb3387d0871a882f53d232b98a1c8311cde4109e4d60",
+    "experiments/run_reverse_stress.py": "6b81436e6e8cc18c2947e56ee1fafe83fc0b0ca92b2ea05f4209f2a0990b4f1e",
+    "experiments/common.py": "00a200f73b8a64049a5e8d9d5de7b0ef9f47a02987076e9750c418d942405954",
+    "data/case/constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786",
+    "data/case/demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+    "data/case/investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+    "data/case/storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+    "data/case/supply_sources.csv": "311f37a5587fa1617d61681d678ead52f119fbc78a06746029054132961ac8e5",
+    "src/terraplan/__init__.py": "baedc3e66dce29038f226ffbcd4a72fbff9dc8871ed47853fccc72c10429e4c1",
+    "src/terraplan/__main__.py": "cc36d1f1da5e1ca95540e39554500c99d6059f1df24f6532b224312d358188f0",
+    "src/terraplan/assumptions.py": "a977d2e646dda6e328b40b00eae5864c1df878fe01fdac7a59665075cfd03ba3",
+    "src/terraplan/case.py": "d9b7d0927a77b563eb28b1a40b06b0ff73f47f0a628f5c357c45d6d66b20e6e0",
+    "src/terraplan/cli.py": "a3b1e871517e82f3223dcedb952ecd7fc76dc5035e0baced6a397875ed37f5d0",
+    "src/terraplan/compare.py": "391b580157e500e15116b90813afaf3fe81088c89a99ebf7ef7a977ffbfa00a6",
+    "src/terraplan/control_cases.py": "5d4264fff0b394d2004e1d362e7c3d10d7699a4f376113b4628774d20a85c735",
+    "src/terraplan/engine.py": "773696b5eeae8c64b753007c50b6cfc1867df14ef3c52f2b30576abc5e93e043",
+    "src/terraplan/export.py": "91240d9d3d3e272b5c7311c7d52d62843eeebf2047bd0bb88f5ee2794fd80e95",
+    "src/terraplan/plan.py": "f3e65d747110be5ddbd111d823fa0c4128cab1c71152c55b346fbce1eb7416dd",
+    "src/terraplan/planner.py": "7e44b55669528aec2be4f9a4643c15566e85caeca40df15429220695710268ea",
+    "src/terraplan/rules.py": "4d67a403ed2c605aa05cb7c5f97ce1000eb7389979ff0cb53ca0470f9dfcb9c0",
+    "src/terraplan/scenario.py": "1c3cdf810b675d8fbca023252704b01481eadb315f6f62cf103626ee8f7a994a"
+  },
+  "method": {
+    "status": "TEAM_ASSUMPTION",
+    "metric": "L_inf = max(demand_increase, isru_relative_reduction)",
+    "reference": "MANDATORY_STRESS",
+    "years": [
+      2038,
+      2039,
+      2040
+    ],
+    "domain": [
+      0,
+      0.5
+    ],
+    "tolerance": 1e-12,
+    "rays": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.25
+      ],
+      [
+        1.0,
+        0.5
+      ],
+      [
+        1.0,
+        0.75
+      ],
+      [
+        1.0,
+        1.0
+      ],
+      [
+        0.75,
+        1.0
+      ],
+      [
+        0.5,
+        1.0
+      ],
+      [
+        0.25,
+        1.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "failure": "any hard violation OR annual total/critical service guideline violation",
+    "engine_physical_tolerance_t": 1e-06,
+    "engine_service_tolerance": 1e-09,
+    "algorithm": "monotone radial bisection; diagonal brackets global failure infimum in L_inf",
+    "justification": "equal weights on relative changes; exploratory range, not a probability model"
+  },
+  "plan": {
+    "plan_id": "P3_isru_zbo_adapted",
+    "scenario_id": "MANDATORY_STRESS",
+    "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+    "decisions": {
+      "capacity_reservations": [
+        {
+          "source_id": "A",
+          "year": 2035,
+          "reserved_capacity_t": 109.876
+        },
+        {
+          "source_id": "A",
+          "year": 2036,
+          "reserved_capacity_t": 153.052
+        },
+        {
+          "source_id": "A",
+          "year": 2037,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "B",
+          "year": 2037,
+          "reserved_capacity_t": 17.948
+        },
+        {
+          "source_id": "D",
+          "year": 2038,
+          "reserved_capacity_t": 120.0
+        },
+        {
+          "source_id": "A",
+          "year": 2038,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "B",
+          "year": 2038,
+          "reserved_capacity_t": 56.038
+        },
+        {
+          "source_id": "D",
+          "year": 2039,
+          "reserved_capacity_t": 120.0
+        },
+        {
+          "source_id": "A",
+          "year": 2039,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "B",
+          "year": 2039,
+          "reserved_capacity_t": 102.515
+        },
+        {
+          "source_id": "D",
+          "year": 2040,
+          "reserved_capacity_t": 120.0
+        },
+        {
+          "source_id": "A",
+          "year": 2040,
+          "reserved_capacity_t": 190.0
+        },
+        {
+          "source_id": "B",
+          "year": 2040,
+          "reserved_capacity_t": 110.0
+        }
+      ],
+      "supply_orders": [
+        {
+          "source_id": "A",
+          "year": 2035,
+          "ordered_t": 109.876,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2036,
+          "ordered_t": 153.0518,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2037,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "B",
+          "year": 2037,
+          "ordered_t": 17.9471,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "D",
+          "year": 2038,
+          "ordered_t": 100.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2038,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "B",
+          "year": 2038,
+          "ordered_t": 56.0372,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "D",
+          "year": 2039,
+          "ordered_t": 120.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2039,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "B",
+          "year": 2039,
+          "ordered_t": 102.5149,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "D",
+          "year": 2040,
+          "ordered_t": 120.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "A",
+          "year": 2040,
+          "ordered_t": 190.0,
+          "profile": "uniform"
+        },
+        {
+          "source_id": "B",
+          "year": 2040,
+          "ordered_t": 110.0,
+          "profile": "uniform"
+        }
+      ],
+      "investments": [
+        {
+          "investment_id": "LUNAR_ISRU",
+          "decision_year": 2036,
+          "decision_month": 1
+        },
+        {
+          "investment_id": "ZBO",
+          "decision_year": 2037,
+          "decision_month": 7
+        }
+      ],
+      "inventory_policy": {
+        "opening_stock": [
+          {
+            "source_id": "B",
+            "tons": 12.9098,
+            "delivery_year": 2034,
+            "delivery_month": 12
+          }
+        ],
+        "reserve_mode": "physical",
+        "allocation_rule": "critical_first"
+      }
+    },
+    "meta": {
+      "builder": "greedy_merit_order",
+      "strategy": {
+        "plan_id": "P3_isru_zbo_adapted",
+        "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+        "reservation_caps": {
+          "A": 190,
+          "B": 110,
+          "D": 120
+        },
+        "stress_aware": true
+      },
+      "stress_aware": true,
+      "builder_notes": [
+        "2040: planned gross shortfall 33.95 t (available reserved capacity exhausted)"
+      ],
+      "status": "TEAM_DECISION"
+    }
+  },
+  "reference_scenario": {
+    "scenario_id": "MANDATORY_STRESS",
+    "label": "Обязательный стрессовый сценарий",
+    "status": "CASE_INPUT",
+    "demand_multiplier": {
+      "2035": 1.0,
+      "2036": 1.0,
+      "2037": 1.0,
+      "2038": 1.15,
+      "2039": 1.15,
+      "2040": 1.15
+    },
+    "critical_demand_multiplier": {
+      "2035": 1.0,
+      "2036": 1.0,
+      "2037": 1.0,
+      "2038": 1.15,
+      "2039": 1.15,
+      "2040": 1.15
+    },
+    "variable_price_multiplier": {
+      "Earth-Core": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.25,
+        "2039": 1.25,
+        "2040": 1.0
+      },
+      "Earth-Flex": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.25,
+        "2039": 1.25,
+        "2040": 1.0
+      }
+    },
+    "actual_delivery_share": {
+      "Lunar-ISRU": {
+        "2038": 0.55,
+        "2039": 0.75,
+        "2040": 1.0
+      }
+    },
+    "loss_ceiling": {
+      "enabled": true,
+      "from_year": 2038,
+      "max_losses_divided_by_throughput": 0.02
+    },
+    "demand_variant": "base",
+    "enforce_service_thresholds": null,
+    "notes": [
+      "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
+      "Reservation tariffs, CAPEX and other prices are not changed by the mandatory +25% price shock.",
+      "Mandatory stress is not automatically combined with high-demand or geopolitical research scenarios."
+    ],
+    "changes": []
+  },
+  "assumptions": {
+    "discount_rate_real": {
+      "value": 0.08,
+      "unit": "share per year (real)",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        0.15
+      ],
+      "justification": "Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.\n"
+    },
+    "discount_t0_year": {
+      "value": 2035,
+      "unit": "year",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        2035,
+        2035
+      ],
+      "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
+    },
+    "discount_timing": {
+      "value": "start",
+      "unit": "enum start|mid|end",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "start",
+        "mid",
+        "end"
+      ],
+      "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+    },
+    "prep_period_start": {
+      "value": "2034-01",
+      "unit": "YYYY-MM",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "2033-01",
+        "2034-12"
+      ],
+      "justification": "Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01)."
+    },
+    "lead_time_policy": {
+      "value": "max",
+      "unit": "enum min|max|mean",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "min",
+        "max",
+        "mean"
+      ],
+      "justification": "Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+    },
+    "weeks_per_month": {
+      "value": 4.345,
+      "unit": "weeks",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        4.0,
+        4.5
+      ],
+      "justification": "365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months."
+    },
+    "days_per_month": {
+      "value": 30.4167,
+      "unit": "days",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        28,
+        31
+      ],
+      "justification": "365/12; day-denominated lead times converted with ceil."
+    },
+    "zbo_commissioning_lag_months": {
+      "value": 0,
+      "unit": "months",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0,
+        12
+      ],
+      "justification": "Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity."
+    },
+    "earth_new_post_commissioning_lead_months": {
+      "value": 0,
+      "unit": "months",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0,
+        12
+      ],
+      "justification": "The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation."
+    },
+    "isru_commissioning_month": {
+      "value": "2038-01",
+      "unit": "YYYY-MM",
+      "status": "CASE_INPUT",
+      "range": [
+        "2038-01",
+        "2038-01"
+      ],
+      "justification": "Lunar-ISRU available from 2038 once CAPEX is financed before 2038."
+    },
+    "isru_financing_deadline": {
+      "value": "2037-12",
+      "unit": "YYYY-MM",
+      "status": "CASE_INPUT",
+      "range": [
+        "2037-12",
+        "2037-12"
+      ],
+      "justification": "CAPEX 1250 must be financed before 2038."
+    },
+    "source_investment_link": {
+      "value": {
+        "C": "EARTH_NEW",
+        "D": "LUNAR_ISRU"
+      },
+      "unit": "map source_id -> investment_id",
+      "status": "CASE_INPUT",
+      "range": null,
+      "justification": "Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX."
+    },
+    "storage_investment_link": {
+      "value": {
+        "ZBO": "ZBO"
+      },
+      "unit": "map investment_id -> storage_id",
+      "status": "CASE_INPUT",
+      "range": null,
+      "justification": "ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+    },
+    "emergency_base_share_threshold": {
+      "value": 0.2,
+      "unit": "share of annual total demand",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.1,
+        0.5
+      ],
+      "justification": "Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand."
+    },
+    "holding_cost_averaging": {
+      "value": "trapezoid_monthly",
+      "unit": "enum",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "trapezoid_monthly"
+      ],
+      "justification": "Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12."
+    },
+    "storage_capacity_check": {
+      "value": "end_of_month_hard_peak_warning",
+      "unit": "enum",
+      "status": "TEAM_ASSUMPTION",
+      "range": null,
+      "justification": "Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity."
+    },
+    "emergency_reserve_equivalence": {
+      "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+      "unit": "rule",
+      "status": "TEAM_ASSUMPTION",
+      "range": null,
+      "justification": "Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y."
+    },
+    "opening_stock_reservation_years": {
+      "value": 1.0,
+      "unit": "years",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "justification": "The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035."
+    },
+    "prep_period_holding_charged": {
+      "value": false,
+      "unit": "bool",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        true,
+        false
+      ],
+      "justification": "Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged."
+    },
+    "intra_year_demand_profile": {
+      "value": "uniform",
+      "unit": "enum",
+      "status": "CASE_INPUT",
+      "range": [
+        "uniform"
+      ],
+      "justification": "Organizer convention — uniform demand within the year, 365 days."
+    }
+  },
+  "baseline_kpi": {
+    "total_cost_mln": 13291.585493506998,
+    "pv_cost_mln": 10636.654888286022,
+    "discount_rate_real": 0.08,
+    "demand_total_t": 1534.0,
+    "served_total_t": 1534.0,
+    "served_critical_t": 1044.5,
+    "shortage_total_t": 5.684341886080802e-14,
+    "shortage_critical_t": 2.842170943040401e-14,
+    "cost_per_served_t_mln": 8.664658079209255,
+    "pv_cost_per_served_t_mln": 6.933934086235999,
+    "min_service_level_total": 0.9999999999999999,
+    "min_service_level_critical": 0.9999999999999999,
+    "losses_total_t": 31.00086855,
+    "throughput_total_t": 1574.4270000000001,
+    "capex_total_mln": 1430.0,
+    "procurement_total_mln": 10968.6708825,
+    "reservation_total_mln": 505.22922,
+    "holding_total_mln": 135.6853910070001,
+    "fixed_opex_total_mln": 252.0,
+    "take_or_pay_idle_t": 0.0,
+    "opening_inventory_t": 12.328859000000001,
+    "closing_inventory_t": 21.754990450000015,
+    "hard_violations": 0,
+    "guideline_violations": 0,
+    "warnings": 0,
+    "feasible": true,
+    "checks_total": 80,
+    "checks_passed": 80
+  },
+  "baseline_reserves": [
+    {
+      "year": 2035,
+      "opening_t": 12.328859000000001,
+      "required_t": 12.32876712328767,
+      "slack_t": 9.187671233057415e-05
+    },
+    {
+      "year": 2036,
+      "opening_t": 17.260439000000027,
+      "required_t": 17.26027397260274,
+      "slack_t": 0.00016502739728707638
+    },
+    {
+      "year": 2037,
+      "opening_t": 23.424908000000073,
+      "required_t": 23.424657534246574,
+      "slack_t": 0.000250465753499185
+    },
+    {
+      "year": 2038,
+      "opening_t": 35.44551565000008,
+      "required_t": 35.445205479452056,
+      "slack_t": 0.0003101705480261785
+    },
+    {
+      "year": 2039,
+      "opening_t": 45.37026925000009,
+      "required_t": 45.36986301369863,
+      "slack_t": 0.00040623630146541245
+    },
+    {
+      "year": 2040,
+      "opening_t": 55.29499044999989,
+      "required_t": 55.2945205479452,
+      "slack_t": 0.0004699020546894417
+    }
+  ],
+  "boundary": [
+    {
+      "demand_direction": 1.0,
+      "isru_direction": 0.0,
+      "status": "bracketed",
+      "pass_radius": 6.625004971283488e-07,
+      "fail_radius": 6.625014066230506e-07,
+      "demand_pass": 6.625004971283488e-07,
+      "isru_reduction_pass": 0.0,
+      "demand_fail": 6.625014066230506e-07,
+      "isru_reduction_fail": 0.0,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.294556180328016,
+      "limit": 55.29455718064284,
+      "excess": 1.0003148247506033e-06
+    },
+    {
+      "demand_direction": 1.0,
+      "isru_direction": 0.25,
+      "status": "bracketed",
+      "pass_radius": 6.307200237642974e-07,
+      "fail_radius": 6.307209332589991e-07,
+      "demand_pass": 6.307200237642974e-07,
+      "isru_reduction_pass": 1.5768000594107434e-07,
+      "demand_fail": 6.307209332589991e-07,
+      "isru_reduction_fail": 1.5768023331474978e-07,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.294554423158075,
+      "limit": 55.2945554233568,
+      "excess": 1.00019872206758e-06
+    },
+    {
+      "demand_direction": 1.0,
+      "isru_direction": 0.5,
+      "status": "bracketed",
+      "pass_radius": 6.018490239512175e-07,
+      "fail_radius": 6.018499334459193e-07,
+      "demand_pass": 6.018490239512175e-07,
+      "isru_reduction_pass": 3.0092451197560877e-07,
+      "demand_fail": 6.018499334459193e-07,
+      "isru_reduction_fail": 3.0092496672295965e-07,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.29455282685794,
+      "limit": 55.29455382694871,
+      "excess": 1.000090769309736e-06
+    },
+    {
+      "demand_direction": 1.0,
+      "isru_direction": 0.75,
+      "status": "bracketed",
+      "pass_radius": 5.755055099143647e-07,
+      "fail_radius": 5.755064194090664e-07,
+      "demand_pass": 5.755055099143647e-07,
+      "isru_reduction_pass": 4.316291324357735e-07,
+      "demand_fail": 5.755064194090664e-07,
+      "isru_reduction_fail": 4.3162981455679983e-07,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.29455137025526,
+      "limit": 55.29455237029673,
+      "excess": 1.0000414647493017e-06
+    },
+    {
+      "demand_direction": 1.0,
+      "isru_direction": 1.0,
+      "status": "bracketed",
+      "pass_radius": 5.5137206800282e-07,
+      "fail_radius": 5.513729774975218e-07,
+      "demand_pass": 5.5137206800282e-07,
+      "isru_reduction_pass": 5.5137206800282e-07,
+      "demand_fail": 5.513729774975218e-07,
+      "isru_reduction_fail": 5.513729774975218e-07,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.294550035320526,
+      "limit": 55.294551035849636,
+      "excess": 1.0005291102288538e-06
+    },
+    {
+      "demand_direction": 0.75,
+      "isru_direction": 1.0,
+      "status": "bracketed",
+      "pass_radius": 6.962336556171067e-07,
+      "fail_radius": 6.962345651118085e-07,
+      "demand_pass": 5.2217524171283e-07,
+      "isru_reduction_pass": 6.962336556171067e-07,
+      "demand_fail": 5.221759238338564e-07,
+      "isru_reduction_fail": 6.962345651118085e-07,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.29454842111842,
+      "limit": 55.29454942141255,
+      "excess": 1.0002941266407106e-06
+    },
+    {
+      "demand_direction": 0.5,
+      "isru_direction": 1.0,
+      "status": "bracketed",
+      "pass_radius": 9.443392627872527e-07,
+      "fail_radius": 9.443401722819544e-07,
+      "demand_pass": 4.7216963139362633e-07,
+      "isru_reduction_pass": 9.443392627872527e-07,
+      "demand_fail": 4.721700861409772e-07,
+      "isru_reduction_fail": 9.443401722819544e-07,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.29454565633543,
+      "limit": 55.294546656363735,
+      "excess": 1.0000283054978354e-06
+    },
+    {
+      "demand_direction": 0.25,
+      "isru_direction": 1.0,
+      "status": "bracketed",
+      "pass_radius": 1.4671732060378417e-06,
+      "fail_radius": 1.4671741155325435e-06,
+      "demand_pass": 3.6679330150946043e-07,
+      "isru_reduction_pass": 1.4671732060378417e-06,
+      "demand_fail": 3.667935288831359e-07,
+      "isru_reduction_fail": 1.4671741155325435e-06,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.29453982947794,
+      "limit": 55.294540829617524,
+      "excess": 1.0001395835956828e-06
+    },
+    {
+      "demand_direction": 0.0,
+      "isru_direction": 1.0,
+      "status": "bracketed",
+      "pass_radius": 3.287044819444418e-06,
+      "fail_radius": 3.2870457289391197e-06,
+      "demand_pass": 0.0,
+      "isru_reduction_pass": 3.287044819444418e-06,
+      "demand_fail": 0.0,
+      "isru_reduction_fail": 3.2870457289391197e-06,
+      "first_rule": "RESERVE_45D",
+      "first_year": 2040,
+      "first_month": 1,
+      "severity": "hard",
+      "actual": 55.294519547828955,
+      "limit": 55.2945205479452,
+      "excess": 1.000116242266813e-06
+    }
+  ],
+  "minimum": {
+    "status": "bracketed",
+    "pass_radius": 5.5137206800282e-07,
+    "fail_radius": 5.513729774975218e-07,
+    "passing_scenario": {
+      "scenario_id": "TEAM_REVERSE_d5.5137206800282001e-07_s5.5137206800282001e-07",
+      "label": "EXP-07: additional adverse shocks to MANDATORY_STRESS",
+      "status": "TEAM_ASSUMPTION",
+      "demand_multiplier": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.1500006340778781,
+        "2039": 1.1500006340778781,
+        "2040": 1.1500006340778781
+      },
+      "critical_demand_multiplier": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.1500006340778781,
+        "2039": 1.1500006340778781,
+        "2040": 1.1500006340778781
+      },
+      "variable_price_multiplier": {
+        "Earth-Core": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.25,
+          "2039": 1.25,
+          "2040": 1.0
+        },
+        "Earth-Flex": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.25,
+          "2039": 1.25,
+          "2040": 1.0
+        }
+      },
+      "actual_delivery_share": {
+        "A": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        },
+        "B": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        },
+        "C": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        },
+        "D": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 0.5499996967453626,
+          "2039": 0.749999586470949,
+          "2040": 0.999999448627932
+        },
+        "E": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        }
+      },
+      "loss_ceiling": {
+        "enabled": true,
+        "from_year": 2038,
+        "max_losses_divided_by_throughput": 0.02
+      },
+      "demand_variant": "base",
+      "enforce_service_thresholds": null,
+      "notes": [
+        "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
+        "Reservation tariffs, CAPEX and other prices are not changed by the mandatory +25% price shock.",
+        "Mandatory stress is not automatically combined with high-demand or geopolitical research scenarios."
+      ],
+      "changes": [
+        {
+          "status": "TEAM_ASSUMPTION",
+          "years": [
+            2038,
+            2039,
+            2040
+          ],
+          "demand_increase": 5.5137206800282e-07,
+          "isru_relative_reduction": 5.5137206800282e-07,
+          "reference": "MANDATORY_STRESS; all plan decisions frozen"
+        }
+      ]
+    },
+    "passing_kpi": {
+      "total_cost_mln": 13291.584771393307,
+      "pv_cost_mln": 10636.654377020015,
+      "discount_rate_real": 0.08,
+      "demand_total_t": 1534.000608714763,
+      "served_total_t": 1534.000608714763,
+      "served_critical_t": 1044.5003994690633,
+      "shortage_total_t": 5.684341886080802e-14,
+      "shortage_critical_t": 2.842170943040401e-14,
+      "cost_per_served_t_mln": 8.664654170202345,
+      "pv_cost_per_served_t_mln": 6.933931001456225,
+      "min_service_level_total": 0.9999999999999999,
+      "min_service_level_critical": 0.9999999999999999,
+      "losses_total_t": 31.000866796636824,
+      "throughput_total_t": 1574.4268538864021,
+      "capex_total_mln": 1430.0,
+      "procurement_total_mln": 10968.6708825,
+      "reservation_total_mln": 505.22922,
+      "holding_total_mln": 135.68466889330847,
+      "fixed_opex_total_mln": 252.0,
+      "take_or_pay_idle_t": 0.0,
+      "opening_inventory_t": 12.328859000000001,
+      "closing_inventory_t": 21.754237375002255,
+      "hard_violations": 0,
+      "guideline_violations": 0,
+      "warnings": 0,
+      "feasible": true,
+      "checks_total": 80,
+      "checks_passed": 80
+    },
+    "failing_scenario": {
+      "scenario_id": "TEAM_REVERSE_d5.5137297749752179e-07_s5.5137297749752179e-07",
+      "label": "EXP-07: additional adverse shocks to MANDATORY_STRESS",
+      "status": "TEAM_ASSUMPTION",
+      "demand_multiplier": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.150000634078924,
+        "2039": 1.150000634078924,
+        "2040": 1.150000634078924
+      },
+      "critical_demand_multiplier": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.150000634078924,
+        "2039": 1.150000634078924,
+        "2040": 1.150000634078924
+      },
+      "variable_price_multiplier": {
+        "Earth-Core": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.25,
+          "2039": 1.25,
+          "2040": 1.0
+        },
+        "Earth-Flex": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.25,
+          "2039": 1.25,
+          "2040": 1.0
+        }
+      },
+      "actual_delivery_share": {
+        "A": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        },
+        "B": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        },
+        "C": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        },
+        "D": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 0.5499996967448624,
+          "2039": 0.7499995864702669,
+          "2040": 0.9999994486270225
+        },
+        "E": {
+          "2035": 1.0,
+          "2036": 1.0,
+          "2037": 1.0,
+          "2038": 1.0,
+          "2039": 1.0,
+          "2040": 1.0
+        }
+      },
+      "loss_ceiling": {
+        "enabled": true,
+        "from_year": 2038,
+        "max_losses_divided_by_throughput": 0.02
+      },
+      "demand_variant": "base",
+      "enforce_service_thresholds": null,
+      "notes": [
+        "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
+        "Reservation tariffs, CAPEX and other prices are not changed by the mandatory +25% price shock.",
+        "Mandatory stress is not automatically combined with high-demand or geopolitical research scenarios."
+      ],
+      "changes": [
+        {
+          "status": "TEAM_ASSUMPTION",
+          "years": [
+            2038,
+            2039,
+            2040
+          ],
+          "demand_increase": 5.513729774975218e-07,
+          "isru_relative_reduction": 5.513729774975218e-07,
+          "reference": "MANDATORY_STRESS; all plan decisions frozen"
+        }
+      ]
+    },
+    "failing_kpi": {
+      "total_cost_mln": 13291.584771392118,
+      "pv_cost_mln": 10636.654377019171,
+      "discount_rate_real": 0.08,
+      "demand_total_t": 1534.000608715767,
+      "served_total_t": 1534.000608715767,
+      "served_critical_t": 1044.5003994697222,
+      "shortage_total_t": 5.684341886080802e-14,
+      "shortage_critical_t": 2.842170943040401e-14,
+      "cost_per_served_t_mln": 8.664654170195899,
+      "pv_cost_per_served_t_mln": 6.933931001451136,
+      "min_service_level_total": 0.9999999999999999,
+      "min_service_level_critical": 0.9999999999999999,
+      "losses_total_t": 31.000866796633932,
+      "throughput_total_t": 1574.426853886161,
+      "capex_total_mln": 1430.0,
+      "procurement_total_mln": 10968.6708825,
+      "reservation_total_mln": 505.22922,
+      "holding_total_mln": 135.68466889211723,
+      "fixed_opex_total_mln": 252.0,
+      "take_or_pay_idle_t": 0.0,
+      "opening_inventory_t": 12.328859000000001,
+      "closing_inventory_t": 21.754237373759928,
+      "hard_violations": 1,
+      "guideline_violations": 0,
+      "warnings": 0,
+      "feasible": false,
+      "checks_total": 80,
+      "checks_passed": 79
+    },
+    "violations": [
+      {
+        "rule_id": "RESERVE_45D",
+        "severity": "hard",
+        "scenario_id": "TEAM_REVERSE_d5.5137297749752179e-07_s5.5137297749752179e-07",
+        "message": "2040-01: physical stock 55.295 t < 45-day reserve 55.295 t",
+        "year": 2040,
+        "month": 1,
+        "source_id": null,
+        "actual": 55.294550035320526,
+        "limit": 55.294551035849636,
+        "excess": 1.0005291102288538e-06
+      }
+    ]
+  }
+}
