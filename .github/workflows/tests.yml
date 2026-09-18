@@ -32,6 +32,6 @@ jobs:
           import json
           a = json.load(open('/tmp/ci_base/run_manifest.json'))
           b = json.load(open('results/alternatives/P3_isru_zbo_BASE/run_manifest.json'))
-          assert a['kpi_sha256'] == b['kpi_sha256'], 'KPI hash differs from committed results: not reproducible'
-          print('reproducible: kpi_sha256 matches committed results')
+          assert a['kpi_sha256'] == b['kpi_sha256'], f"KPI hash differs from committed results (precision {b.get('kpi_precision')} decimals): not reproducible"
+          print('reproducible: kpi_sha256 matches committed results at', b.get('kpi_precision'), 'decimals')
           PY

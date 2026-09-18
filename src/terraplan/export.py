@@ -30,6 +30,15 @@ def _write_csv(path: Path, rows: Iterable[dict], fieldnames: list[str] | None = 
             w.writerow({k: (f"{v:.6f}" if isinstance(v, float) else v) for k, v in r.items()})
 
 
+KPI_PRECISION = 6   # decimals: stated reproducibility precision of exported KPIs
+
+
+def kpi_hash(kpi: dict) -> str:
+    """SHA-256 of the KPI dict with floats rounded to KPI_PRECISION (stable across Python versions)."""
+    rounded = {k: (round(v, KPI_PRECISION) if isinstance(v, float) and v == v else v) for k, v in kpi.items()}
+    return hashlib.sha256(json.dumps(rounded, sort_keys=True).encode()).hexdigest()
+
+
 def _sha256(path: str | Path) -> str:
     p = Path(path)
     if not p.exists():
@@ -86,8 +95,10 @@ def write_results(res: Result, out_dir: str | Path, xlsx: bool = True, risk_regi
         "plan_sha256": hashlib.sha256(json.dumps(res.plan, sort_keys=True).encode()).hexdigest(),
         "scenario_sha256": hashlib.sha256(json.dumps(res.scenario, sort_keys=True, default=str).encode()).hexdigest(),
         "assumptions_sha256": hashlib.sha256(json.dumps(res.assumptions, sort_keys=True, default=str).encode()).hexdigest(),
-        "kpi_sha256": hashlib.sha256(json.dumps(res.kpi, sort_keys=True).encode()).hexdigest(),
-        "random_seed": None, "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 exactly",
+        "kpi_sha256": kpi_hash(res.kpi),
+        "kpi_precision": KPI_PRECISION,
+        "random_seed": None, "note": f"deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to {KPI_PRECISION} decimals before hashing, "
+                                     "which absorbs last-bit differences of float summation between Python versions)",
     }
     (out / "run_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     _write_summary_md(res, out / "summary.md")
