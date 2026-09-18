@@ -1,0 +1,37 @@
+name: TerraPlan tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: python -m pip install --disable-pip-version-check -e . pytest
+      - name: Organizer control vectors V01-V10
+        run: python -m terraplan control-cases
+      - name: Unit and integration tests
+        run: python -m pytest -q
+      - name: Reproducibility smoke run (BASE + MANDATORY_STRESS)
+        run: |
+          python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE --out /tmp/ci_base --no-xlsx
+          python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATORY_STRESS --out /tmp/ci_stress --no-xlsx || test $? -eq 2
+          python - <<'PY'
+          import json
+          a = json.load(open('/tmp/ci_base/run_manifest.json'))
+          b = json.load(open('results/alternatives/P3_isru_zbo_BASE/run_manifest.json'))
+          assert a['kpi_sha256'] == b['kpi_sha256'], 'KPI hash differs from committed results: not reproducible'
+          print('reproducible: kpi_sha256 matches committed results')
+          PY
