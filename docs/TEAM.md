@@ -1,39 +1,46 @@
-# TerraPlan — Team roles (4 members)
+# TerraPlan — роли в команде (4 участника)
 
-Roles are mapped to the organizer's 20 evaluation criteria (`docs/CASE_SUMMARY.md` §6) so every point
-has an owner. Everybody reviews everybody's numbers: the jury checks that UI, exports and the note agree.
+Роли привязаны к 20 критериям оценки организатора (`docs/CASE_SUMMARY.md` §6), чтобы у каждого балла был
+владелец. Все проверяют числа друг друга: жюри сверяет, что интерфейс, выгрузки и записка совпадают.
 
-| Role | Owner | Criteria owned | Main deliverables |
+| Роль | Владелец | Критерии | Основные результаты |
 |---|---|---|---|
-| **R1 — Model lead (calculation core)** | member 1 | 1, 2, 3, 4, 5, 6 | `src/terraplan` engine, monthly material balance, contracts/take-or-pay, storage & losses, costs & discounting, constraint checks, control vectors V01–V10, boundary & invalid-input tests, reproducibility protocol |
-| **R2 — Strategy & economics analyst** | member 2 | 7, 8, 9, 17, 18 | Alternative plans (Earth-only, Earth+New, Earth+ISRU+ZBO, full portfolio), contract & financial architecture, investment roadmap & gates, stakeholder map, MCDA with disclosed weights, scientific sources traceability (`docs/sources.md`) |
-| **R3 — Stress & risk engineer** | member 3 | 10, 11, 12, 13, 14, 15, 16 | Mandatory stress run and adapted plan, sensitivity sweeps & thresholds, reverse stress / Monte Carlo (seeded), team risk scenarios, quantified risk register with mitigations & residual risk, geopolitics bonus module |
-| **R4 — Product & UI / delivery** | member 4 | 19, 20 + presentation | Operator UI (dashboard, plan editor, violations, scenario compare, export), save/reopen, CSV/XLSX export, extensibility demo (Source-X, 2041), README & run instructions, presentation ≤ 12 slides, GitVerse handover |
+| **R1 — Ведущий по модели (расчётное ядро)** | участник 1 | 1, 2, 3, 4, 5, 6 | движок `src/terraplan`, помесячный материальный баланс, контракты и take-or-pay, хранение и потери, затраты и дисконтирование, проверка ограничений, контрольные векторы V01–V10, граничные тесты и тесты ошибочного ввода, протокол воспроизводимости |
+| **R2 — Аналитик по стратегии и экономике** | участник 2 | 7, 8, 9, 17, 18 | альтернативные планы (только Земля, Земля + Earth-New, Земля + ISRU + ZBO, полный портфель), контрактно-финансовая архитектура, инвестиционная дорожная карта и ворота, карта стейкхолдеров, MCDA с раскрытыми весами, прослеживаемость научных источников (`docs/sources.md`) |
+| **R3 — Инженер по стрессам и рискам** | участник 3 | 10, 11, 12, 13, 14, 15, 16 | обязательный стресс и адаптированный план, свипы чувствительности и пороги, обратный стресс / Монте-Карло (с seed), собственные риск-сценарии, количественный реестр рисков с мерами и остаточным риском, геополитический бонус-модуль |
+| **R4 — Продукт, интерфейс и сдача** | участник 4 | 19, 20 + презентация | интерфейс оператора (дашборд, редактор плана, панель нарушений, сравнение сценариев, выгрузка), сохранение/открытие плана, выгрузка CSV/XLSX, демонстрация расширяемости (Source-X, 2041), README и инструкция запуска, презентация ≤ 12 слайдов, передача на GitVerse |
 
-Management note (8–12 pages) is co-written: R2 leads structure and strategy sections, R1 writes model &
-architecture, R3 writes stress/risk sections, R4 writes UI/functionality, budget & roadmap tables.
+Управленческая записка (8–12 страниц) пишется совместно: R2 ведёт структуру и стратегические разделы, R1 пишет
+модель и архитектуру, R3 — стресс и риски, R4 — интерфейс и функциональность, таблицы бюджета и дорожной карты.
 
-## Working agreement
+## Рабочее соглашение
 
-- `data/case/` and `configs/scenarios/base.yaml`, `mandatory_stress.yaml` are **read-only** (CASE_INPUT). Own scenarios go to `configs/scenarios/team_*.yaml`.
-- Every assumption gets a row in `configs/assumptions.yaml` with meaning, unit, range, status, justification.
-- Every experiment is a script in `experiments/` writing to `results/<experiment_id>/` with the plan, scenario, assumptions snapshot and exports. No hand-edited numbers in docs.
-- Branch naming `feat/<role>-<topic>`; PRs into `main`; `pytest` must pass.
-- Numbers quoted in the note/presentation are copied from `results/` files (cite the file name).
+- **Язык.** Всё, что видит оператор и жюри, — на русском: интерфейс, вывод CLI, `summary.md`, тексты нарушений и
+  сообщений об ошибках, записка, презентация, документация команды. На английском остаются код, идентификаторы правил
+  (`RESERVE_45D`, `CAPACITY_EXCEEDED` …), имена файлов и колонок CSV/JSON — они заданы форматами организатора.
+- `data/case/` и `configs/scenarios/base.yaml`, `mandatory_stress.yaml` — **только чтение** (CASE_INPUT). Собственные сценарии — в `configs/scenarios/team_*.yaml`.
+- Каждое допущение — строка в `configs/assumptions.yaml` со смыслом, единицей, диапазоном, статусом и обоснованием.
+- Каждый эксперимент — скрипт в `experiments/`, пишущий в `results/<experiment_id>/` план, сценарий, снимок допущений и выгрузки. Никаких чисел, вписанных в документы вручную.
+- Ветки `feat/<роль>-<тема>`; PR в `main`; `pytest` должен проходить.
+- Числа в записке и презентации копируются из файлов `results/` (с указанием имени файла).
 
-## Timeline (hackathon)
+## График (хакатон)
 
-| Phase | R1 | R2 | R3 | R4 |
+| Фаза | R1 | R2 | R3 | R4 |
 |---|---|---|---|---|
-| Day 1 AM | engine skeleton, V01–V10 green | draft 4 alternative plans | stress scenario loader, sensitivity harness | UI mockups → clickable prototype |
-| Day 1 PM | monthly balance, costs, checks | run alternatives, pick candidate | stress + adapted plan, first thresholds | plan editor + violations panel |
-| Day 2 AM | invalid-input tests, reproducibility, export parity | contracts & roadmap, stakeholders, MCDA | risk register, Monte Carlo / reverse stress, geopolitics | save/reopen, export, extensibility demo |
-| Day 2 PM | freeze numbers | management note + one-pager | protocols & appendices | presentation, README, handover |
+| День 1, утро | каркас движка, V01–V10 зелёные | черновики 4 альтернативных планов | загрузчик стресс-сценария, стенд чувствительности | макеты интерфейса → кликабельный прототип |
+| День 1, вечер | помесячный баланс, затраты, проверки | прогон альтернатив, выбор кандидата | стресс + адаптированный план, первые пороги | редактор плана + панель нарушений |
+| День 2, утро | тесты ошибочного ввода, воспроизводимость, паритет выгрузок | контракты и дорожная карта, стейкхолдеры, MCDA | реестр рисков, Монте-Карло / обратный стресс, геополитика | сохранение/открытие, выгрузка, демо расширяемости |
+| День 2, вечер | заморозка чисел | записка + одностраничник | протоколы и приложения | презентация, README, передача |
 
-## Current status (2026-09-18)
+## Текущий статус (18.09.2026, вечер)
 
-- Repo bootstrapped, organizer materials and literature laid in, engine + tests + first experiments running (see `README.md`).
-- **R1 done**: monthly engine, V01–V10, 33 tests (boundary, invalid input, extensibility, export parity, golden, manual check), full check matrix per year, delivery/order calendar, discount-timing option, `verify` command, CSV-only independent recalculation, constraints catalogue, architecture doc, CI with reproducibility check. **R1 waiting on others**: final plan choice (R2) to freeze numbers; UI (R4) to call `simulate()`; stress protocol additions (R3) for Monte Carlo seeds in the manifest.
-- **R4 delivered (2026-09-19)**: local operator UI calling `simulate()`, plan and copied-data/contract editors, violations and check matrix, scenario comparison, workspace save/reopen, CSV/XLSX/JSON downloads, Source-X/2041 demo, operator guide, 12-slide presentation, budget/roadmap and local handover instructions. Acceptance: `tests/test_web.py`, `tests/ui_smoke.cjs`, `docs/HANDOVER.md`. **R4 pending external handover**: GitVerse destination and team publication/access check.
-- **R3 integrated**: EXP-07 reverse stress, EXP-08 protection measures, EXP-09 Earth-New delay, EXP-10 seeded Monte Carlo with portable provenance and protocols are in `main`.
-- Open with R2/R3: final strategy selection, self-found sources, geopolitics module, expansion of risk methods to alternative strategies, final management-note consolidation.
+- Репозиторий развёрнут, материалы организатора и литература разложены, движок + тесты + первые эксперименты работают (см. `README.md`). CI на `main` зелёный (33 теста, V01–V10, `verify`, независимый пересчёт, проверка воспроизводимости).
+- **R1 сделано**: помесячный движок, V01–V10, 33 теста (граничные, ошибочный ввод, расширяемость, паритет выгрузок, эталонные значения, ручная проверка), полная матрица проверок «правило × год», календарь заказов/поставок, опция момента дисконтирования, команда `verify`, независимый пересчёт только по CSV, каталог ограничений, документ по архитектуре, CI с проверкой воспроизводимости.
+- **R1: найдено при аудите 18.09 (вечер), требует исправления до заморозки чисел:**
+  1. *Календарь поставок Earth-New.* Для источника, открываемого опционом (C), дата размещения заказа считается как «поставка − 24 мес.», а самая ранняя допустимая дата — месяц ввода; поэтому в матрице проверок `LEAD_TIME_VIOLATED` помечен как VIOLATED для первых 24 месяцев поставок, хотя в списке нарушений его нет и план помечен исполнимым. Затронуты 19 каталогов результатов (все планы с Earth-New: P2, P2z, P4 и их варианты), в 8 из них `Feasible: YES` соседствует со строками VIOLATED в матрице. Правка — в `src/terraplan/engine.py` (календарь и матрица), затем перегенерация `results/`.
+  2. *Повторное открытие плана EXP-06.* `results/reaction/P3_isru_zbo_reactive_MANDATORY_STRESS/plan.json` не открывается (`ordered_t 48.8776 != sum(monthly_t) 48.8778`): помесячный профиль округлён до 4 знаков, а загрузчик требует совпадения до 1e-6. `verify` по этому каталогу падает — 1 из 34. Правка — в `experiments/run_reaction.py` (ordered_t = сумма округлённых месяцев) и допуск на округление в `src/terraplan/plan.py`; добавить тест/шаг CI «verify по всем каталогам `results/`» (сейчас CI проверяет только 2).
+  3. Мелочи: в README «26 tests» вместо 33; в 13 каталогах `results/demand/` и одном `results/reaction/` нет `results.xlsx`, хотя README обещает XLSX в каждом каталоге.
+- **R1 дальше** (в одном проходе с перегенерацией `results/`): русский язык вывода CLI, `summary.md`, текстов нарушений и сообщений об ошибках, листа README в XLSX (правило «Язык» выше; 8 утверждений в тестах привязаны к английским подстрокам — обновить); тонкий программный интерфейс `simulate()` «словарь → словарь» для UI (R4) с ошибками в формате организатора §26.
+- **R1 ждёт от других**: окончательный выбор плана (R2) для заморозки чисел; интерфейс (R4) поверх `simulate()`; дополнения к протоколу стрессов (R3) — seed Монте-Карло в манифесте (`random_seed` уже зарезервирован в `run_manifest.json`).
+- Открыто: реализация интерфейса поверх движка (макет — `docs/ui_mockups/`, уже на русском), презентация, собственные источники, Монте-Карло / обратный стресс, геополитический модуль, MCDA, окончательный выбор плана в записке.
