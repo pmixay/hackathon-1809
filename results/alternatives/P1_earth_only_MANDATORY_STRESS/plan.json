@@ -1,0 +1,151 @@
+{
+  "plan_id": "P1_earth_only",
+  "scenario_id": "BASE",
+  "description": "Earth-Core + Earth-Flex only, no investments (reference: shows capacity ceiling 300 t/yr)",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "reserved_capacity_t": 16.699
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "reserved_capacity_t": 80.817
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "reserved_capacity_t": 110.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 110.0
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "ordered_t": 16.6988,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "ordered_t": 80.8169,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "ordered_t": 110.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 110.0,
+        "profile": "uniform"
+      }
+    ],
+    "investments": [],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P1_earth_only",
+      "description": "Earth-Core + Earth-Flex only, no investments (reference: shows capacity ceiling 300 t/yr)",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110
+      }
+    },
+    "stress_aware": false,
+    "builder_notes": [
+      "2039: planned gross shortfall 44.12 t (available reserved capacity exhausted)",
+      "2040: planned gross shortfall 152.49 t (available reserved capacity exhausted)"
+    ],
+    "status": "TEAM_DECISION"
+  }
+}

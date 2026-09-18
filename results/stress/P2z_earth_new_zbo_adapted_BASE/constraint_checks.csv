@@ -1,0 +1,23 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+BASE,P2z_earth_new_zbo_adapted,INTRA_MONTH_PEAK,warning,stock after inflow 124.018 t exceeds ZBO modernization capacity 120.0 t within 2039-03 (before withdrawals),2039,3,,124.018116,120.000000,4.018116
+BASE,P2z_earth_new_zbo_adapted,INTRA_MONTH_PEAK,warning,stock after inflow 128.845 t exceeds ZBO modernization capacity 120.0 t within 2039-04 (before withdrawals),2039,4,,128.845176,120.000000,8.845176
+BASE,P2z_earth_new_zbo_adapted,INTRA_MONTH_PEAK,warning,stock after inflow 133.672 t exceeds ZBO modernization capacity 120.0 t within 2039-05 (before withdrawals),2039,5,,133.672236,120.000000,13.672236
+BASE,P2z_earth_new_zbo_adapted,INTRA_MONTH_PEAK,warning,stock after inflow 138.499 t exceeds ZBO modernization capacity 120.0 t within 2039-06 (before withdrawals),2039,6,,138.499297,120.000000,18.499297
+BASE,P2z_earth_new_zbo_adapted,INTRA_MONTH_PEAK,warning,stock after inflow 143.326 t exceeds ZBO modernization capacity 120.0 t within 2039-07 (before withdrawals),2039,7,,143.326357,120.000000,23.326357
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 121.487 t exceeds ZBO modernization capacity 120.0 t in 2039-08,2039,8,,121.486750,120.000000,1.486750
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 126.314 t exceeds ZBO modernization capacity 120.0 t in 2039-09,2039,9,,126.313810,120.000000,6.313810
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 131.141 t exceeds ZBO modernization capacity 120.0 t in 2039-10,2039,10,,131.140870,120.000000,11.140870
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 135.968 t exceeds ZBO modernization capacity 120.0 t in 2039-11,2039,11,,135.967930,120.000000,15.967930
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 140.795 t exceeds ZBO modernization capacity 120.0 t in 2039-12,2039,12,,140.794990,120.000000,20.794990
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 143.698 t exceeds ZBO modernization capacity 120.0 t in 2040-01,2040,1,,143.698324,120.000000,23.698324
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 146.602 t exceeds ZBO modernization capacity 120.0 t in 2040-02,2040,2,,146.601657,120.000000,26.601657
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 149.505 t exceeds ZBO modernization capacity 120.0 t in 2040-03,2040,3,,149.504990,120.000000,29.504990
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 152.408 t exceeds ZBO modernization capacity 120.0 t in 2040-04,2040,4,,152.408324,120.000000,32.408324
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 155.312 t exceeds ZBO modernization capacity 120.0 t in 2040-05,2040,5,,155.311657,120.000000,35.311657
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 158.215 t exceeds ZBO modernization capacity 120.0 t in 2040-06,2040,6,,158.214990,120.000000,38.214990
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 161.118 t exceeds ZBO modernization capacity 120.0 t in 2040-07,2040,7,,161.118324,120.000000,41.118324
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 164.022 t exceeds ZBO modernization capacity 120.0 t in 2040-08,2040,8,,164.021657,120.000000,44.021657
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 166.925 t exceeds ZBO modernization capacity 120.0 t in 2040-09,2040,9,,166.924990,120.000000,46.924990
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 169.828 t exceeds ZBO modernization capacity 120.0 t in 2040-10,2040,10,,169.828324,120.000000,49.828324
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 172.732 t exceeds ZBO modernization capacity 120.0 t in 2040-11,2040,11,,172.731657,120.000000,52.731657
+BASE,P2z_earth_new_zbo_adapted,STORAGE_OVERFLOW,hard,end-of-month stock 175.635 t exceeds ZBO modernization capacity 120.0 t in 2040-12,2040,12,,175.634990,120.000000,55.634990

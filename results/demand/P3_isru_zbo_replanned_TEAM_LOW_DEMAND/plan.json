@@ -1,0 +1,161 @@
+{
+  "plan_id": "P3_isru_zbo_team_low_demand",
+  "scenario_id": "TEAM_LOW_DEMAND",
+  "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 87.901
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 122.442
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 162.551
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 109.418
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 146.098
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 5.79
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 87.9008,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 122.4414,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 162.5505,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "ordered_t": 100.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 109.4172,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 146.0973,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 5.7895,
+        "profile": "uniform"
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "LUNAR_ISRU",
+        "decision_year": 2036,
+        "decision_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 10.3278,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P3_isru_zbo_team_low_demand",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110,
+        "D": 120
+      },
+      "stress_aware": true
+    },
+    "stress_aware": true,
+    "builder_notes": [],
+    "status": "TEAM_DECISION"
+  }
+}

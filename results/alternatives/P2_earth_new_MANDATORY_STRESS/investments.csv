@@ -1,0 +1,2 @@
+scenario_id,plan_id,investment_id,name,option_fee_mln,option_date,exercise_cost_mln,exercise_date,commissioning_date,fixed_opex_mln_per_year,note
+MANDATORY_STRESS,P2_earth_new,EARTH_NEW,Earth-New option,90.000000,2035-01,270.000000,2035-01,2037-01,0.000000,

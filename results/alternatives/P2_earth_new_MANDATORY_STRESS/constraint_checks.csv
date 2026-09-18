@@ -1,0 +1,9 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+MANDATORY_STRESS,P2_earth_new,BASE_TOTAL_SERVICE,guideline,2039: total service level 0.8983 < 0.97 (shortage 37.417 t) [guideline in this scenario],2039,,,0.898322,0.970000,0.071678
+MANDATORY_STRESS,P2_earth_new,BASE_TOTAL_SERVICE,guideline,2040: total service level 0.8696 < 0.97 (shortage 58.500 t) [guideline in this scenario],2040,,,0.869565,0.970000,0.100435
+MANDATORY_STRESS,P2_earth_new,RESERVE_45D,hard,2038-01: physical stock 30.822 t < 45-day reserve 35.445 t,2038,1,,30.822262,35.445205,4.622943
+MANDATORY_STRESS,P2_earth_new,RESERVE_45D,hard,2039-01: physical stock 1.952 t < 45-day reserve 45.370 t,2039,1,,1.952402,45.369863,43.417462
+MANDATORY_STRESS,P2_earth_new,RESERVE_45D,hard,2040-01: physical stock 0.000 t < 45-day reserve 55.295 t,2040,1,,0.000000,55.294521,55.294521
+MANDATORY_STRESS,P2_earth_new,STRESS_LOSS_LIMIT,hard,2038: losses/throughput 0.0450 > 0.02 (12.187 t of 270.817 t),2038,,,0.045000,0.020000,0.025000
+MANDATORY_STRESS,P2_earth_new,STRESS_LOSS_LIMIT,hard,2039: losses/throughput 0.0450 > 0.02 (15.485 t of 344.115 t),2039,,,0.045000,0.020000,0.025000
+MANDATORY_STRESS,P2_earth_new,STRESS_LOSS_LIMIT,hard,2040: losses/throughput 0.0450 > 0.02 (18.377 t of 408.377 t),2040,,,0.045000,0.020000,0.025000

@@ -1,0 +1,8 @@
+param,value,variant,pv_cost_mln,total_cost_mln,cost_per_served_t,shortage_t,min_sl_total,min_sl_critical,hard,guideline,losses_t,violations
+discount_rate_real,0.0000,fixed plan,10654.2588,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,
+discount_rate_real,0.0200,fixed plan,10078.4471,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,
+discount_rate_real,0.0400,fixed plan,9554.3565,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,
+discount_rate_real,0.0600,fixed plan,9076.1757,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,
+discount_rate_real,0.0800,fixed plan,8638.8569,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,
+discount_rate_real,0.1000,fixed plan,8238.0030,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,
+discount_rate_real,0.1200,fixed plan,7869.7719,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,

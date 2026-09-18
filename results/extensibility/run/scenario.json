@@ -1,0 +1,18 @@
+{
+  "scenario_id": "TEAM_2041_SOURCE_X",
+  "label": "TEAM_2041_SOURCE_X",
+  "status": "TEAM_ASSUMPTION",
+  "demand_multiplier": null,
+  "critical_demand_multiplier": null,
+  "variable_price_multiplier": null,
+  "actual_delivery_share": null,
+  "loss_ceiling": {},
+  "demand_variant": "base",
+  "enforce_service_thresholds": null,
+  "notes": [],
+  "changes": [
+    "+Source-X 60 t/yr from 2039 (5.5 mln/t, reservation 0.2, TOP 30 %)",
+    "+2041 demand 450/290 t (extrapolated)",
+    "CAPEX limits and 45-day rule kept as in the original set (no through_2041 CAPEX limit was added)"
+  ]
+}

@@ -1,0 +1,6 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+MANDATORY_STRESS,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,2039: total service level 0.8983 < 0.97 (shortage 37.417 t) [guideline in this scenario],2039,,,0.898322,0.970000,0.071678
+MANDATORY_STRESS,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,2040: total service level 0.8696 < 0.97 (shortage 58.500 t) [guideline in this scenario],2040,,,0.869565,0.970000,0.100435
+MANDATORY_STRESS,P2z_earth_new_zbo,RESERVE_45D,hard,2038-01: physical stock 30.822 t < 45-day reserve 35.445 t,2038,1,,30.822244,35.445205,4.622961
+MANDATORY_STRESS,P2z_earth_new_zbo,RESERVE_45D,hard,2039-01: physical stock 1.952 t < 45-day reserve 45.370 t,2039,1,,1.952388,45.369863,43.417476
+MANDATORY_STRESS,P2z_earth_new_zbo,RESERVE_45D,hard,2040-01: physical stock 0.000 t < 45-day reserve 55.295 t,2040,1,,0.000000,55.294521,55.294521

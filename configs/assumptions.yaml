@@ -1,0 +1,105 @@
+# TerraPlan TEAM_ASSUMPTION registry. Every key: value, unit, status, range, justification.
+# CASE_INPUT entries are repeated here only to make the engine's fixed dates explicit.
+discount_rate_real:
+  value: 0.08
+  unit: share per year (real)
+  status: TEAM_ASSUMPTION
+  range: [0.0, 0.15]
+  justification: >
+    Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer.
+    Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.
+discount_t0_year:
+  value: 2035
+  unit: year
+  status: TEAM_ASSUMPTION
+  range: [2035, 2035]
+  justification: Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035).
+prep_period_start:
+  value: "2034-01"
+  unit: YYYY-MM
+  status: TEAM_ASSUMPTION
+  range: ["2033-01", "2034-12"]
+  justification: Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01).
+lead_time_policy:
+  value: max
+  unit: enum min|max|mean
+  status: TEAM_ASSUMPTION
+  range: [min, max, mean]
+  justification: Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months).
+weeks_per_month:
+  value: 4.345
+  unit: weeks
+  status: TEAM_ASSUMPTION
+  range: [4.0, 4.5]
+  justification: 365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months.
+zbo_commissioning_lag_months:
+  value: 0
+  unit: months
+  status: TEAM_ASSUMPTION
+  range: [0, 12]
+  justification: Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity.
+earth_new_post_commissioning_lead_months:
+  value: 0
+  unit: months
+  status: TEAM_ASSUMPTION
+  range: [0, 12]
+  justification: The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation.
+isru_commissioning_month:
+  value: "2038-01"
+  unit: YYYY-MM
+  status: CASE_INPUT
+  range: ["2038-01", "2038-01"]
+  justification: Lunar-ISRU available from 2038 once CAPEX is financed before 2038.
+isru_financing_deadline:
+  value: "2037-12"
+  unit: YYYY-MM
+  status: CASE_INPUT
+  range: ["2037-12", "2037-12"]
+  justification: CAPEX 1250 must be financed before 2038.
+source_investment_link:
+  value: {C: EARTH_NEW, D: LUNAR_ISRU}
+  unit: map source_id -> investment_id
+  status: CASE_INPUT
+  justification: Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX.
+storage_investment_link:
+  value: {ZBO: ZBO}
+  unit: map investment_id -> storage_id
+  status: CASE_INPUT
+  justification: ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr).
+emergency_base_share_threshold:
+  value: 0.20
+  unit: share of annual total demand
+  status: TEAM_ASSUMPTION
+  range: [0.1, 0.5]
+  justification: Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand.
+holding_cost_averaging:
+  value: trapezoid_monthly
+  unit: enum
+  status: TEAM_ASSUMPTION
+  justification: Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12.
+storage_capacity_check:
+  value: end_of_month_hard_peak_warning
+  unit: enum
+  status: TEAM_ASSUMPTION
+  justification: Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity.
+emergency_reserve_equivalence:
+  value: stock_covers_lead_time_and_reserved_capacity_covers_45d
+  unit: rule
+  status: TEAM_ASSUMPTION
+  justification: Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y.
+opening_stock_reservation_years:
+  value: 1.0
+  unit: years
+  status: TEAM_ASSUMPTION
+  range: [0.0, 1.0]
+  justification: The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035.
+prep_period_holding_charged:
+  value: false
+  unit: bool
+  status: TEAM_ASSUMPTION
+  justification: Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged.
+intra_year_demand_profile:
+  value: uniform
+  unit: enum
+  status: CASE_INPUT
+  justification: Organizer convention — uniform demand within the year, 365 days.

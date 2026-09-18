@@ -1,0 +1,214 @@
+{
+  "plan_id": "P4_full_adapted",
+  "scenario_id": "MANDATORY_STRESS",
+  "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037) — re-planned for MANDATORY_STRESS",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "reserved_capacity_t": 17.948
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2038,
+        "reserved_capacity_t": 56.038
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "reserved_capacity_t": 102.515
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "reserved_capacity_t": 130.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 13.948
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "ordered_t": 17.9471,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "ordered_t": 100.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2038,
+        "ordered_t": 56.0372,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "ordered_t": 102.5149,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "ordered_t": 130.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 13.9474,
+        "profile": "uniform"
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "EARTH_NEW",
+        "decision_year": 2035,
+        "decision_month": 1,
+        "option_year": 2035,
+        "option_month": 1
+      },
+      {
+        "investment_id": "LUNAR_ISRU",
+        "decision_year": 2036,
+        "decision_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P4_full_adapted",
+      "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037) — re-planned for MANDATORY_STRESS",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110,
+        "C": 130,
+        "D": 120,
+        "E": 80
+      },
+      "stress_aware": true
+    },
+    "stress_aware": true,
+    "builder_notes": [],
+    "status": "TEAM_DECISION"
+  }
+}

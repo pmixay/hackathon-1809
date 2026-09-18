@@ -1,0 +1,20 @@
+{
+  "terraplan_version": "0.1.0",
+  "python": "3.11.15",
+  "plan_id": "P3_isru_zbo",
+  "scenario_id": "MANDATORY_STRESS",
+  "case_dir": "/home/user/hackathon-1809/data/case",
+  "case_file_sha256": {
+    "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
+    "supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
+    "storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
+    "investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
+    "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8"
+  },
+  "plan_sha256": "4f3d809aa92a7fab422252e77d3f2525845a9bda0b31d92901c44a70bf7142b0",
+  "scenario_sha256": "f5f5e2820596a3da2d3623cf4ba0723c9dd58d8850077f2bcdaea949aaa6b653",
+  "assumptions_sha256": "c6a7e8b9061ba019666d5d692929a846259ad00226be89f42d35aea015656ef7",
+  "kpi_sha256": "7cf4870dcdb1083dadfe8c39223f7d089ea2de9bf6ef8cb479802681c878cdf5",
+  "random_seed": null,
+  "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 exactly"
+}

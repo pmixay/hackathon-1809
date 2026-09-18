@@ -1,0 +1,3 @@
+scenario_id,plan_id,investment_id,name,option_fee_mln,option_date,exercise_cost_mln,exercise_date,commissioning_date,fixed_opex_mln_per_year,note
+BASE,P3_isru_zbo,LUNAR_ISRU,Lunar-ISRU pilot,0.000000,,1250.000000,2036-01,2038-01,70.000000,
+BASE,P3_isru_zbo,ZBO,ZBO modernization,0.000000,,180.000000,2037-07,2037-07,12.000000,

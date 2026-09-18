@@ -1,0 +1,179 @@
+{
+  "plan_id": "P2_earth_new",
+  "scenario_id": "BASE",
+  "description": "Earth-Core + Earth-Flex + Earth-New option exercised 2035-01 (commissioned 2037-01); no ZBO, no ISRU",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "reserved_capacity_t": 16.699
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2038,
+        "reserved_capacity_t": 80.817
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "reserved_capacity_t": 130.0
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "reserved_capacity_t": 24.116
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "reserved_capacity_t": 130.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 88.377
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "ordered_t": 16.6988,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2038,
+        "ordered_t": 80.8169,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "ordered_t": 130.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "ordered_t": 24.1154,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "ordered_t": 130.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 88.377,
+        "profile": "uniform"
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "EARTH_NEW",
+        "decision_year": 2035,
+        "decision_month": 1,
+        "option_year": 2035,
+        "option_month": 1
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P2_earth_new",
+      "description": "Earth-Core + Earth-Flex + Earth-New option exercised 2035-01 (commissioned 2037-01); no ZBO, no ISRU",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110,
+        "C": 130
+      }
+    },
+    "stress_aware": false,
+    "builder_notes": [],
+    "status": "TEAM_DECISION"
+  }
+}

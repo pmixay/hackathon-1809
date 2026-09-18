@@ -1,0 +1,191 @@
+{
+  "plan_id": "P4_full",
+  "scenario_id": "BASE",
+  "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037)",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "reserved_capacity_t": 13.189
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 161.772
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "reserved_capacity_t": 22.622
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "reserved_capacity_t": 84.737
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "ordered_t": 13.1882,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "ordered_t": 100.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 161.7714,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "ordered_t": 22.6216,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "ordered_t": 84.7369,
+        "profile": "uniform"
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "EARTH_NEW",
+        "decision_year": 2035,
+        "decision_month": 1,
+        "option_year": 2035,
+        "option_month": 1
+      },
+      {
+        "investment_id": "LUNAR_ISRU",
+        "decision_year": 2036,
+        "decision_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P4_full",
+      "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037)",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110,
+        "C": 130,
+        "D": 120,
+        "E": 80
+      }
+    },
+    "stress_aware": false,
+    "builder_notes": [],
+    "status": "TEAM_DECISION"
+  }
+}

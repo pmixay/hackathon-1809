@@ -1,0 +1,9 @@
+scenario_id: TEAM_LOW_DEMAND
+label_ru: "Низкий спрос (проверка чувствительности, данные организатора)"
+status: TEAM_SENSITIVITY
+demand_variant: low
+notes:
+  - "Uses the organizer's low_total_t column; critical share of the base year is preserved."
+  - "Service thresholds are guidelines here (not a control scenario)."
+changes:
+  - "demand_variant: base -> low"

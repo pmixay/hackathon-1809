@@ -1,0 +1,9 @@
+param,value,variant,pv_cost_mln,total_cost_mln,cost_per_served_t,shortage_t,min_sl_total,min_sl_critical,hard,guideline,losses_t,violations
+earth_price_multiplier,0.8000,fixed plan,7456.7811,9183.2792,6.6067,0.0000,1.0000,1.0000,0,0,29.4922,
+earth_price_multiplier,0.9000,fixed plan,8047.8190,9918.7690,7.1358,0.0000,1.0000,1.0000,0,0,29.4922,
+earth_price_multiplier,1.0000,fixed plan,8638.8569,10654.2588,7.6649,0.0000,1.0000,1.0000,0,0,29.4922,
+earth_price_multiplier,1.1000,fixed plan,9229.8949,11389.7486,8.1941,0.0000,1.0000,1.0000,0,0,29.4922,
+earth_price_multiplier,1.2000,fixed plan,9820.9328,12125.2384,8.7232,0.0000,1.0000,1.0000,0,0,29.4922,
+earth_price_multiplier,1.3000,fixed plan,10411.9707,12860.7282,9.2523,0.0000,1.0000,1.0000,0,0,29.4922,
+earth_price_multiplier,1.4000,fixed plan,11003.0087,13596.2180,9.7815,0.0000,1.0000,1.0000,0,0,29.4922,
+earth_price_multiplier,1.5000,fixed plan,11594.0466,14331.7078,10.3106,0.0000,1.0000,1.0000,0,0,29.4922,

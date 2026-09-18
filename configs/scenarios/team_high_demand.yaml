@@ -1,0 +1,9 @@
+scenario_id: TEAM_HIGH_DEMAND
+label_ru: "Высокий спрос (проверка чувствительности, данные организатора)"
+status: TEAM_SENSITIVITY
+demand_variant: high
+notes:
+  - "Uses the organizer's high_total_t column; critical share of the base year is preserved."
+  - "Not combined with the mandatory stress (separate TEAM_* scenario would be needed)."
+changes:
+  - "demand_variant: base -> high"
