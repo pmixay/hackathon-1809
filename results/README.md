@@ -6,6 +6,7 @@
 | `stress/` | EXP-02 | fixed vs adapted plans under MANDATORY_STRESS, adapted plans in BASE, `compare_<plan>.csv/md` |
 | `demand/` | EXP-03 | low / high demand, fixed and re-planned |
 | `sensitivity/` | EXP-04 | `sweep_*.csv`, `thresholds.csv`, `tornado.csv`, `ranking_by_discount_rate.csv`, `summary.md` |
+| `reaction/` | EXP-06 | observe-then-react (Flex/Emergency after 2038-03) vs fixed vs pre-committed adaptation; `compare_*.md` |
 | `extensibility/` | EXP-05 | `case_copy/` (Source-X, 2041) and `run/` |
 
 Each run directory: `summary.md`, `yearly_balance.csv`, `inventory_trace.csv`, `source_schedule.csv`,

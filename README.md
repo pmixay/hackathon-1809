@@ -21,7 +21,7 @@ python -m terraplan control-cases               # prints V01–V10 PASS/FAIL
 python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE             --out results/demo_BASE
 python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
 python -m terraplan compare results/demo_BASE results/demo_STRESS --out results/demo_compare
-python experiments/run_all.py                   # EXP-01 … EXP-05, regenerates results/
+python experiments/run_all.py                   # EXP-01 … EXP-06, regenerates results/
 ```
 
 Exit code of `run` is 0 when the plan is feasible, 2 when hard constraints are violated (violations are printed
@@ -32,7 +32,7 @@ with rule id, year, actual value, limit and reason), 3 on invalid input (message
 1. **Install and run** — commands above; `results/<dir>/summary.md` shows KPIs, yearly balance, finance, source schedule and constraint checks; `results.xlsx` / `*.csv` / `export_envelope.json` contain the same numbers.
 2. **Standard scenario** — `configs/plans/P3_isru_zbo.json` under `BASE` (feasible, all checks pass): `results/alternatives/P3_isru_zbo_BASE/`.
 3. **Mandatory stress** — same plan under `MANDATORY_STRESS` (`results/alternatives/P3_isru_zbo_MANDATORY_STRESS/`: RESERVE_45D violated 2038–2040, shortage 170 t) and the adapted plan `configs/plans/P3_isru_zbo_adapted.json` (`results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS/`: feasible). Comparison: `results/stress/compare_P3_isru_zbo.md`.
-4. **Additional tests** — low/high demand (`results/demand/`), sensitivity sweeps and thresholds (`results/sensitivity/summary.md`), extensibility on a data copy with Source-X and 2041 (`results/extensibility/`), invalid-input and boundary tests (`tests/`).
+4. **Additional tests** — low/high demand (`results/demand/`), sensitivity sweeps and thresholds (`results/sensitivity/summary.md`), observe-then-react under stress (`results/reaction/`), extensibility on a data copy with Source-X and 2041 (`results/extensibility/`), invalid-input and boundary tests (`tests/`).
 5. **Comparison and export** — `results/*/summary.csv`, `results/stress/compare_*.csv`, each run directory has CSV + XLSX + JSON envelope; plans reopen via `python -m terraplan run --plan results/<dir>/plan.json ...`.
 
 Protocols of every experiment: `experiments/README.md`. Methods and formulas: `docs/architecture.md`.
@@ -46,7 +46,7 @@ Protocols of every experiment: `experiments/README.md`. Methods and formulas: `d
 | `configs/scenarios/` | `base.yaml`, `mandatory_stress.yaml` (CASE_INPUT), `team_low_demand.yaml`, `team_high_demand.yaml` (sensitivity) |
 | `configs/plans/` | saved plans (JSON, plan schema of the organizer) — P1…P4 and stress-adapted variants |
 | `configs/assumptions.yaml` | every team assumption with meaning, unit, status, range, justification |
-| `experiments/` | EXP-01…05 scripts and protocols (`README.md`) |
+| `experiments/` | EXP-01…06 scripts and protocols (`README.md`) |
 | `results/` | exports of every experiment (CSV, XLSX, JSON, summary.md, run_manifest.json with hashes) |
 | `tests/` | pytest: control vectors V01–V10, engine integration, invalid input, boundary plans, extensibility, export parity |
 | `schemas/` | organizer JSON schemas (plan, export, scenario, data) |

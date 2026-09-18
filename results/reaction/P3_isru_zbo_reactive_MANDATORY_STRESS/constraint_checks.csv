@@ -1,0 +1,2 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+MANDATORY_STRESS,P3_isru_zbo_reactive,RESERVE_45D,hard,2038-01: physical stock 30.822 t < 45-day reserve 35.445 t,2038,1,,30.822244,35.445205,4.622961

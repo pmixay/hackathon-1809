@@ -1,0 +1,279 @@
+{
+  "plan_id": "P3_isru_zbo_reactive",
+  "scenario_id": "MANDATORY_STRESS",
+  "description": "P3 with observe-then-react: Flex from 2038-07, Emergency from 2038-05",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "reserved_capacity_t": 13.189
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 161.772
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "reserved_capacity_t": 110.0
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "reserved_capacity_t": 102.516
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 110.0
+      },
+      {
+        "source_id": "E",
+        "year": 2038,
+        "reserved_capacity_t": 80.0
+      },
+      {
+        "source_id": "E",
+        "year": 2040,
+        "reserved_capacity_t": 33.948
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "ordered_t": 13.1882,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "ordered_t": 100.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 161.7714,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "ordered_t": 48.8776,
+        "profile": "monthly",
+        "monthly_t": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          6.1055,
+          6.1055
+        ]
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "ordered_t": 102.5148,
+        "profile": "monthly",
+        "monthly_t": [
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429
+        ]
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 110.0,
+        "profile": "monthly",
+        "monthly_t": [
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667,
+          9.1667
+        ]
+      },
+      {
+        "source_id": "E",
+        "year": 2038,
+        "ordered_t": 39.1903,
+        "profile": "monthly",
+        "monthly_t": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          6.6667,
+          6.6667,
+          6.6667,
+          6.6667,
+          6.6667,
+          5.857,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "source_id": "E",
+        "year": 2040,
+        "ordered_t": 33.9474,
+        "profile": "monthly",
+        "monthly_t": [
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289
+        ]
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "LUNAR_ISRU",
+        "decision_year": 2036,
+        "decision_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "experiment": "EXP-06",
+    "observation_month": "2038-03",
+    "levers": {
+      "B": "4 months",
+      "E": "2 months"
+    },
+    "status": "TEAM_DECISION"
+  }
+}
