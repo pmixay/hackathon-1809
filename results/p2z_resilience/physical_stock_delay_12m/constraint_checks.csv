@@ -1,0 +1,7 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+TEAM_EARTH_NEW_DELAY_12M,P2z_stock_3.2t,SOURCE_NOT_AVAILABLE,hard,"Earth-New: заказано 13.188 т на 2037 г., но источник не может поставлять в этом году (первая возможная поставка 2038-01)",2037,,C,13.188200,0.000000,13.188200
+TEAM_EARTH_NEW_DELAY_12M,P2z_stock_3.2t,SOURCE_NOT_AVAILABLE,hard,"Earth-New 2037: мощность зарезервирована, но источник недоступен в 2037 г. (первая возможная поставка 2038-01)",2037,,C,13.189000,0.000000,13.189000
+TEAM_EARTH_NEW_DELAY_12M,P2z_stock_3.2t,ORDER_EXCEEDS_RESERVATION,hard,"Earth-New 2037: заказано 13.188 т, что превышает контрактно доступный объём 0.000 т (резерв 13.2 т/год × 0.000 года)",2037,,C,13.188200,0.000000,13.188200
+TEAM_EARTH_NEW_DELAY_12M,P2z_stock_3.2t,RESERVE_45D,hard,2038-01: физический запас 21.210 т < 45-дневного резерва 30.822 т,2038,1,,21.210435,30.821918,9.611483
+TEAM_EARTH_NEW_DELAY_12M,P2z_stock_3.2t,RESERVE_45D,hard,2039-01: физический запас 29.841 т < 45-дневного резерва 39.452 т,2039,1,,29.840578,39.452055,9.611476
+TEAM_EARTH_NEW_DELAY_12M,P2z_stock_3.2t,RESERVE_45D,hard,2040-01: физический запас 38.471 т < 45-дневного резерва 48.082 т,2040,1,,38.470719,48.082192,9.611473
