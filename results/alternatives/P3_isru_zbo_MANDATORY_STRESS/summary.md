@@ -8,9 +8,9 @@
 
 | Показатель | Ключ | Значение |
 |---|---|---:|
-| Полные затраты, млн | `total_cost_mln` | 11,167.303 |
-| Приведённые затраты (PV), млн | `pv_cost_mln` | 9,031.625 |
-| Затраты на обслуженную тонну, млн/т | `cost_per_served_t_mln` | 8.187 |
+| Полные затраты, млн | `total_cost_mln` | 11,167.673 |
+| Приведённые затраты (PV), млн | `pv_cost_mln` | 9,031.995 |
+| Затраты на обслуженную тонну, млн/т | `cost_per_served_t_mln` | 8.188 |
 | PV затрат на обслуженную тонну, млн/т | `pv_cost_per_served_t_mln` | 6.622 |
 | Обслужено, т | `served_total_t` | 1,363.983 |
 | Спрос, т | `demand_total_t` | 1,534.000 |
@@ -22,7 +22,7 @@
 | CAPEX, млн | `capex_total_mln` | 1,430.000 |
 | Закупка, млн | `procurement_total_mln` | 8,970.477 |
 | Резервирование мощности, млн | `reservation_total_mln` | 467.634 |
-| Хранение, млн | `holding_total_mln` | 47.193 |
+| Хранение, млн | `holding_total_mln` | 47.563 |
 | Постоянный OPEX, млн | `fixed_opex_total_mln` | 252.000 |
 | Оплачено по take-or-pay сверх заказа, т | `take_or_pay_idle_t` | 0.000 |
 | Премия take-or-pay (оплата незаказанного объёма), млн | `take_or_pay_topup_mln` | 0.000 |
@@ -44,7 +44,7 @@
 
 | Год | Закупка | в т.ч. премия TOP | Резервирование | Хранение | Пост. OPEX | CAPEX | Итого | PV |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2035 | 796.1 | 0.0 | 51.4 | 10.7 | 0.0 | 0.0 | 858.2 | 858.2 |
+| 2035 | 796.1 | 0.0 | 51.4 | 11.0 | 0.0 | 0.0 | 858.5 | 858.5 |
 | 2036 | 948.9 | 0.0 | 68.9 | 14.6 | 0.0 | 1250.0 | 2282.4 | 2113.4 |
 | 2037 | 1295.4 | 0.0 | 87.5 | 18.9 | 6.0 | 180.0 | 1587.8 | 1361.3 |
 | 2038 | 1553.7 | 0.0 | 72.8 | 3.0 | 82.0 | 0.0 | 1711.5 | 1358.6 |
@@ -120,16 +120,19 @@
 | STRESS_LOSS_LIMIT | 2039 | losses_divided_by_throughput | 0.0120 | 0.0200 | <= | выполнено | жёсткое |
 | STRESS_LOSS_LIMIT | 2040 | losses_divided_by_throughput | 0.0120 | 0.0200 | <= | выполнено | жёсткое |
 | STORAGE_OVERFLOW | 2035 | end_of_month_stock_t_in_worst_month | 17.2604 | 70.0000 | <= | выполнено | жёсткое |
+| INTRA_MONTH_PEAK | 2035 | intra_month_peak_stock_t_in_worst_month | 25.5938 | 70.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2035 | reserved_A_t_per_year | 109.8760 | 190.0000 | <= | выполнено | жёсткое |
 | ORDER_EXCEEDS_RESERVATION | 2035 | ordered_A_t | 109.8760 | 109.8760 | <= | выполнено | жёсткое |
 | LEAD_TIME_VIOLATED | 2035 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | SOURCE_NOT_AVAILABLE | 2035 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | STORAGE_OVERFLOW | 2036 | end_of_month_stock_t_in_worst_month | 23.4249 | 70.0000 | <= | выполнено | жёсткое |
+| INTRA_MONTH_PEAK | 2036 | intra_month_peak_stock_t_in_worst_month | 35.0916 | 70.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2036 | reserved_A_t_per_year | 153.0520 | 190.0000 | <= | выполнено | жёсткое |
 | ORDER_EXCEEDS_RESERVATION | 2036 | ordered_A_t | 153.0518 | 153.0520 | <= | выполнено | жёсткое |
 | LEAD_TIME_VIOLATED | 2036 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | SOURCE_NOT_AVAILABLE | 2036 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | STORAGE_OVERFLOW | 2037 | end_of_month_stock_t_in_worst_month | 25.4473 | 70.0000 | <= | выполнено | жёсткое |
+| INTRA_MONTH_PEAK | 2037 | intra_month_peak_stock_t_in_worst_month | 41.2806 | 70.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2037 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
 | ORDER_EXCEEDS_RESERVATION | 2037 | ordered_A_t | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2037 | reserved_B_t_per_year | 13.1890 | 110.0000 | <= | выполнено | жёсткое |
@@ -137,6 +140,7 @@
 | LEAD_TIME_VIOLATED | 2037 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | SOURCE_NOT_AVAILABLE | 2037 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | STORAGE_OVERFLOW | 2038 | end_of_month_stock_t_in_worst_month | 20.1831 | 120.0000 | <= | выполнено | жёсткое |
+| INTRA_MONTH_PEAK | 2038 | intra_month_peak_stock_t_in_worst_month | 44.1414 | 120.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2038 | reserved_A_t_per_year | 161.7720 | 190.0000 | <= | выполнено | жёсткое |
 | ORDER_EXCEEDS_RESERVATION | 2038 | ordered_A_t | 161.7714 | 161.7720 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2038 | reserved_D_t_per_year | 120.0000 | 120.0000 | <= | выполнено | жёсткое |
@@ -144,6 +148,7 @@
 | LEAD_TIME_VIOLATED | 2038 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | SOURCE_NOT_AVAILABLE | 2038 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | STORAGE_OVERFLOW | 2039 | end_of_month_stock_t_in_worst_month | 0.0000 | 120.0000 | <= | выполнено | жёсткое |
+| INTRA_MONTH_PEAK | 2039 | intra_month_peak_stock_t_in_worst_month | 24.9158 | 120.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2039 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
 | ORDER_EXCEEDS_RESERVATION | 2039 | ordered_A_t | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2039 | reserved_B_t_per_year | 22.6220 | 110.0000 | <= | выполнено | жёсткое |
@@ -153,6 +158,7 @@
 | LEAD_TIME_VIOLATED | 2039 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | SOURCE_NOT_AVAILABLE | 2039 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 | STORAGE_OVERFLOW | 2040 | end_of_month_stock_t_in_worst_month | 0.0000 | 120.0000 | <= | выполнено | жёсткое |
+| INTRA_MONTH_PEAK | 2040 | intra_month_peak_stock_t_in_worst_month | 32.5000 | 120.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2040 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
 | ORDER_EXCEEDS_RESERVATION | 2040 | ordered_A_t | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
 | CAPACITY_EXCEEDED | 2040 | reserved_B_t_per_year | 84.7370 | 110.0000 | <= | выполнено | жёсткое |

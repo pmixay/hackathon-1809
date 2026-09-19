@@ -27,11 +27,15 @@ def test_storage_matrix_row_uses_the_capacity_of_each_month(root, case, base, as
         if o["source_id"] == "B" and o["year"] == 2037:
             base_m = o["ordered_t"] / 12
             o.update(profile="monthly", monthly_t=[base_m] * 11 + [base_m + 50.0], ordered_t=o["ordered_t"] + 50.0)
+        if o["source_id"] == "A" and o["year"] == 2038:
+            o["ordered_t"] = round(o["ordered_t"] - 50.0, 6)   # вернуть излишек в 2038, иначе он переносится на 2039-2040
     res = simulate(case, plan_from_dict(d), base, assumptions)
     dec = next(m for m in res.months if m.year == 2037 and m.month == 12)
     assert 70 < dec.closing_t <= 120 and dec.storage_mode == "ZBO"
     row = next(m for m in res.check_matrix if m["rule_id"] == "STORAGE_OVERFLOW" and m["year"] == 2037)
     assert row["ok"] and row["limit"] == pytest.approx(120) and "2037-12" in row["scope"]
+    peak_row = next(m for m in res.check_matrix if m["rule_id"] == "INTRA_MONTH_PEAK" and m["year"] == 2037)
+    assert peak_row["ok"] and peak_row["limit"] == pytest.approx(120) and peak_row["severity"] == "hard"
     assert res.feasible and all(m["ok"] for m in res.check_matrix if m["severity"] == "hard")
 
 
@@ -46,19 +50,52 @@ def test_emergency_streak_matrix_marks_every_year_of_the_streak(case, base, assu
     assert len(v) == 1 and v[0].year == 2035 and v[0].actual == 3
 
 
-def test_contracted_reserve_equivalence_uses_the_six_week_lead_time(case, base, assumptions):
-    """Physical stock 11.65 t < R 12.33 t but >= 42-day cover 11.51 t, and Emergency reserved >= R -> 2035 reserve proven by contract."""
+CONTRACT_2035 = {"source_id": "E", "guaranteed_batch_t": 13.0, "activation_days": 0, "delivery_days": 42,
+                 "max_activations_per_year": 1, "notes": "аварийная партия по договору, срок исполнения 6 недель"}
+
+
+def test_contracted_reserve_equivalence_needs_batch_schedule_and_waiting_cover(case, base, assumptions):
+    """A7: эквивалентность доказывается объёмом партии, сроками и покрытием ожидания, а не лимитом мощности.
+
+    Запас 11.65 т < R 12.33 т, но покрывает 42 дня ожидания (11.51 т), нетто-партия 12.42 т >= R,
+    и зарезервированные 80 т/год Emergency не заняты обычными заказами -> резерв 2035 г. доказан.
+    """
     common = dict(capacity_reservations=[{"source_id": "A", "year": 2035, "reserved_capacity_t": 100}, {"source_id": "E", "year": 2035, "reserved_capacity_t": 80}],
                   supply_orders=[{"source_id": "A", "year": 2035, "ordered_t": 100}])
     stock = [{"source_id": "B", "tons": 12.2, "delivery_year": 2034, "delivery_month": 12}]
-    ok = simulate(case, _plan(**common, inventory_policy={"opening_stock": stock, "reserve_mode": "emergency_contract"}), base, assumptions)
+    policy = {"opening_stock": stock, "reserve_mode": "emergency_contract", "emergency_contract": CONTRACT_2035}
+    ok = simulate(case, _plan(**common, inventory_policy=policy), base, assumptions)
     assert not any(v.rule_id == "RESERVE_45D" and v.year == 2035 for v in ok.violations)
+    proof = next(p for p in ok.contract_reserve_proof if p["year"] == 2035)
+    assert proof["proven"] and len(proof["checks"]) == 5 and all(c["ok"] for c in proof["checks"])
+
     physical = simulate(case, _plan(**common, inventory_policy={"opening_stock": stock, "reserve_mode": "physical"}), base, assumptions)
     assert any(v.rule_id == "RESERVE_45D" and v.year == 2035 for v in physical.violations)
-    no_contract = dict(common, capacity_reservations=[{"source_id": "A", "year": 2035, "reserved_capacity_t": 100}])
-    failed = simulate(case, _plan(**no_contract, inventory_policy={"opening_stock": stock, "reserve_mode": "emergency_contract"}), base, assumptions)
-    v = next(x for x in failed.violations if x.rule_id == "RESERVE_45D" and x.year == 2035)
-    assert "11.51" in v.message and "0.0 т/год" in v.message     # cover = 100 t x 42/365; no Emergency reserved
+
+    # лимит мощности сам по себе эквивалентности не доказывает: без договора план не принимается вовсе
+    with pytest.raises(PlanError, match="эквивалентность резерва не доказана"):
+        _plan(**common, inventory_policy={"opening_stock": stock, "reserve_mode": "emergency_contract"})
+
+
+@pytest.mark.parametrize("field,value,failing_check", [
+    ("guaranteed_batch_t", 12.0, "нетто-объём партии покрывает резерв R"),
+    ("activation_days", 3, "запас покрывает спрос до прибытия партии"),
+    ("delivery_days", 20, "договорный срок исполнения не быстрее срока поставки канала"),
+    ("max_activations_per_year", 7, "мощность под партию не занята обычными заказами"),
+])
+def test_contracted_reserve_names_the_condition_that_fails(case, base, assumptions, field, value, failing_check):
+    """Каждое из пяти условий проверяется отдельно и называется в сообщении при невыполнении."""
+    common = dict(capacity_reservations=[{"source_id": "A", "year": 2035, "reserved_capacity_t": 100}, {"source_id": "E", "year": 2035, "reserved_capacity_t": 80}],
+                  supply_orders=[{"source_id": "A", "year": 2035, "ordered_t": 100}])
+    stock = [{"source_id": "B", "tons": 12.2, "delivery_year": 2034, "delivery_month": 12}]
+    contract = dict(CONTRACT_2035, **{field: value})
+    res = simulate(case, _plan(**common, inventory_policy={"opening_stock": stock, "reserve_mode": "emergency_contract",
+                                                           "emergency_contract": contract}), base, assumptions)
+    proof = next(p for p in res.contract_reserve_proof if p["year"] == 2035)
+    assert not proof["proven"]
+    assert [c["check"] for c in proof["checks"] if not c["ok"]] == [failing_check]
+    v = next(x for x in res.violations if x.rule_id == "RESERVE_45D" and x.year == 2035)
+    assert failing_check in v.message
 
 
 def test_reactive_orders_cannot_be_placed_before_the_observation_month(case, stress, assumptions):

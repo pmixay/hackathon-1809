@@ -15,7 +15,7 @@ from typing import Optional
 
 from . import rules
 from .assumptions import Assumptions, load_assumptions
-from .case import Case, Source
+from .case import Case, Source, validate_case
 from .plan import Plan, validate_plan
 from .scenario import Scenario
 
@@ -58,6 +58,8 @@ class MonthRecord:
     shortage_critical_t: float
     closing_t: float
     holding_cost_mln: float
+    peak_stock_t: float = 0.0          # highest stock reached inside the month under the declared delivery batching
+    delivery_batches: int = 1          # intra_month_delivery_batches used for peak_stock_t
     inflow_by_source: dict = field(default_factory=dict)
 
 
@@ -157,6 +159,8 @@ class Result:
     plan: dict
     check_matrix: list = field(default_factory=list)     # every rule x year with actual, limit, ok (passed checks included)
     deliveries: list = field(default_factory=list)       # order calendar: delivery month, order placement month, lead time
+    contract_reserve_proof: list = field(default_factory=list)   # A7: per-year proof of the contracted emergency reserve
+    preparatory_period: list = field(default_factory=list)       # A4: month-by-month stock and holding cost before the horizon
     units: dict = field(default_factory=lambda: {
         "fuel": "т", "money": "млн у.е., постоянные цены 2035 г.", "capacity": "т/год",
         "reservation_rate": "млн у.е. за (т/год)", "service_level": "доля 0..1", "time_step": "календарный месяц"})
@@ -221,12 +225,27 @@ def lead_months(source: Source, a: Assumptions) -> int:
     raise ValueError(f"неизвестная единица срока поставки (lead_time_unit): {unit}")
 
 
+def intra_month_peak(opening: float, net_inflow: float, drawdown: float, batches: int) -> float:
+    """Highest stock reached inside a month when its inflow arrives in `batches` equal shipments.
+
+    Deliveries are spread evenly over the month and consumption is uniform (organizer convention).
+    Just after shipment j the stock is `opening + (j*net_inflow - (j-1)*drawdown) / batches`, so the
+    peak is the largest of those. batches=1 is the conservative edge — the whole month's volume lands
+    before any of it is issued. As batches grows the peak falls towards max(opening, closing), i.e.
+    the limit case of delivery synchronised with consumption.
+    """
+    n = max(1, int(batches))
+    return max(opening + (j * net_inflow - (j - 1) * drawdown) / n for j in range(1, n + 1))
+
+
 # --------------------------------------------------------------------------- engine
 def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[Assumptions] = None) -> Result:
     a = assumptions or load_assumptions(None)
+    validate_case(case)          # A2: no entry point may hand the engine a negative or non-finite input
     validate_plan(plan, case)
     sid = scenario.scenario_id
-    viol: list[Violation] = []
+    rule_sid = scenario.rule_set_id      # A1: constraints.csv rows are matched against the RULE SET, not the run label,
+    viol: list[Violation] = []           # so copying data or renaming a research run can never drop an organizer rule
 
     def add(rule_id: str, severity: str, message: str, **kw) -> None:
         viol.append(Violation(rule_id=rule_id, severity=severity, scenario_id=sid, message=message, **kw))
@@ -416,6 +435,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
     prep_records: list[SourceYearRecord] = []
     opening_inventory = 0.0
     prep_procurement = prep_reservation = 0.0
+    prep_inflow: dict[int, float] = {}          # delivery month -> net tonnes actually accepted into the depot
     for st in plan.opening_stock:
         s = case.sources[st.source_id]
         d_idx = midx(st.delivery_year, st.delivery_month)
@@ -434,6 +454,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         mode = storage_at(d_idx)
         losses = rules.losses_on_throughput(st.tons, mode.loss_rate_on_throughput)
         opening_inventory += st.tons - losses
+        prep_inflow[d_idx] = prep_inflow.get(d_idx, 0.0) + (st.tons - losses)
         price = s.variable_cost_mln_per_t * scenario.price_mult(s, y0)
         proc = price * st.tons
         resv = rules.reservation_payment(s.reservation_rate_mln_per_t_year, st.tons, float(a.opening_stock_reservation_years))
@@ -442,12 +463,36 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         prep_records.append(SourceYearRecord(s.source_id, s.name, st.delivery_year, "prep", 1, float(a.opening_stock_reservation_years),
                                              s.capacity_t_per_year, st.tons, st.tons, st.tons, st.tons, st.tons - losses, 1.0, price,
                                              scenario.price_mult(s, y0), st.tons, 0.0, proc, resv, 0.0))
+    # A4: начальный запас хранится с фактической даты поставки, а не бесплатно до 2035-01.
+    # Тот же трапецеидальный расчёт, что и в основном периоде: в месяц поставки средний запас равен
+    # половине поступления, в каждый последующий месяц подготовительного периода — полному запасу.
+    # Расход подготовительного периода относится на первый финансовый год, как закупка и резерв.
+    prep_holding = 0.0
+    prep_holding_months: list[dict] = []
+    if prep_inflow and bool(a.get("prep_period_holding_charged", True)):
+        for idx in range(min(prep_inflow), start_idx):
+            mode = storage_at(idx)
+            opening_m = prep_stock if idx > min(prep_inflow) else 0.0
+            prep_stock = opening_m + prep_inflow.get(idx, 0.0)
+            cost = mode.holding_cost_mln_per_t_year * 0.5 * (opening_m + prep_stock) / 12.0
+            prep_holding += cost
+            prep_holding_months.append(dict(month=ym_str(idx), storage_mode=mode.storage_id, opening_t=opening_m,
+                                            arrived_t=prep_inflow.get(idx, 0.0), closing_t=prep_stock, holding_cost_mln=cost))
+        peak_prep = max((row["closing_t"] for row in prep_holding_months), default=0.0)
+        cap_prep = storage_at(min(prep_inflow)).capacity_t
+        if peak_prep > cap_prep + EPS:
+            add("STORAGE_OVERFLOW", "hard", f"запас подготовительного периода {peak_prep:.3f} т превышает ёмкость хранилища {cap_prep:.1f} т до {ym_str(start_idx)}",
+                year=y0, month=1, actual=peak_prep, limit=cap_prep, excess=peak_prep - cap_prep)
+
     cap0 = storage_at(start_idx).capacity_t
     if opening_inventory > cap0 + EPS:
         add("STORAGE_OVERFLOW", "hard", f"начальный запас {opening_inventory:.3f} т превышает ёмкость хранилища {cap0:.1f} т на {y0}-01",
             year=y0, month=1, actual=opening_inventory, limit=cap0, excess=opening_inventory - cap0)
 
     # ---- monthly simulation ----------------------------------------------------
+    batches = max(1, int(a.get("intra_month_delivery_batches", 1)))
+    batches_note = ("одной партией в начале месяца" if batches == 1
+                    else f"{batches} равными партиями, равномерно по месяцу")
     months: list[MonthRecord] = []
     inv = opening_inventory
     for idx in range(start_idx, end_idx + 1):
@@ -468,14 +513,17 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         shortage_c = max(0.0, c - served_c)
         closing = rules.material_balance(inv, thr, losses, served)
         holding = mode.holding_cost_mln_per_t_year * 0.5 * (inv + closing) / 12.0
+        peak = intra_month_peak(inv, thr - losses, served, batches)
         months.append(MonthRecord(y, mo, mode.storage_id, mode.capacity_t, mode.loss_rate_on_throughput, inv, fsum(planned.values()),
-                                  thr, losses, available, d, c, served, served_c, shortage, shortage_c, closing, holding, dict(actual)))
+                                  thr, losses, available, d, c, served, served_c, shortage, shortage_c, closing, holding, peak, batches, dict(actual)))
         if closing > mode.capacity_t + EPS:
             add("STORAGE_OVERFLOW", "hard", f"запас на конец месяца {closing:.3f} т превышает ёмкость хранилища {mode.name} {mode.capacity_t:.1f} т в {ym_str(idx)}",
                 year=y, month=mo, actual=closing, limit=mode.capacity_t, excess=closing - mode.capacity_t)
-        elif available > mode.capacity_t + EPS:
-            add("INTRA_MONTH_PEAK", "warning", f"запас после поступления {available:.3f} т превышает ёмкость хранилища {mode.name} {mode.capacity_t:.1f} т внутри {ym_str(idx)} (до выдачи потребителям)",
-                year=y, month=mo, actual=available, limit=mode.capacity_t, excess=available - mode.capacity_t)
+        if peak > mode.capacity_t + EPS:
+            # A3: физическая исполнимость внутри месяца доказывается графиком поступлений, а не пометкой допущения.
+            add("INTRA_MONTH_PEAK", "hard", f"пик запаса внутри месяца {peak:.3f} т превышает ёмкость хранилища {mode.name} {mode.capacity_t:.1f} т в {ym_str(idx)} "
+                f"(поставка {batches_note}; запас на начало {inv:.3f} т, нетто-поступление {thr - losses:.3f} т, выдача {served:.3f} т)",
+                year=y, month=mo, actual=peak, limit=mode.capacity_t, excess=peak - mode.capacity_t)
         inv = closing
 
     # ---- yearly aggregation -----------------------------------------------------
@@ -548,7 +596,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             proc += prep_procurement
             resv += prep_reservation
         topup = fsum(sy.take_or_pay_topup_mln for sy in source_years if sy.year == y and sy.period == "year")
-        hold = fsum(m.holding_cost_mln for m in months if m.year == y)
+        hold = fsum(m.holding_cost_mln for m in months if m.year == y) + (prep_holding if y == y0 else 0.0)
         opex = 0.0
         for from_idx, per_year, _ in opex_streams:
             active = sum(1 for m in range(1, 13) if midx(y, m) >= from_idx)
@@ -571,8 +619,69 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             else:
                 emergency_streaks.append([yr.year])
     streak_len_by_year = {y_: len(run) for run in emergency_streaks for y_ in run}
+    contract_proofs: list[dict] = []
+
+    def prove_emergency_equivalence(yr) -> tuple[bool, str, dict]:
+        """A7: договорный аварийный резерв засчитывается только при доказанных объёме и сроках.
+
+        Организатор (кейс, §«Начальный запас и резерв»): «Аварийный вариант засчитывается только при
+        описанном контракте и графике, обеспечивающих нужный объём в нужные сроки, включая покрытие
+        спроса до прибытия поставки. Если размер партии, срок активации или покрытие ожидания не
+        заданы, эквивалентность не считается доказанной. Лимит 80 т/год сам по себе не означает
+        наличие 80 т в узле.» Проверяются пять условий; каждое возвращается отдельной строкой.
+        """
+        ec = plan.emergency_contract
+        tests: list[dict] = []
+
+        def t(name: str, ok_: bool, actual_, limit_, op: str, note: str) -> None:
+            tests.append(dict(check=name, ok=bool(ok_), actual=actual_, limit=limit_, operator=op, note=note))
+
+        if ec is None:
+            t("договор описан", False, 0.0, 1.0, ">=",
+              "режим emergency_contract без блока inventory_policy.emergency_contract: размер партии, срок активации "
+              "и срок исполнения не заданы — эквивалентность не доказана")
+            proof = dict(year=yr.year, proven=False, checks=tests, contract=None)
+            return False, "; контрактный резерв не описан (нет размера партии, срока активации и срока исполнения) — эквивалентность не доказана", proof
+
+        src = case.sources.get(ec.source_id)
+        loss = storage_at(midx(yr.year, 1)).loss_rate_on_throughput
+        net_batch = ec.guaranteed_batch_t * (1.0 - loss)                       # что реально доходит до полезного запаса
+        reserved_y = plan.reserved(ec.source_id, yr.year)
+        ordered_y = ordered_by_sy.get((ec.source_id, yr.year), 0.0)
+        free_capacity = reserved_y - ordered_y                                 # остаток резерва после обычных заказов
+        needed_batches = ec.guaranteed_batch_t * ec.max_activations_per_year
+        contract_lead = lead_days(src, a) if src is not None else float("inf")
+        wait_days = ec.activation_days + ec.delivery_days
+        wait_cover = yr.demand_total_t * wait_days / 365.0
+        avail = avail_idx.get(ec.source_id)
+        available_this_year = avail is not None and avail <= midx(yr.year, 12)
+
+        t("канал доступен в этом году", available_this_year, 1.0 if available_this_year else 0.0, 1.0, ">=",
+          f"{(src.name if src else ec.source_id)}: первая возможная поставка {ym_str(avail) if avail is not None else '—'}")
+        t("договорный срок исполнения не быстрее срока поставки канала", ec.delivery_days + 1e-9 >= contract_lead,
+          ec.delivery_days, contract_lead, ">=",
+          f"договор обещает {ec.delivery_days:.0f} дн., срок поставки канала по данным организатора {contract_lead:.0f} дн.")
+        t("нетто-объём партии покрывает резерв R", net_batch + TOL_T >= yr.reserve_required_t, net_batch, yr.reserve_required_t, ">=",
+          f"партия {ec.guaranteed_batch_t:.3f} т минус потери {loss:.1%} = {net_batch:.3f} т против R {yr.reserve_required_t:.3f} т")
+        t("мощность под партию не занята обычными заказами", free_capacity + TOL_T >= needed_batches, free_capacity, needed_batches, ">=",
+          f"зарезервировано {reserved_y:.3f} т/год минус обычные заказы {ordered_y:.3f} т = {free_capacity:.3f} т "
+          f"против {ec.max_activations_per_year} × {ec.guaranteed_batch_t:.3f} т")
+        t("запас покрывает спрос до прибытия партии", yr.opening_t + TOL_T >= wait_cover, yr.opening_t, wait_cover, ">=",
+          f"ожидание {ec.activation_days:.0f} + {ec.delivery_days:.0f} = {wait_days:.0f} дн.; спрос за это время {wait_cover:.3f} т "
+          f"против запаса на начало года {yr.opening_t:.3f} т")
+
+        proven = all(x["ok"] for x in tests)
+        proof = dict(year=yr.year, proven=proven, checks=tests,
+                     contract=dict(source_id=ec.source_id, guaranteed_batch_t=ec.guaranteed_batch_t,
+                                   activation_days=ec.activation_days, delivery_days=ec.delivery_days,
+                                   max_activations_per_year=ec.max_activations_per_year, notes=ec.notes))
+        if proven:
+            return True, "", proof
+        failed = "; ".join(f"{x['check']}: {x['note']}" for x in tests if not x["ok"])
+        return False, f"; договорный аварийный резерв не доказан — {failed}", proof
+
     for c in case.constraints.values():
-        applies = c.scenario in ("ALL", sid)
+        applies = c.scenario in ("ALL", rule_sid)
         if c.metric in ("total_service_level", "critical_service_level"):
             sev = "hard" if (applies and scenario.service_thresholds_hard) else "guideline"
             for yr in year_records:
@@ -597,12 +706,8 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 ok = yr.reserve_ok
                 detail = ""
                 if not ok and plan.reserve_mode == "emergency_contract":
-                    e_res = fsum(plan.reserved(e, yr.year) for e in emergency_ids)
-                    lt_days = max((lead_days(case.sources[e], a) for e in emergency_ids), default=42.0)   # Emergency: 6 weeks = 42 days
-                    cover = yr.demand_total_t * lt_days / 365.0
-                    ok = yr.opening_t + TOL_T >= cover and e_res + TOL_T >= yr.reserve_required_t
-                    detail = (f"; проверка контрактного эквивалента: запас {yr.opening_t:.2f} т против покрытия срока поставки Emergency {cover:.2f} т, "
-                              f"зарезервировано Emergency {e_res:.1f} т/год против R {yr.reserve_required_t:.2f} т")
+                    ok, detail, proof = prove_emergency_equivalence(yr)
+                    contract_proofs.append(proof)
                 if not ok:
                     add(c.constraint_id, "hard", f"{yr.year}-01: физический запас {yr.opening_t:.3f} т < 45-дневного резерва {yr.reserve_required_t:.3f} т{detail}",
                         year=yr.year, month=1, actual=yr.opening_t, limit=yr.reserve_required_t, excess=yr.reserve_required_t - yr.opening_t)
@@ -630,7 +735,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
     def mrow(rule, year, metric, actual, limit, op, ok, severity, scope=""):
         matrix.append(dict(rule_id=rule, year=year, metric=metric, actual=actual, limit=limit, operator=op, ok=bool(ok), severity=severity, scope=scope))
     for c in case.constraints.values():
-        applies = c.scenario in ("ALL", sid)
+        applies = c.scenario in ("ALL", rule_sid)
         if c.metric in ("total_service_level", "critical_service_level"):
             sev = "hard" if (applies and scenario.service_thresholds_hard) else "guideline"
             for yr in year_records:
@@ -642,9 +747,14 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
                 if fy.year <= through:
                     mrow(c.constraint_id, fy.year, "cumulative_capex", fy.cumulative_capex_mln, c.value, "<=", fy.cumulative_capex_mln <= c.value + EPS, "hard", f"through_{through}")
         elif c.metric == "reserve_equivalent_days" and applies:
+            proof_by_year = {pf["year"]: pf for pf in contract_proofs}
             for yr in year_records:
                 ok = yr.reserve_ok or not any(v.rule_id == c.constraint_id and v.year == yr.year for v in viol)
-                mrow(c.constraint_id, yr.year, "opening_stock_vs_45d_reserve_t", yr.opening_t, yr.reserve_required_t, ">=", ok, "hard", plan.reserve_mode)
+                pf = proof_by_year.get(yr.year)
+                scope = plan.reserve_mode if pf is None else (
+                    f"{plan.reserve_mode}: договорная эквивалентность " + ("доказана" if pf["proven"] else "не доказана")
+                    + f" ({sum(1 for x in pf['checks'] if x['ok'])}/{len(pf['checks'])} условий)")
+                mrow(c.constraint_id, yr.year, "opening_stock_vs_45d_reserve_t", yr.opening_t, yr.reserve_required_t, ">=", ok, "hard", scope)
         elif c.metric == "emergency_base_channel_consecutive_years" and applies:
             for yr in year_records:
                 n = streak_len_by_year.get(yr.year, 0)          # length of the base-channel streak this year belongs to (0 = not a base year)
@@ -661,6 +771,10 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         sto_ok = all(m.closing_t <= m.storage_capacity_t + EPS for m in ms) and not any(v.rule_id == "STORAGE_OVERFLOW" and v.year == y for v in viol)
         mrow("STORAGE_OVERFLOW", y, "end_of_month_stock_t_in_worst_month", worst.closing_t, worst.storage_capacity_t, "<=", sto_ok, "hard",
              f"{worst.year}-{worst.month:02d}, хранилище {worst.storage_mode}; проверка помесячная")
+        peak_worst = max(ms, key=lambda m: m.peak_stock_t - m.storage_capacity_t)   # worst month by intra-month headroom
+        peak_ok = all(m.peak_stock_t <= m.storage_capacity_t + EPS for m in ms) and not any(v.rule_id == "INTRA_MONTH_PEAK" and v.year == y for v in viol)
+        mrow("INTRA_MONTH_PEAK", y, "intra_month_peak_stock_t_in_worst_month", peak_worst.peak_stock_t, peak_worst.storage_capacity_t, "<=", peak_ok, "hard",
+             f"{peak_worst.year}-{peak_worst.month:02d}, хранилище {peak_worst.storage_mode}; поставка {batches_note}")
         for k, s_ in case.sources.items():
             res_ = plan.reserved(k, y)
             if res_ > EPS or ordered_by_sy.get((k, y), 0.0) > EPS:
@@ -693,6 +807,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         "take_or_pay_idle_t": fsum(sy.take_or_pay_idle_t for sy in source_years if sy.period == "year"),
         "take_or_pay_topup_mln": fsum(f_.take_or_pay_topup_mln for f_ in finance),
         "opening_inventory_t": opening_inventory, "closing_inventory_t": months[-1].closing_t,
+        "prep_holding_mln": prep_holding, "prep_holding_months": len(prep_holding_months),
         "hard_violations": sum(1 for v in viol if v.severity == "hard"),
         "guideline_violations": sum(1 for v in viol if v.severity == "guideline"),
         "warnings": sum(1 for v in viol if v.severity == "warning"),
@@ -701,7 +816,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
     kpi["checks_total"] = len(matrix)
     kpi["checks_passed"] = sum(1 for m in matrix if m["ok"])
     return Result(plan.plan_id, sid, scenario.label, case.source_dir, months, year_records, source_years, finance, inv_records, viol, kpi,
-                  a.to_dict(), scenario.to_dict(), plan.to_dict(), matrix, deliveries)
+                  a.to_dict(), scenario.to_dict(), plan.to_dict(), matrix, deliveries, contract_proofs, prep_holding_months)
 
 
 def result_to_dict(res: Result) -> dict:
@@ -713,4 +828,5 @@ def result_to_dict(res: Result) -> dict:
         "investments": [asdict(i) for i in res.investments], "violations": [asdict(v) for v in res.violations],
         "assumptions": res.assumptions, "scenario": res.scenario, "plan": res.plan,
         "check_matrix": res.check_matrix, "deliveries": res.deliveries,
+        "contract_reserve_proof": res.contract_reserve_proof, "preparatory_period": res.preparatory_period,
     }

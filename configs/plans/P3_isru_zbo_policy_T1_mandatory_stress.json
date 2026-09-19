@@ -1,0 +1,312 @@
+{
+  "plan_id": "P3_isru_zbo_policy_T1_mandatory_stress",
+  "scenario_id": "MANDATORY_STRESS",
+  "description": "EXP-14: замкнутая политика по наблюдаемой доле ISRU, траектория T1 обязательный стресс (сценарий организатора)",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 161.772
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "reserved_capacity_t": 13.189
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "reserved_capacity_t": 110.0
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "reserved_capacity_t": 110.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 110.0
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "E",
+        "year": 2038,
+        "reserved_capacity_t": 80.0
+      },
+      {
+        "source_id": "E",
+        "year": 2039,
+        "reserved_capacity_t": 80.0
+      },
+      {
+        "source_id": "E",
+        "year": 2040,
+        "reserved_capacity_t": 80.0
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "ordered_t": 13.1882,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "ordered_t": 100.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 161.7714,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "ordered_t": 54.74430000000001,
+        "profile": "monthly",
+        "monthly_t": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          8.9113
+        ],
+        "reactive": true
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "ordered_t": 95.27120000000002,
+        "profile": "monthly",
+        "monthly_t": [
+          4.6758,
+          9.1666,
+          9.1666,
+          9.1666,
+          3.2953,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429,
+          8.5429
+        ],
+        "reactive": true
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 109.99920000000002,
+        "profile": "monthly",
+        "monthly_t": [
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666
+        ],
+        "reactive": true
+      },
+      {
+        "source_id": "E",
+        "year": 2038,
+        "ordered_t": 39.199999999999996,
+        "profile": "monthly",
+        "monthly_t": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          6.6666,
+          6.6666,
+          6.6666,
+          6.6666,
+          6.6666,
+          5.867,
+          0.0,
+          0.0
+        ],
+        "reactive": true
+      },
+      {
+        "source_id": "E",
+        "year": 2039,
+        "ordered_t": 1.3762,
+        "profile": "monthly",
+        "monthly_t": [
+          0.0,
+          1.3762,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reactive": true
+      },
+      {
+        "source_id": "E",
+        "year": 2040,
+        "ordered_t": 33.9468,
+        "profile": "monthly",
+        "monthly_t": [
+          5.3289,
+          5.3289,
+          0.0,
+          0.6578,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289,
+          2.8289
+        ],
+        "reactive": true
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "LUNAR_ISRU",
+        "decision_year": 2036,
+        "decision_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first",
+      "observation_month": "2038-03"
+    }
+  },
+  "meta": {
+    "experiment": "EXP-14",
+    "status": "TEAM_DECISION",
+    "policy": "closed_loop_observed_share",
+    "observation_month": "2038-03",
+    "levers": {
+      "B": "4 months",
+      "E": "2 months"
+    }
+  }
+}

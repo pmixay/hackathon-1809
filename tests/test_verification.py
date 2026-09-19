@@ -19,8 +19,8 @@ def p3_base(root, case, base, assumptions):
 def test_golden_kpis_p3_base(p3_base):
     """Regression guard: values from results/alternatives/P3_isru_zbo_BASE (2026-09-18)."""
     k = p3_base.kpi
-    assert k["total_cost_mln"] == pytest.approx(10654.259, abs=1e-3)
-    assert k["pv_cost_mln"] == pytest.approx(8638.857, abs=1e-3)
+    assert k["total_cost_mln"] == pytest.approx(10654.629, abs=1e-3)
+    assert k["pv_cost_mln"] == pytest.approx(8639.227, abs=1e-3)
     assert k["cost_per_served_t_mln"] == pytest.approx(7.665, abs=1e-3)
     assert k["capex_total_mln"] == pytest.approx(1430.0)
     assert k["losses_total_t"] == pytest.approx(29.492, abs=1e-3)
@@ -38,8 +38,21 @@ def test_manual_hand_check_2035(p3_base):
     assert core.ordered_t == pytest.approx(109.876, abs=1e-3)
     assert core.procurement_mln == pytest.approx(681.23, abs=0.01)
     assert core.reservation_payment_mln == pytest.approx(49.44, abs=0.01)
-    assert f.holding_mln == pytest.approx(10.65, abs=0.01)
-    assert f.total_mln == pytest.approx(858.16, abs=0.01)
+    assert f.holding_mln == pytest.approx(11.022, abs=0.01)      # 10.652 в горизонте + 0.370 подготовительного периода
+    assert p3_base.kpi["prep_holding_mln"] == pytest.approx(0.370, abs=0.001)
+    assert f.total_mln == pytest.approx(858.531, abs=0.01)
+
+
+def test_manual_hand_check_intra_month_peak_2035_01(p3_base):
+    """docs/manual_check.md: пик внутри месяца, посчитанный вручную для 2035-01."""
+    m = p3_base.months[0]
+    assert m.delivery_batches == 1
+    assert m.throughput_t - m.losses_t == pytest.approx(8.744, abs=1e-3)
+    assert m.served_t == pytest.approx(8.333, abs=1e-3)
+    assert m.peak_stock_t == pytest.approx(21.073, abs=1e-3)          # 12.329 + 8.744, одна партия до выдачи
+    assert m.peak_stock_t == pytest.approx(m.opening_t + m.throughput_t - m.losses_t, abs=1e-9)
+    assert m.storage_capacity_t == pytest.approx(70.0)
+    assert all(x.peak_stock_t <= x.storage_capacity_t + 1e-9 for x in p3_base.months)
 
 
 def test_check_matrix_covers_every_year_and_rule(p3_base, case):
@@ -47,7 +60,8 @@ def test_check_matrix_covers_every_year_and_rule(p3_base, case):
     rules = {m["rule_id"] for m in p3_base.check_matrix}
     assert years == set(case.years)
     assert {"BASE_TOTAL_SERVICE", "BASE_CRITICAL_SERVICE", "CAPEX_2037", "CAPEX_2040", "RESERVE_45D", "EMERGENCY_BASE_STREAK",
-            "STORAGE_OVERFLOW", "CAPACITY_EXCEEDED", "ORDER_EXCEEDS_RESERVATION", "LEAD_TIME_VIOLATED", "SOURCE_NOT_AVAILABLE"} <= rules
+            "STORAGE_OVERFLOW", "INTRA_MONTH_PEAK", "CAPACITY_EXCEEDED", "ORDER_EXCEEDS_RESERVATION", "LEAD_TIME_VIOLATED",
+            "SOURCE_NOT_AVAILABLE"} <= rules
     assert all(m["ok"] for m in p3_base.check_matrix)
     assert p3_base.kpi["checks_passed"] == p3_base.kpi["checks_total"] == len(p3_base.check_matrix)
 

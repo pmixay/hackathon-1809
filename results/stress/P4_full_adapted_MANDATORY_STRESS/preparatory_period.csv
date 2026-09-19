@@ -1,0 +1,2 @@
+scenario_id,plan_id,month,storage_mode,opening_t,arrived_t,closing_t,holding_cost_mln
+MANDATORY_STRESS,P4_full_adapted,2034-12,BASE,0.000000,12.328859,12.328859,0.369866

@@ -32,11 +32,17 @@ def random_plan(rng: random.Random, case, index: int) -> dict:
                 reservations.append({"source_id": sid, "year": y, "reserved_capacity_t": reserved})
                 if rng.random() < 0.8:
                     orders.append({"source_id": sid, "year": y, "ordered_t": round(rng.uniform(0, reserved), 3)})
+    mode = rng.choice(["physical", "emergency_contract"])
+    policy = {"reserve_mode": mode, "allocation_rule": rng.choice(["critical_first", "proportional"])}
+    if mode == "emergency_contract":
+        # контрактный режим требует описанного договора: объём партии, срок активации, срок исполнения
+        policy["emergency_contract"] = {"source_id": "E", "guaranteed_batch_t": round(rng.uniform(1, 80), 3),
+                                        "activation_days": rng.choice([0, 3, 7]), "delivery_days": rng.choice([42, 60]),
+                                        "max_activations_per_year": rng.randint(1, 2),
+                                        "notes": "случайный договор для проверки инвариантов"}
     return {"plan_id": f"random_{index}", "scenario_id": "BASE",
             "decisions": {"capacity_reservations": reservations, "supply_orders": orders,
-                          "investments": investments,
-                          "inventory_policy": {"reserve_mode": rng.choice(["physical", "emergency_contract"]),
-                                               "allocation_rule": rng.choice(["critical_first", "proportional"])}}}
+                          "investments": investments, "inventory_policy": policy}}
 
 
 @pytest.fixture(scope="module")

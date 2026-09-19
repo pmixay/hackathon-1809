@@ -63,7 +63,8 @@ def test_modified_contracts_preserve_inputs_and_stress(workspace, payload):
     payload["case_notes"] = "TEAM_ASSUMPTION: A price 7.2 mln/t, sensitivity to +1 mln/t vs 6.2."
     response = workspace.run(payload)["result"]
     assert response["scenario_id"] == "TEAM_COPY_BASE"
-    assert response["scenario"]["enforce_service_thresholds"] is True
+    # A1: метка исследовательского прогона меняет только имя; набор правил остаётся BASE
+    assert response["scenario"]["rule_set_id"] == "BASE"
     payload["scenario"] = "mandatory_stress"
     stress = workspace.run(payload)["result"]
     assert stress["scenario"]["loss_ceiling"]["enabled"]
@@ -73,6 +74,39 @@ def test_modified_contracts_preserve_inputs_and_stress(workspace, payload):
     payload["case_tables"]["constraints.csv"] += "\n"
     with pytest.raises(ValueError, match="constraints.csv"):
         workspace.run(payload)
+
+
+def test_research_label_cannot_relax_a_base_constraint(workspace, payload):
+    """A1: копия данных и чисто ценовой шок не должны менять физическую допустимость плана.
+
+    План с дефицитом в BASE нарушает BASE_TOTAL_SERVICE как жёсткое ограничение. Тот же план под
+    исследовательской меткой (TEAM_GEO_BASE / TEAM_COPY_BASE) обязан нарушать его так же: дефицит
+    и уровень сервиса не меняются, значит не может измениться и строгость нарушения.
+    """
+    import copy as _copy
+    short = _copy.deepcopy(payload["plan"])
+    for o in short["decisions"]["supply_orders"]:
+        if o["source_id"] == "A" and o["year"] == 2040:
+            o["ordered_t"] = round(o["ordered_t"] - 70.0, 6)     # искусственный дефицит 2040 г.
+    payload["plan"] = short
+
+    def severity_and_shortage(extra_payload):
+        res = workspace.run({**payload, **extra_payload})["result"]
+        sev = [v["severity"] for v in res["violations"] if v["rule_id"] == "BASE_TOTAL_SERVICE"]
+        return res["feasible"], sev, round(res["kpi"]["shortage_total_t"], 6), res["scenario"]["rule_set_id"]
+
+    plain = severity_and_shortage({})
+    assert plain[0] is False and plain[1] == ["hard"] and plain[2] > 0 and plain[3] == "BASE"
+
+    shock = {"price_shock": {"enabled": True, "label": "проверка инвариантности", "sources": ["A"], "years": [2040],
+                             "change_pct": 1.0, "combine": "replace", "justification": "только цена, без изменения физики"}}
+    shocked = severity_and_shortage(shock)
+    assert shocked[2] == plain[2], "чисто ценовой шок не должен менять дефицит"
+    assert shocked[1] == ["hard"], "ограничение сервиса BASE не должно стать ориентиром под меткой TEAM_GEO_*"
+    assert shocked[0] is False and shocked[3] == "BASE"
+
+    copied = severity_and_shortage({"case_tables": dict(workspace.original), "case_notes": ""})
+    assert copied[1] == ["hard"] and copied[0] is False
 
 
 def test_single_contract_field_change_moves_the_expected_money(workspace, payload):

@@ -77,14 +77,14 @@
     "pytest": "9.1.1"
   },
   "input_sha256": {
-    "configs/assumptions.yaml": "7c6db77d953f2e7fd9fb23993422ca38d2b38576abfc4026e8da6940b7981ccf",
+    "configs/assumptions.yaml": "aa3db1c0fff1b5a4e6154f1745e35c535547edd6ef1a4302c0c12adb844c089c",
     "configs/plans/P3_isru_zbo_adapted.json": "8e0e7163c5308f4c6f41fed9dca5844ef9240c6c81736393b858adaab2f6f11b",
     "configs/scenarios/mandatory_stress.yaml": "312b097486d7940c92f70f9180b5d32141d27f1a9a7294f166f6bfeb5ca6a7f7",
     "experiments/run_monte_carlo.py": "817ff381211026a9ce4b940031dbb6943751a634c23e9d963c622c6235384719",
     "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
     "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
     "experiments/run_protection_measures.py": "fc2c277d7632fafc7039c4c91574abd4d12087632ccf7e9af9015ae38a0481ee",
-    "experiments/run_all.py": "1e2336b502bc2ec975ab16a7881bf319251c95c1ae5d8a7b1da2e23c4dd30453",
+    "experiments/run_all.py": "eacca46f0a2406c104a87fba47d2e9e14a259e3da2112bc214de7ebd94dc08f5",
     "requirements.txt": "9c7aa4a4d3b29c07448e536d50dacfe5478686f066eed3797e6bb10684e2f3a4",
     "data/case/constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
     "data/case/demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
@@ -94,18 +94,18 @@
     "src/terraplan/__init__.py": "fad02811b53f8d67167c0d53709140462ce5ef165cd8cd11509b8407e502bdcf",
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
     "src/terraplan/api.py": "812db4d93a84045927ba9246b1fbf09b94f9c46d3a8f6e9262009fac0df11b57",
-    "src/terraplan/assumptions.py": "08158e36ed64edcca5a27e604ad2328ace5cb7b236205d70f782d603ed27c080",
-    "src/terraplan/case.py": "33bb8ccb1b2e1042a64bd896d4cbcb30b320182ad41d7690c65197e60bea0c31",
+    "src/terraplan/assumptions.py": "433f6530586901ec2e1fce53c19f4da43e1e38d62ddc4b12aa1bf8a5ac2ae0cd",
+    "src/terraplan/case.py": "3d045e7f349245dba8fe9b76b141cc41b1d2787a886601c2b19ba28bc0b8f49a",
     "src/terraplan/cli.py": "8589f5f45d8e45982d8d3284c9fd5a8c224e6a5b69cfb17d7ff23474a1c682b3",
     "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
     "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
-    "src/terraplan/engine.py": "993676cb0dc5a438441df28c4a3d86514c046cfd660dcb47888be145bf6c74eb",
-    "src/terraplan/export.py": "60c0e40f406bfc41b10ab7559fd304081bd88d865a22bc870392dadfeeef9b14",
-    "src/terraplan/plan.py": "bccf0136788235e9930623e39f11aa58a5a123f34d324ed8d518089443d9b3ba",
+    "src/terraplan/engine.py": "f2ab1d75383afddcc4d2ec74774122de3f01245ddeebe810d8c7f6a5067360db",
+    "src/terraplan/export.py": "96ebb673cd7e21a90a2a6e8384b0b563bcaeb76adf796f6e2c2b0c3664fc0d9e",
+    "src/terraplan/plan.py": "e891eb6fbe4c00d2e72f67249e0f1589ba5546aea4f9e057e963fa20c422a9c1",
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "7acd89fa4c3ba3c62d7ff7b481b2da3055bc65099772bdbb87acf3f59294c325",
-    "src/terraplan/scenario.py": "e86417faa9989d9fee44a62c839dd1890526cb0f35a84f74e506130ae8aa7b87",
-    "src/terraplan/web.py": "03d83951143048e45c9234ff5e2cfece8467acd01cd25252a0c9d571c38e5e58",
+    "src/terraplan/scenario.py": "c52b4abdcf97b39f43b96b66901f355c606b1005ad445365ff5806f23a947783",
+    "src/terraplan/web.py": "f6b665e237c667059ee6f9a688f4cb5cc315a7ea422780155ad0be1002dda424",
     "experiments/provenance.py": "b93a6165b09944def59185cf8628180b4d0bc4449a6eb55109b1323bfffb22ca"
   },
   "assumptions": {
@@ -116,7 +116,7 @@
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.0,
-        0.15
+        0.2
       ],
       "justification": "Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.\n"
     },
@@ -276,19 +276,30 @@
     },
     "storage_capacity_check": {
       "scope": "блок 5 «Проверки»: ёмкость хранилища",
-      "value": "end_of_month_hard_peak_warning",
+      "value": "end_of_month_and_intra_month_peak_hard",
       "unit": "перечисление",
       "status": "TEAM_ASSUMPTION",
       "range": null,
-      "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
+      "justification": "Оба превышения ёмкости — жёсткие нарушения. Проверяется запас на конец месяца и расчётный пик внутри месяца при заявленном дроблении поставок (intra_month_delivery_batches): физическая исполнимость плана доказывается графиком поступлений, а не пометкой допущения."
+    },
+    "intra_month_delivery_batches": {
+      "scope": "блок 3 «Помесячный баланс» и блок 5 «Проверки»: дробление месячной поставки внутри месяца",
+      "value": 1,
+      "unit": "партий в месяц",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        1,
+        12
+      ],
+      "justification": "Месячный объём канала приходит N равными партиями, равномерно распределёнными по месяцу, при равномерной выдаче потребителям (конвенция организатора). Пик запаса после партии j равен I_нач + (j·нетто − (j−1)·выдача)/N, максимум берётся по j = 1..N. При N = 1 это запас сразу после единственного поступления, до выдачи, — консервативный край без допущения о внутримесячной синхронизации поставок и выдачи. При N → ∞ пик стремится к max(запас на начало, запас на конец). Выбрано N = 1: организатор не задаёт размер отдельной партии, и ни один принятый план команды не нуждается в дроблении. Чувствительность к N = 2 и N = 4 показана в results/intra_month/intra_month_capacity.md."
     },
     "emergency_reserve_equivalence": {
       "scope": "блок 5 «Проверки»: эквивалентность контрактного резерва физическому",
-      "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+      "value": "contracted_batch_schedule_and_waiting_cover",
       "unit": "правило",
       "status": "TEAM_ASSUMPTION",
       "range": null,
-      "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
+      "justification": "Договорный аварийный резерв засчитывается только при одновременном выполнении пяти условий, каждое из которых печатается отдельной строкой в contract_reserve_proof: (1) канал доступен в этом году; (2) договорный срок исполнения партии не быстрее срока поставки канала по данным организатора; (3) нетто-объём гарантированной партии после потерь хранилища >= R_y; (4) зарезервированная мощность канала за вычетом обычных заказов года >= партия × число активаций; (5) физический запас на начало года покрывает спрос за время активации плюс срок исполнения. Сам по себе лимит мощности канала (80 т/год) эквивалентности не доказывает. Если блок inventory_policy.emergency_contract не задан, эквивалентность не доказана и действует физический резерв. Правило следует кейсу, §«Начальный запас и резерв»."
     },
     "opening_stock_reservation_years": {
       "scope": "блок 4 «Контракты и финансы»: плата за резерв подготовительного периода",
@@ -302,15 +313,15 @@
       "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
     },
     "prep_period_holding_charged": {
-      "scope": "блок 3 «Помесячный баланс»: начало начисления хранения",
-      "value": false,
+      "scope": "блок 3 «Помесячный баланс» и блок 4: хранение начального запаса в подготовительном периоде",
+      "value": true,
       "unit": "логическое",
       "status": "TEAM_ASSUMPTION",
       "range": [
         true,
         false
       ],
-      "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
+      "justification": "Хранение начального запаса начисляется с фактического месяца поставки, а не с 2035-01: ранняя поставка начального запаса не хранится бесплатно. Правило то же, что и в основном периоде (трапеция): в месяц поставки средний запас равен половине поступления, в каждый последующий месяц подготовительного периода — полному нетто-запасу. Расход относится на первый финансовый год (2035), как закупка и плата за резерв подготовительного периода. Значение false выключает начисление и оставлено только для сопоставления с прежней версией расчёта."
     },
     "intra_year_demand_profile": {
       "scope": "блок 3 «Помесячный баланс»: распределение спроса внутри года",
@@ -418,6 +429,8 @@
       "max_losses_divided_by_throughput": 0.02
     },
     "demand_variant": "base",
+    "rule_scenario_id": null,
+    "rule_set_id": "MANDATORY_STRESS",
     "enforce_service_thresholds": null,
     "notes": [
       "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
@@ -1047,13 +1060,13 @@
   "reproduction": "python experiments/run_monte_carlo.py --n 10000 --seed 203510 --out results/monte_carlo",
   "replay": "add --replay-samples <original>/samples.csv --out <other-dir> --compare <original>; exact UTF-8 comparison after LF normalization; same recorded runtime versions",
   "output_sha256": {
-    "comparison.csv": "a9c339fd5b18758c4aef25c184d0d93a0f6e49458e2d269098a972e7821dc6c6",
+    "comparison.csv": "c736c1d5a81bbe7c5ac225be1377d141b543dfaf69144237eea810fb19a8d262",
     "early_zbo_plus_stock.plan.json": "13060dfc794c3fd9de78caa06f9888c1074d2252d77dcdc69e094fbad4e4b91a",
     "physical_stock.plan.json": "6c9e38b752d7d86e1eb2a6716538a4831ff604e7b9cf504fc0857d2de7b88101",
-    "report.json": "b7e9132a6f24daa9779e5eca7aa4537d9d5f5c59134d9b397e14372cbf76192f",
-    "runs.csv": "8d2dfb0fe2980c9a5aabd19c52e744fb5ba56b24a3be8f46415cf830d66565a5",
+    "report.json": "52806e754d2005a64dc1731609a5e1ca37c4aefde25be36eb35172117f274213",
+    "runs.csv": "bda8e804b3a17898839399b15e769d8f4553960712c5363f0f5898c1c8b16dc0",
     "samples.csv": "14cf147931fa3bb59ba6b08bf62299e9865d65604437c581127b902c62cf17c1",
-    "summary.md": "9f1710ce8ce653c31386e7707ade6a67c74f2f48f9d0d5b4f96400e4c72ad6dc",
+    "summary.md": "262034d19138a8767ca40c04f82f5e103f93223c6c3eb604d4765e760b1adca7",
     "without_measure.plan.json": "4259d7cc70948ae92bdf4b36b8f0863a5028128607c96d04a74187dbc84002b3"
   }
 }

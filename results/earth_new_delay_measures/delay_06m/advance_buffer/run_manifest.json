@@ -4,7 +4,7 @@
   "plan_id": "P2z_delay06m_advance_buffer",
   "scenario_id": "TEAM_EXP13_DELAY_06M",
   "case_dir": "results/earth_new_delay_measures/delay_06m/advance_buffer/case",
-  "case_dir_absolute_at_run": "/home/claude/hackathon-1809/results/earth_new_delay_measures/delay_06m/advance_buffer/case",
+  "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_06m/advance_buffer/case",
   "case_file_sha256": {
     "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
     "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
@@ -13,9 +13,9 @@
     "supply_sources.csv": "5a52de3ec705490a037f6f6abba49deb60edd7b94c9d54bec48dc49f3c656715"
   },
   "plan_sha256": "b0e507eb4a152d096724389f853a20541a7b449fde6ef60b6a49a56a640cd78c",
-  "scenario_sha256": "802e81bfd40481d389647001f9ec61d0cda0a355da3224b3f597ead471f3068d",
-  "assumptions_sha256": "a5b3ca451b936eb606a139b5799235d1a70725c23f9ac7307fe3afba33d9ee17",
-  "kpi_sha256": "f3019f024de3aada2e0596d7ab3ca854d1154e1cff47ffeee154f02a3d04de3f",
+  "scenario_sha256": "1f6689bb4bff50eb4fcdefa3ad215ace1e0a94ba4b8f297e9c558da94911f637",
+  "assumptions_sha256": "d3ed9a0f73dbe6c37aa6b2db4c84093b0cf3ee4a30605677a9339b857c529883",
+  "kpi_sha256": "4482645c2a296698db633cc6ae7764b164a4a162c46fe123cf1d9c0b7607afc9",
   "kpi_precision": 6,
   "random_seed": null,
   "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)",

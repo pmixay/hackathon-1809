@@ -8,6 +8,8 @@
   "actual_delivery_share": null,
   "loss_ceiling": {},
   "demand_variant": "low",
+  "rule_scenario_id": null,
+  "rule_set_id": "TEAM_LOW_DEMAND",
   "enforce_service_thresholds": null,
   "notes": [
     "Uses the organizer's low_total_t column; critical share of the base year is preserved.",

@@ -1,0 +1,67 @@
+[
+  {
+    "year": 2036,
+    "reserve_stress_t": 17.26027397260274,
+    "demand_base_before_t": 100.0,
+    "demand_stress_before_t": 100.0,
+    "extra_stress_demand_t": 0.0,
+    "storage_capacity_t": 120.0,
+    "required_t": 117.26027397260273,
+    "allowed_t": 220.0,
+    "gap_t": -102.73972602739727,
+    "holds": true,
+    "max_stress_service_share": 2.0273972602739727
+  },
+  {
+    "year": 2037,
+    "reserve_stress_t": 23.424657534246574,
+    "demand_base_before_t": 240.0,
+    "demand_stress_before_t": 240.0,
+    "extra_stress_demand_t": 0.0,
+    "storage_capacity_t": 120.0,
+    "required_t": 263.4246575342466,
+    "allowed_t": 360.0,
+    "gap_t": -96.57534246575341,
+    "holds": true,
+    "max_stress_service_share": 1.4023972602739725
+  },
+  {
+    "year": 2038,
+    "reserve_stress_t": 35.445205479452056,
+    "demand_base_before_t": 430.0,
+    "demand_stress_before_t": 430.0,
+    "extra_stress_demand_t": 0.0,
+    "storage_capacity_t": 120.0,
+    "required_t": 465.44520547945206,
+    "allowed_t": 550.0,
+    "gap_t": -84.55479452054794,
+    "holds": true,
+    "max_stress_service_share": 1.19663905702453
+  },
+  {
+    "year": 2039,
+    "reserve_stress_t": 45.36986301369863,
+    "demand_base_before_t": 680.0,
+    "demand_stress_before_t": 717.5,
+    "extra_stress_demand_t": 37.5,
+    "storage_capacity_t": 120.0,
+    "required_t": 762.8698630136986,
+    "allowed_t": 800.0,
+    "gap_t": -37.13013698630141,
+    "holds": true,
+    "max_stress_service_share": 1.051749319841535
+  },
+  {
+    "year": 2040,
+    "reserve_stress_t": 55.2945205479452,
+    "demand_base_before_t": 1000.0,
+    "demand_stress_before_t": 1085.5,
+    "extra_stress_demand_t": 85.5,
+    "storage_capacity_t": 120.0,
+    "required_t": 1140.7945205479452,
+    "allowed_t": 1120.0,
+    "gap_t": 20.79452054794524,
+    "holds": false,
+    "max_stress_service_share": 0.9808433712133162
+  }
+]

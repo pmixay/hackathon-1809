@@ -1,0 +1,22 @@
+{
+  "terraplan_version": "0.1.0",
+  "python": "3.11.15",
+  "plan_id": "P3_isru_zbo_policy_T3_slow_recovery",
+  "scenario_id": "TEAM_TRAJ_T3_SLOW_RECOVERY",
+  "case_dir": "data/case",
+  "case_dir_absolute_at_run": "/home/user/hackathon-1809/data/case",
+  "case_file_sha256": {
+    "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
+    "supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
+    "storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
+    "investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
+    "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8"
+  },
+  "plan_sha256": "1f6cf3773cf7f60f65a8582eb7a4e5cd51d04de306e90ab8362c510b85a9eb59",
+  "scenario_sha256": "023c146126d9f4feab8b62e046a5f5086cd5eb17c382593953b1622b1a3ef158",
+  "assumptions_sha256": "f9bd130d3c5cc5f103cb522d8407a12b63045d04c2e36cb12842f2c45fc69b74",
+  "kpi_sha256": "30643a5ba5c05e8992d2d000ef23a07f24dfcfb1e8e18e5d99c3f33ab07e59fe",
+  "kpi_precision": 6,
+  "random_seed": null,
+  "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)"
+}

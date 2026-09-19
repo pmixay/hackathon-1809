@@ -33,16 +33,19 @@ BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2038,consecutive_years_with_emergency
 BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2039,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
 BASE,P4_full_adapted,EMERGENCY_BASE_STREAK,2040,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2035,end_of_month_stock_t_in_worst_month,17.260439,70.000000,<=,True,hard,"2035-12, хранилище BASE; проверка помесячная"
+BASE,P4_full_adapted,INTRA_MONTH_PEAK,2035,intra_month_peak_stock_t_in_worst_month,25.593772,70.000000,<=,True,hard,"2035-12, хранилище BASE; поставка одной партией в начале месяца"
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2035,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,SOURCE_NOT_AVAILABLE,2035,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2036,end_of_month_stock_t_in_worst_month,23.424908,70.000000,<=,True,hard,"2036-12, хранилище BASE; проверка помесячная"
+BASE,P4_full_adapted,INTRA_MONTH_PEAK,2036,intra_month_peak_stock_t_in_worst_month,35.091575,70.000000,<=,True,hard,"2036-12, хранилище BASE; поставка одной партией в начале месяца"
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2036,reserved_A_t_per_year,153.052000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2036,ordered_A_t,153.051800,153.052000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2036,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,SOURCE_NOT_AVAILABLE,2036,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2037,end_of_month_stock_t_in_worst_month,27.719648,70.000000,<=,True,hard,"2037-06, хранилище BASE; проверка помесячная"
+BASE,P4_full_adapted,INTRA_MONTH_PEAK,2037,intra_month_peak_stock_t_in_worst_month,43.552982,70.000000,<=,True,hard,"2037-06, хранилище BASE; поставка одной партией в начале месяца"
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2037,reserved_C_t_per_year,17.948000,130.000000,<=,True,hard,Earth-New
@@ -50,6 +53,7 @@ BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2037,ordered_C_t,17.947100,17.948
 BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2038,end_of_month_stock_t_in_worst_month,127.330269,120.000000,<=,False,hard,"2038-12, хранилище ZBO; проверка помесячная"
+BASE,P4_full_adapted,INTRA_MONTH_PEAK,2038,intra_month_peak_stock_t_in_worst_month,148.163603,120.000000,<=,False,hard,"2038-12, хранилище ZBO; поставка одной партией в начале месяца"
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2038,reserved_C_t_per_year,56.038000,130.000000,<=,True,hard,Earth-New
@@ -59,6 +63,7 @@ BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2038,ordered_D_t,100.000000,100.0
 BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2039,end_of_month_stock_t_in_worst_month,214.894990,120.000000,<=,False,hard,"2039-12, хранилище ZBO; проверка помесячная"
+BASE,P4_full_adapted,INTRA_MONTH_PEAK,2039,intra_month_peak_stock_t_in_worst_month,241.561657,120.000000,<=,False,hard,"2039-12, хранилище ZBO; поставка одной партией в начале месяца"
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2039,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2039,reserved_C_t_per_year,102.515000,130.000000,<=,True,hard,Earth-New
@@ -68,6 +73,7 @@ BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2039,ordered_D_t,120.000000,120.0
 BASE,P4_full_adapted,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,SOURCE_NOT_AVAILABLE,2039,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 BASE,P4_full_adapted,STORAGE_OVERFLOW,2040,end_of_month_stock_t_in_worst_month,273.395022,120.000000,<=,False,hard,"2040-12, хранилище ZBO; проверка помесячная"
+BASE,P4_full_adapted,INTRA_MONTH_PEAK,2040,intra_month_peak_stock_t_in_worst_month,305.895022,120.000000,<=,False,hard,"2040-12, хранилище ZBO; поставка одной партией в начале месяца"
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2040,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,ORDER_EXCEEDS_RESERVATION,2040,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 BASE,P4_full_adapted,CAPACITY_EXCEEDED,2040,reserved_B_t_per_year,13.948000,110.000000,<=,True,hard,Earth-Flex

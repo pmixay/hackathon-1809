@@ -1,0 +1,148 @@
+[
+  {
+    "plan": "P2z_earth_new_zbo",
+    "scenario": "BASE",
+    "delay_months": 3,
+    "commissioning": "2037-10",
+    "reserve_gaps": {
+      "2038": 1.676,
+      "2039": 1.676,
+      "2040": 1.676
+    },
+    "max_reserve_gap_t": 1.676,
+    "loss_limit_violations": 0,
+    "extra_losses_t": 1.676,
+    "pv_without_measure": 8724.147,
+    "pv_reference": 8729.774,
+    "flex_t": 1.733,
+    "reaction_blocked_by": [],
+    "pv_reactive": 8740.606,
+    "price_of_reaction_mln": 10.832,
+    "pv_early": 8729.774,
+    "price_of_early_mln": 0.0,
+    "premium_no_delay_mln": 5.885,
+    "early_note": "решение о ZBO перенесено на 3 мес. раньше"
+  },
+  {
+    "plan": "P2z_earth_new_zbo",
+    "scenario": "BASE",
+    "delay_months": 6,
+    "commissioning": "2038-01",
+    "reserve_gaps": {
+      "2038": 3.352,
+      "2039": 3.352,
+      "2040": 3.352
+    },
+    "max_reserve_gap_t": 3.352,
+    "loss_limit_violations": 0,
+    "extra_losses_t": 3.353,
+    "pv_without_measure": 8718.779,
+    "pv_reference": 8729.774,
+    "flex_t": 3.511,
+    "reaction_blocked_by": [],
+    "pv_reactive": 8752.042,
+    "price_of_reaction_mln": 22.268,
+    "pv_early": 8729.774,
+    "price_of_early_mln": 0.0,
+    "premium_no_delay_mln": 12.029,
+    "early_note": "решение о ZBO перенесено на 6 мес. раньше"
+  },
+  {
+    "plan": "P2z_earth_new_zbo",
+    "scenario": "BASE",
+    "delay_months": 12,
+    "commissioning": "2038-07",
+    "reserve_gaps": {
+      "2038": 3.352,
+      "2039": 7.672,
+      "2040": 7.671
+    },
+    "max_reserve_gap_t": 7.672,
+    "loss_limit_violations": 0,
+    "extra_losses_t": 7.672,
+    "pv_without_measure": 8707.762,
+    "pv_reference": 8729.774,
+    "flex_t": 8.033,
+    "reaction_blocked_by": [],
+    "pv_reactive": 8783.874,
+    "price_of_reaction_mln": 54.1,
+    "pv_early": 8742.119,
+    "price_of_early_mln": 12.346,
+    "premium_no_delay_mln": 35.928,
+    "early_note": "решение о ZBO перенесено на 12 мес. раньше"
+  },
+  {
+    "plan": "P2z_earth_new_zbo_adapted",
+    "scenario": "MANDATORY_STRESS",
+    "delay_months": 3,
+    "commissioning": "2037-10",
+    "reserve_gaps": {
+      "2038": 1.715,
+      "2039": 1.715,
+      "2040": 1.715
+    },
+    "max_reserve_gap_t": 1.715,
+    "loss_limit_violations": 0,
+    "extra_losses_t": 1.716,
+    "pv_without_measure": 10092.144,
+    "pv_reference": 10097.842,
+    "flex_t": 1.773,
+    "reaction_blocked_by": [],
+    "pv_reactive": 10108.983,
+    "price_of_reaction_mln": 11.141,
+    "pv_early": 10097.842,
+    "price_of_early_mln": 0.0,
+    "premium_no_delay_mln": 5.963,
+    "early_note": "решение о ZBO перенесено на 3 мес. раньше"
+  },
+  {
+    "plan": "P2z_earth_new_zbo_adapted",
+    "scenario": "MANDATORY_STRESS",
+    "delay_months": 6,
+    "commissioning": "2038-01",
+    "reserve_gaps": {
+      "2038": 3.431,
+      "2039": 3.431,
+      "2040": 3.431
+    },
+    "max_reserve_gap_t": 3.431,
+    "loss_limit_violations": 0,
+    "extra_losses_t": 3.431,
+    "pv_without_measure": 10086.71,
+    "pv_reference": 10097.842,
+    "flex_t": 3.593,
+    "reaction_blocked_by": [],
+    "pv_reactive": 10120.75,
+    "price_of_reaction_mln": 22.908,
+    "pv_early": 10097.842,
+    "price_of_early_mln": 0.0,
+    "premium_no_delay_mln": 12.191,
+    "early_note": "решение о ZBO перенесено на 6 мес. раньше"
+  },
+  {
+    "plan": "P2z_earth_new_zbo_adapted",
+    "scenario": "MANDATORY_STRESS",
+    "delay_months": 12,
+    "commissioning": "2038-07",
+    "reserve_gaps": {
+      "2038": 3.431,
+      "2039": 8.398,
+      "2040": 8.398
+    },
+    "max_reserve_gap_t": 8.398,
+    "loss_limit_violations": 1,
+    "extra_losses_t": 8.398,
+    "pv_without_measure": 10074.755,
+    "pv_reference": 10097.842,
+    "flex_t": null,
+    "reaction_blocked_by": [
+      "STRESS_LOSS_LIMIT"
+    ],
+    "pv_reactive": null,
+    "price_of_reaction_mln": null,
+    "pv_early": 10110.187,
+    "price_of_early_mln": 12.346,
+    "premium_no_delay_mln": 36.089,
+    "early_note": "решение о ZBO перенесено на 12 мес. раньше"
+  }
+]

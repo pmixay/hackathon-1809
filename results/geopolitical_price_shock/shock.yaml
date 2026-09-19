@@ -15,6 +15,9 @@ actual_delivery_share:
   default: 1.0
 loss_ceiling:
   enabled: false
+# Исследовательский сценарий — копия BASE по физике и спросу, изменены только цены.
+# Набор правил остаётся BASE: строки constraints.csv со scenario=BASE проверяются как жёсткие.
+rule_scenario_id: BASE
 enforce_service_thresholds: true
 notes:
   - "TEAM illustration, not an empirically calibrated geopolitical forecast or probability."

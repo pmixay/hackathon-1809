@@ -77,8 +77,23 @@ def test_zero_demand_year_has_defined_service_level(tmp_path, base, assumptions)
 
 
 def test_greedy_plan_hits_reserve_each_year(case, base, assumptions):
+    """Без ZBO жадный план держит резерв, но 70-тонное хранилище не вмещает месячную партию.
+
+    Это результат, а не дефект теста: при проверке ёмкости только на конец месяца такой план
+    выглядел исполнимым. Пик внутри месяца (A3) показывает, что физически он неисполним без
+    модернизации хранилища — и это часть обоснования инвестиции в ZBO.
+    """
+    earth_new = dict(investment_id="EARTH_NEW", option_year=2035, option_month=1, decision_year=2035, decision_month=1)
     plan = build_plan(case, base, dict(plan_id="g", reservation_caps={"A": 190, "B": 110, "C": 130},
-                                       investments=[dict(investment_id="EARTH_NEW", option_year=2035, option_month=1, decision_year=2035, decision_month=1)]), assumptions)
+                                       investments=[earth_new]), assumptions)
     res = simulate(case, plan, base, assumptions)
     assert all(y.reserve_ok for y in res.years)
-    assert res.feasible, [v.message for v in res.hard_violations()]
+    rules = {v.rule_id for v in res.hard_violations()}
+    assert rules == {"INTRA_MONTH_PEAK"}, [v.message for v in res.hard_violations()]
+    assert all(v.limit == pytest.approx(70) for v in res.hard_violations())
+
+    with_zbo = build_plan(case, base, dict(plan_id="g_zbo", reservation_caps={"A": 190, "B": 110, "C": 130},
+                                           investments=[earth_new, dict(investment_id="ZBO", decision_year=2037, decision_month=7)]), assumptions)
+    res_zbo = simulate(case, with_zbo, base, assumptions)
+    assert all(y.reserve_ok for y in res_zbo.years)
+    assert res_zbo.feasible, [v.message for v in res_zbo.hard_violations()]

@@ -46,7 +46,8 @@ class Scenario:
     actual_delivery_share: Any = None          # {source name/id: {year: share}} or {'default': 1.0}
     loss_ceiling: dict = field(default_factory=dict)
     demand_variant: str = "base"               # base | low | high (team sensitivity checks)
-    enforce_service_thresholds: Optional[bool] = None  # None -> hard only for BASE
+    rule_scenario_id: Optional[str] = None     # identity matched against constraints.csv `scenario`; None -> scenario_id
+    enforce_service_thresholds: Optional[bool] = None  # None -> hard only when the RULE SET is BASE
     notes: list = field(default_factory=list)
     changes: list = field(default_factory=list)  # human-readable list of changes vs BASE
     source_file: str = ""
@@ -80,6 +81,16 @@ class Scenario:
         return self._per_source(self.actual_delivery_share, source, year, 1.0)
 
     @property
+    def rule_set_id(self) -> str:
+        """Идентификатор набора правил, по которому отбираются строки constraints.csv.
+
+        Исследовательский прогон (копия данных, ценовой шок) получает собственный `scenario_id`
+        для прослеживаемости выгрузки, но продолжает проверяться по правилам исходного сценария.
+        Переименование или копирование данных не может снять ни одно ограничение организатора.
+        """
+        return self.rule_scenario_id or self.scenario_id
+
+    @property
     def loss_ceiling_enabled(self) -> bool:
         return bool(self.loss_ceiling and self.loss_ceiling.get("enabled"))
 
@@ -87,7 +98,7 @@ class Scenario:
     def service_thresholds_hard(self) -> bool:
         if self.enforce_service_thresholds is not None:
             return bool(self.enforce_service_thresholds)
-        return self.scenario_id == "BASE"
+        return self.rule_set_id == "BASE"
 
     def to_dict(self) -> dict:
         return {
@@ -95,6 +106,7 @@ class Scenario:
             "demand_multiplier": self.demand_multiplier, "critical_demand_multiplier": self.critical_demand_multiplier,
             "variable_price_multiplier": self.variable_price_multiplier, "actual_delivery_share": self.actual_delivery_share,
             "loss_ceiling": self.loss_ceiling, "demand_variant": self.demand_variant,
+            "rule_scenario_id": self.rule_scenario_id, "rule_set_id": self.rule_set_id,
             "enforce_service_thresholds": self.enforce_service_thresholds, "notes": self.notes, "changes": self.changes,
         }
 
@@ -114,6 +126,9 @@ def scenario_from_dict(data: dict, source_file: str = "") -> Scenario:
             for k, v in tbl.items():
                 if not isinstance(v, (int, float)) or v < 0:
                     raise ScenarioError(f"сценарий {sid}: {key}[{k}] должен быть неотрицательным числом, получено {v!r}")
+    rule_sid = data.get("rule_scenario_id")
+    if rule_sid is not None and (not isinstance(rule_sid, str) or not rule_sid.strip()):
+        raise ScenarioError(f"сценарий {sid}: rule_scenario_id должен быть непустой строкой (идентификатор набора правил, например BASE)")
     lc = data.get("loss_ceiling") or {}
     if lc and lc.get("enabled") and "max_losses_divided_by_throughput" not in lc:
         raise ScenarioError(f"сценарий {sid}: loss_ceiling.enabled требует поле max_losses_divided_by_throughput")
@@ -125,6 +140,7 @@ def scenario_from_dict(data: dict, source_file: str = "") -> Scenario:
         variable_price_multiplier=data.get("variable_price_multiplier"),
         actual_delivery_share=data.get("actual_delivery_share"),
         loss_ceiling=dict(lc), demand_variant=variant,
+        rule_scenario_id=(str(rule_sid) if rule_sid else None),
         enforce_service_thresholds=data.get("enforce_service_thresholds"),
         notes=list(data.get("notes") or []), changes=list(data.get("changes") or []), source_file=source_file,
     )

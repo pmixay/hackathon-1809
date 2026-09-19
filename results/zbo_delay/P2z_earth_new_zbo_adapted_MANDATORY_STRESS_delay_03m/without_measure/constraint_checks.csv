@@ -1,0 +1,4 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+MANDATORY_STRESS,P2z_earth_new_zbo_adapted,RESERVE_45D,hard,2038-01: физический запас 33.730 т < 45-дневного резерва 35.445 т,2038,1,,33.729952,35.445205,1.715253
+MANDATORY_STRESS,P2z_earth_new_zbo_adapted,RESERVE_45D,hard,2039-01: физический запас 43.655 т < 45-дневного резерва 45.370 т,2039,1,,43.654706,45.369863,1.715157
+MANDATORY_STRESS,P2z_earth_new_zbo_adapted,RESERVE_45D,hard,2040-01: физический запас 53.579 т < 45-дневного резерва 55.295 т,2040,1,,53.579427,55.294521,1.715094

@@ -8,7 +8,7 @@
   "input_sha256": {
     "configs/plans/P3_isru_zbo_adapted.json": "8e0e7163c5308f4c6f41fed9dca5844ef9240c6c81736393b858adaab2f6f11b",
     "configs/scenarios/mandatory_stress.yaml": "312b097486d7940c92f70f9180b5d32141d27f1a9a7294f166f6bfeb5ca6a7f7",
-    "configs/assumptions.yaml": "7c6db77d953f2e7fd9fb23993422ca38d2b38576abfc4026e8da6940b7981ccf",
+    "configs/assumptions.yaml": "aa3db1c0fff1b5a4e6154f1745e35c535547edd6ef1a4302c0c12adb844c089c",
     "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
     "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
     "data/case/constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
@@ -19,18 +19,18 @@
     "src/terraplan/__init__.py": "fad02811b53f8d67167c0d53709140462ce5ef165cd8cd11509b8407e502bdcf",
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
     "src/terraplan/api.py": "812db4d93a84045927ba9246b1fbf09b94f9c46d3a8f6e9262009fac0df11b57",
-    "src/terraplan/assumptions.py": "08158e36ed64edcca5a27e604ad2328ace5cb7b236205d70f782d603ed27c080",
-    "src/terraplan/case.py": "33bb8ccb1b2e1042a64bd896d4cbcb30b320182ad41d7690c65197e60bea0c31",
+    "src/terraplan/assumptions.py": "433f6530586901ec2e1fce53c19f4da43e1e38d62ddc4b12aa1bf8a5ac2ae0cd",
+    "src/terraplan/case.py": "3d045e7f349245dba8fe9b76b141cc41b1d2787a886601c2b19ba28bc0b8f49a",
     "src/terraplan/cli.py": "8589f5f45d8e45982d8d3284c9fd5a8c224e6a5b69cfb17d7ff23474a1c682b3",
     "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
     "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
-    "src/terraplan/engine.py": "993676cb0dc5a438441df28c4a3d86514c046cfd660dcb47888be145bf6c74eb",
-    "src/terraplan/export.py": "60c0e40f406bfc41b10ab7559fd304081bd88d865a22bc870392dadfeeef9b14",
-    "src/terraplan/plan.py": "bccf0136788235e9930623e39f11aa58a5a123f34d324ed8d518089443d9b3ba",
+    "src/terraplan/engine.py": "f2ab1d75383afddcc4d2ec74774122de3f01245ddeebe810d8c7f6a5067360db",
+    "src/terraplan/export.py": "96ebb673cd7e21a90a2a6e8384b0b563bcaeb76adf796f6e2c2b0c3664fc0d9e",
+    "src/terraplan/plan.py": "e891eb6fbe4c00d2e72f67249e0f1589ba5546aea4f9e057e963fa20c422a9c1",
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "7acd89fa4c3ba3c62d7ff7b481b2da3055bc65099772bdbb87acf3f59294c325",
-    "src/terraplan/scenario.py": "e86417faa9989d9fee44a62c839dd1890526cb0f35a84f74e506130ae8aa7b87",
-    "src/terraplan/web.py": "03d83951143048e45c9234ff5e2cfece8467acd01cd25252a0c9d571c38e5e58",
+    "src/terraplan/scenario.py": "c52b4abdcf97b39f43b96b66901f355c606b1005ad445365ff5806f23a947783",
+    "src/terraplan/web.py": "f6b665e237c667059ee6f9a688f4cb5cc315a7ea422780155ad0be1002dda424",
     "experiments/provenance.py": "b93a6165b09944def59185cf8628180b4d0bc4449a6eb55109b1323bfffb22ca"
   },
   "method": {
@@ -338,6 +338,8 @@
       "max_losses_divided_by_throughput": 0.02
     },
     "demand_variant": "base",
+    "rule_scenario_id": null,
+    "rule_set_id": "MANDATORY_STRESS",
     "enforce_service_thresholds": null,
     "notes": [
       "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
@@ -354,7 +356,7 @@
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.0,
-        0.15
+        0.2
       ],
       "justification": "Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.\n"
     },
@@ -514,19 +516,30 @@
     },
     "storage_capacity_check": {
       "scope": "блок 5 «Проверки»: ёмкость хранилища",
-      "value": "end_of_month_hard_peak_warning",
+      "value": "end_of_month_and_intra_month_peak_hard",
       "unit": "перечисление",
       "status": "TEAM_ASSUMPTION",
       "range": null,
-      "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
+      "justification": "Оба превышения ёмкости — жёсткие нарушения. Проверяется запас на конец месяца и расчётный пик внутри месяца при заявленном дроблении поставок (intra_month_delivery_batches): физическая исполнимость плана доказывается графиком поступлений, а не пометкой допущения."
+    },
+    "intra_month_delivery_batches": {
+      "scope": "блок 3 «Помесячный баланс» и блок 5 «Проверки»: дробление месячной поставки внутри месяца",
+      "value": 1,
+      "unit": "партий в месяц",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        1,
+        12
+      ],
+      "justification": "Месячный объём канала приходит N равными партиями, равномерно распределёнными по месяцу, при равномерной выдаче потребителям (конвенция организатора). Пик запаса после партии j равен I_нач + (j·нетто − (j−1)·выдача)/N, максимум берётся по j = 1..N. При N = 1 это запас сразу после единственного поступления, до выдачи, — консервативный край без допущения о внутримесячной синхронизации поставок и выдачи. При N → ∞ пик стремится к max(запас на начало, запас на конец). Выбрано N = 1: организатор не задаёт размер отдельной партии, и ни один принятый план команды не нуждается в дроблении. Чувствительность к N = 2 и N = 4 показана в results/intra_month/intra_month_capacity.md."
     },
     "emergency_reserve_equivalence": {
       "scope": "блок 5 «Проверки»: эквивалентность контрактного резерва физическому",
-      "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+      "value": "contracted_batch_schedule_and_waiting_cover",
       "unit": "правило",
       "status": "TEAM_ASSUMPTION",
       "range": null,
-      "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
+      "justification": "Договорный аварийный резерв засчитывается только при одновременном выполнении пяти условий, каждое из которых печатается отдельной строкой в contract_reserve_proof: (1) канал доступен в этом году; (2) договорный срок исполнения партии не быстрее срока поставки канала по данным организатора; (3) нетто-объём гарантированной партии после потерь хранилища >= R_y; (4) зарезервированная мощность канала за вычетом обычных заказов года >= партия × число активаций; (5) физический запас на начало года покрывает спрос за время активации плюс срок исполнения. Сам по себе лимит мощности канала (80 т/год) эквивалентности не доказывает. Если блок inventory_policy.emergency_contract не задан, эквивалентность не доказана и действует физический резерв. Правило следует кейсу, §«Начальный запас и резерв»."
     },
     "opening_stock_reservation_years": {
       "scope": "блок 4 «Контракты и финансы»: плата за резерв подготовительного периода",
@@ -540,15 +553,15 @@
       "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
     },
     "prep_period_holding_charged": {
-      "scope": "блок 3 «Помесячный баланс»: начало начисления хранения",
-      "value": false,
+      "scope": "блок 3 «Помесячный баланс» и блок 4: хранение начального запаса в подготовительном периоде",
+      "value": true,
       "unit": "логическое",
       "status": "TEAM_ASSUMPTION",
       "range": [
         true,
         false
       ],
-      "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
+      "justification": "Хранение начального запаса начисляется с фактического месяца поставки, а не с 2035-01: ранняя поставка начального запаса не хранится бесплатно. Правило то же, что и в основном периоде (трапеция): в месяц поставки средний запас равен половине поступления, в каждый последующий месяц подготовительного периода — полному нетто-запасу. Расход относится на первый финансовый год (2035), как закупка и плата за резерв подготовительного периода. Значение false выключает начисление и оставлено только для сопоставления с прежней версией расчёта."
     },
     "intra_year_demand_profile": {
       "scope": "блок 3 «Помесячный баланс»: распределение спроса внутри года",
@@ -606,16 +619,16 @@
     }
   },
   "baseline_kpi": {
-    "total_cost_mln": 13291.585493506998,
-    "pv_cost_mln": 10636.654888286022,
+    "total_cost_mln": 13291.955359276999,
+    "pv_cost_mln": 10637.024754056021,
     "discount_rate_real": 0.08,
     "demand_total_t": 1534.0,
     "served_total_t": 1534.0,
     "served_critical_t": 1044.5,
     "shortage_total_t": 5.684341886080802e-14,
     "shortage_critical_t": 2.842170943040401e-14,
-    "cost_per_served_t_mln": 8.664658079209255,
-    "pv_cost_per_served_t_mln": 6.933934086235999,
+    "cost_per_served_t_mln": 8.664899191184483,
+    "pv_cost_per_served_t_mln": 6.934175198211227,
     "min_service_level_total": 0.9999999999999999,
     "min_service_level_critical": 0.9999999999999999,
     "losses_total_t": 31.00086855,
@@ -623,18 +636,20 @@
     "capex_total_mln": 1430.0,
     "procurement_total_mln": 10968.6708825,
     "reservation_total_mln": 505.22922,
-    "holding_total_mln": 135.6853910070001,
+    "holding_total_mln": 136.0552567770001,
     "fixed_opex_total_mln": 252.0,
     "take_or_pay_idle_t": 0.0,
     "take_or_pay_topup_mln": 0.0,
     "opening_inventory_t": 12.328859000000001,
     "closing_inventory_t": 21.754990450000015,
+    "prep_holding_mln": 0.36986577000000004,
+    "prep_holding_months": 1,
     "hard_violations": 0,
     "guideline_violations": 0,
     "warnings": 0,
     "feasible": true,
-    "checks_total": 80,
-    "checks_passed": 80
+    "checks_total": 86,
+    "checks_passed": 86
   },
   "baseline_reserves": [
     {
@@ -928,6 +943,8 @@
         "max_losses_divided_by_throughput": 0.02
       },
       "demand_variant": "base",
+      "rule_scenario_id": null,
+      "rule_set_id": "TEAM_REVERSE_d5.5137206800282001e-07_s5.5137206800282001e-07",
       "enforce_service_thresholds": null,
       "notes": [
         "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
@@ -949,16 +966,16 @@
       ]
     },
     "passing_kpi": {
-      "total_cost_mln": 13291.584771393307,
-      "pv_cost_mln": 10636.654377020015,
+      "total_cost_mln": 13291.954637163308,
+      "pv_cost_mln": 10637.024242790016,
       "discount_rate_real": 0.08,
       "demand_total_t": 1534.000608714763,
       "served_total_t": 1534.000608714763,
       "served_critical_t": 1044.5003994690633,
       "shortage_total_t": 5.684341886080802e-14,
       "shortage_critical_t": 2.842170943040401e-14,
-      "cost_per_served_t_mln": 8.664654170202345,
-      "pv_cost_per_served_t_mln": 6.933931001456225,
+      "cost_per_served_t_mln": 8.664895282081897,
+      "pv_cost_per_served_t_mln": 6.9341721133357765,
       "min_service_level_total": 0.9999999999999999,
       "min_service_level_critical": 0.9999999999999999,
       "losses_total_t": 31.000866796636824,
@@ -966,18 +983,20 @@
       "capex_total_mln": 1430.0,
       "procurement_total_mln": 10968.6708825,
       "reservation_total_mln": 505.22922,
-      "holding_total_mln": 135.68466889330847,
+      "holding_total_mln": 136.05453466330846,
       "fixed_opex_total_mln": 252.0,
       "take_or_pay_idle_t": 0.0,
       "take_or_pay_topup_mln": 0.0,
       "opening_inventory_t": 12.328859000000001,
       "closing_inventory_t": 21.754237375002255,
+      "prep_holding_mln": 0.36986577000000004,
+      "prep_holding_months": 1,
       "hard_violations": 0,
       "guideline_violations": 0,
       "warnings": 0,
       "feasible": true,
-      "checks_total": 80,
-      "checks_passed": 80
+      "checks_total": 86,
+      "checks_passed": 86
     },
     "failing_scenario": {
       "scenario_id": "TEAM_REVERSE_d5.5137297749752179e-07_s5.5137297749752179e-07",
@@ -1065,6 +1084,8 @@
         "max_losses_divided_by_throughput": 0.02
       },
       "demand_variant": "base",
+      "rule_scenario_id": null,
+      "rule_set_id": "TEAM_REVERSE_d5.5137297749752179e-07_s5.5137297749752179e-07",
       "enforce_service_thresholds": null,
       "notes": [
         "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
@@ -1086,16 +1107,16 @@
       ]
     },
     "failing_kpi": {
-      "total_cost_mln": 13291.584771392118,
-      "pv_cost_mln": 10636.654377019171,
+      "total_cost_mln": 13291.954637162116,
+      "pv_cost_mln": 10637.024242789172,
       "discount_rate_real": 0.08,
       "demand_total_t": 1534.000608715767,
       "served_total_t": 1534.000608715767,
       "served_critical_t": 1044.5003994697222,
       "shortage_total_t": 5.684341886080802e-14,
       "shortage_critical_t": 2.842170943040401e-14,
-      "cost_per_served_t_mln": 8.664654170195899,
-      "pv_cost_per_served_t_mln": 6.933931001451136,
+      "cost_per_served_t_mln": 8.664895282075449,
+      "pv_cost_per_served_t_mln": 6.934172113330688,
       "min_service_level_total": 0.9999999999999999,
       "min_service_level_critical": 0.9999999999999999,
       "losses_total_t": 31.000866796633932,
@@ -1103,18 +1124,20 @@
       "capex_total_mln": 1430.0,
       "procurement_total_mln": 10968.6708825,
       "reservation_total_mln": 505.22922,
-      "holding_total_mln": 135.68466889211723,
+      "holding_total_mln": 136.05453466211722,
       "fixed_opex_total_mln": 252.0,
       "take_or_pay_idle_t": 0.0,
       "take_or_pay_topup_mln": 0.0,
       "opening_inventory_t": 12.328859000000001,
       "closing_inventory_t": 21.754237373759928,
+      "prep_holding_mln": 0.36986577000000004,
+      "prep_holding_months": 1,
       "hard_violations": 1,
       "guideline_violations": 0,
       "warnings": 0,
       "feasible": false,
-      "checks_total": 80,
-      "checks_passed": 79
+      "checks_total": 86,
+      "checks_passed": 85
     },
     "violations": [
       {

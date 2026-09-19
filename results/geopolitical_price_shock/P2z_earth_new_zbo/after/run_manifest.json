@@ -4,7 +4,7 @@
   "plan_id": "P2z_earth_new_zbo",
   "scenario_id": "TEAM_GEOPOLITICAL_PRICE_SHOCK",
   "case_dir": "results/geopolitical_price_shock/case",
-  "case_dir_absolute_at_run": "/home/claude/hackathon-1809/results/geopolitical_price_shock/case",
+  "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/geopolitical_price_shock/case",
   "case_file_sha256": {
     "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
     "supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
@@ -13,9 +13,9 @@
     "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8"
   },
   "plan_sha256": "7cd2017b8457e1d37da8f8af136b2244c1b28f9f8407af8d949eda3a7b366765",
-  "scenario_sha256": "009d35826053c0a25ff912adbeeda00f799e23e12901fa2ca950ab47d4352173",
-  "assumptions_sha256": "fcf53b7015aa84c14c64f9e4033bcd8738ccf2fa5cb7090f31ee040910b0c9e7",
-  "kpi_sha256": "44aafd4414e3bb2c5cc85f78e21ce6ea57c4759456a64a663c73f40b756ad783",
+  "scenario_sha256": "515b3718e85ad8722baa1cdac5a1f5eddede03a50fc85f6b71354080b1e0dd6a",
+  "assumptions_sha256": "f9bd130d3c5cc5f103cb522d8407a12b63045d04c2e36cb12842f2c45fc69b74",
+  "kpi_sha256": "e39f713ae61f3acb734dba195dc89180a1aba61cbc1e0c5bda888fc2c01023f3",
   "kpi_precision": 6,
   "random_seed": null,
   "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)"

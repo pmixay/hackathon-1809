@@ -55,17 +55,21 @@ def test_hash_preserves_whitespace_numbers_and_unicode(tmp_path):
         assert sha256(path) != digest
 
 
-# 2026-09-19: refreshed after the take-or-pay premium was split out as its own reported line. Every
-# previously published number is byte-identical; the digests move only because each finance and
-# source-year record gained the additional `take_or_pay_topup_mln` field (verified field by field:
-# 0 changed values, 0 removed, only additions).
+# 2026-09-19 (ответ на аудит): refreshed after the audit fixes A3 (intra-month capacity becomes a hard
+# rule) and A4 (the initial stock is stored from its actual delivery month). Every changed numeric field
+# was classified before refreshing — 0 unexplained, 0 removed:
+#   163  monetary value  +0.369866 mln = the preparatory-period holding of the 12.329 t opening stock
+#         (0.72 x 12.329 / 2 / 12), charged to 2035, so PV and total move by the same amount;
+#   103  difference of two equally shifted values: change at machine-precision level only;
+#    44  checks_total / checks_passed  +6 = one INTRA_MONTH_PEAK matrix row per year of the horizon;
+#    44  cost_per_served_t / pv_cost_per_served_t: derived from the holding shift;
+#    44  new KPI fields prep_holding_mln / prep_holding_months.
+# No previously published conclusion changes sign or ordering; see docs/audit_response.md.
 @pytest.mark.parametrize("folder,expected", [
-    ("reverse_stress", "258e65a281f9331929d88f62290f42847087e6c798ff18e85b6803d13db9477c"),
-    ("protection_measures", "b79899368f842ff4506d99b339b9581b49bb74730dfd22229923f830f8b7d9c7"),
-    # 2026-09-19: refreshed after the Earth-New order-calendar fix; the only numeric change is kpi/checks_passed
-    # (73 -> 75 reference, 67 -> 70 delayed runs) because LEAD_TIME_VIOLATED matrix rows of Earth-New deliveries now pass.
-    ("earth_new_delay", "b06fd71a82e37c43cdbeeb17ee3162deec677c873a7413e3f7e137bda10c58d2"),
-    ("monte_carlo", "d8cf43b762a4895852025124f8e64e1bda0b02e9019e1f2a9bd73f567c1981e7"),
+    ("reverse_stress", "1b2b83279e2f2625e278cb702342edae57fd2858ec2f95c96c0555962d71c494"),
+    ("protection_measures", "f2ba86b05bc778fd90fe5ab20482db4503e0bd05f4839bed61e10512ab8f7f6b"),
+    ("earth_new_delay", "98001e5ec99da4d388963d5e8db2193220f956d5a0f392ee83c39cde4c5ede7e"),
+    ("monte_carlo", "9f5d0967c0b758b9f9c52b93039d756076ee3455682168e83a9baf4a424823d6"),
 ])
 def test_audit_refresh_preserves_published_numbers(root, folder, expected):
     # Golden numeric payloads from pre-audit commit e39c679. Keep every numeric

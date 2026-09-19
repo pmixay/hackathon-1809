@@ -18,6 +18,7 @@ Error messages are in Russian (jury-facing) and always name the file, the field 
 from __future__ import annotations
 
 import json
+import math
 from contextlib import contextmanager
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
@@ -85,6 +86,23 @@ class Investment:
 
 
 @dataclass
+class EmergencyContract:
+    """Договорный аварийный резерв: объём партии, срок активации и срок исполнения.
+
+    Организатор засчитывает контрактный резерв только при описанном контракте и графике
+    (кейс, §«Начальный запас и резерв»). Лимит мощности канала сам по себе эквивалентности
+    не доказывает: нужны гарантированный размер партии, срок активации, срок исполнения
+    и покрытие спроса физическим запасом до прибытия партии.
+    """
+    source_id: str
+    guaranteed_batch_t: float                 # гарантированная договором аварийная партия, валовые тонны
+    activation_days: float                    # от решения об активации до размещения заказа
+    delivery_days: float                      # договорный срок исполнения партии, от заказа до прибытия
+    max_activations_per_year: int = 1
+    notes: str = ""
+
+
+@dataclass
 class OpeningStock:
     source_id: str
     tons: float                               # gross delivered tonnes in the preparatory period
@@ -102,6 +120,7 @@ class Plan:
     investments: list[Investment] = field(default_factory=list)
     opening_stock: list[OpeningStock] = field(default_factory=list)
     reserve_mode: str = "physical"            # physical | emergency_contract
+    emergency_contract: Optional[EmergencyContract] = None   # required when reserve_mode == emergency_contract
     allocation_rule: str = "critical_first"
     observation_month: Optional[str] = None   # "YYYY-MM": reactive orders cannot be placed before this month (reaction-time check)
     meta: dict = field(default_factory=dict)
@@ -126,6 +145,7 @@ class Plan:
                 "inventory_policy": {
                     "opening_stock": [asdict(s) for s in self.opening_stock],
                     "reserve_mode": self.reserve_mode, "allocation_rule": self.allocation_rule,
+                    **({"emergency_contract": asdict(self.emergency_contract)} if self.emergency_contract else {}),
                     **({"observation_month": self.observation_month} if self.observation_month else {}),
                 },
             },
@@ -140,10 +160,14 @@ def _req(d: dict, key: str, ctx: str):
 
 
 def _nonneg(v, key: str, ctx: str) -> float:
+    if isinstance(v, bool):
+        raise PlanError(f"{ctx}: поле '{key}' должно быть числом, получено {v!r}")
     try:
         x = float(v)
     except (TypeError, ValueError):
         raise PlanError(f"{ctx}: поле '{key}' должно быть числом, получено {v!r}")
+    if not math.isfinite(x):                       # NaN проходит проверку "x < 0", поэтому конечность проверяется явно
+        raise PlanError(f"{ctx}: поле '{key}' должно быть конечным числом, получено {v!r}")
     if x < 0:
         raise PlanError(f"{ctx}: поле '{key}' должно быть >= 0, получено {x}")
     return x
@@ -229,6 +253,33 @@ def plan_from_dict(data: dict, source_file: str = "") -> Plan:
         pr.add(f"{ctx}: inventory_policy.reserve_mode",
                f"{ctx}: inventory_policy.reserve_mode должен быть physical | emergency_contract, получено {reserve_mode!r}")
         reserve_mode = "physical"
+    contract = None
+    raw_contract = pol.get("emergency_contract")
+    cc = f"{ctx}: inventory_policy.emergency_contract"
+    if raw_contract is not None:
+        with pr.at(cc):
+            if not isinstance(raw_contract, dict):
+                raise PlanError(f"{cc}: ожидается объект с описанием договора аварийной поставки")
+            activations = _year(raw_contract.get("max_activations_per_year", 1), "max_activations_per_year", cc)
+            if activations < 1:
+                raise PlanError(f"{cc}: поле 'max_activations_per_year' должно быть >= 1, получено {activations}")
+            contract = EmergencyContract(
+                source_id=str(_req(raw_contract, "source_id", cc)),
+                guaranteed_batch_t=_nonneg(_req(raw_contract, "guaranteed_batch_t", cc), "guaranteed_batch_t", cc),
+                activation_days=_nonneg(_req(raw_contract, "activation_days", cc), "activation_days", cc),
+                delivery_days=_nonneg(_req(raw_contract, "delivery_days", cc), "delivery_days", cc),
+                max_activations_per_year=activations,
+                notes=str(raw_contract.get("notes", "")),
+            )
+            if contract.guaranteed_batch_t <= 0:
+                raise PlanError(f"{cc}: поле 'guaranteed_batch_t' должно быть > 0 — иначе договор не гарантирует объём")
+            if contract.delivery_days <= 0:
+                raise PlanError(f"{cc}: поле 'delivery_days' должно быть > 0 — иначе договор не задаёт срок исполнения партии")
+    if reserve_mode == "emergency_contract" and contract is None:
+        pr.add(cc, f"{cc}: режим 'emergency_contract' требует описания договора "
+                   f"(source_id, guaranteed_batch_t, activation_days, delivery_days). "
+                   f"Без размера партии, срока активации и срока исполнения эквивалентность резерва не доказана — "
+                   f"используйте reserve_mode='physical'.")
     alloc = str(pol.get("allocation_rule", "critical_first"))
     if alloc not in ("critical_first", "proportional"):
         pr.add(f"{ctx}: inventory_policy.allocation_rule",
@@ -248,7 +299,8 @@ def plan_from_dict(data: dict, source_file: str = "") -> Plan:
     pr.raise_if_any()
     return Plan(plan_id=plan_id, scenario_id=str(data.get("scenario_id", "BASE")), description=str(data.get("description", "")),
                 reservations=reservations, orders=orders, investments=investments, opening_stock=opening,
-                reserve_mode=reserve_mode, allocation_rule=alloc, observation_month=obs, meta=dict(data.get("meta") or {}))
+                reserve_mode=reserve_mode, emergency_contract=contract, allocation_rule=alloc, observation_month=obs,
+                meta=dict(data.get("meta") or {}))
 
 
 def validate_plan(plan: Plan, case: Case) -> None:
@@ -290,6 +342,15 @@ def validate_plan(plan: Plan, case: Case) -> None:
         seen_i.add(inv.investment_id)
         if inv.option_year is not None and (inv.option_year, inv.option_month) > (inv.decision_year, inv.decision_month):
             pr.add(path, f"{ctx}: {inv.investment_id}: дата платы за опцион позже даты реализации")
+    if plan.emergency_contract is not None:
+        path = f"{ctx}: inventory_policy.emergency_contract"
+        ec = plan.emergency_contract
+        if ec.source_id not in case.sources:
+            pr.add(path, f"{ctx}: договор аварийной поставки ссылается на неизвестный source_id {ec.source_id!r} "
+                         f"(известные: {sorted(case.sources)})")
+        elif ec.guaranteed_batch_t > case.sources[ec.source_id].capacity_t_per_year + 1e-9:
+            pr.add(path, f"{ctx}: гарантированная партия {ec.guaranteed_batch_t:g} т превышает годовую мощность канала "
+                         f"{case.sources[ec.source_id].name} ({case.sources[ec.source_id].capacity_t_per_year:g} т/год)")
     for i, s_ in enumerate(plan.opening_stock):
         path = f"{ctx}: inventory_policy.opening_stock[{i}]"
         if s_.source_id not in case.sources:
