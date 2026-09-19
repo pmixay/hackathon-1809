@@ -1,38 +1,58 @@
-# TerraPlan — Team roles (4 members)
+# TerraPlan — роли в команде (4 участника)
 
-Roles are mapped to the organizer's 20 evaluation criteria (`docs/CASE_SUMMARY.md` §6) so every point
-has an owner. Everybody reviews everybody's numbers: the jury checks that UI, exports and the note agree.
+Роли привязаны к 20 критериям оценки организатора (`docs/CASE_SUMMARY.md` §6), чтобы у каждого балла был
+владелец. Все проверяют числа друг друга: жюри сверяет, что интерфейс, выгрузки и записка совпадают.
 
-| Role | Owner | Criteria owned | Main deliverables |
+| Роль | Владелец | Критерии | Основные результаты |
 |---|---|---|---|
-| **R1 — Model lead (calculation core)** | member 1 | 1, 2, 3, 4, 5, 6 | `src/terraplan` engine, monthly material balance, contracts/take-or-pay, storage & losses, costs & discounting, constraint checks, control vectors V01–V10, boundary & invalid-input tests, reproducibility protocol |
-| **R2 — Strategy & economics analyst** | member 2 | 7, 8, 9, 17, 18 | Alternative plans (Earth-only, Earth+New, Earth+ISRU+ZBO, full portfolio), contract & financial architecture, investment roadmap & gates, stakeholder map, MCDA with disclosed weights, scientific sources traceability (`docs/sources.md`) |
-| **R3 — Stress & risk engineer** | member 3 | 10, 11, 12, 13, 14, 15, 16 | Mandatory stress run and adapted plan, sensitivity sweeps & thresholds, reverse stress / Monte Carlo (seeded), team risk scenarios, quantified risk register with mitigations & residual risk, geopolitics bonus module |
-| **R4 — Product & UI / delivery** | member 4 | 19, 20 + presentation | Operator UI (dashboard, plan editor, violations, scenario compare, export), save/reopen, CSV/XLSX export, extensibility demo (Source-X, 2041), README & run instructions, presentation ≤ 12 slides, GitVerse handover |
+| **R1 — Ведущий по модели (расчётное ядро)** | участник 1 | 1, 2, 3, 4, 5, 6 | движок `src/terraplan`, помесячный материальный баланс, контракты и take-or-pay, хранение и потери, затраты и дисконтирование, проверка ограничений, контрольные векторы V01–V10, граничные тесты и тесты ошибочного ввода, протокол воспроизводимости |
+| **R2 — Аналитик по стратегии и экономике** | участник 2 | 7, 8, 9, 17, 18 | альтернативные планы (только Земля, Земля + Earth-New, Земля + ISRU + ZBO, полный портфель), контрактно-финансовая архитектура, инвестиционная дорожная карта и ворота, карта стейкхолдеров, MCDA с раскрытыми весами, прослеживаемость научных источников (`docs/sources.md`) |
+| **R3 — Инженер по стрессам и рискам** | участник 3 | 10, 11, 12, 13, 14, 15, 16 | обязательный стресс и адаптированный план, свипы чувствительности и пороги, обратный стресс / Монте-Карло (с seed), собственные риск-сценарии, количественный реестр рисков с мерами и остаточным риском, геополитический бонус-модуль |
+| **R4 — Продукт, интерфейс и сдача** | участник 4 | 19, 20 + презентация | интерфейс оператора (дашборд, редактор плана, панель нарушений, сравнение сценариев, выгрузка), сохранение/открытие плана, выгрузка CSV/XLSX, демонстрация расширяемости (Source-X, 2041), README и инструкция запуска, презентация ≤ 12 слайдов, передача на GitVerse |
 
-Management note (8–12 pages) is co-written: R2 leads structure and strategy sections, R1 writes model &
-architecture, R3 writes stress/risk sections, R4 writes UI/functionality, budget & roadmap tables.
+Управленческая записка (8–12 страниц) пишется совместно: R2 ведёт структуру и стратегические разделы, R1 пишет
+модель и архитектуру, R3 — стресс и риски, R4 — интерфейс и функциональность, таблицы бюджета и дорожной карты.
 
-## Working agreement
+## Рабочее соглашение
 
-- `data/case/` and `configs/scenarios/base.yaml`, `mandatory_stress.yaml` are **read-only** (CASE_INPUT). Own scenarios go to `configs/scenarios/team_*.yaml`.
-- Every assumption gets a row in `configs/assumptions.yaml` with meaning, unit, range, status, justification.
-- Every experiment is a script in `experiments/` writing to `results/<experiment_id>/` with the plan, scenario, assumptions snapshot and exports. No hand-edited numbers in docs.
-- Branch naming `feat/<role>-<topic>`; PRs into `main`; `pytest` must pass.
-- Numbers quoted in the note/presentation are copied from `results/` files (cite the file name).
+- **Язык.** Всё, что видит оператор и жюри, — на русском: интерфейс, вывод CLI, `summary.md`, тексты нарушений и
+  сообщений об ошибках, записка, презентация, документация команды. На английском остаются код, идентификаторы правил
+  (`RESERVE_45D`, `CAPACITY_EXCEEDED` …), имена файлов и колонок CSV/JSON — они заданы форматами организатора.
+- `data/case/` и `configs/scenarios/base.yaml`, `mandatory_stress.yaml` — **только чтение** (CASE_INPUT). Собственные сценарии — в `configs/scenarios/team_*.yaml`.
+- Каждое допущение — строка в `configs/assumptions.yaml` со смыслом, единицей, диапазоном, статусом и обоснованием.
+- Каждый эксперимент — скрипт в `experiments/`, пишущий в `results/<experiment_id>/` план, сценарий, снимок допущений и выгрузки. Никаких чисел, вписанных в документы вручную.
+- Ветки `feat/<роль>-<тема>`; PR в `main`; `pytest` должен проходить.
+- Числа в записке и презентации копируются из файлов `results/` (с указанием имени файла).
 
-## Timeline (hackathon)
+## График (хакатон)
 
-| Phase | R1 | R2 | R3 | R4 |
+| Фаза | R1 | R2 | R3 | R4 |
 |---|---|---|---|---|
-| Day 1 AM | engine skeleton, V01–V10 green | draft 4 alternative plans | stress scenario loader, sensitivity harness | UI mockups → clickable prototype |
-| Day 1 PM | monthly balance, costs, checks | run alternatives, pick candidate | stress + adapted plan, first thresholds | plan editor + violations panel |
-| Day 2 AM | invalid-input tests, reproducibility, export parity | contracts & roadmap, stakeholders, MCDA | risk register, Monte Carlo / reverse stress, geopolitics | save/reopen, export, extensibility demo |
-| Day 2 PM | freeze numbers | management note + one-pager | protocols & appendices | presentation, README, handover |
+| День 1, утро | каркас движка, V01–V10 зелёные | черновики 4 альтернативных планов | загрузчик стресс-сценария, стенд чувствительности | макеты интерфейса → кликабельный прототип |
+| День 1, вечер | помесячный баланс, затраты, проверки | прогон альтернатив, выбор кандидата | стресс + адаптированный план, первые пороги | редактор плана + панель нарушений |
+| День 2, утро | тесты ошибочного ввода, воспроизводимость, паритет выгрузок | контракты и дорожная карта, стейкхолдеры, MCDA | реестр рисков, Монте-Карло / обратный стресс, геополитика | сохранение/открытие, выгрузка, демо расширяемости |
+| День 2, вечер | заморозка чисел | записка + одностраничник | протоколы и приложения | презентация, README, передача |
 
-## Current status (2026-09-18)
+## Текущий статус (19.09.2026)
 
-- Repo bootstrapped, organizer materials and literature laid in, engine + tests + first experiments running (see `README.md`).
-- **R1 done**: monthly engine, V01–V10, 33 tests (boundary, invalid input, extensibility, export parity, golden, manual check), full check matrix per year, delivery/order calendar, discount-timing option, `verify` command, CSV-only independent recalculation, constraints catalogue, architecture doc, CI with reproducibility check. **R1 waiting on others**: final plan choice (R2) to freeze numbers; UI (R4) to call `simulate()`; stress protocol additions (R3) for Monte Carlo seeds in the manifest.
-- **R4 delivered (2026-09-19)**: local operator UI calling `simulate()`, plan and copied-data/contract editors, violations and check matrix, scenario comparison, workspace save/reopen, CSV/XLSX/JSON downloads, Source-X/2041 demo, operator guide, 12-slide presentation, budget/roadmap and local handover instructions. Acceptance: `tests/test_web.py`, `tests/ui_smoke.cjs`, `docs/HANDOVER.md`. **R4 pending external handover**: GitVerse destination and team publication/access check.
-- Open with R2/R3: final strategy selection, self-found sources, Monte Carlo / reverse stress, geopolitics module, final management-note consolidation.
+- Репозиторий развёрнут, материалы организатора и литература разложены, движок + тесты + эксперименты работают (см. `README.md`). Локальная приёмка после синхронизации R4: 183 теста, V01–V10, `verify` + независимый пересчёт всех каталогов `results/`, проверка воспроизводимости.
+- **R1 сделано**: помесячный движок, V01–V10, полная матрица проверок «правило × год», календарь заказов/поставок с пояснением по каждой поставке, опция момента дисконтирования, команда `verify`, независимый пересчёт только по CSV, каталог ограничений, документ по архитектуре, ручная проверка, CI.
+- **R1 исправлено по итогам аудита 18.09** (вечер):
+  1. *Календарь поставок Earth-New.* Раньше дата заказа считалась как «поставка − 24 мес.», а самая ранняя допустимая — месяц ввода, поэтому матрица проверок помечала `LEAD_TIME_VIOLATED` в исполнимых планах с Earth-New (19 каталогов, в 8 — «исполним: ДА» рядом со строками НАРУШЕНО). Теперь решение о реализации опциона и есть заказ первых поставок, после ввода действует допущение `earth_new_post_commissioning_lead_months`; матрица, список нарушений и исполнимость согласованы (тест `test_check_matrix_agrees_with_violation_list`, `test_earth_new_order_calendar_is_consistent`).
+  2. *Повторное открытие плана EXP-06.* Помесячный профиль реактивного плана сохранялся с округлением, из-за чего `ordered_t ≠ Σ monthly_t` и план не открывался. Теперь `ordered_t` = сумма сохранённых месяцев (округление вниз, чтобы не превысить мощность, плюс технический запас 0,01 т к целевой траектории), а загрузчик допускает расхождение 0,001 т для планов, отредактированных вручную. Все 34 каталога `results/` проходят `verify`, независимый пересчёт и открытие плана (тест + CI).
+  3. README: число тестов; XLSX теперь есть в каждом каталоге результатов; `results/` перегенерирован.
+- **Независимый разбор критериев 1–6 (18.09, поздний вечер)**: оценка 26/30 (1 — 5, 2 — 4, 3 — 4, 4 — 4, 5 — 4, 6 — 5); расхождений чисел между документами и `results/` не найдено. Все пять подтверждённых дефектов исправлены и закреплены тестами (`tests/test_review_fixes.py`):
+  1. строка матрицы STORAGE_OVERFLOW сравнивала максимум запаса с минимальной ёмкостью года — в году переключения ZBO помечала исполнимый план как НАРУШЕНО; теперь сравнение помесячное, в строке показан худший месяц и его ёмкость;
+  2. строки EMERGENCY_BASE_STREAK для 2-го и 3-го года серии показывали «выполнено»; теперь у каждого года — длина серии, нарушение выдаётся по каждой серии длиннее лимита;
+  3. покрытие контрактного резерва считалось как 2 месяца × 30,4 дня (16,7 т в 2035), в каталоге было 42 дня; теперь 42 дня (срок Emergency в днях без округления), добавлен тест режима `emergency_contract`;
+  4. оплата недопоставленного объёма (ISRU 2038: 300 млн за 55 т) не была в реестре допущений; зарегистрирована как `undelivered_volume_paid: true` (правило организатора, статус CASE_INPUT) с переключателем для исследовательских сценариев — для R3: при оплате по факту PV адаптированного P3 в стрессе 10 463 вместо 10 637 млн (−173 млн PV, −225 млн без дисконта), то есть треть разрыва P2z–P3;
+  5. сроки реакции EXP-06 не проверялись движком; теперь заказы `reactive: true` не могут быть размещены раньше `inventory_policy.observation_month` (2038-03), проверка видна в `delivery_schedule.csv`. Дополнительно: тоннаж начального запаса проверяется против мощности источника.
+  Наблюдения разбора без нарушения правил (для записки R2/R3): в BASE запас P3 опускается до 15,8 т в 2038-02 (≈ 23 дня спроса) перед стартом ISRU — организатор проверяет только 1 января; запас построителя над R_y — 0,0001–0,0003 т (нулевой запас прочности, уже указано в записке).
+- **R1 сделано по правилу «Язык»**: вывод CLI, `summary.md` (показатели, годовой баланс, финансы, инвестиции, график по источникам, матрица проверок, нарушения), тексты нарушений и ошибок ввода, лист README в XLSX, заголовки сравнений и сводок экспериментов, реестр допущений — на русском. Идентификаторы правил, имена файлов и колонок — английские.
+- **R1 сделано для R4**: `terraplan.api` — `run_plan(план | словарь | файл, сценарий, overrides=…, out_dir=…)` → словарь результата или структурированная ошибка `{code, type, message}`; `compare_runs`, `list_scenarios`, `list_plans`, `case_summary`, `assumptions_table` (тесты `tests/test_api.py`).
+- **R4 сдано и актуализировано (19.09.2026)**: локальный интерфейс оператора (`python -m terraplan ui`), вызывающий `simulate()`: редакторы плана и копии данных/контрактов, нарушения и матрица проверок, сравнение сценариев, сохранение/открытие рабочего файла, выгрузки CSV/XLSX/JSON, демо Source-X/2041, руководство оператора (`docs/operator_guide.md`), презентация на 12 слайдов, бюджет/дорожная карта и инструкция передачи (`docs/HANDOVER.md`). После выбора R2 интерфейс по умолчанию открывает P2z, а руководство и презентация показывают P2z в BASE, обязательном стрессе и адаптации; риски EXP-09/11 отделены от исследований P3 EXP-07–10. Приёмка: `tests/test_web.py`, `tests/ui_smoke.cjs`. **R4 ожидает**: адрес GitVerse и проверка публикации/доступа.
+- **R3 интегрировано**: EXP-07 обратный стресс, EXP-08 защитные меры, EXP-09 задержка Earth-New, EXP-10 Монте-Карло с seed, переносимая провенанс-проверка и протоколы — в `main`.
+- **R1: интеграция с `main` (19.09)**: ветка R1 перебазирована на `main` (R3: EXP-07–10, R4: интерфейс `python -m terraplan ui`); команда `ui` сохранена в русском CLI, добавления R3/R4 в README, архитектуре, реестре допущений и статусе перенесены на русский. EXP-04 и EXP-07–10 перегенерированы с исправленным движком: числа EXP-07, EXP-08 и EXP-10 не изменились; в EXP-09 (P2z) изменился только `checks_passed` (73 → 75, 67 → 70) из-за исправления календаря Earth-New — эталонный хеш в `tests/test_provenance.py` обновлён с пояснением.
+- **Для R2 (проверка R1, 19.09)**: решение по P2z, внесённое R2 в `main` (коммит 96d4f63: записка §1/§5/§7, `roadmap_budget.md`, план презентации), сверено с `results/`: все числа совпадают (BASE PV 8 729,4 / 8 638,9 / 8 857,6; адаптированный стресс 10 097,5 / 10 578,2 / 10 636,7; дефицит P2z без адаптации 95,9 т; 17 переполнений адаптированного P2z в BASE; обе годовые таблицы бюджета P2z построчно равны `financial_breakdown.csv`), задержка Earth-New (EXP-09) и зависимость плана от сценария в тексте учтены. Материалы из брошюры для жюри и `R2_FINAL_STRATEGY.md`, которые в `main` не вошли, требуют правки перед использованием: (1) триггер «спрос ≥ BASE × 1,05» — план P2z без изменений нарушает 45-дневный резерв уже при × 1,01 во все годы (нулевой запас прочности, как у P3); (2) триггер «Earth-New > 24 мес.» противоречит EXP-09 — задержка на 3 месяца уже нарушает резерв 2038–2040; (3) MCDA: balanced-профиль пересчитан (77,5 / 29,3 / 16,0 против 77,6 / 29,3 / 16,1 — округление входов), но веса профилей critical-service и financier не раскрыты (`configs/mcda_profiles.yaml` отсутствует); (4) `apply_r2_updates.py` к текущему `main` не применим (якоря в записке не найдены, заголовок §3 архитектуры теперь русский, файлы-спутники не приложены; полная замена `stakeholders.md` и `roadmap_budget.md` затёрла бы правки R3 и собственный коммит R2); (5) `R2_FINAL_STRATEGY.md` на английском — по правилу «Язык» документы для жюри на русском (брошюра PDF уже на русском). Файлы R2 в этой ветке не изменялись.
+- **R2 сдано (19.09.2026)**: для защиты выбран P2z; раскрыты воспроизводимый MCDA и четыре профиля стейкхолдеров (`configs/mcda_profiles.yaml`, `results/strategy/`), финальное распределение договорных рисков (`docs/contract_strategy.md`), критерии 17–18, пять аргументированных собственных источников, бюджет/дорожная карта и краткая PDF-брошюра ведущему. Замечания аудита R1 учтены: триггеры привязаны к ежегодному пересчёту прогноза, а любая задержка Earth-New запускает проверку резерва; универсальность одного фиксированного заказного плана не заявляется.
+- **Осталось вне обязательного результата**: публикация/проверка доступа GitVerse; расширение Монте-Карло на P2z/P4 и реактивные политики; оценка цены договорных гарантий; экономика 2041+. Геополитический бонус-модуль выполнен как EXP-11.

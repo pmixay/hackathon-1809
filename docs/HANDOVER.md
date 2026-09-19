@@ -15,13 +15,15 @@
 
 ## Acceptance record (2026-09-19)
 
-- `python -m pytest -q`: 41 passed at the first R4 acceptance run (including 8 new UI tests).
+- `python -m pytest -q`: 183 passed after the final R1–R4 integration.
 - Real Edge browser: BASE, fixed stress, comparison, adapted stress, save/reopen, extension,
   invalid input, archive download and mobile layout. Reproduce with `tests/ui_smoke.cjs`.
 - UI-export KPIs equal a direct `simulate()` call. An extracted UI archive passes CLI `verify`.
 - The working application uses local assets and the existing engine, with no extra web dependency.
-- Source calculations retain other roles' open work: final strategy selection, additional risk
-  methods and management-note completion. The presentation discloses these limits.
+- R3's EXP-07–10 analyses and EXP-11 geopolitics are integrated. R2 selected P2z, added the
+  disclosed MCDA, contract/stakeholder allocation, verified self-found sources and completed
+  the management note. UI, walkthrough and presentation now default to that P2z decision.
+  Alternative-strategy Monte Carlo and post-2040 economics remain future research.
 
 ## GitVerse publication status
 
@@ -50,9 +52,10 @@ python -m pip install -e ".[dev]"
 python -m pytest -q
 python -m terraplan control-cases
 python -m terraplan ui
-python -m terraplan verify results/alternatives/P3_isru_zbo_BASE
-python -m terraplan verify results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS
-python tests/independent_recalc.py results/alternatives/P3_isru_zbo_BASE
+python -m terraplan verify results/alternatives/P2z_earth_new_zbo_BASE
+python -m terraplan verify results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS
+python tests/independent_recalc.py results/alternatives/P2z_earth_new_zbo_BASE
+python experiments/run_mcda.py
 ```
 
 Follow the operator-guide demonstration in order: BASE, mandatory stress, additional tests,

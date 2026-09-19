@@ -1,24 +1,62 @@
-# Stakeholders — interests, metrics, contract links (draft v0.1)
+# Стейкхолдеры — критерии 17–18 и финальное решение P2z
 
-| Stakeholder | Interest | Metric in the model | Contract / rule that carries it | Bears which cost / risk |
+Итог: **P2z (Earth-New + ZBO) с пересматриваемыми, зависящими от сценария заказами и распределением
+рисков из `docs/contract_strategy.md`.** В стрессе пороги сервиса 97%/99% имеют статус guideline, а
+45-дневный резерв — hard. R2 дополнительно требует 100% общего и критического сервиса до MCDA, поэтому
+веса не компенсируют ухудшение сервиса. Все предлагаемые договорные обязанности и remedies ниже —
+`TEAM_ASSUMPTION`; исходные TOP, сроки, мощности и CAPEX — `CASE_INPUT`.
+
+## Критерий 17 — интересы, метрики, обязательства и последствия
+
+| Стейкхолдер | Интерес и метрика модели | Что меняет P2z | Договорное обязательство | Стоимость / риск после решения |
 |---|---|---|---|---|
-| Depot operator | serve demand at minimum life-cycle cost, keep flexibility | total & PV cost, cost per served t, hard violations = 0, TOP idle t | all contracts; CAPEX limits; reserve rule | TOP idle payments, reservation fees, holding, CAPEX, ISRU under-delivery (no refund) |
-| Critical consumers (state missions) | ≥ 99 % service every year, priority in shortage | SL critical, shortage_critical_t | allocation rule critical_first; 45-day reserve | none of the cost; consequence of a shortfall (mission slip, not monetised in the case) |
-| Commercial consumers | ≥ 97 % total service, predictable price | SL total, shortage_total_t, cost per served t | allocation after critical demand | absorb the first tonnes of any shortage (critical_first) |
-| Earth launch/fuel suppliers (A, B, C) | volume certainty, paid reservation, TOP minimum | reserved t/yr, payable volume, reservation payments | reservation rate, TOP 70 % / 50 %, lead times, revision windows | launch-failure replacement (to be contracted), price-shock exposure of the operator |
-| Lunar ISRU supplier / pilot | CAPEX financed before 2038, ramp-up tolerance | actual_delivery_share, fixed OPEX 70/yr | pilot financing, first-year reliability ≤ 0.78 | technology risk shared: operator pays for ordered volume even if undelivered (mandatory stress) |
-| Emergency supplier | standby fee, occasional high-price call-offs | Emergency reserved t/yr, ordered t, emergency_share_of_demand | reservation 0.35, 6-week lead time, ≤ 2 years as base | none; benefits from disruptions |
-| Financier / investor | CAPEX within 1 800 / 2 800, investment gates, PV of commitments | cumulative CAPEX by year, PV cost, discount rate | CAPEX limits, option structure (90 + 270), gates in roadmap | capital at risk in ISRU (1 250) and Earth-New (360) |
+| Оператор депо | нет жёстких нарушений; PV и стоимость/т; простой TOP | PV BASE 8 729,404 млн; PV адаптированного стресса 10 097,472 млн; в обоих выбранных планах дефицит 0 | вовремя номинировать A/C, управлять запасом и вызывать B/E с учётом срока | платит CAPEX 540 млн, резерв/TOP и остаток сверх мер поставщика; экономит 539,183 млн PV против адаптированного P3 в стрессе |
+| Критические потребители / госмиссии | годовой критический сервис ≥99%; `shortage_critical_t` | критический сервис P2z — 100% в BASE и адаптированном стрессе; приоритет `critical_first` сохраняется | MCDA не может отменить резерв и приоритет | прямые затраты не моделируются; 99% в стрессе — guideline, а 100% — отдельное некомпенсируемое правило отбора R2 |
+| Коммерческие потребители | общий сервис ≥97%; предсказуемая стоимость | адаптированный P2z даёт 100%; непересмотренный план теряет 95,917 т, поэтому адаптация защищает группу | прозрачный тариф/pass-through и уведомление об изменении заказов | при `critical_first` несут первый физический дефицит и возможный перенос цены; это не скрывается средним сервисом |
+| Поставщик Earth-Core A | стабильный доход от мощности | остаётся якорным источником после годового gate спроса | TOP 70% только на фактически доступную мощность; номинация за 12 месяцев; предложен cap/collar | сохраняет минимум дохода; несёт вменяемую недоступность/замену до лимита; оператор несёт спрос |
+| Поставщик Earth-Flex B | оплачиваемые гибкие вызовы | основной клапан корректировки | TOP нет; call-off за 4 месяца; подтверждённый резерв обеспечен мерой | оператор платит премию; поставщик несёт срыв своевременного подтверждённого вызова |
+| Поставщик Earth-New C | профинансировать канал 130 т/год | получает 360 млн за опцион/реализацию и плату за резерв; заменяет ISRU на выбранном горизонте | этапы, независимая приёмка, TOP 50% только после неё, мера за задержку | несёт вменяемую задержку до лимита; оператор — остаток и своевременную замену |
+| Подрядчик ZBO | обеспечить ёмкость и потери | даёт хранилище 120 т и прохождение стрессового лимита потерь | приёмка, план устранения, мера за недоступность/задержку | несёт устранение/задержку до лимита; оператор — остаточную потребность в топливе |
+| Поставщик Emergency E | плата за готовность и редкие вызовы | только резерв, не обычная мощность | SLA 6 недель и мера за срыв подтверждённой мощности; TOP нет | оператор платит резерв и премиальный вызов; поставщик несёт его срыв |
+| Поставщик / пилот Lunar-ISRU | получить финансирование 1 250 млн | не финансируется решением 2035–2040; может вернуться на gate после 2040 | пакет доказательств цены, разгона и доступности до нового go/no-go | технологический/CAPEX-риск не переносится в текущий портфель; потеря близкого финансирования — явный компромисс |
+| Финансист / инвестор | уложиться в лимит CAPEX и ограничить необратимый риск | P2z использует 540 из 1 800 млн до 2037, оставляя 1 260 млн запаса | этапные опцион/реализация, доказательства milestones, совет по решению | капитал под риском на 890 млн ниже P3 и на 1 250 млн ниже P4; концентрация на Earth-New остаётся |
 
-## How risk changes shift the balance (from experiments)
+## Критерий 18 — адаптация при изменении риска
 
-- ISRU shortfall (R1): the operator absorbs +1 605 mln PV to protect critical and total service (adapted P3); without adaptation commercial consumers lose 170 t and critical service still holds (critical_first). Contract lever: no-pay-for-undelivered clause moves ~180 mln (3.0 × 60 t undelivered) back to the ISRU supplier — research scenario.
-- Earth price shock (R4): cost lands on the operator (and through tariffs on consumers); Earth-New and ISRU shares are the hedge; suppliers A/B gain.
-- Demand below base (R3): TOP on Earth-Core makes the operator pay for 70 % of reserved volume — the supplier keeps revenue, the operator pays for flexibility it does not use.
+| Изменение / триггер | Правило решения | Изменение баланса интересов | Доказательство / граница |
+|---|---|---|---|
+| Прогноз обязательного стресса подтверждается до 2038 | перейти с заказов P2z BASE на проверенный адаптированный график; не складывать два графика | оператор платит больше; A/B/C получают объём; коммерческие потребители избегают дефицита 95,917 т; критический сервис защищён | PV 10 097,472 млн, нарушений 0; тот же план переполняет склад в BASE |
+| Спрос падает | сокращать E/B, затем C сверх TOP 50% и A сверх 70%; переносить поставки до переполнения | оператор принимает неизбежные резерв/TOP; гибкие поставщики теряют объём; потребители не платят за переполнение/потери | адаптированный P2z без изменения в BASE даёт 17 жёстких нарушений |
+| Спрос растёт | B с уведомлением 4 месяца, затем E за 6 недель; при устойчивом росте после 2040 — новый gate ISRU/P4 | оператор платит за гибкость; B/E выигрывают; сервис защищён без предоплаты ISRU сегодня | официальный high-demand диапазон и сроки; экономика после 2040 не рассчитана |
+| Срывается milestone Earth-New | пункт 4, замещение B/E, физический буфер и вменяемая мера | C несёт прямую задержку до лимита; оператор — хвост и более дорогую замену; приоритет потребителей сохраняется | EXP-09: +3/6/12 месяцев сохраняют сервис, но нарушают резерв 2038–2040 |
+| Растут земные цены | применить cap/collar и максимизировать принятые C в пределах склада/заказов | риск делится, а не полностью переносится на оператора/потребителей; поставщики получают индекс внутри коридора | шок +25% моделируется; экономика cap/collar — нет |
+| Задерживается ZBO | раннее уведомление/устранение; дополнительный физический запас и повторная проверка потерь/резерва | подрядчик несёт меру до лимита; оператор — остаточное топливо/хранение; hard-резерв и guideline сервиса проверяются раздельно | момент лимита потерь моделируется; цена восстановления P2z ещё не определена |
+| Прогноз резерва приближается к 45 дням | физический запас и более ранние B/E важнее балла MCDA | финансист/оператор платят защиту; поставщики получают заказ; hard-резерв нельзя обменять на стоимость, guideline сервиса контролируется отдельно | у каждого адаптированного плана лишь 0,000469 т запаса в январе 2040; округление не равно устойчивости |
 
-## MCDA (to do, R2)
+## Раскрытый MCDA
 
-Criteria: PV cost, min SL total, min SL critical, shortage in stress, CAPEX at risk, flexibility (share of
-no-TOP capacity), losses. Normalisation min–max over the alternative set; weights per stakeholder profile
-(operator-cost, critical-service, financier) disclosed in `configs/mcda_profiles.yaml`; results compared across
-profiles; critical-service constraints are never traded away (weights cannot repair a hard violation).
+Фильтр: BASE проходит hard-ограничения, проверенный адаптированный обязательный стресс не имеет hard-нарушений,
+а сервис 97%/99% в стрессе учитывается как guideline. R2 до взвешивания отдельно требует 100% общего и
+критического сервиса. P1/P2 не оцениваются; P2z/P3/P4 проходят фильтр. Критерии нормированы min-max
+внутри допущенного множества; больший балл лучше.
+
+| Вес критерия | Сбалансированный | Оператор | Потребители | Финансист |
+|---|---:|---:|---:|---:|
+| BASE PV | 15% | 20% | 5% | 20% |
+| adapted-stress PV | 25% | 30% | 10% | 15% |
+| CAPEX | 20% | 15% | 5% | 40% |
+| дефицит фиксированного плана в стрессе | 20% | 15% | 45% | 10% |
+| доля мощности без TOP | 10% | 10% | 15% | 10% |
+| обычная номинальная мощность | 10% | 10% | 20% | 5% |
+
+| Профиль | P2z | P3 | P4 | Победитель |
+|---|---:|---:|---:|---|
+| Сбалансированная защита | **74,6** | 30,8 | 18,3 | P2z |
+| Оператор / жизненный цикл | **72,5** | 34,3 | 18,8 | P2z |
+| Потребители / непрерывность | **64,5** | 21,4 | 29,4 | P2z |
+| Финансист / капитал под риском | **77,1** | 41,5 | 12,2 | P2z |
+
+Воспроизведение: `experiments/run_mcda.py`; полные веса — `configs/mcda_profiles.yaml`, метрики и баллы —
+`results/strategy/summary.md`; экономика стресса — `results/stress/summary.md`; договорные `TEAM_ASSUMPTION` —
+`docs/contract_strategy.md`. У P3 остаются меньшая PV BASE и большая доля без TOP, у P4 — мощность 550 т/год;
+итоговый ранг не скрывает эти преимущества.

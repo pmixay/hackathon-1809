@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "base_pv_mln": {"direction": "minimize", "label": "PV затрат в BASE"},
+    "stress_adapted_pv_mln": {"direction": "minimize", "label": "PV адаптированного обязательного стресса"},
+    "capex_mln": {"direction": "minimize", "label": "CAPEX, принятый до 2037 года"},
+    "fixed_stress_shortage_t": {"direction": "minimize", "label": "Дефицит, если BASE-заказы не пересмотреть в стрессе"},
+    "no_top_capacity_share": {"direction": "maximize", "label": "Доля обычной мощности без take-or-pay"},
+    "nominal_capacity_tpy": {"direction": "maximize", "label": "Обычная номинальная мощность снабжения"}
+  },
+  "profiles": {
+    "balanced_defense": {
+      "label": "Сбалансированная рекомендация для защиты",
+      "rationale": "Сочетает доступность, прохождение обязательного стресса и инвестиционный риск, сохраняя явные критерии гибкости и мощности.",
+      "weights": {"base_pv_mln": 0.15, "stress_adapted_pv_mln": 0.25, "capex_mln": 0.20, "fixed_stress_shortage_t": 0.20, "no_top_capacity_share": 0.10, "nominal_capacity_tpy": 0.10}
+    },
+    "operator_cost": {
+      "label": "Оператор депо / стоимость жизненного цикла",
+      "rationale": "Усиливает вес стоимости адаптированного ответа; 45-дневный резерв остаётся жёстким ограничением, а сервис 97%/99% в стрессе проверяется как guideline и как отдельное правило отбора R2 до взвешивания.",
+      "weights": {"base_pv_mln": 0.20, "stress_adapted_pv_mln": 0.30, "capex_mln": 0.15, "fixed_stress_shortage_t": 0.15, "no_top_capacity_share": 0.10, "nominal_capacity_tpy": 0.10}
+    },
+    "critical_continuity": {
+      "label": "Критические и коммерческие потребители / непрерывность",
+      "rationale": "45-дневный резерв остаётся жёстким ограничением; сервис 97%/99% в стрессе имеет статус guideline, а R2 отдельно требует 100% сервиса до взвешивания. Среди допущенных планов профиль усиливает вес дефицита и запаса мощности.",
+      "weights": {"base_pv_mln": 0.05, "stress_adapted_pv_mln": 0.10, "capex_mln": 0.05, "fixed_stress_shortage_t": 0.45, "no_top_capacity_share": 0.15, "nominal_capacity_tpy": 0.20}
+    },
+    "financier": {
+      "label": "Финансирующая сторона / капитал под риском",
+      "rationale": "Усиливает вес необратимого CAPEX и стоимости в обоих состояниях, сохраняя риск непересмотренного стрессового графика.",
+      "weights": {"base_pv_mln": 0.20, "stress_adapted_pv_mln": 0.15, "capex_mln": 0.40, "fixed_stress_shortage_t": 0.10, "no_top_capacity_share": 0.10, "nominal_capacity_tpy": 0.05}
+    }
+  }
+}

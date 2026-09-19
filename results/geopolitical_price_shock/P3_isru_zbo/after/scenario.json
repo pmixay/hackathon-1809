@@ -1,0 +1,53 @@
+{
+  "scenario_id": "TEAM_GEOPOLITICAL_PRICE_SHOCK",
+  "label": "EXP-11: геополитический ценовой шок Core/Flex +25% в 2038–2039",
+  "status": "TEAM_ASSUMPTION",
+  "demand_multiplier": {
+    "default": 1.0
+  },
+  "critical_demand_multiplier": null,
+  "variable_price_multiplier": {
+    "default": 1.0,
+    "A": {
+      "2038": 1.25,
+      "2039": 1.25
+    },
+    "B": {
+      "2038": 1.25,
+      "2039": 1.25
+    }
+  },
+  "actual_delivery_share": {
+    "default": 1.0
+  },
+  "loss_ceiling": {
+    "enabled": false
+  },
+  "demand_variant": "base",
+  "enforce_service_thresholds": true,
+  "notes": [
+    "TEAM illustration, not an empirically calibrated geopolitical forecast or probability.",
+    "Apply once to variable prices on an isolated case copy; BASE demand and physical supply.",
+    "Fixed BASE P2z/P3/P4 plans; no replanning, outages, delays, refunds or invented damages.",
+    "Prices revert to BASE in 2040. Reservation rates, TOP shares, CAPEX and OPEX are unchanged.",
+    "The 25% magnitude and 2038–2039 window match the price component of MANDATORY_STRESS only for comparability; no other mandatory-stress factors are applied.",
+    "R2's selection by advance-adapted mandatory-stress cost is unchanged."
+  ],
+  "changes": [
+    {
+      "status": "TEAM_ASSUMPTION",
+      "parameter": "variable_price_multiplier",
+      "sources": [
+        "A",
+        "B"
+      ],
+      "years": [
+        2038,
+        2039
+      ],
+      "before": 1.0,
+      "after": 1.25,
+      "justification": "Illustrative geopolitical surcharge on Earth-Core/Earth-Flex procurement only; no decomposition of the organizer's aggregate price is assumed."
+    }
+  ]
+}

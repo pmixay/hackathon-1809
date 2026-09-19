@@ -208,28 +208,29 @@ These sources are named in `docs/organizer/reference_repo/docs_SCIENTIFIC_BASIS.
 
 ---
 
-## D. Self-found sources (to be added by the team)
+## D. Самостоятельно найденные и проверенные источники
 
-Template — fill in only sources the team has actually opened and read. Do not invent DOIs. Every row must be verified (title, authors, venue, year, DOI/link all checked against the actual document) before it is cited in the management note.
+19.09.2026 команда открыла карточки издателей/авторов/NASA и доступные тексты по ссылкам. Эти источники
+поддерживают только метод принятия решения и конструкцию договоров; ни один не используется для
+перекалибровки синтетических цен, мощностей, коэффициентов надёжности или потерь организатора.
 
-| Source (full entry) | Supports (proposition/method) | Use in TerraPlan model | Limitation | Verified? (Y/N + date) |
+| Источник (полная запись и ссылка) | Поддерживаемый аргумент | Применение в TerraPlan | Ограничение | Проверено |
 |---|---|---|---|---|
-| _(empty — to be filled by the team)_ | | | | |
-| _(empty — to be filled by the team)_ | | | | |
-| _(empty — to be filled by the team)_ | | | | |
+| Dixit, A.K. & Pindyck, R.S. (1994), *Investment under Uncertainty*, Princeton University Press, DOI [10.2307/j.ctt7sncv](https://www.jstor.org/stable/j.ctt7sncv) | У необратимой инвестиции при сохраняющейся неопределённости есть опционная ценность поэтапности или ожидания информации. | Обосновывает конструкцию «опцион → реализация» Earth-New и отказ автоматически финансировать ISRU в P2z; дорожная карта использует gate, а не одновременный CAPEX. | TerraPlan не считает real-options valuation и волатильность; книга не доказывает, что Earth-New стоит именно 360 млн в синтетическом кейсе. | Да, 19.09.2026 |
+| Anderson, E., Chen, B. & Shao, L. (2017), “Supplier Competition with Option Contracts for Discrete Blocks of Capacity,” *Operations Research* 65(4):952–967, DOI [10.1287/opre.2017.1593](https://pubsonline.informs.org/doi/10.1287/opre.2017.1593) | Опцион мощности разделяет авансовую плату за резерв и цену исполнения и может сочетаться со spot/гибкой закупкой при неопределённости. | Поддерживает раздельный учёт резерва и переменной закупки и оценку портфеля A/B/C, а не выбор только по минимальной номинальной цене. | Равновесие и известные распределения статьи не реализованы; поставщики кейса не ведут стратегические торги. | Да, 19.09.2026 |
+| Li, J., Luo, X., Wang, Q. & Zhou, W. (2021), “Supply chain coordination through capacity reservation contract and quantity flexibility contract,” *Omega* 99:102195, DOI [10.1016/j.omega.2020.102195](https://www.sciencedirect.com/science/article/pii/S0305048318314816) | Резерв мощности и гибкость количества по-разному распределяют цену мощности, риск спроса и санкции за неисполнение; при долгом lead time явное распределение риска ценно. | Поддерживает term sheet P2z: B как клапан без TOP, минимумы A/C и меры поставщику за срыв подтверждённой мощности. | Статья оптимизирует стилизованную игру с прибылью/выручкой, которых нет в кейсе; уровни санкций не импортируются. | Да, 19.09.2026 |
+| Masten, S.E. & Crocker, K.J. (1985), “Efficient Adaptation in Long-term Contracts: Take-or-Pay Provisions for Natural Gas,” *American Economic Review* 75(5):1083–1093; [карточка автора](https://websites.umich.edu/~semasten/publications.html) | Take-or-pay может быть механизмом стимулов/возмещения за невыборку, а не просто закупочной ценой; уровень связан с потерянной альтернативной ценностью поставщика. | Поддерживает TOP при доступной мощности, но исключение недоступного по вине поставщика объёма; риск спроса остаётся у оператора. | Газовые институты отличаются от пусков/топлива; TerraPlan принимает заданные 70%/50% и не оценивает оптимальную долю TOP. | Да, 19.09.2026 |
+| Notardonato, W.U. et al. (2017), “Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks Using Integrated Refrigeration and Storage,” NASA KSC-E-DAA-TN44054, NTRS [20170006481](https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20170006481.pdf) | Испытания NASA показывают, что активное охлаждение/управление способно удерживать крупный бак LH2 в режиме zero boil-off в испытанной наземной конфигурации. | Поддерживает представление ZBO как активной системы с приёмкой, доступностью и OPEX, а не пассивного ярлыка; обосновывает performance tests. | Наземная демонстрация LH2 не квалифицирует орбитальное депо и не подтверждает 1,2% потерь, 120 т, CAPEX или нулевой лаг ввода в кейсе. | Да, 19.09.2026 |
 
-**Suggested candidate topics to research** (topics and well-known author/book names only — not verified citations; every specific edition, DOI, and page must be checked before use):
-
-1. **Real options valuation for a staged investment decision** (relevant to the Earth-New option fee + exercise structure and the Lunar-ISRU pilot commissioning gate). Well-known starting point to verify: Dixit, A.K. & Pindyck, R.S., *Investment under Uncertainty*, Princeton University Press, 1994 — **to verify** (edition, relevant chapter, and applicability to a capacity/exercise-option structure like this case's).
-2. **Take-or-pay contract theory / capacity-reservation contracts in operations management** (relevant to the take-or-pay terms on Earth-Core/Earth-Flex/Emergency). Candidate: the option-contract / capacity-reservation literature surveyed in Guo et al. (2025, already in B6) has its own reference list — **to verify** which underlying primary source(s) it cites are worth reading directly.
-3. **Base-stock / newsvendor and periodic-review inventory theory for the 45-day physical reserve rule.** Well-known starting point to verify: Zipkin, P.H., *Foundations of Inventory Management*, McGraw-Hill/Irwin, 2000 — **to verify** (specific chapter on base-stock policies and safety-stock-as-days-of-demand framing).
-4. **Boil-off / cryogenic fluid management (CFM) engineering literature beyond Simonini et al. (2024) and the NASA ISCPT materials (B2, C4, C5)** — e.g., NASA/ESA technical reports on zero-boil-off (ZBO) systems — **to verify** specific report IDs and whether any give loss-rate ranges usable (with caveats) as sanity checks, not calibration, for the case's fixed loss parameters.
-5. **Dual-sourcing / supplier-diversification cost-benefit literature beyond Han et al. (2023) and Federgruen et al. (B5, B7)** — e.g., classic newsvendor-with-two-suppliers or supply-chain risk-pooling papers — **to verify** specific author/year/DOI before citing, to strengthen the Earth-Core vs. Earth-Flex vs. Earth-New comparison narrative in the management note.
+**Почему этого достаточно для защиты.** Пять источников закрывают всю цепочку роли 2: поэтапная инвестиция
+(Dixit/Pindyck), цена опциона мощности (Anderson et al.), гибкий резерв и санкции (Li et al.), владелец риска
+take-or-pay (Masten/Crocker) и инженерный объект приёмки ZBO (NASA). Ограничения стоят рядом с применением,
+поэтому методическая поддержка не выдаётся за доказательство входных чисел кейса.
 
 ---
 
-## E. How to cite in the management note
+## E. Как цитировать в управленческой записке
 
-1. Every citation in the management note must complete the full chain: **source -> proposition/method -> where it is implemented in TerraPlan (module/section/formula) -> limitation** (what it does not license you to claim). A source name alone, without the implementation pointer and the limitation, is not a valid citation for this case.
-2. Cite a source only for the *method or structural pattern* it supports (e.g., "dual-sourcing cost/shortage trade-off," "MCDA weight disclosure," "Monte Carlo propagation procedure") — never as evidence for a specific number in the case (price, capacity, CAPEX, reliability coefficient, loss rate). Those numbers come only from the case statement (`docs/organizer/case_statement_ru.pdf`) and the reference repo's `CASE_INPUT` files.
-3. Keep provenance visible: Section A (organizer administrative materials) and Section B (organizer literature folder) are never presented as the team's own research; only sources placed and verified in Section D may be described as "sources found by the team," and only after the verification step in that section's template has actually been completed.
+1. Каждая ссылка должна замыкать цепочку: **источник → положение/метод → место реализации в TerraPlan (модуль/раздел/формула) → ограничение**. Одного имени без указания реализации и границы недостаточно.
+2. Источник цитируется только для поддерживаемого *метода или структурного паттерна* (например, компромисс стоимость/дефицит при dual sourcing, раскрытие весов MCDA, процедура Монте-Карло), а не для конкретного числа кейса. Цены, мощности, CAPEX, надёжность и потери берутся только из постановки (`docs/organizer/case_statement_ru.pdf`) и файлов `CASE_INPUT`.
+3. Провенанс должен быть виден: раздел A и литература организатора B не выдаются за собственный поиск. Только проверенные позиции раздела D называются «найденными командой».

@@ -117,8 +117,10 @@ Reservation tariffs, CAPEX and other prices are unchanged in stress. 55 %/75 % a
 **never multiply by reliability again**. Stress is not auto-combined with high demand or geopolitics;
 combinations are separate `TEAM_*` research scenarios. Low/high demand = sensitivity checks.
 
-Note: the base storage loss rate (4.5 %) violates the stress loss ceiling from 2038 — any plan that
-must pass the mandatory stress needs ZBO commissioned before 2038 (or must show the violation).
+Note: a full year of throughput at the base storage loss rate (4.5 %) violates the stress ceiling.
+The engine checks annual losses / throughput, so commissioning before 2038 is a conservative
+planning target rather than a mandatory exact date. A mixed-storage year must be calculated
+explicitly (EXP-04 first breaches the annual loss check at a 10-month lag from 2037-07).
 
 ## 5. Required analyses
 

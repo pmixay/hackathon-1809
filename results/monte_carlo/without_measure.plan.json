@@ -1,0 +1,196 @@
+{
+  "plan_id": "P3_isru_zbo_adapted",
+  "scenario_id": "MANDATORY_STRESS",
+  "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "reserved_capacity_t": 17.948
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "reserved_capacity_t": 56.038
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "reserved_capacity_t": 102.515
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 110.0
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "ordered_t": 17.9471,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "ordered_t": 100.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2038,
+        "ordered_t": 56.0372,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "ordered_t": 102.5149,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 110.0,
+        "profile": "uniform"
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "LUNAR_ISRU",
+        "decision_year": 2036,
+        "decision_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P3_isru_zbo_adapted",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110,
+        "D": 120
+      },
+      "stress_aware": true
+    },
+    "stress_aware": true,
+    "builder_notes": [
+      "2040: planned gross shortfall 33.95 t (available reserved capacity exhausted)"
+    ],
+    "status": "TEAM_DECISION"
+  }
+}

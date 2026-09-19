@@ -1,0 +1,670 @@
+{
+  "experiment_id": "EXP-10",
+  "method": {
+    "status": "TEAM_ASSUMPTION",
+    "reference": "MANDATORY_STRESS",
+    "n_per_mode": 10000,
+    "random_seed": 203510,
+    "generator": "random.Random / MT19937; random() float draws",
+    "draw_order": "sample_id 1..N; u_demand, u_isru, u_price; diagnostic uses u_demand for ISRU",
+    "demand": {
+      "distribution": "uniform",
+      "bounds": [
+        0,
+        0.02
+      ],
+      "years": [
+        2038,
+        2039,
+        2040
+      ],
+      "operation": "stress total AND critical demand *= 1+d"
+    },
+    "isru": {
+      "distribution": "uniform",
+      "bounds": [
+        0,
+        0.02
+      ],
+      "years": [
+        2038,
+        2039,
+        2040
+      ],
+      "operation": "stress actual delivery share D *= 1-s; no extra reliability factor"
+    },
+    "prices": {
+      "distribution": "uniform",
+      "bounds": [
+        -0.1,
+        0.1
+      ],
+      "years": [
+        2038,
+        2039
+      ],
+      "sources": [
+        "A",
+        "B"
+      ],
+      "operation": "stress variable price *= 1+p"
+    },
+    "dependence": {
+      "independent": "d,s,p independent; each persists over its entire period; A/B share p",
+      "comonotonic_demand_isru": "same uniform for d and s; price independent; separate diagnostic, not pooled"
+    },
+    "rationale": "physical 0..2% brackets the EXP-08 1% target; price +/-10% illustrative; no organizer probability data",
+    "fixed": "all orders, reservations, investments and opening stock; common samples for all three plans",
+    "excluded": "no stochastic Core capacity availability, delays, reaction policy or geopolitics",
+    "failure": "any hard violation OR total/critical service guideline below 97%/99%; warnings excluded",
+    "first_failure": "earliest year/month; annual checks at December, undated year=0; ALL simultaneous causes retained",
+    "physical_tolerance_t": 1e-06,
+    "service_tolerance": 1e-09,
+    "shortage_frequency_threshold_t": 1e-06,
+    "confidence_interval": "two-sided 95% Wilson score for each binomial failure frequency; sampling error only",
+    "quantiles": "linear interpolation at (n-1)*q, Hyndman-Fan type 7",
+    "costs": "engine PV in mln constant-2035 units; paired deltas vs unprotected plan on same realization; no damage valuation",
+    "limitations": "conditional frequencies, not real-world risk probabilities; no proof of robustness in BASE; ZBO lag remains zero"
+  },
+  "reference": [
+    {
+      "mode": "reference",
+      "sample_id": 0,
+      "variant": "without_measure",
+      "failed": false,
+      "reserve_failed": false,
+      "service_failed": false,
+      "shortage_occurred": false,
+      "failure_rules": "",
+      "first_year": null,
+      "first_month": null,
+      "first_rules": "",
+      "first_violations": "[]",
+      "shortage_t": 5.684341886080802e-14,
+      "critical_shortage_t": 2.842170943040401e-14,
+      "min_service_total": 0.9999999999999999,
+      "min_service_critical": 0.9999999999999999,
+      "max_reserve_gap_t": 0.0,
+      "pv_cost_mln": 10636.654888286022,
+      "delta_pv_mln": 0.0
+    },
+    {
+      "mode": "reference",
+      "sample_id": 0,
+      "variant": "physical_stock",
+      "failed": false,
+      "reserve_failed": false,
+      "service_failed": false,
+      "shortage_occurred": false,
+      "failure_rules": "",
+      "first_year": null,
+      "first_month": null,
+      "first_rules": "",
+      "first_violations": "[]",
+      "shortage_t": 5.684341886080802e-14,
+      "critical_shortage_t": 2.842170943040401e-14,
+      "min_service_total": 0.9999999999999999,
+      "min_service_critical": 0.9999999999999999,
+      "max_reserve_gap_t": 0.0,
+      "pv_cost_mln": 10720.322713649195,
+      "delta_pv_mln": 83.6678253631726
+    },
+    {
+      "mode": "reference",
+      "sample_id": 0,
+      "variant": "early_zbo_plus_stock",
+      "failed": false,
+      "reserve_failed": false,
+      "service_failed": false,
+      "shortage_occurred": false,
+      "failure_rules": "",
+      "first_year": null,
+      "first_month": null,
+      "first_rules": "",
+      "first_violations": "[]",
+      "shortage_t": 5.684341886080802e-14,
+      "critical_shortage_t": 2.842170943040401e-14,
+      "min_service_total": 0.9999999999999999,
+      "min_service_critical": 0.9999999999999999,
+      "max_reserve_gap_t": 0.0,
+      "pv_cost_mln": 10686.112921751492,
+      "delta_pv_mln": 49.45803346546927
+    }
+  ],
+  "comparison": [
+    {
+      "mode": "independent",
+      "variant": "without_measure",
+      "n": 10000,
+      "failures": 10000,
+      "failure_frequency": 1.0,
+      "failure_wilson95": [
+        0.9996160016293234,
+        1.0
+      ],
+      "reserve_failure_frequency": 1.0,
+      "service_failure_frequency": 0.0,
+      "shortage_frequency": 0.1333,
+      "failure_rule_counts": {
+        "RESERVE_45D": 10000
+      },
+      "first_failure_counts": [
+        {
+          "year": 2038,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 9996
+        },
+        {
+          "year": 2039,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 4
+        }
+      ],
+      "eliminated_failures": 0,
+      "introduced_failures": 0,
+      "eliminated_frequency": 0.0,
+      "failure_reduction_pp": 0.0,
+      "metrics": {
+        "shortage_t": {
+          "mean": 0.24739595337641937,
+          "min": 0.0,
+          "max": 5.464047244159758,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 2.1211243370669544
+        },
+        "critical_shortage_t": {
+          "mean": 9.075051821127999e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 2.842170943040401e-14
+        },
+        "min_service_total": {
+          "mean": 0.9994585213457363,
+          "min": 0.9880557995168585,
+          "max": 1.0,
+          "p05": 0.995354145688517,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "min_service_critical": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "max_reserve_gap_t": {
+          "mean": 8.560216856470303,
+          "min": 0.0849205294619253,
+          "max": 17.026028968822736,
+          "p05": 2.080180236102687,
+          "p50": 8.523269468105738,
+          "p95": 15.0520607594355
+        },
+        "pv_cost_mln": {
+          "mean": 10630.710895621618,
+          "min": 10262.5996023394,
+          "max": 10992.056812748322,
+          "p05": 10309.412722959212,
+          "p50": 10630.522389239432,
+          "p95": 10950.967345272973
+        },
+        "delta_pv_mln": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        }
+      }
+    },
+    {
+      "mode": "independent",
+      "variant": "physical_stock",
+      "n": 10000,
+      "failures": 4943,
+      "failure_frequency": 0.4943,
+      "failure_wilson95": [
+        0.48450488705233147,
+        0.5040994905290942
+      ],
+      "reserve_failure_frequency": 0.4943,
+      "service_failure_frequency": 0.0,
+      "shortage_frequency": 0.0,
+      "failure_rule_counts": {
+        "RESERVE_45D": 4943
+      },
+      "first_failure_counts": [
+        {
+          "year": 2040,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 4943
+        }
+      ],
+      "eliminated_failures": 5057,
+      "introduced_failures": 0,
+      "eliminated_frequency": 0.5057,
+      "failure_reduction_pp": 50.57,
+      "metrics": {
+        "shortage_t": {
+          "mean": 9.544010026729665e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 5.684341886080802e-14
+        },
+        "critical_shortage_t": {
+          "mean": 9.075051821127999e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 2.842170943040401e-14
+        },
+        "min_service_total": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "min_service_critical": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "max_reserve_gap_t": {
+          "mean": 1.7713764864111579,
+          "min": 0.0,
+          "max": 8.425686568822833,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 6.451718359435494
+        },
+        "pv_cost_mln": {
+          "mean": 10714.373308535465,
+          "min": 10346.224692935642,
+          "max": 11075.724638111495,
+          "p05": 10393.080548322385,
+          "p50": 10714.190214602604,
+          "p95": 11034.635170636146
+        },
+        "delta_pv_mln": {
+          "mean": 83.66241291384758,
+          "min": 83.48571796043325,
+          "max": 83.66782536317442,
+          "p05": 83.62451731569463,
+          "p50": 83.6678253631726,
+          "p95": 83.66782536317442
+        }
+      }
+    },
+    {
+      "mode": "independent",
+      "variant": "early_zbo_plus_stock",
+      "n": 10000,
+      "failures": 4959,
+      "failure_frequency": 0.4959,
+      "failure_wilson95": [
+        0.4861039654944479,
+        0.5056991832921915
+      ],
+      "reserve_failure_frequency": 0.4959,
+      "service_failure_frequency": 0.0,
+      "shortage_frequency": 0.0,
+      "failure_rule_counts": {
+        "RESERVE_45D": 4959
+      },
+      "first_failure_counts": [
+        {
+          "year": 2040,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 4959
+        }
+      ],
+      "eliminated_failures": 5041,
+      "introduced_failures": 0,
+      "eliminated_frequency": 0.5041,
+      "failure_reduction_pp": 50.41,
+      "metrics": {
+        "shortage_t": {
+          "mean": 9.544010026729665e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 5.684341886080802e-14
+        },
+        "critical_shortage_t": {
+          "mean": 9.075051821127999e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 2.842170943040401e-14
+        },
+        "min_service_total": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "min_service_critical": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "max_reserve_gap_t": {
+          "mean": 1.780446166620505,
+          "min": 0.0,
+          "max": 8.444009218822792,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 6.4700410094354535
+        },
+        "pv_cost_mln": {
+          "mean": 10680.163516637762,
+          "min": 10312.01490103794,
+          "max": 11041.514846213791,
+          "p05": 10358.87075642468,
+          "p50": 10679.980422704899,
+          "p95": 11000.425378738442
+        },
+        "delta_pv_mln": {
+          "mean": 49.452621016143866,
+          "min": 49.27592606272992,
+          "max": 49.45803346547109,
+          "p05": 49.414725417991214,
+          "p50": 49.45803346546927,
+          "p95": 49.45803346547109
+        }
+      }
+    },
+    {
+      "mode": "comonotonic_demand_isru",
+      "variant": "without_measure",
+      "n": 10000,
+      "failures": 9999,
+      "failure_frequency": 0.9999,
+      "failure_wilson95": [
+        0.9994337311025987,
+        0.9999823473263989
+      ],
+      "reserve_failure_frequency": 0.9999,
+      "service_failure_frequency": 0.0,
+      "shortage_frequency": 0.1993,
+      "failure_rule_counts": {
+        "RESERVE_45D": 9999
+      },
+      "first_failure_counts": [
+        {
+          "year": 2038,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 9996
+        },
+        {
+          "year": 2039,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 3
+        }
+      ],
+      "eliminated_failures": 0,
+      "introduced_failures": 0,
+      "eliminated_frequency": 0.0,
+      "failure_reduction_pp": 0.0,
+      "metrics": {
+        "shortage_t": {
+          "mean": 0.5676082302291728,
+          "min": 0.0,
+          "max": 5.560994785687228,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 4.188676358131983
+        },
+        "critical_shortage_t": {
+          "mean": 9.075051821127999e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 2.842170943040401e-14
+        },
+        "min_service_total": {
+          "mean": 0.9987575999383236,
+          "min": 0.987844019408254,
+          "max": 1.0,
+          "p05": 0.9908347918769878,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "min_service_critical": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "max_reserve_gap_t": {
+          "mean": 8.562070112246372,
+          "min": 0.0,
+          "max": 17.08036115457027,
+          "p05": 0.8666645978526,
+          "p50": 8.584774582110107,
+          "p95": 16.222243132660367
+        },
+        "pv_cost_mln": {
+          "mean": 10630.717431839006,
+          "min": 10261.416128460933,
+          "max": 10992.481083342182,
+          "p05": 10309.257342677023,
+          "p50": 10630.31334303329,
+          "p95": 10951.027046856283
+        },
+        "delta_pv_mln": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 0.0
+        }
+      }
+    },
+    {
+      "mode": "comonotonic_demand_isru",
+      "variant": "physical_stock",
+      "n": 10000,
+      "failures": 4987,
+      "failure_frequency": 0.4987,
+      "failure_wilson95": [
+        0.4889025941176567,
+        0.5084984042781069
+      ],
+      "reserve_failure_frequency": 0.4987,
+      "service_failure_frequency": 0.0,
+      "shortage_frequency": 0.0,
+      "failure_rule_counts": {
+        "RESERVE_45D": 4987
+      },
+      "first_failure_counts": [
+        {
+          "year": 2040,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 4987
+        }
+      ],
+      "eliminated_failures": 5012,
+      "introduced_failures": 0,
+      "eliminated_frequency": 0.5012,
+      "failure_reduction_pp": 50.12,
+      "metrics": {
+        "shortage_t": {
+          "mean": 9.544010026729665e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 5.684341886080802e-14
+        },
+        "critical_shortage_t": {
+          "mean": 9.075051821127999e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 2.842170943040401e-14
+        },
+        "min_service_total": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "min_service_critical": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "max_reserve_gap_t": {
+          "mean": 2.104718141691076,
+          "min": 0.0,
+          "max": 8.480018754570182,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 7.6219007326603805
+        },
+        "pv_cost_mln": {
+          "mean": 10714.371180823293,
+          "min": 10344.98554097991,
+          "max": 11076.148908705354,
+          "p05": 10392.92482500165,
+          "p50": 10713.981168396462,
+          "p95": 11034.694872219456
+        },
+        "delta_pv_mln": {
+          "mean": 83.65374898428777,
+          "min": 83.47992696520487,
+          "max": 83.66782536317442,
+          "p05": 83.56204604420991,
+          "p50": 83.6678253631726,
+          "p95": 83.66782536317442
+        }
+      }
+    },
+    {
+      "mode": "comonotonic_demand_isru",
+      "variant": "early_zbo_plus_stock",
+      "n": 10000,
+      "failures": 5003,
+      "failure_frequency": 0.5003,
+      "failure_wilson95": [
+        0.4905019483788454,
+        0.5100978212221322
+      ],
+      "reserve_failure_frequency": 0.5003,
+      "service_failure_frequency": 0.0,
+      "shortage_frequency": 0.0,
+      "failure_rule_counts": {
+        "RESERVE_45D": 5003
+      },
+      "first_failure_counts": [
+        {
+          "year": 2040,
+          "month": 1,
+          "rules": "RESERVE_45D",
+          "count": 5003
+        }
+      ],
+      "eliminated_failures": 4996,
+      "introduced_failures": 0,
+      "eliminated_frequency": 0.4996,
+      "failure_reduction_pp": 49.96,
+      "metrics": {
+        "shortage_t": {
+          "mean": 9.544010026729665e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 5.684341886080802e-14
+        },
+        "critical_shortage_t": {
+          "mean": 9.075051821127999e-15,
+          "min": 0.0,
+          "max": 5.684341886080802e-14,
+          "p05": 0.0,
+          "p50": 0.0,
+          "p95": 2.842170943040401e-14
+        },
+        "min_service_total": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "min_service_critical": {
+          "mean": 1.0,
+          "min": 0.9999999999999999,
+          "max": 1.0,
+          "p05": 0.9999999999999999,
+          "p50": 1.0,
+          "p95": 1.0
+        },
+        "max_reserve_gap_t": {
+          "mean": 2.1138693000547026,
+          "min": 0.0,
+          "max": 8.49834140457014,
+          "p05": 0.0,
+          "p50": 0.002754832110078098,
+          "p95": 7.64022338266034
+        },
+        "pv_cost_mln": {
+          "mean": 10680.16138892559,
+          "min": 10310.775749082206,
+          "max": 11041.93911680765,
+          "p05": 10358.715033103947,
+          "p50": 10679.771376498757,
+          "p95": 11000.485080321752
+        },
+        "delta_pv_mln": {
+          "mean": 49.443957086584064,
+          "min": 49.27013506750154,
+          "max": 49.45803346547109,
+          "p05": 49.35225414650658,
+          "p50": 49.45803346546927,
+          "p95": 49.45803346547109
+        }
+      }
+    }
+  ]
+}

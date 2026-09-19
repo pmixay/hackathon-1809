@@ -1,136 +1,136 @@
 section,metric,year,a,b,delta,label_a,label_b
-kpi,total_cost_mln,,11517.764487,12811.646084,1293.881596,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,pv_cost_mln,,9142.897763,10097.471915,954.574152,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,cost_per_served_t_mln,,8.009112,8.351790,0.342678,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,pv_cost_per_served_t_mln,,6.357700,6.582446,0.224746,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,served_total_t,,1438.082586,1534.000000,95.917414,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,shortage_total_t,,95.917414,0.000000,-95.917414,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,shortage_critical_t,,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,min_service_level_total,,0.869565,1.000000,0.130435,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,min_service_level_critical,,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,losses_total_t,,29.492173,31.120869,1.628695,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,capex_total_mln,,540.000000,540.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,take_or_pay_idle_t,,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,hard_violations,,3,0,-3,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-kpi,guideline_violations,,2,0,-2,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Demand total, t",2035,100.000000,100.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Served total, t",2035,100.000000,100.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL total,2035,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL critical,2035,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Shortage, t",2035,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Delivered (actual), t",2035,109.876000,109.876000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Losses, t",2035,4.944420,4.944420,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,Losses/throughput,2035,0.045000,0.045000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Opening stock, t",2035,12.328859,12.328859,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Closing stock, t",2035,17.260439,17.260439,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"45-day reserve, t",2035,12.328767,12.328767,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Demand total, t",2036,140.000000,140.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Served total, t",2036,140.000000,140.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL total,2036,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL critical,2036,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Shortage, t",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Delivered (actual), t",2036,153.051800,153.051800,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Losses, t",2036,6.887331,6.887331,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,Losses/throughput,2036,0.045000,0.045000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Opening stock, t",2036,17.260439,17.260439,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Closing stock, t",2036,23.424908,23.424908,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"45-day reserve, t",2036,17.260274,17.260274,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Demand total, t",2037,190.000000,190.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Served total, t",2037,190.000000,190.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL total,2037,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL critical,2037,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Shortage, t",2037,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Delivered (actual), t",2037,203.188200,207.947100,4.758900,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Losses, t",2037,5.790864,5.926492,0.135629,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,Losses/throughput,2037,0.028500,0.028500,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Opening stock, t",2037,23.424908,23.424908,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Closing stock, t",2037,30.822244,35.445516,4.623271,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"45-day reserve, t",2037,23.424658,23.424658,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Demand total, t",2038,287.500000,287.500000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Served total, t",2038,287.500000,287.500000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL total,2038,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL critical,2038,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Shortage, t",2038,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Delivered (actual), t",2038,261.771400,301.037200,39.265800,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Losses, t",2038,3.141257,3.612446,0.471190,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,Losses/throughput,2038,0.012000,0.012000,-0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Opening stock, t",2038,30.822244,35.445516,4.623271,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Closing stock, t",2038,1.952388,45.370269,43.417882,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"45-day reserve, t",2038,35.445205,35.445205,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Demand total, t",2039,368.000000,368.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Served total, t",2039,330.582528,368.000000,37.417472,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL total,2039,0.898322,1.000000,0.101678,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL critical,2039,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Shortage, t",2039,37.417472,0.000000,-37.417472,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Delivered (actual), t",2039,332.621600,382.514900,49.893300,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Losses, t",2039,3.991459,4.590179,0.598720,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,Losses/throughput,2039,0.012000,0.012000,-0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Opening stock, t",2039,1.952388,45.370269,43.417882,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Closing stock, t",2039,0.000000,55.294990,55.294990,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"45-day reserve, t",2039,45.369863,45.369863,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Demand total, t",2040,448.500000,448.500000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Served total, t",2040,390.000057,448.500000,58.499943,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL total,2040,0.869565,1.000000,0.130435,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,SL critical,2040,1.000000,1.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Shortage, t",2040,58.499943,0.000000,-58.499943,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Delivered (actual), t",2040,394.736900,430.000000,35.263100,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Losses, t",2040,4.736843,5.160000,0.423157,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,Losses/throughput,2040,0.012000,0.012000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Opening stock, t",2040,0.000000,55.294990,55.294990,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"Closing stock, t",2040,0.000000,31.634990,31.634990,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-yearly,"45-day reserve, t",2040,55.294521,55.294521,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Procurement, mln",2035,796.128420,796.128420,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Reservation, mln",2035,51.380670,51.380670,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Holding, mln",2035,10.652147,10.652147,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Fixed OPEX, mln",2035,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2035,360.000000,360.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Total, mln",2035,1218.161237,1218.161237,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"PV total, mln",2035,1218.161237,1218.161237,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Procurement, mln",2036,948.921160,948.921160,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Reservation, mln",2036,68.873400,68.873400,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Holding, mln",2036,14.646725,14.646725,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Fixed OPEX, mln",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Total, mln",2036,1032.441285,1032.441285,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"PV total, mln",2036,955.964153,955.964153,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Procurement, mln",2037,1271.636220,1305.424410,33.788190,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Reservation, mln",2037,89.456700,90.884400,1.427700,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Holding, mln",2037,18.925506,20.575750,1.650244,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Fixed OPEX, mln",2037,6.000000,6.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2037,180.000000,180.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Total, mln",2037,1566.018426,1602.884560,36.866134,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"PV total, mln",2037,1342.608390,1374.215157,31.606768,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Procurement, mln",2038,1982.076940,2260.864120,278.787180,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Reservation, mln",2038,107.031600,118.811400,11.779800,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Holding, mln",2038,11.798867,29.093683,17.294815,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Fixed OPEX, mln",2038,12.000000,12.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2038,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Total, mln",2038,2112.907407,2420.769203,307.861795,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"PV total, mln",2038,1677.294022,1921.684641,244.390619,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Procurement, mln",2039,2535.915300,3090.978262,555.062962,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Reservation, mln",2039,126.393300,133.877250,7.483950,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Holding, mln",2039,0.058572,36.239493,36.180922,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Fixed OPEX, mln",2039,12.000000,12.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2039,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Total, mln",2039,2674.367172,3273.095006,598.727834,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"PV total, mln",2039,1965.739708,2405.822540,440.082832,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Procurement, mln",2040,2766.158410,3080.000000,313.841590,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Reservation, mln",2040,135.710550,141.000000,5.289450,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Holding, mln",2040,0.000000,31.294793,31.294793,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Fixed OPEX, mln",2040,12.000000,12.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"CAPEX, mln",2040,0.000000,0.000000,0.000000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"Total, mln",2040,2913.868960,3264.294793,350.425833,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-finance,"PV total, mln",2040,1983.130253,2221.624186,238.493934,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:order,ordered_t B,2039,12.621600,62.514900,49.893300,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:order,ordered_t B,2040,74.736900,110.000000,35.263100,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:order,ordered_t C,2037,13.188200,17.947100,4.758900,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:order,ordered_t C,2038,71.771400,111.037200,39.265800,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:reservation,reserved_t B,2039,12.622000,62.515000,49.893000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:reservation,reserved_t B,2040,74.737000,110.000000,35.263000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:reservation,reserved_t C,2037,13.189000,17.948000,4.759000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-decision:reservation,reserved_t C,2038,71.772000,111.038000,39.266000,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-violation,BASE_TOTAL_SERVICE,2039,yes,,,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-violation,BASE_TOTAL_SERVICE,2040,yes,,,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-violation,RESERVE_45D,2038,yes,,,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-violation,RESERVE_45D,2039,yes,,,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
-violation,RESERVE_45D,2040,yes,,,P2z_earth_new_zbo fixed/STRESS,P2z_earth_new_zbo adapted/STRESS
+kpi,total_cost_mln,,11517.764487,12811.646084,1293.881596,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,pv_cost_mln,,9142.897763,10097.471915,954.574152,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,cost_per_served_t_mln,,8.009112,8.351790,0.342678,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,pv_cost_per_served_t_mln,,6.357700,6.582446,0.224746,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,served_total_t,,1438.082586,1534.000000,95.917414,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,shortage_total_t,,95.917414,0.000000,-95.917414,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,shortage_critical_t,,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,min_service_level_total,,0.869565,1.000000,0.130435,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,min_service_level_critical,,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,losses_total_t,,29.492173,31.120869,1.628695,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,capex_total_mln,,540.000000,540.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,take_or_pay_idle_t,,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,hard_violations,,3,0,-3,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,guideline_violations,,2,0,-2,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Спрос, т",2035,100.000000,100.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Обслужено, т",2035,100.000000,100.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса общий,2035,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса критический,2035,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Дефицит, т",2035,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Поступление (факт), т",2035,109.876000,109.876000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Потери, т",2035,4.944420,4.944420,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Потери / поступление,2035,0.045000,0.045000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на начало, т",2035,12.328859,12.328859,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на конец, т",2035,17.260439,17.260439,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"45-дневный резерв, т",2035,12.328767,12.328767,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Спрос, т",2036,140.000000,140.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Обслужено, т",2036,140.000000,140.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса общий,2036,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса критический,2036,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Дефицит, т",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Поступление (факт), т",2036,153.051800,153.051800,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Потери, т",2036,6.887331,6.887331,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Потери / поступление,2036,0.045000,0.045000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на начало, т",2036,17.260439,17.260439,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на конец, т",2036,23.424908,23.424908,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"45-дневный резерв, т",2036,17.260274,17.260274,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Спрос, т",2037,190.000000,190.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Обслужено, т",2037,190.000000,190.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса общий,2037,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса критический,2037,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Дефицит, т",2037,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Поступление (факт), т",2037,203.188200,207.947100,4.758900,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Потери, т",2037,5.790864,5.926492,0.135629,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Потери / поступление,2037,0.028500,0.028500,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на начало, т",2037,23.424908,23.424908,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на конец, т",2037,30.822244,35.445516,4.623271,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"45-дневный резерв, т",2037,23.424658,23.424658,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Спрос, т",2038,287.500000,287.500000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Обслужено, т",2038,287.500000,287.500000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса общий,2038,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса критический,2038,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Дефицит, т",2038,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Поступление (факт), т",2038,261.771400,301.037200,39.265800,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Потери, т",2038,3.141257,3.612446,0.471190,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Потери / поступление,2038,0.012000,0.012000,-0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на начало, т",2038,30.822244,35.445516,4.623271,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на конец, т",2038,1.952388,45.370269,43.417882,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"45-дневный резерв, т",2038,35.445205,35.445205,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Спрос, т",2039,368.000000,368.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Обслужено, т",2039,330.582528,368.000000,37.417472,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса общий,2039,0.898322,1.000000,0.101678,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса критический,2039,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Дефицит, т",2039,37.417472,0.000000,-37.417472,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Поступление (факт), т",2039,332.621600,382.514900,49.893300,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Потери, т",2039,3.991459,4.590179,0.598720,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Потери / поступление,2039,0.012000,0.012000,-0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на начало, т",2039,1.952388,45.370269,43.417882,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на конец, т",2039,0.000000,55.294990,55.294990,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"45-дневный резерв, т",2039,45.369863,45.369863,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Спрос, т",2040,448.500000,448.500000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Обслужено, т",2040,390.000057,448.500000,58.499943,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса общий,2040,0.869565,1.000000,0.130435,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Уровень сервиса критический,2040,1.000000,1.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Дефицит, т",2040,58.499943,0.000000,-58.499943,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Поступление (факт), т",2040,394.736900,430.000000,35.263100,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Потери, т",2040,4.736843,5.160000,0.423157,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,Потери / поступление,2040,0.012000,0.012000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на начало, т",2040,0.000000,55.294990,55.294990,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"Запас на конец, т",2040,0.000000,31.634990,31.634990,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+yearly,"45-дневный резерв, т",2040,55.294521,55.294521,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Закупка, млн",2035,796.128420,796.128420,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Резервирование, млн",2035,51.380670,51.380670,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Хранение, млн",2035,10.652147,10.652147,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2035,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"CAPEX, млн",2035,360.000000,360.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Итого, млн",2035,1218.161237,1218.161237,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"PV итого, млн",2035,1218.161237,1218.161237,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Закупка, млн",2036,948.921160,948.921160,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Резервирование, млн",2036,68.873400,68.873400,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Хранение, млн",2036,14.646725,14.646725,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"CAPEX, млн",2036,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Итого, млн",2036,1032.441285,1032.441285,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"PV итого, млн",2036,955.964153,955.964153,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Закупка, млн",2037,1271.636220,1305.424410,33.788190,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Резервирование, млн",2037,89.456700,90.884400,1.427700,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Хранение, млн",2037,18.925506,20.575750,1.650244,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2037,6.000000,6.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"CAPEX, млн",2037,180.000000,180.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Итого, млн",2037,1566.018426,1602.884560,36.866134,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"PV итого, млн",2037,1342.608390,1374.215157,31.606768,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Закупка, млн",2038,1982.076940,2260.864120,278.787180,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Резервирование, млн",2038,107.031600,118.811400,11.779800,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Хранение, млн",2038,11.798867,29.093683,17.294815,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2038,12.000000,12.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"CAPEX, млн",2038,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Итого, млн",2038,2112.907407,2420.769203,307.861795,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"PV итого, млн",2038,1677.294022,1921.684641,244.390619,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Закупка, млн",2039,2535.915300,3090.978262,555.062962,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Резервирование, млн",2039,126.393300,133.877250,7.483950,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Хранение, млн",2039,0.058572,36.239493,36.180922,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2039,12.000000,12.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"CAPEX, млн",2039,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Итого, млн",2039,2674.367172,3273.095006,598.727834,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"PV итого, млн",2039,1965.739708,2405.822540,440.082832,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Закупка, млн",2040,2766.158410,3080.000000,313.841590,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Резервирование, млн",2040,135.710550,141.000000,5.289450,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Хранение, млн",2040,0.000000,31.294793,31.294793,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Постоянный OPEX, млн",2040,12.000000,12.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"CAPEX, млн",2040,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Итого, млн",2040,2913.868960,3264.294793,350.425833,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"PV итого, млн",2040,1983.130253,2221.624186,238.493934,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:order,ordered_t B,2039,12.621600,62.514900,49.893300,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:order,ordered_t B,2040,74.736900,110.000000,35.263100,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:order,ordered_t C,2037,13.188200,17.947100,4.758900,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:order,ordered_t C,2038,71.771400,111.037200,39.265800,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:reservation,reserved_t B,2039,12.622000,62.515000,49.893000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:reservation,reserved_t B,2040,74.737000,110.000000,35.263000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:reservation,reserved_t C,2037,13.189000,17.948000,4.759000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+decision:reservation,reserved_t C,2038,71.772000,111.038000,39.266000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+violation,BASE_TOTAL_SERVICE,2039,yes,,,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+violation,BASE_TOTAL_SERVICE,2040,yes,,,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+violation,RESERVE_45D,2038,yes,,,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+violation,RESERVE_45D,2039,yes,,,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+violation,RESERVE_45D,2040,yes,,,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS

@@ -108,8 +108,8 @@ def write_results(res: Result, out_dir: str | Path, xlsx: bool = True, risk_regi
         "assumptions_sha256": hashlib.sha256(json.dumps(res.assumptions, sort_keys=True, default=str).encode()).hexdigest(),
         "kpi_sha256": kpi_hash(res.kpi),
         "kpi_precision": KPI_PRECISION,
-        "random_seed": None, "note": f"deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to {KPI_PRECISION} decimals before hashing, "
-                                     "which absorbs last-bit differences of float summation between Python versions)",
+        "random_seed": None, "note": f"детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до {KPI_PRECISION} знаков "
+                                     "перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)",
     }
     (out / "run_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     _write_summary_md(res, out / "summary.md")
@@ -126,13 +126,26 @@ def _write_xlsx(tables: dict[str, list[dict]], res: Result, path: Path) -> None:
     wb = Workbook()
     ws = wb.active
     ws.title = "README"
-    ws.append(["TerraPlan export", __version__])
-    ws.append(["plan_id", res.plan_id])
-    ws.append(["scenario_id", res.scenario_id])
-    ws.append(["feasible", str(res.feasible)])
+    ws.append(["Выгрузка TerraPlan, версия", __version__])
+    ws.append(["план (plan_id)", res.plan_id])
+    ws.append(["сценарий (scenario_id)", res.scenario_id])
+    ws.append(["план исполним", "да" if res.feasible else "нет"])
+    ws.append(["жёстких нарушений / отклонений от ориентиров / предупреждений",
+               f"{res.kpi['hard_violations']} / {res.kpi['guideline_violations']} / {res.kpi['warnings']}"])
     for k, v in res.units.items():
-        ws.append([f"unit:{k}", v])
-    ws.append(["sheets", ", ".join(tables)])
+        ws.append([f"единица: {k}", v])
+    ws.append(["периоды", f"{res.years[0].year}-01 … {res.years[-1].year}-12, шаг — календарный месяц; подготовительный период до {res.years[0].year}-01"])
+    ws.append(["листы", ", ".join(tables)])
+    ws.append(["yearly_balance", "годовой баланс: спрос, выдача, дефицит, уровни сервиса, поступление, потери, запасы, 45-дневный резерв"])
+    ws.append(["inventory_trace", "помесячный материальный баланс и стоимость хранения"])
+    ws.append(["source_schedule", "по источникам и годам: резерв, заказ, план/факт поставки, цена, оплачиваемый объём (take-or-pay), платежи"])
+    ws.append(["financial_breakdown", "по годам: закупка, резервирование, хранение, постоянный OPEX, CAPEX, итого, PV, накопленный CAPEX"])
+    ws.append(["constraint_checks", "нарушения: правило, строгость, год, месяц, источник, факт, лимит, превышение, сообщение"])
+    ws.append(["constraint_matrix", "матрица проверок: каждое правило × год, включая выполненные"])
+    ws.append(["delivery_schedule", "календарь поставок: месяц поставки, месяц размещения заказа, срок поставки, допустимость"])
+    ws.append(["kpi", "итоговые показатели"])
+    ws.append(["investments", "инвестиционные решения: даты опциона, реализации, ввода"])
+    ws.append(["assumptions", "реестр допущений TEAM_ASSUMPTION: значение, единица, статус, диапазон, обоснование"])
     for name, rows in tables.items():
         w = wb.create_sheet(name[:31])
         if not rows:
@@ -145,40 +158,73 @@ def _write_xlsx(tables: dict[str, list[dict]], res: Result, path: Path) -> None:
     wb.save(path)
 
 
+KPI_LABELS = {
+    "total_cost_mln": "Полные затраты, млн", "pv_cost_mln": "Приведённые затраты (PV), млн",
+    "cost_per_served_t_mln": "Затраты на обслуженную тонну, млн/т", "pv_cost_per_served_t_mln": "PV затрат на обслуженную тонну, млн/т",
+    "served_total_t": "Обслужено, т", "demand_total_t": "Спрос, т", "shortage_total_t": "Дефицит, т",
+    "shortage_critical_t": "Дефицит критического спроса, т", "min_service_level_total": "Мин. уровень сервиса (общий)",
+    "min_service_level_critical": "Мин. уровень сервиса (критический)", "losses_total_t": "Потери при хранении, т",
+    "capex_total_mln": "CAPEX, млн", "procurement_total_mln": "Закупка, млн", "reservation_total_mln": "Резервирование мощности, млн",
+    "holding_total_mln": "Хранение, млн", "fixed_opex_total_mln": "Постоянный OPEX, млн",
+    "take_or_pay_idle_t": "Оплачено по take-or-pay сверх заказа, т",
+}
+SEVERITY_RU = {"hard": "жёсткое", "guideline": "ориентир", "warning": "предупреждение"}
+
+
 def _write_summary_md(res: Result, path: Path) -> None:
     k = res.kpi
     lines = [f"# {res.plan_id} — {res.scenario_id} ({res.scenario_label})", "",
-             f"Feasible: **{'YES' if res.feasible else 'NO'}** — hard violations: {k['hard_violations']}, guideline: {k['guideline_violations']}, warnings: {k['warnings']}", "",
-             "| KPI | Value |", "|---|---:|"]
+             f"План исполним: **{'ДА' if res.feasible else 'НЕТ'}** — жёстких нарушений: {k['hard_violations']}, "
+             f"отклонений от ориентиров: {k['guideline_violations']}, предупреждений: {k['warnings']}", "",
+             f"Единицы: топливо — т; деньги — млн у.е. в постоянных ценах 2035 г.; шаг расчёта — календарный месяц; "
+             f"ставка дисконтирования r = {k['discount_rate_real']:.0%} (TEAM_ASSUMPTION, одинакова для всех альтернатив). "
+             "Те же числа — в CSV/XLSX/JSON этого каталога; календарь заказов и поставок — `delivery_schedule.csv`; "
+             "реестр допущений — `assumptions.csv`.", "",
+             "## Итоговые показатели", "", "| Показатель | Ключ | Значение |", "|---|---|---:|"]
     for key in ("total_cost_mln", "pv_cost_mln", "cost_per_served_t_mln", "pv_cost_per_served_t_mln", "served_total_t", "demand_total_t",
                 "shortage_total_t", "shortage_critical_t", "min_service_level_total", "min_service_level_critical", "losses_total_t",
                 "capex_total_mln", "procurement_total_mln", "reservation_total_mln", "holding_total_mln", "fixed_opex_total_mln", "take_or_pay_idle_t"):
-        lines.append(f"| {key} | {k[key]:,.3f} |")
-    lines += ["", "## Yearly balance", "", "| Year | Demand | Critical | Served | SL total | SL crit | Shortage | Inflow (actual) | Losses | Open | Close | R45 | Reserve OK | Storage |",
+        lines.append(f"| {KPI_LABELS.get(key, key)} | `{key}` | {k[key]:,.3f} |")
+    lines += ["", "## Годовой баланс (т)", "",
+              "| Год | Спрос | в т.ч. критич. | Обслужено | УС общий | УС критич. | Дефицит | Поступление (факт) | Потери | Запас на начало | Запас на конец | R45 | Резерв на начало года | Хранилище |",
               "|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---:|---|"]
     for y in res.years:
         lines.append(f"| {y.year} | {y.demand_total_t:.1f} | {y.demand_critical_t:.1f} | {y.served_total_t:.1f} | {y.service_level_total:.3f} | {y.service_level_critical:.3f} | "
-                     f"{y.shortage_total_t:.1f} | {y.throughput_t:.1f} | {y.losses_t:.2f} | {y.opening_t:.1f} | {y.closing_t:.1f} | {y.reserve_required_t:.1f} | {'yes' if y.reserve_ok else 'NO'} | {y.storage_mode_end} |")
-    lines += ["", "## Finance (mln, constant 2035 prices)", "", "| Year | Procurement | Reservation | Holding | Fixed OPEX | CAPEX | Total | PV |", "|---:|---:|---:|---:|---:|---:|---:|---:|"]
+                     f"{y.shortage_total_t:.1f} | {y.throughput_t:.1f} | {y.losses_t:.2f} | {y.opening_t:.1f} | {y.closing_t:.1f} | {y.reserve_required_t:.1f} | "
+                     f"{'выполнен' if y.reserve_ok else 'НЕ ВЫПОЛНЕН'} | {y.storage_mode_end} |")
+    lines += ["", "УС — уровень сервиса (обслужено / спрос); R45 — 45-дневный резерв `D_y × 45 / 365`, проверяется по физическому запасу на начало года.", "",
+              "## Финансы (млн у.е., постоянные цены 2035 г.)", "",
+              "| Год | Закупка | Резервирование | Хранение | Пост. OPEX | CAPEX | Итого | PV |", "|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for f in res.finance:
         lines.append(f"| {f.year} | {f.procurement_mln:.1f} | {f.reservation_mln:.1f} | {f.holding_mln:.1f} | {f.fixed_opex_mln:.1f} | {f.capex_mln:.1f} | {f.total_mln:.1f} | {f.pv_total_mln:.1f} |")
-    lines += ["", "## Source schedule (t)", "", "| Year | Source | Reserved t/yr | Ordered | Delivered | Price | Payable | Procurement | Reservation |", "|---:|---|---:|---:|---:|---:|---:|---:|---:|"]
+    if res.investments:
+        lines += ["", "## Инвестиции", "", "| Инвестиция | Плата за опцион, млн | Дата опциона | Реализация / CAPEX, млн | Дата решения | Ввод в строй | Пост. OPEX, млн/год | Примечание |",
+                  "|---|---:|---|---:|---|---|---:|---|"]
+        for i in res.investments:
+            lines.append(f"| {i.name} ({i.investment_id}) | {i.option_fee_mln:.0f} | {i.option_date or '—'} | {i.exercise_cost_mln:.0f} | {i.exercise_date} | "
+                         f"{i.commissioning_date or '—'} | {i.fixed_opex_mln_per_year:.0f} | {i.note} |")
+    lines += ["", "## График по источникам (т)", "",
+              "| Год | Источник | Резерв, т/год | Заказано | Поставлено (факт) | Цена, млн/т | Оплачиваемый объём | Закупка, млн | Резервирование, млн |",
+              "|---:|---|---:|---:|---:|---:|---:|---:|---:|"]
     for s in res.source_years:
         if s.period != "year" or (s.reserved_capacity_t <= 0 and s.ordered_t <= 0):
             continue
         lines.append(f"| {s.year} | {s.name} | {s.reserved_capacity_t:.1f} | {s.ordered_t:.1f} | {s.actual_delivery_t:.1f} | {s.price_mln_per_t:.2f} | {s.payable_volume_t:.1f} | {s.procurement_mln:.1f} | {s.reservation_payment_mln:.1f} |")
-    lines += ["", "## Check matrix (every rule x year)", "", "| Rule | Year | Metric | Actual | Limit | Op | Result | Severity |", "|---|---:|---|---:|---:|---|:---:|---|"]
+    lines += ["", "Оплачиваемый объём = max(заказ, take-or-pay × резерв × доля года); начальный запас подготовительного периода учтён в закупке первого года.", "",
+              "## Матрица проверок (каждое правило × год, включая выполненные)", "",
+              "| Правило | Год | Метрика | Факт | Лимит | Оп. | Результат | Строгость |", "|---|---:|---|---:|---:|---|:---:|---|"]
     for m in res.check_matrix:
         fa = lambda x: f"{x:.4f}" if isinstance(x, float) else str(x)
-        lines.append(f"| {m['rule_id']} | {m['year']} | {m['metric']} | {fa(m['actual'])} | {fa(m['limit'])} | {m['operator']} | {'OK' if m['ok'] else 'VIOLATED'} | {m['severity']} |")
-    lines += ["", "## Constraint checks", ""]
+        lines.append(f"| {m['rule_id']} | {m['year']} | {m['metric']} | {fa(m['actual'])} | {fa(m['limit'])} | {m['operator']} | "
+                     f"{'выполнено' if m['ok'] else 'НАРУШЕНО'} | {SEVERITY_RU.get(m['severity'], m['severity'])} |")
+    lines += ["", "## Нарушения", ""]
     if not res.violations:
-        lines.append("No violations.")
+        lines.append("Нарушений нет.")
     else:
-        lines += ["| Rule | Severity | Year | Month | Source | Actual | Limit | Excess | Message |", "|---|---|---:|---:|---|---:|---:|---:|---|"]
+        lines += ["| Правило | Строгость | Год | Месяц | Источник | Факт | Лимит | Превышение | Сообщение |", "|---|---|---:|---:|---|---:|---:|---:|---|"]
         for v in res.violations:
             fmt = lambda x: "" if x is None else (f"{x:.3f}" if isinstance(x, float) else str(x))
-            lines.append(f"| {v.rule_id} | {v.severity} | {fmt(v.year)} | {fmt(v.month)} | {v.source_id or ''} | {fmt(v.actual)} | {fmt(v.limit)} | {fmt(v.excess)} | {v.message} |")
+            lines.append(f"| {v.rule_id} | {SEVERITY_RU.get(v.severity, v.severity)} | {fmt(v.year)} | {fmt(v.month)} | {v.source_id or ''} | {fmt(v.actual)} | {fmt(v.limit)} | {fmt(v.excess)} | {v.message} |")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

@@ -1,0 +1,181 @@
+[
+  {
+    "title": "TerraPlan",
+    "lines": [
+      "Топливное снабжение орбитального узла",
+      "2035–2040",
+      "CosmoHackathon 2026 · Кейс 2"
+    ],
+    "source": "docs/CASE_SUMMARY.md; docs/TEAM.md"
+  },
+  {
+    "title": "Задача оператора",
+    "lines": [
+      "Спрос растёт со 100 до 390 т/год.",
+      "Физический резерв покрывает 45 дней спроса.",
+      "Общий сервис ≥ 97 %, критический ≥ 99 % в BASE.",
+      "CAPEX: ≤ 1 800 млн до 2037, ≤ 2 800 млн до 2040."
+    ],
+    "source": "data/case/demand.csv; data/case/constraints.csv"
+  },
+  {
+    "title": "Помесячный баланс и стоимость",
+    "lines": [
+      "Запас на конец = запас на начало + поставки − потери − выдача.",
+      "Потери начисляются один раз на валовый входящий поток.",
+      "Стоимость = закупка + резерв мощности + хранение + OPEX + CAPEX.",
+      "PV: реальная ставка 8 %, цены 2035 г. Единая база для альтернатив."
+    ],
+    "source": "docs/architecture.md; src/terraplan/engine.py; configs/assumptions.yaml"
+  },
+  {
+    "title": "Контракты и инвестиции",
+    "lines": [
+      "Earth-Core: 190 т/год, 12 месяцев, take-or-pay 70 %.",
+      "Earth-Flex: 110 т/год, 4 месяца. Emergency: 80 т/год, 6 недель.",
+      "Earth-New: CAPEX 360 млн. ISRU: 1 250 млн, доступен с 2038.",
+      "ZBO: CAPEX 180 млн, потери 1,2 % вместо 4,5 %."
+    ],
+    "source": "data/case/supply_sources.csv; data/case/investment_options.csv; data/case/storage_options.csv"
+  },
+  {
+    "title": "P2z выбран после жёсткого фильтра",
+    "chart": {
+      "categories": [
+        "P2 New",
+        "P2z New + ZBO",
+        "P3 ISRU + ZBO",
+        "P4 полный"
+      ],
+      "series": [
+        {
+          "name": "PV BASE, млн у.е.",
+          "values": [
+            8780,
+            8729,
+            8639,
+            8858
+          ],
+          "fill": "#176a5b"
+        }
+      ]
+    },
+    "caption": "P2z не самый дешёвый в BASE, но выигрывает все раскрытые профили MCDA за счёт CAPEX и стоимости адаптации.",
+    "source": "results/alternatives/*_BASE/result.json; results/strategy/summary.md"
+  },
+  {
+    "title": "Обязательный стресс P2z",
+    "lines": [
+      "Неизменный план: дефицит 95.9 т.",
+      "Нарушения резерва: 2038, 2039, 2040.",
+      "Спрос +15 % с 2038. Цены A/B +25 % в 2038–2039.",
+      "P2z не использует ISRU: его проблема в стрессе — недостаточный график заказов и запас."
+    ],
+    "source": "results/alternatives/P2z_earth_new_zbo_MANDATORY_STRESS/result.json; configs/scenarios/mandatory_stress.yaml"
+  },
+  {
+    "title": "Заблаговременная адаптация P2z",
+    "chart": {
+      "categories": [
+        "BASE",
+        "Стресс, план прежний",
+        "Стресс, адаптация"
+      ],
+      "series": [
+        {
+          "name": "PV, млн у.е.",
+          "values": [
+            8729,
+            9143,
+            10097
+          ],
+          "fill": "#176a5b"
+        }
+      ]
+    },
+    "caption": "Адаптация: дефицит 0 т, жёстких нарушений 0. График зависит от сценария: адаптированный план переполняет хранилище в BASE.",
+    "source": "results/alternatives/P2z_earth_new_zbo_BASE/result.json; results/alternatives/P2z_earth_new_zbo_MANDATORY_STRESS/result.json; results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS/result.json"
+  },
+  {
+    "title": "Риски выбранной стратегии",
+    "lines": [
+      "Буфер запаса нужен до начала года: поздняя реакция не исправит резерв на 1 января.",
+      "EXP-09: задержка Earth-New уже на 3 месяца нарушает резерв P2z в 2038–2040.",
+      "EXP-11: ценовой шок A/B +25 % добавляет P2z 470,9 млн PV без физического дефицита.",
+      "EXP-07–10 исследуют P3. Их частоты нельзя переносить на P2z без нового расчёта."
+    ],
+    "source": "results/earth_new_delay/summary.md; results/geopolitical_price_shock/summary.md; results/monte_carlo/summary.md"
+  },
+  {
+    "title": "Рабочий интерфейс оператора",
+    "lines": [
+      "Редактор заказов, резервов, инвестиций и начального запаса.",
+      "Расчёт BASE и обязательного стресса через единый Python-движок.",
+      "Нарушения показывают год, факт, лимит и причину.",
+      "Сравнение двух расчётов с изменением решений и расходов."
+    ],
+    "source": "src/terraplan/web.py; src/terraplan/static/; docs/operator_guide.md"
+  },
+  {
+    "title": "Сохранение, выгрузка, расширение",
+    "lines": [
+      "Рабочий JSON сохраняет план, сценарий, копию данных и допущения.",
+      "ZIP содержит CSV, XLSX, JSON, входные данные и хеши расчёта.",
+      "Демонстрация: Source-X и 2041 год, 7 лет, PV 10 271 млн. Исполнимость: да.",
+      "Source-X и спрос 2041 — TEAM_ASSUMPTION. Контрольные данные и ограничения сохранены."
+    ],
+    "source": "results/extensibility/run/result.json; experiments/run_extensibility.py; tests/test_web.py"
+  },
+  {
+    "title": "Бюджет P2z по годам",
+    "chart": {
+      "categories": [
+        "2035",
+        "2036",
+        "2037",
+        "2038",
+        "2039",
+        "2040"
+      ],
+      "series": [
+        {
+          "name": "Всего, млн",
+          "values": [
+            1218,
+            1032,
+            1566,
+            1832,
+            2383,
+            2948
+          ],
+          "fill": "#176a5b"
+        },
+        {
+          "name": "CAPEX, млн (в составе итого)",
+          "values": [
+            360,
+            0,
+            180,
+            0,
+            0,
+            0
+          ],
+          "fill": "#d5a747"
+        }
+      ]
+    },
+    "caption": "Earth-New: 360 млн в 2035. ZBO: 180 млн в 2037. CAPEX P2z до 2037: 540 млн.",
+    "source": "results/alternatives/P2z_earth_new_zbo_BASE/financial_breakdown.csv; docs/roadmap_budget.md"
+  },
+  {
+    "title": "Запуск и передача решения",
+    "lines": [
+      "python -m pip install -e \".[dev]\"",
+      "python -m terraplan ui",
+      "Проверка: BASE, стресс, адаптация, сохранение, сравнение, Source-X / 2041.",
+      "Границы: локальный прототип, без оптимизатора и многопользовательского доступа.",
+      "Код и инструкции готовы к передаче. Публикация на GitVerse ещё не выполнена."
+    ],
+    "source": "README.md; docs/operator_guide.md; docs/HANDOVER.md"
+  }
+]

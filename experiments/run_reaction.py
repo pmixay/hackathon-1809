@@ -1,15 +1,22 @@
-"""EXP-06: observe-then-react under MANDATORY_STRESS (no foresight of the stress).
+"""EXP-06: conditional recovery benchmark with delayed activation in MANDATORY_STRESS.
 
-Decisions taken before the shock are frozen as in the BASE plan (P3): Earth-Core reservations/orders for
-2038 and 2039 (12-month lead, TOP), ISRU orders, investments, 2037 closing stock (30.8 t = BASE reserve).
+Earth-Core reservations/orders for ALL years, ISRU orders, investments and pre-2038 orders/stock
+are frozen as in the BASE plan (P3; 2037 closing stock 30.8 t = BASE reserve).
 The ISRU shortfall is observed at the first ISRU delivery, 2038-03. From then on only two levers react,
 each after its own lead time: Earth-Flex (4 months -> extra deliveries from 2038-07) and Emergency
-(6 weeks = 2 months -> from 2038-05). Earth-Core for 2040 may be re-ordered (12-month lead) up to capacity.
+(6 weeks = 2 months -> from 2038-05). Core is unchanged (already at capacity in 2040).
 Reaction rule: each month from the reaction date, add the cheapest available extra delivery so that the
 end-of-month stock follows the stress reserve trajectory (linear path to next year's 45-day reserve).
+Sizing uses the FULL future stress trace, not an information-at-order-date policy. The final-year
+target retains 55.295 t, versus 21.755 t in the capacity-limited adapted comparison plan; the PV
+difference is therefore not a pure value-of-information estimate. See experiments/README.md.
+Reactive orders carry reactive=True and the plan carries observation_month=2038-03, so the engine
+itself checks that no reactive delivery is ordered before the observation (LEAD_TIME_VIOLATED otherwise).
 Outputs: results/reaction/ (fixed, reactive, pre-committed adapted runs + comparison + summary).
 """
 from __future__ import annotations
+
+import math
 
 from common import PLANS, RESULTS, STRATEGIES, kpi_row, load_all, run_and_save, scenario, write_table
 from terraplan import rules
@@ -21,6 +28,7 @@ from terraplan.planner import build_plan
 PLAN = "P3_isru_zbo"
 OBSERVE = midx(2038, 3)          # first ISRU delivery reveals the 55 % share
 LEVERS = [("B", 4), ("E", 2)]    # source, reaction lead time in months (Flex 4 mo, Emergency 6 weeks -> 2 mo)
+ROUND_MARGIN_T = 0.01            # technical margin (t) on the target stock trajectory so that the 4-decimal rounding of the saved profile never undercuts the reserve
 
 
 def main() -> None:
@@ -40,7 +48,7 @@ def main() -> None:
             extra[(sid, y)] = monthly
     cap = {sid: case.sources[sid].capacity_t_per_year / 12.0 for sid, _ in LEVERS}
     first = {sid: OBSERVE + lt for sid, lt in LEVERS}
-    # Earth-Core 2040 can still be raised (ordered by 2039-01 at the latest for 2040-01 delivery): allow up to capacity
+    # Core is unchanged; in the saved BASE plan it already reaches 190 t in 2040.
     # walk the stress simulation month by month, adding deliveries where the stock trajectory falls short
     inv = None
     trace = {(m.year, m.month): m for m in r_fixed.months}
@@ -58,7 +66,7 @@ def main() -> None:
             planned_actual = m.throughput_t                      # from the fixed plan (already includes ISRU share)
             for sid, _ in LEVERS:                                # replace fixed monthly B/E with the (possibly raised) monthly profile
                 pass
-            desired = target_start + (target_end - target_start) * mth / 12.0
+            desired = target_start + (target_end - target_start) * mth / 12.0 + ROUND_MARGIN_T
             projected = inv + planned_actual * (1 - loss) - m.demand_t
             need = max(0.0, desired - projected)                  # net tonnes missing this month
             added = 0.0
@@ -79,21 +87,22 @@ def main() -> None:
         total = sum(monthly)
         if total <= 1e-9:
             continue
-        new_orders.append(Order(sid, y, round(total, 4), "monthly", [round(v, 4) for v in monthly]))
+        monthly_r = [math.floor(v * 1e4) / 1e4 for v in monthly]        # 4-decimal profile as saved in plan.json, rounded DOWN so the sum never exceeds capacity
+        new_orders.append(Order(sid, y, float(sum(monthly_r)), "monthly", monthly_r, reactive=True))   # ordered_t == sum of the saved months -> the plan reopens exactly; reactive -> engine checks the order date against the observation month
         new_resv.append(Reservation(sid, y, min(case.sources[sid].capacity_t_per_year, max(resv.get((sid, y), 0.0), round(max(monthly) * 12 + 1e-3, 3)))))
-    reactive = Plan(plan_id=f"{PLAN}_reactive", scenario_id="MANDATORY_STRESS", description="P3 with observe-then-react: Flex from 2038-07, Emergency from 2038-05",
-                    reservations=new_resv, orders=new_orders, investments=fixed.investments, opening_stock=fixed.opening_stock,
+    reactive = Plan(plan_id=f"{PLAN}_reactive", scenario_id="MANDATORY_STRESS", description="P3 с реакцией после наблюдения недопоставки ISRU (2038-03): Earth-Flex с 2038-07, Emergency с 2038-05",
+                    reservations=new_resv, orders=new_orders, investments=fixed.investments, opening_stock=fixed.opening_stock, observation_month="2038-03",
                     meta={"experiment": "EXP-06", "observation_month": "2038-03", "levers": {"B": "4 months", "E": "2 months"}, "status": "TEAM_DECISION"})
     save_plan(reactive, PLANS / f"{PLAN}_reactive.json")
     r_react = run_and_save(case, reactive, stress, a, RESULTS / "reaction" / f"{PLAN}_reactive_MANDATORY_STRESS")
-    run_and_save(case, fixed, stress, a, RESULTS / "reaction" / f"{PLAN}_fixed_MANDATORY_STRESS", xlsx=False)
+    run_and_save(case, fixed, stress, a, RESULTS / "reaction" / f"{PLAN}_fixed_MANDATORY_STRESS")
     adapted = build_plan(case, stress, dict(STRATEGIES[PLAN], plan_id=f"{PLAN}_adapted", stress_aware=True), a)
     r_adapt = simulate(case, adapted, stress, a)
-    write_comparison(compare_results(r_fixed, r_react, "fixed/STRESS", "reactive/STRESS"), RESULTS / "reaction" / "compare_fixed_vs_reactive.csv", RESULTS / "reaction" / "compare_fixed_vs_reactive.md")
-    write_comparison(compare_results(r_react, r_adapt, "reactive/STRESS", "pre-committed adapted/STRESS"), RESULTS / "reaction" / "compare_reactive_vs_adapted.csv", RESULTS / "reaction" / "compare_reactive_vs_adapted.md")
-    rows = [kpi_row(r_fixed, experiment="EXP-06", variant="fixed (no reaction)"), kpi_row(r_react, experiment="EXP-06", variant="reactive after 2038-03"),
-            kpi_row(r_adapt, experiment="EXP-06", variant="pre-committed adaptation (EXP-02)")]
-    write_table(rows, RESULTS / "reaction" / "summary.csv", RESULTS / "reaction" / "summary.md", "EXP-06 Observe-then-react vs fixed vs pre-committed adaptation (P3, MANDATORY_STRESS)")
+    write_comparison(compare_results(r_fixed, r_react, "без изменений/STRESS", "реактивный/STRESS"), RESULTS / "reaction" / "compare_fixed_vs_reactive.csv", RESULTS / "reaction" / "compare_fixed_vs_reactive.md")
+    write_comparison(compare_results(r_react, r_adapt, "реактивный/STRESS", "заблаговременно адаптированный/STRESS"), RESULTS / "reaction" / "compare_reactive_vs_adapted.csv", RESULTS / "reaction" / "compare_reactive_vs_adapted.md")
+    rows = [kpi_row(r_fixed, experiment="EXP-06", variant="без изменений (без реакции)"), kpi_row(r_react, experiment="EXP-06", variant="реакция после 2038-03"),
+            kpi_row(r_adapt, experiment="EXP-06", variant="заблаговременная адаптация (EXP-02)")]
+    write_table(rows, RESULTS / "reaction" / "summary.csv", RESULTS / "reaction" / "summary.md", "EXP-06 Реакция после наблюдения vs план без изменений vs заблаговременная адаптация (P3, MANDATORY_STRESS)")
     for r in (r_fixed, r_react, r_adapt):
         k = r.kpi
         print(f"{r.plan_id:24s} feasible={r.feasible!s:5s} PV={k['pv_cost_mln']:9.1f} shortage={k['shortage_total_t']:6.1f} minSL={k['min_service_level_total']:.3f} hard={k['hard_violations']} guideline={k['guideline_violations']}")

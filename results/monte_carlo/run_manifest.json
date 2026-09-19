@@ -1,0 +1,1035 @@
+{
+  "experiment_id": "EXP-10",
+  "schema_version": 2,
+  "hash_format": "sha256-utf8-lf-v1",
+  "method": {
+    "status": "TEAM_ASSUMPTION",
+    "reference": "MANDATORY_STRESS",
+    "n_per_mode": 10000,
+    "random_seed": 203510,
+    "generator": "random.Random / MT19937; random() float draws",
+    "draw_order": "sample_id 1..N; u_demand, u_isru, u_price; diagnostic uses u_demand for ISRU",
+    "demand": {
+      "distribution": "uniform",
+      "bounds": [
+        0,
+        0.02
+      ],
+      "years": [
+        2038,
+        2039,
+        2040
+      ],
+      "operation": "stress total AND critical demand *= 1+d"
+    },
+    "isru": {
+      "distribution": "uniform",
+      "bounds": [
+        0,
+        0.02
+      ],
+      "years": [
+        2038,
+        2039,
+        2040
+      ],
+      "operation": "stress actual delivery share D *= 1-s; no extra reliability factor"
+    },
+    "prices": {
+      "distribution": "uniform",
+      "bounds": [
+        -0.1,
+        0.1
+      ],
+      "years": [
+        2038,
+        2039
+      ],
+      "sources": [
+        "A",
+        "B"
+      ],
+      "operation": "stress variable price *= 1+p"
+    },
+    "dependence": {
+      "independent": "d,s,p independent; each persists over its entire period; A/B share p",
+      "comonotonic_demand_isru": "same uniform for d and s; price independent; separate diagnostic, not pooled"
+    },
+    "rationale": "physical 0..2% brackets the EXP-08 1% target; price +/-10% illustrative; no organizer probability data",
+    "fixed": "all orders, reservations, investments and opening stock; common samples for all three plans",
+    "excluded": "no stochastic Core capacity availability, delays, reaction policy or geopolitics",
+    "failure": "any hard violation OR total/critical service guideline below 97%/99%; warnings excluded",
+    "first_failure": "earliest year/month; annual checks at December, undated year=0; ALL simultaneous causes retained",
+    "physical_tolerance_t": 1e-06,
+    "service_tolerance": 1e-09,
+    "shortage_frequency_threshold_t": 1e-06,
+    "confidence_interval": "two-sided 95% Wilson score for each binomial failure frequency; sampling error only",
+    "quantiles": "linear interpolation at (n-1)*q, Hyndman-Fan type 7",
+    "costs": "engine PV in mln constant-2035 units; paired deltas vs unprotected plan on same realization; no damage valuation",
+    "limitations": "conditional frequencies, not real-world risk probabilities; no proof of robustness in BASE; ZBO lag remains zero"
+  },
+  "python": "3.11.15",
+  "python_implementation": "CPython",
+  "terraplan_version": "0.1.0",
+  "packages": {
+    "PyYAML": "6.0.1",
+    "openpyxl": "3.1.5",
+    "pytest": "9.1.1"
+  },
+  "input_sha256": {
+    "configs/assumptions.yaml": "d827e055161e50067f06598e0d67ce03df0b408dbb72de5f5f8dc9698c77b470",
+    "configs/plans/P3_isru_zbo_adapted.json": "8e0e7163c5308f4c6f41fed9dca5844ef9240c6c81736393b858adaab2f6f11b",
+    "configs/scenarios/mandatory_stress.yaml": "312b097486d7940c92f70f9180b5d32141d27f1a9a7294f166f6bfeb5ca6a7f7",
+    "experiments/run_monte_carlo.py": "817ff381211026a9ce4b940031dbb6943751a634c23e9d963c622c6235384719",
+    "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
+    "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
+    "experiments/run_protection_measures.py": "fc2c277d7632fafc7039c4c91574abd4d12087632ccf7e9af9015ae38a0481ee",
+    "experiments/run_all.py": "40d924be0c740746ba30e46a0d64a900df8b23fbd72398b151cf43a3959a0821",
+    "requirements.txt": "9c7aa4a4d3b29c07448e536d50dacfe5478686f066eed3797e6bb10684e2f3a4",
+    "data/case/constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
+    "data/case/demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
+    "data/case/investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
+    "data/case/storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
+    "data/case/supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
+    "src/terraplan/__init__.py": "fad02811b53f8d67167c0d53709140462ce5ef165cd8cd11509b8407e502bdcf",
+    "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
+    "src/terraplan/api.py": "1d256365f4ac6de19462f59d3ff9283fa8ff2de8e1c029bcbc2e4830c983f105",
+    "src/terraplan/assumptions.py": "0c2582f900eff3e7d6dedf3461a5e456aacbb0b8570f6777cd0bbc2a1782f1e2",
+    "src/terraplan/case.py": "4681e2e330ebbc8971fd7789990e65097b5f1b4f842876fe7927ae5b43cd305a",
+    "src/terraplan/cli.py": "337c57ca2b0083b839fc32c813fd872ddd22af28b580d0e989487b8794376a8f",
+    "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
+    "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
+    "src/terraplan/engine.py": "cd5fdfb8877ea8b8107f264ce6c9f9187cf376621c98f9ae1dfa0b6cca6d7d2c",
+    "src/terraplan/export.py": "35c9ccaab1dcc1c8348b3a9d634d90b828800c2cd4bf618e5a267ce90a748b8e",
+    "src/terraplan/plan.py": "ef17dc37379d34d0d61fa1e1141d72fa4e8b150527a4e87618231c52c73e2f4d",
+    "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
+    "src/terraplan/rules.py": "3c637c332eeb0dd41f0e453cd3ac8be4d4b773d33f78e2ed4b672469c7ff3c36",
+    "src/terraplan/scenario.py": "bedcf66b97e435e8e8ff3bee4c9b5d2a4b9b2b05858901d649acb6b58f0d1c6a",
+    "src/terraplan/web.py": "7165f2730a15f071f066d3970081002c65913d983a521e9247c38698b8df6ab4",
+    "experiments/provenance.py": "0696bf17ac5705e664c5548d792f856f8c4c8924defa4e2a222cc38f7a3040e0"
+  },
+  "assumptions": {
+    "discount_rate_real": {
+      "value": 0.08,
+      "unit": "доля в год (реальная ставка)",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        0.15
+      ],
+      "justification": "Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.\n"
+    },
+    "discount_t0_year": {
+      "value": 2035,
+      "unit": "год",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        2035,
+        2035
+      ],
+      "justification": "Годовые денежные потоки датируются началом каждого года; коэффициент приведения = 1/(1+r)^(год − 2035)."
+    },
+    "discount_timing": {
+      "value": "start",
+      "unit": "перечисление start|mid|end",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "start",
+        "mid",
+        "end"
+      ],
+      "justification": "Момент внутри года, к которому отнесён годовой поток — начало (показатель степени год − 2035), середина (+0,5) или конец (+1); одинаково для всех альтернатив."
+    },
+    "prep_period_start": {
+      "value": "2034-01",
+      "unit": "ГГГГ-ММ",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "2033-01",
+        "2034-12"
+      ],
+      "justification": "Самая ранняя дата заказа в подготовительном периоде (Earth-Core требует 12 месяцев до 2035-01)."
+    },
+    "lead_time_policy": {
+      "value": "max",
+      "unit": "перечисление min|max|mean",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "min",
+        "max",
+        "mean"
+      ],
+      "justification": "Консервативный край диапазонов сроков поставки организатора (Earth-New 24 месяца, ISRU 2 месяца)."
+    },
+    "weeks_per_month": {
+      "value": 4.345,
+      "unit": "недель",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        4.0,
+        4.5
+      ],
+      "justification": "365/12/7. Сроки в неделях переводятся как ceil(недели/4,345) -> Emergency 6 недель = 2 месяца."
+    },
+    "days_per_month": {
+      "value": 30.4167,
+      "unit": "дней",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        28,
+        31
+      ],
+      "justification": "365/12; сроки в днях переводятся с округлением вверх."
+    },
+    "zbo_commissioning_lag_months": {
+      "value": 0,
+      "unit": "месяцев",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0,
+        12
+      ],
+      "justification": "Кейс не задаёт срок модернизации ZBO; она считается действующей с месяца оплаты CAPEX. Варьируется в анализе чувствительности."
+    },
+    "earth_new_post_commissioning_lead_months": {
+      "value": 0,
+      "unit": "месяцев",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0,
+        12
+      ],
+      "justification": "Срок Earth-New 18–24 месяца трактуется как время от решения до первой поставки; заказы размещаются в период подготовки, после ввода дополнительный срок заказа 0 месяцев."
+    },
+    "isru_commissioning_month": {
+      "value": "2038-01",
+      "unit": "ГГГГ-ММ",
+      "status": "CASE_INPUT",
+      "range": [
+        "2038-01",
+        "2038-01"
+      ],
+      "justification": "Lunar-ISRU доступен с 2038 года при финансировании CAPEX до 2038 года."
+    },
+    "isru_financing_deadline": {
+      "value": "2037-12",
+      "unit": "ГГГГ-ММ",
+      "status": "CASE_INPUT",
+      "range": [
+        "2037-12",
+        "2037-12"
+      ],
+      "justification": "CAPEX 1 250 млн должен быть профинансирован до 2038 года."
+    },
+    "source_investment_link": {
+      "value": {
+        "C": "EARTH_NEW",
+        "D": "LUNAR_ISRU"
+      },
+      "unit": "отображение source_id -> investment_id",
+      "status": "CASE_INPUT",
+      "range": null,
+      "justification": "Мощность Earth-New требует реализованного опциона; Lunar-ISRU — CAPEX пилотного производства."
+    },
+    "storage_investment_link": {
+      "value": {
+        "ZBO": "ZBO"
+      },
+      "unit": "отображение investment_id -> storage_id",
+      "status": "CASE_INPUT",
+      "range": null,
+      "justification": "Модернизация ZBO переключает активный режим хранилища (ёмкость 120 т, потери 1,2 %, OPEX 12 млн/год)."
+    },
+    "emergency_base_share_threshold": {
+      "value": 0.2,
+      "unit": "доля годового общего спроса",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.1,
+        0.5
+      ],
+      "justification": "Emergency считается базовым каналом в году, когда заказанный у него объём превышает 20 % спроса этого года."
+    },
+    "holding_cost_averaging": {
+      "value": "trapezoid_monthly",
+      "unit": "перечисление",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        "trapezoid_monthly"
+      ],
+      "justification": "Средний физический запас за месяц = (I_start + I_end)/2; стоимость хранения = 0,72 × средний запас × 1/12."
+    },
+    "storage_capacity_check": {
+      "value": "end_of_month_hard_peak_warning",
+      "unit": "перечисление",
+      "status": "TEAM_ASSUMPTION",
+      "range": null,
+      "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
+    },
+    "emergency_reserve_equivalence": {
+      "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+      "unit": "правило",
+      "status": "TEAM_ASSUMPTION",
+      "range": null,
+      "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
+    },
+    "opening_stock_reservation_years": {
+      "value": 1.0,
+      "unit": "лет",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
+    },
+    "prep_period_holding_charged": {
+      "value": false,
+      "unit": "логическое",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        true,
+        false
+      ],
+      "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
+    },
+    "intra_year_demand_profile": {
+      "value": "uniform",
+      "unit": "перечисление",
+      "status": "CASE_INPUT",
+      "range": [
+        "uniform"
+      ],
+      "justification": "Конвенция организатора — равномерный спрос внутри года, 365 дней."
+    },
+    "undelivered_volume_paid": {
+      "value": true,
+      "unit": "логическое",
+      "status": "CASE_INPUT",
+      "range": [
+        true,
+        false
+      ],
+      "justification": "Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо только в отдельном исследовательском контрактном сценарии и не является условием организатора.\n"
+    },
+    "exp10_demand_max": {
+      "unit": "дополнительный относительный рост спроса",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        0.02
+      ],
+      "justification": "Только EXP-10: равномерное U(0, value), множитель общего и критического спроса обязательного стресса в 2038–2040. Одна постоянная реализация на прогон; в основной модели независима от ISRU и цены. Диагностика использует общую равномерную величину с ISRU. Диапазон охватывает цель 1 % из EXP-08; иллюстративная условная неопределённость, а не откалиброванные вероятности организатора. Ядро этот ключ не использует.\n",
+      "value": 0.02
+    },
+    "exp10_isru_reduction_max": {
+      "unit": "дополнительное относительное снижение фактической доли поставки ISRU",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        0.0,
+        0.02
+      ],
+      "justification": "Только EXP-10: равномерное U(0, value), множитель (1 − s) к долям ISRU обязательного стресса в 2038–2040. Одна постоянная реализация; надёжность повторно не умножается. Основная модель — независимая, диагностика — комонотонная связь спроса и ISRU; цена независима в обеих. Случайные отключения мощности Core не включены.\n",
+      "value": 0.02
+    },
+    "exp10_price_half_range": {
+      "unit": "относительное отклонение переменной цены от обязательного стресса",
+      "status": "TEAM_ASSUMPTION",
+      "range": [
+        -0.1,
+        0.1
+      ],
+      "justification": "Только EXP-10: равномерное U(−value, value), одна общая постоянная ценовая реализация для Core и Flex в 2038–2039, независимая от физических факторов. Умножает существующий стрессовый множитель 1,25. Иллюстративный экономический диапазон без эмпирической калибровки; не шок мощности или поставки.\n",
+      "value": 0.1
+    }
+  },
+  "reference_scenario": {
+    "scenario_id": "MANDATORY_STRESS",
+    "label": "Обязательный стрессовый сценарий",
+    "status": "CASE_INPUT",
+    "demand_multiplier": {
+      "2035": 1.0,
+      "2036": 1.0,
+      "2037": 1.0,
+      "2038": 1.15,
+      "2039": 1.15,
+      "2040": 1.15
+    },
+    "critical_demand_multiplier": {
+      "2035": 1.0,
+      "2036": 1.0,
+      "2037": 1.0,
+      "2038": 1.15,
+      "2039": 1.15,
+      "2040": 1.15
+    },
+    "variable_price_multiplier": {
+      "Earth-Core": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.25,
+        "2039": 1.25,
+        "2040": 1.0
+      },
+      "Earth-Flex": {
+        "2035": 1.0,
+        "2036": 1.0,
+        "2037": 1.0,
+        "2038": 1.25,
+        "2039": 1.25,
+        "2040": 1.0
+      }
+    },
+    "actual_delivery_share": {
+      "Lunar-ISRU": {
+        "2038": 0.55,
+        "2039": 0.75,
+        "2040": 1.0
+      }
+    },
+    "loss_ceiling": {
+      "enabled": true,
+      "from_year": 2038,
+      "max_losses_divided_by_throughput": 0.02
+    },
+    "demand_variant": "base",
+    "enforce_service_thresholds": null,
+    "notes": [
+      "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",
+      "Reservation tariffs, CAPEX and other prices are not changed by the mandatory +25% price shock.",
+      "Mandatory stress is not automatically combined with high-demand or geopolitical research scenarios."
+    ],
+    "changes": []
+  },
+  "plans": {
+    "without_measure": {
+      "plan_id": "P3_isru_zbo_adapted",
+      "scenario_id": "MANDATORY_STRESS",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+      "decisions": {
+        "capacity_reservations": [
+          {
+            "source_id": "A",
+            "year": 2035,
+            "reserved_capacity_t": 109.876
+          },
+          {
+            "source_id": "A",
+            "year": 2036,
+            "reserved_capacity_t": 153.052
+          },
+          {
+            "source_id": "A",
+            "year": 2037,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2037,
+            "reserved_capacity_t": 17.948
+          },
+          {
+            "source_id": "D",
+            "year": 2038,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2038,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2038,
+            "reserved_capacity_t": 56.038
+          },
+          {
+            "source_id": "D",
+            "year": 2039,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2039,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2039,
+            "reserved_capacity_t": 102.515
+          },
+          {
+            "source_id": "D",
+            "year": 2040,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2040,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2040,
+            "reserved_capacity_t": 110.0
+          }
+        ],
+        "supply_orders": [
+          {
+            "source_id": "A",
+            "year": 2035,
+            "ordered_t": 109.876,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2036,
+            "ordered_t": 153.0518,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2037,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2037,
+            "ordered_t": 17.9471,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "D",
+            "year": 2038,
+            "ordered_t": 100.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2038,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2038,
+            "ordered_t": 56.0372,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "D",
+            "year": 2039,
+            "ordered_t": 120.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2039,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2039,
+            "ordered_t": 102.5149,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "D",
+            "year": 2040,
+            "ordered_t": 120.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2040,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2040,
+            "ordered_t": 110.0,
+            "profile": "uniform"
+          }
+        ],
+        "investments": [
+          {
+            "investment_id": "LUNAR_ISRU",
+            "decision_year": 2036,
+            "decision_month": 1
+          },
+          {
+            "investment_id": "ZBO",
+            "decision_year": 2037,
+            "decision_month": 7
+          }
+        ],
+        "inventory_policy": {
+          "opening_stock": [
+            {
+              "source_id": "B",
+              "tons": 12.9098,
+              "delivery_year": 2034,
+              "delivery_month": 12
+            }
+          ],
+          "reserve_mode": "physical",
+          "allocation_rule": "critical_first"
+        }
+      },
+      "meta": {
+        "builder": "greedy_merit_order",
+        "strategy": {
+          "plan_id": "P3_isru_zbo_adapted",
+          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+          "reservation_caps": {
+            "A": 190,
+            "B": 110,
+            "D": 120
+          },
+          "stress_aware": true
+        },
+        "stress_aware": true,
+        "builder_notes": [
+          "2040: planned gross shortfall 33.95 t (available reserved capacity exhausted)"
+        ],
+        "status": "TEAM_DECISION"
+      }
+    },
+    "physical_stock": {
+      "plan_id": "P3_isru_zbo_adapted_stock_8.6t",
+      "scenario_id": "MANDATORY_STRESS",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+      "decisions": {
+        "capacity_reservations": [
+          {
+            "source_id": "A",
+            "year": 2035,
+            "reserved_capacity_t": 109.876
+          },
+          {
+            "source_id": "A",
+            "year": 2036,
+            "reserved_capacity_t": 153.052
+          },
+          {
+            "source_id": "A",
+            "year": 2037,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2037,
+            "reserved_capacity_t": 35.357
+          },
+          {
+            "source_id": "D",
+            "year": 2038,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2038,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2038,
+            "reserved_capacity_t": 56.038
+          },
+          {
+            "source_id": "D",
+            "year": 2039,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2039,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2039,
+            "reserved_capacity_t": 102.515
+          },
+          {
+            "source_id": "D",
+            "year": 2040,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2040,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2040,
+            "reserved_capacity_t": 110.0
+          }
+        ],
+        "supply_orders": [
+          {
+            "source_id": "A",
+            "year": 2035,
+            "ordered_t": 109.876,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2036,
+            "ordered_t": 153.0518,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2037,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2037,
+            "ordered_t": 26.6519,
+            "profile": "monthly",
+            "monthly_t": [
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              2.946391666666667,
+              2.946391666666667,
+              2.946391666666667,
+              2.946391666666667,
+              2.946391666666667,
+              2.946391666666667
+            ]
+          },
+          {
+            "source_id": "D",
+            "year": 2038,
+            "ordered_t": 100.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2038,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2038,
+            "ordered_t": 56.0372,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "D",
+            "year": 2039,
+            "ordered_t": 120.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2039,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2039,
+            "ordered_t": 102.5149,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "D",
+            "year": 2040,
+            "ordered_t": 120.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2040,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2040,
+            "ordered_t": 110.0,
+            "profile": "uniform"
+          }
+        ],
+        "investments": [
+          {
+            "investment_id": "LUNAR_ISRU",
+            "decision_year": 2036,
+            "decision_month": 1
+          },
+          {
+            "investment_id": "ZBO",
+            "decision_year": 2037,
+            "decision_month": 7
+          }
+        ],
+        "inventory_policy": {
+          "opening_stock": [
+            {
+              "source_id": "B",
+              "tons": 12.9098,
+              "delivery_year": 2034,
+              "delivery_month": 12
+            }
+          ],
+          "reserve_mode": "physical",
+          "allocation_rule": "critical_first"
+        }
+      },
+      "meta": {
+        "builder": "greedy_merit_order",
+        "strategy": {
+          "plan_id": "P3_isru_zbo_adapted",
+          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+          "reservation_caps": {
+            "A": 190,
+            "B": 110,
+            "D": 120
+          },
+          "stress_aware": true
+        },
+        "stress_aware": true,
+        "builder_notes": [
+          "2040: planned gross shortfall 33.95 t (available reserved capacity exhausted)"
+        ],
+        "status": "TEAM_DECISION"
+      }
+    },
+    "early_zbo_plus_stock": {
+      "plan_id": "P3_isru_zbo_adapted_zbo_18mo_earlier_stock_0.1t",
+      "scenario_id": "MANDATORY_STRESS",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+      "decisions": {
+        "capacity_reservations": [
+          {
+            "source_id": "A",
+            "year": 2035,
+            "reserved_capacity_t": 109.876
+          },
+          {
+            "source_id": "A",
+            "year": 2036,
+            "reserved_capacity_t": 153.052
+          },
+          {
+            "source_id": "A",
+            "year": 2037,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2037,
+            "reserved_capacity_t": 18.15
+          },
+          {
+            "source_id": "D",
+            "year": 2038,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2038,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2038,
+            "reserved_capacity_t": 56.038
+          },
+          {
+            "source_id": "D",
+            "year": 2039,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2039,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2039,
+            "reserved_capacity_t": 102.515
+          },
+          {
+            "source_id": "D",
+            "year": 2040,
+            "reserved_capacity_t": 120.0
+          },
+          {
+            "source_id": "A",
+            "year": 2040,
+            "reserved_capacity_t": 190.0
+          },
+          {
+            "source_id": "B",
+            "year": 2040,
+            "reserved_capacity_t": 110.0
+          }
+        ],
+        "supply_orders": [
+          {
+            "source_id": "A",
+            "year": 2035,
+            "ordered_t": 109.876,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2036,
+            "ordered_t": 153.0518,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2037,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2037,
+            "ordered_t": 18.048499999999994,
+            "profile": "monthly",
+            "monthly_t": [
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              1.4955916666666667,
+              1.5124916666666666,
+              1.5124916666666666,
+              1.5124916666666666,
+              1.5124916666666666,
+              1.5124916666666666,
+              1.5124916666666666
+            ]
+          },
+          {
+            "source_id": "D",
+            "year": 2038,
+            "ordered_t": 100.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2038,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2038,
+            "ordered_t": 56.0372,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "D",
+            "year": 2039,
+            "ordered_t": 120.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2039,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2039,
+            "ordered_t": 102.5149,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "D",
+            "year": 2040,
+            "ordered_t": 120.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "A",
+            "year": 2040,
+            "ordered_t": 190.0,
+            "profile": "uniform"
+          },
+          {
+            "source_id": "B",
+            "year": 2040,
+            "ordered_t": 110.0,
+            "profile": "uniform"
+          }
+        ],
+        "investments": [
+          {
+            "investment_id": "LUNAR_ISRU",
+            "decision_year": 2036,
+            "decision_month": 1
+          },
+          {
+            "investment_id": "ZBO",
+            "decision_year": 2036,
+            "decision_month": 1
+          }
+        ],
+        "inventory_policy": {
+          "opening_stock": [
+            {
+              "source_id": "B",
+              "tons": 12.9098,
+              "delivery_year": 2034,
+              "delivery_month": 12
+            }
+          ],
+          "reserve_mode": "physical",
+          "allocation_rule": "critical_first"
+        }
+      },
+      "meta": {
+        "builder": "greedy_merit_order",
+        "strategy": {
+          "plan_id": "P3_isru_zbo_adapted",
+          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
+          "reservation_caps": {
+            "A": 190,
+            "B": 110,
+            "D": 120
+          },
+          "stress_aware": true
+        },
+        "stress_aware": true,
+        "builder_notes": [
+          "2040: planned gross shortfall 33.95 t (available reserved capacity exhausted)"
+        ],
+        "status": "TEAM_DECISION"
+      }
+    }
+  },
+  "reproduction": "python experiments/run_monte_carlo.py --n 10000 --seed 203510 --out results/monte_carlo",
+  "replay": "add --replay-samples <original>/samples.csv --out <other-dir> --compare <original>; exact UTF-8 comparison after LF normalization; same recorded runtime versions",
+  "output_sha256": {
+    "comparison.csv": "a9c339fd5b18758c4aef25c184d0d93a0f6e49458e2d269098a972e7821dc6c6",
+    "early_zbo_plus_stock.plan.json": "13060dfc794c3fd9de78caa06f9888c1074d2252d77dcdc69e094fbad4e4b91a",
+    "physical_stock.plan.json": "6c9e38b752d7d86e1eb2a6716538a4831ff604e7b9cf504fc0857d2de7b88101",
+    "report.json": "b7e9132a6f24daa9779e5eca7aa4537d9d5f5c59134d9b397e14372cbf76192f",
+    "runs.csv": "8d2dfb0fe2980c9a5aabd19c52e744fb5ba56b24a3be8f46415cf830d66565a5",
+    "samples.csv": "14cf147931fa3bb59ba6b08bf62299e9865d65604437c581127b902c62cf17c1",
+    "summary.md": "9f1710ce8ce653c31386e7707ade6a67c74f2f48f9d0d5b4f96400e4c72ad6dc",
+    "without_measure.plan.json": "4259d7cc70948ae92bdf4b36b8f0863a5028128607c96d04a74187dbc84002b3"
+  }
+}

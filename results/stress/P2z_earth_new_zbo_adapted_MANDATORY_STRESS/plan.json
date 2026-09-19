@@ -1,7 +1,7 @@
 {
   "plan_id": "P2z_earth_new_zbo_adapted",
   "scenario_id": "MANDATORY_STRESS",
-  "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling) — re-planned for MANDATORY_STRESS",
+  "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling) — перепланирован под MANDATORY_STRESS",
   "decisions": {
     "capacity_reservations": [
       {
@@ -170,7 +170,7 @@
     "builder": "greedy_merit_order",
     "strategy": {
       "plan_id": "P2z_earth_new_zbo_adapted",
-      "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling) — re-planned for MANDATORY_STRESS",
+      "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling) — перепланирован под MANDATORY_STRESS",
       "reservation_caps": {
         "A": 190,
         "B": 110,
