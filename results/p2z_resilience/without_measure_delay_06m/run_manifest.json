@@ -1,6 +1,6 @@
 {
   "terraplan_version": "0.1.0",
-  "python": "3.11.9",
+  "python": "3.11.15",
   "plan_id": "P2z_earth_new_zbo_fixed_calendar",
   "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
   "case_dir": "../cases/delay_06m",
@@ -14,8 +14,8 @@
   },
   "plan_sha256": "a5cb983b2bcbda34824015815a2a9092273e73ca90242511ebac41fe29a5f5fb",
   "scenario_sha256": "1076883424bb0b1cb39a3ad6a375c3c2046aa208f2bf1fa853d51e472c0a1f6d",
-  "assumptions_sha256": "6c645cfa91c8e6d2532ec2f20ebb1860f54b7bf6879b5bf6bfcdb84184d41f52",
-  "kpi_sha256": "c33ef8c9efac31a71936af0e3524a9b115e11f79c2c0a66dafe6d4b1a454f8a0",
+  "assumptions_sha256": "898ca7cc43dbb986419e8f1d4d555c5d764bffc8f9687b6e858c2f8d14c29d5c",
+  "kpi_sha256": "cbf616333d1f6ee3a4216c27e140e7b7d90cf388b3bf47f467f97e08db0c7c32",
   "kpi_precision": 6,
   "random_seed": null,
   "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)",

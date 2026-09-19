@@ -49,7 +49,7 @@ def verify_saved(folder, root=ROOT):
         for name, digest in manifest.get(field, {}).items():
             if sha256(base / name) != digest:
                 raise ValueError(f"{field} mismatch: {name}")
-    if manifest["experiment_id"] == "EXP-09":
+    if manifest["experiment_id"] in ("EXP-09", "EXP-13"):
         for run in manifest["runs"]:
             for name, digest in run["case_sha256"].items():
                 if sha256(folder / run["result_dir"] / "case" / name) != digest:
@@ -65,7 +65,7 @@ def main():
     parser.add_argument("folders", nargs="*", type=Path)
     args = parser.parse_args()
     folders = args.folders or [ROOT / "results" / name for name in
-                              ("reverse_stress", "protection_measures", "earth_new_delay", "monte_carlo")]
+                              ("reverse_stress", "protection_measures", "earth_new_delay", "monte_carlo", "earth_new_delay_measures")]
     for folder in folders:
         manifest = verify_saved(folder)
         print(f"{manifest['experiment_id']}: published inputs/artifacts PASS ({HASH_FORMAT})")

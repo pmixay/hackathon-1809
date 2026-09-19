@@ -19,6 +19,7 @@ TEAM_LOW_DEMAND,P2z_earth_new_zbo,reservation_total_mln,578.846220
 TEAM_LOW_DEMAND,P2z_earth_new_zbo,holding_total_mln,588.535256
 TEAM_LOW_DEMAND,P2z_earth_new_zbo,fixed_opex_total_mln,42.000000
 TEAM_LOW_DEMAND,P2z_earth_new_zbo,take_or_pay_idle_t,0.000000
+TEAM_LOW_DEMAND,P2z_earth_new_zbo,take_or_pay_topup_mln,0.000000
 TEAM_LOW_DEMAND,P2z_earth_new_zbo,opening_inventory_t,12.328859
 TEAM_LOW_DEMAND,P2z_earth_new_zbo,closing_inventory_t,326.082586
 TEAM_LOW_DEMAND,P2z_earth_new_zbo,hard_violations,43

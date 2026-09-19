@@ -1,21 +1,21 @@
 {
   "terraplan_version": "0.1.0",
-  "python": "3.11.9",
+  "python": "3.11.15",
   "plan_id": "P4_full",
   "scenario_id": "TEAM_GEOPOLITICAL_PRICE_SHOCK",
   "case_dir": "results/geopolitical_price_shock/case",
-  "case_dir_absolute_at_run": "C:\\Users\\alikh\\OneDrive\\Desktop\\projects\\hackathon-1809\\results\\geopolitical_price_shock\\case",
+  "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/geopolitical_price_shock/case",
   "case_file_sha256": {
-    "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
-    "supply_sources.csv": "311f37a5587fa1617d61681d678ead52f119fbc78a06746029054132961ac8e5",
-    "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
-    "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
-    "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786"
+    "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
+    "supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
+    "storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
+    "investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
+    "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8"
   },
   "plan_sha256": "c51af17be0ae522a370b0861091f6f326f153068f98dac090b4180f48728bd53",
-  "scenario_sha256": "3fa96799cdf6aedb31033e2a183bd8fe6719391df116bab2e2220baa9ea3d380",
-  "assumptions_sha256": "d718b2a60d06b30d4b45ebc826226cf48ae10516bac5fbb521aefd7acb987e70",
-  "kpi_sha256": "908591a8ae41f54ff8c809c14ffc4a7c492c25cff52438387e8dba5f59bebcac",
+  "scenario_sha256": "009d35826053c0a25ff912adbeeda00f799e23e12901fa2ca950ab47d4352173",
+  "assumptions_sha256": "fcf53b7015aa84c14c64f9e4033bcd8738ccf2fa5cb7090f31ee040910b0c9e7",
+  "kpi_sha256": "f0e72005360bc1a92f586b5f06823fc7e039fceb588107b30b5bee4af3d1fc8a",
   "kpi_precision": 6,
   "random_seed": null,
   "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)"

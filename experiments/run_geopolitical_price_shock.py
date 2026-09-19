@@ -137,7 +137,7 @@ def run_experiment(out):
                               costs="variable procurement surcharge only; reservation, TOP rules, CAPEX and OPEX unchanged",
                               reserve="annual opening stock minus 45-day requirement; all years reported",
                               service="minimum annual total/critical service; failure includes both hard and guideline violations (97%/99%)",
-                              decision="R2 selection by advance-adapted mandatory-stress cost is unchanged",
+                              decision="strategy selection by advance-adapted mandatory-stress cost is unchanged",
                               limits="illustrative price-only shock; no outages, empirical probabilities, replanning or 2041+ claim"),
                   assumptions=assumptions.entries, comparison=comparison, yearly=yearly, runs=runs)
     write_json(out / "report.json", report)
@@ -164,7 +164,7 @@ def run_experiment(out):
               "- This is an illustrative surcharge on the organizer's aggregate variable price, not an inferred fuel/launch/insurance decomposition.",
               "- No outage, delay, capacity restriction, contract renegotiation, cash-budget constraint or adaptive response is modeled.",
               "- The background is BASE, not MANDATORY_STRESS. This is not a probability model or a universal resilience ranking.",
-              "- R2's P2z selection by lowest advance-adapted mandatory-stress cost remains unchanged.", "",
+              "- The P2z selection by lowest advance-adapted mandatory-stress cost remains unchanged.", "",
               "## Reproduction", "", "```bash",
               "python experiments/run_geopolitical_price_shock.py",
               "python experiments/run_geopolitical_price_shock.py --out results/geopolitical_price_shock_replay --compare results/geopolitical_price_shock",

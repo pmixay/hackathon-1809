@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import math
 
+from check_stress_response import check as check_response_rule
 from common import PLANS, RESULTS, STRATEGIES, kpi_row, load_all, run_and_save, scenario, write_table
 from terraplan import rules
 from terraplan.compare import compare_results, write_comparison
@@ -29,6 +30,38 @@ PLAN = "P3_isru_zbo"
 OBSERVE = midx(2038, 3)          # first ISRU delivery reveals the 55 % share
 LEVERS = [("B", 4), ("E", 2)]    # source, reaction lead time in months (Flex 4 mo, Emergency 6 weeks -> 2 mo)
 ROUND_MARGIN_T = 0.01            # technical margin (t) on the target stock trajectory so that the 4-decimal rounding of the saved profile never undercuts the reserve
+
+
+def write_response_rule_check(fixed: Plan, reactive: Plan, case, a) -> None:
+    """Независимая проверка правила реакции: ни одно изменение не опережает наблюдение события.
+
+    Отчёт сохраняется рядом с результатами, чтобы вывод «план реагирует, а не предвидит»
+    можно было проверить, не читая код эксперимента. Нарушение останавливает эксперимент.
+    """
+    viol, rows = check_response_rule(fixed, reactive, case, a, [sid for sid, _ in LEVERS], reactive.observation_month)
+    lines = [f"# Проверка правила реакции — {reactive.plan_id}", "",
+             f"Событие наблюдается {reactive.observation_month}. Рычаги реакции: "
+             + ", ".join(f"{case.sources[sid].name} ({lt} мес.)" for sid, lt in LEVERS) + ".", "",
+             "Правило: инвестиции и начальный запас неизменны; каждое изменённое решение должно быть выполнимо "
+             "после наблюдения — месяц размещения заказа (месяц поставки минус срок поставки) не раньше месяца наблюдения; "
+             "договорной объём года, закончившегося до наблюдения, не пересматривается.", "",
+             "| Канал | Период | Было, т | Стало, т | Изменение, т | Заказать до | Доступно после наблюдения |",
+             "|---|---|---:|---:|---:|---|:---:|"]
+    for r in sorted(rows, key=lambda r: (r["year"], r["month"], r["source_id"])):
+        lines.append(f"| {r['source']} | {r['delivery_month']} | {r['before_t']:.3f} | {r['after_t']:.3f} | "
+                     f"{r['delta_t']:+.3f} | {r['order_by']} | {'да' if r['available'] else 'НЕТ'} |")
+    lines += ["", f"Изменённых решений: {len(rows)}. Нарушений правила реакции: {len(viol)}."]
+    if viol:
+        lines += ["", "## Нарушения", ""] + [f"- [{v['rule']}] {v['what']}: {v['why']}" for v in viol]
+    else:
+        lines += ["", "Все изменения выполнимы после наблюдения события: план реагирует на наблюдаемую недопоставку, "
+                  "а не использует знание сценария заранее."]
+    out = RESULTS / "reaction" / "response_rule_check.md"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"response rule check: {len(rows)} changed decisions, {len(viol)} violations -> {out.name}")
+    if viol:
+        raise SystemExit("план реакции нарушает правило реакции: " + "; ".join(f"[{v['rule']}] {v['what']}" for v in viol))
 
 
 def main() -> None:
@@ -94,6 +127,7 @@ def main() -> None:
                     reservations=new_resv, orders=new_orders, investments=fixed.investments, opening_stock=fixed.opening_stock, observation_month="2038-03",
                     meta={"experiment": "EXP-06", "observation_month": "2038-03", "levers": {"B": "4 months", "E": "2 months"}, "status": "TEAM_DECISION"})
     save_plan(reactive, PLANS / f"{PLAN}_reactive.json")
+    write_response_rule_check(fixed, reactive, case, a)
     r_react = run_and_save(case, reactive, stress, a, RESULTS / "reaction" / f"{PLAN}_reactive_MANDATORY_STRESS")
     run_and_save(case, fixed, stress, a, RESULTS / "reaction" / f"{PLAN}_fixed_MANDATORY_STRESS")
     adapted = build_plan(case, stress, dict(STRATEGIES[PLAN], plan_id=f"{PLAN}_adapted", stress_aware=True), a)

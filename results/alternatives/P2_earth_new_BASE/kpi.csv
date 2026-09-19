@@ -19,6 +19,7 @@ BASE,P2_earth_new,reservation_total_mln,586.382820
 BASE,P2_earth_new,holding_total_mln,136.258827
 BASE,P2_earth_new,fixed_opex_total_mln,0.000000
 BASE,P2_earth_new,take_or_pay_idle_t,0.000000
+BASE,P2_earth_new,take_or_pay_topup_mln,0.000000
 BASE,P2_earth_new,opening_inventory_t,12.328859
 BASE,P2_earth_new,closing_inventory_t,48.082643
 BASE,P2_earth_new,hard_violations,0

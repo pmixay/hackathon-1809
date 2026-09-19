@@ -190,3 +190,6 @@ footer { color: #6c7f84; font-size: 13px; margin-top: 24px; }
   th, td { padding: 8px; }
   .banner { padding: 13px; }
 }
+
+/* Геополитический блок */
+.geo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}.geo-grid input,.geo-grid select{width:100%}#geo fieldset{border:1px solid #d6dfda;border-radius:7px;padding:10px 14px;margin:12px 0;background:#fff}#geo legend{font-size:13px;font-weight:600;color:#36514c}#geo fieldset label{display:inline-flex;align-items:center;gap:6px;margin:4px 18px 4px 0;font-weight:500}#geo fieldset input{display:inline;width:auto}#geo label.check{display:inline-flex;align-items:center;gap:8px}#geo label.check input{display:inline;width:auto}

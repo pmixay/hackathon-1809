@@ -19,6 +19,7 @@ BASE,P4_full_adapted,reservation_total_mln,556.296570
 BASE,P4_full_adapted,holding_total_mln,397.531402
 BASE,P4_full_adapted,fixed_opex_total_mln,252.000000
 BASE,P4_full_adapted,take_or_pay_idle_t,0.000000
+BASE,P4_full_adapted,take_or_pay_topup_mln,0.000000
 BASE,P4_full_adapted,opening_inventory_t,12.328859
 BASE,P4_full_adapted,closing_inventory_t,273.395022
 BASE,P4_full_adapted,hard_violations,25

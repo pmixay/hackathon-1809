@@ -1,6 +1,6 @@
 {
   "terraplan_version": "0.1.0",
-  "python": "3.11.9",
+  "python": "3.11.15",
   "plan_id": "P2z_stock_3.2t",
   "scenario_id": "TEAM_EARTH_NEW_DELAY_12M",
   "case_dir": "../cases/delay_12m",
@@ -14,8 +14,8 @@
   },
   "plan_sha256": "a923737573ccc6b02cf7b3dea8da1dd00ac3623dd75e7a6676440c7a1f412671",
   "scenario_sha256": "d27da81a1f60ed964c73d1ae677cf6fcb66b22527b42961c15542bff4ef1d564",
-  "assumptions_sha256": "aa6d9b2ed8492224b93b67f11a2cdd9fc4c3f7e66200fb295793a1c084113c6b",
-  "kpi_sha256": "709b519395ae06625a410d8baa80befaf878e793f701295f0659bc1feab1a777",
+  "assumptions_sha256": "56c5861dbcc79c69b4d37bb5ae34b044d7906b7686d7b64f4271a42991d0ed13",
+  "kpi_sha256": "df155fe4443f3ed58b4dedac58b72c7cd792f86749ad9b590e01bee17d193a1f",
   "kpi_precision": 6,
   "random_seed": null,
   "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)",

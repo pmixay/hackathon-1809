@@ -1,0 +1,78 @@
+scenario_id,plan_id,rule_id,year,metric,actual,limit,operator,ok,severity,scope
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_CRITICAL_SERVICE,2035,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_CRITICAL_SERVICE,2036,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_CRITICAL_SERVICE,2037,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_CRITICAL_SERVICE,2038,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_CRITICAL_SERVICE,2039,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_CRITICAL_SERVICE,2040,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_TOTAL_SERVICE,2035,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_TOTAL_SERVICE,2036,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_TOTAL_SERVICE,2037,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_TOTAL_SERVICE,2038,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_TOTAL_SERVICE,2039,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,BASE_TOTAL_SERVICE,2040,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2037,2035,cumulative_capex,360.000000,1800.000000,<=,True,hard,through_2037
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2037,2036,cumulative_capex,360.000000,1800.000000,<=,True,hard,through_2037
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2037,2037,cumulative_capex,540.000000,1800.000000,<=,True,hard,through_2037
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2040,2035,cumulative_capex,360.000000,2800.000000,<=,True,hard,through_2040
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2040,2036,cumulative_capex,360.000000,2800.000000,<=,True,hard,through_2040
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2040,2037,cumulative_capex,540.000000,2800.000000,<=,True,hard,through_2040
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2040,2038,cumulative_capex,540.000000,2800.000000,<=,True,hard,through_2040
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2040,2039,cumulative_capex,540.000000,2800.000000,<=,True,hard,through_2040
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPEX_2040,2040,cumulative_capex,540.000000,2800.000000,<=,True,hard,through_2040
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,RESERVE_45D,2035,opening_stock_vs_45d_reserve_t,12.328859,12.328767,>=,True,hard,physical
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,RESERVE_45D,2036,opening_stock_vs_45d_reserve_t,17.260439,17.260274,>=,True,hard,physical
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,RESERVE_45D,2037,opening_stock_vs_45d_reserve_t,29.723133,23.424658,>=,True,hard,physical
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,RESERVE_45D,2038,opening_stock_vs_45d_reserve_t,37.120469,30.821918,>=,True,hard,physical
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,45.750613,39.452055,>=,True,hard,physical
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,54.380753,48.082192,>=,True,hard,physical
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,EMERGENCY_BASE_STREAK,2035,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,EMERGENCY_BASE_STREAK,2036,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,EMERGENCY_BASE_STREAK,2037,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,EMERGENCY_BASE_STREAK,2038,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,EMERGENCY_BASE_STREAK,2039,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,EMERGENCY_BASE_STREAK,2040,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,STORAGE_OVERFLOW,2035,end_of_month_stock_t_in_worst_month,17.260439,70.000000,<=,True,hard,"2035-12, хранилище BASE; проверка помесячная"
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,LEAD_TIME_VIOLATED,2035,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,SOURCE_NOT_AVAILABLE,2035,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,STORAGE_OVERFLOW,2036,end_of_month_stock_t_in_worst_month,29.723133,70.000000,<=,True,hard,"2036-12, хранилище BASE; проверка помесячная"
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2036,reserved_A_t_per_year,153.052000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2036,ordered_A_t,153.051800,153.052000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2036,reserved_B_t_per_year,6.595000,110.000000,<=,True,hard,Earth-Flex
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2036,ordered_B_t,6.595000,6.595000,<=,True,hard,Earth-Flex
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,LEAD_TIME_VIOLATED,2036,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,SOURCE_NOT_AVAILABLE,2036,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,STORAGE_OVERFLOW,2037,end_of_month_stock_t_in_worst_month,31.745499,70.000000,<=,True,hard,"2037-06, хранилище BASE; проверка помесячная"
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2037,reserved_C_t_per_year,13.189000,130.000000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2037,ordered_C_t,13.188200,13.189000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,STORAGE_OVERFLOW,2038,end_of_month_stock_t_in_worst_month,45.750613,120.000000,<=,True,hard,"2038-12, хранилище ZBO; проверка помесячная"
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2038,reserved_C_t_per_year,71.772000,130.000000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2038,ordered_C_t,71.771400,71.772000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,STORAGE_OVERFLOW,2039,end_of_month_stock_t_in_worst_month,54.380753,120.000000,<=,True,hard,"2039-12, хранилище ZBO; проверка помесячная"
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2039,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2039,reserved_B_t_per_year,12.622000,110.000000,<=,True,hard,Earth-Flex
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2039,ordered_B_t,12.621600,12.622000,<=,True,hard,Earth-Flex
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2039,reserved_C_t_per_year,130.000000,130.000000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2039,ordered_C_t,130.000000,130.000000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,SOURCE_NOT_AVAILABLE,2039,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,STORAGE_OVERFLOW,2040,end_of_month_stock_t_in_worst_month,54.380811,120.000000,<=,True,hard,"2040-12, хранилище ZBO; проверка помесячная"
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2040,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2040,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2040,reserved_B_t_per_year,74.737000,110.000000,<=,True,hard,Earth-Flex
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2040,ordered_B_t,74.736900,74.737000,<=,True,hard,Earth-Flex
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,CAPACITY_EXCEEDED,2040,reserved_C_t_per_year,130.000000,130.000000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,ORDER_EXCEEDS_RESERVATION,2040,ordered_C_t,130.000000,130.000000,<=,True,hard,Earth-New
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,LEAD_TIME_VIOLATED,2040,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_EXP13_DELAY_00M,P2z_delay06m_advance_buffer,SOURCE_NOT_AVAILABLE,2040,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,

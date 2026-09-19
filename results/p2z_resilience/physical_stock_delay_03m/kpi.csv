@@ -19,6 +19,7 @@ TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,reservation_total_mln,578.828895
 TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,holding_total_mln,134.359665
 TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,fixed_opex_total_mln,42.000000
 TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,take_or_pay_idle_t,0.000000
+TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,take_or_pay_topup_mln,0.000000
 TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,opening_inventory_t,12.328859
 TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,closing_inventory_t,48.134430
 TEAM_EARTH_NEW_DELAY_03M,P2z_stock_3.2t,hard_violations,4

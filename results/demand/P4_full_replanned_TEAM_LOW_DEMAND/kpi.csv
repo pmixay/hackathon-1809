@@ -19,6 +19,7 @@ TEAM_LOW_DEMAND,P4_full_team_low_demand,reservation_total_mln,371.570670
 TEAM_LOW_DEMAND,P4_full_team_low_demand,holding_total_mln,102.595926
 TEAM_LOW_DEMAND,P4_full_team_low_demand,fixed_opex_total_mln,252.000000
 TEAM_LOW_DEMAND,P4_full_team_low_demand,take_or_pay_idle_t,0.000000
+TEAM_LOW_DEMAND,P4_full_team_low_demand,take_or_pay_topup_mln,0.000000
 TEAM_LOW_DEMAND,P4_full_team_low_demand,opening_inventory_t,9.863049
 TEAM_LOW_DEMAND,P4_full_team_low_demand,closing_inventory_t,38.466013
 TEAM_LOW_DEMAND,P4_full_team_low_demand,hard_violations,0

@@ -19,6 +19,7 @@ BASE,P3_isru_zbo_adapted,reservation_total_mln,505.229220
 BASE,P3_isru_zbo_adapted,holding_total_mln,385.456991
 BASE,P3_isru_zbo_adapted,fixed_opex_total_mln,252.000000
 BASE,P3_isru_zbo_adapted,take_or_pay_idle_t,0.000000
+BASE,P3_isru_zbo_adapted,take_or_pay_topup_mln,0.000000
 BASE,P3_isru_zbo_adapted,opening_inventory_t,12.328859
 BASE,P3_isru_zbo_adapted,closing_inventory_t,239.854990
 BASE,P3_isru_zbo_adapted,hard_violations,25

@@ -120,3 +120,21 @@ def test_earth_new_order_calendar_is_consistent(case, base, assumptions, root):
     # a plain source still needs its full lead time before the preparatory period
     core = [d for d in res.deliveries if d["source_id"] == "A" and d["delivery_month"] == "2035-01"]
     assert core and core[0]["order_placement_month"] == "2034-01" and core[0]["lead_time_ok"]
+
+
+def test_every_assumption_names_the_calculation_block_it_affects(assumptions):
+    """Критерий 6: от допущения должен быть виден путь к месту, где оно меняет результат."""
+    blocks = ("блок 1", "блок 2", "блок 3", "блок 4", "блок 5", "вероятностный эксперимент")
+    for key, entry in assumptions.entries.items():
+        scope = entry.get("scope", "")
+        assert scope, f"{key}: не указано, какой блок расчёта использует значение (scope)"
+        assert scope.startswith(blocks), f"{key}: scope «{scope}» не называет блок расчёта"
+        assert entry.get("justification"), f"{key}: нет обоснования"
+        assert entry.get("status") in ("TEAM_ASSUMPTION", "CASE_INPUT"), key
+
+
+def test_assumption_scope_survives_overrides_and_export(assumptions):
+    overridden = assumptions.with_overrides(discount_rate_real=0.05)
+    assert overridden.entries["discount_rate_real"]["scope"] == assumptions.entries["discount_rate_real"]["scope"]
+    assert overridden.with_overrides(brand_new_key=1).entries["brand_new_key"]["scope"]
+    assert all("scope" in row for row in overridden.table())

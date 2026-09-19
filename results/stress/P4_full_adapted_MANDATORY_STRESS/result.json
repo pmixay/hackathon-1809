@@ -32,6 +32,7 @@
   "holding_total_mln": 147.75980223900007,
   "fixed_opex_total_mln": 252.0,
   "take_or_pay_idle_t": 0.0,
+  "take_or_pay_topup_mln": 0.0,
   "opening_inventory_t": 12.328859000000001,
   "closing_inventory_t": 55.2950216499999,
   "hard_violations": 0,
@@ -1960,7 +1961,8 @@
    "payable_volume_t": 12.9098,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 114.89722,
-   "reservation_payment_mln": 1.93647
+   "reservation_payment_mln": 1.93647,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -1981,7 +1983,8 @@
    "payable_volume_t": 109.876,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 681.2312000000001,
-   "reservation_payment_mln": 49.4442
+   "reservation_payment_mln": 49.4442,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2002,7 +2005,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2023,7 +2027,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2044,7 +2049,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2065,7 +2071,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2086,7 +2093,8 @@
    "payable_volume_t": 153.0518,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 948.92116,
-   "reservation_payment_mln": 68.8734
+   "reservation_payment_mln": 68.8734,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2107,7 +2115,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2128,7 +2137,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2149,7 +2159,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2170,7 +2181,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2191,7 +2203,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1178.0,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2212,7 +2225,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2233,7 +2247,8 @@
    "payable_volume_t": 17.9471,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 127.42440999999998,
-   "reservation_payment_mln": 5.3844
+   "reservation_payment_mln": 5.3844,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2254,7 +2269,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2275,7 +2291,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2296,7 +2313,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1472.5,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2317,7 +2335,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2338,7 +2357,8 @@
    "payable_volume_t": 56.0372,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 397.86411999999996,
-   "reservation_payment_mln": 16.8114
+   "reservation_payment_mln": 16.8114,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2359,7 +2379,8 @@
    "payable_volume_t": 100.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 300.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2380,7 +2401,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2401,7 +2423,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1472.5,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2422,7 +2445,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2443,7 +2467,8 @@
    "payable_volume_t": 102.5149,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 727.85579,
-   "reservation_payment_mln": 30.7545
+   "reservation_payment_mln": 30.7545,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2464,7 +2489,8 @@
    "payable_volume_t": 120.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 360.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2485,7 +2511,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2506,7 +2533,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1178.0,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2527,7 +2555,8 @@
    "payable_volume_t": 13.9474,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 124.13186,
-   "reservation_payment_mln": 2.0922
+   "reservation_payment_mln": 2.0922,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2548,7 +2577,8 @@
    "payable_volume_t": 130.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 923.0,
-   "reservation_payment_mln": 39.0
+   "reservation_payment_mln": 39.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2569,7 +2599,8 @@
    "payable_volume_t": 120.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 360.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2590,7 +2621,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   }
  ],
  "finance": [
@@ -2604,7 +2636,8 @@
    "total_mln": 1218.16123728,
    "discount_factor": 1.0,
    "pv_total_mln": 1218.16123728,
-   "cumulative_capex_mln": 360.0
+   "cumulative_capex_mln": 360.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2036,
@@ -2616,7 +2649,8 @@
    "total_mln": 2282.44128492,
    "discount_factor": 0.9259259259259258,
    "pv_total_mln": 2113.3715601111107,
-   "cumulative_capex_mln": 1610.0
+   "cumulative_capex_mln": 1610.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2037,
@@ -2628,7 +2662,8 @@
    "total_mln": 1602.884559627,
    "discount_factor": 0.8573388203017832,
    "pv_total_mln": 1374.2151574305556,
-   "cumulative_capex_mln": 1790.0
+   "cumulative_capex_mln": 1790.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2038,
@@ -2640,7 +2675,8 @@
    "total_mln": 2380.5088025640002,
    "discount_factor": 0.7938322410201696,
    "pv_total_mln": 1889.7246375076206,
-   "cumulative_capex_mln": 1790.0
+   "cumulative_capex_mln": 1790.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2039,
@@ -2652,7 +2688,8 @@
    "total_mln": 2794.849783492,
    "discount_factor": 0.7350298527964533,
    "pv_total_mln": 2054.298024948324,
-   "cumulative_capex_mln": 1790.0
+   "cumulative_capex_mln": 1790.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2040,
@@ -2664,7 +2701,8 @@
    "total_mln": 2833.536464356,
    "discount_factor": 0.6805831970337529,
    "pv_total_mln": 1928.4573058231233,
-   "cumulative_capex_mln": 1790.0
+   "cumulative_capex_mln": 1790.0,
+   "take_or_pay_topup_mln": 0.0
   }
  ],
  "investments": [
@@ -2705,6 +2743,7 @@
  "violations": [],
  "assumptions": {
   "discount_rate_real": {
+   "scope": "блок 4 «Контракты и финансы»: приведение годовых потоков",
    "value": 0.08,
    "unit": "доля в год (реальная ставка)",
    "status": "TEAM_ASSUMPTION",
@@ -2715,6 +2754,7 @@
    "justification": "Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.\n"
   },
   "discount_t0_year": {
+   "scope": "блок 4 «Контракты и финансы»: база приведения",
    "value": 2035,
    "unit": "год",
    "status": "TEAM_ASSUMPTION",
@@ -2725,6 +2765,7 @@
    "justification": "Годовые денежные потоки датируются началом каждого года; коэффициент приведения = 1/(1+r)^(год − 2035)."
   },
   "discount_timing": {
+   "scope": "блок 4 «Контракты и финансы»: момент потока внутри года",
    "value": "start",
    "unit": "перечисление start|mid|end",
    "status": "TEAM_ASSUMPTION",
@@ -2736,6 +2777,7 @@
    "justification": "Момент внутри года, к которому отнесён годовой поток — начало (показатель степени год − 2035), середина (+0,5) или конец (+1); одинаково для всех альтернатив."
   },
   "prep_period_start": {
+   "scope": "блок 2 «Календарь поставок»: самая ранняя допустимая дата заказа",
    "value": "2034-01",
    "unit": "ГГГГ-ММ",
    "status": "TEAM_ASSUMPTION",
@@ -2746,6 +2788,7 @@
    "justification": "Самая ранняя дата заказа в подготовительном периоде (Earth-Core требует 12 месяцев до 2035-01)."
   },
   "lead_time_policy": {
+   "scope": "блок 2 «Календарь поставок»: выбор края диапазона сроков",
    "value": "max",
    "unit": "перечисление min|max|mean",
    "status": "TEAM_ASSUMPTION",
@@ -2757,6 +2800,7 @@
    "justification": "Консервативный край диапазонов сроков поставки организатора (Earth-New 24 месяца, ISRU 2 месяца)."
   },
   "weeks_per_month": {
+   "scope": "блок 2 «Календарь поставок»: перевод недель в месяцы",
    "value": 4.345,
    "unit": "недель",
    "status": "TEAM_ASSUMPTION",
@@ -2767,6 +2811,7 @@
    "justification": "365/12/7. Сроки в неделях переводятся как ceil(недели/4,345) -> Emergency 6 недель = 2 месяца."
   },
   "days_per_month": {
+   "scope": "блок 2 «Календарь поставок» и проверка покрытия резерва: перевод в дни",
    "value": 30.4167,
    "unit": "дней",
    "status": "TEAM_ASSUMPTION",
@@ -2777,6 +2822,7 @@
    "justification": "365/12; сроки в днях переводятся с округлением вверх."
   },
   "zbo_commissioning_lag_months": {
+   "scope": "блок 1 «Инвестиции и доступность»: месяц ввода хранилища",
    "value": 0,
    "unit": "месяцев",
    "status": "TEAM_ASSUMPTION",
@@ -2787,6 +2833,7 @@
    "justification": "Кейс не задаёт срок модернизации ZBO; она считается действующей с месяца оплаты CAPEX. Варьируется в анализе чувствительности."
   },
   "earth_new_post_commissioning_lead_months": {
+   "scope": "блок 2 «Календарь поставок»: срок заказа после ввода Earth-New",
    "value": 0,
    "unit": "месяцев",
    "status": "TEAM_ASSUMPTION",
@@ -2797,6 +2844,7 @@
    "justification": "Срок Earth-New 18–24 месяца трактуется как время от решения до первой поставки; заказы размещаются в период подготовки, после ввода дополнительный срок заказа 0 месяцев."
   },
   "isru_commissioning_month": {
+   "scope": "блок 1 «Инвестиции и доступность»: месяц ввода Lunar-ISRU",
    "value": "2038-01",
    "unit": "ГГГГ-ММ",
    "status": "CASE_INPUT",
@@ -2807,6 +2855,7 @@
    "justification": "Lunar-ISRU доступен с 2038 года при финансировании CAPEX до 2038 года."
   },
   "isru_financing_deadline": {
+   "scope": "блок 1 «Инвестиции и доступность»: предельный срок финансирования",
    "value": "2037-12",
    "unit": "ГГГГ-ММ",
    "status": "CASE_INPUT",
@@ -2817,6 +2866,7 @@
    "justification": "CAPEX 1 250 млн должен быть профинансирован до 2038 года."
   },
   "source_investment_link": {
+   "scope": "блок 1 «Инвестиции и доступность»: связь канала с инвестицией",
    "value": {
     "C": "EARTH_NEW",
     "D": "LUNAR_ISRU"
@@ -2827,6 +2877,7 @@
    "justification": "Мощность Earth-New требует реализованного опциона; Lunar-ISRU — CAPEX пилотного производства."
   },
   "storage_investment_link": {
+   "scope": "блок 1 «Инвестиции и доступность»: связь режима хранилища с инвестицией",
    "value": {
     "ZBO": "ZBO"
    },
@@ -2836,6 +2887,7 @@
    "justification": "Модернизация ZBO переключает активный режим хранилища (ёмкость 120 т, потери 1,2 %, OPEX 12 млн/год)."
   },
   "emergency_base_share_threshold": {
+   "scope": "блок 5 «Проверки»: признание Emergency базовым каналом года",
    "value": 0.2,
    "unit": "доля годового общего спроса",
    "status": "TEAM_ASSUMPTION",
@@ -2846,6 +2898,7 @@
    "justification": "Emergency считается базовым каналом в году, когда заказанный у него объём превышает 20 % спроса этого года."
   },
   "holding_cost_averaging": {
+   "scope": "блок 3 «Помесячный баланс» и блок 4: стоимость хранения",
    "value": "trapezoid_monthly",
    "unit": "перечисление",
    "status": "TEAM_ASSUMPTION",
@@ -2855,6 +2908,7 @@
    "justification": "Средний физический запас за месяц = (I_start + I_end)/2; стоимость хранения = 0,72 × средний запас × 1/12."
   },
   "storage_capacity_check": {
+   "scope": "блок 5 «Проверки»: ёмкость хранилища",
    "value": "end_of_month_hard_peak_warning",
    "unit": "перечисление",
    "status": "TEAM_ASSUMPTION",
@@ -2862,6 +2916,7 @@
    "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
   },
   "emergency_reserve_equivalence": {
+   "scope": "блок 5 «Проверки»: эквивалентность контрактного резерва физическому",
    "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
    "unit": "правило",
    "status": "TEAM_ASSUMPTION",
@@ -2869,6 +2924,7 @@
    "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
   },
   "opening_stock_reservation_years": {
+   "scope": "блок 4 «Контракты и финансы»: плата за резерв подготовительного периода",
    "value": 1.0,
    "unit": "лет",
    "status": "TEAM_ASSUMPTION",
@@ -2879,6 +2935,7 @@
    "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
   },
   "prep_period_holding_charged": {
+   "scope": "блок 3 «Помесячный баланс»: начало начисления хранения",
    "value": false,
    "unit": "логическое",
    "status": "TEAM_ASSUMPTION",
@@ -2889,6 +2946,7 @@
    "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
   },
   "intra_year_demand_profile": {
+   "scope": "блок 3 «Помесячный баланс»: распределение спроса внутри года",
    "value": "uniform",
    "unit": "перечисление",
    "status": "CASE_INPUT",
@@ -2898,6 +2956,7 @@
    "justification": "Конвенция организатора — равномерный спрос внутри года, 365 дней."
   },
   "undelivered_volume_paid": {
+   "scope": "блок 4 «Контракты и финансы»: что оплачивается при недопоставке",
    "value": true,
    "unit": "логическое",
    "status": "CASE_INPUT",
@@ -2906,6 +2965,39 @@
     false
    ],
    "justification": "Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо только в отдельном исследовательском контрактном сценарии и не является условием организатора.\n"
+  },
+  "exp10_demand_max": {
+   "unit": "дополнительный относительный рост спроса",
+   "status": "TEAM_ASSUMPTION",
+   "range": [
+    0.0,
+    0.02
+   ],
+   "scope": "вероятностный эксперимент EXP-10: диапазон выборки спроса",
+   "justification": "Только EXP-10: равномерное U(0, value), множитель общего и критического спроса обязательного стресса в 2038–2040. Одна постоянная реализация на прогон; в основной модели независима от ISRU и цены. Диагностика использует общую равномерную величину с ISRU. Диапазон охватывает цель 1 % из EXP-08; иллюстративная условная неопределённость, а не откалиброванные вероятности организатора. Ядро этот ключ не использует.\n",
+   "value": 0.02
+  },
+  "exp10_isru_reduction_max": {
+   "unit": "дополнительное относительное снижение фактической доли поставки ISRU",
+   "status": "TEAM_ASSUMPTION",
+   "range": [
+    0.0,
+    0.02
+   ],
+   "scope": "вероятностный эксперимент EXP-10: диапазон выборки поставки ISRU",
+   "justification": "Только EXP-10: равномерное U(0, value), множитель (1 − s) к долям ISRU обязательного стресса в 2038–2040. Одна постоянная реализация; надёжность повторно не умножается. Основная модель — независимая, диагностика — комонотонная связь спроса и ISRU; цена независима в обеих. Случайные отключения мощности Core не включены.\n",
+   "value": 0.02
+  },
+  "exp10_price_half_range": {
+   "unit": "относительное отклонение переменной цены от обязательного стресса",
+   "status": "TEAM_ASSUMPTION",
+   "range": [
+    -0.1,
+    0.1
+   ],
+   "scope": "вероятностный эксперимент EXP-10: полуширина диапазона цен",
+   "justification": "Только EXP-10: равномерное U(−value, value), одна общая постоянная ценовая реализация для Core и Flex в 2038–2039, независимая от физических факторов. Умножает существующий стрессовый множитель 1,25. Иллюстративный экономический диапазон без эмпирической калибровки; не шок мощности или поставки.\n",
+   "value": 0.1
   }
  },
  "scenario": {
