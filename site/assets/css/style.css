@@ -241,19 +241,6 @@ h1{font-weight:800;font-size:clamp(50px,8.6vw,124px);line-height:.92;padding:0 .
 .sh2{left:52%;top:3%;animation:shoot 14s linear 7s infinite}
 .sh3{left:22%;top:44%;animation:shoot 17s linear 12s infinite}
 
-/* ---------- лента горизонта ---------- */
-.strip{position:relative;z-index:3;overflow:hidden;padding:18px 0;
-  border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);
-  background:rgba(8,16,30,.5);
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.track{display:flex;gap:26px;align-items:center;white-space:nowrap;width:max-content;
-  animation:roll 44s linear infinite;will-change:transform}
-@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.track span{font-family:'Benzin';font-weight:700;font-size:19px;letter-spacing:.14em;color:#8FAEC9}
-.track em{font-style:normal;font-size:11px;color:var(--green)}
-.track .say{font-family:'Benzin';font-weight:700;font-size:19px;letter-spacing:.06em;color:#DCEEFF}
-
 /* ---------- цепочка: ракета и искры ---------- */
 .flow{position:relative}
 .rocket{position:absolute;width:38px;height:38px;z-index:4;opacity:0;
@@ -299,13 +286,11 @@ h1{font-weight:800;font-size:clamp(50px,8.6vw,124px);line-height:.92;padding:0 .
 
 @media(max-width:1060px){
   .rocket{display:none}
-  .strip{padding:13px 0}
-  .track span,.track .say{font-size:16px}
   .readout .box{padding:12px 16px;gap:8px 14px}
   .card:hover,.c:hover,.u:hover{transform:none}
 }
 @media(prefers-reduced-motion:reduce){
-  .sh,.track,.rocket,.fstep i b,.fnode .ico.globe{animation:none}
+  .sh,.rocket,.fstep i b,.fnode .ico.globe{animation:none}
   .rocket{display:none}
   .card,.c,.prow,.u,.fnode .ico{transition:none}
 }
