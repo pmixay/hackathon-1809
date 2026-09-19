@@ -16,6 +16,9 @@
 ## Acceptance record (2026-09-19)
 
 - `python -m pytest -q`: 183 passed after the final R1–R4 integration.
+- R3 follow-up acceptance: **214 passed** after EXP-12; V01–V10 and EXP-07–12 provenance pass.
+  EXP-10 was replayed from the saved N=10,000/seed=203510 sample after updating the full runner;
+  numerical artifact hashes are unchanged. The current Python environment has the declared XLSX dependency.
 - Real Edge browser: BASE, fixed stress, comparison, adapted stress, save/reopen, extension,
   invalid input, archive download and mobile layout. Reproduce with `tests/ui_smoke.cjs`.
 - UI-export KPIs equal a direct `simulate()` call. An extracted UI archive passes CLI `verify`.
@@ -23,7 +26,10 @@
 - R3's EXP-07–10 analyses and EXP-11 geopolitics are integrated. R2 selected P2z, added the
   disclosed MCDA, contract/stakeholder allocation, verified self-found sources and completed
   the management note. UI, walkthrough and presentation now default to that P2z decision.
-  Alternative-strategy Monte Carlo and post-2040 economics remain future research.
+   R3 additionally delivered EXP-12: P2z delay protections, sensitivity and reverse stress;
+   Russian protocols/risk register and `docs/role3_defense_brief.md`. Published R2 plans remain
+   the baseline; EXP-12 protective variants are separate. Alternative-strategy Monte Carlo,
+   combined shocks and post-2040 economics remain future research.
 
 ## GitVerse publication status
 
@@ -56,6 +62,8 @@ python -m terraplan verify results/alternatives/P2z_earth_new_zbo_BASE
 python -m terraplan verify results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS
 python tests/independent_recalc.py results/alternatives/P2z_earth_new_zbo_BASE
 python experiments/run_mcda.py
+python experiments/provenance.py results/p2z_resilience
+python -m terraplan verify results/p2z_resilience/guarded_calendar_delay_03m --case results/p2z_resilience/cases/delay_03m
 ```
 
 Follow the operator-guide demonstration in order: BASE, mandatory stress, additional tests,

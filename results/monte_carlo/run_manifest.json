@@ -68,13 +68,13 @@
     "costs": "engine PV in mln constant-2035 units; paired deltas vs unprotected plan on same realization; no damage valuation",
     "limitations": "conditional frequencies, not real-world risk probabilities; no proof of robustness in BASE; ZBO lag remains zero"
   },
-  "python": "3.11.15",
+  "python": "3.11.9",
   "python_implementation": "CPython",
   "terraplan_version": "0.1.0",
   "packages": {
-    "PyYAML": "6.0.1",
+    "PyYAML": "6.0.3",
     "openpyxl": "3.1.5",
-    "pytest": "9.1.1"
+    "pytest": "9.0.3"
   },
   "input_sha256": {
     "configs/assumptions.yaml": "d827e055161e50067f06598e0d67ce03df0b408dbb72de5f5f8dc9698c77b470",
@@ -84,7 +84,7 @@
     "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
     "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
     "experiments/run_protection_measures.py": "fc2c277d7632fafc7039c4c91574abd4d12087632ccf7e9af9015ae38a0481ee",
-    "experiments/run_all.py": "40d924be0c740746ba30e46a0d64a900df8b23fbd72398b151cf43a3959a0821",
+    "experiments/run_all.py": "7e8e5991c89191e0fc2c8dbc7ad0ab33628f5b9a1fda1d119fad956b79694654",
     "requirements.txt": "9c7aa4a4d3b29c07448e536d50dacfe5478686f066eed3797e6bb10684e2f3a4",
     "data/case/constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
     "data/case/demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
