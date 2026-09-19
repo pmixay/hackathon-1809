@@ -1,8 +1,8 @@
 # Stress-test methodology and protocols
 
-The current authoritative protocols, including EXP-07–10, are in [experiments/README.md](../experiments/README.md).
+The current authoritative protocols, including EXP-07–11, are in [experiments/README.md](../experiments/README.md).
 The EXP-01–06 overview below is maintained against those protocols; the detailed protocols are not duplicated here.
-EXP-10 uses a fixed seed and saved common samples; EXP-01–09 have no random sampling.
+EXP-10 uses a fixed seed and saved common samples; EXP-01–09 and EXP-11 have no random sampling.
 Format of each protocol follows the case: goal, varied parameters and their origin, kept conditions, plan under test,
 metrics, violation criterion, reproduction.
 
@@ -53,4 +53,9 @@ KPI hashes retain their own conventions. Full method: `experiments/README.md`.
   on MANDATORY_STRESS, not stochastic Core capacity availability. N=10,000 per dependence
   model, seed=203510, 95% Wilson intervals, conditional TEAM_ASSUMPTION frequencies only.
 - Open: event-based Core availability and reactive policies; reverse stress for alternative strategies.
-- Geopolitics module: event → price component multiplier on a data copy, before/after, restore.
+- EXP-11 is implemented: TEAM Core/Flex variable price +25% in 2038–2039, fixed BASE
+  P2z/P3/P4, copied data and annual price overlay. Delta PV: 470.891774 / 452.512590 /
+  415.516289 mln; shortage, reserve and service unchanged. See
+  `results/geopolitical_price_shock/summary.md`; verify with
+  `python experiments/provenance.py results/geopolitical_price_shock`.
+  This is not a supply-outage or probability model; R2's mandatory-stress decision is unchanged.

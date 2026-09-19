@@ -1,7 +1,7 @@
 # Experiments and test protocols
 
 Every experiment is a script; re-running it regenerates `results/<experiment>/` deterministically.
-EXP-10 uses a recorded random seed and common samples; EXP-01–09 have no random sampling.
+EXP-10 uses a recorded random seed and common samples; EXP-01–09 and EXP-11 have no random sampling.
 Determinism here refers to calculations; standard core export envelopes include timestamps.
 Format of each protocol follows the case: goal, varied parameters and their origin, kept conditions, plan under test,
 metrics, violation criterion, reproduction.
@@ -232,8 +232,68 @@ python -m pytest -q tests/test_monte_carlo.py
   does not imply protection over the entire sampled 2% square. Early ZBO still assumes zero
   lag and retained throughput-loss savings. BASE overflow and adaptive policies remain separate.
 
+## EXP-11: TEAM geopolitical price shock on a data copy
+
+```bash
+python experiments/run_geopolitical_price_shock.py
+python experiments/run_geopolitical_price_shock.py --out results/geopolitical_price_shock_replay --compare results/geopolitical_price_shock
+python experiments/provenance.py results/geopolitical_price_shock
+python -m pytest -q tests/test_geopolitical_price_shock.py
+python -m terraplan verify results/geopolitical_price_shock/P2z_earth_new_zbo/after --case results/geopolitical_price_shock/case
+python tests/independent_recalc.py results/geopolitical_price_shock/P2z_earth_new_zbo/after results/geopolitical_price_shock/case
+```
+
+- **Goal / plans:** isolate procurement-price exposure of the saved BASE P2z/P3/P4 plans.
+  Six runs: each fixed plan before (BASE) and after (`TEAM_GEOPOLITICAL_PRICE_SHOCK`).
+  No re-planning, no use of stress-adapted orders, no change to the R2 decision.
+- **Shock / origin:** variable prices of Earth-Core (A) and Earth-Flex (B) multiplied by
+  **1.25 in 2038–2039 only**, returning to BASE in 2040. This is a disclosed illustrative
+  `TEAM_ASSUMPTION`, not an empirical forecast or probability. Its magnitude/window matches
+  only the price component of MANDATORY_STRESS for comparability; its demand, ISRU and
+  loss-ceiling changes are not applied. A: 6.2 → 7.75; B: 8.9 → 11.125 mln/t.
+- **Data-copy implementation:** `case/*.csv` is an isolated, unchanged copy of CASE_INPUT;
+  `shock.yaml` is a copy of `configs/scenarios/team_geopolitical_price_shock.yaml`.
+  The engine's existing annual scenario multiplier applies the surcharge once, on the copied
+  dataset. A static source CSV price is not overwritten because it cannot encode the two-year
+  window. `price_overlay.csv` records all source/year effective prices and the surcharge.
+  The aggregate organizer price is not split into invented launch/fuel/insurance components.
+  Original data, scenarios, plans, global assumptions and engine remain unchanged; hashes
+  are checked before/after, so no restore operation on CASE_INPUT is needed.
+- **Fixed conditions:** BASE demand and actual delivery shares; source capacities, lead times,
+  investment/commissioning dates, opening stock, orders, reservations and allocation rules.
+  Reservation rates, take-or-pay shares, CAPEX and OPEX remain unchanged. The multiplier
+  applies to the price of payable procurement volume, including any take-or-pay floor.
+- **Metrics / failure:** PV and total cost with paired deltas; total/critical shortage and
+  minimum annual service; annual opening stock, 45-day reserve requirement, slack, maximum
+  reserve gap and failed years. Hard **or guideline** violations count as failure, including
+  total/critical service below 97%/99%; scenario-scoped TEAM guideline labels do not relax
+  the experiment's criterion. `yearly.csv` retains all six years for each run.
+- **Published result:** delta PV = **470.891774 / 452.512590 / 415.516289 mln** for
+  P2z/P3/P4. After-shock PV = **9200.295536 / 9091.369527 / 9273.125433 mln**.
+  All three retain zero shortage, 100% total/critical service and no reserve violations.
+  Monthly physical balances are identical before/after. P4 has the smallest additional
+  price cost, while P3 retains the lowest total PV on this BASE background; these are
+  different criteria and do not replace R2's adapted mandatory-stress comparison.
+- **Artifacts / replay:** `results/geopolitical_price_shock/` contains comparison, annual
+  reserve/service data, per-source price exposure, method/input snapshots and six standard
+  CSV/JSON exports. The top-level manifest uses schema 2 / `sha256-utf8-lf-v1` and hashes
+  copied inputs, compact reports and stable per-run exports. Per-run `result.json` and
+  `run_manifest.json` contain output paths; `export_envelope.json` contains timestamps.
+  Those three files are excluded from byte replay comparison; standard `verify --case`
+  replays their numerical results. `--compare` checks saved hashes and identical normalized
+  outputs at the same runtime versions. The full runner includes EXP-11.
+  Because EXP-10 hashes `run_all.py`, adding EXP-11 required a full EXP-10 replay with its
+  saved N=10,000/seed=203510 samples. Its numerical output hashes are unchanged; only the
+  input provenance manifest was regenerated (including the already integrated R4 source).
+- **Tests / limits:** untouched-input and copy checks; exact source/period isolation and
+  return to BASE price; independent surcharge/PV arithmetic; full physical invariance;
+  six export replays and CSV-only recalculations; repeatability, tamper detection and
+  published-artifact checks. The experiment does not model geopolitical supply outages,
+  payment/budget limits, delay, response policies or combined shocks. Physical invariance
+  in a price-only fixed-plan run is not evidence of universal geopolitical resilience.
+
 ## To do (R3)
 
 - Reverse stress for alternative strategies (P3 baseline and protection measures: EXP-07/08 above).
 - Event-based Core availability, response policies and alternative-strategy Monte Carlo beyond EXP-10.
-- Geopolitics module: event → price component multiplier on a data copy, before/after, restore.
+- Geopolitical supply interruptions and combined price/availability shocks beyond the isolated EXP-11 price overlay.

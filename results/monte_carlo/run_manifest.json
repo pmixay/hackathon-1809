@@ -84,7 +84,7 @@
     "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
     "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
     "experiments/run_protection_measures.py": "fc2c277d7632fafc7039c4c91574abd4d12087632ccf7e9af9015ae38a0481ee",
-    "experiments/run_all.py": "f76b754ae92d7e516e57c7e4e871255fe7d4f539b97c591239f85b9f63764338",
+    "experiments/run_all.py": "40d924be0c740746ba30e46a0d64a900df8b23fbd72398b151cf43a3959a0821",
     "requirements.txt": "9c7aa4a4d3b29c07448e536d50dacfe5478686f066eed3797e6bb10684e2f3a4",
     "data/case/constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
     "data/case/demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
@@ -104,6 +104,7 @@
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "3c637c332eeb0dd41f0e453cd3ac8be4d4b773d33f78e2ed4b672469c7ff3c36",
     "src/terraplan/scenario.py": "d2bceff86a21fd8824f39e1d9bc8a25ae4885edf0e3f571a8e93c9e331c0bf50",
+    "src/terraplan/web.py": "7165f2730a15f071f066d3970081002c65913d983a521e9247c38698b8df6ab4",
     "experiments/provenance.py": "0696bf17ac5705e664c5548d792f856f8c4c8924defa4e2a222cc38f7a3040e0"
   },
   "assumptions": {
@@ -1019,6 +1020,5 @@
     "samples.csv": "14cf147931fa3bb59ba6b08bf62299e9865d65604437c581127b902c62cf17c1",
     "summary.md": "9f1710ce8ce653c31386e7707ade6a67c74f2f48f9d0d5b4f96400e4c72ad6dc",
     "without_measure.plan.json": "795abb9990377084c718a10c100c41540ad110d5f912f64283602c1b69d9ccf7"
-  },
-  "integration_note": "R4 adds the local UI CLI command only; simulation and experiment inputs unchanged. Updated CLI source provenance after integration."
+  }
 }

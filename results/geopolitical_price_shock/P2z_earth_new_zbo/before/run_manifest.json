@@ -1,0 +1,22 @@
+{
+  "terraplan_version": "0.1.0",
+  "python": "3.11.9",
+  "plan_id": "P2z_earth_new_zbo",
+  "scenario_id": "BASE",
+  "case_dir": "results/geopolitical_price_shock/case",
+  "case_dir_absolute_at_run": "C:\\Users\\alikh\\OneDrive\\Desktop\\projects\\hackathon-1809\\results\\geopolitical_price_shock\\case",
+  "case_file_sha256": {
+    "demand.csv": "3b03b0e155f4046b85e3fd51043841f958b30e97eb9c6db9c5b46e2f1d387dbe",
+    "supply_sources.csv": "311f37a5587fa1617d61681d678ead52f119fbc78a06746029054132961ac8e5",
+    "storage_options.csv": "a3e5adaadff933a011dce063d7981022e05602ea07d97070b18f177f0fc9c68d",
+    "investment_options.csv": "742a9db7aa80bb540643dbde2f82a560d2f854d2c4e1fe650d5ca9910778de89",
+    "constraints.csv": "21f0be1ee02f0ad8f828be87ce96d48b59ecadec20d783e20e29d1c403a05786"
+  },
+  "plan_sha256": "7cd2017b8457e1d37da8f8af136b2244c1b28f9f8407af8d949eda3a7b366765",
+  "scenario_sha256": "bdbf6b3220e755e75e7b327024fda6eb97c3a7379c044687e9dc65ca05a8f2f1",
+  "assumptions_sha256": "8b889146a0a196162b4c8e0fa95c210ca26fc6d39e0c0991befdc51c3bcaab22",
+  "kpi_sha256": "f5a365b637dcaf4a8b0f604131a0e5800ee8c54bc5670b7122904b9f61f2d0ed",
+  "kpi_precision": 6,
+  "random_seed": null,
+  "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to 6 decimals before hashing, which absorbs last-bit differences of float summation between Python versions)"
+}

@@ -1,0 +1,182 @@
+{
+  "plan_id": "P3_isru_zbo",
+  "scenario_id": "BASE",
+  "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "reserved_capacity_t": 13.189
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 161.772
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "reserved_capacity_t": 22.622
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "reserved_capacity_t": 120.0
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 84.737
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "ordered_t": 13.1882,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2038,
+        "ordered_t": 100.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 161.7714,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2039,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "ordered_t": 22.6216,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "D",
+        "year": 2040,
+        "ordered_t": 120.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 84.7369,
+        "profile": "uniform"
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "LUNAR_ISRU",
+        "decision_year": 2036,
+        "decision_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P3_isru_zbo",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110,
+        "D": 120
+      }
+    },
+    "stress_aware": false,
+    "builder_notes": [],
+    "status": "TEAM_DECISION"
+  }
+}

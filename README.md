@@ -24,7 +24,8 @@ python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATO
 python -m terraplan compare results/demo_BASE results/demo_STRESS --out results/demo_compare
 python -m terraplan verify results/demo_BASE           # reproducibility proof: re-run and compare with the export
 python tests/independent_recalc.py results/demo_BASE    # CSV-only recalculation, no engine import
-python experiments/run_all.py                   # EXP-01 … EXP-06, regenerates results/
+python experiments/run_all.py                   # EXP-01 … EXP-11, regenerates results/
+python experiments/run_geopolitical_price_shock.py  # EXP-11 only: TEAM Core/Flex price shock on a copy
 ```
 
 Exit code of `run` is 0 when the plan is feasible, 2 when hard constraints are violated (violations are printed
@@ -52,10 +53,10 @@ Protocols of every experiment: `experiments/README.md`. Methods and formulas: `d
 |---|---|
 | `src/terraplan/` | calculation core: `case.py` (CASE_INPUT loader), `scenario.py`, `plan.py` (TEAM_DECISION), `assumptions.py` (TEAM_ASSUMPTION registry), `rules.py` (organizer formulas), `engine.py` (monthly simulation + checks), `planner.py` (greedy merit-order plan builder), `export.py`, `compare.py`, `cli.py` |
 | `data/case/` | organizer CASE_INPUT (csv, read-only copy of the reference repo `data/`) |
-| `configs/scenarios/` | `base.yaml`, `mandatory_stress.yaml` (CASE_INPUT), `team_low_demand.yaml`, `team_high_demand.yaml` (sensitivity) |
+| `configs/scenarios/` | `base.yaml`, `mandatory_stress.yaml` (CASE_INPUT), TEAM demand sensitivity and `team_geopolitical_price_shock.yaml` (EXP-11) |
 | `configs/plans/` | saved plans (JSON, plan schema of the organizer) — P1…P4 and stress-adapted variants |
 | `configs/assumptions.yaml` | every team assumption with meaning, unit, status, range, justification |
-| `experiments/` | EXP-01…06 scripts and protocols (`README.md`) |
+| `experiments/` | EXP-01…11 scripts and protocols (`README.md`) |
 | `results/` | exports of every experiment (CSV, XLSX, JSON, summary.md, run_manifest.json with hashes) |
 | `tests/` | pytest (33): control vectors V01–V10, engine integration, invalid input, boundary plans, extensibility, export parity, golden values, manual hand check, independent CSV recalculation, verify command |
 | `schemas/` | organizer JSON schemas (plan, export, scenario, data) |
@@ -92,4 +93,7 @@ It serves one local operator, retains the last 12 calculations until server shut
 GitVerse publication remains pending a team repository URL; the configured origin is GitHub.
 No optimizer (greedy merit-order builder only). Reverse stress, protection measures, Earth-New delay and
 seeded Monte Carlo are implemented in EXP-07–10; their distributions remain TEAM_ASSUMPTION.
-The geopolitics bonus module is planned. No secrets, no external services; runs offline.
+EXP-11 isolates a TEAM geopolitical price shock: Core/Flex +25% in 2038–2039 on a data copy,
+fixed BASE P2z/P3/P4, no supply outage or policy response. Results and reproducibility:
+[`results/geopolitical_price_shock/summary.md`](results/geopolitical_price_shock/summary.md).
+R2's choice by adapted mandatory-stress cost is unchanged. No secrets, no external services; runs offline.
