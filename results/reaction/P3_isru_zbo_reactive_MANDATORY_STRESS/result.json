@@ -4,36 +4,36 @@
  "scenario_label": "Обязательный стрессовый сценарий",
  "case_dir": "/home/user/hackathon-1809/data/case",
  "units": {
-  "fuel": "t",
-  "money": "mln conventional units, constant 2035 prices",
-  "capacity": "t/year",
-  "reservation_rate": "mln per (t/year)",
-  "service_level": "share 0..1",
-  "time_step": "calendar month"
+  "fuel": "т",
+  "money": "млн у.е., постоянные цены 2035 г.",
+  "capacity": "т/год",
+  "reservation_rate": "млн у.е. за (т/год)",
+  "service_level": "доля 0..1",
+  "time_step": "календарный месяц"
  },
  "kpi": {
-  "total_cost_mln": 13993.387779556999,
-  "pv_cost_mln": 11135.161077140136,
+  "total_cost_mln": 13993.515237225,
+  "pv_cost_mln": 11135.26296024263,
   "discount_rate_real": 0.08,
   "demand_total_t": 1534.0,
   "served_total_t": 1533.1336253666666,
   "served_critical_t": 1044.5,
   "shortage_total_t": 0.8663746333333506,
   "shortage_critical_t": 2.842170943040401e-14,
-  "cost_per_served_t_mln": 9.127311245430626,
-  "pv_cost_per_served_t_mln": 7.26300753757001,
+  "cost_per_served_t_mln": 9.127394380824626,
+  "pv_cost_per_served_t_mln": 7.263073991726913,
   "min_service_level_total": 0.9969865230144929,
   "min_service_level_critical": 0.9999999999999999,
-  "losses_total_t": 31.3182351,
-  "throughput_total_t": 1607.4177,
+  "losses_total_t": 31.3183275,
+  "throughput_total_t": 1607.4254,
   "capex_total_mln": 1430.0,
-  "procurement_total_mln": 11637.19362,
+  "procurement_total_mln": 11637.307630000001,
   "reservation_total_mln": 539.78902,
-  "holding_total_mln": 134.4051395570001,
+  "holding_total_mln": 134.4185872250001,
   "fixed_opex_total_mln": 252.0,
   "take_or_pay_idle_t": 0.0,
   "opening_inventory_t": 12.328859000000001,
-  "closing_inventory_t": 55.29469853333337,
+  "closing_inventory_t": 55.30230613333334,
   "hard_violations": 1,
   "guideline_violations": 0,
   "warnings": 0,
@@ -126,18 +126,18 @@
    "shortage_total_t": 0.8663746333332938,
    "shortage_critical_t": 0.0,
    "opening_t": 30.82224430000005,
-   "closing_t": 45.37024253333334,
-   "planned_inflow_t": 349.8397,
-   "throughput_t": 304.8397,
-   "losses_t": 3.6580764,
+   "closing_t": 45.37903573333334,
+   "planned_inflow_t": 349.8486,
+   "throughput_t": 304.8486,
+   "losses_t": 3.6581832,
    "loss_ratio": 0.012,
    "reserve_required_t": 35.445205479452056,
    "reserve_ok": false,
-   "average_stock_t": 19.623722148611126,
+   "average_stock_t": 19.62540586527779,
    "storage_mode_end": "ZBO",
    "storage_capacity_end_t": 120.0,
-   "emergency_share_of_demand": 0.13631408695652175,
-   "balance_residual_t": 0.0
+   "emergency_share_of_demand": 0.1363478260869565,
+   "balance_residual_t": -4.263256414560601e-14
   },
   {
    "year": 2039,
@@ -149,19 +149,19 @@
    "service_level_critical": 0.9999999999999999,
    "shortage_total_t": 0.0,
    "shortage_critical_t": 2.842170943040401e-14,
-   "opening_t": 45.37024253333334,
-   "closing_t": 55.294864933333315,
+   "opening_t": 45.37903573333334,
+   "closing_t": 55.303658133333315,
    "planned_inflow_t": 412.5148,
    "throughput_t": 382.5148,
    "losses_t": 4.5901776,
    "loss_ratio": 0.012,
    "reserve_required_t": 45.36986301369863,
    "reserve_ok": true,
-   "average_stock_t": 50.33255373333333,
+   "average_stock_t": 50.34134693333332,
    "storage_mode_end": "ZBO",
    "storage_capacity_end_t": 120.0,
    "emergency_share_of_demand": 0.0,
-   "balance_residual_t": 0.0
+   "balance_residual_t": 1.4210854715202004e-14
   },
   {
    "year": 2040,
@@ -173,19 +173,19 @@
    "service_level_critical": 1.0,
    "shortage_total_t": 5.684341886080802e-14,
    "shortage_critical_t": 0.0,
-   "opening_t": 55.294864933333315,
-   "closing_t": 55.29469853333337,
-   "planned_inflow_t": 453.94719999999995,
-   "throughput_t": 453.94719999999995,
-   "losses_t": 5.4473664,
-   "loss_ratio": 0.012000000000000002,
+   "opening_t": 55.303658133333315,
+   "closing_t": 55.30230613333334,
+   "planned_inflow_t": 453.946,
+   "throughput_t": 453.946,
+   "losses_t": 5.447352,
+   "loss_ratio": 0.012,
    "reserve_required_t": 55.2945205479452,
    "reserve_ok": true,
-   "average_stock_t": 55.294781733333345,
+   "average_stock_t": 55.30298213333333,
    "storage_mode_end": "ZBO",
    "storage_capacity_end_t": 120.0,
-   "emergency_share_of_demand": 0.07569096989966556,
-   "balance_residual_t": -7.105427357601002e-15
+   "emergency_share_of_demand": 0.07568963210702342,
+   "balance_residual_t": 1.0658141036401503e-13
   }
  ],
  "months": [
@@ -1130,22 +1130,22 @@
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
    "opening_t": 0.0,
-   "planned_inflow_t": 30.14765,
-   "throughput_t": 25.64765,
-   "losses_t": 0.3077718,
-   "available_t": 25.339878199999998,
+   "planned_inflow_t": 30.14755,
+   "throughput_t": 25.64755,
+   "losses_t": 0.3077706,
+   "available_t": 25.339779399999998,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 1.3815448666666654,
-   "holding_cost_mln": 0.04144634599999996,
+   "closing_t": 1.3814460666666655,
+   "holding_cost_mln": 0.041443381999999966,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "E": 6.6667
+    "E": 6.6666
    }
   },
   {
@@ -1154,23 +1154,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 1.3815448666666654,
-   "planned_inflow_t": 30.14765,
-   "throughput_t": 25.64765,
-   "losses_t": 0.3077718,
-   "available_t": 26.721423066666663,
+   "opening_t": 1.3814460666666655,
+   "planned_inflow_t": 30.14755,
+   "throughput_t": 25.64755,
+   "losses_t": 0.3077706,
+   "available_t": 26.721225466666663,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 2.763089733333331,
-   "holding_cost_mln": 0.12433903799999989,
+   "closing_t": 2.762892133333331,
+   "holding_cost_mln": 0.12433014599999988,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "E": 6.6667
+    "E": 6.6666
    }
   },
   {
@@ -1179,24 +1179,24 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 2.763089733333331,
-   "planned_inflow_t": 39.31435,
-   "throughput_t": 34.81435,
-   "losses_t": 0.4177722,
-   "available_t": 37.15966753333333,
+   "opening_t": 2.762892133333331,
+   "planned_inflow_t": 39.31415,
+   "throughput_t": 34.81415,
+   "losses_t": 0.41776979999999997,
+   "available_t": 37.15927233333333,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 13.201334199999994,
-   "holding_cost_mln": 0.47893271799999976,
+   "closing_t": 13.200938999999995,
+   "holding_cost_mln": 0.4789149339999998,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "B": 9.1667,
-    "E": 6.6667
+    "B": 9.1666,
+    "E": 6.6666
    }
   },
   {
@@ -1205,24 +1205,24 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 13.201334199999994,
-   "planned_inflow_t": 39.31435,
-   "throughput_t": 34.81435,
-   "losses_t": 0.4177722,
-   "available_t": 47.597911999999994,
+   "opening_t": 13.200938999999995,
+   "planned_inflow_t": 39.31415,
+   "throughput_t": 34.81415,
+   "losses_t": 0.41776979999999997,
+   "available_t": 47.59731919999999,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 23.63957866666666,
-   "holding_cost_mln": 1.1052273859999997,
+   "closing_t": 23.638985866666655,
+   "holding_cost_mln": 1.1051977459999993,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "B": 9.1667,
-    "E": 6.6667
+    "B": 9.1666,
+    "E": 6.6666
    }
   },
   {
@@ -1231,24 +1231,24 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 23.63957866666666,
-   "planned_inflow_t": 39.31435,
-   "throughput_t": 34.81435,
-   "losses_t": 0.4177722,
-   "available_t": 58.036156466666654,
+   "opening_t": 23.638985866666655,
+   "planned_inflow_t": 39.31415,
+   "throughput_t": 34.81415,
+   "losses_t": 0.41776979999999997,
+   "available_t": 58.035366066666654,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 34.077823133333325,
-   "holding_cost_mln": 1.7315220539999998,
+   "closing_t": 34.077032733333326,
+   "holding_cost_mln": 1.7314805579999994,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "B": 9.1667,
-    "E": 6.6667
+    "B": 9.1666,
+    "E": 6.6666
    }
   },
   {
@@ -1257,24 +1257,24 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 34.077823133333325,
-   "planned_inflow_t": 38.50465,
-   "throughput_t": 34.00465,
-   "losses_t": 0.40805579999999997,
-   "available_t": 67.67441733333332,
+   "opening_t": 34.077032733333326,
+   "planned_inflow_t": 38.51455,
+   "throughput_t": 34.01455,
+   "losses_t": 0.4081746,
+   "available_t": 67.68340813333333,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 43.716083999999995,
-   "holding_cost_mln": 2.3338172139999993,
+   "closing_t": 43.7250748,
+   "holding_cost_mln": 2.3340632259999996,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "B": 9.1667,
-    "E": 5.857
+    "B": 9.1666,
+    "E": 5.867
    }
   },
   {
@@ -1283,23 +1283,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 43.716083999999995,
-   "planned_inflow_t": 29.58645,
-   "throughput_t": 25.08645,
-   "losses_t": 0.3010374,
-   "available_t": 68.5014966,
+   "opening_t": 43.7250748,
+   "planned_inflow_t": 29.58635,
+   "throughput_t": 25.08635,
+   "losses_t": 0.3010362,
+   "available_t": 68.5103886,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 44.54316326666667,
-   "holding_cost_mln": 2.647777418,
+   "closing_t": 44.55205526666667,
+   "holding_cost_mln": 2.648313902,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "B": 6.1055
+    "B": 6.1054
    }
   },
   {
@@ -1308,23 +1308,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 44.54316326666667,
-   "planned_inflow_t": 29.58645,
-   "throughput_t": 25.08645,
-   "losses_t": 0.3010374,
-   "available_t": 69.32857586666667,
+   "opening_t": 44.55205526666667,
+   "planned_inflow_t": 29.58635,
+   "throughput_t": 25.08635,
+   "losses_t": 0.3010362,
+   "available_t": 69.33736906666667,
    "demand_t": 23.958333333333332,
    "critical_demand_t": 16.291666666666664,
    "served_t": 23.958333333333332,
    "served_critical_t": 16.291666666666664,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 45.37024253333334,
-   "holding_cost_mln": 2.697402174,
+   "closing_t": 45.37903573333334,
+   "holding_cost_mln": 2.6979327300000002,
    "inflow_by_source": {
     "D": 5.5,
     "A": 13.48095,
-    "B": 6.1055
+    "B": 6.1054
    }
   },
   {
@@ -1333,19 +1333,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 45.37024253333334,
+   "opening_t": 45.37903573333334,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 76.86396106666668,
+   "available_t": 76.87275426666667,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 46.197294400000004,
-   "holding_cost_mln": 2.747026108,
+   "closing_t": 46.206087600000004,
+   "holding_cost_mln": 2.7475537000000005,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1358,19 +1358,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 46.197294400000004,
+   "opening_t": 46.206087600000004,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 77.69101293333334,
+   "available_t": 77.69980613333334,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 47.02434626666667,
-   "holding_cost_mln": 2.7966492200000004,
+   "closing_t": 47.03313946666667,
+   "holding_cost_mln": 2.797176812,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1383,19 +1383,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 47.02434626666667,
+   "opening_t": 47.03313946666667,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 78.5180648,
+   "available_t": 78.526858,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 47.85139813333333,
-   "holding_cost_mln": 2.846272332,
+   "closing_t": 47.86019133333333,
+   "holding_cost_mln": 2.8467999240000004,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1408,19 +1408,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 47.85139813333333,
+   "opening_t": 47.86019133333333,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 79.34511666666667,
+   "available_t": 79.35390986666667,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 48.67845,
-   "holding_cost_mln": 2.895895444,
+   "closing_t": 48.6872432,
+   "holding_cost_mln": 2.896423036,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1433,19 +1433,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 48.67845,
+   "opening_t": 48.6872432,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 80.17216853333333,
+   "available_t": 80.18096173333333,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 49.50550186666666,
-   "holding_cost_mln": 2.9455185559999997,
+   "closing_t": 49.51429506666666,
+   "holding_cost_mln": 2.9460461479999993,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1458,19 +1458,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 49.50550186666666,
+   "opening_t": 49.51429506666666,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 80.9992204,
+   "available_t": 81.0080136,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 50.33255373333333,
-   "holding_cost_mln": 2.995141667999999,
+   "closing_t": 50.34134693333333,
+   "holding_cost_mln": 2.9956692599999997,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1483,19 +1483,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 50.33255373333333,
+   "opening_t": 50.34134693333333,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 81.82627226666666,
+   "available_t": 81.83506546666666,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 51.15960559999999,
-   "holding_cost_mln": 3.0447647799999995,
+   "closing_t": 51.16839879999999,
+   "holding_cost_mln": 3.045292371999999,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1508,19 +1508,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 51.15960559999999,
+   "opening_t": 51.16839879999999,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 82.65332413333333,
+   "available_t": 82.66211733333333,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 51.98665746666666,
-   "holding_cost_mln": 3.094387891999999,
+   "closing_t": 51.995450666666656,
+   "holding_cost_mln": 3.0949154839999995,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1533,19 +1533,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 51.98665746666666,
+   "opening_t": 51.995450666666656,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 83.48037599999999,
+   "available_t": 83.48916919999999,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 52.81370933333332,
-   "holding_cost_mln": 3.1440110039999993,
+   "closing_t": 52.82250253333332,
+   "holding_cost_mln": 3.144538595999999,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1558,19 +1558,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 52.81370933333332,
+   "opening_t": 52.82250253333332,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 84.30742786666666,
+   "available_t": 84.31622106666666,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 53.640761199999986,
-   "holding_cost_mln": 3.193634115999999,
+   "closing_t": 53.649554399999985,
+   "holding_cost_mln": 3.1941617079999993,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1583,19 +1583,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 53.640761199999986,
+   "opening_t": 53.649554399999985,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 85.13447973333332,
+   "available_t": 85.14327293333332,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 54.46781306666665,
-   "holding_cost_mln": 3.243257227999999,
+   "closing_t": 54.47660626666665,
+   "holding_cost_mln": 3.243784819999999,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1608,19 +1608,19 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 54.46781306666665,
+   "opening_t": 54.47660626666665,
    "planned_inflow_t": 34.37623333333333,
    "throughput_t": 31.87623333333333,
    "losses_t": 0.3825148,
-   "available_t": 85.96153159999999,
+   "available_t": 85.97032479999999,
    "demand_t": 30.666666666666668,
    "critical_demand_t": 20.124999999999996,
    "served_t": 30.666666666666668,
    "served_critical_t": 20.124999999999996,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.294864933333315,
-   "holding_cost_mln": 3.2928803399999986,
+   "closing_t": 55.303658133333315,
+   "holding_cost_mln": 3.2934079319999987,
    "inflow_by_source": {
     "D": 7.5,
     "A": 15.833333333333334,
@@ -1633,23 +1633,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.294864933333315,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66985106666665,
+   "opening_t": 55.303658133333315,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67854546666665,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29485106666666,
-   "holding_cost_mln": 3.3176914799999992,
+   "closing_t": 55.303545466666655,
+   "holding_cost_mln": 3.3182161079999983,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1659,23 +1659,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29485106666666,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66983719999999,
+   "opening_t": 55.303545466666655,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.6784328,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.294837199999996,
-   "holding_cost_mln": 3.3176906479999997,
+   "closing_t": 55.3034328,
+   "holding_cost_mln": 3.318209348,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1685,23 +1685,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.294837199999996,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66982333333333,
+   "opening_t": 55.3034328,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67832013333333,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29482333333333,
-   "holding_cost_mln": 3.3176898159999997,
+   "closing_t": 55.30332013333334,
+   "holding_cost_mln": 3.318202588,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1711,23 +1711,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29482333333333,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66980946666666,
+   "opening_t": 55.30332013333334,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67820746666666,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29480946666667,
-   "holding_cost_mln": 3.317688984,
+   "closing_t": 55.30320746666667,
+   "holding_cost_mln": 3.3181958280000003,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1737,23 +1737,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29480946666667,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.6697956,
+   "opening_t": 55.30320746666667,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.6780948,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29479560000001,
-   "holding_cost_mln": 3.317688152,
+   "closing_t": 55.303094800000004,
+   "holding_cost_mln": 3.318189068,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1763,23 +1763,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29479560000001,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66978173333334,
+   "opening_t": 55.303094800000004,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67798213333333,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.294781733333345,
-   "holding_cost_mln": 3.3176873200000006,
+   "closing_t": 55.30298213333334,
+   "holding_cost_mln": 3.3181823080000004,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1789,23 +1789,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.294781733333345,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66976786666667,
+   "opening_t": 55.30298213333334,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67786946666666,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29476786666668,
-   "holding_cost_mln": 3.317686488000001,
+   "closing_t": 55.30286946666667,
+   "holding_cost_mln": 3.3181755479999997,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1815,23 +1815,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29476786666668,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66975400000001,
+   "opening_t": 55.30286946666667,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.6777568,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29475400000002,
-   "holding_cost_mln": 3.3176856560000005,
+   "closing_t": 55.302756800000004,
+   "holding_cost_mln": 3.318168788,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1841,23 +1841,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29475400000002,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66974013333335,
+   "opening_t": 55.302756800000004,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67764413333333,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.294740133333356,
-   "holding_cost_mln": 3.317684824000001,
+   "closing_t": 55.30264413333334,
+   "holding_cost_mln": 3.318162028,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1867,23 +1867,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.294740133333356,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66972626666669,
+   "opening_t": 55.30264413333334,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67753146666666,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29472626666669,
-   "holding_cost_mln": 3.3176839920000014,
+   "closing_t": 55.30253146666667,
+   "holding_cost_mln": 3.318155268,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1893,23 +1893,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29472626666669,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66971240000002,
+   "opening_t": 55.30253146666667,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.6774188,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29471240000003,
-   "holding_cost_mln": 3.3176831600000014,
+   "closing_t": 55.302418800000005,
+   "holding_cost_mln": 3.318148508,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   },
@@ -1919,23 +1919,23 @@
    "storage_mode": "ZBO",
    "storage_capacity_t": 120.0,
    "loss_rate": 0.012,
-   "opening_t": 55.29471240000003,
-   "planned_inflow_t": 37.82893333333333,
-   "throughput_t": 37.82893333333333,
-   "losses_t": 0.4539472,
-   "available_t": 92.66969853333336,
+   "opening_t": 55.302418800000005,
+   "planned_inflow_t": 37.828833333333336,
+   "throughput_t": 37.828833333333336,
+   "losses_t": 0.453946,
+   "available_t": 92.67730613333333,
    "demand_t": 37.37499999999999,
    "critical_demand_t": 23.958333333333332,
    "served_t": 37.37499999999999,
    "served_critical_t": 23.958333333333332,
    "shortage_t": 0.0,
    "shortage_critical_t": 0.0,
-   "closing_t": 55.29469853333337,
-   "holding_cost_mln": 3.317682328000002,
+   "closing_t": 55.30230613333334,
+   "holding_cost_mln": 3.3181417480000004,
    "inflow_by_source": {
     "D": 10.0,
     "A": 15.833333333333334,
-    "B": 9.1667,
+    "B": 9.1666,
     "E": 2.8289
    }
   }
@@ -2308,15 +2308,15 @@
    "capacity_t_per_year": 110.0,
    "reserved_capacity_t": 110.0,
    "reserved_period_t": 110.0,
-   "ordered_t": 48.8776,
-   "planned_delivery_t": 48.8778,
-   "actual_delivery_t": 48.8778,
+   "ordered_t": 48.87720000000001,
+   "planned_delivery_t": 48.8772,
+   "actual_delivery_t": 48.8772,
    "delivery_share": 1.0,
    "price_mln_per_t": 11.125,
    "price_multiplier": 1.25,
-   "payable_volume_t": 48.8776,
+   "payable_volume_t": 48.87720000000001,
    "take_or_pay_idle_t": 0.0,
-   "procurement_mln": 543.7633,
+   "procurement_mln": 543.75885,
    "reservation_payment_mln": 16.5
   },
   {
@@ -2371,15 +2371,15 @@
    "capacity_t_per_year": 80.0,
    "reserved_capacity_t": 80.0,
    "reserved_period_t": 80.0,
-   "ordered_t": 39.1903,
-   "planned_delivery_t": 39.1905,
-   "actual_delivery_t": 39.1905,
+   "ordered_t": 39.199999999999996,
+   "planned_delivery_t": 39.2,
+   "actual_delivery_t": 39.2,
    "delivery_share": 1.0,
    "price_mln_per_t": 13.8,
    "price_multiplier": 1.0,
-   "payable_volume_t": 39.1903,
+   "payable_volume_t": 39.199999999999996,
    "take_or_pay_idle_t": 0.0,
-   "procurement_mln": 540.82614,
+   "procurement_mln": 540.9599999999999,
    "reservation_payment_mln": 28.0
   },
   {
@@ -2413,15 +2413,15 @@
    "capacity_t_per_year": 110.0,
    "reserved_capacity_t": 102.516,
    "reserved_period_t": 102.516,
-   "ordered_t": 102.5148,
+   "ordered_t": 102.51480000000002,
    "planned_delivery_t": 102.5148,
    "actual_delivery_t": 102.5148,
    "delivery_share": 1.0,
    "price_mln_per_t": 11.125,
    "price_multiplier": 1.25,
-   "payable_volume_t": 102.5148,
+   "payable_volume_t": 102.51480000000002,
    "take_or_pay_idle_t": 0.0,
-   "procurement_mln": 1140.47715,
+   "procurement_mln": 1140.4771500000002,
    "reservation_payment_mln": 15.3774
   },
   {
@@ -2518,15 +2518,15 @@
    "capacity_t_per_year": 110.0,
    "reserved_capacity_t": 110.0,
    "reserved_period_t": 110.0,
-   "ordered_t": 110.0,
-   "planned_delivery_t": 110.00040000000001,
-   "actual_delivery_t": 110.00040000000001,
+   "ordered_t": 109.99920000000002,
+   "planned_delivery_t": 109.9992,
+   "actual_delivery_t": 109.9992,
    "delivery_share": 1.0,
    "price_mln_per_t": 8.9,
    "price_multiplier": 1.0,
-   "payable_volume_t": 110.0,
+   "payable_volume_t": 109.99920000000002,
    "take_or_pay_idle_t": 0.0,
-   "procurement_mln": 979.0,
+   "procurement_mln": 978.9928800000001,
    "reservation_payment_mln": 16.5
   },
   {
@@ -2581,15 +2581,15 @@
    "capacity_t_per_year": 80.0,
    "reserved_capacity_t": 33.948,
    "reserved_period_t": 33.948,
-   "ordered_t": 33.9474,
+   "ordered_t": 33.9468,
    "planned_delivery_t": 33.946799999999996,
    "actual_delivery_t": 33.946799999999996,
    "delivery_share": 1.0,
    "price_mln_per_t": 13.8,
    "price_multiplier": 1.0,
-   "payable_volume_t": 33.9474,
+   "payable_volume_t": 33.9468,
    "take_or_pay_idle_t": 0.0,
-   "procurement_mln": 468.47412,
+   "procurement_mln": 468.46584000000007,
    "reservation_payment_mln": 11.8818
   }
  ],
@@ -2632,38 +2632,38 @@
   },
   {
    "year": 2038,
-   "procurement_mln": 2638.31779,
+   "procurement_mln": 2638.4472,
    "reservation_mln": 117.2974,
-   "holding_mln": 14.12907994700001,
+   "holding_mln": 14.130292223000009,
    "fixed_opex_mln": 82.0,
    "capex_mln": 0.0,
-   "total_mln": 2851.744269947,
+   "total_mln": 2851.874892223,
    "discount_factor": 0.7938322410201696,
-   "pv_total_mln": 2263.8065446284545,
+   "pv_total_mln": 2263.9102368025387,
    "cumulative_capex_mln": 1430.0
   },
   {
    "year": 2039,
-   "procurement_mln": 2972.9771499999997,
+   "procurement_mln": 2972.97715,
    "reservation_mln": 100.8774,
-   "holding_mln": 36.23943868799999,
+   "holding_mln": 36.245769792,
    "fixed_opex_mln": 82.0,
    "capex_mln": 0.0,
-   "total_mln": 3192.0939886879996,
+   "total_mln": 3192.100319792,
    "discount_factor": 0.7350298527964533,
-   "pv_total_mln": 2346.2843746177837,
+   "pv_total_mln": 2346.2890281682253,
    "cumulative_capex_mln": 1430.0
   },
   {
    "year": 2040,
-   "procurement_mln": 2985.47412,
+   "procurement_mln": 2985.45872,
    "reservation_mln": 113.8818,
-   "holding_mln": 39.812242848000004,
+   "holding_mln": 39.818147136,
    "fixed_opex_mln": 82.0,
    "capex_mln": 0.0,
-   "total_mln": 3221.168162848,
+   "total_mln": 3221.158667136,
    "discount_factor": 0.6805831970337529,
-   "pv_total_mln": 2192.2729264544323,
+   "pv_total_mln": 2192.2664638324013,
    "cumulative_capex_mln": 1430.0
   }
  ],
@@ -2696,7 +2696,7 @@
    "rule_id": "RESERVE_45D",
    "severity": "hard",
    "scenario_id": "MANDATORY_STRESS",
-   "message": "2038-01: physical stock 30.822 t < 45-day reserve 35.445 t",
+   "message": "2038-01: физический запас 30.822 т < 45-дневного резерва 35.445 т",
    "year": 2038,
    "month": 1,
    "source_id": null,
@@ -2708,196 +2708,206 @@
  "assumptions": {
   "discount_rate_real": {
    "value": 0.08,
-   "unit": "share per year (real)",
+   "unit": "доля в год (реальная ставка)",
    "status": "TEAM_ASSUMPTION",
    "range": [
     0.0,
     0.15
    ],
-   "justification": "Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.\n"
+   "justification": "Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.\n"
   },
   "discount_t0_year": {
    "value": 2035,
-   "unit": "year",
+   "unit": "год",
    "status": "TEAM_ASSUMPTION",
    "range": [
     2035,
     2035
    ],
-   "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
+   "justification": "Годовые денежные потоки датируются началом каждого года; коэффициент приведения = 1/(1+r)^(год − 2035)."
   },
   "discount_timing": {
    "value": "start",
-   "unit": "enum start|mid|end",
+   "unit": "перечисление start|mid|end",
    "status": "TEAM_ASSUMPTION",
    "range": [
     "start",
     "mid",
     "end"
    ],
-   "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+   "justification": "Момент внутри года, к которому отнесён годовой поток — начало (показатель степени год − 2035), середина (+0,5) или конец (+1); одинаково для всех альтернатив."
   },
   "prep_period_start": {
    "value": "2034-01",
-   "unit": "YYYY-MM",
+   "unit": "ГГГГ-ММ",
    "status": "TEAM_ASSUMPTION",
    "range": [
     "2033-01",
     "2034-12"
    ],
-   "justification": "Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01)."
+   "justification": "Самая ранняя дата заказа в подготовительном периоде (Earth-Core требует 12 месяцев до 2035-01)."
   },
   "lead_time_policy": {
    "value": "max",
-   "unit": "enum min|max|mean",
+   "unit": "перечисление min|max|mean",
    "status": "TEAM_ASSUMPTION",
    "range": [
     "min",
     "max",
     "mean"
    ],
-   "justification": "Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+   "justification": "Консервативный край диапазонов сроков поставки организатора (Earth-New 24 месяца, ISRU 2 месяца)."
   },
   "weeks_per_month": {
    "value": 4.345,
-   "unit": "weeks",
+   "unit": "недель",
    "status": "TEAM_ASSUMPTION",
    "range": [
     4.0,
     4.5
    ],
-   "justification": "365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months."
+   "justification": "365/12/7. Сроки в неделях переводятся как ceil(недели/4,345) -> Emergency 6 недель = 2 месяца."
   },
   "days_per_month": {
    "value": 30.4167,
-   "unit": "days",
+   "unit": "дней",
    "status": "TEAM_ASSUMPTION",
    "range": [
     28,
     31
    ],
-   "justification": "365/12; day-denominated lead times converted with ceil."
+   "justification": "365/12; сроки в днях переводятся с округлением вверх."
   },
   "zbo_commissioning_lag_months": {
    "value": 0,
-   "unit": "months",
+   "unit": "месяцев",
    "status": "TEAM_ASSUMPTION",
    "range": [
     0,
     12
    ],
-   "justification": "Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity."
+   "justification": "Кейс не задаёт срок модернизации ZBO; она считается действующей с месяца оплаты CAPEX. Варьируется в анализе чувствительности."
   },
   "earth_new_post_commissioning_lead_months": {
    "value": 0,
-   "unit": "months",
+   "unit": "месяцев",
    "status": "TEAM_ASSUMPTION",
    "range": [
     0,
     12
    ],
-   "justification": "The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation."
+   "justification": "Срок Earth-New 18–24 месяца трактуется как время от решения до первой поставки; заказы размещаются в период подготовки, после ввода дополнительный срок заказа 0 месяцев."
   },
   "isru_commissioning_month": {
    "value": "2038-01",
-   "unit": "YYYY-MM",
+   "unit": "ГГГГ-ММ",
    "status": "CASE_INPUT",
    "range": [
     "2038-01",
     "2038-01"
    ],
-   "justification": "Lunar-ISRU available from 2038 once CAPEX is financed before 2038."
+   "justification": "Lunar-ISRU доступен с 2038 года при финансировании CAPEX до 2038 года."
   },
   "isru_financing_deadline": {
    "value": "2037-12",
-   "unit": "YYYY-MM",
+   "unit": "ГГГГ-ММ",
    "status": "CASE_INPUT",
    "range": [
     "2037-12",
     "2037-12"
    ],
-   "justification": "CAPEX 1250 must be financed before 2038."
+   "justification": "CAPEX 1 250 млн должен быть профинансирован до 2038 года."
   },
   "source_investment_link": {
    "value": {
     "C": "EARTH_NEW",
     "D": "LUNAR_ISRU"
    },
-   "unit": "map source_id -> investment_id",
+   "unit": "отображение source_id -> investment_id",
    "status": "CASE_INPUT",
    "range": null,
-   "justification": "Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX."
+   "justification": "Мощность Earth-New требует реализованного опциона; Lunar-ISRU — CAPEX пилотного производства."
   },
   "storage_investment_link": {
    "value": {
     "ZBO": "ZBO"
    },
-   "unit": "map investment_id -> storage_id",
+   "unit": "отображение investment_id -> storage_id",
    "status": "CASE_INPUT",
    "range": null,
-   "justification": "ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+   "justification": "Модернизация ZBO переключает активный режим хранилища (ёмкость 120 т, потери 1,2 %, OPEX 12 млн/год)."
   },
   "emergency_base_share_threshold": {
    "value": 0.2,
-   "unit": "share of annual total demand",
+   "unit": "доля годового общего спроса",
    "status": "TEAM_ASSUMPTION",
    "range": [
     0.1,
     0.5
    ],
-   "justification": "Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand."
+   "justification": "Emergency считается базовым каналом в году, когда заказанный у него объём превышает 20 % спроса этого года."
   },
   "holding_cost_averaging": {
    "value": "trapezoid_monthly",
-   "unit": "enum",
+   "unit": "перечисление",
    "status": "TEAM_ASSUMPTION",
    "range": [
     "trapezoid_monthly"
    ],
-   "justification": "Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12."
+   "justification": "Средний физический запас за месяц = (I_start + I_end)/2; стоимость хранения = 0,72 × средний запас × 1/12."
   },
   "storage_capacity_check": {
    "value": "end_of_month_hard_peak_warning",
-   "unit": "enum",
+   "unit": "перечисление",
    "status": "TEAM_ASSUMPTION",
    "range": null,
-   "justification": "Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity."
+   "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
   },
   "emergency_reserve_equivalence": {
    "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
-   "unit": "rule",
+   "unit": "правило",
    "status": "TEAM_ASSUMPTION",
    "range": null,
-   "justification": "Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y."
+   "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
   },
   "opening_stock_reservation_years": {
    "value": 1.0,
-   "unit": "years",
+   "unit": "лет",
    "status": "TEAM_ASSUMPTION",
    "range": [
     0.0,
     1.0
    ],
-   "justification": "The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035."
+   "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
   },
   "prep_period_holding_charged": {
    "value": false,
-   "unit": "bool",
+   "unit": "логическое",
    "status": "TEAM_ASSUMPTION",
    "range": [
     true,
     false
    ],
-   "justification": "Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged."
+   "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
   },
   "intra_year_demand_profile": {
    "value": "uniform",
-   "unit": "enum",
+   "unit": "перечисление",
    "status": "CASE_INPUT",
    "range": [
     "uniform"
    ],
-   "justification": "Organizer convention — uniform demand within the year, 365 days."
+   "justification": "Конвенция организатора — равномерный спрос внутри года, 365 дней."
+  },
+  "undelivered_volume_paid": {
+   "value": true,
+   "unit": "логическое",
+   "status": "CASE_INPUT",
+   "range": [
+    true,
+    false
+   ],
+   "justification": "Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо только в отдельном исследовательском контрактном сценарии и не является условием организатора.\n"
   }
  },
  "scenario": {
@@ -2962,7 +2972,7 @@
  "plan": {
   "plan_id": "P3_isru_zbo_reactive",
   "scenario_id": "MANDATORY_STRESS",
-  "description": "P3 with observe-then-react: Flex from 2038-07, Emergency from 2038-05",
+  "description": "P3 с реакцией после наблюдения недопоставки ISRU (2038-03): Earth-Flex с 2038-07, Emergency с 2038-05",
   "decisions": {
    "capacity_reservations": [
     {
@@ -3105,7 +3115,7 @@
     {
      "source_id": "B",
      "year": 2038,
-     "ordered_t": 48.8776,
+     "ordered_t": 48.87720000000001,
      "profile": "monthly",
      "monthly_t": [
       0.0,
@@ -3114,18 +3124,19 @@
       0.0,
       0.0,
       0.0,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      6.1055,
-      6.1055
-     ]
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      6.1054,
+      6.1054
+     ],
+     "reactive": true
     },
     {
      "source_id": "B",
      "year": 2039,
-     "ordered_t": 102.5148,
+     "ordered_t": 102.51480000000002,
      "profile": "monthly",
      "monthly_t": [
       8.5429,
@@ -3140,52 +3151,55 @@
       8.5429,
       8.5429,
       8.5429
-     ]
+     ],
+     "reactive": true
     },
     {
      "source_id": "B",
      "year": 2040,
-     "ordered_t": 110.0,
+     "ordered_t": 109.99920000000002,
      "profile": "monthly",
      "monthly_t": [
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667,
-      9.1667
-     ]
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666,
+      9.1666
+     ],
+     "reactive": true
     },
     {
      "source_id": "E",
      "year": 2038,
-     "ordered_t": 39.1903,
+     "ordered_t": 39.199999999999996,
      "profile": "monthly",
      "monthly_t": [
       0.0,
       0.0,
       0.0,
       0.0,
-      6.6667,
-      6.6667,
-      6.6667,
-      6.6667,
-      6.6667,
-      5.857,
+      6.6666,
+      6.6666,
+      6.6666,
+      6.6666,
+      6.6666,
+      5.867,
       0.0,
       0.0
-     ]
+     ],
+     "reactive": true
     },
     {
      "source_id": "E",
      "year": 2040,
-     "ordered_t": 33.9474,
+     "ordered_t": 33.9468,
      "profile": "monthly",
      "monthly_t": [
       2.8289,
@@ -3200,7 +3214,8 @@
       2.8289,
       2.8289,
       2.8289
-     ]
+     ],
+     "reactive": true
     }
    ],
    "investments": [
@@ -3225,7 +3240,8 @@
      }
     ],
     "reserve_mode": "physical",
-    "allocation_rule": "critical_first"
+    "allocation_rule": "critical_first",
+    "observation_month": "2038-03"
    }
   },
   "meta": {
@@ -3518,7 +3534,7 @@
    "rule_id": "RESERVE_45D",
    "year": 2039,
    "metric": "opening_stock_vs_45d_reserve_t",
-   "actual": 45.37024253333334,
+   "actual": 45.37903573333334,
    "limit": 45.36986301369863,
    "operator": ">=",
    "ok": true,
@@ -3529,7 +3545,7 @@
    "rule_id": "RESERVE_45D",
    "year": 2040,
    "metric": "opening_stock_vs_45d_reserve_t",
-   "actual": 55.294864933333315,
+   "actual": 55.303658133333315,
    "limit": 55.2945205479452,
    "operator": ">=",
    "ok": true,
@@ -3539,68 +3555,68 @@
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2035,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (else counts as base year)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "max 2 consecutive base years"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2036,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (else counts as base year)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "max 2 consecutive base years"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2037,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (else counts as base year)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "max 2 consecutive base years"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2038,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.13631408695652175,
-   "limit": 0.2,
-   "operator": "<= (else counts as base year)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "max 2 consecutive base years"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.136"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2039,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.0,
-   "limit": 0.2,
-   "operator": "<= (else counts as base year)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "max 2 consecutive base years"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000"
   },
   {
    "rule_id": "EMERGENCY_BASE_STREAK",
    "year": 2040,
-   "metric": "emergency_share_of_demand",
-   "actual": 0.07569096989966556,
-   "limit": 0.2,
-   "operator": "<= (else counts as base year)",
+   "metric": "consecutive_years_with_emergency_as_base_channel",
+   "actual": 0,
+   "limit": 2.0,
+   "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "max 2 consecutive base years"
+   "scope": "базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.076"
   },
   {
    "rule_id": "STRESS_LOSS_LIMIT",
@@ -3628,7 +3644,7 @@
    "rule_id": "STRESS_LOSS_LIMIT",
    "year": 2040,
    "metric": "losses_divided_by_throughput",
-   "actual": 0.012000000000000002,
+   "actual": 0.012,
    "limit": 0.02,
    "operator": "<=",
    "ok": true,
@@ -3638,13 +3654,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2035,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 17.260439000000027,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2035-12, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3693,13 +3709,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2036,
-   "metric": "max_end_of_month_stock_t",
+   "metric": "end_of_month_stock_t_in_worst_month",
    "actual": 23.424908000000073,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2036-12, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3748,13 +3764,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2037,
-   "metric": "max_end_of_month_stock_t",
-   "actual": 30.82224430000005,
+   "metric": "end_of_month_stock_t_in_worst_month",
+   "actual": 25.447273500000065,
    "limit": 70.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2037-06, хранилище BASE; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3825,13 +3841,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2038,
-   "metric": "max_end_of_month_stock_t",
-   "actual": 45.37024253333334,
+   "metric": "end_of_month_stock_t_in_worst_month",
+   "actual": 45.37903573333334,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2038-12, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3870,7 +3886,7 @@
    "rule_id": "ORDER_EXCEEDS_RESERVATION",
    "year": 2038,
    "metric": "ordered_B_t",
-   "actual": 48.8776,
+   "actual": 48.87720000000001,
    "limit": 110.0,
    "operator": "<=",
    "ok": true,
@@ -3914,7 +3930,7 @@
    "rule_id": "ORDER_EXCEEDS_RESERVATION",
    "year": 2038,
    "metric": "ordered_E_t",
-   "actual": 39.1903,
+   "actual": 39.199999999999996,
    "limit": 80.0,
    "operator": "<=",
    "ok": true,
@@ -3946,13 +3962,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2039,
-   "metric": "max_end_of_month_stock_t",
-   "actual": 55.294864933333315,
+   "metric": "end_of_month_stock_t_in_worst_month",
+   "actual": 55.303658133333315,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2039-12, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -3991,7 +4007,7 @@
    "rule_id": "ORDER_EXCEEDS_RESERVATION",
    "year": 2039,
    "metric": "ordered_B_t",
-   "actual": 102.5148,
+   "actual": 102.51480000000002,
    "limit": 102.516,
    "operator": "<=",
    "ok": true,
@@ -4045,13 +4061,13 @@
   {
    "rule_id": "STORAGE_OVERFLOW",
    "year": 2040,
-   "metric": "max_end_of_month_stock_t",
-   "actual": 55.29485106666666,
+   "metric": "end_of_month_stock_t_in_worst_month",
+   "actual": 55.303545466666655,
    "limit": 120.0,
    "operator": "<=",
    "ok": true,
    "severity": "hard",
-   "scope": "monthly"
+   "scope": "2040-01, хранилище ZBO; проверка помесячная"
   },
   {
    "rule_id": "CAPACITY_EXCEEDED",
@@ -4090,7 +4106,7 @@
    "rule_id": "ORDER_EXCEEDS_RESERVATION",
    "year": 2040,
    "metric": "ordered_B_t",
-   "actual": 110.0,
+   "actual": 109.99920000000002,
    "limit": 110.0,
    "operator": "<=",
    "ok": true,
@@ -4134,7 +4150,7 @@
    "rule_id": "ORDER_EXCEEDS_RESERVATION",
    "year": 2040,
    "metric": "ordered_E_t",
-   "actual": 33.9474,
+   "actual": 33.9468,
    "limit": 33.948,
    "operator": "<=",
    "ok": true,
@@ -4176,7 +4192,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-01",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4189,7 +4206,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-02",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4202,7 +4220,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-03",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4215,7 +4234,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-04",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4228,7 +4248,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-05",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4241,7 +4262,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-06",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4254,7 +4276,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-07",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4267,7 +4290,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-08",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4280,7 +4304,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-09",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4293,7 +4318,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-10",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4306,7 +4332,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-11",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4319,7 +4346,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2034-12",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4332,7 +4360,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-01",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4345,7 +4374,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-02",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4358,7 +4388,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-03",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4371,7 +4402,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-04",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4384,7 +4416,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-05",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4397,7 +4430,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-06",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4410,7 +4444,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-07",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4423,7 +4458,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-08",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4436,7 +4472,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-09",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4449,7 +4486,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-10",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4462,7 +4500,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-11",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4475,7 +4514,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2035-12",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4488,7 +4528,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-01",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4501,7 +4542,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2036-09",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4514,7 +4556,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-02",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4527,7 +4570,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2036-10",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4540,7 +4584,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-03",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4553,7 +4598,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2036-11",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4566,7 +4612,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-04",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4579,7 +4626,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2036-12",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4592,7 +4640,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-05",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4605,7 +4654,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-01",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4618,7 +4668,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-06",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4631,7 +4682,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-02",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4644,7 +4696,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-07",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4657,7 +4710,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-03",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4670,7 +4724,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-08",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4683,7 +4738,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-04",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4696,7 +4752,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-09",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4709,7 +4766,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-05",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4722,7 +4780,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-10",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4735,7 +4794,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-06",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4748,7 +4808,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-11",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4761,7 +4822,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-07",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4774,7 +4836,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2036-12",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4787,7 +4850,8 @@
    "lead_time_months": 4,
    "order_placement_month": "2037-08",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4800,7 +4864,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-01",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4813,7 +4878,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-02",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "A",
@@ -4826,7 +4892,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-03",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "D",
@@ -4839,7 +4906,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-01",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -4852,7 +4920,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-04",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "D",
@@ -4865,7 +4934,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-02",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -4878,7 +4948,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-05",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "D",
@@ -4891,7 +4962,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-03",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -4899,12 +4971,13 @@
    "year": 2038,
    "month": 5,
    "delivery_month": "2038-05",
-   "planned_t": 6.6667,
-   "actual_t": 6.6667,
+   "planned_t": 6.6666,
+   "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-03",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -4917,7 +4990,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-06",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "D",
@@ -4930,7 +5004,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-04",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -4938,12 +5013,13 @@
    "year": 2038,
    "month": 6,
    "delivery_month": "2038-06",
-   "planned_t": 6.6667,
-   "actual_t": 6.6667,
+   "planned_t": 6.6666,
+   "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-04",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -4956,7 +5032,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-07",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -4964,12 +5041,13 @@
    "year": 2038,
    "month": 7,
    "delivery_month": "2038-07",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-03",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -4982,7 +5060,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-05",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -4990,12 +5069,13 @@
    "year": 2038,
    "month": 7,
    "delivery_month": "2038-07",
-   "planned_t": 6.6667,
-   "actual_t": 6.6667,
+   "planned_t": 6.6666,
+   "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-05",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5008,7 +5088,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-08",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5016,12 +5097,13 @@
    "year": 2038,
    "month": 8,
    "delivery_month": "2038-08",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-04",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5034,7 +5116,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-06",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5042,12 +5125,13 @@
    "year": 2038,
    "month": 8,
    "delivery_month": "2038-08",
-   "planned_t": 6.6667,
-   "actual_t": 6.6667,
+   "planned_t": 6.6666,
+   "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-06",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5060,7 +5144,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-09",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5068,12 +5153,13 @@
    "year": 2038,
    "month": 9,
    "delivery_month": "2038-09",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-05",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5086,7 +5172,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-07",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5094,12 +5181,13 @@
    "year": 2038,
    "month": 9,
    "delivery_month": "2038-09",
-   "planned_t": 6.6667,
-   "actual_t": 6.6667,
+   "planned_t": 6.6666,
+   "actual_t": 6.6666,
    "lead_time_months": 2,
    "order_placement_month": "2038-07",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5112,7 +5200,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-10",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5120,12 +5209,13 @@
    "year": 2038,
    "month": 10,
    "delivery_month": "2038-10",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2038-06",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5138,7 +5228,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-08",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5146,12 +5237,13 @@
    "year": 2038,
    "month": 10,
    "delivery_month": "2038-10",
-   "planned_t": 5.857,
-   "actual_t": 5.857,
+   "planned_t": 5.867,
+   "actual_t": 5.867,
    "lead_time_months": 2,
    "order_placement_month": "2038-08",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5164,7 +5256,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-11",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5172,12 +5265,13 @@
    "year": 2038,
    "month": 11,
    "delivery_month": "2038-11",
-   "planned_t": 6.1055,
-   "actual_t": 6.1055,
+   "planned_t": 6.1054,
+   "actual_t": 6.1054,
    "lead_time_months": 4,
    "order_placement_month": "2038-07",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5190,7 +5284,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-09",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5203,7 +5298,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2037-12",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5211,12 +5307,13 @@
    "year": 2038,
    "month": 12,
    "delivery_month": "2038-12",
-   "planned_t": 6.1055,
-   "actual_t": 6.1055,
+   "planned_t": 6.1054,
+   "actual_t": 6.1054,
    "lead_time_months": 4,
    "order_placement_month": "2038-08",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5229,7 +5326,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-10",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5242,7 +5340,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-01",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5254,8 +5353,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-09",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5268,7 +5368,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-11",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5281,7 +5382,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-02",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5293,8 +5395,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-10",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5307,7 +5410,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2038-12",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5320,7 +5424,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-03",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5332,8 +5437,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-11",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5346,7 +5452,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-01",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5359,7 +5466,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-04",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5371,8 +5479,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2038-12",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5385,7 +5494,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-02",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5398,7 +5508,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-05",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5410,8 +5521,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-01",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5424,7 +5536,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-03",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5437,7 +5550,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-06",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5449,8 +5563,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-02",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5463,7 +5578,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-04",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5476,7 +5592,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-07",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5488,8 +5605,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-03",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5502,7 +5620,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-05",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5515,7 +5634,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-08",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5527,8 +5647,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-04",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5541,7 +5662,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-06",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5554,7 +5676,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-09",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5566,8 +5689,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-05",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5580,7 +5704,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-07",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5593,7 +5718,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-10",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5605,8 +5731,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-06",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5619,7 +5746,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-08",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5632,7 +5760,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-11",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5644,8 +5773,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-07",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5658,7 +5788,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-09",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5671,7 +5802,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2038-12",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5683,8 +5815,9 @@
    "actual_t": 8.5429,
    "lead_time_months": 4,
    "order_placement_month": "2039-08",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5697,7 +5830,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-10",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "A",
@@ -5710,7 +5844,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-01",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5718,12 +5853,13 @@
    "year": 2040,
    "month": 1,
    "delivery_month": "2040-01",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-09",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5736,7 +5872,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-11",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5748,8 +5885,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2039-11",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5762,7 +5900,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-02",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5770,12 +5909,13 @@
    "year": 2040,
    "month": 2,
    "delivery_month": "2040-02",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-10",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5788,7 +5928,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2039-12",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5800,8 +5941,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2039-12",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5814,7 +5956,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-03",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5822,12 +5965,13 @@
    "year": 2040,
    "month": 3,
    "delivery_month": "2040-03",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-11",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5840,7 +5984,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-01",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5852,8 +5997,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-01",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5866,7 +6012,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-04",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5874,12 +6021,13 @@
    "year": 2040,
    "month": 4,
    "delivery_month": "2040-04",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2039-12",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5892,7 +6040,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-02",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5904,8 +6053,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-02",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5918,7 +6068,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-05",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5926,12 +6077,13 @@
    "year": 2040,
    "month": 5,
    "delivery_month": "2040-05",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-01",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5944,7 +6096,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-03",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -5956,8 +6109,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-03",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -5970,7 +6124,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-06",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -5978,12 +6133,13 @@
    "year": 2040,
    "month": 6,
    "delivery_month": "2040-06",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-02",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -5996,7 +6152,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-04",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -6008,8 +6165,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-04",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6022,7 +6180,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-07",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -6030,12 +6189,13 @@
    "year": 2040,
    "month": 7,
    "delivery_month": "2040-07",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-03",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6048,7 +6208,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-05",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -6060,8 +6221,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-05",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6074,7 +6236,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-08",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -6082,12 +6245,13 @@
    "year": 2040,
    "month": 8,
    "delivery_month": "2040-08",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-04",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6100,7 +6264,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-06",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -6112,8 +6277,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-06",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6126,7 +6292,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-09",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -6134,12 +6301,13 @@
    "year": 2040,
    "month": 9,
    "delivery_month": "2040-09",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-05",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6152,7 +6320,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-07",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -6164,8 +6333,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-07",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6178,7 +6348,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-10",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -6186,12 +6357,13 @@
    "year": 2040,
    "month": 10,
    "delivery_month": "2040-10",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-06",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6204,7 +6376,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-08",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -6216,8 +6389,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-08",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6230,7 +6404,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-11",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -6238,12 +6413,13 @@
    "year": 2040,
    "month": 11,
    "delivery_month": "2040-11",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-07",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6256,7 +6432,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-09",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -6268,8 +6445,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-09",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "A",
@@ -6282,7 +6460,8 @@
    "lead_time_months": 12,
    "order_placement_month": "2039-12",
    "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 12 мес.; заказы с 2034-01"
   },
   {
    "source_id": "B",
@@ -6290,12 +6469,13 @@
    "year": 2040,
    "month": 12,
    "delivery_month": "2040-12",
-   "planned_t": 9.1667,
-   "actual_t": 9.1667,
+   "planned_t": 9.1666,
+   "actual_t": 9.1666,
    "lead_time_months": 4,
    "order_placement_month": "2040-08",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 4 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   },
   {
    "source_id": "D",
@@ -6308,7 +6488,8 @@
    "lead_time_months": 2,
    "order_placement_month": "2040-10",
    "earliest_allowed_order": "2038-01",
-   "lead_time_ok": true
+   "lead_time_ok": true,
+   "lead_time_note": "ввод 2038-01; срок поставки после ввода 2 мес."
   },
   {
    "source_id": "E",
@@ -6320,8 +6501,9 @@
    "actual_t": 2.8289,
    "lead_time_months": 2,
    "order_placement_month": "2040-10",
-   "earliest_allowed_order": "2034-01",
-   "lead_time_ok": true
+   "earliest_allowed_order": "2038-03",
+   "lead_time_ok": true,
+   "lead_time_note": "срок поставки 2 мес.; заказы с 2034-01; реактивный заказ — не раньше месяца наблюдения 2038-03"
   }
  ]
 }

@@ -13,3 +13,4 @@ from .assumptions import Assumptions, load_assumptions  # noqa: F401
 from .engine import Result, simulate  # noqa: F401
 from .export import write_results  # noqa: F401
 from .compare import compare_results  # noqa: F401
+from .api import run_plan  # noqa: F401

@@ -12,11 +12,11 @@
     "investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
     "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8"
   },
-  "plan_sha256": "d0ff0d764f49d258c0643e01f6796ad5f33870e4c93eb606c9920fde60f84583",
+  "plan_sha256": "b417ea5e64ae4a1b7aa3ac43e7bd5d7b64bba960a1fdf7771d1c3b21e674f787",
   "scenario_sha256": "f5f5e2820596a3da2d3623cf4ba0723c9dd58d8850077f2bcdaea949aaa6b653",
-  "assumptions_sha256": "af06908a1d3b694399cfceab2489ac14bf5fd00f7a5a517da2862f9af2192f16",
-  "kpi_sha256": "6c59feb710c9ae877357770c4bf24c5dd813dea1b973258b4231a5a86bbfd322",
+  "assumptions_sha256": "b0046ca14cc3d32a81bd794b5e9b9cf5d8b3a8414a886b0c382b7ce71ae781fa",
+  "kpi_sha256": "c94ae91fcb30a234d31ace67974811608ecf33c095eaf0ba4c749eb962120cbb",
   "kpi_precision": 6,
   "random_seed": null,
-  "note": "deterministic run; re-running with the same inputs reproduces kpi_sha256 (KPIs rounded to 6 decimals before hashing, which absorbs last-bit differences of float summation between Python versions)"
+  "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)"
 }

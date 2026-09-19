@@ -26,4 +26,4 @@ MANDATORY_STRESS,P2z_earth_new_zbo,guideline_violations,2
 MANDATORY_STRESS,P2z_earth_new_zbo,warnings,0
 MANDATORY_STRESS,P2z_earth_new_zbo,feasible,False
 MANDATORY_STRESS,P2z_earth_new_zbo,checks_total,78
-MANDATORY_STRESS,P2z_earth_new_zbo,checks_passed,71
+MANDATORY_STRESS,P2z_earth_new_zbo,checks_passed,73

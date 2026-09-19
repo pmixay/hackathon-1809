@@ -1,11 +1,11 @@
 scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,2037: total service level 0.9445 < 0.97 (shortage 11.603 t) [guideline in this scenario],2037,,,0.944485,0.970000,0.025515
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,2038: total service level 0.8276 < 0.97 (shortage 53.870 t) [guideline in this scenario],2038,,,0.827616,0.970000,0.142384
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,2039: total service level 0.8216 < 0.97 (shortage 71.370 t) [guideline in this scenario],2039,,,0.821575,0.970000,0.148425
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,2040: total service level 0.8000 < 0.97 (shortage 97.500 t) [guideline in this scenario],2040,,,0.800000,0.970000,0.170000
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2035-01: physical stock 12.329 t < 45-day reserve 13.562 t,2035,1,,12.328859,13.561644,1.232785
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2036-01: physical stock 7.260 t < 45-day reserve 18.986 t,2036,1,,7.260439,18.986301,11.725862
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2037-01: physical stock 0.000 t < 45-day reserve 25.767 t,2037,1,,0.000000,25.767123,25.767123
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2038-01: physical stock 0.000 t < 45-day reserve 38.527 t,2038,1,,0.000000,38.527397,38.527397
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2039-01: physical stock 0.000 t < 45-day reserve 49.315 t,2039,1,,0.000000,49.315068,49.315068
-TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2040-01: physical stock 0.000 t < 45-day reserve 60.103 t,2040,1,,0.000000,60.102740,60.102740
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,"2037: общий уровень сервиса 0.9445 < 0.97 (дефицит 11.603 т) [в этом сценарии — ориентир, не жёсткое ограничение]",2037,,,0.944485,0.970000,0.025515
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,"2038: общий уровень сервиса 0.8276 < 0.97 (дефицит 53.870 т) [в этом сценарии — ориентир, не жёсткое ограничение]",2038,,,0.827616,0.970000,0.142384
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,"2039: общий уровень сервиса 0.8216 < 0.97 (дефицит 71.370 т) [в этом сценарии — ориентир, не жёсткое ограничение]",2039,,,0.821575,0.970000,0.148425
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,BASE_TOTAL_SERVICE,guideline,"2040: общий уровень сервиса 0.8000 < 0.97 (дефицит 97.500 т) [в этом сценарии — ориентир, не жёсткое ограничение]",2040,,,0.800000,0.970000,0.170000
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2035-01: физический запас 12.329 т < 45-дневного резерва 13.562 т,2035,1,,12.328859,13.561644,1.232785
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2036-01: физический запас 7.260 т < 45-дневного резерва 18.986 т,2036,1,,7.260439,18.986301,11.725862
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2037-01: физический запас 0.000 т < 45-дневного резерва 25.767 т,2037,1,,0.000000,25.767123,25.767123
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2038-01: физический запас 0.000 т < 45-дневного резерва 38.527 т,2038,1,,0.000000,38.527397,38.527397
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2039-01: физический запас 0.000 т < 45-дневного резерва 49.315 т,2039,1,,0.000000,49.315068,49.315068
+TEAM_HIGH_DEMAND,P2z_earth_new_zbo,RESERVE_45D,hard,2040-01: физический запас 0.000 т < 45-дневного резерва 60.103 т,2040,1,,0.000000,60.102740,60.102740

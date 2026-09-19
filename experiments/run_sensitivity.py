@@ -54,7 +54,7 @@ def main() -> None:
         sc = scenario_from_dict({"scenario_id": f"TEAM_SENS_DEMAND_{x}", "status": "TEAM_ASSUMPTION", "demand_multiplier": {"default": x}})
         r1 = simulate(case, plan, sc, a)
         r2 = simulate(case, build_plan(case, sc, dict(strat, plan_id=f"{PLAN}_d{x}", stress_aware=True), a), sc, a)
-        rows.append(dict(row(r1, param="demand_multiplier", value=x, variant="fixed plan"), replanned_pv=r2.kpi["pv_cost_mln"],
+        rows.append(dict(row(r1, param="demand_multiplier", value=x, variant="план без изменений"), replanned_pv=r2.kpi["pv_cost_mln"],
                          replanned_min_sl=r2.kpi["min_service_level_total"], replanned_hard=r2.kpi["hard_violations"], replanned_shortage=r2.kpi["shortage_total_t"]))
         if thr_fixed is None and x > 1.0 and breaks(r1):
             thr_fixed = x
@@ -62,7 +62,7 @@ def main() -> None:
             thr_replan = x
     write_table(rows, RESULTS / "sensitivity" / "sweep_demand_multiplier.csv")
     summary.append(dict(param="demand_multiplier", range="0.80..1.30", threshold_fixed_plan=thr_fixed, threshold_replanned=thr_replan,
-                        note="first failed adverse grid points; not exact boundaries; re-planned x1.25 passes constraints with 12.437 t shortage and 97.45% minimum annual service; x1.30 fails"))
+                        note="первые неуспешные точки сетки, не точные границы; перепланированный план при ×1,25 проходит ограничения, но уже имеет дефицит 12,437 т и минимальный годовой сервис 97,45 %; при ×1,30 нарушает ограничения"))
     tornado.append(dict(param="demand_multiplier", low=0.80, high=1.30, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 2. ISRU delivery share 2038
@@ -70,14 +70,14 @@ def main() -> None:
     for x in frange(0.30, 1.00, 0.05):
         sc = scenario_from_dict({"scenario_id": f"TEAM_SENS_ISRU_{x}", "status": "TEAM_ASSUMPTION", "actual_delivery_share": {"Lunar-ISRU": {2038: x}}})
         r = simulate(case, plan, sc, a)
-        rows.append(row(r, param="isru_delivery_share_2038", value=x, variant="fixed plan"))
+        rows.append(row(r, param="isru_delivery_share_2038", value=x, variant="план без изменений"))
     for rr in reversed(rows):
         if rr["hard"] > 0 or rr["min_sl_total"] < 0.97:
             thr = rr["value"]
             break
     write_table(rows, RESULTS / "sensitivity" / "sweep_isru_share_2038.csv")
     summary.append(dict(param="isru_delivery_share_2038", range="0.30..1.00", threshold_fixed_plan=thr, threshold_replanned=None,
-                        note="largest sampled share failing reserve checks; 1.00 passes and 0.95 fails; exact boundary between them not searched"))
+                        note="наибольшая проверенная доля, при которой нарушается проверка резерва; 1,00 проходит, 0,95 нарушает; точная граница между ними не искалась"))
     tornado.append(dict(param="isru_delivery_share_2038", low=0.30, high=1.00, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 3. Core/Flex price multiplier
@@ -85,31 +85,31 @@ def main() -> None:
     for x in frange(0.80, 1.50, 0.10):
         sc = scenario_from_dict({"scenario_id": f"TEAM_SENS_PRICE_{x}", "status": "TEAM_ASSUMPTION",
                                  "variable_price_multiplier": {"Earth-Core": {"default": x}, "Earth-Flex": {"default": x}}})
-        rows.append(row(simulate(case, plan, sc, a), param="earth_price_multiplier", value=x, variant="fixed plan"))
+        rows.append(row(simulate(case, plan, sc, a), param="earth_price_multiplier", value=x, variant="план без изменений"))
     write_table(rows, RESULTS / "sensitivity" / "sweep_earth_price_multiplier.csv")
     summary.append(dict(param="earth_price_multiplier", range="0.80..1.50", threshold_fixed_plan=None, threshold_replanned=None,
-                        note="pure cost effect; no physical constraint depends on price"))
+                        note="чисто стоимостной эффект; физические ограничения от цены не зависят"))
     tornado.append(dict(param="earth_price_multiplier", low=0.80, high=1.50, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 4. discount rate
     rows = []
     for x in frange(0.00, 0.12, 0.02):
-        rows.append(row(simulate(case, plan, base, a.with_overrides(discount_rate_real=x)), param="discount_rate_real", value=x, variant="fixed plan"))
+        rows.append(row(simulate(case, plan, base, a.with_overrides(discount_rate_real=x)), param="discount_rate_real", value=x, variant="план без изменений"))
     write_table(rows, RESULTS / "sensitivity" / "sweep_discount_rate.csv")
     summary.append(dict(param="discount_rate_real", range="0.00..0.12", threshold_fixed_plan=None, threshold_replanned=None,
-                        note="affects PV only; ranking of alternatives must be re-checked at each rate (see summary.md)"))
+                        note="влияет только на PV; ранжирование альтернатив проверяется при каждой ставке (см. summary.md)"))
     tornado.append(dict(param="discount_rate_real", low=0.0, high=0.12, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 5. ZBO commissioning lag under mandatory stress (loss ceiling from 2038)
     rows, thr = [], None
     for lag in range(0, 13):
         r = simulate(case, plan, stress, a.with_overrides(zbo_commissioning_lag_months=lag))
-        rows.append(row(r, param="zbo_commissioning_lag_months", value=lag, variant="fixed plan / MANDATORY_STRESS"))
+        rows.append(row(r, param="zbo_commissioning_lag_months", value=lag, variant="план без изменений / MANDATORY_STRESS"))
         if thr is None and any(v.rule_id == "STRESS_LOSS_LIMIT" for v in r.violations):
             thr = lag
     write_table(rows, RESULTS / "sensitivity" / "sweep_zbo_lag_stress.csv")
     summary.append(dict(param="zbo_commissioning_lag_months", range="0..12", threshold_fixed_plan=thr, threshold_replanned=None,
-                        note="first annual loss-check failure at lag 10; lags 7-9 still pass that check; reserve/service already fail at lag 0; ZBO decision 2037-07"))
+                        note="первое нарушение именно годовой проверки потерь при задержке 10 мес.; задержки 7–9 мес. эту проверку ещё проходят; резерв и сервис нарушены уже при задержке 0; решение о ZBO 2037-07"))
 
     # ranking of alternatives across discount rates
     rank_rows = []
@@ -122,18 +122,18 @@ def main() -> None:
 
     write_table(summary, RESULTS / "sensitivity" / "thresholds.csv")
     write_table(tornado, RESULTS / "sensitivity" / "tornado.csv")
-    lines = [f"# EXP-04 Sensitivity — plan {PLAN} (BASE plan, fixed unless stated)", "", f"Reference PV cost (BASE, r=8 %): {ref.kpi['pv_cost_mln']:,.1f} mln", "",
-             "## Thresholds", "", "| Parameter | Range | Threshold (fixed plan) | Threshold (re-planned) | Note |", "|---|---|---:|---:|---|"]
+    lines = [f"# EXP-04 Чувствительность — план {PLAN} (план BASE без изменений, если не указано иное)", "", f"Опорное значение PV затрат (BASE, r = 8 %): {ref.kpi['pv_cost_mln']:,.1f} млн", "",
+             "## Пороги", "", "| Параметр | Диапазон | Порог (план без изменений) | Порог (перепланирован) | Примечание |", "|---|---|---:|---:|---|"]
     for s in summary:
         lines.append(f"| {s['param']} | {s['range']} | {s['threshold_fixed_plan'] if s['threshold_fixed_plan'] is not None else '—'} | "
                      f"{s['threshold_replanned'] if s['threshold_replanned'] is not None else '—'} | {s['note']} |")
-    lines += ["", "## Tornado (PV cost, mln)", "", "| Parameter | Low | PV @ low | PV @ base | High | PV @ high | Swing |", "|---|---:|---:|---:|---:|---:|---:|"]
+    lines += ["", "## Торнадо (PV затрат, млн)", "", "| Параметр | Мин. | PV при мин. | PV база | Макс. | PV при макс. | Размах |", "|---|---:|---:|---:|---:|---:|---:|"]
     for t in sorted(tornado, key=lambda t: -abs(t["pv_high"] - t["pv_low"])):
         lines.append(f"| {t['param']} | {t['low']} | {t['pv_low']:,.0f} | {t['pv_base']:,.0f} | {t['high']} | {t['pv_high']:,.0f} | {abs(t['pv_high'] - t['pv_low']):,.0f} |")
-    lines += ["", "## Ranking of alternatives by PV cost at different discount rates (BASE)", "", "| r | " + " | ".join(STRATEGIES) + " |", "|---|" + "|".join("---:" for _ in STRATEGIES) + "|"]
+    lines += ["", "## Ранжирование альтернатив по PV затрат при разных ставках дисконтирования (BASE)", "", "| r | " + " | ".join(STRATEGIES) + " |", "|---|" + "|".join("---:" for _ in STRATEGIES) + "|"]
     for x in (0.0, 0.04, 0.08, 0.12):
         vals = [next(rr for rr in rank_rows if rr["discount_rate"] == x and rr["plan_id"] == n) for n in STRATEGIES]
-        lines.append(f"| {x:.2f} | " + " | ".join(f"{v['pv_cost_mln']:,.0f}{'' if v['feasible'] else ' (infeasible)'}" for v in vals) + " |")
+        lines.append(f"| {x:.2f} | " + " | ".join(f"{v['pv_cost_mln']:,.0f}{'' if v['feasible'] else ' (неисполним)'}" for v in vals) + " |")
     (RESULTS / "sensitivity" / "summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
 

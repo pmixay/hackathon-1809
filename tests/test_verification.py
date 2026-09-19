@@ -85,3 +85,38 @@ def test_committed_results_reproduce(root):
     rc = subprocess.run([sys.executable, "-m", "terraplan", "verify", str(root / "results/alternatives/P3_isru_zbo_BASE"), "--case", str(root / "data/case")],
                         capture_output=True, text=True, cwd=str(root), env={"PYTHONPATH": str(root / "src"), "PATH": "/usr/bin:/bin:/usr/local/bin"})
     assert rc.returncode == 0, rc.stdout + rc.stderr
+
+
+MATRIX_YEAR_RULES = {"BASE_TOTAL_SERVICE", "BASE_CRITICAL_SERVICE", "RESERVE_45D", "STRESS_LOSS_LIMIT", "CAPACITY_EXCEEDED",
+                     "ORDER_EXCEEDS_RESERVATION", "LEAD_TIME_VIOLATED", "SOURCE_NOT_AVAILABLE", "STORAGE_OVERFLOW"}
+
+
+def test_check_matrix_agrees_with_violation_list(case, base, stress, assumptions, root):
+    """Feasibility, the violation list and the rule x year matrix must tell the same story for every saved plan in BASE and STRESS."""
+    for pf in sorted((root / "configs/plans").glob("*.json")):
+        plan = load_plan(pf, case)
+        for sc in (base, stress):
+            res = simulate(case, plan, sc, assumptions)
+            hard_bad = [m for m in res.check_matrix if m["severity"] == "hard" and not m["ok"]]
+            assert res.feasible == (not hard_bad), (pf.name, sc.scenario_id, [(m["rule_id"], m["year"]) for m in hard_bad])
+            for rule in MATRIX_YEAR_RULES:
+                m_years = {m["year"] for m in res.check_matrix if m["rule_id"] == rule and not m["ok"]}
+                v_years = {v.year for v in res.violations if v.rule_id == rule and v.severity != "warning"}
+                assert m_years == v_years, (pf.name, sc.scenario_id, rule, m_years, v_years)
+            for rule in {m["rule_id"] for m in res.check_matrix}:      # rule level: a VIOLATED row exists iff a violation of that rule exists
+                assert any(not m["ok"] for m in res.check_matrix if m["rule_id"] == rule) == any(
+                    v.rule_id == rule and v.severity != "warning" for v in res.violations), (pf.name, sc.scenario_id, rule)
+
+
+def test_earth_new_order_calendar_is_consistent(case, base, assumptions, root):
+    """Earth-New: exercise 2035-01 + 24 months preparation -> first delivery 2037-01; orders after commissioning are not flagged."""
+    plan = load_plan(root / "configs/plans/P2z_earth_new_zbo.json", case)
+    res = simulate(case, plan, base, assumptions)
+    c = [d for d in res.deliveries if d["source_id"] == "C"]
+    assert c and min(d["delivery_month"] for d in c) == "2037-01"
+    assert all(d["lead_time_ok"] and d["earliest_allowed_order"] == "2037-01" for d in c)
+    assert all("2035-01" in d["lead_time_note"] and "24" in d["lead_time_note"] for d in c)
+    assert res.feasible and all(m["ok"] for m in res.check_matrix)
+    # a plain source still needs its full lead time before the preparatory period
+    core = [d for d in res.deliveries if d["source_id"] == "A" and d["delivery_month"] == "2035-01"]
+    assert core and core[0]["order_placement_month"] == "2034-01" and core[0]["lead_time_ok"]

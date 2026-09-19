@@ -19,12 +19,12 @@ def main() -> None:
             strat = STRATEGIES[name]
             fixed = build_plan(case, base, strat, a)
             replanned = build_plan(case, sc, dict(strat, plan_id=f"{name}_{sid.lower()}", stress_aware=True), a)
-            r1 = run_and_save(case, fixed, sc, a, RESULTS / "demand" / f"{name}_fixed_{sid}", xlsx=False)
-            r2 = run_and_save(case, replanned, sc, a, RESULTS / "demand" / f"{name}_replanned_{sid}", xlsx=False)
-            rows += [kpi_row(r1, experiment="EXP-03", variant="BASE plan unchanged"), kpi_row(r2, experiment="EXP-03", variant="re-planned")]
+            r1 = run_and_save(case, fixed, sc, a, RESULTS / "demand" / f"{name}_fixed_{sid}")
+            r2 = run_and_save(case, replanned, sc, a, RESULTS / "demand" / f"{name}_replanned_{sid}")
+            rows += [kpi_row(r1, experiment="EXP-03", variant="план BASE без изменений"), kpi_row(r2, experiment="EXP-03", variant="перепланирован")]
             print(f"{sid:16s} {name:20s} fixed: PV={r1.kpi['pv_cost_mln']:.0f} minSL={r1.kpi['min_service_level_total']:.3f} hard={r1.kpi['hard_violations']} | "
                   f"re-planned: PV={r2.kpi['pv_cost_mln']:.0f} minSL={r2.kpi['min_service_level_total']:.3f} hard={r2.kpi['hard_violations']}")
-    write_table(rows, RESULTS / "demand" / "summary.csv", RESULTS / "demand" / "summary.md", "EXP-03 Low / high demand checks")
+    write_table(rows, RESULTS / "demand" / "summary.csv", RESULTS / "demand" / "summary.md", "EXP-03 Проверки при низком и высоком спросе")
 
 
 if __name__ == "__main__":

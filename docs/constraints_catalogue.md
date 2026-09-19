@@ -1,31 +1,32 @@
-# Constraints catalogue — every rule the engine checks
+# Каталог ограничений — все правила, которые проверяет движок
 
-Each rule has a stable id (used in `constraint_checks.csv`, `constraint_matrix.csv`, the UI and the note), a
-severity, a scope, the exact test and the message format. `constraint_matrix.csv` lists **every rule × year with
-its actual value, limit and OK/VIOLATED**, so passed checks are visible, not only failures. Severities:
-**hard** = plan infeasible; **guideline** = organizer service targets used as resilience benchmarks outside BASE;
-**warning** = informational (does not affect feasibility).
+У каждого правила есть стабильный идентификатор (используется в `constraint_checks.csv`, `constraint_matrix.csv`, интерфейсе и записке),
+строгость, область действия, точный тест и формат сообщения. `constraint_matrix.csv` перечисляет **каждое правило × год с фактической
+величиной, лимитом и результатом выполнено / НАРУШЕНО**, поэтому видны и выполненные проверки, а не только нарушения. Строгость:
+**hard (жёсткое)** — план неисполним; **guideline (ориентир)** — целевые уровни сервиса организатора, используемые вне BASE как
+ориентиры устойчивости; **warning (предупреждение)** — информационное, не влияет на исполнимость.
 
-| Rule id | Severity | Scope | Test (per year unless stated) | Source of rule | Message fields |
+| Идентификатор | Строгость | Область | Тест (по каждому году, если не указано иное) | Источник правила | Поля сообщения |
 |---|---|---|---|---|---|
-| BASE_TOTAL_SERVICE | hard in BASE, guideline elsewhere | every year | `served_total / demand_total ≥ 0.97` (1.0 if demand = 0) | constraints.csv, case §Requirements | year, actual SL, limit, shortage t |
-| BASE_CRITICAL_SERVICE | hard in BASE, guideline elsewhere | every year | `served_critical / demand_critical ≥ 0.99`; critical served first (allocation rule) | same | year, actual SL, limit, shortage t |
-| CAPEX_2037 | hard | cumulative through 2037 | `Σ CAPEX(y ≤ 2037) ≤ 1800` | constraints.csv | through-year, cumulative, limit, excess |
-| CAPEX_2040 | hard | cumulative through 2040 | `Σ CAPEX(y ≤ 2040) ≤ 2800` | constraints.csv | same |
-| RESERVE_45D | hard | start of every year | physical: `I_start(y) ≥ D_y × 45/365`; contracted mode: also requires `I_start ≥ D_y × 42/365` (6-week wait) and reserved Emergency ≥ R_y | case §Initial stock and reserve; equivalence rule = TEAM_ASSUMPTION | year, stock, R_y, shortfall, equivalence detail |
-| STORAGE_OVERFLOW | hard | every month | `I_end(month) ≤ capacity(active storage mode)`; opening stock also checked at 2035-01 | case §Losses and storage (capacity on the chosen step) | year, month, stock, capacity, excess |
-| INTRA_MONTH_PEAK | warning | every month | `I_start + inflow − losses > capacity` before withdrawals (conservative timing) | TEAM_ASSUMPTION `storage_capacity_check` | year, month, peak, capacity |
-| CAPACITY_EXCEEDED | hard | source × year | `reserved_t_per_year ≤ capacity` | control vector V08 | source, year, reserved, capacity, excess |
-| ORDER_EXCEEDS_RESERVATION | hard | source × year | `ordered ≤ reserved × period_fraction` (capacity right needed to order) | case §Contracts | source, year, ordered, contractually available, excess |
-| SOURCE_NOT_AVAILABLE | hard | source × year / month | order or reservation before the source can deliver (Earth-New before commissioning, ISRU before 2038-03 or unfinanced, explicit month before availability) | case §Investments; lead-time policy | source, year/month, volume, first possible delivery |
-| LEAD_TIME_VIOLATED | hard | source × delivery month | `delivery_month − lead_time ≥ preparatory start (2034-01)`; for investment-linked sources ≥ commissioning | case §Time step and lead time; `lead_time_policy` = max | source, delivery month, required order date, earliest allowed |
-| INVESTMENT_TIMING | hard | investment | ZBO decision ≥ 2036; ISRU CAPEX ≤ 2037-12 (else source never available); option fee ≤ exercise date; CAPEX dated inside 2035–2040 | case §Storage and investment options | investment, date, limit |
-| EMERGENCY_BASE_STREAK | hard | horizon | a year counts as "Emergency = base channel" when ordered Emergency > 20 % of demand (assumption); `consecutive base years ≤ 2` | case §Requirements; threshold = TEAM_ASSUMPTION | years, streak, limit |
-| STRESS_LOSS_LIMIT | hard | years ≥ 2038, scenarios with `loss_ceiling.enabled` | `losses_y / throughput_y ≤ 0.02` | mandatory_stress.yaml | year, ratio, limit, losses, throughput |
-| UNSUPPORTED_CONSTRAINT | warning | — | a `constraints.csv` metric the engine does not implement (visible instead of silently ignored) | extensibility rule | constraint id, metric |
-| INPUT errors (PlanError / CaseError / ScenarioError) | fatal, before calculation | — | missing field, negative value, unknown id, duplicate line, year outside horizon, critical > total, malformed JSON/YAML, scenario without id | organizer §26 error format | file, field, offending value |
+| BASE_TOTAL_SERVICE | hard в BASE, guideline в остальных | каждый год | `обслужено / спрос ≥ 0.97` (1.0 при нулевом спросе) | constraints.csv, кейс §Требования | год, факт УС, лимит, дефицит т |
+| BASE_CRITICAL_SERVICE | hard в BASE, guideline в остальных | каждый год | `обслужено_крит / спрос_крит ≥ 0.99`; критический спрос обслуживается первым (правило распределения) | там же | год, факт УС, лимит, дефицит т |
+| CAPEX_2037 | hard | накопительно до 2037 | `Σ CAPEX(y ≤ 2037) ≤ 1800` | constraints.csv | год, накопленный CAPEX, лимит, превышение |
+| CAPEX_2040 | hard | накопительно до 2040 | `Σ CAPEX(y ≤ 2040) ≤ 2800` | constraints.csv | то же |
+| RESERVE_45D | hard | начало каждого года | физический режим: `I_start(y) ≥ D_y × 45/365`; контрактный режим (`reserve_mode: emergency_contract`): дополнительно `I_start ≥ D_y × 42/365` (срок поставки Emergency 6 недель = 42 дня, без округления до месяцев) и зарезервированный Emergency ≥ R_y; тест `tests/test_review_fixes.py::test_contracted_reserve_equivalence_uses_the_six_week_lead_time` | кейс §Начальный запас и резерв; правило эквивалентности = TEAM_ASSUMPTION | год, запас, R_y, недостача, детали эквивалентности |
+| STORAGE_OVERFLOW | hard | каждый месяц | `I_end(месяц) ≤ ёмкость(активный режим хранилища в этом месяце)`; начальный запас также проверяется на 2035-01. В матрице строка года показывает месяц с наибольшим превышением «запас − ёмкость» и ёмкость именно этого месяца (в году переключения на ZBO ёмкость меняется 70 → 120) | кейс §Потери и хранение (ёмкость на выбранном шаге) | год, месяц, запас, ёмкость, превышение |
+| INTRA_MONTH_PEAK | warning | каждый месяц | `I_start + поступление − потери > ёмкость` до выдачи (консервативная последовательность) | TEAM_ASSUMPTION `storage_capacity_check` | год, месяц, пик, ёмкость |
+| CAPACITY_EXCEEDED | hard | источник × год; начальный запас | `резерв_т/год ≤ мощность`; тоннаж начального запаса ≤ годовой мощности источника | контрольный пример V08 | источник, год, резерв, мощность, превышение |
+| ORDER_EXCEEDS_RESERVATION | hard | источник × год | `заказ ≤ резерв × доля года` (право на мощность нужно для заказа) | кейс §Контракты | источник, год, заказ, контрактно доступно, превышение |
+| SOURCE_NOT_AVAILABLE | hard | источник × год / месяц | заказ или резерв раньше, чем источник может поставлять (Earth-New до ввода, ISRU до 2038-03 или без финансирования, явный месяц до доступности) | кейс §Инвестиции; политика сроков | источник, год/месяц, объём, первая возможная поставка |
+| LEAD_TIME_VIOLATED | hard | источник × месяц поставки | `месяц поставки − срок заказа ≥ самая ранняя допустимая дата заказа`. Обычные каналы: срок поставки организатора, заказы с начала подготовительного периода (2034-01). Lunar-ISRU: срок 1–2 мес. после ввода, заказы с месяца ввода. Earth-New: 18–24 мес. — это подготовка после реализации опциона, решение о реализации и есть заказ первых поставок; после ввода действует срок заказа `earth_new_post_commissioning_lead_months` (0, допущение). Реактивные заказы (`reactive: true` в плане) дополнительно не могут быть размещены раньше месяца наблюдения события `inventory_policy.observation_month` — так проверяются сроки реакции (EXP-06: наблюдение 2038-03, Earth-Flex через 4 мес., Emergency через 6 недель). Календарь с пояснением по каждой поставке — `delivery_schedule.csv` | кейс §Шаг времени и срок поставки; `lead_time_policy` = max | источник, месяц поставки, требуемая дата заказа, самая ранняя допустимая |
+| INVESTMENT_TIMING | hard | инвестиция | решение о ZBO ≥ 2036; CAPEX ISRU ≤ 2037-12 (иначе источник недоступен); плата за опцион ≤ дата реализации; CAPEX датирован внутри 2035–2040 | кейс §Хранилище и инвестиционные опции | инвестиция, дата, лимит |
+| EMERGENCY_BASE_STREAK | hard | горизонт | год считается «Emergency — базовый канал», когда заказ у Emergency > 20 % спроса (допущение); `базовых лет подряд ≤ 2`; нарушение выдаётся по каждой серии длиннее лимита, в матрице у каждого года показана длина серии, в которую он входит (0 — не базовый год) | кейс §Требования; порог = TEAM_ASSUMPTION | годы, длина серии, лимит |
+| STRESS_LOSS_LIMIT | hard | годы ≥ 2038, сценарии с `loss_ceiling.enabled` | `потери_y / поступление_y ≤ 0.02` | mandatory_stress.yaml | год, доля, лимит, потери, поступление |
+| UNSUPPORTED_CONSTRAINT | warning | — | метрика из `constraints.csv`, которую движок не реализует (показывается, а не игнорируется молча) | правило расширяемости | идентификатор ограничения, метрика |
+| Ошибки ввода (PlanError / CaseError / ScenarioError) | фатально, до расчёта | — | отсутствующее поле, отрицательное значение, неизвестный идентификатор, повторная строка, год вне горизонта, критический > общего, некорректный JSON/YAML, сценарий без id | формат ошибок организатора §26 | файл, поле, значение |
 
-Order of application: input validation → investments & availability → schedule (availability, lead time) →
-monthly balance (overflow) → contracts (capacity, reservation) → finance → constraints.csv rules → loss ceiling →
-check matrix. A plan is **feasible** iff no hard violation exists; guideline and warning items are reported but do not
-change feasibility. Nothing is auto-repaired: an infeasible plan is shown with year, value and reason.
+Порядок применения: проверка ввода → инвестиции и доступность → календарь (доступность, срок заказа) → помесячный баланс (переполнение) →
+контракты (мощность, резерв) → финансы → правила `constraints.csv` → потолок потерь → матрица проверок. План **исполним** тогда и только
+тогда, когда нет ни одного жёсткого нарушения; ориентиры и предупреждения показываются, но исполнимость не меняют. Ничего не «чинится»
+автоматически: неисполнимый план показывается с годом, величиной и причиной. Согласованность исполнимости, списка нарушений и матрицы
+проверок для всех сохранённых планов в BASE и STRESS проверяется тестом `tests/test_verification.py::test_check_matrix_agrees_with_violation_list`.
