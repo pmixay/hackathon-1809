@@ -39,7 +39,7 @@
     "source": "data/case/supply_sources.csv; data/case/investment_options.csv; data/case/storage_options.csv"
   },
   {
-    "title": "Сравнение исполнимых планов в BASE",
+    "title": "P2z выбран после жёсткого фильтра",
     "chart": {
       "categories": [
         "P2 New",
@@ -49,7 +49,7 @@
       ],
       "series": [
         {
-          "name": "PV, млн у.е.",
+          "name": "PV BASE, млн у.е.",
           "values": [
             8780,
             8729,
@@ -60,21 +60,21 @@
         }
       ]
     },
-    "caption": "P1 не проходит ограничения и исключён из ценового ранжирования.",
-    "source": "results/alternatives/*_BASE/result.json"
+    "caption": "P2z не самый дешёвый в BASE, но выигрывает все раскрытые профили MCDA за счёт CAPEX и стоимости адаптации.",
+    "source": "results/alternatives/*_BASE/result.json; results/strategy/summary.md"
   },
   {
-    "title": "P3 в обязательном стрессе",
+    "title": "Обязательный стресс P2z",
     "lines": [
-      "Неизменный план: дефицит 170.0 т.",
+      "Неизменный план: дефицит 95.9 т.",
       "Нарушения резерва: 2038, 2039, 2040.",
       "Спрос +15 % с 2038. Цены A/B +25 % в 2038–2039.",
-      "Поставка ISRU: 55 % в 2038 и 75 % в 2039, без повторного множителя надёжности."
+      "P2z не использует ISRU: его проблема в стрессе — недостаточный график заказов и запас."
     ],
-    "source": "results/alternatives/P3_isru_zbo_MANDATORY_STRESS/result.json; configs/scenarios/mandatory_stress.yaml"
+    "source": "results/alternatives/P2z_earth_new_zbo_MANDATORY_STRESS/result.json; configs/scenarios/mandatory_stress.yaml"
   },
   {
-    "title": "Заблаговременная адаптация P3",
+    "title": "Заблаговременная адаптация P2z",
     "chart": {
       "categories": [
         "BASE",
@@ -85,26 +85,26 @@
         {
           "name": "PV, млн у.е.",
           "values": [
-            8639,
-            9032,
-            10637
+            8729,
+            9143,
+            10097
           ],
           "fill": "#176a5b"
         }
       ]
     },
-    "caption": "Адаптация: дефицит 0 т, жёстких нарушений 0. Это разные решения, не гарантия робастности.",
-    "source": "results/alternatives/P3_isru_zbo_BASE/result.json; results/alternatives/P3_isru_zbo_MANDATORY_STRESS/result.json; results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS/result.json"
+    "caption": "Адаптация: дефицит 0 т, жёстких нарушений 0. График зависит от сценария: адаптированный план переполняет хранилище в BASE.",
+    "source": "results/alternatives/P2z_earth_new_zbo_BASE/result.json; results/alternatives/P2z_earth_new_zbo_MANDATORY_STRESS/result.json; results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS/result.json"
   },
   {
-    "title": "Риски и правила реакции",
+    "title": "Риски выбранной стратегии",
     "lines": [
       "Буфер запаса нужен до начала года: поздняя реакция не исправит резерв на 1 января.",
-      "Дозаказ Flex требует 4 месяцев, Emergency — 6 недель.",
-      "EXP-07–10: обратный стресс, меры защиты, задержка Earth-New и Монте-Карло.",
-      "Монте-Карло: N = 10 000, seed = 203510. Распределения TEAM_ASSUMPTION, вероятности не калиброваны."
+      "EXP-09: задержка Earth-New уже на 3 месяца нарушает резерв P2z в 2038–2040.",
+      "EXP-11: ценовой шок A/B +25 % добавляет P2z 470,9 млн PV без физического дефицита.",
+      "EXP-07–10 исследуют P3. Их частоты нельзя переносить на P2z без нового расчёта."
     ],
-    "source": "results/reaction/summary.md; results/monte_carlo/summary.md; docs/risk_register.md; docs/stakeholders.md"
+    "source": "results/earth_new_delay/summary.md; results/geopolitical_price_shock/summary.md; results/monte_carlo/summary.md"
   },
   {
     "title": "Рабочий интерфейс оператора",
@@ -127,7 +127,7 @@
     "source": "results/extensibility/run/result.json; experiments/run_extensibility.py; tests/test_web.py"
   },
   {
-    "title": "Бюджет P3 по годам",
+    "title": "Бюджет P2z по годам",
     "chart": {
       "categories": [
         "2035",
@@ -141,20 +141,20 @@
         {
           "name": "Всего, млн",
           "values": [
-            858,
-            2282,
-            1588,
-            1477,
-            1942,
-            2507
+            1218,
+            1032,
+            1566,
+            1832,
+            2383,
+            2948
           ],
           "fill": "#176a5b"
         },
         {
           "name": "CAPEX, млн (в составе итого)",
           "values": [
+            360,
             0,
-            1250,
             180,
             0,
             0,
@@ -164,8 +164,8 @@
         }
       ]
     },
-    "caption": "ISRU: оплата 2036-01. ZBO: оплата 2037-07. CAPEX P3 до 2037: 1 430 млн.",
-    "source": "results/alternatives/P3_isru_zbo_BASE/financial_breakdown.csv; docs/roadmap_budget.md"
+    "caption": "Earth-New: 360 млн в 2035. ZBO: 180 млн в 2037. CAPEX P2z до 2037: 540 млн.",
+    "source": "results/alternatives/P2z_earth_new_zbo_BASE/financial_breakdown.csv; docs/roadmap_budget.md"
   },
   {
     "title": "Запуск и передача решения",

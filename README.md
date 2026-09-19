@@ -19,7 +19,7 @@ constraint checks for the 2035–2040 orbital-depot supply case. Everything is d
 ```bash
 python -m pip install -e ".[dev]"                # Python ≥ 3.10; pyyaml, openpyxl, pytest
 python -m terraplan ui                          # интерфейс оператора: http://127.0.0.1:8765, остановка Ctrl+C
-python -m pytest -q                             # 167 тестов, включая контрольные примеры организатора V01–V10 и verify всех каталогов results/
+python -m pytest -q                             # 183 теста, включая контрольные примеры организатора V01–V10 и verify всех каталогов results/
 python -m terraplan control-cases               # V01–V10: ПРОЙДЕН / НЕ ПРОЙДЕН
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario BASE             --out results/demo_BASE
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
@@ -80,7 +80,7 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | `configs/assumptions.yaml` | каждое допущение команды: смысл, единица, статус, диапазон, обоснование |
 | `experiments/` | скрипты и протоколы EXP-01…11 (`README.md`), переносимая провенанс-проверка `provenance.py` |
 | `results/` | выгрузки всех экспериментов (CSV, XLSX, JSON, `summary.md`, `run_manifest.json` с хешами) |
-| `tests/` | pytest (167): V01–V10, интеграция движка, ошибочный ввод, граничные планы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, согласованность матрицы проверок и списка нарушений, календарь Earth-New, реактивные заказы и месяц наблюдения, контрактный резерв, API, `verify` + независимый пересчёт каждого каталога `results/` |
+| `tests/` | pytest (183): V01–V10, интеграция движка, ошибочный ввод, граничные планы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, согласованность матрицы проверок и списка нарушений, календарь Earth-New, реактивные заказы и месяц наблюдения, контрактный резерв, API, `verify` + независимый пересчёт каждого каталога `results/` |
 | `schemas/` | JSON-схемы организатора (план, выгрузка, сценарий, данные) |
 | `docs/` | `CASE_SUMMARY.md`, `TEAM.md`, `architecture.md`, `management_note.md`, `one_pager_scenarios.md`, `stress_test_protocol.md`, `risk_register.md`, `stakeholders.md`, `roadmap_budget.md`, `sources.md`, `operator_guide.md`, `HANDOVER.md`, `ui_mockups/` (исторический макет), `organizer/` (PDF кейса + снимок справочного репозитория), `literature/` (8 статей + конспекты), `presentation/` (`TerraPlan.pptx`, 12 слайдов) |
 
