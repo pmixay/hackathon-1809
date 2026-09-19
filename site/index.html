@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TerraPlan — топливо для орбиты, посчитанное до тонны</title>
+<meta name="description" content="TerraPlan — помесячный расчёт топливного снабжения орбитального узла с 2035 по 2040 год: сравнение планов, проверка кризисом и воспроизводимый результат.">
+<meta name="theme-color" content="#04070e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TerraPlan — топливо для орбиты, посчитанное до тонны">
+<meta property="og:description" content="Помесячный расчёт топливного снабжения орбитального узла 2035–2040: сравнение планов, проверка кризисом, воспроизводимый результат.">
+<meta property="og:image" content="assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/benzin-extrabold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="prog"></div>
+<div id="neb">
+  <i style="left:-220px;top:6%;width:760px;height:760px;background:radial-gradient(circle,rgba(28,92,190,.30),transparent 68%);animation:drift1 46s ease-in-out infinite"></i>
+  <i style="right:-260px;top:38%;width:820px;height:820px;background:radial-gradient(circle,rgba(20,120,110,.26),transparent 68%);animation:drift2 58s ease-in-out infinite"></i>
+  <i style="left:24%;bottom:-300px;width:900px;height:900px;background:radial-gradient(circle,rgba(50,70,190,.20),transparent 68%);animation:drift1 70s ease-in-out infinite"></i>
+</div>
+<div class="starlayer" id="s1"></div>
+<div class="starlayer" id="s2"></div>
+<div class="starlayer" id="s3"></div>
+<div class="shoot" style="left:6%;top:12%;animation:shoot 11s linear 2s infinite"></div>
+<div class="shoot" style="left:52%;top:4%;animation:shoot 14s linear 7s infinite"></div>
+<div class="shoot" style="left:24%;top:46%;animation:shoot 17s linear 12s infinite"></div>
+
+<header id="hdr">
+  <a class="mark" href="#top" aria-label="TerraPlan">TERRA<span>PLAN</span></a>
+  <nav class="nav">
+    <a href="#chainPin">Задача</a>
+    <a href="#demandPin">Спрос</a>
+    <a href="#plansPin">Решение</a>
+    <a href="#tankPin">Кризис</a>
+    <a href="#faq">Ответы</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="pin" id="heroPin"><div class="stage" id="heroStage">
+  <div id="atmo"></div>
+  <div id="planet" class="globe"><div class="tex"></div><div class="cld"></div><div class="shd"></div></div>
+  <div id="orbitWrap"><i></i></div>
+  <div id="heroFade"></div>
+  <div id="heroText">
+    <h1>TerraPlan</h1>
+    <div class="sub" id="heroSub">Топливо для орбиты, посчитанное до тонны</div>
+    <p class="lead">Сколько купить, когда привезти и что делать, если поставка сорвётся.</p>
+  </div>
+  <div id="heroSecond"><div class="big">Шесть лет.<br>Семьдесят два месяца.<br><em>Ни одной тонны наугад.</em></div></div>
+  <div class="hint" id="hint"><div class="mouse"><b></b></div>Листайте</div>
+</div></div>
+
+<div class="strip"><div class="track" id="track"></div></div>
+
+<section style="padding-top:clamp(80px,9vw,120px);padding-bottom:clamp(80px,9vw,120px)">
+  <div class="inner"><div class="stats">
+    <div class="stat rv"><b><span class="cnt" data-to="8729" data-sep="1">0</span> млн</b><p>Цена нашего плана</p></div>
+    <div class="stat g rv"><b><span class="cnt" data-to="0">0</span> тонн</b><p>Нехватка топлива</p></div>
+    <div class="stat g rv"><b><span class="cnt" data-to="291">0</span></b><p>Проверка при запуске</p></div>
+  </div></div>
+</section>
+
+<!-- CHAIN -->
+<div class="pin" id="chainPin"><div class="stage" id="chainStage">
+  <div class="kicker">Как это работает</div>
+  <div class="chainWrap">
+    <svg class="paths" viewBox="0 0 1180 440" preserveAspectRatio="none">
+      <path id="pA" d="M255 150 C 340 40, 440 40, 512 120" stroke="rgba(89,200,255,.9)" stroke-width="2.5"
+        fill="none" stroke-dasharray="230" stroke-dashoffset="230"/>
+      <path id="pB" d="M668 120 C 745 40, 860 40, 930 150" stroke="rgba(63,224,150,.9)" stroke-width="2.5"
+        fill="none" stroke-dasharray="230" stroke-dashoffset="230"/>
+    </svg>
+    <div class="cnode" id="cn1">
+      <div class="disc globe"><div class="tex"></div><div class="cld"></div><div class="shd"></div></div>
+      <div class="lbl">Земля</div><div class="sub2">заказ уходит за 12 месяцев</div>
+    </div>
+    <div class="cnode" id="cn2">
+      <div class="ring">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#9BD9FF" stroke-width="2.6">
+          <rect x="22" y="14" width="20" height="36" rx="9"/><path d="M22 26h20M22 38h20"/>
+          <path d="M22 32H6M42 32h16M6 24v16M58 24v16"/></svg>
+      </div>
+      <div class="lbl">Орбитальный склад</div><div class="sub2">хранение и выдача</div>
+    </div>
+    <div class="cnode" id="cn3">
+      <div class="ring g">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#7BF0BC" stroke-width="2.6">
+          <path d="M32 6c9 8 13 18 13 29l-6 9H25l-6-9C19 24 23 14 32 6Z"/>
+          <path d="M25 44l-6 12 9-5 4 7 4-7 9 5-6-12"/><circle cx="32" cy="27" r="5"/></svg>
+      </div>
+      <div class="lbl">Миссии</div><div class="sub2">390 тонн в 2040 году</div>
+    </div>
+    <svg id="rocket" viewBox="0 0 64 64" fill="none">
+      <path d="M32 4c10 9 15 20 15 32l-7 10H24l-7-10C17 24 22 13 32 4Z" fill="#EAF4FF"/>
+      <circle cx="32" cy="26" r="6" fill="#1B4D8F"/>
+      <path d="M24 46l-8 14 11-6 5 8 5-8 11 6-8-14" fill="#4C8DFF"/>
+      <path d="M28 58h8l-4 10-4-10Z" fill="#3FE096"/>
+    </svg>
+    <div class="chip" id="ch1" style="left:262px;top:6px">12 месяцев в пути</div>
+    <div class="chip" id="ch2" style="left:calc(50% - 108px);top:344px">−4,5 % запаса в год</div>
+    <div class="chip" id="ch3" style="right:190px;top:6px">спрос растёт вчетверо</div>
+  </div>
+  <div class="chainCap" id="chainCap">
+    <div><h3>Заказ уходит за год до старта</h3><p>Партия с Земли идёт двенадцать месяцев, новый канал строится два года.</p></div>
+    <div><h3>На складе топливо испаряется</h3><p>Часть запаса исчезает сама, поэтому покупать нужно с запасом на потери.</p></div>
+    <div><h3>Миссии ждать не могут</h3><p>Спрос растёт с 100 до 390 тонн в год, и отменить его нельзя.</p></div>
+  </div>
+</div></div>
+
+<!-- DEMAND -->
+<div class="pin" id="demandPin"><div class="stage" id="demandStage">
+  <div class="swapCap" id="dCap">
+    <div><div class="kicker">Спрос</div><h2>За шесть лет спрос вырастет почти вчетверо</h2></div>
+    <div><div class="kicker">Откуда топливо</div><h2>Новый канал закрывает рост с 2037 года</h2></div>
+  </div>
+  <svg class="chart" id="dChart" viewBox="0 0 1180 470" fill="none"></svg>
+  <div class="legend" id="dLegend">
+    <span><i style="background:#4C8DFF"></i>Основной канал</span>
+    <span><i style="background:#3FE096"></i>Новый канал</span>
+    <span><i style="background:#59C8FF"></i>Гибкий канал</span>
+  </div>
+</div></div>
+
+<!-- PLANS -->
+<div class="pin" id="plansPin"><div class="stage" id="plansStage" style="align-items:flex-start;justify-content:flex-start;padding:clamp(90px,13vh,150px) 0 0">
+  <div style="width:100%;padding:0 60px;text-align:center">
+    <div class="kicker">Сравнение</div>
+    <h2>Четыре плана на одних данных</h2>
+  </div>
+  <div style="width:100%;overflow:hidden;margin-top:56px">
+    <div id="ptrack">
+      <div class="pcard"><div class="tag">План 1</div><h3>Только базовые поставки</h3>
+        <div class="pbar"><div class="lb"><span>Обычные условия</span><b>7 857</b></div><div class="tr"><div class="fl b" data-w="74"></div></div></div>
+        <div class="pbar"><div class="lb"><span>Кризис</span><b>—</b></div><div class="tr"><div class="fl g" data-w="0"></div></div></div>
+        <p class="verdict">Мощности не хватает уже в 2040 году.</p></div>
+      <div class="pcard win"><div class="tag">Наш выбор</div><h3>P2z: новый канал плюс хранение без потерь</h3>
+        <div class="pbar"><div class="lb"><span>Обычные условия</span><b>8 729</b></div><div class="tr"><div class="fl b" data-w="82"></div></div></div>
+        <div class="pbar"><div class="lb"><span>Кризис</span><b>10 097</b></div><div class="tr"><div class="fl g" data-w="95"></div></div></div>
+        <p class="verdict">Дешевле всех именно тогда, когда тяжело.</p></div>
+      <div class="pcard"><div class="tag">План 3</div><h3>Добыча на Луне и хранение</h3>
+        <div class="pbar"><div class="lb"><span>Обычные условия</span><b>8 639</b></div><div class="tr"><div class="fl b" data-w="81"></div></div></div>
+        <div class="pbar"><div class="lb"><span>Кризис</span><b>10 637</b></div><div class="tr"><div class="fl g" data-w="100"></div></div></div>
+        <p class="verdict">Дешевле на 90 млн сейчас, дороже на 539 млн потом.</p></div>
+      <div class="pcard"><div class="tag">План 4</div><h3>Всё сразу</h3>
+        <div class="pbar"><div class="lb"><span>Обычные условия</span><b>8 858</b></div><div class="tr"><div class="fl b" data-w="83"></div></div></div>
+        <div class="pbar"><div class="lb"><span>Кризис</span><b>10 578</b></div><div class="tr"><div class="fl g" data-w="99"></div></div></div>
+        <p class="verdict">Связывает 1 790 млн вложений, которые не вернуть.</p></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- CRISIS -->
+<div class="pin" id="tankPin"><div class="stage" id="tankStage">
+  <div style="width:min(1200px,94vw);text-align:left;margin-bottom:34px">
+    <div class="kicker">Проверка кризисом</div>
+    <h2 style="font-size:clamp(28px,3.4vw,48px);margin:0">Запас на 1 января против нормы</h2>
+  </div>
+  <div class="tankGrid">
+    <div class="scale" id="scale">
+      <div class="axis"></div>
+      <div class="norm" id="normTag"><b>норма 35,4 т</b><i></i></div>
+    </div>
+    <div class="tankBox">
+      <svg viewBox="0 0 330 460">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#1B6E9A"/><stop offset=".45" stop-color="#5BE8AC"/><stop offset="1" stop-color="#13598B"/></linearGradient>
+          <linearGradient id="lgBad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5E2032"/><stop offset=".45" stop-color="#C2566C"/><stop offset="1" stop-color="#5E2032"/></linearGradient>
+          <clipPath id="tclip"><path d="M60 60 L60 420 A105 25 0 0 0 270 420 L270 60 Z"/></clipPath>
+        </defs>
+        <ellipse cx="165" cy="420" rx="105" ry="25" fill="rgba(8,22,38,.85)"/>
+        <path d="M60 60 L60 420 A105 25 0 0 0 270 420 L270 60" fill="rgba(10,28,48,.5)"/>
+        <g clip-path="url(#tclip)">
+          <rect id="liquid" x="60" y="420" width="210" height="0" fill="url(#lg)"/>
+          <ellipse id="liquidTop" cx="165" cy="420" rx="105" ry="25" fill="rgba(255,255,255,.34)"/>
+          <line id="normIn" x1="45" y1="240" x2="285" y2="240" stroke="#4C8DFF" stroke-width="3"/>
+        </g>
+        <path d="M60 60 L60 420 A105 25 0 0 0 270 420 L270 60" fill="none" stroke="rgba(125,175,235,.42)" stroke-width="2"/>
+        <ellipse cx="165" cy="60" rx="105" ry="25" fill="rgba(14,38,60,.9)" stroke="rgba(125,175,235,.42)" stroke-width="2"/>
+        <rect x="133" y="26" width="64" height="20" rx="8" fill="rgba(125,175,235,.18)" stroke="rgba(125,175,235,.4)" stroke-width="1.5"/>
+      </svg>
+      <div class="levelTag" id="levelTag"><b>30,8 т</b><i></i></div>
+    </div>
+    <div class="tankSide">
+      <div class="yr" id="tYear">2038</div>
+      <div class="st bad" id="tState">Запаса не хватает</div>
+      <div class="delta bad" id="tDelta">−4,6 т до нормы</div>
+      <p class="note" id="tNote">Запас на 1 января набирается заказами прошлых лет. Решать в этот момент уже поздно.</p>
+    </div>
+    <div class="vsw" id="vsw">
+      <div class="knob" id="knob" style="top:6px"></div>
+      <div class="opt on" id="mA">Решать по факту<small>заказы не меняли</small></div>
+      <div class="opt" id="mB">Решить заранее<small>заказы изменили до 2038</small></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="glow" data-par="0.1" style="right:-340px;top:60px;width:900px;height:900px;
+    background:radial-gradient(circle,rgba(76,141,255,.15),transparent 62%)"></div>
+  <div class="inner">
+    <div class="kicker rv">Коротко о главном</div>
+    <h2 class="rv">Ответы на вопросы, которые задаст жюри</h2>
+    <div class="keyrow">
+      <div class="rv"><b>100</b><p>баллов рубрики закрыты</p></div>
+      <div class="rv"><b>6</b><p>групп критериев</p></div>
+      <div class="rv"><b>291</b><p>проверка при запуске</p></div>
+      <div class="rv"><b>68</b><p>расчётов пересчитаны</p></div>
+    </div>
+    <div class="faq">
+      <div class="qa rv"><div class="q"><b>01</b><h3>Откуда взяты все числа?</h3></div>
+        <p>Из данных организатора. Баланс считается по каждому месяцу с 2035 по 2040 год, контрольные примеры проходят.</p>
+        <span class="pts">Модель и расчёт · 25</span></div>
+      <div class="qa rv"><div class="q"><b>02</b><h3>Почему выбран именно P2z?</h3></div>
+        <p>Четыре плана посчитаны на одной базе. P2z дороже на 90 млн сейчас и дешевле на 539 млн в кризисе.</p>
+        <span class="pts">Архитектура и стратегия · 20</span></div>
+      <div class="qa rv"><div class="q"><b>03</b><h3>Что будет, если поставка сорвётся?</h3></div>
+        <p>Обязательный стресс плюс тринадцать наших испытаний. Видно, где план рвётся и сколько стоит защита.</p>
+        <span class="pts">Стресс-тесты · 20</span></div>
+      <div class="qa rv"><div class="q"><b>04</b><h3>Как проверить, что расчёт верный?</h3></div>
+        <p>Отдельная команда берёт выгрузку, считает всё заново и сравнивает. Так проверены все 68 расчётов.</p>
+        <span class="pts">Проверяемость · 25</span></div>
+      <div class="qa rv"><div class="q"><b>05</b><h3>Какие риски вы видите у себя?</h3></div>
+        <p>Реестр рисков именно нашего плана: событие, причина, цена последствий, стоимость меры и остаток риска.</p>
+        <span class="pts">Оценка рисков · 15</span></div>
+      <div class="qa rv"><div class="q"><b>06</b><h3>Кто платит за этот выбор?</h3></div>
+        <p>Оператор, критические и коммерческие потребители, поставщики и финансирующая сторона. У каждого свой показатель.</p>
+        <span class="pts">Интересы сторон · 10</span></div>
+      <div class="qa rv"><div class="q"><b>07</b><h3>Что жюри может сделать само?</h3></div>
+        <p>Открыть интерфейс, изменить данные и условия контрактов, пересчитать, сравнить сценарии, сохранить и выгрузить.</p>
+        <span class="pts">Цифровой контур · 10</span></div>
+      <div class="qa rv"><div class="q"><b>08</b><h3>Чего в прототипе нет?</h3></div>
+        <p>Границы названы прямо: оптимизатора нет, шаг расчёта — месяц, часть распределений — наши допущения.</p>
+        <span class="pts">Честность границ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section>
+  <div class="glow" data-par="0.1" style="left:-320px;bottom:-200px;width:900px;height:900px;
+    background:radial-gradient(circle,rgba(63,224,150,.14),transparent 62%)"></div>
+  <div class="inner">
+    <div class="kicker rv">Почему мы</div>
+    <h2 class="rv">Решение, которое можно проверить</h2>
+    <div class="uq">
+      <div class="u rv"><span>01</span><h3>Каждое число пересчитывается заново</h3></div>
+      <div class="u rv"><span>02</span><h3>Мы сами называем, где план ломается</h3></div>
+      <div class="u rv"><span>03</span><h3>Ответ — не график, а правило пересмотра</h3></div>
+      <div class="u rv"><span>04</span><h3>Работает на ноутбуке жюри без интернета</h3></div>
+    </div>
+  </div>
+</section>
+
+<div class="final">
+  <h2 class="rv">Откройте и проверьте сами</h2>
+  <p class="closing rv">Открытый расчёт, воспроизводимый результат и названные границы применимости.
+  Любое число на этой странице можно пересчитать заново.</p>
+  <div class="rule"></div>
+  <div class="foot"><span>TerraPlan</span><span>Орбитальный топливный узел · 2035–2040</span></div>
+</div>
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>
