@@ -161,6 +161,14 @@ def cmd_info(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="terraplan", description=f"TerraPlan {__version__} — цифровой контур планирования снабжения орбитального топливного узла")
     sub = p.add_subparsers(dest="cmd", required=True)
+    ui = sub.add_parser("ui", help="запустить офлайн-интерфейс оператора на localhost (R4)")
+    ui.add_argument("--root", default=".", help="корень проекта с data/ и configs/")
+    ui.add_argument("--port", type=int, default=8765)
+    def cmd_ui(args):
+        from .web import serve
+        serve(args.root, args.port)
+        return 0
+    ui.set_defaults(fn=cmd_ui)
     r = sub.add_parser("run", help="рассчитать план в сценарии и выгрузить результаты")
     r.add_argument("--plan", required=True, help="JSON-файл плана (TEAM_DECISION)"); r.add_argument("--scenario", required=True, help="идентификатор или файл сценария")
     r.add_argument("--out", required=True, help="каталог результатов")

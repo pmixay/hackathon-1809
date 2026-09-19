@@ -62,7 +62,7 @@ def main() -> None:
             thr_replan = x
     write_table(rows, RESULTS / "sensitivity" / "sweep_demand_multiplier.csv")
     summary.append(dict(param="demand_multiplier", range="0.80..1.30", threshold_fixed_plan=thr_fixed, threshold_replanned=thr_replan,
-                        note="план без изменений нарушает ограничения, когда спрос превышает заказанные объёмы; перепланированный — когда исчерпана зарезервированная мощность (A+B+D)"))
+                        note="первые неуспешные точки сетки, не точные границы; перепланированный план при ×1,25 проходит ограничения, но уже имеет дефицит 12,437 т и минимальный годовой сервис 97,45 %; при ×1,30 нарушает ограничения"))
     tornado.append(dict(param="demand_multiplier", low=0.80, high=1.30, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 2. ISRU delivery share 2038
@@ -77,7 +77,7 @@ def main() -> None:
             break
     write_table(rows, RESULTS / "sensitivity" / "sweep_isru_share_2038.csv")
     summary.append(dict(param="isru_delivery_share_2038", range="0.30..1.00", threshold_fixed_plan=thr, threshold_replanned=None,
-                        note="наибольшая доля, при которой план без изменений ещё нарушает ограничения; ниже неё недопоставка 2038 г. превышает подушку резерва"))
+                        note="наибольшая проверенная доля, при которой нарушается проверка резерва; 1,00 проходит, 0,95 нарушает; точная граница между ними не искалась"))
     tornado.append(dict(param="isru_delivery_share_2038", low=0.30, high=1.00, pv_low=rows[0]["pv_cost_mln"], pv_base=ref.kpi["pv_cost_mln"], pv_high=rows[-1]["pv_cost_mln"]))
 
     # 3. Core/Flex price multiplier
@@ -109,7 +109,7 @@ def main() -> None:
             thr = lag
     write_table(rows, RESULTS / "sensitivity" / "sweep_zbo_lag_stress.csv")
     summary.append(dict(param="zbo_commissioning_lag_months", range="0..12", threshold_fixed_plan=thr, threshold_replanned=None,
-                        note="решение о ZBO 2037-07; задержка выше порога оставляет месяцы базового хранилища в 2038 г. и нарушает потолок потерь 2 %"))
+                        note="первое нарушение именно годовой проверки потерь при задержке 10 мес.; задержки 7–9 мес. эту проверку ещё проходят; резерв и сервис нарушены уже при задержке 0; решение о ZBO 2037-07"))
 
     # ranking of alternatives across discount rates
     rank_rows = []

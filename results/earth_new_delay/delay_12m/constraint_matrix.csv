@@ -26,51 +26,51 @@ TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,RESERVE_45D,2037,openi
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,RESERVE_45D,2038,opening_stock_vs_45d_reserve_t,18.009908,30.821918,>=,False,hard,physical
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,26.640051,39.452055,>=,False,hard,physical
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,35.270192,48.082192,>=,False,hard,physical
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2035,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2036,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2037,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2038,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2039,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2040,emergency_share_of_demand,0.000000,0.200000,<= (else counts as base year),True,hard,max 2 consecutive base years
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2035,max_end_of_month_stock_t,17.260439,70.000000,<=,True,hard,monthly
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2035,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2036,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2037,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2038,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2039,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,EMERGENCY_BASE_STREAK,2040,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2035,end_of_month_stock_t_in_worst_month,17.260439,70.000000,<=,True,hard,"2035-12, хранилище BASE; проверка помесячная"
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2035,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,2035,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2036,max_end_of_month_stock_t,23.424908,70.000000,<=,True,hard,monthly
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2036,end_of_month_stock_t_in_worst_month,23.424908,70.000000,<=,True,hard,"2036-12, хранилище BASE; проверка помесячная"
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2036,reserved_A_t_per_year,153.052000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2036,ordered_A_t,153.051800,153.052000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2036,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,2036,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2037,max_end_of_month_stock_t,22.712408,70.000000,<=,True,hard,monthly
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2037,end_of_month_stock_t_in_worst_month,22.712408,70.000000,<=,True,hard,"2037-01, хранилище BASE; проверка помесячная"
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2037,reserved_C_t_per_year,13.189000,130.000000,<=,True,hard,Earth-New
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2037,ordered_C_t,13.188200,0.000000,<=,False,hard,Earth-New
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,0.000000,1.000000,==,False,hard,
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2038,max_end_of_month_stock_t,26.640051,120.000000,<=,True,hard,monthly
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2038,end_of_month_stock_t_in_worst_month,26.640051,120.000000,<=,True,hard,"2038-12, хранилище ZBO; проверка помесячная"
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2038,reserved_C_t_per_year,71.772000,130.000000,<=,True,hard,Earth-New
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2038,ordered_C_t,71.771400,71.772000,<=,True,hard,Earth-New
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2039,max_end_of_month_stock_t,35.270192,120.000000,<=,True,hard,monthly
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2039,end_of_month_stock_t_in_worst_month,35.270192,120.000000,<=,True,hard,"2039-12, хранилище ZBO; проверка помесячная"
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2039,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2039,reserved_B_t_per_year,12.622000,110.000000,<=,True,hard,Earth-Flex
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2039,ordered_B_t,12.621600,12.622000,<=,True,hard,Earth-Flex
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2039,reserved_C_t_per_year,130.000000,130.000000,<=,True,hard,Earth-New
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2039,ordered_C_t,130.000000,130.000000,<=,True,hard,Earth-New
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,2039,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2040,max_end_of_month_stock_t,35.270249,120.000000,<=,True,hard,monthly
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,STORAGE_OVERFLOW,2040,end_of_month_stock_t_in_worst_month,35.270249,120.000000,<=,True,hard,"2040-12, хранилище ZBO; проверка помесячная"
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2040,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2040,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2040,reserved_B_t_per_year,74.737000,110.000000,<=,True,hard,Earth-Flex
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2040,ordered_B_t,74.736900,74.737000,<=,True,hard,Earth-Flex
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,CAPACITY_EXCEEDED,2040,reserved_C_t_per_year,130.000000,130.000000,<=,True,hard,Earth-New
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,ORDER_EXCEEDS_RESERVATION,2040,ordered_C_t,130.000000,130.000000,<=,True,hard,Earth-New
-TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2040,all_deliveries_ordered_within_lead_time,0.000000,1.000000,==,False,hard,
+TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,LEAD_TIME_VIOLATED,2040,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_EARTH_NEW_DELAY_12M,P2z_earth_new_zbo_fixed_calendar,SOURCE_NOT_AVAILABLE,2040,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,

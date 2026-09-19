@@ -10,12 +10,17 @@ from conftest import ROOT
 from independent_recalc import recalc
 from terraplan.cli import main
 
-RESULT_DIRS = sorted(p.parent for p in (ROOT / "results").rglob("run_manifest.json"))
+RESULT_DIRS = sorted(p.parent for p in (ROOT / "results").rglob("run_manifest.json")
+                     if (p.parent / "result.json").exists() and (p.parent / "plan.json").exists())   # core export layout; EXP-07..10 use experiments/provenance.py
 
 
 def _case_dir(d):
     manifest = json.loads((d / "run_manifest.json").read_text(encoding="utf-8"))
-    return ROOT / manifest.get("case_dir", "data/case")
+    rel = manifest.get("case_dir", "data/case")
+    for cand in (d / rel, ROOT / rel):            # EXP-09 keeps its case copy inside the result directory
+        if (cand / "demand.csv").exists():
+            return cand
+    return ROOT / "data/case"
 
 
 def test_there_are_committed_results():

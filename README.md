@@ -10,14 +10,15 @@ Lunar-ISRU, ZBO), потери хранения, экономика (CAPEX/OPEX,
 (вывод CLI, `summary.md`, тексты нарушений и ошибок, выгрузки), — на русском языке; идентификаторы правил,
 имена файлов и колонок — как в форматах организатора.
 
-*English:* TerraPlan is a Python calculation core + CLI + dict-in/dict-out API (web UI in progress) that turns operator
+*English:* TerraPlan is a Python calculation core + CLI + dict-in/dict-out API + local browser UI that turns operator
 decisions (reservations, orders, stock policy, investments) into a monthly material balance, costs, service levels and
 constraint checks for the 2035–2040 orbital-depot supply case. Everything is deterministic and reproducible.
 
 ## Быстрый старт
 
 ```bash
-python -m pip install -e .                      # Python ≥ 3.10; зависимости: pyyaml, openpyxl (pytest — для тестов)
+python -m pip install -e ".[dev]"                # Python ≥ 3.10; pyyaml, openpyxl, pytest
+python -m terraplan ui                          # интерфейс оператора: http://127.0.0.1:8765, остановка Ctrl+C
 python -m pytest -q                             # 84 теста, включая контрольные примеры организатора V01–V10 и verify всех каталогов results/
 python -m terraplan control-cases               # V01–V10: ПРОЙДЕН / НЕ ПРОЙДЕН
 python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE             --out results/demo_BASE
@@ -25,11 +26,16 @@ python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATO
 python -m terraplan compare results/demo_BASE results/demo_STRESS --out results/demo_compare
 python -m terraplan verify results/demo_BASE           # доказательство воспроизводимости: пересчёт и сравнение с выгрузкой
 python tests/independent_recalc.py results/demo_BASE    # независимый пересчёт только по CSV, без импорта движка
-python experiments/run_all.py                   # EXP-01 … EXP-06, перегенерирует results/
+python experiments/run_all.py                   # EXP-01 … EXP-10, перегенерирует results/ (EXP-10 — с фиксированным seed)
 ```
 
 Код выхода `run`: 0 — план исполним; 2 — есть жёсткие нарушения (печатаются с идентификатором правила, годом,
 фактической величиной, лимитом и причиной); 3 — ошибочный ввод (сообщение называет файл, поле и значение).
+
+Интерфейс в браузере работает офлайн после установки: правка заказов, резервирований, инвестиций, начального запаса и параметров
+контрактов на копии данных; расчёт, просмотр нарушений, закрепление расчёта A и сравнение с B; сохранение/открытие рабочего JSON и
+выгрузка CSV/XLSX/JSON. Пошаговая демонстрация: [docs/operator_guide.md](docs/operator_guide.md). Презентация:
+[12 слайдов PowerPoint](docs/presentation/TerraPlan.pptx). Передача и оставшийся шаг публикации: [docs/HANDOVER.md](docs/HANDOVER.md).
 
 Программный вызов из интерфейса или ноутбука (тот же расчётный путь, что у CLI):
 
@@ -51,8 +57,9 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
    дефицит 170 т) и адаптированный план `configs/plans/P3_isru_zbo_adapted.json` (`results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS/`: исполним).
    Сравнение: `results/stress/compare_P3_isru_zbo.md`.
 4. **Дополнительные тесты** — низкий/высокий спрос (`results/demand/`), свипы чувствительности и пороги (`results/sensitivity/summary.md`),
-   реакция после наблюдения в стрессе (`results/reaction/`), расширяемость на копии данных с Source-X и 2041 годом (`results/extensibility/`),
-   тесты ошибочного ввода и граничные тесты (`tests/`).
+   реакция после наблюдения в стрессе (`results/reaction/`), обратный стресс, защитные меры, задержка Earth-New и Монте-Карло с seed
+   (EXP-07–10: `results/reverse_stress/`, `results/protection_measures/`, `results/earth_new_delay/`, `results/monte_carlo/`),
+   расширяемость на копии данных с Source-X и 2041 годом (`results/extensibility/`), тесты ошибочного ввода и граничные тесты (`tests/`).
 5. **Сравнение и выгрузка** — `results/*/summary.csv`, `results/stress/compare_*.csv`; в каждом каталоге результатов CSV + XLSX + JSON;
    планы открываются повторно: `python -m terraplan run --plan results/<каталог>/plan.json ...`; `python -m terraplan verify results/<каталог>`
    пересчитывает каталог и сравнивает с выгрузкой (в CI — для всех 34 каталогов).
@@ -69,11 +76,11 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | `configs/scenarios/` | `base.yaml`, `mandatory_stress.yaml` (CASE_INPUT), `team_low_demand.yaml`, `team_high_demand.yaml` (чувствительность) |
 | `configs/plans/` | сохранённые планы (JSON по схеме организатора) — P1…P4 и варианты, адаптированные к стрессу |
 | `configs/assumptions.yaml` | каждое допущение команды: смысл, единица, статус, диапазон, обоснование |
-| `experiments/` | скрипты и протоколы EXP-01…06 (`README.md`) |
+| `experiments/` | скрипты и протоколы EXP-01…10 (`README.md`), переносимая провенанс-проверка `provenance.py` |
 | `results/` | выгрузки всех экспериментов (CSV, XLSX, JSON, `summary.md`, `run_manifest.json` с хешами) |
 | `tests/` | pytest (84): V01–V10, интеграция движка, ошибочный ввод, граничные планы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, согласованность матрицы проверок и списка нарушений, календарь Earth-New, реактивные заказы и месяц наблюдения, контрактный резерв, API, `verify` + независимый пересчёт каждого каталога `results/` |
 | `schemas/` | JSON-схемы организатора (план, выгрузка, сценарий, данные) |
-| `docs/` | `CASE_SUMMARY.md`, `TEAM.md`, `architecture.md`, `management_note.md`, `one_pager_scenarios.md`, `stress_test_protocol.md`, `risk_register.md`, `stakeholders.md`, `roadmap_budget.md`, `sources.md`, `ui_mockups/`, `organizer/` (PDF кейса + снимок справочного репозитория), `literature/` (8 статей + конспекты), `presentation/` |
+| `docs/` | `CASE_SUMMARY.md`, `TEAM.md`, `architecture.md`, `management_note.md`, `one_pager_scenarios.md`, `stress_test_protocol.md`, `risk_register.md`, `stakeholders.md`, `roadmap_budget.md`, `sources.md`, `operator_guide.md`, `HANDOVER.md`, `ui_mockups/` (исторический макет), `organizer/` (PDF кейса + снимок справочного репозитория), `literature/` (8 статей + конспекты), `presentation/` (`TerraPlan.pptx`, 12 слайдов) |
 
 ## Модель в двух словах
 
@@ -93,12 +100,16 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | P3 ISRU + ZBO | **8 639** | да | 3 жёстких нарушения, дефицит 170 т | 10 637 |
 | P4 Earth-New + ISRU + ZBO | 8 858 | да | 3 жёстких нарушения, дефицит 170 т | 10 578 |
 
-ZBO нужна каждому плану, проходящему стресс (базовое хранилище теряет 4,5 % > потолка 2 % с 2038). План, построенный под BASE,
-не имеет запаса прочности: он ломается при спросе +5 % или недопоставке ISRU 5 % (`results/sensitivity/`).
+ZBO нужна для соблюдения годового стрессового потолка потерь при продолжении поставок (базовое хранилище теряет 4,5 % > 2 %);
+ввод до 2038 — консервативная цель, движок проверяет годовое отношение потерь к поступлению. Для плана P3 без изменений спрос +5 %
+и недопоставка ISRU 5 % — первые неуспешные точки сетки, а не точные границы (`results/sensitivity/`). Планы, адаптированные к стрессу,
+в BASE переполняют хранилище (17/25/25 жёстких нарушений у P2z/P3/P4); универсальная робастная политика не продемонстрирована.
 Выбор между P2z и P3 — вопрос робастности, а не цены (см. `docs/management_note.md`).
 
 ## Ограничения прототипа
 
-Веб-интерфейс — на стадии макета (`docs/ui_mockups/index.html`, 7 экранов на русском, предпросмотр https://claude.ai/artifact/94xJiuJBULiYuiZf3BGrjp);
-операции выполняются через CLI, JSON-файлы планов и `terraplan.api`. Оптимизатора нет (только жадный построитель по порядку цен).
-Монте-Карло / обратный стресс и геополитический бонус-модуль запланированы (см. `docs/TEAM.md`). Секретов и внешних сервисов нет; работает офлайн.
+Веб-интерфейс запускается командой `python -m terraplan ui` (`docs/ui_mockups/` — исторический макет); он обслуживает одного локального
+оператора, хранит последние 12 расчётов до остановки сервера и сохраняет работу через скачиваемые файлы. Публикация на GitVerse ожидает
+адрес репозитория команды; настроенный origin — GitHub. Оптимизатора нет (только жадный построитель по порядку цен). Обратный стресс,
+защитные меры, задержка Earth-New и Монте-Карло с seed реализованы в EXP-07–10; их распределения остаются TEAM_ASSUMPTION.
+Геополитический бонус-модуль запланирован. Секретов и внешних сервисов нет; работает офлайн.

@@ -10,6 +10,8 @@ end-of-month stock follows the stress reserve trajectory (linear path to next ye
 Sizing uses the FULL future stress trace, not an information-at-order-date policy. The final-year
 target retains 55.295 t, versus 21.755 t in the capacity-limited adapted comparison plan; the PV
 difference is therefore not a pure value-of-information estimate. See experiments/README.md.
+Reactive orders carry reactive=True and the plan carries observation_month=2038-03, so the engine
+itself checks that no reactive delivery is ordered before the observation (LEAD_TIME_VIOLATED otherwise).
 Outputs: results/reaction/ (fixed, reactive, pre-committed adapted runs + comparison + summary).
 """
 from __future__ import annotations

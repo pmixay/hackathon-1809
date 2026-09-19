@@ -1,7 +1,7 @@
 {
   "plan_id": "P3_isru_zbo_adapted_zbo_18mo_earlier_stock_0.1t",
   "scenario_id": "MANDATORY_STRESS",
-  "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+  "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
   "decisions": {
     "capacity_reservations": [
       {
@@ -193,7 +193,7 @@
     "builder": "greedy_merit_order",
     "strategy": {
       "plan_id": "P3_isru_zbo_adapted",
-      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
       "reservation_caps": {
         "A": 190,
         "B": 110,
