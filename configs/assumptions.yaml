@@ -1,10 +1,12 @@
-# Реестр допущений команды TerraPlan (TEAM_ASSUMPTION). Каждый ключ: value (значение), unit (единица), status, range (диапазон), justification (обоснование).
+# Реестр допущений команды TerraPlan (TEAM_ASSUMPTION). Каждый ключ: value (значение), unit (единица), status,
+# range (диапазон), scope (какой блок расчёта использует значение), justification (обоснование).
 # Записи со статусом CASE_INPUT повторены здесь только для того, чтобы фиксированные даты движка были видны явно.
 discount_rate_real:
   value: 0.08
   unit: доля в год (реальная ставка)
   status: TEAM_ASSUMPTION
   range: [0.0, 0.15]
+  scope: "блок 4 «Контракты и финансы»: приведение годовых потоков"
   justification: >
     Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана.
     Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.
@@ -13,107 +15,126 @@ discount_t0_year:
   unit: год
   status: TEAM_ASSUMPTION
   range: [2035, 2035]
+  scope: "блок 4 «Контракты и финансы»: база приведения"
   justification: Годовые денежные потоки датируются началом каждого года; коэффициент приведения = 1/(1+r)^(год − 2035).
 discount_timing:
   value: start
   unit: перечисление start|mid|end
   status: TEAM_ASSUMPTION
   range: [start, mid, end]
+  scope: "блок 4 «Контракты и финансы»: момент потока внутри года"
   justification: Момент внутри года, к которому отнесён годовой поток — начало (показатель степени год − 2035), середина (+0,5) или конец (+1); одинаково для всех альтернатив.
 prep_period_start:
   value: "2034-01"
   unit: ГГГГ-ММ
   status: TEAM_ASSUMPTION
   range: ["2033-01", "2034-12"]
+  scope: "блок 2 «Календарь поставок»: самая ранняя допустимая дата заказа"
   justification: Самая ранняя дата заказа в подготовительном периоде (Earth-Core требует 12 месяцев до 2035-01).
 lead_time_policy:
   value: max
   unit: перечисление min|max|mean
   status: TEAM_ASSUMPTION
   range: [min, max, mean]
+  scope: "блок 2 «Календарь поставок»: выбор края диапазона сроков"
   justification: Консервативный край диапазонов сроков поставки организатора (Earth-New 24 месяца, ISRU 2 месяца).
 weeks_per_month:
   value: 4.345
   unit: недель
   status: TEAM_ASSUMPTION
   range: [4.0, 4.5]
+  scope: "блок 2 «Календарь поставок»: перевод недель в месяцы"
   justification: 365/12/7. Сроки в неделях переводятся как ceil(недели/4,345) -> Emergency 6 недель = 2 месяца.
 zbo_commissioning_lag_months:
   value: 0
   unit: месяцев
   status: TEAM_ASSUMPTION
   range: [0, 12]
+  scope: "блок 1 «Инвестиции и доступность»: месяц ввода хранилища"
   justification: Кейс не задаёт срок модернизации ZBO; она считается действующей с месяца оплаты CAPEX. Варьируется в анализе чувствительности.
 earth_new_post_commissioning_lead_months:
   value: 0
   unit: месяцев
   status: TEAM_ASSUMPTION
   range: [0, 12]
+  scope: "блок 2 «Календарь поставок»: срок заказа после ввода Earth-New"
   justification: Срок Earth-New 18–24 месяца трактуется как время от решения до первой поставки; заказы размещаются в период подготовки, после ввода дополнительный срок заказа 0 месяцев.
 isru_commissioning_month:
   value: "2038-01"
   unit: ГГГГ-ММ
   status: CASE_INPUT
   range: ["2038-01", "2038-01"]
+  scope: "блок 1 «Инвестиции и доступность»: месяц ввода Lunar-ISRU"
   justification: Lunar-ISRU доступен с 2038 года при финансировании CAPEX до 2038 года.
 isru_financing_deadline:
   value: "2037-12"
   unit: ГГГГ-ММ
   status: CASE_INPUT
   range: ["2037-12", "2037-12"]
+  scope: "блок 1 «Инвестиции и доступность»: предельный срок финансирования"
   justification: CAPEX 1 250 млн должен быть профинансирован до 2038 года.
 source_investment_link:
   value: {C: EARTH_NEW, D: LUNAR_ISRU}
   unit: отображение source_id -> investment_id
   status: CASE_INPUT
+  scope: "блок 1 «Инвестиции и доступность»: связь канала с инвестицией"
   justification: Мощность Earth-New требует реализованного опциона; Lunar-ISRU — CAPEX пилотного производства.
 storage_investment_link:
   value: {ZBO: ZBO}
   unit: отображение investment_id -> storage_id
   status: CASE_INPUT
+  scope: "блок 1 «Инвестиции и доступность»: связь режима хранилища с инвестицией"
   justification: Модернизация ZBO переключает активный режим хранилища (ёмкость 120 т, потери 1,2 %, OPEX 12 млн/год).
 emergency_base_share_threshold:
   value: 0.20
   unit: доля годового общего спроса
   status: TEAM_ASSUMPTION
   range: [0.1, 0.5]
+  scope: "блок 5 «Проверки»: признание Emergency базовым каналом года"
   justification: Emergency считается базовым каналом в году, когда заказанный у него объём превышает 20 % спроса этого года.
 holding_cost_averaging:
   value: trapezoid_monthly
   unit: перечисление
   status: TEAM_ASSUMPTION
+  scope: "блок 3 «Помесячный баланс» и блок 4: стоимость хранения"
   justification: Средний физический запас за месяц = (I_start + I_end)/2; стоимость хранения = 0,72 × средний запас × 1/12.
 storage_capacity_check:
   value: end_of_month_hard_peak_warning
   unit: перечисление
   status: TEAM_ASSUMPTION
+  scope: "блок 5 «Проверки»: ёмкость хранилища"
   justification: Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости.
 emergency_reserve_equivalence:
   value: stock_covers_lead_time_and_reserved_capacity_covers_45d
   unit: правило
   status: TEAM_ASSUMPTION
+  scope: "блок 5 «Проверки»: эквивалентность контрактного резерва физическому"
   justification: Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y.
 opening_stock_reservation_years:
   value: 1.0
   unit: лет
   status: TEAM_ASSUMPTION
   range: [0.0, 1.0]
+  scope: "блок 4 «Контракты и финансы»: плата за резерв подготовительного периода"
   justification: Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году.
 prep_period_holding_charged:
   value: false
   unit: логическое
   status: TEAM_ASSUMPTION
+  scope: "блок 3 «Помесячный баланс»: начало начисления хранения"
   justification: Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается.
 intra_year_demand_profile:
   value: uniform
   unit: перечисление
   status: CASE_INPUT
+  scope: "блок 3 «Помесячный баланс»: распределение спроса внутри года"
   justification: Конвенция организатора — равномерный спрос внутри года, 365 дней.
 undelivered_volume_paid:
   value: true
   unit: логическое
   status: CASE_INPUT
   range: [true, false]
+  scope: "блок 4 «Контракты и финансы»: что оплачивается при недопоставке"
   justification: >
     Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка
     в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо
@@ -123,6 +144,7 @@ exp10_demand_max:
   unit: дополнительный относительный рост спроса
   status: TEAM_ASSUMPTION
   range: [0.0, 0.02]
+  scope: "вероятностный эксперимент EXP-10: диапазон выборки спроса"
   justification: >
     Только EXP-10: равномерное U(0, value), множитель общего и критического спроса обязательного стресса в 2038–2040.
     Одна постоянная реализация на прогон; в основной модели независима от ISRU и цены. Диагностика использует общую
@@ -133,6 +155,7 @@ exp10_isru_reduction_max:
   unit: дополнительное относительное снижение фактической доли поставки ISRU
   status: TEAM_ASSUMPTION
   range: [0.0, 0.02]
+  scope: "вероятностный эксперимент EXP-10: диапазон выборки поставки ISRU"
   justification: >
     Только EXP-10: равномерное U(0, value), множитель (1 − s) к долям ISRU обязательного стресса в 2038–2040.
     Одна постоянная реализация; надёжность повторно не умножается. Основная модель — независимая, диагностика —
@@ -142,6 +165,7 @@ exp10_price_half_range:
   unit: относительное отклонение переменной цены от обязательного стресса
   status: TEAM_ASSUMPTION
   range: [-0.10, 0.10]
+  scope: "вероятностный эксперимент EXP-10: полуширина диапазона цен"
   justification: >
     Только EXP-10: равномерное U(−value, value), одна общая постоянная ценовая реализация для Core и Flex в 2038–2039,
     независимая от физических факторов. Умножает существующий стрессовый множитель 1,25. Иллюстративный экономический

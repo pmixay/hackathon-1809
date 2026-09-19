@@ -75,6 +75,44 @@ def test_modified_contracts_preserve_inputs_and_stress(workspace, payload):
         workspace.run(payload)
 
 
+def test_single_contract_field_change_moves_the_expected_money(workspace, payload):
+    """Правка одного поля канала в таблице данных должна менять именно закупку по этому каналу."""
+    import csv as _csv
+    import io as _io
+
+    base = workspace.run(copy.deepcopy(payload))["result"]
+    rows = list(_csv.DictReader(_io.StringIO(workspace.original["supply_sources.csv"])))
+    fields = list(rows[0])
+    for row in rows:
+        if row["source_id"] == "A":
+            old_price = float(row["variable_cost_mln_per_t"])
+            row["variable_cost_mln_per_t"] = f"{old_price + 1.0:g}"
+    buffer = _io.StringIO()
+    writer = _csv.DictWriter(buffer, fieldnames=fields, lineterminator="\n")
+    writer.writeheader()
+    writer.writerows(rows)
+
+    payload = copy.deepcopy(payload)
+    payload["case_tables"] = dict(workspace.original, **{"supply_sources.csv": buffer.getvalue()})
+    payload["case_notes"] = ("TEAM_ASSUMPTION: цена Earth-Core +1,0 млн/т (с 6,2 до 7,2), млн условных единиц за тонну; "
+                             "проверка чувствительности к цене якорного канала.")
+    after = workspace.run(payload)["result"]
+
+    paid_a = sum(s["payable_volume_t"] for s in base["source_years"] if s["source_id"] == "A")
+    delta = sum(s["procurement_mln"] for s in after["source_years"] if s["source_id"] == "A") \
+        - sum(s["procurement_mln"] for s in base["source_years"] if s["source_id"] == "A")
+    assert delta == pytest.approx(paid_a * 1.0, abs=1e-6)          # +1 млн/т × оплаченный объём
+    assert after["kpi"]["total_cost_mln"] > base["kpi"]["total_cost_mln"]
+    assert after["kpi"]["pv_cost_mln"] > base["kpi"]["pv_cost_mln"]
+    # физика не меняется от цены
+    assert after["kpi"]["served_total_t"] == pytest.approx(base["kpi"]["served_total_t"])
+    assert after["kpi"]["losses_total_t"] == pytest.approx(base["kpi"]["losses_total_t"])
+    # другие каналы не затронуты
+    for sid in ("B", "C"):
+        assert sum(s["procurement_mln"] for s in after["source_years"] if s["source_id"] == sid) == \
+            pytest.approx(sum(s["procurement_mln"] for s in base["source_years"] if s["source_id"] == sid))
+
+
 def test_extensibility_and_workspace_roundtrip(workspace, payload):
     demo = workspace.bootstrap()["extension"]
     assert demo

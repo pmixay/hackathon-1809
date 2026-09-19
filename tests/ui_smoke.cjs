@@ -37,6 +37,18 @@ const fs=require('node:fs/promises');
  assert.ok(problems.length>=2,'ожидался список из нескольких проблем ввода');
  assert.ok(problems.some(t=>/ordered_t/.test(t))&&problems.some(t=>/reserved_capacity_t/.test(t)));
  await page.locator('#open').setInputFiles('build/r4/browser/workspace.json');await run();
+ // структурированный редактор данных: правка цены канала через форму меняет показатели
+ await page.locator('[data-tab=data]').click();
+ const priceCell=page.locator('#supply-table tbody tr').first().locator('input').nth(3);
+ const oldPrice=Number(await priceCell.inputValue());
+ const pvBefore=Number((await page.locator('#kpis').innerText()).match(/PV расходов[^\d-]*([\d  ,.]+)/)[1].replace(/[  ]/g,'').replace(',','.'));
+ await priceCell.fill(String(oldPrice+1));
+ await page.locator('#case-notes').fill('TEAM_ASSUMPTION: цена канала +1 млн/т, проверка чувствительности');
+ await run();
+ const pvAfter=Number((await page.locator('#kpis').innerText()).match(/PV расходов[^\d-]*([\d  ,.]+)/)[1].replace(/[  ]/g,'').replace(',','.'));
+ assert.ok(pvAfter>pvBefore,`правка цены должна повышать PV: ${pvBefore} -> ${pvAfter}`);
+ await page.screenshot({path:'build/r4/browser/data-editor.png',fullPage:true});
+ await page.locator('#reset').click();await run();
  // блок геополитики: шок цены применяется и снимается на копии сценария
  await page.locator('[data-tab=geo]').click();
  await page.locator('#geo-label').fill('ограничение экспорта');
@@ -58,6 +70,6 @@ const fs=require('node:fs/promises');
  assert.equal((await fs.readFile('build/r4/browser/results.zip')).subarray(0,2).toString(),'PK');
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:'build/r4/browser/mobile.png',fullPage:true});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);
- assert.deepEqual(errors,[]);console.log('PASS: BASE, stress, compare, adapted, save/reopen, Source-X/2041, invalid input (list), geopolitics on/off, ZIP, mobile layout.');
+ assert.deepEqual(errors,[]);console.log('PASS: BASE, stress, compare, adapted, save/reopen, Source-X/2041, invalid input (list), contract-field edit, geopolitics on/off, ZIP, mobile layout.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

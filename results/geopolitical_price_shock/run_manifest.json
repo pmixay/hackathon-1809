@@ -5,7 +5,7 @@
   "python": "3.11.15",
   "random_seed": null,
   "input_sha256": {
-    "configs/assumptions.yaml": "d827e055161e50067f06598e0d67ce03df0b408dbb72de5f5f8dc9698c77b470",
+    "configs/assumptions.yaml": "7c6db77d953f2e7fd9fb23993422ca38d2b38576abfc4026e8da6940b7981ccf",
     "configs/scenarios/base.yaml": "f16f46e3b291365051543f7ef9874f4ed5a295beb589af1c095e78b706bcac3a",
     "configs/scenarios/team_geopolitical_price_shock.yaml": "46f1b83a0ad2c50bfae4c098fc56e9ba6ea82d1759d688d9a7717ffb7e82fac0",
     "experiments/run_geopolitical_price_shock.py": "a385d92bde70bbfa7c219394104ec76cc848e137afc830020bacb0399357f541",
@@ -21,7 +21,7 @@
     "src/terraplan/__init__.py": "fad02811b53f8d67167c0d53709140462ce5ef165cd8cd11509b8407e502bdcf",
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
     "src/terraplan/api.py": "812db4d93a84045927ba9246b1fbf09b94f9c46d3a8f6e9262009fac0df11b57",
-    "src/terraplan/assumptions.py": "0c2582f900eff3e7d6dedf3461a5e456aacbb0b8570f6777cd0bbc2a1782f1e2",
+    "src/terraplan/assumptions.py": "08158e36ed64edcca5a27e604ad2328ace5cb7b236205d70f782d603ed27c080",
     "src/terraplan/case.py": "33bb8ccb1b2e1042a64bd896d4cbcb30b320182ad41d7690c65197e60bea0c31",
     "src/terraplan/cli.py": "8589f5f45d8e45982d8d3284c9fd5a8c224e6a5b69cfb17d7ff23474a1c682b3",
     "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
@@ -123,7 +123,7 @@
     "comparison.csv": "c71bed1796e49738585e5faca039b84e690aaa5f8b2c26437eacfeee78b4862f",
     "price_exposure.csv": "f1edb63d451635ec291bf9005647c0bb24ae4fbf87304fa690d1186d2ec9f983",
     "price_overlay.csv": "25f643d9371703165832217c2a29593623a6dcc275a502cf240a9d157d706486",
-    "report.json": "5fe5b97ae60a57309d08526807500eea082e43f074a0d49eb8b7f81c214dc321",
+    "report.json": "5cd42680a09523fe99f8cc92a3d4edd0de7a6dfcc42b892b01bfddca2686f4f1",
     "shock.yaml": "46f1b83a0ad2c50bfae4c098fc56e9ba6ea82d1759d688d9a7717ffb7e82fac0",
     "summary.md": "fefc4b6a14c23ffc71a627171a5c471c0efb31b8cc41c7633c459f462b1a4085",
     "yearly.csv": "d960b43a8a39e5c25416d6401d396173e400e85618d26904df774592f232d6af"
