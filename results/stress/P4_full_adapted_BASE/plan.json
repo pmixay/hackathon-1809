@@ -1,7 +1,7 @@
 {
   "plan_id": "P4_full_adapted",
   "scenario_id": "MANDATORY_STRESS",
-  "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037) — re-planned for MANDATORY_STRESS",
+  "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037) — перепланирован под MANDATORY_STRESS",
   "decisions": {
     "capacity_reservations": [
       {
@@ -197,7 +197,7 @@
     "builder": "greedy_merit_order",
     "strategy": {
       "plan_id": "P4_full_adapted",
-      "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037) — re-planned for MANDATORY_STRESS",
+      "description": "All options: Earth-New 2035-01, ISRU 2036-01, ZBO 2037-07; Emergency capped at 15 % of demand (CAPEX 1790 ≤ 1800 by 2037) — перепланирован под MANDATORY_STRESS",
       "reservation_caps": {
         "A": 190,
         "B": 110,

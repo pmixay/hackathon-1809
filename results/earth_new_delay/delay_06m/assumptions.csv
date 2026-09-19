@@ -1,29 +1,31 @@
 key,value,unit,status,range,justification
-discount_rate_real,0.08,share per year (real),TEAM_ASSUMPTION,"[0.0, 0.15]","Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.
+discount_rate_real,0.08,доля в год (реальная ставка),TEAM_ASSUMPTION,"[0.0, 0.15]","Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.
 "
-discount_t0_year,2035,year,TEAM_ASSUMPTION,"[2035, 2035]",Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035).
-discount_timing,"""start""",enum start|mid|end,TEAM_ASSUMPTION,"[""start"", ""mid"", ""end""]",Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives.
-prep_period_start,"""2034-01""",YYYY-MM,TEAM_ASSUMPTION,"[""2033-01"", ""2034-12""]",Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01).
-lead_time_policy,"""max""",enum min|max|mean,TEAM_ASSUMPTION,"[""min"", ""max"", ""mean""]","Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
-weeks_per_month,4.345,weeks,TEAM_ASSUMPTION,"[4.0, 4.5]",365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months.
-days_per_month,30.4167,days,TEAM_ASSUMPTION,"[28, 31]",365/12; day-denominated lead times converted with ceil.
-zbo_commissioning_lag_months,0,months,TEAM_ASSUMPTION,"[0, 12]",Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity.
-earth_new_post_commissioning_lead_months,0,months,TEAM_ASSUMPTION,"[0, 12]",The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation.
-isru_commissioning_month,"""2038-01""",YYYY-MM,CASE_INPUT,"[""2038-01"", ""2038-01""]",Lunar-ISRU available from 2038 once CAPEX is financed before 2038.
-isru_financing_deadline,"""2037-12""",YYYY-MM,CASE_INPUT,"[""2037-12"", ""2037-12""]",CAPEX 1250 must be financed before 2038.
-source_investment_link,"{""C"": ""EARTH_NEW"", ""D"": ""LUNAR_ISRU""}",map source_id -> investment_id,CASE_INPUT,null,Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX.
-storage_investment_link,"{""ZBO"": ""ZBO""}",map investment_id -> storage_id,CASE_INPUT,null,"ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
-emergency_base_share_threshold,0.2,share of annual total demand,TEAM_ASSUMPTION,"[0.1, 0.5]",Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand.
-holding_cost_averaging,"""trapezoid_monthly""",enum,TEAM_ASSUMPTION,"[""trapezoid_monthly""]",Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12.
-storage_capacity_check,"""end_of_month_hard_peak_warning""",enum,TEAM_ASSUMPTION,null,Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity.
-emergency_reserve_equivalence,"""stock_covers_lead_time_and_reserved_capacity_covers_45d""",rule,TEAM_ASSUMPTION,null,Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y.
-opening_stock_reservation_years,1.0,years,TEAM_ASSUMPTION,"[0.0, 1.0]",The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035.
-prep_period_holding_charged,false,bool,TEAM_ASSUMPTION,"[true, false]",Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged.
-intra_year_demand_profile,"""uniform""",enum,CASE_INPUT,"[""uniform""]","Organizer convention — uniform demand within the year, 365 days."
-exp10_demand_max,0.02,additional relative demand increase,TEAM_ASSUMPTION,"[0.0, 0.02]","EXP-10 only: uniform U(0, value), multiplying both mandatory-stress total and critical demand in 2038-2040. One persistent draw per realization; independent of ISRU and price in the primary model. Diagnostic shares the demand uniform with ISRU. Range brackets EXP-08's 1% target; illustrative conditional uncertainty, not calibrated organizer probabilities. Core ignores this key.
+discount_t0_year,2035,год,TEAM_ASSUMPTION,"[2035, 2035]",Годовые денежные потоки датируются началом каждого года; коэффициент приведения = 1/(1+r)^(год − 2035).
+discount_timing,"""start""",перечисление start|mid|end,TEAM_ASSUMPTION,"[""start"", ""mid"", ""end""]","Момент внутри года, к которому отнесён годовой поток — начало (показатель степени год − 2035), середина (+0,5) или конец (+1); одинаково для всех альтернатив."
+prep_period_start,"""2034-01""",ГГГГ-ММ,TEAM_ASSUMPTION,"[""2033-01"", ""2034-12""]",Самая ранняя дата заказа в подготовительном периоде (Earth-Core требует 12 месяцев до 2035-01).
+lead_time_policy,"""max""",перечисление min|max|mean,TEAM_ASSUMPTION,"[""min"", ""max"", ""mean""]","Консервативный край диапазонов сроков поставки организатора (Earth-New 24 месяца, ISRU 2 месяца)."
+weeks_per_month,4.345,недель,TEAM_ASSUMPTION,"[4.0, 4.5]","365/12/7. Сроки в неделях переводятся как ceil(недели/4,345) -> Emergency 6 недель = 2 месяца."
+days_per_month,30.4167,дней,TEAM_ASSUMPTION,"[28, 31]",365/12; сроки в днях переводятся с округлением вверх.
+zbo_commissioning_lag_months,0,месяцев,TEAM_ASSUMPTION,"[0, 12]",Кейс не задаёт срок модернизации ZBO; она считается действующей с месяца оплаты CAPEX. Варьируется в анализе чувствительности.
+earth_new_post_commissioning_lead_months,0,месяцев,TEAM_ASSUMPTION,"[0, 12]","Срок Earth-New 18–24 месяца трактуется как время от решения до первой поставки; заказы размещаются в период подготовки, после ввода дополнительный срок заказа 0 месяцев."
+isru_commissioning_month,"""2038-01""",ГГГГ-ММ,CASE_INPUT,"[""2038-01"", ""2038-01""]",Lunar-ISRU доступен с 2038 года при финансировании CAPEX до 2038 года.
+isru_financing_deadline,"""2037-12""",ГГГГ-ММ,CASE_INPUT,"[""2037-12"", ""2037-12""]",CAPEX 1 250 млн должен быть профинансирован до 2038 года.
+source_investment_link,"{""C"": ""EARTH_NEW"", ""D"": ""LUNAR_ISRU""}",отображение source_id -> investment_id,CASE_INPUT,null,Мощность Earth-New требует реализованного опциона; Lunar-ISRU — CAPEX пилотного производства.
+storage_investment_link,"{""ZBO"": ""ZBO""}",отображение investment_id -> storage_id,CASE_INPUT,null,"Модернизация ZBO переключает активный режим хранилища (ёмкость 120 т, потери 1,2 %, OPEX 12 млн/год)."
+emergency_base_share_threshold,0.2,доля годового общего спроса,TEAM_ASSUMPTION,"[0.1, 0.5]","Emergency считается базовым каналом в году, когда заказанный у него объём превышает 20 % спроса этого года."
+holding_cost_averaging,"""trapezoid_monthly""",перечисление,TEAM_ASSUMPTION,"[""trapezoid_monthly""]","Средний физический запас за месяц = (I_start + I_end)/2; стоимость хранения = 0,72 × средний запас × 1/12."
+storage_capacity_check,"""end_of_month_hard_peak_warning""",перечисление,TEAM_ASSUMPTION,null,"Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
+emergency_reserve_equivalence,"""stock_covers_lead_time_and_reserved_capacity_covers_45d""",правило,TEAM_ASSUMPTION,null,"Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
+opening_stock_reservation_years,1.0,лет,TEAM_ASSUMPTION,"[0.0, 1.0]",Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году.
+prep_period_holding_charged,false,логическое,TEAM_ASSUMPTION,"[true, false]",Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается.
+intra_year_demand_profile,"""uniform""",перечисление,CASE_INPUT,"[""uniform""]","Конвенция организатора — равномерный спрос внутри года, 365 дней."
+undelivered_volume_paid,true,логическое,CASE_INPUT,"[true, false]","Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо только в отдельном исследовательском контрактном сценарии и не является условием организатора.
 "
-exp10_isru_reduction_max,0.02,additional relative reduction of actual ISRU delivery share,TEAM_ASSUMPTION,"[0.0, 0.02]","EXP-10 only: uniform U(0, value), multiplying mandatory-stress ISRU shares by 1-s in 2038-2040. One persistent draw; reliability is not multiplied again. Independent primary model, comonotonic demand/ISRU diagnostic; price independent in both. No random Core capacity outages are included.
+exp10_demand_max,0.02,дополнительный относительный рост спроса,TEAM_ASSUMPTION,"[0.0, 0.02]","Только EXP-10: равномерное U(0, value), множитель общего и критического спроса обязательного стресса в 2038–2040. Одна постоянная реализация на прогон; в основной модели независима от ISRU и цены. Диагностика использует общую равномерную величину с ISRU. Диапазон охватывает цель 1 % из EXP-08; иллюстративная условная неопределённость, а не откалиброванные вероятности организатора. Ядро этот ключ не использует.
 "
-exp10_price_half_range,0.1,relative variable-price deviation from mandatory stress,TEAM_ASSUMPTION,"[-0.1, 0.1]","EXP-10 only: uniform U(-value, value), one common persistent price draw for Core and Flex in 2038-2039, independent of physical factors. Multiplies the existing 1.25 stress multiplier. Illustrative economic range without empirical calibration; not a capacity or delivery shock.
+exp10_isru_reduction_max,0.02,дополнительное относительное снижение фактической доли поставки ISRU,TEAM_ASSUMPTION,"[0.0, 0.02]","Только EXP-10: равномерное U(0, value), множитель (1 − s) к долям ISRU обязательного стресса в 2038–2040. Одна постоянная реализация; надёжность повторно не умножается. Основная модель — независимая, диагностика — комонотонная связь спроса и ISRU; цена независима в обеих. Случайные отключения мощности Core не включены.
+"
+exp10_price_half_range,0.1,относительное отклонение переменной цены от обязательного стресса,TEAM_ASSUMPTION,"[-0.1, 0.1]","Только EXP-10: равномерное U(−value, value), одна общая постоянная ценовая реализация для Core и Flex в 2038–2039, независимая от физических факторов. Умножает существующий стрессовый множитель 1,25. Иллюстративный экономический диапазон без эмпирической калибровки; не шок мощности или поставки.
 "
 earth_new_preparation_delay_months,6,months,TEAM_ASSUMPTION,"[0, 3, 6, 12]",EXP-09 overlay applied to Earth-New source lead times on a case copy; not a core-engine parameter

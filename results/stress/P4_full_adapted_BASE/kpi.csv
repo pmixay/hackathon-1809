@@ -26,4 +26,4 @@ BASE,P4_full_adapted,guideline_violations,0
 BASE,P4_full_adapted,warnings,3
 BASE,P4_full_adapted,feasible,False
 BASE,P4_full_adapted,checks_total,79
-BASE,P4_full_adapted,checks_passed,74
+BASE,P4_full_adapted,checks_passed,76

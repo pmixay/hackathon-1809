@@ -68,17 +68,17 @@
     "costs": "engine PV in mln constant-2035 units; paired deltas vs unprotected plan on same realization; no damage valuation",
     "limitations": "conditional frequencies, not real-world risk probabilities; no proof of robustness in BASE; ZBO lag remains zero"
   },
-  "python": "3.11.9",
+  "python": "3.11.15",
   "python_implementation": "CPython",
   "terraplan_version": "0.1.0",
   "packages": {
-    "PyYAML": "6.0.3",
+    "PyYAML": "6.0.1",
     "openpyxl": "3.1.5",
-    "pytest": "9.0.3"
+    "pytest": "9.1.1"
   },
   "input_sha256": {
-    "configs/assumptions.yaml": "4834052f94f690c0f38a832d4ebeb8afb0e07a8cd04a5172254e004a3793b823",
-    "configs/plans/P3_isru_zbo_adapted.json": "8f02f34578008083ac79a9c2655319e00ec15b3d8ecff6c20a33af88d16c3551",
+    "configs/assumptions.yaml": "d827e055161e50067f06598e0d67ce03df0b408dbb72de5f5f8dc9698c77b470",
+    "configs/plans/P3_isru_zbo_adapted.json": "8e0e7163c5308f4c6f41fed9dca5844ef9240c6c81736393b858adaab2f6f11b",
     "configs/scenarios/mandatory_stress.yaml": "312b097486d7940c92f70f9180b5d32141d27f1a9a7294f166f6bfeb5ca6a7f7",
     "experiments/run_monte_carlo.py": "817ff381211026a9ce4b940031dbb6943751a634c23e9d963c622c6235384719",
     "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
@@ -91,244 +91,255 @@
     "data/case/investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
     "data/case/storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
     "data/case/supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
-    "src/terraplan/__init__.py": "873d78613516449449c8cbbf79d692bde383b1c11313f4e27f196e88a8a1eddb",
+    "src/terraplan/__init__.py": "fad02811b53f8d67167c0d53709140462ce5ef165cd8cd11509b8407e502bdcf",
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
-    "src/terraplan/assumptions.py": "2ca192cd3f1eb5ae139e8e3bb8de51849ef16bda6175bf265dd6f83fb3346c87",
-    "src/terraplan/case.py": "337fc16f805fd4a7f643cb9b3aae223a3b951ad2266d3507a17d1edd3c4edfed",
-    "src/terraplan/cli.py": "b36c5134bea8ddcad23c0496951c28f19f70ec34400f84bd5a30c183cd5308b5",
-    "src/terraplan/compare.py": "8117c371f5632965e9b50eb1d62f3947a5e5abdbe2e10968e0616ed391b81e18",
+    "src/terraplan/api.py": "1d256365f4ac6de19462f59d3ff9283fa8ff2de8e1c029bcbc2e4830c983f105",
+    "src/terraplan/assumptions.py": "0c2582f900eff3e7d6dedf3461a5e456aacbb0b8570f6777cd0bbc2a1782f1e2",
+    "src/terraplan/case.py": "4681e2e330ebbc8971fd7789990e65097b5f1b4f842876fe7927ae5b43cd305a",
+    "src/terraplan/cli.py": "337c57ca2b0083b839fc32c813fd872ddd22af28b580d0e989487b8794376a8f",
+    "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
     "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
-    "src/terraplan/engine.py": "6e0e4a1cc7b80cb299aea8da19e8d7f89ff573f080259ea680422dd8e1a3493a",
-    "src/terraplan/export.py": "a40da5f8e3b68c386ca8e7ced9c0cec3658ed3e9c958c57d0616af2b0d089f90",
-    "src/terraplan/plan.py": "08c72e8a3091b45e8908f61b4d1ade07e012498befe9de2191a8648fe0f83def",
+    "src/terraplan/engine.py": "cd5fdfb8877ea8b8107f264ce6c9f9187cf376621c98f9ae1dfa0b6cca6d7d2c",
+    "src/terraplan/export.py": "35c9ccaab1dcc1c8348b3a9d634d90b828800c2cd4bf618e5a267ce90a748b8e",
+    "src/terraplan/plan.py": "ef17dc37379d34d0d61fa1e1141d72fa4e8b150527a4e87618231c52c73e2f4d",
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "3c637c332eeb0dd41f0e453cd3ac8be4d4b773d33f78e2ed4b672469c7ff3c36",
-    "src/terraplan/scenario.py": "d2bceff86a21fd8824f39e1d9bc8a25ae4885edf0e3f571a8e93c9e331c0bf50",
+    "src/terraplan/scenario.py": "bedcf66b97e435e8e8ff3bee4c9b5d2a4b9b2b05858901d649acb6b58f0d1c6a",
     "src/terraplan/web.py": "7165f2730a15f071f066d3970081002c65913d983a521e9247c38698b8df6ab4",
     "experiments/provenance.py": "0696bf17ac5705e664c5548d792f856f8c4c8924defa4e2a222cc38f7a3040e0"
   },
   "assumptions": {
     "discount_rate_real": {
       "value": 0.08,
-      "unit": "share per year (real)",
+      "unit": "доля в год (реальная ставка)",
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.0,
         0.15
       ],
-      "justification": "Real discount rate for long-lived infrastructure with technology risk. Not given by the organizer. Used identically for all alternatives; sensitivity 0–12 % in experiments/run_sensitivity.py.\n"
+      "justification": "Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.\n"
     },
     "discount_t0_year": {
       "value": 2035,
-      "unit": "year",
+      "unit": "год",
       "status": "TEAM_ASSUMPTION",
       "range": [
         2035,
         2035
       ],
-      "justification": "Annual cash flows dated at the start of each year; PV factor = 1/(1+r)^(year-2035)."
+      "justification": "Годовые денежные потоки датируются началом каждого года; коэффициент приведения = 1/(1+r)^(год − 2035)."
     },
     "discount_timing": {
       "value": "start",
-      "unit": "enum start|mid|end",
+      "unit": "перечисление start|mid|end",
       "status": "TEAM_ASSUMPTION",
       "range": [
         "start",
         "mid",
         "end"
       ],
-      "justification": "Annual cash flows dated at the start of each year (exponent year-2035); mid/end-year conventions available and applied identically to all alternatives."
+      "justification": "Момент внутри года, к которому отнесён годовой поток — начало (показатель степени год − 2035), середина (+0,5) или конец (+1); одинаково для всех альтернатив."
     },
     "prep_period_start": {
       "value": "2034-01",
-      "unit": "YYYY-MM",
+      "unit": "ГГГГ-ММ",
       "status": "TEAM_ASSUMPTION",
       "range": [
         "2033-01",
         "2034-12"
       ],
-      "justification": "Earliest order date of the preparatory period (Earth-Core needs 12 months before 2035-01)."
+      "justification": "Самая ранняя дата заказа в подготовительном периоде (Earth-Core требует 12 месяцев до 2035-01)."
     },
     "lead_time_policy": {
       "value": "max",
-      "unit": "enum min|max|mean",
+      "unit": "перечисление min|max|mean",
       "status": "TEAM_ASSUMPTION",
       "range": [
         "min",
         "max",
         "mean"
       ],
-      "justification": "Conservative end of the organizer lead-time ranges (Earth-New 24 months, ISRU 2 months)."
+      "justification": "Консервативный край диапазонов сроков поставки организатора (Earth-New 24 месяца, ISRU 2 месяца)."
     },
     "weeks_per_month": {
       "value": 4.345,
-      "unit": "weeks",
+      "unit": "недель",
       "status": "TEAM_ASSUMPTION",
       "range": [
         4.0,
         4.5
       ],
-      "justification": "365/12/7. Week lead times converted with ceil(weeks/4.345) -> Emergency 6 weeks = 2 months."
+      "justification": "365/12/7. Сроки в неделях переводятся как ceil(недели/4,345) -> Emergency 6 недель = 2 месяца."
     },
     "days_per_month": {
       "value": 30.4167,
-      "unit": "days",
+      "unit": "дней",
       "status": "TEAM_ASSUMPTION",
       "range": [
         28,
         31
       ],
-      "justification": "365/12; day-denominated lead times converted with ceil."
+      "justification": "365/12; сроки в днях переводятся с округлением вверх."
     },
     "zbo_commissioning_lag_months": {
       "value": 0,
-      "unit": "months",
+      "unit": "месяцев",
       "status": "TEAM_ASSUMPTION",
       "range": [
         0,
         12
       ],
-      "justification": "Case gives no ZBO build time; modernization active from the CAPEX month. Varied in sensitivity."
+      "justification": "Кейс не задаёт срок модернизации ZBO; она считается действующей с месяца оплаты CAPEX. Варьируется в анализе чувствительности."
     },
     "earth_new_post_commissioning_lead_months": {
       "value": 0,
-      "unit": "months",
+      "unit": "месяцев",
       "status": "TEAM_ASSUMPTION",
       "range": [
         0,
         12
       ],
-      "justification": "The 18–24 month Earth-New lead time is read as decision-to-first-delivery; orders are placed during preparation."
+      "justification": "Срок Earth-New 18–24 месяца трактуется как время от решения до первой поставки; заказы размещаются в период подготовки, после ввода дополнительный срок заказа 0 месяцев."
     },
     "isru_commissioning_month": {
       "value": "2038-01",
-      "unit": "YYYY-MM",
+      "unit": "ГГГГ-ММ",
       "status": "CASE_INPUT",
       "range": [
         "2038-01",
         "2038-01"
       ],
-      "justification": "Lunar-ISRU available from 2038 once CAPEX is financed before 2038."
+      "justification": "Lunar-ISRU доступен с 2038 года при финансировании CAPEX до 2038 года."
     },
     "isru_financing_deadline": {
       "value": "2037-12",
-      "unit": "YYYY-MM",
+      "unit": "ГГГГ-ММ",
       "status": "CASE_INPUT",
       "range": [
         "2037-12",
         "2037-12"
       ],
-      "justification": "CAPEX 1250 must be financed before 2038."
+      "justification": "CAPEX 1 250 млн должен быть профинансирован до 2038 года."
     },
     "source_investment_link": {
       "value": {
         "C": "EARTH_NEW",
         "D": "LUNAR_ISRU"
       },
-      "unit": "map source_id -> investment_id",
+      "unit": "отображение source_id -> investment_id",
       "status": "CASE_INPUT",
       "range": null,
-      "justification": "Earth-New capacity requires the exercised option; Lunar-ISRU requires the pilot CAPEX."
+      "justification": "Мощность Earth-New требует реализованного опциона; Lunar-ISRU — CAPEX пилотного производства."
     },
     "storage_investment_link": {
       "value": {
         "ZBO": "ZBO"
       },
-      "unit": "map investment_id -> storage_id",
+      "unit": "отображение investment_id -> storage_id",
       "status": "CASE_INPUT",
       "range": null,
-      "justification": "ZBO modernization switches the active storage mode (capacity 120 t, losses 1.2 %, OPEX 12/yr)."
+      "justification": "Модернизация ZBO переключает активный режим хранилища (ёмкость 120 т, потери 1,2 %, OPEX 12 млн/год)."
     },
     "emergency_base_share_threshold": {
       "value": 0.2,
-      "unit": "share of annual total demand",
+      "unit": "доля годового общего спроса",
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.1,
         0.5
       ],
-      "justification": "Emergency counts as the base channel in a year when its ordered volume exceeds 20 % of that year's demand."
+      "justification": "Emergency считается базовым каналом в году, когда заказанный у него объём превышает 20 % спроса этого года."
     },
     "holding_cost_averaging": {
       "value": "trapezoid_monthly",
-      "unit": "enum",
+      "unit": "перечисление",
       "status": "TEAM_ASSUMPTION",
       "range": [
         "trapezoid_monthly"
       ],
-      "justification": "Average physical stock per month = (I_start + I_end)/2; holding = 0.72 x average x 1/12."
+      "justification": "Средний физический запас за месяц = (I_start + I_end)/2; стоимость хранения = 0,72 × средний запас × 1/12."
     },
     "storage_capacity_check": {
       "value": "end_of_month_hard_peak_warning",
-      "unit": "enum",
+      "unit": "перечисление",
       "status": "TEAM_ASSUMPTION",
       "range": null,
-      "justification": "Hard violation when end-of-month stock > capacity; warning when stock after inflow (before withdrawals) > capacity."
+      "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
     },
     "emergency_reserve_equivalence": {
       "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
-      "unit": "rule",
+      "unit": "правило",
       "status": "TEAM_ASSUMPTION",
       "range": null,
-      "justification": "Contracted Emergency reserve counts only if stock covers demand during the 6-week lead time and reserved Emergency capacity >= R_y."
+      "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
     },
     "opening_stock_reservation_years": {
       "value": 1.0,
-      "unit": "years",
+      "unit": "лет",
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.0,
         1.0
       ],
-      "justification": "The preparatory-period purchase pays the source reservation rate on the purchased tonnage for one year; booked in 2035."
+      "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
     },
     "prep_period_holding_charged": {
       "value": false,
-      "unit": "bool",
+      "unit": "логическое",
       "status": "TEAM_ASSUMPTION",
       "range": [
         true,
         false
       ],
-      "justification": "Holding cost charged from 2035-01; storage time in the preparatory period (< 1 month) is not charged."
+      "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
     },
     "intra_year_demand_profile": {
       "value": "uniform",
-      "unit": "enum",
+      "unit": "перечисление",
       "status": "CASE_INPUT",
       "range": [
         "uniform"
       ],
-      "justification": "Organizer convention — uniform demand within the year, 365 days."
+      "justification": "Конвенция организатора — равномерный спрос внутри года, 365 дней."
+    },
+    "undelivered_volume_paid": {
+      "value": true,
+      "unit": "логическое",
+      "status": "CASE_INPUT",
+      "range": [
+        true,
+        false
+      ],
+      "justification": "Контрольное правило организатора: оплачивается заказанный объём (Q_pay = max(заказ, TOP × резерв)), недопоставка в обязательном стрессе платёж не возвращает. Значение false (оплата по фактически поставленному объёму) допустимо только в отдельном исследовательском контрактном сценарии и не является условием организатора.\n"
     },
     "exp10_demand_max": {
-      "unit": "additional relative demand increase",
+      "unit": "дополнительный относительный рост спроса",
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.0,
         0.02
       ],
-      "justification": "EXP-10 only: uniform U(0, value), multiplying both mandatory-stress total and critical demand in 2038-2040. One persistent draw per realization; independent of ISRU and price in the primary model. Diagnostic shares the demand uniform with ISRU. Range brackets EXP-08's 1% target; illustrative conditional uncertainty, not calibrated organizer probabilities. Core ignores this key.\n",
+      "justification": "Только EXP-10: равномерное U(0, value), множитель общего и критического спроса обязательного стресса в 2038–2040. Одна постоянная реализация на прогон; в основной модели независима от ISRU и цены. Диагностика использует общую равномерную величину с ISRU. Диапазон охватывает цель 1 % из EXP-08; иллюстративная условная неопределённость, а не откалиброванные вероятности организатора. Ядро этот ключ не использует.\n",
       "value": 0.02
     },
     "exp10_isru_reduction_max": {
-      "unit": "additional relative reduction of actual ISRU delivery share",
+      "unit": "дополнительное относительное снижение фактической доли поставки ISRU",
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.0,
         0.02
       ],
-      "justification": "EXP-10 only: uniform U(0, value), multiplying mandatory-stress ISRU shares by 1-s in 2038-2040. One persistent draw; reliability is not multiplied again. Independent primary model, comonotonic demand/ISRU diagnostic; price independent in both. No random Core capacity outages are included.\n",
+      "justification": "Только EXP-10: равномерное U(0, value), множитель (1 − s) к долям ISRU обязательного стресса в 2038–2040. Одна постоянная реализация; надёжность повторно не умножается. Основная модель — независимая, диагностика — комонотонная связь спроса и ISRU; цена независима в обеих. Случайные отключения мощности Core не включены.\n",
       "value": 0.02
     },
     "exp10_price_half_range": {
-      "unit": "relative variable-price deviation from mandatory stress",
+      "unit": "относительное отклонение переменной цены от обязательного стресса",
       "status": "TEAM_ASSUMPTION",
       "range": [
         -0.1,
         0.1
       ],
-      "justification": "EXP-10 only: uniform U(-value, value), one common persistent price draw for Core and Flex in 2038-2039, independent of physical factors. Multiplies the existing 1.25 stress multiplier. Illustrative economic range without empirical calibration; not a capacity or delivery shock.\n",
+      "justification": "Только EXP-10: равномерное U(−value, value), одна общая постоянная ценовая реализация для Core и Flex в 2038–2039, независимая от физических факторов. Умножает существующий стрессовый множитель 1,25. Иллюстративный экономический диапазон без эмпирической калибровки; не шок мощности или поставки.\n",
       "value": 0.1
     }
   },
@@ -395,7 +406,7 @@
     "without_measure": {
       "plan_id": "P3_isru_zbo_adapted",
       "scenario_id": "MANDATORY_STRESS",
-      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
       "decisions": {
         "capacity_reservations": [
           {
@@ -573,7 +584,7 @@
         "builder": "greedy_merit_order",
         "strategy": {
           "plan_id": "P3_isru_zbo_adapted",
-          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
           "reservation_caps": {
             "A": 190,
             "B": 110,
@@ -591,7 +602,7 @@
     "physical_stock": {
       "plan_id": "P3_isru_zbo_adapted_stock_8.6t",
       "scenario_id": "MANDATORY_STRESS",
-      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
       "decisions": {
         "capacity_reservations": [
           {
@@ -783,7 +794,7 @@
         "builder": "greedy_merit_order",
         "strategy": {
           "plan_id": "P3_isru_zbo_adapted",
-          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
           "reservation_caps": {
             "A": 190,
             "B": 110,
@@ -801,7 +812,7 @@
     "early_zbo_plus_stock": {
       "plan_id": "P3_isru_zbo_adapted_zbo_18mo_earlier_stock_0.1t",
       "scenario_id": "MANDATORY_STRESS",
-      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+      "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
       "decisions": {
         "capacity_reservations": [
           {
@@ -993,7 +1004,7 @@
         "builder": "greedy_merit_order",
         "strategy": {
           "plan_id": "P3_isru_zbo_adapted",
-          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — re-planned for MANDATORY_STRESS",
+          "description": "Earth-Core + Earth-Flex + Lunar-ISRU pilot (CAPEX 2036-01, first delivery 2038-03) + ZBO 2037-07 — перепланирован под MANDATORY_STRESS",
           "reservation_caps": {
             "A": 190,
             "B": 110,
@@ -1013,12 +1024,12 @@
   "replay": "add --replay-samples <original>/samples.csv --out <other-dir> --compare <original>; exact UTF-8 comparison after LF normalization; same recorded runtime versions",
   "output_sha256": {
     "comparison.csv": "a9c339fd5b18758c4aef25c184d0d93a0f6e49458e2d269098a972e7821dc6c6",
-    "early_zbo_plus_stock.plan.json": "ad6917fa396d26047cc412237c600fd00edf09098c1bb659480f7537cc0657bb",
-    "physical_stock.plan.json": "32224c6b45b3c00e30312cfa1dd1519912a22fe518212e5f41aac319b49b1a1a",
+    "early_zbo_plus_stock.plan.json": "13060dfc794c3fd9de78caa06f9888c1074d2252d77dcdc69e094fbad4e4b91a",
+    "physical_stock.plan.json": "6c9e38b752d7d86e1eb2a6716538a4831ff604e7b9cf504fc0857d2de7b88101",
     "report.json": "b7e9132a6f24daa9779e5eca7aa4537d9d5f5c59134d9b397e14372cbf76192f",
-    "runs.csv": "7d77cd79f92657d102b73ddb222e7090bb2fd16d04dace4ec04f845a6afc71f8",
+    "runs.csv": "8d2dfb0fe2980c9a5aabd19c52e744fb5ba56b24a3be8f46415cf830d66565a5",
     "samples.csv": "14cf147931fa3bb59ba6b08bf62299e9865d65604437c581127b902c62cf17c1",
     "summary.md": "9f1710ce8ce653c31386e7707ade6a67c74f2f48f9d0d5b4f96400e4c72ad6dc",
-    "without_measure.plan.json": "795abb9990377084c718a10c100c41540ad110d5f912f64283602c1b69d9ccf7"
+    "without_measure.plan.json": "4259d7cc70948ae92bdf4b36b8f0863a5028128607c96d04a74187dbc84002b3"
   }
 }

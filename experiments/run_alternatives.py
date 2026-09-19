@@ -21,7 +21,7 @@ def main() -> None:
             print(f"{name:20s} {sc.scenario_id:16s} feasible={res.feasible!s:5s} PV={res.kpi['pv_cost_mln']:9.1f} cost/t={res.kpi['cost_per_served_t_mln']:.3f} "
                   f"shortage={res.kpi['shortage_total_t']:7.1f} minSL={res.kpi['min_service_level_total']:.3f} hard={res.kpi['hard_violations']}")
     write_table(rows, RESULTS / "alternatives" / "summary.csv", RESULTS / "alternatives" / "summary.md",
-                "EXP-01 Alternatives under BASE and MANDATORY_STRESS (plan built for BASE, unchanged in stress)")
+                "EXP-01 Альтернативы в BASE и MANDATORY_STRESS (план построен для BASE, в стрессе не меняется)")
 
 
 if __name__ == "__main__":

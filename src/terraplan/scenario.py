@@ -32,7 +32,7 @@ def _year_lookup(table: Any, year: int, default: float = 1.0) -> float:
         if "default" in table:
             return float(table["default"])
         return default
-    raise ScenarioError(f"unsupported multiplier table: {table!r}")
+    raise ScenarioError(f"неподдерживаемая таблица множителей: {table!r}")
 
 
 @dataclass
@@ -65,7 +65,7 @@ class Scenario:
         if isinstance(table, (int, float)):
             return float(table)
         if not isinstance(table, dict):
-            raise ScenarioError(f"unsupported per-source table: {table!r}")
+            raise ScenarioError(f"неподдерживаемая таблица множителей по источникам: {table!r}")
         for key in (source.source_id, source.name):
             if key in table:
                 return _year_lookup(table[key], year, default)
@@ -101,22 +101,22 @@ class Scenario:
 
 def scenario_from_dict(data: dict, source_file: str = "") -> Scenario:
     if not isinstance(data, dict):
-        raise ScenarioError(f"scenario file {source_file or '<dict>'}: top level must be a mapping")
+        raise ScenarioError(f"файл сценария {source_file or '<dict>'}: верхний уровень должен быть отображением (mapping)")
     sid = data.get("scenario_id")
     if not sid or not isinstance(sid, str):
-        raise ScenarioError(f"scenario file {source_file or '<dict>'} has no 'scenario_id' (required, e.g. BASE / MANDATORY_STRESS / TEAM_xxx)")
+        raise ScenarioError(f"файл сценария {source_file or '<dict>'} не содержит поля 'scenario_id' (обязательно, например BASE / MANDATORY_STRESS / TEAM_xxx)")
     variant = str(data.get("demand_variant", "base")).lower()
     if variant not in ("base", "low", "high"):
-        raise ScenarioError(f"scenario {sid}: demand_variant must be base|low|high, got {variant!r}")
+        raise ScenarioError(f"сценарий {sid}: demand_variant должен быть base|low|high, получено {variant!r}")
     for key in ("demand_multiplier", "critical_demand_multiplier"):
         tbl = data.get(key)
         if isinstance(tbl, dict):
             for k, v in tbl.items():
                 if not isinstance(v, (int, float)) or v < 0:
-                    raise ScenarioError(f"scenario {sid}: {key}[{k}] must be a non-negative number, got {v!r}")
+                    raise ScenarioError(f"сценарий {sid}: {key}[{k}] должен быть неотрицательным числом, получено {v!r}")
     lc = data.get("loss_ceiling") or {}
     if lc and lc.get("enabled") and "max_losses_divided_by_throughput" not in lc:
-        raise ScenarioError(f"scenario {sid}: loss_ceiling.enabled requires max_losses_divided_by_throughput")
+        raise ScenarioError(f"сценарий {sid}: loss_ceiling.enabled требует поле max_losses_divided_by_throughput")
     return Scenario(
         scenario_id=sid, label=str(data.get("label_ru") or data.get("label") or sid),
         status=str(data.get("status", "TEAM_ASSUMPTION")),
@@ -133,11 +133,11 @@ def scenario_from_dict(data: dict, source_file: str = "") -> Scenario:
 def load_scenario(path: str | Path) -> Scenario:
     p = Path(path)
     if not p.exists():
-        raise ScenarioError(f"scenario file not found: {p}")
+        raise ScenarioError(f"файл сценария не найден: {p}")
     try:
         data = yaml.safe_load(p.read_text(encoding="utf-8"))
     except yaml.YAMLError as exc:
-        raise ScenarioError(f"scenario file {p} is not valid YAML: {exc}") from exc
+        raise ScenarioError(f"файл сценария {p} не является корректным YAML: {exc}") from exc
     return scenario_from_dict(data, str(p))
 
 
@@ -149,4 +149,4 @@ def resolve_scenario(spec: str, scenarios_dir: str | Path = "configs/scenarios")
     cand = Path(scenarios_dir) / f"{spec.lower()}.yaml"
     if cand.exists():
         return load_scenario(cand)
-    raise ScenarioError(f"unknown scenario {spec!r}: not a file and {cand} does not exist")
+    raise ScenarioError(f"неизвестный сценарий {spec!r}: это не файл, и {cand} не существует")

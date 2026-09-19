@@ -58,7 +58,9 @@ def test_hash_preserves_whitespace_numbers_and_unicode(tmp_path):
 @pytest.mark.parametrize("folder,expected", [
     ("reverse_stress", "edb213fe314176dcc98f04d2dc3fb6f1a6ca73d996468d938f3ad681242811dc"),
     ("protection_measures", "e30f24595b7467e0936ec6f205901c1a9a96a3bab92c25c72ccd2d4fe6509707"),
-    ("earth_new_delay", "176c0530abf9cfc902c25cf0e85da272c991d1374c6c222237a9cf369b559c92"),
+    # 2026-09-19: refreshed after the R1 Earth-New order-calendar fix; the only numeric change is kpi/checks_passed
+    # (73 -> 75 reference, 67 -> 70 delayed runs) because LEAD_TIME_VIOLATED matrix rows of Earth-New deliveries now pass.
+    ("earth_new_delay", "142fc5febb66e1a82fd03a30941ae26cb9ebe64c16c04827bb3b1c39838d67f8"),
     ("monte_carlo", "d8cf43b762a4895852025124f8e64e1bda0b02e9019e1f2a9bd73f567c1981e7"),
 ])
 def test_audit_refresh_preserves_published_numbers(root, folder, expected):

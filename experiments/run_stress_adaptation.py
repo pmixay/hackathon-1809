@@ -23,19 +23,19 @@ def main() -> None:
         strat = dict(STRATEGIES[name])
         fixed = build_plan(case, base, strat, a)
         adapted = build_plan(case, stress, dict(strat, plan_id=f"{name}_adapted", stress_aware=True,
-                                                description=strat["description"] + " — re-planned for MANDATORY_STRESS"), a)
+                                                description=strat["description"] + " — перепланирован под MANDATORY_STRESS"), a)
         save_plan(adapted, PLANS / f"{name}_adapted.json")
         r_fixed = run_and_save(case, fixed, stress, a, RESULTS / "stress" / f"{name}_fixed_MANDATORY_STRESS")
         r_adapt = run_and_save(case, adapted, stress, a, RESULTS / "stress" / f"{name}_adapted_MANDATORY_STRESS")
         r_adapt_base = run_and_save(case, adapted, base, a, RESULTS / "stress" / f"{name}_adapted_BASE")
-        rows += [kpi_row(r_fixed, experiment="EXP-02", variant="fixed plan"), kpi_row(r_adapt, experiment="EXP-02", variant="adapted plan"),
-                 kpi_row(r_adapt_base, experiment="EXP-02", variant="adapted plan run in BASE (cost of hedging)")]
-        write_comparison(compare_results(r_fixed, r_adapt, f"{name} fixed/STRESS", f"{name} adapted/STRESS"),
+        rows += [kpi_row(r_fixed, experiment="EXP-02", variant="план без изменений"), kpi_row(r_adapt, experiment="EXP-02", variant="адаптированный план"),
+                 kpi_row(r_adapt_base, experiment="EXP-02", variant="адаптированный план в BASE (цена хеджирования)")]
+        write_comparison(compare_results(r_fixed, r_adapt, f"{name} без изменений/STRESS", f"{name} адаптированный/STRESS"),
                          RESULTS / "stress" / f"compare_{name}.csv", RESULTS / "stress" / f"compare_{name}.md")
         print(f"{name}: fixed PV={r_fixed.kpi['pv_cost_mln']:.1f} shortage={r_fixed.kpi['shortage_total_t']:.1f} hard={r_fixed.kpi['hard_violations']} | "
               f"adapted PV={r_adapt.kpi['pv_cost_mln']:.1f} shortage={r_adapt.kpi['shortage_total_t']:.1f} hard={r_adapt.kpi['hard_violations']} "
               f"minSL={r_adapt.kpi['min_service_level_total']:.3f}")
-    write_table(rows, RESULTS / "stress" / "summary.csv", RESULTS / "stress" / "summary.md", "EXP-02 Mandatory stress: fixed vs adapted plans")
+    write_table(rows, RESULTS / "stress" / "summary.csv", RESULTS / "stress" / "summary.md", "EXP-02 Обязательный стресс: план без изменений и адаптированный план")
 
 
 if __name__ == "__main__":

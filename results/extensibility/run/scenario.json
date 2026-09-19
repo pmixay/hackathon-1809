@@ -11,8 +11,8 @@
   "enforce_service_thresholds": null,
   "notes": [],
   "changes": [
-    "+Source-X 60 t/yr from 2039 (5.5 mln/t, reservation 0.2, TOP 30 %)",
-    "+2041 demand 450/290 t (extrapolated)",
-    "CAPEX limits and 45-day rule kept as in the original set (no through_2041 CAPEX limit was added)"
+    "+Source-X 60 т/год с 2039 г. (5,5 млн/т, резервирование 0,2, take-or-pay 30 %)",
+    "+спрос 2041 г. 450/290 т (экстраполяция)",
+    "лимиты CAPEX и правило 45 дней сохранены как в исходном наборе (лимит CAPEX через 2041 г. не добавлялся)"
   ]
 }

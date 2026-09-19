@@ -30,6 +30,7 @@ def recalc(result_dir: Path, case_dir: Path) -> list[str]:
     assumptions = {r["key"]: json.loads(r["value"]) for r in rows(result_dir / "assumptions.csv")}
     r = float(assumptions["discount_rate_real"]); t0 = int(assumptions["discount_t0_year"])
     offset = {"start": 0.0, "mid": 0.5, "end": 1.0}[assumptions.get("discount_timing", "start")]
+    paid_on_order = bool(assumptions.get("undelivered_volume_paid", True))
 
     # 1. monthly balance identity and non-negative stock
     for m in trace:
@@ -61,7 +62,8 @@ def recalc(result_dir: Path, case_dir: Path) -> list[str]:
         y = int(s_["year"]); src = sources[s_["source_id"]]
         ordered = float(s_["ordered_t"]); reserved = float(s_["reserved_capacity_t"]); f = float(s_["period_fraction"])
         if s_["period"] == "year":
-            q_pay = max(ordered, float(src["take_or_pay_share"]) * reserved * f)
+            base = ordered if paid_on_order else min(ordered, float(s_["actual_delivery_t"]))
+            q_pay = max(base, float(src["take_or_pay_share"]) * reserved * f)
             price = float(src["variable_cost_mln_per_t"]) * float(s_["price_multiplier"])
         else:  # preparatory purchase: paid at price, reservation for the stated fraction of a year
             q_pay = ordered; price = float(src["variable_cost_mln_per_t"]) * float(s_["price_multiplier"])
@@ -96,7 +98,7 @@ def recalc(result_dir: Path, case_dir: Path) -> list[str]:
 if __name__ == "__main__":
     rd = Path(sys.argv[1]); cd = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("data/case")
     probs = recalc(rd, cd)
-    print(f"independent recalculation of {rd}: {'PASS' if not probs else 'FAIL'}")
+    print(f"независимый пересчёт по CSV {rd}: {'ПРОЙДЕНО' if not probs else 'ОШИБКА'}")
     for p in probs:
         print("  ", p)
     sys.exit(1 if probs else 0)

@@ -26,4 +26,4 @@ BASE,P2_earth_new,guideline_violations,0
 BASE,P2_earth_new,warnings,19
 BASE,P2_earth_new,feasible,True
 BASE,P2_earth_new,checks_total,75
-BASE,P2_earth_new,checks_passed,73
+BASE,P2_earth_new,checks_passed,75

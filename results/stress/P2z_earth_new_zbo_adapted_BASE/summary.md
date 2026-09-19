@@ -1,41 +1,47 @@
 # P2z_earth_new_zbo_adapted — BASE (Стандартный сценарий)
 
-Feasible: **NO** — hard violations: 17, guideline: 0, warnings: 5
+План исполним: **НЕТ** — жёстких нарушений: 17, отклонений от ориентиров: 0, предупреждений: 5
 
-| KPI | Value |
-|---|---:|
-| total_cost_mln | 12,223.950 |
-| pv_cost_mln | 9,644.476 |
-| cost_per_served_t_mln | 8.794 |
-| pv_cost_per_served_t_mln | 6.938 |
-| served_total_t | 1,390.000 |
-| demand_total_t | 1,390.000 |
-| shortage_total_t | 0.000 |
-| shortage_critical_t | 0.000 |
-| min_service_level_total | 1.000 |
-| min_service_level_critical | 1.000 |
-| losses_total_t | 31.121 |
-| capex_total_mln | 540.000 |
-| procurement_total_mln | 10,754.221 |
-| reservation_total_mln | 604.827 |
-| holding_total_mln | 282.903 |
-| fixed_opex_total_mln | 42.000 |
-| take_or_pay_idle_t | 0.000 |
+Единицы: топливо — т; деньги — млн у.е. в постоянных ценах 2035 г.; шаг расчёта — календарный месяц; ставка дисконтирования r = 8% (TEAM_ASSUMPTION, одинакова для всех альтернатив). Те же числа — в CSV/XLSX/JSON этого каталога; календарь заказов и поставок — `delivery_schedule.csv`; реестр допущений — `assumptions.csv`.
 
-## Yearly balance
+## Итоговые показатели
 
-| Year | Demand | Critical | Served | SL total | SL crit | Shortage | Inflow (actual) | Losses | Open | Close | R45 | Reserve OK | Storage |
+| Показатель | Ключ | Значение |
+|---|---|---:|
+| Полные затраты, млн | `total_cost_mln` | 12,223.950 |
+| Приведённые затраты (PV), млн | `pv_cost_mln` | 9,644.476 |
+| Затраты на обслуженную тонну, млн/т | `cost_per_served_t_mln` | 8.794 |
+| PV затрат на обслуженную тонну, млн/т | `pv_cost_per_served_t_mln` | 6.938 |
+| Обслужено, т | `served_total_t` | 1,390.000 |
+| Спрос, т | `demand_total_t` | 1,390.000 |
+| Дефицит, т | `shortage_total_t` | 0.000 |
+| Дефицит критического спроса, т | `shortage_critical_t` | 0.000 |
+| Мин. уровень сервиса (общий) | `min_service_level_total` | 1.000 |
+| Мин. уровень сервиса (критический) | `min_service_level_critical` | 1.000 |
+| Потери при хранении, т | `losses_total_t` | 31.121 |
+| CAPEX, млн | `capex_total_mln` | 540.000 |
+| Закупка, млн | `procurement_total_mln` | 10,754.221 |
+| Резервирование мощности, млн | `reservation_total_mln` | 604.827 |
+| Хранение, млн | `holding_total_mln` | 282.903 |
+| Постоянный OPEX, млн | `fixed_opex_total_mln` | 42.000 |
+| Оплачено по take-or-pay сверх заказа, т | `take_or_pay_idle_t` | 0.000 |
+
+## Годовой баланс (т)
+
+| Год | Спрос | в т.ч. критич. | Обслужено | УС общий | УС критич. | Дефицит | Поступление (факт) | Потери | Запас на начало | Запас на конец | R45 | Резерв на начало года | Хранилище |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---:|---|
-| 2035 | 100.0 | 80.0 | 100.0 | 1.000 | 1.000 | 0.0 | 109.9 | 4.94 | 12.3 | 17.3 | 12.3 | yes | BASE |
-| 2036 | 140.0 | 105.0 | 140.0 | 1.000 | 1.000 | 0.0 | 153.1 | 6.89 | 17.3 | 23.4 | 17.3 | yes | BASE |
-| 2037 | 190.0 | 135.0 | 190.0 | 1.000 | 1.000 | 0.0 | 207.9 | 5.93 | 23.4 | 35.4 | 23.4 | yes | ZBO |
-| 2038 | 250.0 | 170.0 | 250.0 | 1.000 | 1.000 | 0.0 | 301.0 | 3.61 | 35.4 | 82.9 | 30.8 | yes | ZBO |
-| 2039 | 320.0 | 210.0 | 320.0 | 1.000 | 1.000 | 0.0 | 382.5 | 4.59 | 82.9 | 140.8 | 39.5 | yes | ZBO |
-| 2040 | 390.0 | 250.0 | 390.0 | 1.000 | 1.000 | 0.0 | 430.0 | 5.16 | 140.8 | 175.6 | 48.1 | yes | ZBO |
+| 2035 | 100.0 | 80.0 | 100.0 | 1.000 | 1.000 | 0.0 | 109.9 | 4.94 | 12.3 | 17.3 | 12.3 | выполнен | BASE |
+| 2036 | 140.0 | 105.0 | 140.0 | 1.000 | 1.000 | 0.0 | 153.1 | 6.89 | 17.3 | 23.4 | 17.3 | выполнен | BASE |
+| 2037 | 190.0 | 135.0 | 190.0 | 1.000 | 1.000 | 0.0 | 207.9 | 5.93 | 23.4 | 35.4 | 23.4 | выполнен | ZBO |
+| 2038 | 250.0 | 170.0 | 250.0 | 1.000 | 1.000 | 0.0 | 301.0 | 3.61 | 35.4 | 82.9 | 30.8 | выполнен | ZBO |
+| 2039 | 320.0 | 210.0 | 320.0 | 1.000 | 1.000 | 0.0 | 382.5 | 4.59 | 82.9 | 140.8 | 39.5 | выполнен | ZBO |
+| 2040 | 390.0 | 250.0 | 390.0 | 1.000 | 1.000 | 0.0 | 430.0 | 5.16 | 140.8 | 175.6 | 48.1 | выполнен | ZBO |
 
-## Finance (mln, constant 2035 prices)
+УС — уровень сервиса (обслужено / спрос); R45 — 45-дневный резерв `D_y × 45 / 365`, проверяется по физическому запасу на начало года.
 
-| Year | Procurement | Reservation | Holding | Fixed OPEX | CAPEX | Total | PV |
+## Финансы (млн у.е., постоянные цены 2035 г.)
+
+| Год | Закупка | Резервирование | Хранение | Пост. OPEX | CAPEX | Итого | PV |
 |---:|---:|---:|---:|---:|---:|---:|---:|
 | 2035 | 796.1 | 51.4 | 10.7 | 0.0 | 360.0 | 1218.2 | 1218.2 |
 | 2036 | 948.9 | 68.9 | 14.6 | 0.0 | 0.0 | 1032.4 | 956.0 |
@@ -44,9 +50,16 @@ Feasible: **NO** — hard violations: 17, guideline: 0, warnings: 5
 | 2039 | 2657.4 | 133.9 | 80.5 | 12.0 | 0.0 | 2883.8 | 2119.7 |
 | 2040 | 3080.0 | 141.0 | 113.9 | 12.0 | 0.0 | 3346.9 | 2277.9 |
 
-## Source schedule (t)
+## Инвестиции
 
-| Year | Source | Reserved t/yr | Ordered | Delivered | Price | Payable | Procurement | Reservation |
+| Инвестиция | Плата за опцион, млн | Дата опциона | Реализация / CAPEX, млн | Дата решения | Ввод в строй | Пост. OPEX, млн/год | Примечание |
+|---|---:|---|---:|---|---|---:|---|
+| Earth-New option (EARTH_NEW) | 90 | 2035-01 | 270 | 2035-01 | 2037-01 | 0 |  |
+| ZBO modernization (ZBO) | 0 | — | 180 | 2037-07 | 2037-07 | 12 |  |
+
+## График по источникам (т)
+
+| Год | Источник | Резерв, т/год | Заказано | Поставлено (факт) | Цена, млн/т | Оплачиваемый объём | Закупка, млн | Резервирование, млн |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|
 | 2035 | Earth-Core | 109.9 | 109.9 | 109.9 | 6.20 | 109.9 | 681.2 | 49.4 |
 | 2036 | Earth-Core | 153.1 | 153.1 | 153.1 | 6.20 | 153.1 | 948.9 | 68.9 |
@@ -61,109 +74,111 @@ Feasible: **NO** — hard violations: 17, guideline: 0, warnings: 5
 | 2040 | Earth-Flex | 110.0 | 110.0 | 110.0 | 8.90 | 110.0 | 979.0 | 16.5 |
 | 2040 | Earth-New | 130.0 | 130.0 | 130.0 | 7.10 | 130.0 | 923.0 | 39.0 |
 
-## Check matrix (every rule x year)
+Оплачиваемый объём = max(заказ, take-or-pay × резерв × доля года); начальный запас подготовительного периода учтён в закупке первого года.
 
-| Rule | Year | Metric | Actual | Limit | Op | Result | Severity |
+## Матрица проверок (каждое правило × год, включая выполненные)
+
+| Правило | Год | Метрика | Факт | Лимит | Оп. | Результат | Строгость |
 |---|---:|---|---:|---:|---|:---:|---|
-| BASE_CRITICAL_SERVICE | 2035 | critical_service_level | 1.0000 | 0.9900 | >= | OK | hard |
-| BASE_CRITICAL_SERVICE | 2036 | critical_service_level | 1.0000 | 0.9900 | >= | OK | hard |
-| BASE_CRITICAL_SERVICE | 2037 | critical_service_level | 1.0000 | 0.9900 | >= | OK | hard |
-| BASE_CRITICAL_SERVICE | 2038 | critical_service_level | 1.0000 | 0.9900 | >= | OK | hard |
-| BASE_CRITICAL_SERVICE | 2039 | critical_service_level | 1.0000 | 0.9900 | >= | OK | hard |
-| BASE_CRITICAL_SERVICE | 2040 | critical_service_level | 1.0000 | 0.9900 | >= | OK | hard |
-| BASE_TOTAL_SERVICE | 2035 | total_service_level | 1.0000 | 0.9700 | >= | OK | hard |
-| BASE_TOTAL_SERVICE | 2036 | total_service_level | 1.0000 | 0.9700 | >= | OK | hard |
-| BASE_TOTAL_SERVICE | 2037 | total_service_level | 1.0000 | 0.9700 | >= | OK | hard |
-| BASE_TOTAL_SERVICE | 2038 | total_service_level | 1.0000 | 0.9700 | >= | OK | hard |
-| BASE_TOTAL_SERVICE | 2039 | total_service_level | 1.0000 | 0.9700 | >= | OK | hard |
-| BASE_TOTAL_SERVICE | 2040 | total_service_level | 1.0000 | 0.9700 | >= | OK | hard |
-| CAPEX_2037 | 2035 | cumulative_capex | 360.0000 | 1800.0000 | <= | OK | hard |
-| CAPEX_2037 | 2036 | cumulative_capex | 360.0000 | 1800.0000 | <= | OK | hard |
-| CAPEX_2037 | 2037 | cumulative_capex | 540.0000 | 1800.0000 | <= | OK | hard |
-| CAPEX_2040 | 2035 | cumulative_capex | 360.0000 | 2800.0000 | <= | OK | hard |
-| CAPEX_2040 | 2036 | cumulative_capex | 360.0000 | 2800.0000 | <= | OK | hard |
-| CAPEX_2040 | 2037 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
-| CAPEX_2040 | 2038 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
-| CAPEX_2040 | 2039 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
-| CAPEX_2040 | 2040 | cumulative_capex | 540.0000 | 2800.0000 | <= | OK | hard |
-| RESERVE_45D | 2035 | opening_stock_vs_45d_reserve_t | 12.3289 | 12.3288 | >= | OK | hard |
-| RESERVE_45D | 2036 | opening_stock_vs_45d_reserve_t | 17.2604 | 17.2603 | >= | OK | hard |
-| RESERVE_45D | 2037 | opening_stock_vs_45d_reserve_t | 23.4249 | 23.4247 | >= | OK | hard |
-| RESERVE_45D | 2038 | opening_stock_vs_45d_reserve_t | 35.4455 | 30.8219 | >= | OK | hard |
-| RESERVE_45D | 2039 | opening_stock_vs_45d_reserve_t | 82.8703 | 39.4521 | >= | OK | hard |
-| RESERVE_45D | 2040 | opening_stock_vs_45d_reserve_t | 140.7950 | 48.0822 | >= | OK | hard |
-| EMERGENCY_BASE_STREAK | 2035 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
-| EMERGENCY_BASE_STREAK | 2036 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
-| EMERGENCY_BASE_STREAK | 2037 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
-| EMERGENCY_BASE_STREAK | 2038 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
-| EMERGENCY_BASE_STREAK | 2039 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
-| EMERGENCY_BASE_STREAK | 2040 | emergency_share_of_demand | 0.0000 | 0.2000 | <= (else counts as base year) | OK | hard |
-| STORAGE_OVERFLOW | 2035 | max_end_of_month_stock_t | 17.2604 | 70.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2035 | reserved_A_t_per_year | 109.8760 | 190.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2035 | ordered_A_t | 109.8760 | 109.8760 | <= | OK | hard |
-| LEAD_TIME_VIOLATED | 2035 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
-| SOURCE_NOT_AVAILABLE | 2035 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
-| STORAGE_OVERFLOW | 2036 | max_end_of_month_stock_t | 23.4249 | 70.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2036 | reserved_A_t_per_year | 153.0520 | 190.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2036 | ordered_A_t | 153.0518 | 153.0520 | <= | OK | hard |
-| LEAD_TIME_VIOLATED | 2036 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
-| SOURCE_NOT_AVAILABLE | 2036 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
-| STORAGE_OVERFLOW | 2037 | max_end_of_month_stock_t | 35.4455 | 70.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2037 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2037 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2037 | reserved_C_t_per_year | 17.9480 | 130.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2037 | ordered_C_t | 17.9471 | 17.9480 | <= | OK | hard |
-| LEAD_TIME_VIOLATED | 2037 | all_deliveries_ordered_within_lead_time | 0.0000 | 1.0000 | == | VIOLATED | hard |
-| SOURCE_NOT_AVAILABLE | 2037 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
-| STORAGE_OVERFLOW | 2038 | max_end_of_month_stock_t | 82.8703 | 120.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2038 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2038 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2038 | reserved_C_t_per_year | 111.0380 | 130.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2038 | ordered_C_t | 111.0372 | 111.0380 | <= | OK | hard |
-| LEAD_TIME_VIOLATED | 2038 | all_deliveries_ordered_within_lead_time | 0.0000 | 1.0000 | == | VIOLATED | hard |
-| SOURCE_NOT_AVAILABLE | 2038 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
-| STORAGE_OVERFLOW | 2039 | max_end_of_month_stock_t | 140.7950 | 120.0000 | <= | VIOLATED | hard |
-| CAPACITY_EXCEEDED | 2039 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2039 | reserved_B_t_per_year | 62.5150 | 110.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_B_t | 62.5149 | 62.5150 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2039 | reserved_C_t_per_year | 130.0000 | 130.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_C_t | 130.0000 | 130.0000 | <= | OK | hard |
-| LEAD_TIME_VIOLATED | 2039 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
-| SOURCE_NOT_AVAILABLE | 2039 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
-| STORAGE_OVERFLOW | 2040 | max_end_of_month_stock_t | 175.6350 | 120.0000 | <= | VIOLATED | hard |
-| CAPACITY_EXCEEDED | 2040 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_A_t | 190.0000 | 190.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2040 | reserved_B_t_per_year | 110.0000 | 110.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_B_t | 110.0000 | 110.0000 | <= | OK | hard |
-| CAPACITY_EXCEEDED | 2040 | reserved_C_t_per_year | 130.0000 | 130.0000 | <= | OK | hard |
-| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_C_t | 130.0000 | 130.0000 | <= | OK | hard |
-| LEAD_TIME_VIOLATED | 2040 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | OK | hard |
-| SOURCE_NOT_AVAILABLE | 2040 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | OK | hard |
+| BASE_CRITICAL_SERVICE | 2035 | critical_service_level | 1.0000 | 0.9900 | >= | выполнено | жёсткое |
+| BASE_CRITICAL_SERVICE | 2036 | critical_service_level | 1.0000 | 0.9900 | >= | выполнено | жёсткое |
+| BASE_CRITICAL_SERVICE | 2037 | critical_service_level | 1.0000 | 0.9900 | >= | выполнено | жёсткое |
+| BASE_CRITICAL_SERVICE | 2038 | critical_service_level | 1.0000 | 0.9900 | >= | выполнено | жёсткое |
+| BASE_CRITICAL_SERVICE | 2039 | critical_service_level | 1.0000 | 0.9900 | >= | выполнено | жёсткое |
+| BASE_CRITICAL_SERVICE | 2040 | critical_service_level | 1.0000 | 0.9900 | >= | выполнено | жёсткое |
+| BASE_TOTAL_SERVICE | 2035 | total_service_level | 1.0000 | 0.9700 | >= | выполнено | жёсткое |
+| BASE_TOTAL_SERVICE | 2036 | total_service_level | 1.0000 | 0.9700 | >= | выполнено | жёсткое |
+| BASE_TOTAL_SERVICE | 2037 | total_service_level | 1.0000 | 0.9700 | >= | выполнено | жёсткое |
+| BASE_TOTAL_SERVICE | 2038 | total_service_level | 1.0000 | 0.9700 | >= | выполнено | жёсткое |
+| BASE_TOTAL_SERVICE | 2039 | total_service_level | 1.0000 | 0.9700 | >= | выполнено | жёсткое |
+| BASE_TOTAL_SERVICE | 2040 | total_service_level | 1.0000 | 0.9700 | >= | выполнено | жёсткое |
+| CAPEX_2037 | 2035 | cumulative_capex | 360.0000 | 1800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2037 | 2036 | cumulative_capex | 360.0000 | 1800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2037 | 2037 | cumulative_capex | 540.0000 | 1800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2040 | 2035 | cumulative_capex | 360.0000 | 2800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2040 | 2036 | cumulative_capex | 360.0000 | 2800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2040 | 2037 | cumulative_capex | 540.0000 | 2800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2040 | 2038 | cumulative_capex | 540.0000 | 2800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2040 | 2039 | cumulative_capex | 540.0000 | 2800.0000 | <= | выполнено | жёсткое |
+| CAPEX_2040 | 2040 | cumulative_capex | 540.0000 | 2800.0000 | <= | выполнено | жёсткое |
+| RESERVE_45D | 2035 | opening_stock_vs_45d_reserve_t | 12.3289 | 12.3288 | >= | выполнено | жёсткое |
+| RESERVE_45D | 2036 | opening_stock_vs_45d_reserve_t | 17.2604 | 17.2603 | >= | выполнено | жёсткое |
+| RESERVE_45D | 2037 | opening_stock_vs_45d_reserve_t | 23.4249 | 23.4247 | >= | выполнено | жёсткое |
+| RESERVE_45D | 2038 | opening_stock_vs_45d_reserve_t | 35.4455 | 30.8219 | >= | выполнено | жёсткое |
+| RESERVE_45D | 2039 | opening_stock_vs_45d_reserve_t | 82.8703 | 39.4521 | >= | выполнено | жёсткое |
+| RESERVE_45D | 2040 | opening_stock_vs_45d_reserve_t | 140.7950 | 48.0822 | >= | выполнено | жёсткое |
+| EMERGENCY_BASE_STREAK | 2035 | consecutive_years_with_emergency_as_base_channel | 0 | 2.0000 | <= | выполнено | жёсткое |
+| EMERGENCY_BASE_STREAK | 2036 | consecutive_years_with_emergency_as_base_channel | 0 | 2.0000 | <= | выполнено | жёсткое |
+| EMERGENCY_BASE_STREAK | 2037 | consecutive_years_with_emergency_as_base_channel | 0 | 2.0000 | <= | выполнено | жёсткое |
+| EMERGENCY_BASE_STREAK | 2038 | consecutive_years_with_emergency_as_base_channel | 0 | 2.0000 | <= | выполнено | жёсткое |
+| EMERGENCY_BASE_STREAK | 2039 | consecutive_years_with_emergency_as_base_channel | 0 | 2.0000 | <= | выполнено | жёсткое |
+| EMERGENCY_BASE_STREAK | 2040 | consecutive_years_with_emergency_as_base_channel | 0 | 2.0000 | <= | выполнено | жёсткое |
+| STORAGE_OVERFLOW | 2035 | end_of_month_stock_t_in_worst_month | 17.2604 | 70.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2035 | reserved_A_t_per_year | 109.8760 | 190.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2035 | ordered_A_t | 109.8760 | 109.8760 | <= | выполнено | жёсткое |
+| LEAD_TIME_VIOLATED | 2035 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| SOURCE_NOT_AVAILABLE | 2035 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| STORAGE_OVERFLOW | 2036 | end_of_month_stock_t_in_worst_month | 23.4249 | 70.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2036 | reserved_A_t_per_year | 153.0520 | 190.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2036 | ordered_A_t | 153.0518 | 153.0520 | <= | выполнено | жёсткое |
+| LEAD_TIME_VIOLATED | 2036 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| SOURCE_NOT_AVAILABLE | 2036 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| STORAGE_OVERFLOW | 2037 | end_of_month_stock_t_in_worst_month | 27.7196 | 70.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2037 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2037 | ordered_A_t | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2037 | reserved_C_t_per_year | 17.9480 | 130.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2037 | ordered_C_t | 17.9471 | 17.9480 | <= | выполнено | жёсткое |
+| LEAD_TIME_VIOLATED | 2037 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| SOURCE_NOT_AVAILABLE | 2037 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| STORAGE_OVERFLOW | 2038 | end_of_month_stock_t_in_worst_month | 82.8703 | 120.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2038 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2038 | ordered_A_t | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2038 | reserved_C_t_per_year | 111.0380 | 130.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2038 | ordered_C_t | 111.0372 | 111.0380 | <= | выполнено | жёсткое |
+| LEAD_TIME_VIOLATED | 2038 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| SOURCE_NOT_AVAILABLE | 2038 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| STORAGE_OVERFLOW | 2039 | end_of_month_stock_t_in_worst_month | 140.7950 | 120.0000 | <= | НАРУШЕНО | жёсткое |
+| CAPACITY_EXCEEDED | 2039 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_A_t | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2039 | reserved_B_t_per_year | 62.5150 | 110.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_B_t | 62.5149 | 62.5150 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2039 | reserved_C_t_per_year | 130.0000 | 130.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2039 | ordered_C_t | 130.0000 | 130.0000 | <= | выполнено | жёсткое |
+| LEAD_TIME_VIOLATED | 2039 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| SOURCE_NOT_AVAILABLE | 2039 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| STORAGE_OVERFLOW | 2040 | end_of_month_stock_t_in_worst_month | 175.6350 | 120.0000 | <= | НАРУШЕНО | жёсткое |
+| CAPACITY_EXCEEDED | 2040 | reserved_A_t_per_year | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_A_t | 190.0000 | 190.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2040 | reserved_B_t_per_year | 110.0000 | 110.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_B_t | 110.0000 | 110.0000 | <= | выполнено | жёсткое |
+| CAPACITY_EXCEEDED | 2040 | reserved_C_t_per_year | 130.0000 | 130.0000 | <= | выполнено | жёсткое |
+| ORDER_EXCEEDS_RESERVATION | 2040 | ordered_C_t | 130.0000 | 130.0000 | <= | выполнено | жёсткое |
+| LEAD_TIME_VIOLATED | 2040 | all_deliveries_ordered_within_lead_time | 1.0000 | 1.0000 | == | выполнено | жёсткое |
+| SOURCE_NOT_AVAILABLE | 2040 | all_orders_from_available_sources | 1.0000 | 1.0000 | == | выполнено | жёсткое |
 
-## Constraint checks
+## Нарушения
 
-| Rule | Severity | Year | Month | Source | Actual | Limit | Excess | Message |
+| Правило | Строгость | Год | Месяц | Источник | Факт | Лимит | Превышение | Сообщение |
 |---|---|---:|---:|---|---:|---:|---:|---|
-| INTRA_MONTH_PEAK | warning | 2039 | 3 |  | 124.018 | 120.000 | 4.018 | stock after inflow 124.018 t exceeds ZBO modernization capacity 120.0 t within 2039-03 (before withdrawals) |
-| INTRA_MONTH_PEAK | warning | 2039 | 4 |  | 128.845 | 120.000 | 8.845 | stock after inflow 128.845 t exceeds ZBO modernization capacity 120.0 t within 2039-04 (before withdrawals) |
-| INTRA_MONTH_PEAK | warning | 2039 | 5 |  | 133.672 | 120.000 | 13.672 | stock after inflow 133.672 t exceeds ZBO modernization capacity 120.0 t within 2039-05 (before withdrawals) |
-| INTRA_MONTH_PEAK | warning | 2039 | 6 |  | 138.499 | 120.000 | 18.499 | stock after inflow 138.499 t exceeds ZBO modernization capacity 120.0 t within 2039-06 (before withdrawals) |
-| INTRA_MONTH_PEAK | warning | 2039 | 7 |  | 143.326 | 120.000 | 23.326 | stock after inflow 143.326 t exceeds ZBO modernization capacity 120.0 t within 2039-07 (before withdrawals) |
-| STORAGE_OVERFLOW | hard | 2039 | 8 |  | 121.487 | 120.000 | 1.487 | end-of-month stock 121.487 t exceeds ZBO modernization capacity 120.0 t in 2039-08 |
-| STORAGE_OVERFLOW | hard | 2039 | 9 |  | 126.314 | 120.000 | 6.314 | end-of-month stock 126.314 t exceeds ZBO modernization capacity 120.0 t in 2039-09 |
-| STORAGE_OVERFLOW | hard | 2039 | 10 |  | 131.141 | 120.000 | 11.141 | end-of-month stock 131.141 t exceeds ZBO modernization capacity 120.0 t in 2039-10 |
-| STORAGE_OVERFLOW | hard | 2039 | 11 |  | 135.968 | 120.000 | 15.968 | end-of-month stock 135.968 t exceeds ZBO modernization capacity 120.0 t in 2039-11 |
-| STORAGE_OVERFLOW | hard | 2039 | 12 |  | 140.795 | 120.000 | 20.795 | end-of-month stock 140.795 t exceeds ZBO modernization capacity 120.0 t in 2039-12 |
-| STORAGE_OVERFLOW | hard | 2040 | 1 |  | 143.698 | 120.000 | 23.698 | end-of-month stock 143.698 t exceeds ZBO modernization capacity 120.0 t in 2040-01 |
-| STORAGE_OVERFLOW | hard | 2040 | 2 |  | 146.602 | 120.000 | 26.602 | end-of-month stock 146.602 t exceeds ZBO modernization capacity 120.0 t in 2040-02 |
-| STORAGE_OVERFLOW | hard | 2040 | 3 |  | 149.505 | 120.000 | 29.505 | end-of-month stock 149.505 t exceeds ZBO modernization capacity 120.0 t in 2040-03 |
-| STORAGE_OVERFLOW | hard | 2040 | 4 |  | 152.408 | 120.000 | 32.408 | end-of-month stock 152.408 t exceeds ZBO modernization capacity 120.0 t in 2040-04 |
-| STORAGE_OVERFLOW | hard | 2040 | 5 |  | 155.312 | 120.000 | 35.312 | end-of-month stock 155.312 t exceeds ZBO modernization capacity 120.0 t in 2040-05 |
-| STORAGE_OVERFLOW | hard | 2040 | 6 |  | 158.215 | 120.000 | 38.215 | end-of-month stock 158.215 t exceeds ZBO modernization capacity 120.0 t in 2040-06 |
-| STORAGE_OVERFLOW | hard | 2040 | 7 |  | 161.118 | 120.000 | 41.118 | end-of-month stock 161.118 t exceeds ZBO modernization capacity 120.0 t in 2040-07 |
-| STORAGE_OVERFLOW | hard | 2040 | 8 |  | 164.022 | 120.000 | 44.022 | end-of-month stock 164.022 t exceeds ZBO modernization capacity 120.0 t in 2040-08 |
-| STORAGE_OVERFLOW | hard | 2040 | 9 |  | 166.925 | 120.000 | 46.925 | end-of-month stock 166.925 t exceeds ZBO modernization capacity 120.0 t in 2040-09 |
-| STORAGE_OVERFLOW | hard | 2040 | 10 |  | 169.828 | 120.000 | 49.828 | end-of-month stock 169.828 t exceeds ZBO modernization capacity 120.0 t in 2040-10 |
-| STORAGE_OVERFLOW | hard | 2040 | 11 |  | 172.732 | 120.000 | 52.732 | end-of-month stock 172.732 t exceeds ZBO modernization capacity 120.0 t in 2040-11 |
-| STORAGE_OVERFLOW | hard | 2040 | 12 |  | 175.635 | 120.000 | 55.635 | end-of-month stock 175.635 t exceeds ZBO modernization capacity 120.0 t in 2040-12 |
+| INTRA_MONTH_PEAK | предупреждение | 2039 | 3 |  | 124.018 | 120.000 | 4.018 | запас после поступления 124.018 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2039-03 (до выдачи потребителям) |
+| INTRA_MONTH_PEAK | предупреждение | 2039 | 4 |  | 128.845 | 120.000 | 8.845 | запас после поступления 128.845 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2039-04 (до выдачи потребителям) |
+| INTRA_MONTH_PEAK | предупреждение | 2039 | 5 |  | 133.672 | 120.000 | 13.672 | запас после поступления 133.672 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2039-05 (до выдачи потребителям) |
+| INTRA_MONTH_PEAK | предупреждение | 2039 | 6 |  | 138.499 | 120.000 | 18.499 | запас после поступления 138.499 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2039-06 (до выдачи потребителям) |
+| INTRA_MONTH_PEAK | предупреждение | 2039 | 7 |  | 143.326 | 120.000 | 23.326 | запас после поступления 143.326 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2039-07 (до выдачи потребителям) |
+| STORAGE_OVERFLOW | жёсткое | 2039 | 8 |  | 121.487 | 120.000 | 1.487 | запас на конец месяца 121.487 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-08 |
+| STORAGE_OVERFLOW | жёсткое | 2039 | 9 |  | 126.314 | 120.000 | 6.314 | запас на конец месяца 126.314 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-09 |
+| STORAGE_OVERFLOW | жёсткое | 2039 | 10 |  | 131.141 | 120.000 | 11.141 | запас на конец месяца 131.141 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-10 |
+| STORAGE_OVERFLOW | жёсткое | 2039 | 11 |  | 135.968 | 120.000 | 15.968 | запас на конец месяца 135.968 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-11 |
+| STORAGE_OVERFLOW | жёсткое | 2039 | 12 |  | 140.795 | 120.000 | 20.795 | запас на конец месяца 140.795 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-12 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 1 |  | 143.698 | 120.000 | 23.698 | запас на конец месяца 143.698 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-01 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 2 |  | 146.602 | 120.000 | 26.602 | запас на конец месяца 146.602 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-02 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 3 |  | 149.505 | 120.000 | 29.505 | запас на конец месяца 149.505 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-03 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 4 |  | 152.408 | 120.000 | 32.408 | запас на конец месяца 152.408 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-04 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 5 |  | 155.312 | 120.000 | 35.312 | запас на конец месяца 155.312 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-05 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 6 |  | 158.215 | 120.000 | 38.215 | запас на конец месяца 158.215 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-06 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 7 |  | 161.118 | 120.000 | 41.118 | запас на конец месяца 161.118 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-07 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 8 |  | 164.022 | 120.000 | 44.022 | запас на конец месяца 164.022 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-08 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 9 |  | 166.925 | 120.000 | 46.925 | запас на конец месяца 166.925 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-09 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 10 |  | 169.828 | 120.000 | 49.828 | запас на конец месяца 169.828 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-10 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 11 |  | 172.732 | 120.000 | 52.732 | запас на конец месяца 172.732 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-11 |
+| STORAGE_OVERFLOW | жёсткое | 2040 | 12 |  | 175.635 | 120.000 | 55.635 | запас на конец месяца 175.635 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-12 |

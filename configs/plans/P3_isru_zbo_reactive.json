@@ -1,7 +1,7 @@
 {
   "plan_id": "P3_isru_zbo_reactive",
   "scenario_id": "MANDATORY_STRESS",
-  "description": "P3 with observe-then-react: Flex from 2038-07, Emergency from 2038-05",
+  "description": "P3 с реакцией после наблюдения недопоставки ISRU (2038-03): Earth-Flex с 2038-07, Emergency с 2038-05",
   "decisions": {
     "capacity_reservations": [
       {
@@ -144,7 +144,7 @@
       {
         "source_id": "B",
         "year": 2038,
-        "ordered_t": 48.8776,
+        "ordered_t": 48.87720000000001,
         "profile": "monthly",
         "monthly_t": [
           0.0,
@@ -153,18 +153,19 @@
           0.0,
           0.0,
           0.0,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          6.1055,
-          6.1055
-        ]
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          6.1054,
+          6.1054
+        ],
+        "reactive": true
       },
       {
         "source_id": "B",
         "year": 2039,
-        "ordered_t": 102.5148,
+        "ordered_t": 102.51480000000002,
         "profile": "monthly",
         "monthly_t": [
           8.5429,
@@ -179,52 +180,55 @@
           8.5429,
           8.5429,
           8.5429
-        ]
+        ],
+        "reactive": true
       },
       {
         "source_id": "B",
         "year": 2040,
-        "ordered_t": 110.0,
+        "ordered_t": 109.99920000000002,
         "profile": "monthly",
         "monthly_t": [
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667,
-          9.1667
-        ]
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666,
+          9.1666
+        ],
+        "reactive": true
       },
       {
         "source_id": "E",
         "year": 2038,
-        "ordered_t": 39.1903,
+        "ordered_t": 39.199999999999996,
         "profile": "monthly",
         "monthly_t": [
           0.0,
           0.0,
           0.0,
           0.0,
-          6.6667,
-          6.6667,
-          6.6667,
-          6.6667,
-          6.6667,
-          5.857,
+          6.6666,
+          6.6666,
+          6.6666,
+          6.6666,
+          6.6666,
+          5.867,
           0.0,
           0.0
-        ]
+        ],
+        "reactive": true
       },
       {
         "source_id": "E",
         "year": 2040,
-        "ordered_t": 33.9474,
+        "ordered_t": 33.9468,
         "profile": "monthly",
         "monthly_t": [
           2.8289,
@@ -239,7 +243,8 @@
           2.8289,
           2.8289,
           2.8289
-        ]
+        ],
+        "reactive": true
       }
     ],
     "investments": [
@@ -264,7 +269,8 @@
         }
       ],
       "reserve_mode": "physical",
-      "allocation_rule": "critical_first"
+      "allocation_rule": "critical_first",
+      "observation_month": "2038-03"
     }
   },
   "meta": {

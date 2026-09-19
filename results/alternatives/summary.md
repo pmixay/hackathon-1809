@@ -1,4 +1,4 @@
-# EXP-01 Alternatives under BASE and MANDATORY_STRESS (plan built for BASE, unchanged in stress)
+# EXP-01 Альтернативы в BASE и MANDATORY_STRESS (план построен для BASE, в стрессе не меняется)
 
 | plan_id | scenario_id | feasible | hard_violations | guideline_violations | total_cost_mln | pv_cost_mln | cost_per_served_t_mln | pv_cost_per_served_t_mln | capex_total_mln | procurement_total_mln | reservation_total_mln | holding_total_mln | fixed_opex_total_mln | served_total_t | shortage_total_t | shortage_critical_t | min_sl_total | min_sl_critical | losses_total_t | take_or_pay_idle_t | violations | experiment |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|

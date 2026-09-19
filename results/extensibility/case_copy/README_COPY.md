@@ -1,1 +1,1 @@
-Copy of data/case with TEAM_ASSUMPTION rows: Source-X (60 t/yr, 5.5 mln/t, from 2039) and demand 2041 (450 t total / 290 t critical: +15 % growth extrapolation of 2040). Control runs never use this copy.
+Копия data/case со строками TEAM_ASSUMPTION: Source-X (60 т/год, 5,5 млн/т, с 2039 г.) и спрос 2041 г. (450 т всего / 290 т критического: экстраполяция роста 2040 г. на +15 %). Контрольные расчёты эту копию не используют.

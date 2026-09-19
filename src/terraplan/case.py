@@ -20,11 +20,11 @@ def _num(row: dict, key: str, path: str, allow_blank: bool = False) -> Optional[
     if raw == "":
         if allow_blank:
             return None
-        raise CaseError(f"{path}: missing numeric field '{key}' in row {row}")
+        raise CaseError(f"{path}: отсутствует числовое поле '{key}' в строке {row}")
     try:
         return float(raw.replace(",", "."))
     except ValueError as exc:
-        raise CaseError(f"{path}: field '{key}' is not a number: {raw!r}") from exc
+        raise CaseError(f"{path}: поле '{key}' не является числом: {raw!r}") from exc
 
 
 @dataclass(frozen=True)
@@ -132,7 +132,7 @@ class Case:
         for d in self.demand:
             if d.year == year:
                 return d
-        raise CaseError(f"no demand row for year {year}")
+        raise CaseError(f"нет строки спроса для {year} г.")
 
     def source_by_name_or_id(self, key: str) -> Optional[Source]:
         if key in self.sources:
@@ -145,11 +145,11 @@ class Case:
 
 def _read_csv(path: Path) -> list[dict]:
     if not path.exists():
-        raise CaseError(f"missing CASE_INPUT file: {path}")
+        raise CaseError(f"отсутствует файл CASE_INPUT: {path}")
     with path.open(encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
     if not rows:
-        raise CaseError(f"{path}: empty CSV")
+        raise CaseError(f"{path}: пустой CSV")
     return rows
 
 
@@ -170,25 +170,25 @@ def load_case(case_dir: str | Path) -> Case:
             status=r.get("status", "CASE_INPUT"),
         )
         if row.base_critical_t > row.base_total_t:
-            raise CaseError(f"{p_dem}: critical demand exceeds total demand in {row.year}")
+            raise CaseError(f"{p_dem}: критический спрос превышает общий спрос в {row.year} г.")
         if min(row.base_total_t, row.low_total_t, row.high_total_t) < 0:
-            raise CaseError(f"{p_dem}: negative demand in {row.year}")
+            raise CaseError(f"{p_dem}: отрицательный спрос в {row.year} г.")
         demand.append(row)
     demand.sort(key=lambda x: x.year)
     years = [x.year for x in demand]
     if years != list(range(years[0], years[0] + len(years))):
-        raise CaseError(f"{p_dem}: years must be consecutive, got {years}")
+        raise CaseError(f"{p_dem}: годы должны идти подряд, получено {years}")
 
     sources: dict[str, Source] = {}
     for r in _read_csv(p_src):
         sid = (r.get("source_id") or "").strip()
         if not sid:
-            raise CaseError(f"{p_src}: empty source_id in row {r}")
+            raise CaseError(f"{p_src}: пустой source_id в строке {r}")
         if sid in sources:
-            raise CaseError(f"{p_src}: duplicate source_id {sid}")
+            raise CaseError(f"{p_src}: повторяющийся source_id {sid}")
         unit = (r.get("lead_time_unit") or "month").strip()
         if unit not in ("day", "week", "month", "year"):
-            raise CaseError(f"{p_src}: unknown lead_time_unit {unit!r} for {sid}")
+            raise CaseError(f"{p_src}: неизвестная единица lead_time_unit {unit!r} для {sid} (допустимо day|week|month|year)")
         afy = _num(r, "available_from_year", str(p_src), allow_blank=True)
         s = Source(
             source_id=sid,
@@ -206,11 +206,11 @@ def load_case(case_dir: str | Path) -> Case:
             notes=r.get("notes", ""),
         )
         if s.capacity_t_per_year < 0 or s.variable_cost_mln_per_t < 0 or s.reservation_rate_mln_per_t_year < 0:
-            raise CaseError(f"{p_src}: negative parameter for source {sid}")
+            raise CaseError(f"{p_src}: отрицательный параметр у источника {sid}")
         if not 0 <= s.take_or_pay_share <= 1:
-            raise CaseError(f"{p_src}: take_or_pay_share out of [0,1] for {sid}")
+            raise CaseError(f"{p_src}: take_or_pay_share вне диапазона [0,1] для {sid}")
         if s.lead_time_max_value < s.lead_time_min_value:
-            raise CaseError(f"{p_src}: lead_time_max < lead_time_min for {sid}")
+            raise CaseError(f"{p_src}: lead_time_max < lead_time_min для {sid}")
         sources[sid] = s
 
     storage: dict[str, StorageOption] = {}
@@ -226,10 +226,10 @@ def load_case(case_dir: str | Path) -> Case:
             status=r.get("status", "CASE_INPUT"), notes=r.get("notes", ""),
         )
         if not 0 <= so.loss_rate_on_throughput < 1:
-            raise CaseError(f"{p_sto}: loss rate out of [0,1) for {so.storage_id}")
+            raise CaseError(f"{p_sto}: доля потерь вне диапазона [0,1) для {so.storage_id}")
         storage[so.storage_id] = so
     if "BASE" not in storage:
-        raise CaseError(f"{p_sto}: a storage option with storage_id=BASE (existing storage) is required")
+        raise CaseError(f"{p_sto}: требуется строка хранилища со storage_id=BASE (существующее хранилище)")
 
     investments: dict[str, InvestmentOption] = {}
     for r in _read_csv(p_inv):
@@ -243,7 +243,7 @@ def load_case(case_dir: str | Path) -> Case:
             status=r.get("status", "CASE_INPUT"), notes=r.get("notes", ""),
         )
         if abs(io.option_fee_mln + io.exercise_cost_mln - io.total_capex_mln) > 1e-9:
-            raise CaseError(f"{p_inv}: option_fee + exercise_cost != total_capex for {io.investment_id}")
+            raise CaseError(f"{p_inv}: option_fee + exercise_cost != total_capex для {io.investment_id}")
         investments[io.investment_id] = io
 
     constraints: dict[str, Constraint] = {}
@@ -255,7 +255,7 @@ def load_case(case_dir: str | Path) -> Case:
             status=r.get("status", "CASE_INPUT"), description=r.get("description", ""),
         )
         if c.operator not in (">=", "<="):
-            raise CaseError(f"{p_con}: unsupported operator {c.operator!r} in {c.constraint_id}")
+            raise CaseError(f"{p_con}: неподдерживаемый оператор {c.operator!r} в {c.constraint_id} (допустимо >= или <=)")
         constraints[c.constraint_id] = c
 
     return Case(demand=demand, sources=sources, storage=storage, investments=investments,
