@@ -23,7 +23,7 @@ def workspace(root):
 @pytest.fixture
 def payload(workspace):
     boot = workspace.bootstrap()
-    return {"plan": boot["plans"]["P3_isru_zbo"], "scenario": "base", "case_tables": boot["case_tables"], "case_notes": ""}
+    return {"plan": boot["plans"]["P2z_earth_new_zbo"], "scenario": "base", "case_tables": boot["case_tables"], "case_notes": ""}
 
 
 def test_engine_ui_export_and_reopen_parity(workspace, payload, case, assumptions, base, tmp_path):
@@ -50,7 +50,7 @@ def test_stress_compare_and_adapted_plan(workspace, payload):
     rows = workspace.comparison(base["run_id"], stress["run_id"])
     row = next(r for r in rows if r["metric"] == "shortage_total_t")
     assert row["delta"] == pytest.approx(stress["result"]["kpi"]["shortage_total_t"])
-    payload["plan"] = workspace.bootstrap()["plans"]["P3_isru_zbo_adapted"]
+    payload["plan"] = workspace.bootstrap()["plans"]["P2z_earth_new_zbo_adapted"]
     assert workspace.run(payload)["result"]["feasible"]
 
 

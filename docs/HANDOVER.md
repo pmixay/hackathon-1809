@@ -15,14 +15,15 @@
 
 ## Acceptance record (2026-09-19)
 
-- `python -m pytest -q`: 41 passed at the first R4 acceptance run (including 8 new UI tests).
+- `python -m pytest -q`: 183 passed after the final R1–R4 integration.
 - Real Edge browser: BASE, fixed stress, comparison, adapted stress, save/reopen, extension,
   invalid input, archive download and mobile layout. Reproduce with `tests/ui_smoke.cjs`.
 - UI-export KPIs equal a direct `simulate()` call. An extracted UI archive passes CLI `verify`.
 - The working application uses local assets and the existing engine, with no extra web dependency.
-- R3's EXP-07–10 analyses are integrated. R2 selected P2z, added the disclosed MCDA,
-  contract/stakeholder allocation, verified self-found sources and completed the management note.
-  Alternative-strategy Monte Carlo, geopolitics and post-2040 economics remain future research.
+- R3's EXP-07–10 analyses and EXP-11 geopolitics are integrated. R2 selected P2z, added the
+  disclosed MCDA, contract/stakeholder allocation, verified self-found sources and completed
+  the management note. UI, walkthrough and presentation now default to that P2z decision.
+  Alternative-strategy Monte Carlo and post-2040 economics remain future research.
 
 ## GitVerse publication status
 

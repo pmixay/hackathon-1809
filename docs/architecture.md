@@ -60,7 +60,7 @@ CASE_INPUT (data/case/*.csv)  +  TEAM_DECISION (plan.json)  +  TEAM_ASSUMPTION (
 ## 4. Программная реализация
 
 - Чистый Python 3.10+, без численных библиотек; dataclasses; детерминированно (суммы через `math.fsum`, результат побитово одинаков между версиями Python).
-- `simulate(case, plan, scenario, assumptions) -> Result` — единственный расчётный путь для CLI, выгрузок, программного интерфейса и (будущего) UI.
+- `simulate(case, plan, scenario, assumptions) -> Result` — единственный расчётный путь для CLI, выгрузок, программного интерфейса и локального UI.
 - `terraplan.api` — интерфейс «словарь → словарь» для UI и внешних вызовов: `run_plan(план, сценарий, ...)` возвращает словарь результата
   (`result.json`) с `ok=True` либо `{ok: False, error: {code, type, message}}` без исключений наружу; `compare_runs`, `list_scenarios`,
   `list_plans`, `case_summary`, `assumptions_table`. Ошибки ввода называют файл, поле и значение (формат организатора §26).
