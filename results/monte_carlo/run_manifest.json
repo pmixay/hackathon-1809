@@ -84,7 +84,7 @@
     "experiments/common.py": "9e6efa807b2d5c2f00b0bf28fb3660c7606dc39dc2efd9d59087a71aa237544e",
     "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
     "experiments/run_protection_measures.py": "fc2c277d7632fafc7039c4c91574abd4d12087632ccf7e9af9015ae38a0481ee",
-    "experiments/run_all.py": "40d924be0c740746ba30e46a0d64a900df8b23fbd72398b151cf43a3959a0821",
+    "experiments/run_all.py": "775d2c3798ee0fbf3325b946229e87ea08eb8627d7f1fa69675528a7a22849cb",
     "requirements.txt": "9c7aa4a4d3b29c07448e536d50dacfe5478686f066eed3797e6bb10684e2f3a4",
     "data/case/constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
     "data/case/demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
@@ -93,10 +93,10 @@
     "data/case/supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977",
     "src/terraplan/__init__.py": "fad02811b53f8d67167c0d53709140462ce5ef165cd8cd11509b8407e502bdcf",
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
-    "src/terraplan/api.py": "1d256365f4ac6de19462f59d3ff9283fa8ff2de8e1c029bcbc2e4830c983f105",
+    "src/terraplan/api.py": "812db4d93a84045927ba9246b1fbf09b94f9c46d3a8f6e9262009fac0df11b57",
     "src/terraplan/assumptions.py": "0c2582f900eff3e7d6dedf3461a5e456aacbb0b8570f6777cd0bbc2a1782f1e2",
     "src/terraplan/case.py": "4681e2e330ebbc8971fd7789990e65097b5f1b4f842876fe7927ae5b43cd305a",
-    "src/terraplan/cli.py": "337c57ca2b0083b839fc32c813fd872ddd22af28b580d0e989487b8794376a8f",
+    "src/terraplan/cli.py": "8589f5f45d8e45982d8d3284c9fd5a8c224e6a5b69cfb17d7ff23474a1c682b3",
     "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
     "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
     "src/terraplan/engine.py": "cd5fdfb8877ea8b8107f264ce6c9f9187cf376621c98f9ae1dfa0b6cca6d7d2c",
@@ -105,8 +105,8 @@
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "3c637c332eeb0dd41f0e453cd3ac8be4d4b773d33f78e2ed4b672469c7ff3c36",
     "src/terraplan/scenario.py": "bedcf66b97e435e8e8ff3bee4c9b5d2a4b9b2b05858901d649acb6b58f0d1c6a",
-    "src/terraplan/web.py": "7165f2730a15f071f066d3970081002c65913d983a521e9247c38698b8df6ab4",
-    "experiments/provenance.py": "0696bf17ac5705e664c5548d792f856f8c4c8924defa4e2a222cc38f7a3040e0"
+    "src/terraplan/web.py": "2ab2fc8dc37b3b96ca9fa09b3dbf03959cc80d4c11861cf84e6405a0d7ac66cd",
+    "experiments/provenance.py": "6c810f5ce0fd4013af3cb71e4ebb91958a046b367cd6f2688f6c64b4125e9f80"
   },
   "assumptions": {
     "discount_rate_real": {

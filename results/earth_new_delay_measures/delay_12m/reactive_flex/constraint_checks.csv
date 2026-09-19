@@ -1,0 +1,4 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+TEAM_EXP12_DELAY_12M,P2z_delay12m_reactive_flex,SOURCE_NOT_AVAILABLE,hard,"Earth-New: заказано 13.188 т на 2037 г., но источник не может поставлять в этом году (первая возможная поставка 2038-01)",2037,,C,13.188200,0.000000,13.188200
+TEAM_EXP12_DELAY_12M,P2z_delay12m_reactive_flex,SOURCE_NOT_AVAILABLE,hard,"Earth-New 2037: мощность зарезервирована, но источник недоступен в 2037 г. (первая возможная поставка 2038-01)",2037,,C,13.189000,0.000000,13.189000
+TEAM_EXP12_DELAY_12M,P2z_delay12m_reactive_flex,ORDER_EXCEEDS_RESERVATION,hard,"Earth-New 2037: заказано 13.188 т, что превышает контрактно доступный объём 0.000 т (резерв 13.2 т/год × 0.000 года)",2037,,C,13.188200,0.000000,13.188200

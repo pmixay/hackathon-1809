@@ -1,42 +1,97 @@
-# Risk register (draft v0.1, 2026-09-18) — consequences computed with the digital circuit where marked
+# Реестр ключевых рисков выбранной стратегии P2z (Earth-New + ZBO)
 
-Status: TEAM_ASSUMPTION for probabilities/ranges (no organizer statistics); consequences in tonnes / mln / service
-come from engine runs listed in the "Evidence" column. Owner codes: OP operator, SUP supplier, FIN financier, CONS consumers.
-Qualitative scale (L/M/H) is used only where no calculation exists yet and never replaces computed consequences.
+Реестр относится к выбранному плану P2z: Earth-Core + Earth-Flex + Earth-New (опцион и реализация 2035-01, ввод 2037-01)
++ модернизация ZBO (2037-07), Emergency — только как аварийный резерв, Lunar-ISRU не финансируется на горизонте
+2035–2040. Все последствия рассчитаны цифровым контуром на тех же данных и правилах, что и контрольные расчёты;
+номер эксперимента (EXP-xx) указывает протокол в документе «Методики и протоколы стресс-тестов».
+Деньги — млн условных единиц в ценах 2035 года, PV — по реальной ставке 8 %. Вероятности организатором не заданы:
+для каждого риска указано основание диапазона (обязательный стресс, официальные варианты спроса, сценарные
+допущения команды со статусом TEAM_ASSUMPTION). Условные частоты Монте-Карло не выдаются за вероятности реальных событий.
 
-| ID | Event | Cause | Affected parameter | Period | Probability basis / range | Consequence (t / mln / service) | Dependencies | Owner | Mitigation | Residual | Evidence |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| R1 | Lunar-ISRU under-delivery in first years | new technology, reliability 0.78 is metadata, not another delivery multiplier | actual_delivery_share D 2038–2039 | 2038–2039 | scenario: 55 % / 75 % (mandatory stress); isolated 2038 share 0.3–1.0 explored | JOINT mandatory stress R1+R2+R4: fixed P3 shortage 170.017 t, reserve failures 2038–2040; pre-committed adaptation +1 605.030 mln PV in the same stress. Isolated 2038 share 0.55 in BASE: shortage 5.008 t, reserve failures 2039–2040 | demand R2 drives physical needs; R4 raises substitution cost; joint losses are not attributable to R1 alone | OP / SUP | pre-committed stock 35.446 vs 30.822 t at 2038-01 and Core/Flex orders (EXP-02); conditional recovery from March 2038 (EXP-06); no-pay-for-undelivered clause is proposed, not simulated | adaptation passes the exact stress but has near-zero extra-shock reserve slack (EXP-07) and fails BASE on overflow; service protection is not universal robustness | `results/stress/compare_P3_isru_zbo.md`, `results/sensitivity/sweep_isru_share_2038.csv`, `results/reverse_stress/summary.md` |
-| R2 | Demand above base | mission growth | demand multiplier | any year | organizer high case (+10…+25 %); sweep 0.8–1.3 in steps of 0.05 | fixed BASE P3 first sampled increase failing constraints is ×1.05, not an exact boundary and not a P2z reaction trigger; re-planned ×1.25 passes constraints with 12.437 t shortage and min annual SL 97.45%; ×1.30 fails | R1 | OP / CONS | for P2z, recalculate reserve and orders at every forecast update; do not wait for +5%; physical stock / early ZBO tested in EXP-08/10; additional Flex activation or Earth-New diversification require a separate policy comparison | shortage already exists at ×1.25; constraint failure is first sampled at ×1.30; no interpolated threshold claimed | `results/sensitivity/sweep_demand_multiplier.csv`, `results/demand/summary.md` |
-| R3 | Demand below base | mission slippage | demand variant low | any year | organizer low case (−20 %) | fixed P3 overfills depot (40 hard violations), PV 8 979.549; take_or_pay_idle_t = 0 because original orders remain paid and delivered; re-planned P3 PV 6 872.892 vs BASE 8 638.857 | stress-adapted plans also overflow in BASE | OP / FIN | EXP-03 resizes orders AND reservations with advance knowledge; an operational order-cut policy with frozen commitments is still needed | TOP can constrain future order reductions at fixed reservations, but that idle-cost scenario was not calculated in EXP-03 | `results/demand/summary.csv`, `results/stress/summary.csv` |
-| R4 | Earth launch price shock | market / geopolitics | variable price A, B | 2038–2039 (+25 % mandatory) or any | scenario ×0.8–1.5 | PV cost swing 7 457 → 11 594 mln over the sweep (largest tornado bar); no physical constraint affected | amplifies R1 substitution cost | OP / FIN | share of ISRU / Earth-New (unshocked prices) as natural hedge; price-indexed contract caps (research scenario) | residual exposure ≈ share of A+B in supply | `results/sensitivity/sweep_earth_price_multiplier.csv` |
-| R5 | ZBO commissioning delay | build/launch schedule | zbo_commissioning_lag_months | 2037–2038 | assumption range 0–12 months, integer-month grid | fixed BASE P3 in stress: first ANNUAL loss-ceiling violation at lag 10; lags 7–9 include base-storage months in 2038 but still pass this annual check. The plan already fails reserve/service at lag 0 | early-ZBO protection in EXP-08/10 assumes lag 0 | OP / SUP | earlier decision and delay penalties are proposed mitigations; commissioning by 2038-01 is a conservative planning target | no early-decision-plus-delay recovery test or penalty valuation yet; zero residual risk is not demonstrated | `results/sensitivity/sweep_zbo_lag_stress.csv`, `results/protection_measures/summary.md` |
-| R6 | Earth-New preparation slips beyond 24 months | supplier readiness | Earth-New preparation lead time / commissioning | commissioning in 2037–2038; reserve consequences 2038–2040 | TEAM_ASSUMPTION: +0/3/6/12 months on a case copy; no probabilities | fixed P2z / BASE: +3/6/12 months miss 3.297/6.594/13.188 t of C deliveries; no shortage, total/critical SL = 1; RESERVE_45D fails 2038–2040 with maximum gaps 3.148/6.297/12.812 t; PV deltas −7.558/−14.629/−27.695 mln reflect lower holding and prorated reservation fees, not reduced risk | R2 demand growth could compound the event; not combined in this experiment | SUP / OP | pre-commit physical buffer or timely substitute orders; activation and cost need a separate recovery test | all positive tested delays still violate reserve; original 2035-01 option exercise alone does not protect frozen delivery slots | `results/earth_new_delay/summary.md`, `results/earth_new_delay/yearly.csv`, EXP-09 |
-| R7 | Emergency lead time / capacity insufficient during a shortfall | 6-week lead time, 80 t/yr cap | Emergency availability | any | deterministic case parameters | 45-day reserve cannot be proven by contract alone; physical stock must cover 6 weeks | R1, R2 | OP | keep physical reserve (reserve_mode physical) | — | engine rule RESERVE_45D (contracted-equivalence test) |
-| R8 | Storage overflow in delivery months | lumpy deliveries or excess supply when demand is low | monthly inflow / demand profile | 2035–2040 | deterministic examples | hard STORAGE_OVERFLOW checks opening/end-of-month stock against capacity; an intra-month inflow peak is only a warning. Stress-adapted P2z/P3/P4 in BASE have 17/25/25 hard overflow violations | R3; unchanged stress procurement under BASE | OP | schedule revisions and earlier ZBO are candidates; uniform supply alone does not prevent demand-driven overflow | no universal BASE/stress revision policy demonstrated | `tests/test_boundary.py::test_storage_overflow_is_detected`, `results/stress/summary.csv` |
-| R9 | CAPEX budget breach | option stacking | cumulative CAPEX | through 2037 | deterministic | P4 uses 1 790 of 1 800 mln by 2037 — 10 mln headroom; a net overrun ABOVE 10 mln breaches CAPEX_2037 (engine tolerance applies) | investment timing affects source availability and annual losses | FIN | staging Earth-New/ZBO payments is a candidate, subject to lead times and annual loss checks; no budget-recovery policy computed | only 10 mln headroom; staging costs and residual risk not quantified | `results/alternatives/P4_full_BASE/financial_breakdown.csv` |
+Владельцы: **ОП** — оператор узла; **ПОСТ** — поставщик (указан канал); **ФИН** — финансирующая сторона; **ПОТР** — потребители.
 
-## EXP-10 update: joint R1 + R2 + R4, conditional on mandatory stress
+## Сводная матрица
 
-Evidence: `results/monte_carlo/summary.md`, `report.json`, `run_manifest.json`.
-TEAM_ASSUMPTION: persistent additional demand U(0,2%) and relative ISRU delivery reduction
-U(0,2%) in 2038–2040; independent Core/Flex price deviation U(-10%,10%) in 2038–2039.
-N=10,000 per dependence model, seed=203510, common samples across fixed plans.
-This supersedes the earlier proposed R1+R4-only / Core-availability Monte Carlo descriptions.
-Core capacity outages remain unmodeled here; price and actual delivery share are distinct factors.
+| ID | Событие | Период | Основание оценки | Последствие без мер (расчёт) | Мера и её стоимость | Остаточный риск | Владелец |
+|---|---|---|---|---|---|---|---|
+| Р1 | Задержка ввода Earth-New на 3 / 6 / 12 мес. | ввод 2037-01 → 2037-04 / 2037-07 / 2038-01; последствия 2038–2040 | сценарные задержки (TEAM_ASSUMPTION), без вероятности | недопоставлено 3,297 / 6,594 / 13,188 т; сервис 100 %; **45-дневный резерв нарушен в 2038–2040**, разрыв до 3,148 / 6,297 / 12,812 т (EXP-09) | реакция Earth-Flex после наблюдения: 3,214 / 6,428 / 13,078 т, **+30,590 / +61,181 / +124,474 млн PV**; буфер заранее: +34,678 / +69,346 / +141,068 млн PV, оплачивается и без задержки (EXP-12) | задержка, объявленная после 2037-08, не оставляет 4 месяцев до проверки резерва; задержка свыше 12 мес. не рассчитана | ПОСТ C / ОП |
+| Р2 | Спрос выше базового (стресс +15 % с 2038; высокий вариант +10…+25 %) | 2038–2040 (стресс); 2035–2040 (высокий вариант) | обязательный стресс и официальный высокий вариант | план без изменений в стрессе: **дефицит 95,917 т**, общий сервис 0,870 (2040), резерв нарушен 2038–2040; в высоком варианте: дефицит 234,917 т, резерв нарушен во все годы (EXP-02, EXP-03) | заблаговременная адаптация заказов и запаса: дефицит 0, нарушений 0, **+954,574 млн PV** к неизменному плану в стрессе; перепланирование под высокий спрос: PV 10 238,585, дефицит 2,557 т, сервис ≥ 99,48 % | у фиксированного графика нулевой запас прочности — резерв требует ежегодного пересчёта; адаптированный график в BASE переполняет хранилище (17 нарушений) | ОП / ПОТР |
+| Р3 | Спрос ниже базового (низкий вариант −20 %) | 2035–2040 | официальный низкий вариант | план без изменений: **43 нарушения ёмкости хранилища** 2036–2040, PV 9 070,096 (дороже базового на 340,692); простой take-or-pay 0 т (EXP-03) | заблаговременное сокращение заказов и резервов: PV 6 943,578, нарушений 0 | сокращение при замороженных контрактах ограничено take-or-pay (A 70 %, C 50 %); политика с замороженными обязательствами не проверена | ОП / ФИН |
+| Р4 | Рост цен земных каналов (стресс +25 % в 2038–2039; геополитический шок) | 2038–2039 или любой период | ценовая часть обязательного стресса; сценарный коэффициент команды | **+470,892 млн PV** для неизменного P2z (P3 +452,513; P4 +415,516) без физических последствий (EXP-11); размах цены ×0,8…×1,5 даёт 7 457…11 594 млн PV для P3 (EXP-04) | индексация с cap/collar в договорах A/C (предложено, не оценено); Earth-New по цене 7,1 в стрессе не индексируется — естественная диверсификация; блок геополитики в интерфейсе оценивает любой шок до/после | экспозиция равна доле Earth-Core/Earth-Flex в закупках 2038–2039; хвост за пределами коридора пересогласуется | ОП / ФИН |
+| Р5 | Задержка ввода ZBO (лаг 0–12 мес.) | 2037-07 → до 2038-07 | диапазон допущения (TEAM_ASSUMPTION) | годовое отношение потерь к поступлению превышает 2 % при лаге 10 мес.; лаги 7–9 мес. проходят (EXP-04); до модернизации ёмкость 70 т ограничивает буферы | приёмочные испытания и мера за задержку в договоре (предложено); решение о ZBO не позднее 2037-07 | цена задержки ZBO для P2z отдельно не рассчитана; нулевой лаг — допущение | ПОСТ ZBO / ОП |
+| Р6 | Emergency не успевает или не покрывает дефицит | любой год | детерминированные параметры канала: 6 недель, 80 т/год | контрактный резерв не заменяет физический: правило эквивалентности требует запаса на 6 недель ожидания и зарезервированной мощности ≥ 45-дневной нормы | физический резерв 45 дней как базовый режим; Emergency — только резерв, не базовый канал (≤ 2 лет подряд) | — (правило соблюдено во всех опубликованных планах) | ОП |
+| Р7 | Переполнение хранилища при неравномерных поставках или снижении спроса | 2035–2040 | детерминированные проверки помесячно | адаптированный к стрессу P2z в BASE: **17 нарушений ёмкости** в 2039–2040 (EXP-02); низкий спрос — см. Р3 | пересмотр графика поставок до закрепления заказов; ранний ввод ZBO (120 т) | единого графика для BASE и стресса нет; переключение проверяется ежегодно | ОП |
+| Р8 | Превышение лимита CAPEX | до 2037 / до 2040 | детерминированно | P2z: 540 из 1 800 млн, запас 1 260 млн; у P4 запас лишь 10 млн | этапность опцион → реализация; ворота решения | пересмотр ISRU после 2040 требует нового лимита и данных | ФИН |
+| Р9 | Недопоставка Lunar-ISRU (исключённый риск) | 2038–2039 | обязательный стресс: 55 % / 75 % | для P3: дефицит 170,017 т, адаптация +1 605,030 млн PV; условная частота отказа адаптированного P3 100 % при малых доп. шоках, защиты снижают до 49 % за 49–84 млн PV (EXP-02, EXP-10) | риск исключён выбором P2z ценой +90,547 млн PV в BASE и отказа от 3,0 млн/т после 2040 | не переносится в портфель до 2040; экономика 2041+ не рассчитана | ФИН / ОП |
+| Р10 | Совместные малые отклонения спроса, поставок и цен | 2038–2040 | равномерные диапазоны 0–2 % (TEAM_ASSUMPTION) | адаптированный P2z имеет лишь 0,000469 т сверх нормы резерва в январе 2040 — любое отклонение нарушает резерв (EXP-07 для P3: граница ≈ 0,000055 %) | для P3 рассчитано: запас +8,6 т = 83,662 млн PV, ранний ZBO + 0,1 т = 49,453 млн PV, частота отказов 100 % → 49 % (EXP-08, EXP-10) | для P2z аналогичный буфер не рассчитан; остаточный отказ — резерв января 2040 | ОП / ФИН |
 
-| Fixed adapted P3 protection | Conditional failure frequency (95% Wilson) | Mean extra PV, mln | Shortage frequency | Residual |
-|---|---|---:|---:|---|
-| None | 100.00% (99.96–100.00%) | 0 | 13.33% | almost all first reserve failures at 2038-01; max shortage 5.464 t |
-| Physical stock +8.6 t | 49.43% (48.45–50.41%) | 83.662 | 0% observed | first reserve failure at 2040-01; maximum reserve gap 8.426 t |
-| ZBO 2036-01 + stock 0.1 t | 49.59% (48.61–50.57%) | 49.453 | 0% observed | first reserve failure at 2040-01; maximum reserve gap 8.444 t; zero-lag ZBO assumption matters |
+## Подробные карточки
 
-No realization violates the annual 97%/99% service thresholds, but reserve failures count as
-failures. Mean cost deltas are paired on the same realization; no damage valuation is included.
-With fully positively dependent demand/ISRU shocks (separate diagnostic), failure frequencies
-are 99.99% / 49.87% / 50.03%; unprotected shortage frequency rises to 19.93%.
-These are conditional model frequencies, not empirical real-world probabilities. Wilson intervals
-exclude distribution/model uncertainty; neither protection guarantees compliance over the 2% square.
+### Р1. Задержка ввода Earth-New (ключевой риск архитектуры P2z)
 
-Next (R3 role): reactive reserve activation, Monte Carlo/reverse stress for alternative strategies,
-event-based Core availability; geopolitics module (bonus) as a separate TEAM_* scenario with before/after export.
+| Поле | Содержание |
+|---|---|
+| Событие и причина | подготовка нового поставщика превышает верхнюю границу 18–24 месяцев; причина — готовность мощности и наземной инфраструктуры поставщика |
+| Затронутые параметры | срок подготовки Earth-New; месяц ввода; доступность 130 т/год; пропорциональная плата за резерв C |
+| Период | ввод 2037-01 сдвигается на 2037-04 / 2037-07 / 2038-01; последствия видны 1 января 2038–2040 |
+| Основание диапазона | сценарные задержки 3 / 6 / 12 месяцев на копии данных; статистики нет, вероятность не назначается |
+| Последствия без мер | пропущено 3,297 / 6,594 / 13,188 т Earth-New; дефицита нет, общий и критический сервис 100 %; **45-дневный резерв нарушен в 2038, 2039 и 2040**, максимальный разрыв 3,148 / 6,297 / 12,812 т; расчётные затраты ниже на 7,558 / 14,629 / 27,695 млн PV (меньше хранения и пропорциональная плата за резерв), что не является выгодой: заказанное топливо остаётся оплаченным |
+| Зависимости | рост спроса (Р2) увеличивает потребность в замене; ценовой шок (Р4) удорожает замену через Earth-Flex |
+| Владелец | поставщик Earth-New несёт вменяемую задержку до договорного лимита; оператор — остаток и своевременный заказ замены |
+| Мера 1: реакция после наблюдения | задержка наблюдается в 2037-01 (первый пропущенный слот); заказ Earth-Flex со сроком 4 месяца, поставки 2037-05…2037-12; резерв мощности B на 2037 год заложен заранее. Минимальный объём 3,214 / 6,428 / 13,078 т; **стоимость +30,590 / +61,181 / +124,474 млн PV** относительно плана без мер; резерв и сервис соблюдены во все годы |
+| Мера 2: буфер заранее | заказ Earth-Flex до того, как задержка известна (заказ 2036-08, поставка 2036-12): 3,298 / 6,595 / 13,416 т; **стоимость +34,678 / +69,346 / +141,068 млн PV**; та же сумма оплачивается, если задержки не будет (страховая премия) |
+| Мера 3: договор | этапные платежи, независимая приёмка, take-or-pay только на принятую мощность, неустойка за вменяемую задержку; не оценена моделью; справочно: при исключении недоступного объёма из оплаты экономия составила бы 23,409 / 46,818 / 93,636 млн (объём × 7,1) |
+| Остаточный риск | реакция работает, если задержка объявлена не позднее 2037-08 (4 месяца до проверки резерва 1 января 2038); позже помогает только буфер или Emergency (6 недель, дороже); задержка свыше 12 месяцев и совпадение с ростом спроса не рассчитаны; концентрация 130 т/год на одном новом поставщике сохраняется |
+
+### Р2. Спрос выше базового
+
+| Поле | Содержание |
+|---|---|
+| Событие и причина | рост числа миссий: обязательный стресс (+15 % общего и критического спроса с 2038) и официальный высокий вариант (+10…+25 %) |
+| Затронутые параметры | спрос по годам; норма резерва R = D × 45/365; потребность в мощности |
+| Период | 2038–2040 (стресс); 2035–2040 (высокий вариант) |
+| Последствия без мер | план без изменений в стрессе: дефицит 95,917 т (37,417 т в 2039 и 58,500 т в 2040), общий сервис 0,898 / 0,870, критический 100 %, резерв нарушен 2038–2040 (разрывы 4,623 / 43,417 / 55,295 т); в высоком варианте: дефицит 234,917 т, минимальный общий сервис 0,800, резерв нарушен 2035–2040 |
+| Зависимости | Р1 (меньше топлива Earth-New), Р4 (дороже замена) |
+| Владелец | оператор (заказы и запас), потребители (первыми несут дефицит при приоритете критического спроса) |
+| Меры | заблаговременная адаптация: запас 35,446 т к 2038-01 вместо 30,822, Earth-New +4,759 т в 2037 и +39,266 т в 2038, Earth-Flex +49,893 т в 2039 и +35,263 т в 2040; дефицит 0, нарушений 0, PV 10 097,472 (+954,574 млн к неизменному плану в стрессе); перепланирование под высокий вариант: PV 10 238,585, дефицит 2,557 т, сервис ≥ 99,48 %, нарушений нет |
+| Остаточный риск | фиксированный график имеет нулевой запас прочности: резерв рассчитан ровно по норме, поэтому любое изменение прогноза требует пересчёта до закрепления заказов (годовой цикл для Earth-Core, квартальный для Earth-Flex); адаптированный график в BASE даёт 17 переполнений — единого графика для двух сценариев нет |
+
+### Р3. Спрос ниже базового
+
+| Поле | Содержание |
+|---|---|
+| Событие и причина | перенос миссий; официальный низкий вариант (−20 %) |
+| Последствия без мер | план без изменений: 43 нарушения ёмкости хранилища (2036–2040), PV 9 070,096 млн — на 340,692 млн дороже базового из-за хранения невостребованного топлива; простой take-or-pay 0 т, поскольку заказы не менялись |
+| Меры | заблаговременное сокращение заказов и резервов (PV 6 943,578, нарушений 0); правило сокращения: сначала Emergency/Earth-Flex, затем Earth-New сверх 50 % и Earth-Core сверх 70 % резерва |
+| Остаточный риск | при замороженных резервах take-or-pay ограничивает сокращение: оплаченный неиспользованный объём для такого случая не рассчитан |
+| Владелец | оператор (прогноз), финансист (плата за резерв) |
+
+### Р4. Рост цен земных каналов и геополитические изменения
+
+| Поле | Содержание |
+|---|---|
+| Событие и причина | торговые ограничения, страховые и логистические надбавки; ценовая часть обязательного стресса +25 % в 2038–2039 для Earth-Core и Earth-Flex |
+| Затронутые параметры | переменная цена канала с доставкой (агрегированная, разбивка не задана); плата за резерв не меняется |
+| Последствия | неизменный P2z: +470,892 млн PV (P3 +452,513; P4 +415,516), физический баланс, запасы и сервис не меняются; для P3 диапазон цены ×0,8…×1,5 даёт PV 7 457…11 594 млн — самый чувствительный параметр экономики |
+| Меры | договорная индексация с cap/collar и окном пересмотра (предложена, цена не оценена); Earth-New по 7,1 млн/т в стрессе не индексируется — диверсификация ценовой экспозиции; блок геополитики в интерфейсе: оператор задаёт событие, каналы, годы и величину, получает сравнение до/после и таблицу эффективных цен, выключение шока восстанавливает исходные цены |
+| Остаточный риск | экспозиция равна доле Earth-Core/Earth-Flex в закупках 2038–2039; вне коридора риск пересогласуется, а не исчезает |
+| Владелец | оператор внутри коридора, поставщик — ограниченный хвост; финансист — бюджет закупок |
+
+### Р5–Р8. Инфраструктурные и бюджетные риски
+
+- **Р5 ZBO.** Лаг ввода 0–12 месяцев — допущение. Годовое отношение потерь к поступлению в стрессе превышает 2 % при лаге 10 месяцев (лаги 7–9 проходят), а до модернизации ёмкость 70 т ограничивает буферы. Мера — приёмка и договорная мера за задержку; стоимость задержки для P2z отдельно не рассчитана.
+- **Р6 Emergency.** Контракт не заменяет физический запас: движок засчитывает контрактный резерв только при запасе на 6 недель ожидания и зарезервированной мощности не ниже нормы. Выбранный план держит физический резерв; Emergency не используется как базовый канал.
+- **Р7 Переполнение.** Помесячная проверка ёмкости выявляет 17 переполнений у адаптированного к стрессу P2z в BASE (2039–2040). Мера — пересмотр графика до закрепления заказов; универсального графика нет.
+- **Р8 CAPEX.** P2z использует 540 из 1 800 млн до 2037 (запас 1 260 млн); у P4 запас 10 млн. Мера — этапность и ворота решений.
+
+### Р9–Р10. Исключённый риск ISRU и совместные отклонения
+
+- **Р9.** Недопоставка ISRU 55 % / 75 % (обязательный стресс) даёт P3 дефицит 170,017 т и адаптацию за +1 605,030 млн PV; условная частота отказа адаптированного P3 при дополнительных отклонениях 0–2 % — 100 %, защиты снижают её до 49,43 % (запас +8,6 т, 83,662 млн PV) и 49,59 % (ранний ZBO + 0,1 т, 49,453 млн PV). Выбор P2z исключает этот риск из портфеля ценой +90,547 млн PV в BASE и отказа от дешёвого топлива после 2040.
+- **Р10.** У адаптированного P2z запас над нормой резерва в январе 2040 — 0,000469 т, поэтому любое совместное отклонение нарушает резерв, как и у P3 (граница ≈ 0,000055 % совместного шока). Буфер для P2z аналогичный EXP-08 не рассчитан; ориентир стоимости — 49–84 млн PV для P3.
+
+## Как реестр связан с решениями
+
+1. Р1 и Р2 определяют ворота решений: приёмка Earth-New до старта take-or-pay, ежегодный пересчёт резерва и заказов Earth-Core, квартальный — Earth-Flex.
+2. Р1 задаёт две проверенные политики защиты с разной ценой: реакция (дешевле, работает при своевременном уведомлении) и буфер (дороже, но не зависит от уведомления).
+3. Р4 закрывается договорной индексацией и инструментом оценки любого ценового сценария в интерфейсе.
+4. Р9–Р10 фиксируют границы вывода: устойчивость к малым совместным отклонениям для P2z не доказана, а исключение ISRU — сознательный компромисс на горизонте 2035–2040.

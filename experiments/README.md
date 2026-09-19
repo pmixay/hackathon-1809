@@ -1,140 +1,140 @@
-# Experiments and test protocols
+# Эксперименты и протоколы тестов
 
-Every experiment is a script; re-running it regenerates `results/<experiment>/` deterministically.
-EXP-10 uses a recorded random seed and common samples; EXP-01–09 and EXP-11 have no random sampling.
-Determinism here refers to calculations; standard core export envelopes include timestamps.
-Format of each protocol follows the case: goal, varied parameters and their origin, kept conditions, plan under test,
-metrics, violation criterion, reproduction.
+Каждый эксперимент — это скрипт; его повторный запуск детерминированно пересоздаёт `results/<experiment>/`.
+EXP-10 использует записанное случайное зерно и общие выборки; EXP-01–09, EXP-11 и EXP-12 не содержат случайной выборки.
+Детерминированность здесь относится к расчётам; стандартные конверты экспорта ядра содержат временные метки.
+Формат каждого протокола следует кейсу: цель, варьируемые параметры и их происхождение, сохраняемые условия, проверяемый план,
+метрики, критерий нарушения, воспроизведение.
 
-Common: case data `data/case/` (CASE_INPUT, unchanged), assumptions `configs/assumptions.yaml` (r = 8 % real,
-lead-time policy max, ZBO lag 0), engine `src/terraplan`, time step month.
+Общее: данные кейса `data/case/` (CASE_INPUT, без изменений), допущения `configs/assumptions.yaml` (r = 8 % реальная,
+политика лид-тайма — max, лаг ZBO 0), движок `src/terraplan`, шаг времени — месяц.
 
-| ID | Script | Goal | Varied | Kept | Plans | Metrics | Violation criterion | Output |
+| ID | Скрипт | Цель | Варьируется | Сохраняется | Планы | Метрики | Критерий нарушения | Выход |
 |---|---|---|---|---|---|---|---|---|
-| EXP-01 | `run_alternatives.py` | compare content-different strategies on one basis | strategy (sources, investments) | all CASE_INPUT, BASE and MANDATORY_STRESS as given | P1 Earth-only, P2 Earth-New, P2z Earth-New+ZBO, P3 ISRU+ZBO, P4 full | total & PV cost, cost per served t, SL total/critical, shortage, losses, CAPEX, TOP idle | any hard violation; SL < 0.97 / 0.99 | `results/alternatives/` |
-| EXP-02 | `run_stress_adaptation.py` | quantify stress consequences and the effect of changing decisions | plan orders/reservations/opening stock re-planned for the stress environment; investments unchanged | mandatory stress multipliers exactly as given; budgets & capacities unchanged | P2z, P3, P4: fixed vs adapted; adapted also run in BASE (cost of hedging) | same + deltas | same | `results/stress/` |
-| EXP-03 | `run_demand_sensitivity.py` | low / high demand checks | demand variant (organizer columns), critical share preserved | prices, capacities, stress not applied | fixed BASE plan and re-planned | same | same (guideline) | `results/demand/` |
-| EXP-04 | `run_sensitivity.py` | one-at-a-time sensitivity with thresholds | demand ×0.8–1.3; ISRU share 2038 0.3–1.0; Core/Flex price ×0.8–1.5; r 0–12 %; ZBO lag 0–12 mo (in stress) | everything else as BASE | P3 fixed (and re-planned for demand) | PV, shortage, min SL, hard violations | first grid value with a hard violation or SL below threshold | `results/sensitivity/` (sweep_*.csv, thresholds.csv, tornado.csv, summary.md) |
-| EXP-06 | `run_reaction.py` | conditional recovery benchmark with delayed activation; full future stress trajectory used to size orders | only Earth-Flex (from 2038-07) and Emergency (from 2038-05) deliveries after observation at 2038-03; monthly profiles | Core orders for ALL years, ISRU, investments and pre-2038 orders/stock fixed as in BASE | P3 fixed vs recovery vs pre-committed adapted; terminal stocks differ | same + shortage by month, Emergency share, terminal stock | same | `results/reaction/` |
-| EXP-05 | `run_extensibility.py` | dataset extension on a copy | +Source-X (60 t/yr, 5.5 mln/t, from 2039), +2041 demand 450/290 t | original constraints, engine unchanged | P3 extended | run completes, Source-X used, 2041 computed | — | `results/extensibility/` |
+| EXP-01 | `run_alternatives.py` | сравнить содержательно различные стратегии на единой основе | стратегия (источники, инвестиции) | все CASE_INPUT, BASE и MANDATORY_STRESS как заданы | P1 Earth-only, P2 Earth-New, P2z Earth-New+ZBO, P3 ISRU+ZBO, P4 full | общая и PV стоимость, стоимость на обслуженную т, SL общий/критический, дефицит, потери, CAPEX, простой TOP | любое жёсткое нарушение; SL < 0.97 / 0.99 | `results/alternatives/` |
+| EXP-02 | `run_stress_adaptation.py` | количественно оценить последствия стресса и эффект изменения решений | заказы/резервирования/начальный запас плана перепланированы под стрессовую среду; инвестиции без изменений | обязательные стрессовые множители ровно как заданы; бюджеты и мощности без изменений | P2z, P3, P4: фиксированный vs адаптированный; адаптированный также прогоняется в BASE (цена хеджирования) | те же + дельты | тот же | `results/stress/` |
+| EXP-03 | `run_demand_sensitivity.py` | проверки низкого / высокого спроса | вариант спроса (колонки организатора), доля критического сохранена | цены, мощности; стресс не применяется | фиксированный план BASE и перепланированный | те же | тот же (ориентир) | `results/demand/` |
+| EXP-04 | `run_sensitivity.py` | чувствительность «по одному параметру» с порогами | спрос ×0.8–1.3; доля ISRU 2038 0.3–1.0; цена Core/Flex ×0.8–1.5; r 0–12 %; лаг ZBO 0–12 мес (в стрессе) | всё остальное как в BASE | P3 фиксированный (и перепланированный по спросу) | PV, дефицит, min SL, жёсткие нарушения | первое значение сетки с жёстким нарушением или SL ниже порога | `results/sensitivity/` (sweep_*.csv, thresholds.csv, tornado.csv, summary.md) |
+| EXP-06 | `run_reaction.py` | условный бенчмарк восстановления с отложенной активацией; для определения объёма заказов используется полная будущая траектория стресса | только поставки Earth-Flex (с 2038-07) и Emergency (с 2038-05) после наблюдения в 2038-03; месячные профили | заказы Core на ВСЕ годы, ISRU, инвестиции и заказы/запас до 2038 зафиксированы как в BASE | P3 фиксированный vs восстановление vs заранее принятый адаптированный; терминальные запасы различаются | те же + дефицит по месяцам, доля Emergency, терминальный запас | тот же | `results/reaction/` |
+| EXP-05 | `run_extensibility.py` | расширение набора данных на копии | +Source-X (60 т/год, 5.5 млн/т, с 2039), +спрос 2041 450/290 т | исходные ограничения, движок без изменений | P3 расширенный | прогон завершается, Source-X используется, 2041 рассчитан | — | `results/extensibility/` |
 
-## Reading the outputs
+## Как читать результаты
 
-- `results/<exp>/summary.csv|md` — one row per (plan, scenario, variant).
-- `results/<exp>/<plan>_<scenario>/` — full export: `summary.md`, `yearly_balance.csv`, `inventory_trace.csv` (monthly), `source_schedule.csv`, `financial_breakdown.csv`, `constraint_checks.csv`, `kpi.csv`, `investments.csv`, `assumptions.csv`, `plan.json`, `scenario.json`, `export_envelope.json`, `results.xlsx`, `run_manifest.json`.
-- Comparison BASE vs STRESS: `results/stress/compare_<plan>.md` (metrics, decisions that differ, violations).
+- `results/<exp>/summary.csv|md` — одна строка на (план, сценарий, вариант).
+- `results/<exp>/<plan>_<scenario>/` — полный экспорт: `summary.md`, `yearly_balance.csv`, `inventory_trace.csv` (помесячно), `source_schedule.csv`, `financial_breakdown.csv`, `constraint_checks.csv`, `kpi.csv`, `investments.csv`, `assumptions.csv`, `plan.json`, `scenario.json`, `export_envelope.json`, `results.xlsx`, `run_manifest.json`.
+- Сравнение BASE vs STRESS: `results/stress/compare_<plan>.md` (метрики, различающиеся решения, нарушения).
 
-## Findings so far (2026-09-18)
+## Выводы (18.09.2026)
 
-1. Earth-only (P1) cannot serve 2040 (capacity 300 t/yr vs ~408 t gross need) — infeasible in BASE.
-2. ZBO is needed to meet the annual stress loss ceiling with continued inflows; commissioning before 2038 is a conservative planning target, not an exact engine deadline. For the tested BASE P3 in stress, lags 7–9 still pass the annual loss check, lag 10 first fails it; reserve/service already fail at lag 0. P2z is cheaper than P2 in BASE by 50 mln PV.
-3. Cheapest BASE plan: P3 ISRU+ZBO (8 639 mln PV) vs P2z Earth-New+ZBO (8 729) — difference 90 mln.
-4. Same plans adapted to stress: P2z 10 097 < P4 10 578 < P3 10 637 mln PV. ISRU's 1250 CAPEX + 70/yr OPEX is not recovered within 2035–2040 when it delivers 55 %/75 % in 2038–2039 and Earth prices are shocked.
-5. EXP-04 first sampled adverse failures for fixed BASE P3: demand ×1.05 or ISRU 2038 share 0.95. These are grid observations, not exact boundaries and not a P2z reaction trigger. P2z recalculates reserve and orders at every forecast update; it does not wait for +5%. Re-planned P3 passes constraints at ×1.25 with 12.437 t shortage (min annual service 97.45%); ×1.30 fails. Passing constraints does not imply zero shortage.
-6. In stress 2040 Earth A+B+C (430 t/yr) or A+B+D (420) reach capacity; the adapted P3 closes with 21.755 t. Continuation at comparable demand would require added supply/stock; a 2041 recovery choice among the original sources is not calculated. EXP-05 demonstrates extensibility with synthetic Source-X on a different, non-mandatory-stress background.
-7. Under low demand a fixed plan overfills the depot. EXP-03 has zero TOP idle volume with unchanged orders; advance re-planning reduces orders AND reservations. An operational order-cut policy under frozen contracts remains untested.
-8. EXP-06 is a conditional recovery benchmark: observe in March 2038, permit Emergency from May and Flex from July, size orders using the entire known future stress trajectory. It yields min annual service 0.996987 and 0.866 t shortage, but cannot repair the January 2038 reserve. PV 11 135.161 vs 10 636.655 gives a 498.506 mln difference, not pure value of foresight: terminal stocks are 55.295 vs 21.755 t, including 33.947 t extra Emergency in 2040. Equal terminal conditions and an information-at-order-date policy are needed for a value-of-information claim. No cheapest-hedge claim follows from this comparison.
-9. EXP-02 adapted plans are not universal hedges: in BASE P2z has 17 and P3/P4 each 25 hard overflow violations (`results/stress/summary.csv`). EXP-07's stress-adapted P3 boundary is about 0.0000551373% per physical shock, reflecting only 0.47 kg reserve slack at 2040-01.
+1. Earth-only (P1) не может обслужить 2040 год (мощность 300 т/год против ~408 т валовой потребности) — неисполним в BASE.
+2. ZBO необходим для соблюдения годового потолка потерь в стрессе при продолжающихся поступлениях; ввод в эксплуатацию до 2038 — консервативный плановый ориентир, а не точный дедлайн движка. Для протестированного BASE P3 в стрессе лаги 7–9 всё ещё проходят годовую проверку потерь, лаг 10 первым её не проходит; резерв/сервис не проходят уже при лаге 0. P2z дешевле P2 в BASE на 50 млн PV.
+3. Самый дешёвый план в BASE: P3 ISRU+ZBO (8 639 млн PV) против P2z Earth-New+ZBO (8 729) — разница 90 млн.
+4. Те же планы, адаптированные к стрессу: P2z 10 097 < P4 10 578 < P3 10 637 млн PV. CAPEX ISRU 1250 + OPEX 70/год не окупаются в 2035–2040, когда ISRU поставляет 55 %/75 % в 2038–2039, а земные цены подвергнуты шоку.
+5. Первые выборочные неблагоприятные отказы EXP-04 для фиксированного BASE P3: спрос ×1.05 или доля ISRU 2038 0.95. Это наблюдения на сетке, а не точные границы и не триггер реакции P2z. P2z пересчитывает резерв и заказы при каждом обновлении прогноза; он не ждёт +5%. Перепланированный P3 проходит ограничения при ×1.25 с дефицитом 12.437 т (минимальный годовой сервис 97.45%); ×1.30 не проходит. Прохождение ограничений не означает нулевого дефицита.
+6. В стрессе 2040 года земные источники A+B+C (430 т/год) или A+B+D (420) достигают предела мощности; адаптированный P3 завершается с 21.755 т. Продолжение при сопоставимом спросе потребовало бы дополнительных поставок/запасов; выбор варианта восстановления на 2041 среди исходных источников не рассчитан. EXP-05 демонстрирует расширяемость на синтетическом Source-X на другом фоне, без обязательного стресса.
+7. При низком спросе фиксированный план переполняет склад. В EXP-03 при неизменных заказах простой TOP равен нулю; заблаговременное перепланирование сокращает И заказы, И резервирования. Операционная политика сокращения заказов при замороженных контрактах остаётся непроверенной.
+8. EXP-06 — условный бенчмарк восстановления: наблюдение в марте 2038, разрешение Emergency с мая и Flex с июля, объём заказов определяется по всей известной будущей траектории стресса. Он даёт минимальный годовой сервис 0.996987 и дефицит 0.866 т, но не может восстановить резерв января 2038. PV 11 135.161 против 10 636.655 даёт разницу 498.506 млн, и это не чистая ценность предвидения: терминальные запасы 55.295 против 21.755 т, включая 33.947 т дополнительного Emergency в 2040. Для утверждения о ценности информации нужны равные терминальные условия и политика «информация на дату заказа». Из этого сравнения не следует вывод о самом дешёвом хедже.
+9. Адаптированные планы EXP-02 не являются универсальными хеджами: в BASE у P2z 17, а у P3/P4 по 25 жёстких нарушений переполнения (`results/stress/summary.csv`). Граница стресс-адаптированного P3 в EXP-07 составляет около 0.0000551373% на физический шок, что отражает лишь 0.47 кг запаса резерва на 2040-01.
 
-## Portable provenance (EXP-07–10)
+## Переносимое подтверждение происхождения (EXP-07–10)
 
 ```bash
 python experiments/provenance.py
 ```
 
-- Report/manifest schema version **2**, hash format **`sha256-utf8-lf-v1`**: decode UTF-8,
-  convert CRLF and CR to LF, encode UTF-8, SHA-256. No whitespace trimming, rounding,
-  JSON reordering or removal of the final newline. Real content changes still fail verification.
-- New experimental CSV/JSON/text outputs use LF. Git checkout may change EOL; verification
-  compares exact normalized text. Input hashes include the shared `experiments/provenance.py`.
-- The command validates saved input/code hashes for all four experiments, EXP-09 case-copy
-  hashes and EXP-10's eight output hashes. Tests validate the delivered reports, not only fresh
-  reports, and emulate both LF and CRLF checkouts including input/code files.
-- The audit refresh re-ran EXP-07–10 with the current assumption registry. EXP-07–09 now include
-  the three EXP-10 registry entries in their snapshots; these keys have no effect on their calculations.
-  Numerical results are unchanged. This replaces stale historical input hashes with hashes of
-  inputs actually used in the refreshed runs; it is not a blind re-signing of old results.
-- EXP-09's per-run standard manifests get portable `case_file_sha256` with a separate
-  `case_file_hash_format` marker. Core semantic plan/scenario/assumption/KPI hashes and the
-  `terraplan verify` calculation check retain their own formats. Core code is unchanged.
-- `--compare` for EXP-10 checks normalized artifacts and manifests with the same recorded
-  runtime/package versions. Different versions remain visible and may require numerical
-  comparison; portability of EOL hashes is not a promise of cross-version byte identity.
+- Версия схемы отчёта/манифеста **2**, формат хеша **`sha256-utf8-lf-v1`**: декодировать UTF-8,
+  преобразовать CRLF и CR в LF, закодировать в UTF-8, SHA-256. Без обрезки пробелов, округления,
+  переупорядочивания JSON или удаления завершающего перевода строки. Реальные изменения содержимого по-прежнему не проходят проверку.
+- Новые экспериментальные CSV/JSON/текстовые выходы используют LF. Git checkout может изменить EOL; проверка
+  сравнивает точный нормализованный текст. Хеши входов включают общий `experiments/provenance.py`.
+- Команда проверяет сохранённые хеши входов/кода для всех четырёх экспериментов, хеши копии кейса EXP-09
+  и восемь выходных хешей EXP-10. Тесты проверяют поставленные отчёты, а не только свежие,
+  и эмулируют checkout как с LF, так и с CRLF, включая файлы входов/кода.
+- Аудиторское обновление повторно прогнало EXP-07–10 с текущим реестром допущений. EXP-07–09 теперь включают
+  три записи реестра EXP-10 в свои снимки; эти ключи не влияют на их расчёты.
+  Численные результаты не изменились. Это заменяет устаревшие исторические хеши входов хешами
+  входов, фактически использованных в обновлённых прогонах; это не слепое переподписание старых результатов.
+- Стандартные манифесты каждого прогона EXP-09 получают переносимый `case_file_sha256` с отдельным
+  маркером `case_file_hash_format`. Семантические хеши ядра для плана/сценария/допущений/KPI и
+  проверка расчёта `terraplan verify` сохраняют собственные форматы. Код ядра не изменён.
+- `--compare` для EXP-10 проверяет нормализованные артефакты и манифесты при тех же записанных
+  версиях среды выполнения/пакетов. Различия версий остаются видимыми и могут требовать численного
+  сравнения; переносимость EOL-хешей не является обещанием побайтовой идентичности между версиями.
 
-## EXP-07: reverse stress of the adapted P3
+## EXP-07: обратный стресс адаптированного P3
 
 ```bash
 python experiments/run_reverse_stress.py --max-shock 0.5 --tolerance 1e-12 --out results/reverse_stress
 python -m pytest -q tests/test_reverse_stress.py
 ```
 
-- **Goal / plan:** find the failure boundary of the saved `configs/plans/P3_isru_zbo_adapted.json`.
-  Read the plan as-is; all orders, reservations, opening stock and investments remain frozen.
-- **Reference:** `MANDATORY_STRESS`, which the adapted plan passes. In **2038–2040** multiply both
-  total and critical demand by `1+d`, and ISRU's actual delivery shares by `1-s`.
-  Thus demand multipliers are `1.15*(1+d)` and ISRU shares are `[0.55, 0.75, 1.0]*(1-s)`.
-  The reduction is relative, not percentage points. Earlier years, prices, loss ceiling and other
-  sources are unchanged; reliability is never multiplied in again.
-- **Minimal shock:** infimum of `max(d,s)` over failing points, in the exploratory square
-  `0 <= d,s <= 0.5`. Equal weights on relative changes and the 50% search range are
-  **TEAM_ASSUMPTION**, not empirical probabilities; saved in `report.json` with the other inputs.
-- **Failure:** any engine hard violation **or** annual total/critical service guideline violation
-  (97%/99%). Warnings alone do not count. Respect engine tolerances: physical reserve `1e-6 t`,
-  service `1e-9`. First violation is chronological (annual checks dated December), ties by rule/source id.
-- **Algorithm:** bisect nine normalized rays `(d,s)=t*(u,v)`, including both axes and the diagonal,
-  to an absolute radius interval of at most `1e-12`. Save a passing and a failing endpoint.
-  If the origin fails, abort; if the upper endpoint passes, report no failure within the domain.
-  This fixed P3 has monotone adverse changes: net inflow/stock decrease, demand and reserve needs rise;
-  ZBO losses stay at 1.2% in all shock years; unchanged contracts/investments introduce no new nonmonotone
-  failure. A passing `(t,t)` dominates every point of `[0,t]^2`; a failing `(t,t)` is a witness.
-  Hence the diagonal brackets the **global L-infinity failure infimum**, not just the best sampled ray.
-  The other rays describe the boundary; no claim of enumerating its every point is made.
-- **Outputs:** `boundary.csv` (full-precision coordinates, first rule/year/month, actual/limit/excess),
-  `summary.md`, deterministic `report.json` (plan/scenario/assumption snapshots, input and code hashes,
-  method, tolerances, baseline reserves/KPIs, minimum-witness scenarios/KPIs/violations).
-  Repeat the command with another `--out` to compare outputs after UTF-8/LF normalization in the same environment.
-  No random sampling or seed; `run_all.py` also includes EXP-07. This experiment uses compact CSV/JSON
-  reports rather than the full per-run XLSX bundle. Tiny thresholds reflect rounding slack, not a
-  meaningful operational safety margin; the passing/failing interval is retained instead of rounding to zero.
+- **Цель / план:** найти границу отказа сохранённого `configs/plans/P3_isru_zbo_adapted.json`.
+  План читается как есть; все заказы, резервирования, начальный запас и инвестиции остаются замороженными.
+- **Эталон:** `MANDATORY_STRESS`, который адаптированный план проходит. В **2038–2040** общий
+  и критический спрос умножаются на `1+d`, а фактические доли поставки ISRU — на `1-s`.
+  Таким образом, множители спроса равны `1.15*(1+d)`, а доли ISRU — `[0.55, 0.75, 1.0]*(1-s)`.
+  Снижение относительное, а не в процентных пунктах. Более ранние годы, цены, потолок потерь и другие
+  источники не изменяются; надёжность повторно не умножается.
+- **Минимальный шок:** инфимум `max(d,s)` по точкам отказа в исследуемом квадрате
+  `0 <= d,s <= 0.5`. Равные веса относительных изменений и диапазон поиска 50% —
+  **TEAM_ASSUMPTION**, а не эмпирические вероятности; сохраняются в `report.json` вместе с остальными входами.
+- **Отказ:** любое жёсткое нарушение движка **или** нарушение годового ориентира общего/критического сервиса
+  (97%/99%). Одни лишь предупреждения не учитываются. Соблюдаются допуски движка: физический резерв `1e-6 t`,
+  сервис `1e-9`. Первое нарушение определяется хронологически (годовые проверки датируются декабрём), при равенстве — по id правила/источника.
+- **Алгоритм:** бисекция девяти нормированных лучей `(d,s)=t*(u,v)`, включая обе оси и диагональ,
+  до интервала абсолютного радиуса не более `1e-12`. Сохраняются проходящая и отказывающая конечные точки.
+  Если начало координат не проходит — прерывание; если верхняя конечная точка проходит — сообщается об отсутствии отказа в области.
+  Для этого фиксированного P3 неблагоприятные изменения монотонны: чистый приток/запас снижаются, спрос и потребность в резерве растут;
+  потери ZBO остаются на уровне 1.2% во все годы шока; неизменные контракты/инвестиции не вносят нового немонотонного
+  отказа. Проходящая точка `(t,t)` доминирует над каждой точкой `[0,t]^2`; отказывающая `(t,t)` — свидетель.
+  Следовательно, диагональ ограничивает **глобальный инфимум отказа в норме L-infinity**, а не только лучший из выбранных лучей.
+  Остальные лучи описывают границу; утверждение о перечислении всех её точек не делается.
+- **Выходы:** `boundary.csv` (координаты полной точности, первое правило/год/месяц, факт/предел/превышение),
+  `summary.md`, детерминированный `report.json` (снимки плана/сценария/допущений, хеши входов и кода,
+  метод, допуски, базовые резервы/KPI, сценарии/KPI/нарушения минимального свидетеля).
+  Повторите команду с другим `--out`, чтобы сравнить выходы после нормализации UTF-8/LF в той же среде.
+  Без случайной выборки и зерна; `run_all.py` также включает EXP-07. Этот эксперимент использует компактные CSV/JSON
+  отчёты, а не полный XLSX-набор на каждый прогон. Крошечные пороги отражают запас округления, а не
+  осмысленный операционный запас безопасности; интервал проходящая/отказывающая точка сохраняется вместо округления до нуля.
 
-## EXP-08: compare protection measures for P3
+## EXP-08: сравнение мер защиты для P3
 
 ```bash
 python experiments/run_protection_measures.py --target 0.01 --out results/protection_measures
 python -m pytest -q tests/test_protection_measures.py
 ```
 
-The reference is the same saved stress-adapted P3 under MANDATORY_STRESS as in EXP-07.
-"Minimum reasonable" means the smallest implementable level in a defined measure family
-that passes both the reference and the square `0 <= d,s <= target`. The default **1%**
-target is a disclosed TEAM_ASSUMPTION for comparison, not a probability or organizer requirement.
-Each variant freezes its decisions during reverse stress; the EXP-07 criterion, nine rays,
-50% search bound and `1e-12` radius tolerance are reused. This is a grid minimum within each
-specified measure design, not global optimization over delivery schedules or reactive policies.
+Эталон — тот же сохранённый стресс-адаптированный P3 под MANDATORY_STRESS, что и в EXP-07.
+«Минимально разумный» означает наименьший реализуемый уровень в определённом семействе мер,
+который проходит и эталон, и квадрат `0 <= d,s <= target`. Целевое значение по умолчанию **1%** —
+раскрытое TEAM_ASSUMPTION для сравнения, а не вероятность и не требование организатора.
+Каждый вариант замораживает свои решения во время обратного стресса; критерий EXP-07, девять лучей,
+граница поиска 50% и допуск радиуса `1e-12` переиспользуются. Это минимум на сетке внутри каждой
+заданной конструкции меры, а не глобальная оптимизация по графикам поставок или реактивным политикам.
 
-| Measure | Search / implementation | Cost accounting |
+| Мера | Поиск / реализация | Учёт затрат |
 |---|---|---|
-| Physical stock | net buffer at 2038-01, steps 0.1 t; extra Earth-Flex deliveries spread over July–December 2037, ordered March–August with 4-month lead; extra monthly deliveries rounded up to 0.0001 t; reserved annualized capacity covers monthly peak | extra procurement + reservation + holding; original investments unchanged |
-| Reserved capacity only | 1 t/year diagnostic, cheapest unused B then E capacity in 2038–2040; full available B/E headroom as upper control; A/D already fully reserved | additional reservation payments; B/E have no take-or-pay; no fuel ordered or delivered |
-| Early ZBO | move from 2037-07 backwards by whole months, no earlier than 2036-01 (CASE_INPUT availability); keep original orders and retain saved losses as extra stock | same nominal CAPEX, earlier discounted payment + extra OPEX + holding |
-| Early ZBO + residual stock | selected early ZBO plus a separate 0.1 t-step search for the remaining buffer | combined costs; shown separately from standalone measures |
+| Физический запас | чистый буфер на 2038-01, шаг 0.1 т; дополнительные поставки Earth-Flex распределены по июлю–декабрю 2037, заказаны в марте–августе с 4-месячным лид-таймом; дополнительные месячные поставки округляются вверх до 0.0001 т; зарезервированная годовая мощность покрывает месячный пик | дополнительные закупки + резервирование + хранение; исходные инвестиции без изменений |
+| Только зарезервированная мощность | диагностика 1 т/год, самая дешёвая неиспользуемая мощность B, затем E в 2038–2040; весь доступный запас мощности B/E как верхний контроль; A/D уже полностью зарезервированы | дополнительные платежи за резервирование; у B/E нет take-or-pay; топливо не заказывается и не поставляется |
+| Ранний ZBO | сдвиг с 2037-07 назад целыми месяцами, не раньше 2036-01 (доступность по CASE_INPUT); исходные заказы сохраняются, сэкономленные потери остаются как дополнительный запас | тот же номинальный CAPEX, более ранний дисконтированный платёж + дополнительный OPEX + хранение |
+| Ранний ZBO + остаточный запас | выбранный ранний ZBO плюс отдельный поиск с шагом 0.1 т для оставшегося буфера | суммарные затраты; показаны отдельно от самостоятельных мер |
 
-The lower storage-loss rate applies once to throughput; saved fuel persists under this model.
-ZBO commissioning lag stays at the existing 0-month assumption. Reservation alone cannot improve
-the physical boundary with fixed orders; if it cannot meet the target, the report states that no
-protective minimum exists instead of labeling 1 t/year as sufficient. A reserve activation policy
-would additionally need order decisions, reaction dates and lead-time verification.
+Более низкая ставка потерь хранения применяется один раз к пропускному объёму; сэкономленное топливо в этой модели сохраняется.
+Лаг ввода ZBO остаётся при существующем допущении 0 месяцев. Одно лишь резервирование не может улучшить
+физическую границу при фиксированных заказах; если оно не достигает цели, в отчёте указывается, что защитного
+минимума не существует, вместо признания 1 т/год достаточным. Политика активации резерва
+дополнительно потребовала бы решений по заказам, дат реакции и проверки лид-таймов.
 
-Outputs in `results/protection_measures/`: `comparison.csv`, `boundary.csv`, `sizing.csv`
-(every smaller stock/ZBO grid point), `summary.md`, standalone `*.plan.json`, and deterministic
-`report.json` with input/code hashes, assumption snapshots, nominal cost decomposition,
-yearly finance/reserves, delivery calendars, target violations and passing/failing boundary pairs.
-Costs are always **with measure minus without measure in the same reference environment**.
-Both present value (real 8%, existing annual timing convention) and nominal total differences
-are reported. No purchase savings are credited while retaining the same purchased quantities.
-The full experiment runner includes EXP-08.
+Выходы в `results/protection_measures/`: `comparison.csv`, `boundary.csv`, `sizing.csv`
+(каждая меньшая точка сетки запаса/ZBO), `summary.md`, самостоятельные `*.plan.json` и детерминированный
+`report.json` с хешами входов/кода, снимками допущений, декомпозицией номинальных затрат,
+годовыми финансами/резервами, календарями поставок, нарушениями цели и парами проходящих/отказывающих точек границы.
+Затраты всегда считаются как **с мерой минус без меры в одной и той же эталонной среде**.
+Сообщаются разницы как приведённой стоимости (реальная ставка 8%, существующая конвенция годового тайминга), так и номинальной суммы.
+Экономия на закупках не засчитывается при сохранении тех же закупаемых объёмов.
+Полный скрипт запуска экспериментов включает EXP-08.
 
-## EXP-09: Earth-New preparation delay (risk R6)
+## EXP-09: задержка подготовки Earth-New (риск R6)
 
 ```bash
 python experiments/run_earth_new_delay.py --out results/earth_new_delay
@@ -143,34 +143,34 @@ python -m terraplan verify results/earth_new_delay/delay_03m --case results/eart
 python tests/independent_recalc.py results/earth_new_delay/delay_03m results/earth_new_delay/delay_03m/case
 ```
 
-- **Plan/environment:** saved P2z Earth-New + ZBO, BASE demand/prices. P3 has no Earth-New investment.
-  Keep all investment/payment dates, reservations, annual orders and the original monthly delivery slots.
-  This isolates the delay from mandatory stress and from any recovery policy.
-- **Risk:** extend only Earth-New's preparation lead-time range on a copy of the case by
-  **0/3/6/12 months**. With the existing max-lead policy, commissioning moves from 2037-01
-  to 2037-04 / 2037-07 / 2038-01. ISRU, ZBO and other sources keep their original lead times.
-  Both endpoints of C's 18–24 month range move by the same amount, marked TEAM_ASSUMPTION.
-  CAPEX is paid on the original date; delay is not modeled as a later investment decision.
-- **Delivery/contract convention (TEAM_ASSUMPTION):** C orders are frozen as explicit monthly profiles
-  from the zero-delay schedule, preventing the engine's uniform profile from compressing the full
-  annual order into fewer available months. Slots before commissioning are missed, with no automatic
-  catch-up or substitution. Original ordered volumes remain payable; no refund/penalty is invented.
-  The engine prorates reservation fees/capacity by availability and reports any resulting contract
-  violation. This is a lost-delivery-slot scenario, not a shipment-backlog model.
-- **Metrics:** total/critical shortage and service, every year's opening stock/45-day requirement/gap,
-  total and PV cost with deltas, missed Earth-New deliveries, all violations, the first chronological
-  violation and the first reserve violation. Hard violations and service guidelines count; warnings
-  do not. A service level of 100% must not conceal a failed reserve or contract check.
-  For an entirely unavailable year the engine's source check has no month; the experiment dates it
-  from the first missed frozen delivery slot, explicitly annotating the report copy of the violation.
-  Standard engine exports preserve the original annual check.
-- **Reproducibility:** `comparison.csv`, `yearly.csv`, `summary.md`, deterministic `report.json`
-  with plan/assumption snapshots and input/code hashes. Each `delay_XXm/` has its case copy, standard
-  CSV/JSON exports, scenario and run manifest for the existing `verify` command and CSV-only checker.
-  Numerical results repeat; standard export envelopes retain their generation timestamps.
-  The original case/config files and core engine are unchanged. EXP-09 is included in `run_all.py`.
+- **План/среда:** сохранённый P2z Earth-New + ZBO, спрос/цены BASE. У P3 нет инвестиции в Earth-New.
+  Сохраняются все даты инвестиций/платежей, резервирования, годовые заказы и исходные месячные слоты поставок.
+  Это изолирует задержку от обязательного стресса и от любой политики восстановления.
+- **Риск:** на копии кейса удлиняется только диапазон лид-тайма подготовки Earth-New на
+  **0/3/6/12 месяцев**. При существующей политике максимального лид-тайма ввод в эксплуатацию сдвигается с 2037-01
+  на 2037-04 / 2037-07 / 2038-01. ISRU, ZBO и остальные источники сохраняют исходные лид-таймы.
+  Обе границы диапазона C 18–24 месяца сдвигаются на одну и ту же величину, помечено как TEAM_ASSUMPTION.
+  CAPEX оплачивается в исходную дату; задержка не моделируется как более позднее инвестиционное решение.
+- **Конвенция поставок/контрактов (TEAM_ASSUMPTION):** заказы C замораживаются как явные месячные профили
+  из графика с нулевой задержкой, что не позволяет равномерному профилю движка сжать весь
+  годовой заказ в меньшее число доступных месяцев. Слоты до ввода в эксплуатацию пропускаются без автоматического
+  довоза или замещения. Исходные заказанные объёмы остаются к оплате; возврат/штраф не придумываются.
+  Движок пропорционально распределяет плату за резервирование/мощность по доступности и сообщает о любом возникающем
+  нарушении контракта. Это сценарий потерянных слотов поставки, а не модель отложенных отгрузок.
+- **Метрики:** общий/критический дефицит и сервис, начальный запас/45-дневная потребность/разрыв по каждому году,
+  общая и PV стоимость с дельтами, пропущенные поставки Earth-New, все нарушения, первое хронологическое
+  нарушение и первое нарушение резерва. Учитываются жёсткие нарушения и ориентиры сервиса; предупреждения —
+  нет. Уровень сервиса 100% не должен скрывать провал проверки резерва или контракта.
+  Для полностью недоступного года проверка источника в движке не имеет месяца; эксперимент датирует её
+  первым пропущенным замороженным слотом поставки, явно аннотируя копию нарушения в отчёте.
+  Стандартные экспорты движка сохраняют исходную годовую проверку.
+- **Воспроизводимость:** `comparison.csv`, `yearly.csv`, `summary.md`, детерминированный `report.json`
+  со снимками плана/допущений и хешами входов/кода. Каждый `delay_XXm/` содержит свою копию кейса, стандартные
+  CSV/JSON-экспорты, сценарий и манифест прогона для существующей команды `verify` и CSV-only проверщика.
+  Численные результаты повторяются; стандартные конверты экспорта сохраняют временные метки генерации.
+  Исходные файлы кейса/конфигурации и ядро движка не изменены. EXP-09 включён в `run_all.py`.
 
-## EXP-10: conditional Monte Carlo of P3 protections
+## EXP-10: условный Монте-Карло защит P3
 
 ```bash
 python experiments/run_monte_carlo.py --n 10000 --seed 203510 --out results/monte_carlo
@@ -178,61 +178,61 @@ python experiments/run_monte_carlo.py --n 10000 --seed 203510 --replay-samples r
 python -m pytest -q tests/test_monte_carlo.py
 ```
 
-- **Goal / plans:** compare the fixed stress-adapted P3, EXP-08 physical stock +8.6 t,
-  and ZBO moved 18 months earlier to 2036-01 plus stock +0.1 t. Reuse EXP-08's builders:
-  Flex deliveries July–December 2037, four-month order lead, peak-capacity reservation,
-  throughput losses and storage costs. No orders or investments respond to the sample.
-- **Background:** MANDATORY_STRESS. A deterministic no-additional-shock control must pass
-  for each plan before sampling. This is conditional stress analysis, not a mixture with BASE.
-- **Distributions (TEAM_ASSUMPTION):** `d ~ U(0,0.02)` multiplies total AND critical demand
-  by `1+d` in 2038–2040; `s ~ U(0,0.02)` multiplies stress ISRU actual delivery shares by
-  `1-s` in 2038–2040. `p ~ U(-0.10,0.10)` multiplies stress Core/Flex variable prices by
-  `1+p` in 2038–2039 (on top of 1.25). Every factor persists throughout its stated period.
-  Reliability is not reapplied. Demand, ISRU and price are independent in the primary model;
-  A/B share the same price draw. Parameters and rationale are registered in `configs/assumptions.yaml`.
-- **Rationale / scope:** physical ranges straddle the EXP-08 1% protection target; uniforms
-  avoid asserting a preferred mode without data. The +/-10% price range is illustrative.
-  Older drafts disagreed between Core availability and prices: **EXP-10 selects demand +
-  ISRU actual delivery + price**. Random Core capacity outages are excluded, not represented
-  by price or conflated with ISRU delivery shares. Price affects cash cost, not the physical
-  feasibility of these fixed plans. There are no empirical organizer probabilities.
-- **Dependence diagnostic:** separately evaluate `d=0.02*u_demand`, `s=0.02*u_demand`,
-  price still independent. Marginal distributions stay the same. Report separately, never
-  pool with the independent model or claim this is a worst-case probability bound.
-- **Sampling:** N=10,000 **per model**, seed=203510, `random.Random` (MT19937), exactly
-  three `random()` calls per sample in order demand/ISRU/price. The diagnostic reuses the
-  first uniform for ISRU and consumes no extra random numbers. All plans share the sample;
-  60,000 stochastic simulations plus three reference controls. CLI supports smaller N for checks.
-- **Failure:** reuse `failure_violations()` from EXP-07: any hard violation OR annual
-  97%/99% service guideline violation. Warnings alone do not count. Preserve the engine's
-  physical tolerance 1e-6 t and service tolerance 1e-9. First failure = earliest year/month,
-  annual checks dated December, undated checks first; retain ALL simultaneous causes.
-- **Metrics:** failure count/frequency and two-sided 95% Wilson score interval (valid also
-  at zero/all observed failures); reserve/service violation and shortage frequencies separately;
-  first-cause/date counts; total and critical shortage, minimum annual services, maximum
-  physical reserve gap, PV and paired PV deltas. Every continuous metric includes mean,
-  min/max and P5/P50/P95 (linear interpolation at `(N-1)*q`, quantile type 7).
-  Shortage frequency uses >1e-6 t. Pairing also records eliminated and introduced failures,
-  and net failure reduction in percentage points; no independent-samples comparison is used.
-- **Costs:** real mln constant-2035 units, engine's 8% discounting/start-year convention.
-  Compare with minus without protection in the SAME realization. No monetized damages,
-  mission losses, recovery orders or penalties; no cost-benefit optimum is claimed.
-- **Artifacts:** `samples.csv` saves uniforms and transforms at full precision; `runs.csv`
-  saves every plan/sample result and simultaneous first violations; `comparison.csv`,
-  `report.json`, `summary.md`, three standalone plans. `run_manifest.json` contains N/seed,
-  generator/draw order, Python/package/model versions, normalized input/code/output SHA-256, method,
-  plan/scenario/assumption snapshots and replay commands. It has no timestamp or output path.
-  `--replay-samples` validates the saved sample against the declared N/seed/assumptions;
-  `--compare` validates saved inputs and checks every artifact and manifest after LF normalization
-  with the same recorded runtime versions; see the portable-provenance section above.
-  The manifest does not hash itself. Standard core exporter manifests are not used for EXP-10.
-- **Limits:** frequencies describe the chosen conditional model, not real-world risk
-  probabilities. Wilson intervals measure sampling error only (~0.98 pp maximum half-width
-  at N=10,000), not distribution/dependence uncertainty. Protection against the 1% square
-  does not imply protection over the entire sampled 2% square. Early ZBO still assumes zero
-  lag and retained throughput-loss savings. BASE overflow and adaptive policies remain separate.
+- **Цель / планы:** сравнить фиксированный стресс-адаптированный P3, физический запас EXP-08 +8.6 т
+  и ZBO, перенесённый на 18 месяцев раньше, на 2036-01, плюс запас +0.1 т. Переиспользуются билдеры EXP-08:
+  поставки Flex в июле–декабре 2037, четырёхмесячный лид-тайм заказа, резервирование пиковой мощности,
+  потери на пропускном объёме и затраты на хранение. Ни заказы, ни инвестиции не реагируют на выборку.
+- **Фон:** MANDATORY_STRESS. Детерминированный контроль без дополнительного шока должен проходить
+  для каждого плана до выборки. Это условный стресс-анализ, а не смесь с BASE.
+- **Распределения (TEAM_ASSUMPTION):** `d ~ U(0,0.02)` умножает общий И критический спрос
+  на `1+d` в 2038–2040; `s ~ U(0,0.02)` умножает стрессовые фактические доли поставки ISRU на
+  `1-s` в 2038–2040. `p ~ U(-0.10,0.10)` умножает стрессовые переменные цены Core/Flex на
+  `1+p` в 2038–2039 (поверх 1.25). Каждый фактор действует в течение всего заявленного периода.
+  Надёжность повторно не применяется. Спрос, ISRU и цена независимы в основной модели;
+  A/B используют один и тот же розыгрыш цены. Параметры и обоснование зарегистрированы в `configs/assumptions.yaml`.
+- **Обоснование / охват:** физические диапазоны охватывают целевое значение защиты 1% из EXP-08; равномерные распределения
+  избегают утверждения предпочтительной моды без данных. Диапазон цены +/-10% иллюстративен.
+  Ранние черновики расходились между доступностью Core и ценами: **EXP-10 выбирает спрос +
+  фактическую поставку ISRU + цену**. Случайные отключения мощности Core исключены, не представлены
+  ценой и не смешаны с долями поставки ISRU. Цена влияет на денежные затраты, а не на физическую
+  исполнимость этих фиксированных планов. Эмпирических вероятностей от организатора нет.
+- **Диагностика зависимости:** отдельно оцениваются `d=0.02*u_demand`, `s=0.02*u_demand`,
+  цена по-прежнему независима. Маргинальные распределения остаются прежними. Сообщается отдельно, никогда
+  не объединяется с независимой моделью и не заявляется как вероятностная граница худшего случая.
+- **Выборка:** N=10,000 **на модель**, seed=203510, `random.Random` (MT19937), ровно
+  три вызова `random()` на выборку в порядке спрос/ISRU/цена. Диагностика переиспользует
+  первую равномерную величину для ISRU и не потребляет дополнительных случайных чисел. Все планы используют общую выборку;
+  60,000 стохастических симуляций плюс три эталонных контроля. CLI поддерживает меньшее N для проверок.
+- **Отказ:** переиспользуется `failure_violations()` из EXP-07: любое жёсткое нарушение ИЛИ нарушение
+  годового ориентира сервиса 97%/99%. Одни лишь предупреждения не учитываются. Сохраняются
+  физический допуск движка 1e-6 т и допуск сервиса 1e-9. Первый отказ = самый ранний год/месяц,
+  годовые проверки датируются декабрём, недатированные проверки идут первыми; сохраняются ВСЕ одновременные причины.
+- **Метрики:** число/частота отказов и двусторонний 95% интервал Уилсона (валиден также
+  при нуле/всех наблюдаемых отказах); частоты нарушений резерва/сервиса и дефицита отдельно;
+  счётчики первой причины/даты; общий и критический дефицит, минимальные годовые сервисы, максимальный
+  разрыв физического резерва, PV и парные дельты PV. Каждая непрерывная метрика включает среднее,
+  min/max и P5/P50/P95 (линейная интерполяция в `(N-1)*q`, квантиль типа 7).
+  Частота дефицита использует порог >1e-6 т. Парное сравнение также фиксирует устранённые и появившиеся отказы
+  и чистое снижение отказов в процентных пунктах; сравнение независимых выборок не используется.
+- **Затраты:** реальные млн в постоянных единицах 2035 года, конвенция движка по дисконтированию 8%/стартовому году.
+  Сравнение «с защитой минус без защиты» в ОДНОЙ И ТОЙ ЖЕ реализации. Без монетизированного ущерба,
+  потерь миссии, заказов восстановления или штрафов; оптимум затрат-выгод не заявляется.
+- **Артефакты:** `samples.csv` сохраняет равномерные величины и преобразования с полной точностью; `runs.csv`
+  сохраняет результат каждой пары план/выборка и одновременные первые нарушения; `comparison.csv`,
+  `report.json`, `summary.md`, три самостоятельных плана. `run_manifest.json` содержит N/seed,
+  генератор/порядок розыгрышей, версии Python/пакетов/модели, нормализованные SHA-256 входов/кода/выходов, метод,
+  снимки плана/сценария/допущений и команды воспроизведения. В нём нет временной метки и пути вывода.
+  `--replay-samples` проверяет сохранённую выборку на соответствие объявленным N/seed/допущениям;
+  `--compare` проверяет сохранённые входы и сверяет каждый артефакт и манифест после LF-нормализации
+  при тех же записанных версиях среды выполнения; см. раздел о переносимом подтверждении происхождения выше.
+  Манифест не хеширует сам себя. Стандартные манифесты экспортёра ядра для EXP-10 не используются.
+- **Ограничения:** частоты описывают выбранную условную модель, а не реальные вероятности
+  риска. Интервалы Уилсона измеряют только ошибку выборки (~0.98 п.п. максимальной полуширины
+  при N=10,000), а не неопределённость распределения/зависимости. Защита от квадрата 1%
+  не означает защиты на всём выбранном квадрате 2%. Ранний ZBO по-прежнему предполагает нулевой
+  лаг и сохранение экономии потерь на пропускном объёме. Переполнение в BASE и адаптивные политики остаются отдельными вопросами.
 
-## EXP-11: TEAM geopolitical price shock on a data copy
+## EXP-11: геополитический ценовой шок TEAM на копии данных
 
 ```bash
 python experiments/run_geopolitical_price_shock.py
@@ -243,56 +243,86 @@ python -m terraplan verify results/geopolitical_price_shock/P2z_earth_new_zbo/af
 python tests/independent_recalc.py results/geopolitical_price_shock/P2z_earth_new_zbo/after results/geopolitical_price_shock/case
 ```
 
-- **Goal / plans:** isolate procurement-price exposure of the saved BASE P2z/P3/P4 plans.
-  Six runs: each fixed plan before (BASE) and after (`TEAM_GEOPOLITICAL_PRICE_SHOCK`).
-  No re-planning, no use of stress-adapted orders, no change to the R2 decision.
-- **Shock / origin:** variable prices of Earth-Core (A) and Earth-Flex (B) multiplied by
-  **1.25 in 2038–2039 only**, returning to BASE in 2040. This is a disclosed illustrative
-  `TEAM_ASSUMPTION`, not an empirical forecast or probability. Its magnitude/window matches
-  only the price component of MANDATORY_STRESS for comparability; its demand, ISRU and
-  loss-ceiling changes are not applied. A: 6.2 → 7.75; B: 8.9 → 11.125 mln/t.
-- **Data-copy implementation:** `case/*.csv` is an isolated, unchanged copy of CASE_INPUT;
-  `shock.yaml` is a copy of `configs/scenarios/team_geopolitical_price_shock.yaml`.
-  The engine's existing annual scenario multiplier applies the surcharge once, on the copied
-  dataset. A static source CSV price is not overwritten because it cannot encode the two-year
-  window. `price_overlay.csv` records all source/year effective prices and the surcharge.
-  The aggregate organizer price is not split into invented launch/fuel/insurance components.
-  Original data, scenarios, plans, global assumptions and engine remain unchanged; hashes
-  are checked before/after, so no restore operation on CASE_INPUT is needed.
-- **Fixed conditions:** BASE demand and actual delivery shares; source capacities, lead times,
-  investment/commissioning dates, opening stock, orders, reservations and allocation rules.
-  Reservation rates, take-or-pay shares, CAPEX and OPEX remain unchanged. The multiplier
-  applies to the price of payable procurement volume, including any take-or-pay floor.
-- **Metrics / failure:** PV and total cost with paired deltas; total/critical shortage and
-  minimum annual service; annual opening stock, 45-day reserve requirement, slack, maximum
-  reserve gap and failed years. Hard **or guideline** violations count as failure, including
-  total/critical service below 97%/99%; scenario-scoped TEAM guideline labels do not relax
-  the experiment's criterion. `yearly.csv` retains all six years for each run.
-- **Published result:** delta PV = **470.891774 / 452.512590 / 415.516289 mln** for
-  P2z/P3/P4. After-shock PV = **9200.295536 / 9091.369527 / 9273.125433 mln**.
-  All three retain zero shortage, 100% total/critical service and no reserve violations.
-  Monthly physical balances are identical before/after. P4 has the smallest additional
-  price cost, while P3 retains the lowest total PV on this BASE background; these are
-  different criteria and do not replace R2's adapted mandatory-stress comparison.
-- **Artifacts / replay:** `results/geopolitical_price_shock/` contains comparison, annual
-  reserve/service data, per-source price exposure, method/input snapshots and six standard
-  CSV/JSON exports. The top-level manifest uses schema 2 / `sha256-utf8-lf-v1` and hashes
-  copied inputs, compact reports and stable per-run exports. Per-run `result.json` and
-  `run_manifest.json` contain output paths; `export_envelope.json` contains timestamps.
-  Those three files are excluded from byte replay comparison; standard `verify --case`
-  replays their numerical results. `--compare` checks saved hashes and identical normalized
-  outputs at the same runtime versions. The full runner includes EXP-11.
-  Because EXP-10 hashes `run_all.py`, adding EXP-11 required a full EXP-10 replay with its
-  saved N=10,000/seed=203510 samples. Its numerical output hashes are unchanged; only the
-  input provenance manifest was regenerated (including the already integrated R4 source).
-- **Tests / limits:** untouched-input and copy checks; exact source/period isolation and
-  return to BASE price; independent surcharge/PV arithmetic; full physical invariance;
-  six export replays and CSV-only recalculations; repeatability, tamper detection and
-  published-artifact checks. The experiment does not model geopolitical supply outages,
-  payment/budget limits, delay, response policies or combined shocks. Physical invariance
-  in a price-only fixed-plan run is not evidence of universal geopolitical resilience.
+- **Цель / планы:** изолировать ценовую экспозицию закупок сохранённых планов BASE P2z/P3/P4.
+  Шесть прогонов: каждый фиксированный план до (BASE) и после (`TEAM_GEOPOLITICAL_PRICE_SHOCK`).
+  Без перепланирования, без использования стресс-адаптированных заказов, без изменения итогового выбора стратегии.
+- **Шок / происхождение:** переменные цены Earth-Core (A) и Earth-Flex (B) умножаются на
+  **1.25 только в 2038–2039**, с возвратом к BASE в 2040. Это раскрытое иллюстративное
+  `TEAM_ASSUMPTION`, а не эмпирический прогноз или вероятность. Его величина/окно совпадают
+  только с ценовой компонентой MANDATORY_STRESS для сопоставимости; его изменения спроса, ISRU и
+  потолка потерь не применяются. A: 6.2 → 7.75; B: 8.9 → 11.125 млн/т.
+- **Реализация на копии данных:** `case/*.csv` — изолированная неизменённая копия CASE_INPUT;
+  `shock.yaml` — копия `configs/scenarios/team_geopolitical_price_shock.yaml`.
+  Существующий годовой сценарный множитель движка применяет надбавку один раз, на скопированном
+  наборе данных. Статическая цена в CSV источника не перезаписывается, так как не может закодировать двухлетнее
+  окно. `price_overlay.csv` фиксирует эффективные цены всех источников/годов и надбавку.
+  Агрегированная цена организатора не разбивается на выдуманные компоненты запуска/топлива/страхования.
+  Исходные данные, сценарии, планы, глобальные допущения и движок остаются неизменными; хеши
+  проверяются до/после, поэтому операция восстановления CASE_INPUT не требуется.
+- **Фиксированные условия:** спрос BASE и фактические доли поставки; мощности источников, лид-таймы,
+  даты инвестиций/ввода в эксплуатацию, начальный запас, заказы, резервирования и правила распределения.
+  Ставки резервирования, доли take-or-pay, CAPEX и OPEX остаются неизменными. Множитель
+  применяется к цене оплачиваемого объёма закупки, включая любой минимум take-or-pay.
+- **Метрики / отказ:** PV и общая стоимость с парными дельтами; общий/критический дефицит и
+  минимальный годовой сервис; годовой начальный запас, 45-дневная потребность в резерве, запас, максимальный
+  разрыв резерва и годы с отказом. Жёсткие **или ориентировочные** нарушения считаются отказом, включая
+  общий/критический сервис ниже 97%/99%; метки ориентиров TEAM в рамках сценария не смягчают
+  критерий эксперимента. `yearly.csv` сохраняет все шесть лет для каждого прогона.
+- **Опубликованный результат:** дельта PV = **470.891774 / 452.512590 / 415.516289 млн** для
+  P2z/P3/P4. PV после шока = **9200.295536 / 9091.369527 / 9273.125433 млн**.
+  Все три сохраняют нулевой дефицит, 100% общий/критический сервис и отсутствие нарушений резерва.
+  Месячные физические балансы до/после идентичны. У P4 наименьшая дополнительная
+  ценовая стоимость, тогда как P3 сохраняет наименьший общий PV на этом фоне BASE; это
+  разные критерии, и они не заменяют сравнение адаптированных планов в обязательном стрессе, лежащее в основе итогового выбора стратегии.
+- **Артефакты / воспроизведение:** `results/geopolitical_price_shock/` содержит сравнение, годовые
+  данные резерва/сервиса, ценовую экспозицию по источникам, снимки метода/входов и шесть стандартных
+  CSV/JSON-экспортов. Верхнеуровневый манифест использует схему 2 / `sha256-utf8-lf-v1` и хеширует
+  скопированные входы, компактные отчёты и стабильные экспорты прогонов. `result.json` и
+  `run_manifest.json` каждого прогона содержат пути вывода; `export_envelope.json` содержит временные метки.
+  Эти три файла исключены из побайтового сравнения при воспроизведении; стандартный `verify --case`
+  воспроизводит их численные результаты. `--compare` проверяет сохранённые хеши и идентичность нормализованных
+  выходов при тех же версиях среды выполнения. Полный скрипт запуска включает EXP-11.
+  Поскольку EXP-10 хеширует `run_all.py`, добавление EXP-11 потребовало полного воспроизведения EXP-10 с его
+  сохранёнными выборками N=10,000/seed=203510. Его численные выходные хеши не изменились; заново сгенерирован только
+  манифест происхождения входов (включая уже интегрированные исходные файлы).
+- **Тесты / ограничения:** проверки неизменности входов и копии; точная изоляция по источнику/периоду и
+  возврат к цене BASE; независимая арифметика надбавки/PV; полная физическая инвариантность;
+  шесть воспроизведений экспорта и CSV-only пересчёты; повторяемость, обнаружение подделки и
+  проверки опубликованных артефактов. Эксперимент не моделирует геополитические перебои поставок,
+  платёжные/бюджетные лимиты, задержку, политики реагирования или комбинированные шоки. Физическая инвариантность
+  в прогоне фиксированного плана только с ценовым шоком не является свидетельством универсальной геополитической устойчивости.
 
-## MCDA роли 2: итоговый выбор стратегии
+## EXP-12: защитные меры P2z от задержки Earth-New (риск R6, продолжение EXP-09)
+
+```bash
+python experiments/run_earth_new_delay_measures.py --out results/earth_new_delay_measures
+python -m pytest -q tests/test_earth_new_delay_measures.py
+python -m terraplan verify results/earth_new_delay_measures/delay_03m/reactive_flex --case results/earth_new_delay_measures/delay_03m/reactive_flex/case
+python experiments/provenance.py results/earth_new_delay_measures
+```
+
+- **План/среда:** сохранённый P2z с замороженным календарём Earth-New из EXP-09, BASE, копия данных с задержкой
+  3/6/12 месяцев; даты CAPEX, заказы, резервы и слоты поставок Earth-New не меняются, пропущенные слоты
+  оплачиваются без возврата.
+- **Меры (TEAM_ASSUMPTION):** `reactive_flex` — задержка наблюдается в 2037-01 (первый пропущенный слот), заказ
+  Earth-Flex с признаком `reactive: true` и `observation_month = 2037-01`, срок 4 месяца, поставки равномерно
+  2037-05…2037-12; резерв мощности B на 2037 год заложен заранее (0,15 млн за т/год). `advance_buffer` — заказ
+  Earth-Flex до наблюдения (заказ 2036-08, поставка 2036-12); отдельный прогон того же плана без задержки даёт
+  страховую премию. Объём каждой меры — минимальный, найденный бисекцией с шагом 0,001 т.
+- **Критерий:** последствия события — все жёсткие нарушения и ориентиры сервиса, кроме недоступности
+  самого Earth-New и превышения его пропорционального резерва в год задержки (это факт события, а не
+  последствие); движок проверяет, что реактивный заказ не размещён раньше месяца наблюдения.
+- **Метрики:** объём меры, дефицит, сервис, годы нарушения резерва, максимальный разрыв, PV и разности к плану без
+  задержки и к плану без мер, премия без задержки; `unpaid_if_contract_excludes_unavailable_mln` — арифметическая
+  справка (объём × 7,1), не расчёт движка.
+- **Результат:** реакция 3,214 / 6,428 / 13,078 т за +30,590 / +61,181 / +124,474 млн PV; буфер 3,298 / 6,595 /
+  13,416 т за +34,678 / +69,346 / +141,068 млн PV, та же премия без задержки. Обе меры устраняют нарушения резерва
+  2038–2040; резерв после меры имеет запас менее 0,05 т (минимальный объём).
+- **Воспроизводимость:** `comparison.csv`, `yearly.csv`, `summary.md`, детерминированный `report.json` с хешами
+  входов и кода; каждый прогон `delay_XXm/<мера>/` содержит копию данных, стандартные CSV/JSON-выгрузки и манифест
+  для команды `verify`. Включён в `run_all.py` и в проверку `provenance.py`.
+
+## MCDA: итоговый выбор стратегии
 
 ```bash
 python experiments/run_mcda.py
@@ -305,8 +335,8 @@ python experiments/run_mcda.py
 - **Артефакты:** `results/strategy/mcda_metrics.csv`, `mcda_scores.csv`, `summary.md`. Входы читаются из существующих CSV результатов и справочника источников.
 - **Граница:** баллы — прозрачная помощь решению, а не вероятности, замена исполнимости или доказательство глобального оптимума.
 
-## Будущие исследования R3 (не требуются для финального выбора 2035–2040)
+## Дальнейшие исследования (не требуются для финального выбора 2035–2040)
 
-- Reverse stress for alternative strategies (P3 baseline and protection measures: EXP-07/08 above).
-- Event-based Core availability, response policies and alternative-strategy Monte Carlo beyond EXP-10.
-- Geopolitical supply interruptions and combined price/availability shocks beyond the isolated EXP-11 price overlay.
+- Обратный стресс для альтернативных стратегий (базовый P3 и меры защиты: EXP-07/08 выше).
+- Событийная доступность Core, политики реагирования и Монте-Карло альтернативных стратегий за пределами EXP-10.
+- Геополитические перебои поставок и комбинированные шоки цены/доступности за пределами изолированного ценового наложения EXP-11.

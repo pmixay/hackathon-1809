@@ -1,0 +1,5 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+TEAM_EXP12_DELAY_03M,P2z_delay03m_advance_buffer,SOURCE_NOT_AVAILABLE,hard,"Earth-New: 1.099 т запланировано на 2037-01, раньше первой возможной поставки 2037-04",2037,1,C,1.099017,0.000000,1.099017
+TEAM_EXP12_DELAY_03M,P2z_delay03m_advance_buffer,SOURCE_NOT_AVAILABLE,hard,"Earth-New: 1.099 т запланировано на 2037-02, раньше первой возможной поставки 2037-04",2037,2,C,1.099017,0.000000,1.099017
+TEAM_EXP12_DELAY_03M,P2z_delay03m_advance_buffer,SOURCE_NOT_AVAILABLE,hard,"Earth-New: 1.099 т запланировано на 2037-03, раньше первой возможной поставки 2037-04",2037,3,C,1.099017,0.000000,1.099017
+TEAM_EXP12_DELAY_03M,P2z_delay03m_advance_buffer,ORDER_EXCEEDS_RESERVATION,hard,"Earth-New 2037: заказано 13.188 т, что превышает контрактно доступный объём 9.892 т (резерв 13.2 т/год × 0.750 года)",2037,,C,13.188200,9.891750,3.296450

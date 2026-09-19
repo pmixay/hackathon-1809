@@ -2,7 +2,7 @@
  "plan_id": "P4_full",
  "scenario_id": "BASE",
  "scenario_label": "Стандартный сценарий",
- "case_dir": "C:\\Users\\alikh\\OneDrive\\Desktop\\projects\\hackathon-1809\\results\\geopolitical_price_shock\\case",
+ "case_dir": "/home/user/hackathon-1809/results/geopolitical_price_shock/case",
  "units": {
   "fuel": "т",
   "money": "млн у.е., постоянные цены 2035 г.",

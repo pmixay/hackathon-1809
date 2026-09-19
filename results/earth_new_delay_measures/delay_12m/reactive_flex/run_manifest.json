@@ -1,0 +1,23 @@
+{
+  "terraplan_version": "0.1.0",
+  "python": "3.11.15",
+  "plan_id": "P2z_delay12m_reactive_flex",
+  "scenario_id": "TEAM_EXP12_DELAY_12M",
+  "case_dir": "results/earth_new_delay_measures/delay_12m/reactive_flex/case",
+  "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_12m/reactive_flex/case",
+  "case_file_sha256": {
+    "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
+    "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",
+    "investment_options.csv": "922c92bc0a70ab6e837e51a3017d4cde5b9a55baa51602132d21f4131d4b034c",
+    "storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
+    "supply_sources.csv": "7240d9056e2cb75092093ba47b3bb9e688582572db94cb72328e619a42b33205"
+  },
+  "plan_sha256": "8b4a3534007d82f41614d922ae7a2dffa28e667238c6af4c7dd295ed82180aac",
+  "scenario_sha256": "91a0e5cb4d07ced8503c0613839d9e190c17c0f0e30dcb88049ea1e248b8e389",
+  "assumptions_sha256": "020a6dd40c2f2b6e132d5d7cd8522d7dc5a2719269841e37a3c476e0bf53c0a2",
+  "kpi_sha256": "e63540bef4380fb24d7f4f07e4a8549b407b9d27e722674e0abeaa097d0cb489",
+  "kpi_precision": 6,
+  "random_seed": null,
+  "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)",
+  "case_file_hash_format": "sha256-utf8-lf-v1"
+}

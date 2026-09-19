@@ -31,7 +31,7 @@
     "Fixed BASE P2z/P3/P4 plans; no replanning, outages, delays, refunds or invented damages.",
     "Prices revert to BASE in 2040. Reservation rates, TOP shares, CAPEX and OPEX are unchanged.",
     "The 25% magnitude and 2038–2039 window match the price component of MANDATORY_STRESS only for comparability; no other mandatory-stress factors are applied.",
-    "R2's selection by advance-adapted mandatory-stress cost is unchanged."
+    "The strategy selection by advance-adapted mandatory-stress cost is unchanged."
   ],
   "changes": [
     {

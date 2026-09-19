@@ -2,7 +2,7 @@
  "plan_id": "P4_full",
  "scenario_id": "TEAM_GEOPOLITICAL_PRICE_SHOCK",
  "scenario_label": "EXP-11: геополитический ценовой шок Core/Flex +25% в 2038–2039",
- "case_dir": "C:\\Users\\alikh\\OneDrive\\Desktop\\projects\\hackathon-1809\\results\\geopolitical_price_shock\\case",
+ "case_dir": "/home/user/hackathon-1809/results/geopolitical_price_shock/case",
  "units": {
   "fuel": "т",
   "money": "млн у.е., постоянные цены 2035 г.",
@@ -2947,7 +2947,7 @@
    "Fixed BASE P2z/P3/P4 plans; no replanning, outages, delays, refunds or invented damages.",
    "Prices revert to BASE in 2040. Reservation rates, TOP shares, CAPEX and OPEX are unchanged.",
    "The 25% magnitude and 2038–2039 window match the price component of MANDATORY_STRESS only for comparability; no other mandatory-stress factors are applied.",
-   "R2's selection by advance-adapted mandatory-stress cost is unchanged."
+   "The strategy selection by advance-adapted mandatory-stress cost is unchanged."
   ],
   "changes": [
    {

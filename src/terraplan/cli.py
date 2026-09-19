@@ -161,7 +161,7 @@ def cmd_info(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="terraplan", description=f"TerraPlan {__version__} — цифровой контур планирования снабжения орбитального топливного узла")
     sub = p.add_subparsers(dest="cmd", required=True)
-    ui = sub.add_parser("ui", help="запустить офлайн-интерфейс оператора на localhost (R4)")
+    ui = sub.add_parser("ui", help="запустить офлайн-интерфейс оператора на localhost")
     ui.add_argument("--root", default=".", help="корень проекта с data/ и configs/")
     ui.add_argument("--port", type=int, default=8765)
     def cmd_ui(args):
