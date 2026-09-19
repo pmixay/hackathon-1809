@@ -49,7 +49,7 @@ def verify_saved(folder, root=ROOT):
         for name, digest in manifest.get(field, {}).items():
             if sha256(base / name) != digest:
                 raise ValueError(f"{field} mismatch: {name}")
-    if manifest["experiment_id"] in ("EXP-09", "EXP-12"):
+    if manifest["experiment_id"] in ("EXP-09", "EXP-13"):
         for run in manifest["runs"]:
             for name, digest in run["case_sha256"].items():
                 if sha256(folder / run["result_dir"] / "case" / name) != digest:

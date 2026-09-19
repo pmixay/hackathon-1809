@@ -1,4 +1,4 @@
-# P2z_earth_new_zbo_fixed_calendar — TEAM_EXP12_DELAY_03M (Earth-New preparation delay 3 months; BASE demand/prices)
+# P2z_earth_new_zbo_fixed_calendar — TEAM_EXP13_DELAY_03M (Earth-New preparation delay 3 months; BASE demand/prices)
 
 План исполним: **НЕТ** — жёстких нарушений: 7, отклонений от ориентиров: 0, предупреждений: 0
 

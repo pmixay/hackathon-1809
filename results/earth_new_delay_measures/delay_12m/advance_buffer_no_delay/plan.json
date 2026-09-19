@@ -261,7 +261,7 @@
     "stress_aware": false,
     "builder_notes": [],
     "status": "TEAM_DECISION",
-    "experiment": "EXP-12",
+    "experiment": "EXP-13",
     "fixed_calendar": true,
     "missed_slot_policy": "unavailable slots lost; no catch-up, refund or substitute orders",
     "measure": "advance_buffer",

@@ -1,5 +1,5 @@
 {
- "scenario_id": "TEAM_EXP12_DELAY_00M",
+ "scenario_id": "TEAM_EXP13_DELAY_00M",
  "plan_id": "P2z_delay06m_advance_buffer",
  "units": {
   "fuel": "т",
@@ -255,13 +255,13 @@
      6,
      12
     ],
-    "justification": "EXP-12: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
+    "justification": "EXP-13: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
    }
   }
  },
  "yearly_balance": [
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "demand_total_t": 100.0,
@@ -287,7 +287,7 @@
    "balance_residual_t": -3.552713678800501e-14
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "demand_total_t": 140.0,
@@ -313,7 +313,7 @@
    "balance_residual_t": -4.973799150320701e-14
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "demand_total_t": 190.0,
@@ -339,7 +339,7 @@
    "balance_residual_t": 3.552713678800501e-14
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "demand_total_t": 250.0,
@@ -365,7 +365,7 @@
    "balance_residual_t": -7.105427357601002e-14
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "demand_total_t": 320.0,
@@ -391,7 +391,7 @@
    "balance_residual_t": -7.105427357601002e-14
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "demand_total_t": 390.0,
@@ -419,7 +419,7 @@
  ],
  "source_schedule": [
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "B",
    "name": "Earth-Flex",
@@ -442,7 +442,7 @@
    "reservation_payment_mln": 1.93647
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "A",
    "name": "Earth-Core",
@@ -465,7 +465,7 @@
    "reservation_payment_mln": 49.4442
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "B",
    "name": "Earth-Flex",
@@ -488,7 +488,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "C",
    "name": "Earth-New",
@@ -511,7 +511,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "D",
    "name": "Lunar-ISRU",
@@ -534,7 +534,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "E",
    "name": "Emergency",
@@ -557,7 +557,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "A",
    "name": "Earth-Core",
@@ -580,7 +580,7 @@
    "reservation_payment_mln": 68.8734
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "B",
    "name": "Earth-Flex",
@@ -603,7 +603,7 @@
    "reservation_payment_mln": 0.98925
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "C",
    "name": "Earth-New",
@@ -626,7 +626,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "D",
    "name": "Lunar-ISRU",
@@ -649,7 +649,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "E",
    "name": "Emergency",
@@ -672,7 +672,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "A",
    "name": "Earth-Core",
@@ -695,7 +695,7 @@
    "reservation_payment_mln": 85.5
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "B",
    "name": "Earth-Flex",
@@ -718,7 +718,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "C",
    "name": "Earth-New",
@@ -741,7 +741,7 @@
    "reservation_payment_mln": 3.9566999999999997
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "D",
    "name": "Lunar-ISRU",
@@ -764,7 +764,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "E",
    "name": "Emergency",
@@ -787,7 +787,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "A",
    "name": "Earth-Core",
@@ -810,7 +810,7 @@
    "reservation_payment_mln": 85.5
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "B",
    "name": "Earth-Flex",
@@ -833,7 +833,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "C",
    "name": "Earth-New",
@@ -856,7 +856,7 @@
    "reservation_payment_mln": 21.5316
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "D",
    "name": "Lunar-ISRU",
@@ -879,7 +879,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "E",
    "name": "Emergency",
@@ -902,7 +902,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "A",
    "name": "Earth-Core",
@@ -925,7 +925,7 @@
    "reservation_payment_mln": 85.5
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "B",
    "name": "Earth-Flex",
@@ -948,7 +948,7 @@
    "reservation_payment_mln": 1.8933
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "C",
    "name": "Earth-New",
@@ -971,7 +971,7 @@
    "reservation_payment_mln": 39.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "D",
    "name": "Lunar-ISRU",
@@ -994,7 +994,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "E",
    "name": "Emergency",
@@ -1017,7 +1017,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "A",
    "name": "Earth-Core",
@@ -1040,7 +1040,7 @@
    "reservation_payment_mln": 85.5
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "B",
    "name": "Earth-Flex",
@@ -1063,7 +1063,7 @@
    "reservation_payment_mln": 11.21055
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "C",
    "name": "Earth-New",
@@ -1086,7 +1086,7 @@
    "reservation_payment_mln": 39.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "D",
    "name": "Lunar-ISRU",
@@ -1109,7 +1109,7 @@
    "reservation_payment_mln": 0.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "source_id": "E",
    "name": "Emergency",
@@ -1134,7 +1134,7 @@
  ],
  "inventory_trace": [
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 1,
@@ -1157,7 +1157,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 2,
@@ -1180,7 +1180,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 3,
@@ -1203,7 +1203,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 4,
@@ -1226,7 +1226,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 5,
@@ -1249,7 +1249,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 6,
@@ -1272,7 +1272,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 7,
@@ -1295,7 +1295,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 8,
@@ -1318,7 +1318,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 9,
@@ -1341,7 +1341,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 10,
@@ -1364,7 +1364,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 11,
@@ -1387,7 +1387,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "month": 12,
@@ -1410,7 +1410,7 @@
    "inflow_A_t": 9.156333333333334
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 1,
@@ -1433,7 +1433,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 2,
@@ -1456,7 +1456,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 3,
@@ -1479,7 +1479,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 4,
@@ -1502,7 +1502,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 5,
@@ -1525,7 +1525,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 6,
@@ -1548,7 +1548,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 7,
@@ -1571,7 +1571,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 8,
@@ -1594,7 +1594,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 9,
@@ -1617,7 +1617,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 10,
@@ -1640,7 +1640,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 11,
@@ -1663,7 +1663,7 @@
    "inflow_A_t": 12.754316666666666
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "month": 12,
@@ -1687,7 +1687,7 @@
    "inflow_B_t": 6.595
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 1,
@@ -1711,7 +1711,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 2,
@@ -1735,7 +1735,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 3,
@@ -1759,7 +1759,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 4,
@@ -1783,7 +1783,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 5,
@@ -1807,7 +1807,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 6,
@@ -1831,7 +1831,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 7,
@@ -1855,7 +1855,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 8,
@@ -1879,7 +1879,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 9,
@@ -1903,7 +1903,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 10,
@@ -1927,7 +1927,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 11,
@@ -1951,7 +1951,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "month": 12,
@@ -1975,7 +1975,7 @@
    "inflow_C_t": 1.0990166666666668
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 1,
@@ -1999,7 +1999,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 2,
@@ -2023,7 +2023,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 3,
@@ -2047,7 +2047,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 4,
@@ -2071,7 +2071,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 5,
@@ -2095,7 +2095,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 6,
@@ -2119,7 +2119,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 7,
@@ -2143,7 +2143,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 8,
@@ -2167,7 +2167,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 9,
@@ -2191,7 +2191,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 10,
@@ -2215,7 +2215,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 11,
@@ -2239,7 +2239,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "month": 12,
@@ -2263,7 +2263,7 @@
    "inflow_C_t": 5.98095
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 1,
@@ -2288,7 +2288,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 2,
@@ -2313,7 +2313,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 3,
@@ -2338,7 +2338,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 4,
@@ -2363,7 +2363,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 5,
@@ -2388,7 +2388,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 6,
@@ -2413,7 +2413,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 7,
@@ -2438,7 +2438,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 8,
@@ -2463,7 +2463,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 9,
@@ -2488,7 +2488,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 10,
@@ -2513,7 +2513,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 11,
@@ -2538,7 +2538,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "month": 12,
@@ -2563,7 +2563,7 @@
    "inflow_B_t": 1.0518
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 1,
@@ -2588,7 +2588,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 2,
@@ -2613,7 +2613,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 3,
@@ -2638,7 +2638,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 4,
@@ -2663,7 +2663,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 5,
@@ -2688,7 +2688,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 6,
@@ -2713,7 +2713,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 7,
@@ -2738,7 +2738,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 8,
@@ -2763,7 +2763,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 9,
@@ -2788,7 +2788,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 10,
@@ -2813,7 +2813,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 11,
@@ -2838,7 +2838,7 @@
    "inflow_B_t": 6.2280750000000005
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "month": 12,
@@ -2865,7 +2865,7 @@
  ],
  "financial_breakdown": [
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2035,
    "procurement_mln": 796.12842,
@@ -2879,7 +2879,7 @@
    "cumulative_capex_mln": 360.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2036,
    "procurement_mln": 1007.61666,
@@ -2893,7 +2893,7 @@
    "cumulative_capex_mln": 360.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2037,
    "procurement_mln": 1271.63622,
@@ -2907,7 +2907,7 @@
    "cumulative_capex_mln": 540.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2038,
    "procurement_mln": 1687.57694,
@@ -2921,7 +2921,7 @@
    "cumulative_capex_mln": 540.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2039,
    "procurement_mln": 2213.33224,
@@ -2935,7 +2935,7 @@
    "cumulative_capex_mln": 540.0
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "year": 2040,
    "procurement_mln": 2766.15841,
@@ -2983,7 +2983,7 @@
  },
  "investments": [
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "investment_id": "EARTH_NEW",
    "name": "Earth-New option",
@@ -2996,7 +2996,7 @@
    "note": ""
   },
   {
-   "scenario_id": "TEAM_EXP12_DELAY_00M",
+   "scenario_id": "TEAM_EXP13_DELAY_00M",
    "plan_id": "P2z_delay06m_advance_buffer",
    "investment_id": "ZBO",
    "name": "ZBO modernization",
@@ -3009,6 +3009,6 @@
    "note": ""
   }
  ],
- "generated_at": "2026-09-19T17:21:39+00:00",
+ "generated_at": "2026-09-19T17:38:36+00:00",
  "terraplan_version": "0.1.0"
 }

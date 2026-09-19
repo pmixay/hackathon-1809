@@ -1,6 +1,6 @@
 {
  "plan_id": "P2z_delay06m_advance_buffer",
- "scenario_id": "TEAM_EXP12_DELAY_00M",
+ "scenario_id": "TEAM_EXP13_DELAY_00M",
  "scenario_label": "Earth-New preparation delay 0 months; BASE demand/prices",
  "case_dir": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_06m/advance_buffer_no_delay/case",
  "units": {
@@ -2915,11 +2915,11 @@
     6,
     12
    ],
-   "justification": "EXP-12: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
+   "justification": "EXP-13: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
   }
  },
  "scenario": {
-  "scenario_id": "TEAM_EXP12_DELAY_00M",
+  "scenario_id": "TEAM_EXP13_DELAY_00M",
   "label": "Earth-New preparation delay 0 months; BASE demand/prices",
   "status": "TEAM_ASSUMPTION",
   "demand_multiplier": {
@@ -2952,7 +2952,7 @@
    },
    {
     "status": "TEAM_ASSUMPTION",
-    "experiment": "EXP-12",
+    "experiment": "EXP-13",
     "measure": "advance_buffer",
     "label": "заранее: буфер Earth-Flex",
     "sizing": "буфер оплачен, задержки не было",
@@ -3224,7 +3224,7 @@
    "stress_aware": false,
    "builder_notes": [],
    "status": "TEAM_DECISION",
-   "experiment": "EXP-12",
+   "experiment": "EXP-13",
    "fixed_calendar": true,
    "missed_slot_policy": "unavailable slots lost; no catch-up, refund or substitute orders",
    "measure": "advance_buffer",

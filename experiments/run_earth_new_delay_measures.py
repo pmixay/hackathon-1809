@@ -1,4 +1,4 @@
-"""EXP-12: защитные меры выбранного плана P2z от задержки ввода Earth-New (риск R6).
+"""EXP-13: защитные меры выбранного плана P2z от задержки ввода Earth-New (риск R6).
 
 Продолжение EXP-09: та же копия данных, тот же замороженный календарь Earth-New и задержки
 0/3/6/12 месяцев. Добавляются две меры на канале Earth-Flex (B), минимальный объём каждой
@@ -61,7 +61,7 @@ def with_reactive_flex(frozen, volume, delay):
     plan.orders.append(Order("B", 2037, volume, "monthly", monthly, True))
     plan.reservations.append(Reservation("B", 2037, volume))
     plan.observation_month = OBSERVATION_MONTH
-    plan.meta = dict(plan.meta, experiment="EXP-12", measure="reactive_flex", delay_months=delay,
+    plan.meta = dict(plan.meta, experiment="EXP-13", measure="reactive_flex", delay_months=delay,
                      decision_timing="резерв B заложен заранее; заказ размещён после наблюдения задержки, срок 4 месяца")
     return plan
 
@@ -74,7 +74,7 @@ def with_advance_buffer(frozen, volume, delay):
     monthly = [volume if m == BUFFER_MONTH else 0.0 for m in range(1, 13)]
     plan.orders.append(Order("B", BUFFER_YEAR, volume, "monthly", monthly, False))
     plan.reservations.append(Reservation("B", BUFFER_YEAR, volume))
-    plan.meta = dict(plan.meta, experiment="EXP-12", measure="advance_buffer", delay_months=delay,
+    plan.meta = dict(plan.meta, experiment="EXP-13", measure="advance_buffer", delay_months=delay,
                      decision_timing="заказ и резерв B до наблюдения; оплачивается и без задержки")
     return plan
 
@@ -146,14 +146,14 @@ def run_experiment(out):
     def run_variant(delay, measure, plan, run_dir, sizing_note):
         modified = copy_delayed_case(run_dir / "case", delay)
         sc = delay_scenario(base, delay)
-        sc.scenario_id = f"TEAM_EXP12_DELAY_{delay:02d}M"
-        sc.changes.append(dict(status="TEAM_ASSUMPTION", experiment="EXP-12", measure=measure, label=MEASURE_LABEL[measure],
+        sc.scenario_id = f"TEAM_EXP13_DELAY_{delay:02d}M"
+        sc.changes.append(dict(status="TEAM_ASSUMPTION", experiment="EXP-13", measure=measure, label=MEASURE_LABEL[measure],
                                sizing=sizing_note, observation_month=OBSERVATION_MONTH,
                                frozen_orders="оплата замороженных заказов Earth-New не возвращается (как в EXP-09)"))
         a = assumptions.with_overrides(earth_new_preparation_delay_months=delay)
         a.entries["earth_new_preparation_delay_months"].update(
             unit="месяцев", range=list(DELAYS), status="TEAM_ASSUMPTION",
-            justification="EXP-12: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра")
+            justification="EXP-13: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра")
         res = simulate(modified, plan, sc, a)
         case_hashes = export_run(res, run_dir)
         violations = chronological_failures(res, reference)
@@ -208,7 +208,7 @@ def run_experiment(out):
     paths = [PLAN_PATH, ASSUMPTIONS, Path(base.source_file), Path(__file__), ROOT / "experiments/common.py",
              ROOT / "experiments/run_earth_new_delay.py", ROOT / "experiments/run_reverse_stress.py"]
     paths += sorted(CASE_DIR.glob("*.csv")) + sorted((ROOT / "src/terraplan").glob("*.py"))
-    report = dict(experiment_id="EXP-12", python=platform.python_version(), random_seed=None,
+    report = dict(experiment_id="EXP-13", python=platform.python_version(), random_seed=None,
                   schema_version=SCHEMA_VERSION, hash_format=HASH_FORMAT, input_sha256=input_hashes(paths),
                   method=dict(status="TEAM_ASSUMPTION", plan=original.plan_id, reference="BASE", delays_months=list(MEASURE_DELAYS),
                               event="задержка подготовки Earth-New на копии данных, календарь Earth-New заморожен (EXP-09)",
@@ -222,7 +222,7 @@ def run_experiment(out):
     write_json(out / "report.json", report)
     write_csv(out / "comparison.csv", comparison)
     write_csv(out / "yearly.csv", yearly)
-    lines = ["# EXP-12: защитные меры P2z от задержки ввода Earth-New (BASE, копия данных)", "",
+    lines = ["# EXP-13: защитные меры P2z от задержки ввода Earth-New (BASE, копия данных)", "",
              f"Задержка наблюдается в {OBSERVATION_MONTH}; реакция — заказ Earth-Flex со сроком 4 месяца, поставки 2037-05…2037-12; "
              f"заблаговременный буфер — поставка Earth-Flex {BUFFER_YEAR}-{BUFFER_MONTH:02d} до наблюдения. Объёмы — минимальные (бисекция, шаг {TOLERANCE_T} т).",
              "Замороженные заказы Earth-New оплачиваются без возврата (как в EXP-09). Деньги — млн у.е. в ценах 2035 г., PV по реальной ставке 8 %.", "",

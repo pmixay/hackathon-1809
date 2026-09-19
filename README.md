@@ -22,7 +22,7 @@ ZBO), потери хранения, экономика (CAPEX/OPEX, закуп�
 ```bash
 python -m pip install -e ".[dev]"                # Python ≥ 3.10; зависимости: pyyaml, openpyxl, pytest
 python -m terraplan ui                          # интерфейс оператора: http://127.0.0.1:8765 (офлайн), остановка Ctrl+C
-python -m pytest -q                             # 216 тестов: контрольные примеры V01–V10, движок, ошибочный ввод, границы, API, UI, verify всех результатов
+python -m pytest -q                             # 247 тестов: контрольные примеры V01–V10, движок, ошибочный ввод, границы, API, UI, verify всех результатов
 python -m terraplan control-cases               # V01–V10: ПРОЙДЕН / НЕ ПРОЙДЕН
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario BASE             --out results/demo_BASE
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
@@ -30,7 +30,8 @@ python -m terraplan run --plan configs/plans/P2z_earth_new_zbo_adapted.json --sc
 python -m terraplan compare results/demo_BASE results/demo_STRESS --out results/demo_compare
 python -m terraplan verify results/demo_BASE           # воспроизводимость: пересчёт и сравнение с выгрузкой
 python tests/independent_recalc.py results/demo_BASE    # независимый пересчёт только по CSV, без движка
-python experiments/run_all.py                   # EXP-01 … EXP-12, перегенерирует results/ (EXP-10 — с зерном 203510)
+python experiments/run_all.py                   # EXP-01 … EXP-13, перегенерирует results/ (EXP-10 — с зерном 203510)
+python experiments/run_p2z_resilience.py        # EXP-12: защита, чувствительность и обратный стресс выбранного P2z
 python experiments/run_mcda.py                  # многокритериальный выбор стратегии и четыре профиля интересов
 ```
 
@@ -62,14 +63,14 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 4. **Дополнительные тесты** — низкий/высокий спрос (`results/demand/`), чувствительность и пороги
    (`results/sensitivity/`), реакция после наблюдения (`results/reaction/`), обратный стресс, защитные меры,
    задержка Earth-New и Монте-Карло (`results/reverse_stress/`, `results/protection_measures/`,
-   `results/earth_new_delay/`, `results/monte_carlo/`), меры выбранного плана против задержки Earth-New
+   `results/earth_new_delay/`, `results/monte_carlo/`), защита, чувствительность и обратный стресс выбранного P2z (`results/p2z_resilience/`), меры реакции и буфера против задержки Earth-New
    (`results/earth_new_delay_measures/`), геополитический ценовой шок (`results/geopolitical_price_shock/`),
    расширение на копии данных с Source-X и 2041 годом (`results/extensibility/`), MCDA (`results/strategy/`).
    Протоколы: [docs/stress_test_protocol.md](docs/stress_test_protocol.md), [experiments/README.md](experiments/README.md).
 5. **Сравнение и выгрузка** — `results/*/summary.csv`, `results/stress/compare_*.csv`; в каждом каталоге CSV + XLSX +
    JSON; планы открываются повторно (`python -m terraplan run --plan results/<каталог>/plan.json ...`);
    `python -m terraplan verify results/<каталог>` пересчитывает каталог и сравнивает с выгрузкой (в тестах и CI —
-   для всех 56 каталогов результатов).
+   для всех 68 каталогов результатов).
 
 ## Документы для жюри (все на русском, самодостаточные)
 
@@ -80,7 +81,7 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | [docs/presentation/TerraPlan.pptx](docs/presentation/TerraPlan.pptx) | презентация, 12 слайдов; собирается из результатов скриптом `docs/presentation/build_deck.py` |
 | [docs/architecture.md](docs/architecture.md) | схема цепочки поставок, блоки расчёта (входы, выходы, формулы, границы), контрактно-финансовая архитектура, реализация, верификация |
 | [docs/constraints_catalogue.md](docs/constraints_catalogue.md) | каталог всех проверяемых правил |
-| [docs/stress_test_protocol.md](docs/stress_test_protocol.md) | методики и протоколы стресс-тестов EXP-01…EXP-12 с результатами |
+| [docs/stress_test_protocol.md](docs/stress_test_protocol.md) | методики и протоколы стресс-тестов EXP-01…EXP-13 с результатами |
 | [docs/risk_register.md](docs/risk_register.md) | реестр ключевых рисков с рассчитанными последствиями, мерами, их стоимостью и остаточным риском |
 | [docs/stakeholders.md](docs/stakeholders.md) | интересы сторон, метрики, обязательства, адаптация при изменении рисков, раскрытые веса MCDA |
 | [docs/contract_strategy.md](docs/contract_strategy.md) | контрактно-финансовая архитектура: резервирование, take-or-pay, меры, опционы, пересмотр |
@@ -99,9 +100,9 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | `configs/scenarios/` | `base.yaml`, `mandatory_stress.yaml` (CASE_INPUT), `team_low_demand.yaml`, `team_high_demand.yaml`, `team_geopolitical_price_shock.yaml` (исследовательские) |
 | `configs/plans/` | сохранённые планы для обоих сценариев (JSON по схеме организатора): P1…P4, P2z и адаптированные к стрессу варианты |
 | `configs/assumptions.yaml`, `configs/mcda_profiles.yaml` | реестр допущений (смысл, единица, статус, диапазон, обоснование); профили и веса MCDA |
-| `experiments/` | скрипты и протоколы EXP-01…EXP-12, переносимая проверка происхождения `provenance.py` |
+| `experiments/` | скрипты и протоколы EXP-01…EXP-13, переносимая проверка происхождения `provenance.py` |
 | `results/` | выгрузки всех экспериментов: CSV, XLSX, JSON, `summary.md`, `run_manifest.json` с хешами (`results/README.md`) |
-| `tests/` | pytest (216): V01–V10, движок, ошибочный ввод, границы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, матрица проверок, календарь Earth-New, реактивные заказы, контрактный резерв, API, интерфейс и геополитический блок, EXP-07…EXP-12, `verify` + независимый пересчёт каждого каталога результатов; `ui_smoke.cjs` — проверка в реальном браузере |
+| `tests/` | pytest (247): V01–V10, движок, ошибочный ввод, границы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, матрица проверок, календарь Earth-New, реактивные заказы, контрактный резерв, API, интерфейс и геополитический блок, EXP-07…EXP-13, `verify` + независимый пересчёт каждого каталога результатов; `ui_smoke.cjs` — проверка в реальном браузере |
 | `schemas/` | JSON-схемы организатора (план, выгрузка, сценарий, данные) |
 | `docs/` | документы для жюри (таблица выше), `organizer/` (PDF кейса и снимок справочного репозитория), `literature/` (8 статей и конспекты), `presentation/` |
 
@@ -128,7 +129,8 @@ P2z дороже P3 в BASE на 90,547 млн PV, но дешевле адап�
 требует на 890 млн меньше CAPEX; выигрывает во всех четырёх раскрытых профилях MCDA (`results/strategy/summary.md`).
 Адаптированные к стрессу планы в BASE переполняют хранилище (17/25/25 нарушений у P2z/P3/P4), поэтому график заказов
 зависит от сценария и пересматривается ежегодно. Ключевой риск P2z — задержка Earth-New: на 3/6/12 месяцев резерв
-нарушается в 2038–2040; защита через Earth-Flex стоит +30,590 / +61,181 / +124,474 млн PV (`results/earth_new_delay_measures/summary.md`).
+нарушается в 2038–2040; заранее согласованный календарь Earth-New стоит +0,285 млн PV и защищает при +3 месяцах (`results/p2z_resilience/summary.md`),
+замещение через Earth-Flex после наблюдения — +30,590 / +61,181 / +124,474 млн PV (`results/earth_new_delay_measures/summary.md`).
 Геополитический шок +25 % на Earth-Core/Earth-Flex в 2038–2039 — +470,892 млн PV без физических последствий
 (`results/geopolitical_price_shock/summary.md`); тот же блок доступен оператору в интерфейсе (вкладка «Геополитика»).
 

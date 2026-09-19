@@ -65,6 +65,10 @@ for r in rows(RESULTS / "strategy/mcda_scores.csv"):
 exp12 = {(int(r["delay_months"]), r["measure"]): r for r in rows(RESULTS / "earth_new_delay_measures/comparison.csv")}
 exp11 = {r["plan_id"]: r for r in rows(RESULTS / "geopolitical_price_shock/comparison.csv")}
 exp9 = {int(r["delay_months"]): r for r in rows(RESULTS / "earth_new_delay/comparison.csv")}
+res12 = {(r["variant"], int(r["delay_months"])): r for r in rows(RESULTS / "p2z_resilience/comparison.csv")}
+bound12 = {}
+for r in rows(RESULTS / "p2z_resilience/boundary.csv"):
+    bound12[r["variant"]] = min(bound12.get(r["variant"], 1.0), float(r["fail_radius"]))
 tornado = {r["param"]: r for r in rows(RESULTS / "sensitivity/tornado.csv")}
 thresholds = {r["param"]: r for r in rows(RESULTS / "sensitivity/thresholds.csv")}
 reaction = {r["plan_id"]: r for r in rows(RESULTS / "reaction/summary.csv")}
@@ -322,7 +326,7 @@ textbox(s, 8.3, 6.2, 4.7, 0.8, [("Выручка не задана: резуль
 notes(s, "Годовой бюджет и дорожная карта с воротами решений — приложение «Бюджет и дорожная карта».")
 
 # 8. Стресс-тесты
-s = new_slide(8, "Стресс-тесты: чувствительность, сроки реакции, обратный стресс, Монте-Карло", "Каждый тест — воспроизводимый протокол с целью, параметрами, метриками и критерием нарушения", "EXP-03, EXP-04, EXP-06, EXP-07, EXP-08, EXP-10")
+s = new_slide(8, "Стресс-тесты: чувствительность, сроки реакции, обратный стресс, Монте-Карло", "Каждый тест — воспроизводимый протокол с целью, параметрами, метриками и критерием нарушения", "EXP-03, EXP-04, EXP-06, EXP-07, EXP-08, EXP-10, EXP-12")
 lo, hi = demand[("P2z_earth_new_zbo", "TEAM_LOW_DEMAND")], demand[("P2z_earth_new_zbo", "TEAM_HIGH_DEMAND")]
 lo_r, hi_r = demand[("P2z_earth_new_zbo_team_low_demand", "TEAM_LOW_DEMAND")], demand[("P2z_earth_new_zbo_team_high_demand", "TEAM_HIGH_DEMAND")]
 tp = tornado["earth_price_multiplier"]
@@ -334,24 +338,26 @@ data = [["Тест", "Что варьируется", "Результат", "В�
         ["Чувствительность (P3)", "спрос, доля ISRU, цена, ставка, лаг ZBO", f"цена земных каналов ×0,8…×1,5 → PV {num(tp['pv_low'])}…{num(tp['pv_high'])} (самый чувствительный); первые неуспешные точки: спрос ×{thresholds['demand_multiplier']['threshold_fixed_plan'].replace('.', ',')}, ISRU {thresholds['isru_delivery_share_2038']['threshold_fixed_plan'].replace('.', ',')}, лаг ZBO {thresholds['zbo_commissioning_lag_months']['threshold_fixed_plan'].split('.')[0]} мес.", "для P2z порог не используется: любое изменение прогноза запускает пересчёт"],
         ["Реакция после наблюдения (P3)", "Emergency с 2038-05, Flex с 2038-07", f"дефицит {num(react['shortage_total_t'], 3)} т, сервис {num(react['min_sl_total'], 3)}, PV {num(react['pv_cost_mln'])} против {num(adapted['pv_cost_mln'])} при адаптации", "резерв января 2038 реакция не спасает"],
         ["Обратный стресс и меры (P3)", "совместные шоки спроса и ISRU", f"граница адаптированного плана ≈ {float(reverse['minimum']['fail_radius']) * 100:.6f} % — численный люфт; физический запас ({prot_level('physical_stock')} т) = {num(protection['physical_stock']['delta_pv_mln'], 1)} млн PV; ранний ZBO + запас ({prot_level('early_zbo_plus_stock')} т) = {num(protection['early_zbo_plus_stock']['delta_pv_mln'], 1)} млн PV", "устойчивость покупается физическим запасом"],
+        ["Обратный стресс P2z и меры (EXP-12)", "совместный рост спроса и недопоставка Earth-New; запас 3,2 т; защитный календарь", f"граница исходного P2z ≈ {bound12['without_measure'] * 100:.6f} %; с запасом ≈ {bound12['physical_stock'] * 100:.4f} % ({signed(res12[('physical_stock', 0)]['delta_pv_same_delay_mln'], 1)} млн PV); с календарём ≈ {bound12['guarded_calendar'] * 100:.4f} % ({signed(res12[('guarded_calendar', 0)]['delta_pv_same_delay_mln'], 3)} млн PV)", "фиксированный график без запаса не имеет запаса прочности"],
         ["Монте-Карло (P3)", "N = 10 000, seed 203510, спрос и ISRU U(0; 2 %), цены ±10 %", f"отказ {num(100 * float(mc_no['failure_frequency']), 2)} % без защиты → {num(100 * float(mc_stock['failure_frequency']), 2)} % (запас) и {num(100 * float(mc_zbo['failure_frequency']), 2)} % (ZBO + запас); доплата {mc_extra(mc_stock)} / {mc_extra(mc_zbo)} млн PV", "условные частоты модели, не вероятности реальных событий"]]
-table(s, data, 0.5, 1.7, 12.3, 5.1, widths=[2.2, 2.4, 5.4, 2.3], size=10)
+table(s, data, 0.5, 1.7, 12.3, 5.1, widths=[2.2, 2.4, 5.4, 2.3], size=9)
 notes(s, "Полные протоколы и таблицы — приложение «Методики и протоколы стресс-тестов». Испытания EXP-07, EXP-08 и EXP-10 выполнены на P3 до окончательного выбора и не переносятся на P2z без нового расчёта.")
 
 # 9. Риски
-s = new_slide(9, "Риски выбранного плана и цена защиты", "Последствия рассчитаны контуром; для ключевого риска — задержки Earth-New — оценены две меры", "EXP-09, EXP-12, EXP-02, EXP-03, EXP-11; реестр рисков")
+s = new_slide(9, "Риски выбранного плана и цена защиты", "Последствия рассчитаны контуром; для ключевого риска — задержки Earth-New — оценены две меры", "EXP-09, EXP-12, EXP-13, EXP-02, EXP-03, EXP-11; реестр рисков")
 d = {k: exp12[(k, "reactive_flex")] for k in (3, 6, 12)}
 b = {k: exp12[(k, "advance_buffer")] for k in (3, 6, 12)}
 data = [["Риск", "Последствие без мер", "Мера и её стоимость, млн PV", "Остаточный риск"],
         ["Задержка ввода Earth-New на 3 / 6 / 12 мес.", f"сервис 100 %, но резерв нарушен в 2038–2040: разрыв до {num(exp9[3]['max_reserve_gap_t'], 3)} / {num(exp9[6]['max_reserve_gap_t'], 3)} / {num(exp9[12]['max_reserve_gap_t'], 3)} т; топливо остаётся оплаченным",
          f"реакция Earth-Flex после наблюдения (срок 4 мес.): {num(d[3]['flex_volume_t'], 3)} / {num(d[6]['flex_volume_t'], 3)} / {num(d[12]['flex_volume_t'], 3)} т за {signed(d[3]['delta_pv_vs_no_measure_mln'], 1)} / {signed(d[6]['delta_pv_vs_no_measure_mln'], 1)} / {signed(d[12]['delta_pv_vs_no_measure_mln'], 1)}; буфер заранее {signed(b[3]['delta_pv_vs_no_measure_mln'], 1)} / {signed(b[6]['delta_pv_vs_no_measure_mln'], 1)} / {signed(b[12]['delta_pv_vs_no_measure_mln'], 1)}, оплачивается и без задержки",
          "уведомление позже августа 2037 не оставляет времени на реакцию; задержка > 12 мес. не рассчитана"],
+        ["Защитный календарь Earth-New (заранее, EXP-12)", "тот же риск: задержка 3 / 6 / 12 мес.", f"поставки апрель–декабрь 2037, резерв 17,585 т/год, согласован в 2035-01: {signed(res12[('guarded_calendar', 0)]['delta_pv_same_delay_mln'], 3)} млн PV без задержки, {signed(res12[('guarded_calendar', 3)]['delta_pv_same_delay_mln'], 3)} при +3 мес., все проверки выполнены", f"при +6 / +12 мес. не защищает: разрыв резерва {num(res12[('guarded_calendar', 6)]['max_reserve_gap_t'], 3)} / {num(res12[('guarded_calendar', 12)]['max_reserve_gap_t'], 3)} т"],
         ["Спрос выше базового", f"дефицит {num(shortage_stress, 1)} т в стрессе; {num(hi['shortage_total_t'], 1)} т в высоком варианте", f"адаптация заранее {signed(pv_adapt - pv_stress, 1)}; перепланирование под высокий спрос {num(hi_r['pv_cost_mln'])}", "нулевой запас прочности фиксированного графика: ежегодный пересчёт"],
         ["Спрос ниже базового", f"{lo['hard_violations']} переполнения хранилища, {signed(float(lo['pv_cost_mln']) - pv_base, 1)} млн PV", f"сокращение заказов и резервов: {num(lo_r['pv_cost_mln'])} млн PV", "take-or-pay ограничивает сокращение при замороженных резервах"],
         ["Рост цен земных каналов, геополитика", f"{signed(exp11['P2z_earth_new_zbo']['delta_pv_mln'], 1)} млн PV при +25 % в 2038–2039, без физических последствий", "индексация с cap/collar (предложено); Earth-New без индексации; блок геополитики в интерфейсе для любого сценария", "доля Earth-Core и Earth-Flex в закупках"],
         ["Задержка ZBO", "потолок потерь 2 % нарушается при лаге 10 мес.", "приёмка и мера за задержку в договоре; решение не позже 2037-07", "цена задержки для P2z не рассчитана"],
         ["Недопоставка ISRU (исключён)", "для P3: дефицит 170,0 т, адаптация +1 605,0 млн PV", f"исключён выбором P2z ценой {signed(pv_base - pv_p3_base, 1)} млн PV в BASE", "экономика после 2040 не рассчитана"]]
-table(s, data, 0.5, 1.7, 12.3, 5.2, widths=[2.3, 3.4, 4.4, 2.2], size=10)
+table(s, data, 0.5, 1.7, 12.3, 5.2, widths=[2.3, 3.4, 4.4, 2.2], size=9)
 notes(s, "Полный реестр: событие, причина, параметры, период, основание диапазона, зависимости, владелец, меры, остаточный риск — приложение «Реестр ключевых рисков».")
 
 # 10. Контракты и стороны

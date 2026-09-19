@@ -1,5 +1,5 @@
 {
-  "scenario_id": "TEAM_EXP12_DELAY_03M",
+  "scenario_id": "TEAM_EXP13_DELAY_03M",
   "label": "Earth-New preparation delay 3 months; BASE demand/prices",
   "status": "TEAM_ASSUMPTION",
   "demand_multiplier": {
@@ -32,7 +32,7 @@
     },
     {
       "status": "TEAM_ASSUMPTION",
-      "experiment": "EXP-12",
+      "experiment": "EXP-13",
       "measure": "reactive_flex",
       "label": "реакция: замена через Earth-Flex",
       "sizing": "минимальный объём бисекцией, шаг 0.001 т",

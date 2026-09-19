@@ -1,0 +1,34 @@
+{
+  "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
+  "label": "EXP-12: задержка Earth-New на копии данных",
+  "status": "TEAM_ASSUMPTION",
+  "demand_multiplier": {
+    "default": 1.0
+  },
+  "critical_demand_multiplier": null,
+  "variable_price_multiplier": {
+    "default": 1.0
+  },
+  "actual_delivery_share": {
+    "default": 1.0
+  },
+  "loss_ceiling": {
+    "enabled": false
+  },
+  "demand_variant": "base",
+  "enforce_service_thresholds": null,
+  "notes": [
+    "BASE does not apply reliability as an automatic delivery multiplier."
+  ],
+  "changes": [
+    {
+      "status": "TEAM_ASSUMPTION",
+      "source_id": "C",
+      "delay_months": 6,
+      "applied_to": "case copy: C lead_time_min_value and lead_time_max_value",
+      "original_preparation_months": "18..24",
+      "frozen": "investment dates, orders, reservations and delivery slots",
+      "missed_slots": "lost, no catch-up or compensation"
+    }
+  ]
+}

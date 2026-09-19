@@ -1,6 +1,6 @@
 {
  "plan_id": "P2z_earth_new_zbo_fixed_calendar",
- "scenario_id": "TEAM_EXP12_DELAY_12M",
+ "scenario_id": "TEAM_EXP13_DELAY_12M",
  "scenario_label": "Earth-New preparation delay 12 months; BASE demand/prices",
  "case_dir": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_12m/none/case",
  "units": {
@@ -2661,7 +2661,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_12M",
+   "scenario_id": "TEAM_EXP13_DELAY_12M",
    "message": "Earth-New: заказано 13.188 т на 2037 г., но источник не может поставлять в этом году (первая возможная поставка 2038-01)",
    "year": 2037,
    "month": null,
@@ -2673,7 +2673,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_12M",
+   "scenario_id": "TEAM_EXP13_DELAY_12M",
    "message": "Earth-New 2037: мощность зарезервирована, но источник недоступен в 2037 г. (первая возможная поставка 2038-01)",
    "year": 2037,
    "month": null,
@@ -2685,7 +2685,7 @@
   {
    "rule_id": "ORDER_EXCEEDS_RESERVATION",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_12M",
+   "scenario_id": "TEAM_EXP13_DELAY_12M",
    "message": "Earth-New 2037: заказано 13.188 т, что превышает контрактно доступный объём 0.000 т (резерв 13.2 т/год × 0.000 года)",
    "year": 2037,
    "month": null,
@@ -2697,7 +2697,7 @@
   {
    "rule_id": "RESERVE_45D",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_12M",
+   "scenario_id": "TEAM_EXP13_DELAY_12M",
    "message": "2038-01: физический запас 18.010 т < 45-дневного резерва 30.822 т",
    "year": 2038,
    "month": 1,
@@ -2709,7 +2709,7 @@
   {
    "rule_id": "RESERVE_45D",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_12M",
+   "scenario_id": "TEAM_EXP13_DELAY_12M",
    "message": "2039-01: физический запас 26.640 т < 45-дневного резерва 39.452 т",
    "year": 2039,
    "month": 1,
@@ -2721,7 +2721,7 @@
   {
    "rule_id": "RESERVE_45D",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_12M",
+   "scenario_id": "TEAM_EXP13_DELAY_12M",
    "message": "2040-01: физический запас 35.270 т < 45-дневного резерва 48.082 т",
    "year": 2040,
    "month": 1,
@@ -2975,11 +2975,11 @@
     6,
     12
    ],
-   "justification": "EXP-12: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
+   "justification": "EXP-13: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
   }
  },
  "scenario": {
-  "scenario_id": "TEAM_EXP12_DELAY_12M",
+  "scenario_id": "TEAM_EXP13_DELAY_12M",
   "label": "Earth-New preparation delay 12 months; BASE demand/prices",
   "status": "TEAM_ASSUMPTION",
   "demand_multiplier": {
@@ -3012,7 +3012,7 @@
    },
    {
     "status": "TEAM_ASSUMPTION",
-    "experiment": "EXP-12",
+    "experiment": "EXP-13",
     "measure": "none",
     "label": "без мер",
     "sizing": "мера не применяется",

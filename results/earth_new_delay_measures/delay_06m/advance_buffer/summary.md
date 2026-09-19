@@ -1,4 +1,4 @@
-# P2z_delay06m_advance_buffer — TEAM_EXP12_DELAY_06M (Earth-New preparation delay 6 months; BASE demand/prices)
+# P2z_delay06m_advance_buffer — TEAM_EXP13_DELAY_06M (Earth-New preparation delay 6 months; BASE demand/prices)
 
 План исполним: **НЕТ** — жёстких нарушений: 7, отклонений от ориентиров: 0, предупреждений: 0
 

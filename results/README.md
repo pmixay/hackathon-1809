@@ -13,7 +13,8 @@
 | `earth_new_delay/` | EXP-09 | задержка Earth-New 0/3/6/12 мес. для P2z: `delay_XXm/` с копией данных, `comparison.csv`, `yearly.csv` |
 | `monte_carlo/` | EXP-10 | условный Монте-Карло защит P3, N = 10 000, seed 203510: `runs.csv`, `samples.csv`, `comparison.csv` |
 | `geopolitical_price_shock/` | EXP-11 | ценовой шок +25 % Core/Flex 2038–2039 на копии данных: `<план>/before`, `<план>/after`, `price_overlay.csv`, `price_exposure.csv` |
-| `earth_new_delay_measures/` | EXP-12 | меры P2z против задержки Earth-New: `delay_XXm/{none,reactive_flex,advance_buffer,advance_buffer_no_delay}/`, `comparison.csv` |
+| `p2z_resilience/` | EXP-12 | защита, чувствительность и обратный стресс P2z: `<мера>_delay_XXm/`, `cases/`, `comparison.csv`, `sizing.csv`, `sensitivity.csv`, `boundary.csv` |
+| `earth_new_delay_measures/` | EXP-13 | меры P2z против задержки Earth-New: `delay_XXm/{none,reactive_flex,advance_buffer,advance_buffer_no_delay}/`, `comparison.csv` |
 | `strategy/` | MCDA | метрики и баллы четырёх профилей; `summary.md` |
 
 Каждый каталог расчёта: `summary.md` (на русском), `yearly_balance.csv`, `inventory_trace.csv` (помесячно), `source_schedule.csv`,

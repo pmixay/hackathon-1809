@@ -2,7 +2,7 @@
   "terraplan_version": "0.1.0",
   "python": "3.11.15",
   "plan_id": "P2z_delay06m_advance_buffer",
-  "scenario_id": "TEAM_EXP12_DELAY_06M",
+  "scenario_id": "TEAM_EXP13_DELAY_06M",
   "case_dir": "results/earth_new_delay_measures/delay_06m/advance_buffer/case",
   "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_06m/advance_buffer/case",
   "case_file_sha256": {
@@ -12,9 +12,9 @@
     "storage_options.csv": "81c764ba07efae2860b72defff70b80ed6280a8243ec36a5ec5e8690187ed202",
     "supply_sources.csv": "5a52de3ec705490a037f6f6abba49deb60edd7b94c9d54bec48dc49f3c656715"
   },
-  "plan_sha256": "bcbe70276922a6c2d39f181dcb786b5b95c5b80b59ecf47e4bcb8421b69848c7",
-  "scenario_sha256": "888dfc653de4ad8588b82ae853abe1f3e5cf951fd5e47e76db4213a585218534",
-  "assumptions_sha256": "bd11c81b295959f24ac1a91bfeb13cdaf3d6c937255af52dad7073a8469493ec",
+  "plan_sha256": "b0e507eb4a152d096724389f853a20541a7b449fde6ef60b6a49a56a640cd78c",
+  "scenario_sha256": "802e81bfd40481d389647001f9ec61d0cda0a355da3224b3f597ead471f3068d",
+  "assumptions_sha256": "a69f8caa79862a68abdb4e37922e502128fc6499cd9467dd86d7b11d0d839079",
   "kpi_sha256": "5d98d8962c7ae44ace4a5de7ca2ea96825b2b05fc8872023643d8a716ac4642e",
   "kpi_precision": 6,
   "random_seed": null,

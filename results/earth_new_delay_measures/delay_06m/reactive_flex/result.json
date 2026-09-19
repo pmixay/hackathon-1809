@@ -1,6 +1,6 @@
 {
  "plan_id": "P2z_delay06m_reactive_flex",
- "scenario_id": "TEAM_EXP12_DELAY_06M",
+ "scenario_id": "TEAM_EXP13_DELAY_06M",
  "scenario_label": "Earth-New preparation delay 6 months; BASE demand/prices",
  "case_dir": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_06m/reactive_flex/case",
  "units": {
@@ -2675,7 +2675,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_06M",
+   "scenario_id": "TEAM_EXP13_DELAY_06M",
    "message": "Earth-New: 1.099 т запланировано на 2037-01, раньше первой возможной поставки 2037-07",
    "year": 2037,
    "month": 1,
@@ -2687,7 +2687,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_06M",
+   "scenario_id": "TEAM_EXP13_DELAY_06M",
    "message": "Earth-New: 1.099 т запланировано на 2037-02, раньше первой возможной поставки 2037-07",
    "year": 2037,
    "month": 2,
@@ -2699,7 +2699,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_06M",
+   "scenario_id": "TEAM_EXP13_DELAY_06M",
    "message": "Earth-New: 1.099 т запланировано на 2037-03, раньше первой возможной поставки 2037-07",
    "year": 2037,
    "month": 3,
@@ -2711,7 +2711,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_06M",
+   "scenario_id": "TEAM_EXP13_DELAY_06M",
    "message": "Earth-New: 1.099 т запланировано на 2037-04, раньше первой возможной поставки 2037-07",
    "year": 2037,
    "month": 4,
@@ -2723,7 +2723,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_06M",
+   "scenario_id": "TEAM_EXP13_DELAY_06M",
    "message": "Earth-New: 1.099 т запланировано на 2037-05, раньше первой возможной поставки 2037-07",
    "year": 2037,
    "month": 5,
@@ -2735,7 +2735,7 @@
   {
    "rule_id": "SOURCE_NOT_AVAILABLE",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_06M",
+   "scenario_id": "TEAM_EXP13_DELAY_06M",
    "message": "Earth-New: 1.099 т запланировано на 2037-06, раньше первой возможной поставки 2037-07",
    "year": 2037,
    "month": 6,
@@ -2747,7 +2747,7 @@
   {
    "rule_id": "ORDER_EXCEEDS_RESERVATION",
    "severity": "hard",
-   "scenario_id": "TEAM_EXP12_DELAY_06M",
+   "scenario_id": "TEAM_EXP13_DELAY_06M",
    "message": "Earth-New 2037: заказано 13.188 т, что превышает контрактно доступный объём 6.595 т (резерв 13.2 т/год × 0.500 года)",
    "year": 2037,
    "month": null,
@@ -3001,11 +3001,11 @@
     6,
     12
    ],
-   "justification": "EXP-12: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
+   "justification": "EXP-13: наложение на сроки Earth-New в копии данных, как в EXP-09; не параметр ядра"
   }
  },
  "scenario": {
-  "scenario_id": "TEAM_EXP12_DELAY_06M",
+  "scenario_id": "TEAM_EXP13_DELAY_06M",
   "label": "Earth-New preparation delay 6 months; BASE demand/prices",
   "status": "TEAM_ASSUMPTION",
   "demand_multiplier": {
@@ -3038,7 +3038,7 @@
    },
    {
     "status": "TEAM_ASSUMPTION",
-    "experiment": "EXP-12",
+    "experiment": "EXP-13",
     "measure": "reactive_flex",
     "label": "реакция: замена через Earth-Flex",
     "sizing": "минимальный объём бисекцией, шаг 0.001 т",
@@ -3312,7 +3312,7 @@
    "stress_aware": false,
    "builder_notes": [],
    "status": "TEAM_DECISION",
-   "experiment": "EXP-12",
+   "experiment": "EXP-13",
    "fixed_calendar": true,
    "missed_slot_policy": "unavailable slots lost; no catch-up, refund or substitute orders",
    "measure": "reactive_flex",

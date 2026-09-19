@@ -1,4 +1,4 @@
-# P2z_delay12m_reactive_flex — TEAM_EXP12_DELAY_12M (Earth-New preparation delay 12 months; BASE demand/prices)
+# P2z_delay12m_reactive_flex — TEAM_EXP13_DELAY_12M (Earth-New preparation delay 12 months; BASE demand/prices)
 
 План исполним: **НЕТ** — жёстких нарушений: 3, отклонений от ориентиров: 0, предупреждений: 0
 

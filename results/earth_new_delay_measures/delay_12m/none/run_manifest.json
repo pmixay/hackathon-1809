@@ -2,7 +2,7 @@
   "terraplan_version": "0.1.0",
   "python": "3.11.15",
   "plan_id": "P2z_earth_new_zbo_fixed_calendar",
-  "scenario_id": "TEAM_EXP12_DELAY_12M",
+  "scenario_id": "TEAM_EXP13_DELAY_12M",
   "case_dir": "results/earth_new_delay_measures/delay_12m/none/case",
   "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_12m/none/case",
   "case_file_sha256": {
@@ -13,8 +13,8 @@
     "supply_sources.csv": "7240d9056e2cb75092093ba47b3bb9e688582572db94cb72328e619a42b33205"
   },
   "plan_sha256": "a5cb983b2bcbda34824015815a2a9092273e73ca90242511ebac41fe29a5f5fb",
-  "scenario_sha256": "2e06ae26eef9d04b980ab662dca950e25d7e95fcd5977325ccf8512b603f2b6c",
-  "assumptions_sha256": "020a6dd40c2f2b6e132d5d7cd8522d7dc5a2719269841e37a3c476e0bf53c0a2",
+  "scenario_sha256": "9260a919f97330de74e25c865967d80b5e62c0e3d7bdb45247840881ff3a4056",
+  "assumptions_sha256": "44a4bdb58dd396bf8cb05427029675a162827404fd8b1562cc263bbe99c183bc",
   "kpi_sha256": "ffeb27bae819025e5a893e98de7432831d5ebd3d0b007e092b4dc39701d2db2f",
   "kpi_precision": 6,
   "random_seed": null,
