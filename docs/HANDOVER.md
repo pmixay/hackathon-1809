@@ -20,8 +20,9 @@
   invalid input, archive download and mobile layout. Reproduce with `tests/ui_smoke.cjs`.
 - UI-export KPIs equal a direct `simulate()` call. An extracted UI archive passes CLI `verify`.
 - The working application uses local assets and the existing engine, with no extra web dependency.
-- R3's EXP-07–10 analyses are integrated. Final strategy selection, extension to alternative
-  strategies, geopolitics and management-note completion remain open.
+- R3's EXP-07–10 analyses are integrated. R2 selected P2z, added the disclosed MCDA,
+  contract/stakeholder allocation, verified self-found sources and completed the management note.
+  Alternative-strategy Monte Carlo, geopolitics and post-2040 economics remain future research.
 
 ## GitVerse publication status
 
@@ -50,9 +51,10 @@ python -m pip install -e ".[dev]"
 python -m pytest -q
 python -m terraplan control-cases
 python -m terraplan ui
-python -m terraplan verify results/alternatives/P3_isru_zbo_BASE
-python -m terraplan verify results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS
-python tests/independent_recalc.py results/alternatives/P3_isru_zbo_BASE
+python -m terraplan verify results/alternatives/P2z_earth_new_zbo_BASE
+python -m terraplan verify results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS
+python tests/independent_recalc.py results/alternatives/P2z_earth_new_zbo_BASE
+python experiments/run_mcda.py
 ```
 
 Follow the operator-guide demonstration in order: BASE, mandatory stress, additional tests,

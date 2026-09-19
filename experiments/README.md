@@ -292,7 +292,20 @@ python tests/independent_recalc.py results/geopolitical_price_shock/P2z_earth_ne
   payment/budget limits, delay, response policies or combined shocks. Physical invariance
   in a price-only fixed-plan run is not evidence of universal geopolitical resilience.
 
-## To do (R3)
+## MCDA роли 2: итоговый выбор стратегии
+
+```bash
+python experiments/run_mcda.py
+```
+
+- **Жёсткий фильтр:** исполнимы BASE и проверенный адаптированный MANDATORY_STRESS; P1/P2 исключаются до взвешивания.
+- **Допущенное множество:** P2z, P3, P4. У всех адаптированных вариантов нет жёстких нарушений и сервис общий/критический равен 100%.
+- **Критерии:** PV BASE, PV адаптированного стресса, CAPEX, дефицит фиксированного плана в стрессе, доля мощности без TOP и обычная номинальная мощность.
+- **Метод:** min-max-нормирование внутри допущенного множества; аддитивные профили с весами из `configs/mcda_profiles.yaml`.
+- **Артефакты:** `results/strategy/mcda_metrics.csv`, `mcda_scores.csv`, `summary.md`. Входы читаются из существующих CSV результатов и справочника источников.
+- **Граница:** баллы — прозрачная помощь решению, а не вероятности, замена исполнимости или доказательство глобального оптимума.
+
+## Будущие исследования R3 (не требуются для финального выбора 2035–2040)
 
 - Reverse stress for alternative strategies (P3 baseline and protection measures: EXP-07/08 above).
 - Event-based Core availability, response policies and alternative-strategy Monte Carlo beyond EXP-10.
