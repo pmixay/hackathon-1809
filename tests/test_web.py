@@ -171,6 +171,16 @@ def test_http_routes_errors_and_origin(root, payload):
         with pytest.raises(urllib.error.HTTPError) as error:
             urllib.request.urlopen(url + "/../../README.md")
         assert error.value.code == 404
+        # один адрес обслуживает страницу решения и пульт оператора
+        landing = urllib.request.urlopen(url).read().decode("utf-8")
+        assert 'href="/console"' in landing and "assets/css/style.css" in landing
+        console = urllib.request.urlopen(url + "/console").read().decode("utf-8")
+        assert 'id="preset"' in console and 'href="/"' in console
+        assert urllib.request.urlopen(url + "/assets/css/style.css").headers["Content-Type"].startswith("text/css")
+        for outside in ("/assets/../../README.md", "/assets/../pyproject.toml", "/assets/README.md"):
+            with pytest.raises(urllib.error.HTTPError) as error:
+                urllib.request.urlopen(url + outside)
+            assert error.value.code == 404, outside
     finally:
         server.shutdown()
         server.server_close()

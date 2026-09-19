@@ -2,7 +2,7 @@
  "plan_id": "P2z_earth_new_zbo_fixed_calendar",
  "scenario_id": "TEAM_EARTH_NEW_DELAY_00M",
  "scenario_label": "Earth-New preparation delay 0 months; BASE demand/prices",
- "case_dir": "/home/user/hackathon-1809/results/earth_new_delay/delay_00m/case",
+ "case_dir": "/home/claude/hackathon-1809/results/earth_new_delay/delay_00m/case",
  "units": {
   "fuel": "т",
   "money": "млн у.е., постоянные цены 2035 г.",

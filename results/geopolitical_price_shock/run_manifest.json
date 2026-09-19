@@ -32,7 +32,7 @@
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "7acd89fa4c3ba3c62d7ff7b481b2da3055bc65099772bdbb87acf3f59294c325",
     "src/terraplan/scenario.py": "e86417faa9989d9fee44a62c839dd1890526cb0f35a84f74e506130ae8aa7b87",
-    "src/terraplan/web.py": "3bc05e43c11d7576b909634ccd1e9899d1a0ac2182ababa8d824f1958f175c21",
+    "src/terraplan/web.py": "03d83951143048e45c9234ff5e2cfece8467acd01cd25252a0c9d571c38e5e58",
     "experiments/provenance.py": "b93a6165b09944def59185cf8628180b4d0bc4449a6eb55109b1323bfffb22ca"
   },
   "output_sha256": {
@@ -123,7 +123,7 @@
     "comparison.csv": "c71bed1796e49738585e5faca039b84e690aaa5f8b2c26437eacfeee78b4862f",
     "price_exposure.csv": "f1edb63d451635ec291bf9005647c0bb24ae4fbf87304fa690d1186d2ec9f983",
     "price_overlay.csv": "25f643d9371703165832217c2a29593623a6dcc275a502cf240a9d157d706486",
-    "report.json": "5cd42680a09523fe99f8cc92a3d4edd0de7a6dfcc42b892b01bfddca2686f4f1",
+    "report.json": "292284a3b03bbc864817ad23278c6610fdc215678c5c895637efdfcd8703b899",
     "shock.yaml": "46f1b83a0ad2c50bfae4c098fc56e9ba6ea82d1759d688d9a7717ffb7e82fac0",
     "summary.md": "fefc4b6a14c23ffc71a627171a5c471c0efb31b8cc41c7633c459f462b1a4085",
     "yearly.csv": "d960b43a8a39e5c25416d6401d396173e400e85618d26904df774592f232d6af"

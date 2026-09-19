@@ -31,7 +31,7 @@
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "7acd89fa4c3ba3c62d7ff7b481b2da3055bc65099772bdbb87acf3f59294c325",
     "src/terraplan/scenario.py": "e86417faa9989d9fee44a62c839dd1890526cb0f35a84f74e506130ae8aa7b87",
-    "src/terraplan/web.py": "3bc05e43c11d7576b909634ccd1e9899d1a0ac2182ababa8d824f1958f175c21",
+    "src/terraplan/web.py": "03d83951143048e45c9234ff5e2cfece8467acd01cd25252a0c9d571c38e5e58",
     "experiments/provenance.py": "b93a6165b09944def59185cf8628180b4d0bc4449a6eb55109b1323bfffb22ca"
   },
   "output_sha256": {
@@ -172,7 +172,7 @@
     "physical_stock_delay_12m/source_schedule.csv": "08d4471f9891c2b2dc355f9dd645f6c77f3be892fe2358091ae634fe3034e239",
     "physical_stock_delay_12m/summary.md": "9e53a6e0307bcf4f749e325ce883a0b5142c95713526d13c02f12599e1833ba8",
     "physical_stock_delay_12m/yearly_balance.csv": "69670964a1de8ef6d2e4cb0c40421f9827d6102f1062acade5fcfca20d5288da",
-    "report.json": "1fd9500ffe50b16b47bdf9163fbfacf09627608186ca40c6eba433c604b2ee19",
+    "report.json": "8c7afc63c2a5edab83e2109657eab285e1171b1aacfe9d9ec19faaadf9701ff4",
     "sensitivity.csv": "58ac0497313b2af9a9ce1d8c75df10897b3168b5832a09c80aac66cffc5b499e",
     "sizing.csv": "c12de8dbbd83bb7be7aeb9d9c8a6b3cdfe0f0d368e3490bb52318984f10e61a3",
     "summary.md": "b8ed335fb4ef1b7ea81af362113fc02c1c66cd667c97e20685c151dc45593055",
