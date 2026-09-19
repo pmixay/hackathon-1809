@@ -21,12 +21,13 @@ python -m pip install -e ".[dev]"                # Python ≥ 3.10; pyyaml, open
 python -m terraplan ui                          # интерфейс оператора: http://127.0.0.1:8765, остановка Ctrl+C
 python -m pytest -q                             # 167 тестов, включая контрольные примеры организатора V01–V10 и verify всех каталогов results/
 python -m terraplan control-cases               # V01–V10: ПРОЙДЕН / НЕ ПРОЙДЕН
-python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE             --out results/demo_BASE
-python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
+python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario BASE             --out results/demo_BASE
+python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
 python -m terraplan compare results/demo_BASE results/demo_STRESS --out results/demo_compare
 python -m terraplan verify results/demo_BASE           # доказательство воспроизводимости: пересчёт и сравнение с выгрузкой
 python tests/independent_recalc.py results/demo_BASE    # независимый пересчёт только по CSV, без импорта движка
 python experiments/run_all.py                   # EXP-01 … EXP-10, перегенерирует results/ (EXP-10 — с фиксированным seed)
+python experiments/run_mcda.py                  # ранжирование стратегий R2 и четыре профиля стейкхолдеров
 ```
 
 Код выхода `run`: 0 — план исполним; 2 — есть жёсткие нарушения (печатаются с идентификатором правила, годом,
@@ -41,7 +42,7 @@ python experiments/run_all.py                   # EXP-01 … EXP-10, перег�
 
 ```python
 from terraplan.api import run_plan, compare_runs, list_scenarios, list_plans, case_summary
-r = run_plan("configs/plans/P3_isru_zbo.json", "MANDATORY_STRESS")          # или словарь плана; out_dir=... для выгрузки
+r = run_plan("configs/plans/P2z_earth_new_zbo.json", "MANDATORY_STRESS")   # или словарь плана; out_dir=... для выгрузки
 r["ok"], r["feasible"], r["kpi"]["pv_cost_mln"], r["violations"][0]["message"]
 run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"code": "PLAN_INVALID", "message": "... поле ... "}
 ```
@@ -52,10 +53,10 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
    инвестиции, график по источникам, полную матрицу проверок (каждое правило × год, выполненные и нарушенные) и нарушения;
    `results.xlsx` / `*.csv` / `export_envelope.json` содержат те же числа; `delivery_schedule.csv` — каждая поставка с датой
    размещения заказа, сроком поставки и пояснением.
-2. **Стандартный сценарий** — `configs/plans/P3_isru_zbo.json` в `BASE` (исполним, все проверки выполнены): `results/alternatives/P3_isru_zbo_BASE/`.
-3. **Обязательный стресс** — тот же план в `MANDATORY_STRESS` (`results/alternatives/P3_isru_zbo_MANDATORY_STRESS/`: RESERVE_45D нарушен в 2038–2040,
-   дефицит 170 т) и адаптированный план `configs/plans/P3_isru_zbo_adapted.json` (`results/stress/P3_isru_zbo_adapted_MANDATORY_STRESS/`: исполним).
-   Сравнение: `results/stress/compare_P3_isru_zbo.md`.
+2. **Выбранная стратегия в BASE** — `configs/plans/P2z_earth_new_zbo.json` (исполнима, все проверки выполнены): `results/alternatives/P2z_earth_new_zbo_BASE/`.
+3. **Обязательный стресс** — тот же P2z без изменения заказов (`results/alternatives/P2z_earth_new_zbo_MANDATORY_STRESS/`: RESERVE_45D нарушен в 2038–2040,
+   дефицит 95,917 т) и заблаговременно адаптированный `configs/plans/P2z_earth_new_zbo_adapted.json`
+   (`results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS/`: исполним, дефицит 0). Сравнение: `results/stress/compare_P2z_earth_new_zbo.md`.
 4. **Дополнительные тесты** — низкий/высокий спрос (`results/demand/`), свипы чувствительности и пороги (`results/sensitivity/summary.md`),
    реакция после наблюдения в стрессе (`results/reaction/`), обратный стресс, защитные меры, задержка Earth-New и Монте-Карло с seed
    (EXP-07–10: `results/reverse_stress/`, `results/protection_measures/`, `results/earth_new_delay/`, `results/monte_carlo/`),
@@ -104,7 +105,12 @@ ZBO нужна для соблюдения годового стрессовог
 ввод до 2038 — консервативная цель, движок проверяет годовое отношение потерь к поступлению. Для плана P3 без изменений спрос +5 %
 и недопоставка ISRU 5 % — первые неуспешные точки сетки, а не точные границы (`results/sensitivity/`). Планы, адаптированные к стрессу,
 в BASE переполняют хранилище (17/25/25 жёстких нарушений у P2z/P3/P4); универсальная робастная политика не продемонстрирована.
-Выбор между P2z и P3 — вопрос робастности, а не цены (см. `docs/management_note.md`).
+**Итоговый выбор для защиты — P2z с пересматриваемым, зависящим от сценария графиком заказов.**
+Он дороже P3 в BASE на 90,547 млн PV, но дешевле адаптированного P3 в обязательном стрессе на
+539,183 млн PV и требует на 890 млн меньше CAPEX. Воспроизводимый MCDA: `results/strategy/`;
+распределение договорных рисков: `docs/contract_strategy.md`; критерии стейкхолдеров 17–18:
+`docs/stakeholders.md`. Выбор ограничен горизонтом 2035–2040 и не означает, что один фиксированный
+заказной план проходит оба сценария (см. `docs/management_note.md`).
 
 ## Ограничения прототипа
 

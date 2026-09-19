@@ -232,7 +232,20 @@ python -m pytest -q tests/test_monte_carlo.py
   does not imply protection over the entire sampled 2% square. Early ZBO still assumes zero
   lag and retained throughput-loss savings. BASE overflow and adaptive policies remain separate.
 
-## To do (R3)
+## MCDA роли 2: итоговый выбор стратегии
+
+```bash
+python experiments/run_mcda.py
+```
+
+- **Жёсткий фильтр:** исполнимы BASE и проверенный адаптированный MANDATORY_STRESS; P1/P2 исключаются до взвешивания.
+- **Допущенное множество:** P2z, P3, P4. У всех адаптированных вариантов нет жёстких нарушений и сервис общий/критический равен 100%.
+- **Критерии:** PV BASE, PV адаптированного стресса, CAPEX, дефицит фиксированного плана в стрессе, доля мощности без TOP и обычная номинальная мощность.
+- **Метод:** min-max-нормирование внутри допущенного множества; аддитивные профили с весами из `configs/mcda_profiles.yaml`.
+- **Артефакты:** `results/strategy/mcda_metrics.csv`, `mcda_scores.csv`, `summary.md`. Входы читаются из существующих CSV результатов и справочника источников.
+- **Граница:** баллы — прозрачная помощь решению, а не вероятности, замена исполнимости или доказательство глобального оптимума.
+
+## Будущие исследования R3 (не требуются для финального выбора 2035–2040)
 
 - Reverse stress for alternative strategies (P3 baseline and protection measures: EXP-07/08 above).
 - Event-based Core availability, response policies and alternative-strategy Monte Carlo beyond EXP-10.

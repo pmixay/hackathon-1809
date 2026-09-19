@@ -45,7 +45,7 @@ assumption snapshots without changing numerical results. EXP-10 `--compare` chec
 outputs/manifests at the same recorded runtime versions; core export timestamps and semantic
 KPI hashes retain their own conventions. Full method: `experiments/README.md`.
 
-## To do (R3)
+## R3 status and future research
 
 - EXP-07 reverse stress, EXP-08 protection measures, EXP-09 Earth-New delay and EXP-10 Monte Carlo
   are implemented; see the authoritative protocols and `results/` summaries.

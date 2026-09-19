@@ -1,39 +1,39 @@
-# Budget and roadmap 2035–2040 (R2 selection: P2z; mln constant 2035 prices)
+# Бюджет и дорожная карта 2035–2040 (финальная стратегия P2z; млн в ценах 2035 года)
 
-## Selection and scope
+## Выбор и границы
 
-R2 selects **P2z (Earth-New + ZBO)** for the lowest PV cost of passing MANDATORY_STRESS
-after advance adaptation among the tested P2z/P3/P4 plans: **10 097.472 mln PV**, versus
-10 578.228 for P4 and 10 636.655 for P3 (EXP-02, `results/stress/summary.csv`).
-All three adapted plans pass that scenario without shortage or violations. P3 remains cheaper
-in BASE (EXP-01). This criterion-based selection is **not proof of universal robustness**.
+R2 выбирает **P2z (Earth-New + ZBO)**: среди проверенных P2z/P3/P4 он имеет минимальную PV
+прохождения MANDATORY_STRESS после заблаговременной адаптации — **10 097,472 млн**, против
+10 578,228 у P4 и 10 636,655 у P3 (EXP-02, `results/stress/summary.csv`). Все три адаптированных
+плана проходят сценарий без дефицита и нарушений. P3 остаётся дешевле в BASE (EXP-01).
+Выбор по этому критерию **не доказывает универсальную устойчивость**.
 
-BASE and stress-adapted budgets below represent different operating plans, not one online
-response policy. The fixed BASE P2z has 95.9174 t shortage and reserve/service violations in
-MANDATORY_STRESS; the stress-adapted P2z has 17 hard storage-overflow violations when run in BASE
-(EXP-02). A switching policy that passes both environments has not been verified.
+Бюджеты BASE и адаптированного стресса ниже относятся к разным операционным планам, а не к одной
+онлайн-политике реакции. Фиксированный P2z BASE в MANDATORY_STRESS имеет дефицит 95,9174 т и
+нарушения резерва/сервиса; адаптированный P2z при запуске в BASE даёт 17 жёстких переполнений
+(EXP-02). Политика переключения, проходящая обе среды, не проверена.
 
-## Investment timeline (published P2z plans)
+## Инвестиционный график (опубликованные планы P2z)
 
-| Date | Decision | Amount | Gate / condition | Owner |
+| Дата | Решение | Сумма | Ворота / условие | Ответственный |
 |---|---|---:|---|---|
-| 2035-01 | Earth-New option fee + exercise | 90 + 270 = 360 | G1: recorded payment dates; planned commissioning 2037-01 | FIN/OP |
-| 2037-01 | Earth-New commissioning | — | G2: check readiness against the published schedule; delay consequences are isolated in EXP-09 | OP |
-| 2037-07 | ZBO modernization and commissioning | 180 | G3: zero commissioning lag assumed in the published plans; fixed OPEX 6 in 2037, then 12/yr | OP |
-| 2038–2040 | operate the selected scenario-specific order/reservation schedule | see annual budgets | G4: check reserve as well as service; an advance-adapted schedule is not a tested reactive policy | OP |
-| End of 2040 | review supply continuity beyond the study horizon | not calculated | G5: no validated 2041+ continuation budget in EXP-01/02/09 | OP/FIN |
+| 2035-01 | опцион Earth-New + реализация | 90 + 270 = 360 | G1: закрепить этапы, приёмку и меры; плановый ввод 2037-01 | FIN/OP |
+| 2037-01 | ввод Earth-New | — | G2: принять доступную мощность до TOP; любая задержка запускает пересчёт резерва по EXP-09 | OP/SUP |
+| 2037-07 | модернизация и ввод ZBO | 180 | G3: приёмка по ёмкости/потерям; лаг ввода принят 0; OPEX 6 в 2037, затем 12/год | OP/SUP |
+| 2038–2040 | исполнять выбранный для сценария график заказов/резерва | см. годовые бюджеты | G4: годовой прогноз до 12-месячного окна Core и квартальный пересмотр Flex; проверять резерв и сервис | OP |
+| конец 2040 | пересмотр непрерывности за горизонтом | не рассчитано | G5: сравнивать ISRU/расширение только с новыми данными спроса, зрелости и договоров 2041+ | OP/FIN |
 
-Dates and investment amounts: `results/alternatives/P2z_earth_new_zbo_BASE/investments.csv`;
-annual investment payments in EXP-02 are unchanged. Cumulative P2z CAPEX is **540** by 2037
-and remains 540 through 2040; both published plans pass the CAPEX checks. Owners/gates above
-are management checkpoints, not simulated contingency actions.
+Даты и суммы: `results/alternatives/P2z_earth_new_zbo_BASE/investments.csv`; годовые инвестиционные
+платежи EXP-02 не меняются. Накопленный CAPEX P2z равен **540** к 2037 году и остаётся таким до
+2040; оба опубликованных плана проходят лимиты. Ответственные/ворота — управленческие контрольные
+точки, а не смоделированные аварийные действия.
 
-## Annual budget: P2z BASE (EXP-01)
+## Годовой бюджет: P2z BASE (EXP-01)
 
-Source: `results/alternatives/P2z_earth_new_zbo_BASE/financial_breakdown.csv`;
-totals: `results/alternatives/summary.csv`. Values shown to one decimal; rounding may affect sums.
+Источник: `results/alternatives/P2z_earth_new_zbo_BASE/financial_breakdown.csv`; итоги:
+`results/alternatives/summary.csv`. Показан один знак; округление может влиять на суммы.
 
-| Year | Procurement | Reservation | Holding | Fixed OPEX | CAPEX | Total | PV @ 8 % |
+| Год | Закупка | Резервирование | Хранение | Пост. OPEX | CAPEX | Итого | PV @ 8% |
 |---:|---:|---:|---:|---:|---:|---:|---:|
 | 2035 | 796.1 | 51.4 | 10.7 | 0.0 | 360.0 | 1 218.2 | 1 218.2 |
 | 2036 | 948.9 | 68.9 | 14.6 | 0.0 | 0.0 | 1 032.4 | 956.0 |
@@ -43,12 +43,12 @@ totals: `results/alternatives/summary.csv`. Values shown to one decimal; roundin
 | 2040 | 2 766.2 | 135.7 | 34.6 | 12.0 | 0.0 | 2 948.5 | 2 006.7 |
 | **Σ** | 9 683.8 | 578.8 | 135.7 | 42.0 | 540.0 | 10 980.3 | 8 729.4 |
 
-## Annual budget: P2z adapted to MANDATORY_STRESS (EXP-02)
+## Годовой бюджет: P2z, адаптированный к MANDATORY_STRESS (EXP-02)
 
-Source: `results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS/financial_breakdown.csv`;
-totals: `results/stress/summary.csv`. Same rounding convention as above.
+Источник: `results/stress/P2z_earth_new_zbo_adapted_MANDATORY_STRESS/financial_breakdown.csv`;
+итоги: `results/stress/summary.csv`. Округление то же.
 
-| Year | Procurement | Reservation | Holding | Fixed OPEX | CAPEX | Total | PV @ 8 % |
+| Год | Закупка | Резервирование | Хранение | Пост. OPEX | CAPEX | Итого | PV @ 8% |
 |---:|---:|---:|---:|---:|---:|---:|---:|
 | 2035 | 796.1 | 51.4 | 10.7 | 0.0 | 360.0 | 1 218.2 | 1 218.2 |
 | 2036 | 948.9 | 68.9 | 14.6 | 0.0 | 0.0 | 1 032.4 | 956.0 |
@@ -58,31 +58,35 @@ totals: `results/stress/summary.csv`. Same rounding convention as above.
 | 2040 | 3 080.0 | 141.0 | 31.3 | 12.0 | 0.0 | 3 264.3 | 2 221.6 |
 | **Σ** | 11 482.3 | 604.8 | 142.5 | 42.0 | 540.0 | 12 811.6 | 10 097.5 |
 
-## Decision points
+## Точки решения
 
-- **DP-1 (2035-01): Earth-New commitment.** The selected published P2z pays both the option fee
-  and exercise cost at this date, with commissioning planned for 2037-01 (EXP-01).
-- **DP-2 (2037-01): Earth-New readiness.** EXP-09 shifts commissioning by 3/6/12 months to
-  2037-04 / 2037-07 / 2038-01. In fixed P2z under BASE, all three delays preserve 100% total
-  and critical service but violate the reserve in 2038–2040; the first availability violation
-  is at the missed delivery slot in 2037-01. Readiness is therefore a reserve-risk checkpoint,
-  not merely a service check.
-- **DP-3 (2037-07): ZBO investment.** Retain the published 180 payment and commissioning date;
-  the budgets assume zero commissioning lag (EXP-01/02).
-- **DP-4 (advance preparation for 2038–2040): orders and stock.** EXP-02's adapted P2z budget
-  already differs from BASE in 2037. Adaptation must not be described as a response implemented
-  only after stress observation. The experiments do not establish an information-at-order-date
-  switching rule or its cost; using the adapted schedule unchanged in BASE causes overflow.
+- **DP-1 (2035-01): обязательство Earth-New.** Выбранный P2z платит опцион и реализацию в эту дату;
+  ввод планируется на 2037-01 (EXP-01).
+- **DP-2 (2037-01): готовность Earth-New.** EXP-09 сдвигает ввод на 3/6/12 месяцев — до
+  2037-04 / 2037-07 / 2038-01. В фиксированном P2z BASE все задержки сохраняют 100% общего и
+  критического сервиса, но нарушают резерв в 2038–2040; первое нарушение доступности возникает
+  в пропущенном слоте 2037-01. Это ворота риска резерва, а не только проверка сервиса.
+- **DP-3 (2037-07): инвестиция ZBO.** Сохранить опубликованные платёж 180 и дату ввода;
+  бюджеты предполагают нулевой лаг (EXP-01/02).
+- **DP-4 (заблаговременно до 2038–2040): заказы и запас.** Адаптированный бюджет EXP-02
+  отличается от BASE уже в 2037 году. Его нельзя описывать как реакцию только после наблюдения
+  стресса. Эксперименты не задают проверенное правило переключения по информации в дату заказа
+  и его цену; неизменный адаптированный график переполняет склад в BASE.
 
-## Residual risk and budget limits
+## Остаточный риск и границы бюджета
 
-EXP-09 freezes original CAPEX dates, orders, reservations and monthly delivery slots. Missed
-Earth-New slots are lost, with no automatic catch-up or substitution; ordered fuel remains payable.
-The lower reported cost under delay is not a risk benefit: holding costs fall and reservation fees
-are prorated. Delay damages, refunds and recovery orders are not priced. These BASE delay runs
-are separate from EXP-02's mandatory stress and do not establish combined-shock protection.
-Source: `results/earth_new_delay/summary.md` and `comparison.csv`.
+EXP-09 фиксирует исходные даты CAPEX, заказы, резерв и месячные слоты. Пропущенные слоты Earth-New
+теряются без автоматического наверстывания/замены; заказанное топливо остаётся оплачиваемым. Меньшая
+расчётная стоимость при задержке — не выгода: падают хранение и пропорциональная плата за резерв.
+Неустойки, возвраты и восстановительные заказы не оценены. Эти BASE-прогоны отделены от обязательного
+стресса EXP-02 и не доказывают защиту от комбинированного шока. Источник:
+`results/earth_new_delay/summary.md` и `comparison.csv`.
 
-R3 supplies the published cost, resilience and risk evidence; R2 selects P2z under the stated
-cost criterion. The roadmap does not claim a universally robust plan, a validated reactive
-policy or a funded continuation beyond 2040.
+R3 предоставляет доказательства стоимости, устойчивости и риска; R2 выбирает P2z по заявленному
+критерию стоимости. Дорожная карта не заявляет универсально робастный план, проверенную реактивную
+политику или профинансированное продолжение после 2040 года.
+
+Точный адаптированный P2z имеет лишь 0,000469 т сверх резерва января 2040 года и без изменения
+не проходит BASE из-за переполнения. Поэтому карта определяет время решения и владельца риска,
+а не заявляет, что один фиксированный график устойчив во всех состояниях. Пункты договора, меры и
+сторона с остаточным риском указаны в `docs/contract_strategy.md`; их цена не включена в EXP-01/02/09.
