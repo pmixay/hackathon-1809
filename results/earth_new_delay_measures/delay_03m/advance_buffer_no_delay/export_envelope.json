@@ -179,19 +179,30 @@
    },
    "storage_capacity_check": {
     "scope": "блок 5 «Проверки»: ёмкость хранилища",
-    "value": "end_of_month_hard_peak_warning",
+    "value": "end_of_month_and_intra_month_peak_hard",
     "unit": "перечисление",
     "status": "TEAM_ASSUMPTION",
     "range": null,
-    "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
+    "justification": "Оба превышения ёмкости — жёсткие нарушения. Проверяется запас на конец месяца и расчётный пик внутри месяца при заявленном дроблении поставок (intra_month_delivery_batches): физическая исполнимость плана доказывается графиком поступлений, а не пометкой допущения."
+   },
+   "intra_month_delivery_batches": {
+    "scope": "блок 3 «Помесячный баланс» и блок 5 «Проверки»: дробление месячной поставки внутри месяца",
+    "value": 1,
+    "unit": "партий в месяц",
+    "status": "TEAM_ASSUMPTION",
+    "range": [
+     1,
+     4
+    ],
+    "justification": "Месячный объём канала приходит N равными партиями, равномерно распределёнными по месяцу, при равномерной выдаче потребителям (конвенция организатора). Пик запаса после партии j равен I_нач + (j·нетто − (j−1)·выдача)/N, максимум берётся по j = 1..N. При N = 1 это запас сразу после единственного поступления, до выдачи, — консервативный край без допущения о внутримесячной синхронизации поставок и выдачи. При N → ∞ пик стремится к max(запас на начало, запас на конец). Выбрано N = 1: организатор не задаёт размер отдельной партии, и ни один принятый план команды не нуждается в дроблении. Чувствительность к N = 2 и N = 4 показана в results/intra_month/intra_month_capacity.md."
    },
    "emergency_reserve_equivalence": {
     "scope": "блок 5 «Проверки»: эквивалентность контрактного резерва физическому",
-    "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+    "value": "contracted_batch_schedule_and_waiting_cover",
     "unit": "правило",
     "status": "TEAM_ASSUMPTION",
     "range": null,
-    "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
+    "justification": "Договорный аварийный резерв засчитывается только при одновременном выполнении пяти условий, каждое из которых печатается отдельной строкой в contract_reserve_proof: (1) канал доступен в этом году; (2) договорный срок исполнения партии не быстрее срока поставки канала по данным организатора; (3) нетто-объём гарантированной партии после потерь хранилища >= R_y; (4) зарезервированная мощность канала за вычетом обычных заказов года >= партия × число активаций; (5) физический запас на начало года покрывает спрос за время активации плюс срок исполнения. Сам по себе лимит мощности канала (80 т/год) эквивалентности не доказывает. Если блок inventory_policy.emergency_contract не задан, эквивалентность не доказана и действует физический резерв. Правило следует кейсу, §«Начальный запас и резерв»."
    },
    "opening_stock_reservation_years": {
     "scope": "блок 4 «Контракты и финансы»: плата за резерв подготовительного периода",
@@ -205,15 +216,15 @@
     "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
    },
    "prep_period_holding_charged": {
-    "scope": "блок 3 «Помесячный баланс»: начало начисления хранения",
-    "value": false,
+    "scope": "блок 3 «Помесячный баланс» и блок 4: хранение начального запаса в подготовительном периоде",
+    "value": true,
     "unit": "логическое",
     "status": "TEAM_ASSUMPTION",
     "range": [
      true,
      false
     ],
-    "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
+    "justification": "Хранение начального запаса начисляется с фактического месяца поставки, а не с 2035-01: ранняя поставка начального запаса не хранится бесплатно. Правило то же, что и в основном периоде (трапеция): в месяц поставки средний запас равен половине поступления, в каждый последующий месяц подготовительного периода — полному нетто-запасу. Расход относится на первый финансовый год (2035), как закупка и плата за резерв подготовительного периода. Значение false выключает начисление и оставлено только для сопоставления с прежней версией расчёта."
    },
    "intra_year_demand_profile": {
     "scope": "блок 3 «Помесячный баланс»: распределение спроса внутри года",
@@ -1210,6 +1221,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 12.739824000000004,
    "holding_cost_mln": 0.7520604900000002,
+   "peak_stock_t": 21.073157333333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1233,6 +1246,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 13.150789000000005,
    "holding_cost_mln": 0.7767183900000002,
+   "peak_stock_t": 21.48412233333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1256,6 +1271,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 13.561754000000006,
    "holding_cost_mln": 0.8013762900000003,
+   "peak_stock_t": 21.89508733333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1279,6 +1296,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 13.972719000000007,
    "holding_cost_mln": 0.8260341900000004,
+   "peak_stock_t": 22.30605233333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1302,6 +1321,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 14.383684000000008,
    "holding_cost_mln": 0.8506920900000003,
+   "peak_stock_t": 22.71701733333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1325,6 +1346,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 14.794649000000009,
    "holding_cost_mln": 0.8753499900000005,
+   "peak_stock_t": 23.127982333333343,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1348,6 +1371,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 15.20561400000001,
    "holding_cost_mln": 0.9000078900000005,
+   "peak_stock_t": 23.538947333333343,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1371,6 +1396,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 15.61657900000001,
    "holding_cost_mln": 0.9246657900000006,
+   "peak_stock_t": 23.949912333333344,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1394,6 +1421,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 16.027544000000013,
    "holding_cost_mln": 0.9493236900000007,
+   "peak_stock_t": 24.360877333333345,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1417,6 +1446,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 16.438509000000018,
    "holding_cost_mln": 0.973981590000001,
+   "peak_stock_t": 24.771842333333346,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1440,6 +1471,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 16.849474000000022,
    "holding_cost_mln": 0.9986394900000012,
+   "peak_stock_t": 25.18280733333335,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1463,6 +1496,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 17.260439000000027,
    "holding_cost_mln": 1.0232973900000013,
+   "peak_stock_t": 25.593772333333355,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1486,6 +1521,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 17.774144750000026,
    "holding_cost_mln": 1.0510375125000015,
+   "peak_stock_t": 29.44081141666669,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1509,6 +1546,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 18.287850500000026,
    "holding_cost_mln": 1.0818598575000016,
+   "peak_stock_t": 29.95451716666669,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1532,6 +1571,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 18.801556250000026,
    "holding_cost_mln": 1.1126822025000014,
+   "peak_stock_t": 30.46822291666669,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1555,6 +1596,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 19.315262000000025,
    "holding_cost_mln": 1.1435045475000016,
+   "peak_stock_t": 30.98192866666669,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1578,6 +1621,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 19.828967750000025,
    "holding_cost_mln": 1.1743268925000014,
+   "peak_stock_t": 31.49563441666669,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1601,6 +1646,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 20.342673500000032,
    "holding_cost_mln": 1.2051492375000017,
+   "peak_stock_t": 32.00934016666669,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1624,6 +1671,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 20.85637925000004,
    "holding_cost_mln": 1.235971582500002,
+   "peak_stock_t": 32.523045916666696,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1647,6 +1696,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 21.370085000000046,
    "holding_cost_mln": 1.2667939275000026,
+   "peak_stock_t": 33.0367516666667,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1670,6 +1721,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 21.883790750000053,
    "holding_cost_mln": 1.2976162725000029,
+   "peak_stock_t": 33.55045741666671,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1693,6 +1746,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 22.39749650000006,
    "holding_cost_mln": 1.3284386175000034,
+   "peak_stock_t": 34.06416316666672,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1716,6 +1771,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 22.911202250000066,
    "holding_cost_mln": 1.3592609625000038,
+   "peak_stock_t": 34.57786891666672,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1739,6 +1796,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 26.574498000000062,
    "holding_cost_mln": 1.4845710075000038,
+   "peak_stock_t": 38.241164666666734,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666,
    "inflow_B_t": 3.298
   },
@@ -1763,6 +1822,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 26.911558916666728,
    "holding_cost_mln": 1.6045817075000037,
+   "peak_stock_t": 42.74489225000006,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1787,6 +1848,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 27.248619833333393,
    "holding_cost_mln": 1.6248053625000036,
+   "peak_stock_t": 43.08195316666673,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1811,6 +1874,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 27.58568075000006,
    "holding_cost_mln": 1.6450290175000035,
+   "peak_stock_t": 43.419014083333394,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1835,6 +1900,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 27.922741666666724,
    "holding_cost_mln": 1.6652526725000032,
+   "peak_stock_t": 43.75607500000006,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1859,6 +1926,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 28.25980258333339,
    "holding_cost_mln": 1.6854763275000033,
+   "peak_stock_t": 44.093135916666725,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1883,6 +1952,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 28.596863500000055,
    "holding_cost_mln": 1.7056999825000032,
+   "peak_stock_t": 44.43019683333339,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1907,6 +1978,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 29.49269196666672,
    "holding_cost_mln": 1.7426866640000032,
+   "peak_stock_t": 45.326025300000055,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1931,6 +2004,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 30.388520433333383,
    "holding_cost_mln": 1.796436372000003,
+   "peak_stock_t": 46.22185376666672,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1955,6 +2030,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 31.284348900000047,
    "holding_cost_mln": 1.850186080000003,
+   "peak_stock_t": 47.11768223333338,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -1979,6 +2056,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 32.18017736666671,
    "holding_cost_mln": 1.9039357880000027,
+   "peak_stock_t": 48.01351070000005,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -2003,6 +2082,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 33.076005833333376,
    "holding_cost_mln": 1.9576854960000027,
+   "peak_stock_t": 48.90933916666671,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -2027,6 +2108,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 33.97183430000004,
    "holding_cost_mln": 2.0114352040000023,
+   "peak_stock_t": 49.805167633333376,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 1.0990166666666668
   },
@@ -2051,6 +2134,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 34.69101290000005,
    "holding_cost_mln": 2.0598854160000024,
+   "peak_stock_t": 55.524346233333375,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2075,6 +2160,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 35.41019150000005,
    "holding_cost_mln": 2.103036132000003,
+   "peak_stock_t": 56.24352483333338,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2099,6 +2186,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 36.12937010000006,
    "holding_cost_mln": 2.1461868480000033,
+   "peak_stock_t": 56.96270343333339,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2123,6 +2212,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 36.848548700000066,
    "holding_cost_mln": 2.1893375640000037,
+   "peak_stock_t": 57.681882033333395,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2147,6 +2238,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 37.56772730000007,
    "holding_cost_mln": 2.232488280000004,
+   "peak_stock_t": 58.4010606333334,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2171,6 +2264,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 38.28690590000008,
    "holding_cost_mln": 2.2756389960000045,
+   "peak_stock_t": 59.12023923333341,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2195,6 +2290,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 39.006084500000085,
    "holding_cost_mln": 2.318789712000005,
+   "peak_stock_t": 59.839417833333414,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2219,6 +2316,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 39.72526310000009,
    "holding_cost_mln": 2.3619404280000054,
+   "peak_stock_t": 60.55859643333342,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2243,6 +2342,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 40.4444417000001,
    "holding_cost_mln": 2.405091144000006,
+   "peak_stock_t": 61.27777503333343,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2267,6 +2368,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 41.163620300000105,
    "holding_cost_mln": 2.448241860000006,
+   "peak_stock_t": 61.99695363333343,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2291,6 +2394,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 41.88279890000011,
    "holding_cost_mln": 2.4913925760000066,
+   "peak_stock_t": 62.71613223333344,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2315,6 +2420,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 42.60197750000012,
    "holding_cost_mln": 2.534543292000007,
+   "peak_stock_t": 63.435310833333446,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 5.98095
   },
@@ -2339,6 +2446,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 43.32115590000012,
    "holding_cost_mln": 2.577694002000007,
+   "peak_stock_t": 69.98782256666678,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2364,6 +2473,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 44.040334300000126,
    "holding_cost_mln": 2.6208447060000073,
+   "peak_stock_t": 70.70700096666678,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2389,6 +2500,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 44.75951270000013,
    "holding_cost_mln": 2.6639954100000076,
+   "peak_stock_t": 71.42617936666679,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2414,6 +2527,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 45.478691100000134,
    "holding_cost_mln": 2.707146114000008,
+   "peak_stock_t": 72.14535776666679,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2439,6 +2554,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 46.19786950000014,
    "holding_cost_mln": 2.750296818000008,
+   "peak_stock_t": 72.8645361666668,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2464,6 +2581,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 46.91704790000014,
    "holding_cost_mln": 2.793447522000008,
+   "peak_stock_t": 73.5837145666668,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2489,6 +2608,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 47.636226300000146,
    "holding_cost_mln": 2.8365982260000084,
+   "peak_stock_t": 74.3028929666668,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2514,6 +2635,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 48.35540470000015,
    "holding_cost_mln": 2.8797489300000088,
+   "peak_stock_t": 75.02207136666681,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2539,6 +2662,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 49.074583100000154,
    "holding_cost_mln": 2.922899634000009,
+   "peak_stock_t": 75.74124976666681,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2564,6 +2689,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 49.79376150000016,
    "holding_cost_mln": 2.9660503380000094,
+   "peak_stock_t": 76.46042816666682,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2589,6 +2716,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 50.51293990000016,
    "holding_cost_mln": 3.0092010420000097,
+   "peak_stock_t": 77.17960656666682,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2614,6 +2743,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.23211830000017,
    "holding_cost_mln": 3.05235174600001,
+   "peak_stock_t": 77.89878496666682,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 1.0518
@@ -2639,6 +2770,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.232123066666844,
    "holding_cost_mln": 3.0739272410000105,
+   "peak_stock_t": 83.73212306666684,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2664,6 +2797,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.23212783333352,
    "holding_cost_mln": 3.073927527000011,
+   "peak_stock_t": 83.73212783333352,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2689,6 +2824,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.2321326000002,
    "holding_cost_mln": 3.0739278130000116,
+   "peak_stock_t": 83.7321326000002,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2714,6 +2851,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.232137366666876,
    "holding_cost_mln": 3.073928099000012,
+   "peak_stock_t": 83.73213736666688,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2739,6 +2878,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.232142133333554,
    "holding_cost_mln": 3.0739283850000128,
+   "peak_stock_t": 83.73214213333355,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2764,6 +2905,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.23214690000023,
    "holding_cost_mln": 3.0739286710000133,
+   "peak_stock_t": 83.73214690000023,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2789,6 +2932,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.23215166666691,
    "holding_cost_mln": 3.073928957000014,
+   "peak_stock_t": 83.73215166666691,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2814,6 +2959,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.232156433333586,
    "holding_cost_mln": 3.0739292430000145,
+   "peak_stock_t": 83.73215643333359,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2839,6 +2986,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.23216120000026,
    "holding_cost_mln": 3.0739295290000155,
+   "peak_stock_t": 83.73216120000026,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2864,6 +3013,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.23216596666694,
    "holding_cost_mln": 3.073929815000016,
+   "peak_stock_t": 83.73216596666694,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2889,6 +3040,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.23217073333362,
    "holding_cost_mln": 3.0739301010000166,
+   "peak_stock_t": 83.73217073333362,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2914,6 +3067,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.232175500000295,
    "holding_cost_mln": 3.073930387000017,
+   "peak_stock_t": 83.7321755000003,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_C_t": 10.833333333333334,
    "inflow_B_t": 6.2280750000000005
@@ -2926,12 +3081,12 @@
    "year": 2035,
    "procurement_mln": 796.12842,
    "reservation_mln": 51.38067,
-   "holding_mln": 10.652147280000007,
+   "holding_mln": 11.022013050000007,
    "fixed_opex_mln": 0.0,
    "capex_mln": 360.0,
-   "total_mln": 1218.16123728,
+   "total_mln": 1218.5311030500002,
    "discount_factor": 1.0,
-   "pv_total_mln": 1218.16123728,
+   "pv_total_mln": 1218.5311030500002,
    "cumulative_capex_mln": 360.0,
    "take_or_pay_topup_mln": 0.0
   },
@@ -3014,16 +3169,16 @@
  "constraint_checks": [],
  "risk_register": [],
  "kpi": {
-  "total_cost_mln": 11019.267073078001,
-  "pv_cost_mln": 8764.081829858931,
+  "total_cost_mln": 11019.636938848002,
+  "pv_cost_mln": 8764.45169562893,
   "discount_rate_real": 0.08,
   "demand_total_t": 1390.0,
   "served_total_t": 1390.0,
   "served_critical_t": 950.0,
   "shortage_total_t": 0.0,
   "shortage_critical_t": 0.0,
-  "cost_per_served_t_mln": 7.92753026840144,
-  "pv_cost_per_served_t_mln": 6.30509484162513,
+  "cost_per_served_t_mln": 7.927796358883454,
+  "pv_cost_per_served_t_mln": 6.305360932107144,
   "min_service_level_total": 1.0,
   "min_service_level_critical": 1.0,
   "losses_total_t": 29.640583499999998,
@@ -3031,18 +3186,20 @@
   "capex_total_mln": 540.0,
   "procurement_total_mln": 9713.105590000001,
   "reservation_total_mln": 579.34092,
-  "holding_total_mln": 144.8205630780004,
+  "holding_total_mln": 145.1904288480004,
   "fixed_opex_total_mln": 42.0,
   "take_or_pay_idle_t": 0.0,
   "take_or_pay_topup_mln": 0.0,
   "opening_inventory_t": 12.328859000000001,
   "closing_inventory_t": 51.232175500000295,
+  "prep_holding_mln": 0.36986577000000004,
+  "prep_holding_months": 1,
   "hard_violations": 0,
   "guideline_violations": 0,
   "warnings": 0,
   "feasible": true,
-  "checks_total": 77,
-  "checks_passed": 77
+  "checks_total": 83,
+  "checks_passed": 83
  },
  "investments": [
   {
@@ -3072,6 +3229,6 @@
    "note": ""
   }
  ],
- "generated_at": "2026-09-19T18:16:49+00:00",
+ "generated_at": "2026-09-19T19:25:48+00:00",
  "terraplan_version": "0.1.0"
 }

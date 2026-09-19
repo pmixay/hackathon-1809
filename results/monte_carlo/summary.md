@@ -8,17 +8,17 @@ TEAM_ASSUMPTION distributions, not calibrated probabilities. All three plans use
 
 | Variant | PV, mln | Extra PV, mln | Passes |
 |---|---:|---:|---|
-| without_measure | 10636.654888 | 0.000000 | True |
-| physical_stock | 10720.322714 | 83.667825 | True |
-| early_zbo_plus_stock | 10686.112922 | 49.458033 | True |
+| without_measure | 10637.024754 | 0.000000 | True |
+| physical_stock | 10720.692579 | 83.667825 | True |
+| early_zbo_plus_stock | 10686.482788 | 49.458033 | True |
 
 ## independent
 
 | Variant | Failures / N | Failure % (95% Wilson) | Reduction, pp | Mean extra PV, mln | Mean PV | PV P5 / P50 / P95 |
 |---|---:|---:|---:|---:|---:|---|
-| without_measure | 10000 / 10000 | 100.00% (99.96%, 100.00%) | 0.00 | 0.000000 | 10630.710896 | 10309.413 / 10630.522 / 10950.967 |
-| physical_stock | 4943 / 10000 | 49.43% (48.45%, 50.41%) | 50.57 | 83.662413 | 10714.373309 | 10393.081 / 10714.190 / 11034.635 |
-| early_zbo_plus_stock | 4959 / 10000 | 49.59% (48.61%, 50.57%) | 50.41 | 49.452621 | 10680.163517 | 10358.871 / 10679.980 / 11000.425 |
+| without_measure | 10000 / 10000 | 100.00% (99.96%, 100.00%) | 0.00 | 0.000000 | 10631.080761 | 10309.783 / 10630.892 / 10951.337 |
+| physical_stock | 4943 / 10000 | 49.43% (48.45%, 50.41%) | 50.57 | 83.662413 | 10714.743174 | 10393.450 / 10714.560 / 11035.005 |
+| early_zbo_plus_stock | 4959 / 10000 | 49.59% (48.61%, 50.57%) | 50.41 | 49.452621 | 10680.533382 | 10359.241 / 10680.350 / 11000.795 |
 
 | Variant | Reserve failure % | Service failure % | Shortage % | Max shortage, t | Worst annual total / critical service | Max reserve gap, t |
 |---|---:|---:|---:|---:|---|---:|
@@ -37,9 +37,9 @@ First failure (simultaneous causes kept together):
 
 | Variant | Failures / N | Failure % (95% Wilson) | Reduction, pp | Mean extra PV, mln | Mean PV | PV P5 / P50 / P95 |
 |---|---:|---:|---:|---:|---:|---|
-| without_measure | 9999 / 10000 | 99.99% (99.94%, 100.00%) | 0.00 | 0.000000 | 10630.717432 | 10309.257 / 10630.313 / 10951.027 |
-| physical_stock | 4987 / 10000 | 49.87% (48.89%, 50.85%) | 50.12 | 83.653749 | 10714.371181 | 10392.925 / 10713.981 / 11034.695 |
-| early_zbo_plus_stock | 5003 / 10000 | 50.03% (49.05%, 51.01%) | 49.96 | 49.443957 | 10680.161389 | 10358.715 / 10679.771 / 11000.485 |
+| without_measure | 9999 / 10000 | 99.99% (99.94%, 100.00%) | 0.00 | 0.000000 | 10631.087298 | 10309.627 / 10630.683 / 10951.397 |
+| physical_stock | 4987 / 10000 | 49.87% (48.89%, 50.85%) | 50.12 | 83.653749 | 10714.741047 | 10393.295 / 10714.351 / 11035.065 |
+| early_zbo_plus_stock | 5003 / 10000 | 50.03% (49.05%, 51.01%) | 49.96 | 49.443957 | 10680.531255 | 10359.085 / 10680.141 / 11000.855 |
 
 | Variant | Reserve failure % | Service failure % | Shortage % | Max shortage, t | Worst annual total / critical service | Max reserve gap, t |
 |---|---:|---:|---:|---:|---|---:|

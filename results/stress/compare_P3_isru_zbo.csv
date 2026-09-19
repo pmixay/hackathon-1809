@@ -1,8 +1,8 @@
 section,metric,year,a,b,delta,label_a,label_b
-kpi,total_cost_mln,,11167.303284,13291.585494,2124.282210,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
-kpi,pv_cost_mln,,9031.624801,10636.654888,1605.030087,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
-kpi,cost_per_served_t_mln,,8.187277,8.664658,0.477381,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
-kpi,pv_cost_per_served_t_mln,,6.621510,6.933934,0.312424,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
+kpi,total_cost_mln,,11167.673149,13291.955359,2124.282210,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
+kpi,pv_cost_mln,,9031.994667,10637.024754,1605.030087,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
+kpi,cost_per_served_t_mln,,8.187548,8.664899,0.477351,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
+kpi,pv_cost_per_served_t_mln,,6.621782,6.934175,0.312394,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 kpi,served_total_t,,1363.982586,1534.000000,170.017414,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 kpi,shortage_total_t,,170.017414,0.000000,-170.017414,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 kpi,shortage_critical_t,,0.000000,0.000000,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
@@ -81,11 +81,11 @@ yearly,"Запас на конец, т",2040,0.000000,21.754990,21.754990,P3_isr
 yearly,"45-дневный резерв, т",2040,55.294521,55.294521,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 finance,"Закупка, млн",2035,796.128420,796.128420,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 finance,"Резервирование, млн",2035,51.380670,51.380670,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
-finance,"Хранение, млн",2035,10.652147,10.652147,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
+finance,"Хранение, млн",2035,11.022013,11.022013,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 finance,"Постоянный OPEX, млн",2035,0.000000,0.000000,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 finance,"CAPEX, млн",2035,0.000000,0.000000,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
-finance,"Итого, млн",2035,858.161237,858.161237,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
-finance,"PV итого, млн",2035,858.161237,858.161237,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
+finance,"Итого, млн",2035,858.531103,858.531103,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
+finance,"PV итого, млн",2035,858.531103,858.531103,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 finance,"Закупка, млн",2036,948.921160,948.921160,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 finance,"Резервирование, млн",2036,68.873400,68.873400,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS
 finance,"Хранение, млн",2036,14.646725,14.646725,0.000000,P3_isru_zbo без изменений/STRESS,P3_isru_zbo адаптированный/STRESS

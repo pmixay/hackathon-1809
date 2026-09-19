@@ -8,6 +8,8 @@
   "actual_delivery_share": null,
   "loss_ceiling": {},
   "demand_variant": "base",
+  "rule_scenario_id": null,
+  "rule_set_id": "TEAM_2041_SOURCE_X",
   "enforce_service_thresholds": null,
   "notes": [],
   "changes": [

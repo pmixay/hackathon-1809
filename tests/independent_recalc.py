@@ -26,11 +26,36 @@ def recalc(result_dir: Path, case_dir: Path) -> list[str]:
     yearly = {int(r["year"]): r for r in rows(result_dir / "yearly_balance.csv")}
     sched = rows(result_dir / "source_schedule.csv")
     fin = {int(r["year"]): r for r in rows(result_dir / "financial_breakdown.csv")}
+    checks = rows(result_dir / "constraint_checks.csv")
     sources = {r["source_id"]: r for r in rows(case_dir / "supply_sources.csv")}
     assumptions = {r["key"]: json.loads(r["value"]) for r in rows(result_dir / "assumptions.csv")}
     r = float(assumptions["discount_rate_real"]); t0 = int(assumptions["discount_t0_year"])
     offset = {"start": 0.0, "mid": 0.5, "end": 1.0}[assumptions.get("discount_timing", "start")]
     paid_on_order = bool(assumptions.get("undelivered_volume_paid", True))
+    batches = max(1, int(assumptions.get("intra_month_delivery_batches", 1)))
+
+    # 0. preparatory period: the initial stock is stored from its actual delivery month, not for free.
+    # Re-derived here from the storage rate in the case CSV and the exported prep trace, independently
+    # of the engine: same trapezoid rule as inside the horizon, charged to the first financial year.
+    storage = {r["storage_id"]: r for r in rows(case_dir / "storage_options.csv")}
+    prep_path = result_dir / "preparatory_period.csv"
+    prep_rows = rows(prep_path) if prep_path.exists() and prep_path.read_text(encoding="utf-8").strip() else []
+    prep_holding = 0.0
+    prev_close = 0.0
+    for pr in prep_rows:
+        rate = float(storage[pr["storage_mode"]]["holding_cost_mln_per_t_year"])
+        opening, arrived, closing = (float(pr[k]) for k in ("opening_t", "arrived_t", "closing_t"))
+        if abs(opening + arrived - closing) > TOL:
+            problems.append(f"prep {pr['month']}: {opening} + {arrived} != {closing}")
+        if abs(opening - prev_close) > TOL:
+            problems.append(f"prep {pr['month']}: opening {opening} does not continue previous closing {prev_close}")
+        cost = rate * 0.5 * (opening + closing) / 12.0
+        if abs(cost - float(pr["holding_cost_mln"])) > TOL:
+            problems.append(f"prep {pr['month']} holding {cost} vs {pr['holding_cost_mln']}")
+        prep_holding += cost
+        prev_close = closing
+    if prep_rows and abs(prev_close - float(rows(result_dir / "inventory_trace.csv")[0]["opening_t"])) > TOL:
+        problems.append("prep closing stock does not match the opening stock of the first month")
 
     # 1. monthly balance identity and non-negative stock
     for m in trace:
@@ -41,6 +66,18 @@ def recalc(result_dir: Path, case_dir: Path) -> list[str]:
             problems.append(f"negative stock {m['year']}-{m['month']}")
         if abs(l - thr * float(m["loss_rate"])) > TOL:
             problems.append(f"losses != throughput*rate {m['year']}-{m['month']}")
+    # 1b. intra-month peak: re-derived from the declared batching, then checked against capacity
+    for m in trace:
+        o, thr, l, s, cap = (float(m[k]) for k in ("opening_t", "throughput_t", "losses_t", "served_t", "storage_capacity_t"))
+        net = thr - l
+        peak = max(o + (j * net - (j - 1) * s) / batches for j in range(1, batches + 1))
+        if abs(peak - float(m["peak_stock_t"])) > TOL:
+            problems.append(f"intra-month peak {m['year']}-{m['month']}: {peak} vs {m['peak_stock_t']}")
+        if peak > cap + TOL and not any(
+                c["rule_id"] == "INTRA_MONTH_PEAK" and c["year"] == m["year"] and c["month"] == m["month"]
+                for c in checks):
+            problems.append(f"intra-month peak {m['year']}-{m['month']} exceeds capacity but is not reported")
+
     # 2. yearly totals from months
     for y, yr in yearly.items():
         ms = [m for m in trace if int(m["year"]) == y]
@@ -81,6 +118,8 @@ def recalc(result_dir: Path, case_dir: Path) -> list[str]:
         if abs(resv_by_year.get(y, 0.0) - float(fr["reservation_mln"])) > 1e-5:
             problems.append(f"{y} reservation {resv_by_year.get(y, 0.0)} vs {fr['reservation_mln']}")
         hold = sum(float(m["holding_cost_mln"]) for m in trace if int(m["year"]) == y)
+        if y == min(fin):
+            hold += prep_holding                      # подготовительный период относится на первый финансовый год
         if abs(hold - float(fr["holding_mln"])) > TOL:
             problems.append(f"{y} holding {hold} vs {fr['holding_mln']}")
         total = sum(float(fr[k]) for k in ("procurement_mln", "reservation_mln", "holding_mln", "fixed_opex_mln", "capex_mln"))

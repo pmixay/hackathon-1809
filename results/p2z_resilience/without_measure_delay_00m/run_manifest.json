@@ -13,9 +13,9 @@
     "supply_sources.csv": "182139c4870402024f540d0f010b4396db2fad77bf5a35449e04cbe584ef0977"
   },
   "plan_sha256": "a5cb983b2bcbda34824015815a2a9092273e73ca90242511ebac41fe29a5f5fb",
-  "scenario_sha256": "1195226e817b690e3f40f2b7db6d96574e42e0f0d37ae9f604278886c6df227b",
-  "assumptions_sha256": "6590f1039e1aa9cc10c432861617cfc13f782600380442b2b34cb64c2e3a71d6",
-  "kpi_sha256": "152580ae71f3b4f408c403ed6a804774ed19eda5ecbb0eb8432b0a35cf59a866",
+  "scenario_sha256": "a4dde07c3e281f6e6abd43f027a756e19fe8f7841a90c172f4516310a9807eaa",
+  "assumptions_sha256": "c7575fa0498b7a193ba73ee767334dad6c8bfa833947e43d18b0e29362139234",
+  "kpi_sha256": "d40a65350a1afe26cffd597ea15c9834aee988ac1e74df27785f93f080b060b0",
   "kpi_precision": 6,
   "random_seed": null,
   "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)",

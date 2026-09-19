@@ -49,6 +49,8 @@
     "max_losses_divided_by_throughput": 0.02
   },
   "demand_variant": "base",
+  "rule_scenario_id": null,
+  "rule_set_id": "MANDATORY_STRESS",
   "enforce_service_thresholds": null,
   "notes": [
     "55% and 75% are actual delivery shares and must not be multiplied by reliability again.",

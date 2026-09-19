@@ -1,0 +1,2 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+TEAM_TRAJ_T4_FAST_RECOVERY,P3_isru_zbo_policy_T4_fast_recovery,RESERVE_45D,hard,2038-01: физический запас 30.822 т < 45-дневного резерва 35.445 т,2038,1,,30.822244,35.445205,4.622961

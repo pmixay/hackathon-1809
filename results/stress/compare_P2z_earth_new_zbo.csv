@@ -1,8 +1,8 @@
 section,metric,year,a,b,delta,label_a,label_b
-kpi,total_cost_mln,,11517.764487,12811.646084,1293.881596,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
-kpi,pv_cost_mln,,9142.897763,10097.471915,954.574152,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
-kpi,cost_per_served_t_mln,,8.009112,8.351790,0.342678,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
-kpi,pv_cost_per_served_t_mln,,6.357700,6.582446,0.224746,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,total_cost_mln,,11518.134353,12812.015949,1293.881596,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,pv_cost_mln,,9143.267629,10097.841781,954.574152,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,cost_per_served_t_mln,,8.009369,8.352031,0.342662,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+kpi,pv_cost_per_served_t_mln,,6.357957,6.582687,0.224730,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 kpi,served_total_t,,1438.082586,1534.000000,95.917414,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 kpi,shortage_total_t,,95.917414,0.000000,-95.917414,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 kpi,shortage_critical_t,,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
@@ -81,11 +81,11 @@ yearly,"Запас на конец, т",2040,0.000000,31.634990,31.634990,P2z_ea
 yearly,"45-дневный резерв, т",2040,55.294521,55.294521,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 finance,"Закупка, млн",2035,796.128420,796.128420,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 finance,"Резервирование, млн",2035,51.380670,51.380670,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
-finance,"Хранение, млн",2035,10.652147,10.652147,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Хранение, млн",2035,11.022013,11.022013,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 finance,"Постоянный OPEX, млн",2035,0.000000,0.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 finance,"CAPEX, млн",2035,360.000000,360.000000,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
-finance,"Итого, млн",2035,1218.161237,1218.161237,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
-finance,"PV итого, млн",2035,1218.161237,1218.161237,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"Итого, млн",2035,1218.531103,1218.531103,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
+finance,"PV итого, млн",2035,1218.531103,1218.531103,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 finance,"Закупка, млн",2036,948.921160,948.921160,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 finance,"Резервирование, млн",2036,68.873400,68.873400,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS
 finance,"Хранение, млн",2036,14.646725,14.646725,0.000000,P2z_earth_new_zbo без изменений/STRESS,P2z_earth_new_zbo адаптированный/STRESS

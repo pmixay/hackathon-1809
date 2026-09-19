@@ -89,7 +89,7 @@ def test_saved_exp08_plans_and_reference_controls(experiment, root):
         assert normalized == saved
     reference = {r["variant"]: r for r in experiment["report"]["reference"]}
     assert all(not r["failed"] for r in reference.values())
-    assert reference["without_measure"]["pv_cost_mln"] == pytest.approx(10636.655, abs=0.001)
+    assert reference["without_measure"]["pv_cost_mln"] == pytest.approx(10637.025, abs=0.001)
     assert reference["physical_stock"]["delta_pv_mln"] == pytest.approx(83.667825, abs=1e-6)
     assert reference["early_zbo_plus_stock"]["delta_pv_mln"] == pytest.approx(49.458033, abs=1e-6)
 

@@ -199,10 +199,12 @@ class Workspace:
             shock = normalize_price_shock(payload.get("price_shock"), case)
             tags = (["GEO"] if shock else []) + (["COPY"] if modified else [])
             if tags:
+                # Метка исследовательского прогона меняет только имя выгрузки. Набор правил (rule_scenario_id)
+                # остаётся исходным, поэтому копия данных или ценовой шок не могут снять ни одно ограничение
+                # организатора: строки constraints.csv со scenario=BASE продолжают действовать как жёсткие.
+                scenario.rule_scenario_id = scenario.rule_set_id
                 scenario.scenario_id = "TEAM_" + "_".join(tags) + "_" + scenario.scenario_id
                 scenario.status = "TEAM_ASSUMPTION"
-                # Жёсткие проверки сервиса BASE сохраняются и под исследовательской меткой.
-                scenario.enforce_service_thresholds = scenario_key == "base" or scenario.service_thresholds_hard
             if modified:
                 scenario.changes.append(notes)
             overlay = apply_price_shock(scenario, shock, case) if shock else None

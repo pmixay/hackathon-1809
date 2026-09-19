@@ -37,16 +37,19 @@ TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,EMERGENCY_BASE_STREAK,2039,consecutive_ye
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,EMERGENCY_BASE_STREAK,2040,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,EMERGENCY_BASE_STREAK,2041,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,STORAGE_OVERFLOW,2035,end_of_month_stock_t_in_worst_month,17.260439,70.000000,<=,True,hard,"2035-12, хранилище BASE; проверка помесячная"
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,INTRA_MONTH_PEAK,2035,intra_month_peak_stock_t_in_worst_month,25.593772,70.000000,<=,True,hard,"2035-12, хранилище BASE; поставка одной партией в начале месяца"
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,LEAD_TIME_VIOLATED,2035,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,SOURCE_NOT_AVAILABLE,2035,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,STORAGE_OVERFLOW,2036,end_of_month_stock_t_in_worst_month,23.424908,70.000000,<=,True,hard,"2036-12, хранилище BASE; проверка помесячная"
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,INTRA_MONTH_PEAK,2036,intra_month_peak_stock_t_in_worst_month,35.091575,70.000000,<=,True,hard,"2036-12, хранилище BASE; поставка одной партией в начале месяца"
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2036,reserved_A_t_per_year,153.052000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2036,ordered_A_t,153.051800,153.052000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,LEAD_TIME_VIOLATED,2036,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,SOURCE_NOT_AVAILABLE,2036,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,STORAGE_OVERFLOW,2037,end_of_month_stock_t_in_worst_month,25.447274,70.000000,<=,True,hard,"2037-06, хранилище BASE; проверка помесячная"
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,INTRA_MONTH_PEAK,2037,intra_month_peak_stock_t_in_worst_month,41.280607,70.000000,<=,True,hard,"2037-06, хранилище BASE; поставка одной партией в начале месяца"
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2037,reserved_B_t_per_year,13.189000,110.000000,<=,True,hard,Earth-Flex
@@ -54,6 +57,7 @@ TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2037,ordered_B_
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,STORAGE_OVERFLOW,2038,end_of_month_stock_t_in_worst_month,39.452388,120.000000,<=,True,hard,"2038-12, хранилище ZBO; проверка помесячная"
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,INTRA_MONTH_PEAK,2038,intra_month_peak_stock_t_in_worst_month,60.285721,120.000000,<=,True,hard,"2038-12, хранилище ZBO; поставка одной партией в начале месяца"
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,161.772000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,161.771400,161.772000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2038,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
@@ -61,6 +65,7 @@ TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2038,ordered_D_
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,STORAGE_OVERFLOW,2039,end_of_month_stock_t_in_worst_month,48.082528,120.000000,<=,True,hard,"2039-12, хранилище ZBO; проверка помесячная"
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,INTRA_MONTH_PEAK,2039,intra_month_peak_stock_t_in_worst_month,74.749195,120.000000,<=,True,hard,"2039-12, хранилище ZBO; поставка одной партией в начале месяца"
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,152.622000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2039,ordered_A_t,152.621600,152.622000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2039,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
@@ -70,6 +75,7 @@ TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2039,ordered_X_
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,SOURCE_NOT_AVAILABLE,2039,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,STORAGE_OVERFLOW,2040,end_of_month_stock_t_in_worst_month,55.479840,120.000000,<=,True,hard,"2040-12, хранилище ZBO; проверка помесячная"
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,INTRA_MONTH_PEAK,2040,intra_month_peak_stock_t_in_worst_month,87.979840,120.000000,<=,True,hard,"2040-12, хранилище ZBO; поставка одной партией в начале месяца"
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2040,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2040,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2040,reserved_B_t_per_year,32.224000,110.000000,<=,True,hard,Earth-Flex
@@ -81,6 +87,7 @@ TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2040,ordered_X_
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,LEAD_TIME_VIOLATED,2040,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,SOURCE_NOT_AVAILABLE,2040,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,STORAGE_OVERFLOW,2041,end_of_month_stock_t_in_worst_month,55.479853,120.000000,<=,True,hard,"2041-12, хранилище ZBO; проверка помесячная"
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,INTRA_MONTH_PEAK,2041,intra_month_peak_stock_t_in_worst_month,92.979853,120.000000,<=,True,hard,"2041-12, хранилище ZBO; поставка одной партией в начале месяца"
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2041,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,ORDER_EXCEEDS_RESERVATION,2041,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,CAPACITY_EXCEEDED,2041,reserved_B_t_per_year,85.466000,110.000000,<=,True,hard,Earth-Flex

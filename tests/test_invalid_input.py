@@ -55,8 +55,53 @@ def test_missing_case_file(tmp_path):
 
 def test_critical_exceeding_total_is_rejected(tmp_path):
     case_dir = copy_case(tmp_path, extra_demand=dict(year=2041, base_total_t=100, base_critical_t=150, low_total_t=80, high_total_t=120, status="TEAM_ASSUMPTION"))
-    with pytest.raises(CaseError, match="критический спрос превышает общий"):
+    with pytest.raises(CaseError) as e:
         load_case(case_dir)
+    assert "критический спрос 150 т превышает общий спрос 100 т в 2041 г." in str(e.value)
+    assert "demand.csv" in str(e.value) and "строка" in str(e.value)
+
+
+# A2: каждое из этих полей раньше принималось и молча считалось; теперь расчёт не начинается.
+@pytest.mark.parametrize("table,column,row_key,value,expect", [
+    ("demand.csv", "base_critical_t", "2035", "-80", "base_critical_t"),
+    ("demand.csv", "base_total_t", "2035", "nan", "конечным"),
+    ("supply_sources.csv", "lead_time_min_value", "A", "-12", "lead_time_min_value"),
+    ("supply_sources.csv", "capacity_t_per_year", "A", "-190", "capacity_t_per_year"),
+    ("supply_sources.csv", "take_or_pay_share", "A", "1.4", "take_or_pay_share"),
+    ("investment_options.csv", "exercise_cost_mln", "ZBO", "-180", "exercise_cost_mln"),
+    ("storage_options.csv", "holding_cost_mln_per_t_year", "BASE", "-0.72", "holding_cost_mln_per_t_year"),
+    ("storage_options.csv", "capacity_t", "BASE", "-70", "capacity_t"),
+])
+def test_negative_or_non_finite_case_inputs_are_rejected(tmp_path, root, table, column, row_key, value, expect):
+    import shutil
+    dst = tmp_path / "case_copy"
+    shutil.copytree(root / "data" / "case", dst)
+    path = dst / table
+    lines = path.read_text(encoding="utf-8").splitlines()
+    header = lines[0].split(",")
+    idx = header.index(column)
+    for n, line in enumerate(lines[1:], 1):
+        cells = line.split(",")
+        if cells[0] == row_key:
+            cells[idx] = value
+            lines[n] = ",".join(cells)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    with pytest.raises(CaseError) as e:
+        load_case(dst)
+    message = str(e.value)
+    assert table in message and expect in message and "строка" in message
+
+
+def test_negative_capex_cannot_reach_the_engine(case, base, assumptions, root):
+    """Движок пропускает нулевые платежи по условию `> 0`; отрицательный CAPEX уменьшил бы стоимость плана."""
+    import dataclasses
+    from terraplan.case import validate_case
+    broken = dataclasses.replace(case, investments=dict(case.investments))
+    broken.investments["ZBO"] = dataclasses.replace(case.investments["ZBO"], exercise_cost_mln=-180.0, total_capex_mln=-180.0)
+    with pytest.raises(CaseError, match="должен быть >= 0"):
+        validate_case(broken)
+    with pytest.raises(CaseError):
+        simulate(broken, load_plan(root / "configs/plans/P2z_earth_new_zbo.json", case), base, assumptions)
 
 
 def test_plan_file_not_json(tmp_path, case):

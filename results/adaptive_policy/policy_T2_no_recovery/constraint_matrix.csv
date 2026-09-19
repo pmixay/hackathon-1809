@@ -1,0 +1,93 @@
+scenario_id,plan_id,rule_id,year,metric,actual,limit,operator,ok,severity,scope
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_CRITICAL_SERVICE,2035,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_CRITICAL_SERVICE,2036,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_CRITICAL_SERVICE,2037,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_CRITICAL_SERVICE,2038,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_CRITICAL_SERVICE,2039,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_CRITICAL_SERVICE,2040,critical_service_level,1.000000,0.990000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_TOTAL_SERVICE,2035,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_TOTAL_SERVICE,2036,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_TOTAL_SERVICE,2037,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_TOTAL_SERVICE,2038,total_service_level,0.996987,0.970000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_TOTAL_SERVICE,2039,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,BASE_TOTAL_SERVICE,2040,total_service_level,1.000000,0.970000,>=,True,guideline,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2037,2035,cumulative_capex,0.000000,1800.000000,<=,True,hard,through_2037
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2037,2036,cumulative_capex,1250.000000,1800.000000,<=,True,hard,through_2037
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2037,2037,cumulative_capex,1430.000000,1800.000000,<=,True,hard,through_2037
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2040,2035,cumulative_capex,0.000000,2800.000000,<=,True,hard,through_2040
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2040,2036,cumulative_capex,1250.000000,2800.000000,<=,True,hard,through_2040
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2040,2037,cumulative_capex,1430.000000,2800.000000,<=,True,hard,through_2040
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2040,2038,cumulative_capex,1430.000000,2800.000000,<=,True,hard,through_2040
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2040,2039,cumulative_capex,1430.000000,2800.000000,<=,True,hard,through_2040
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPEX_2040,2040,cumulative_capex,1430.000000,2800.000000,<=,True,hard,through_2040
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,RESERVE_45D,2035,opening_stock_vs_45d_reserve_t,12.328859,12.328767,>=,True,hard,physical
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,RESERVE_45D,2036,opening_stock_vs_45d_reserve_t,17.260439,17.260274,>=,True,hard,physical
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,RESERVE_45D,2037,opening_stock_vs_45d_reserve_t,23.424908,23.424658,>=,True,hard,physical
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,RESERVE_45D,2038,opening_stock_vs_45d_reserve_t,30.822244,35.445205,>=,False,hard,physical
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,RESERVE_45D,2039,opening_stock_vs_45d_reserve_t,51.175731,45.369863,>=,True,hard,physical
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,RESERVE_45D,2040,opening_stock_vs_45d_reserve_t,55.302571,55.294521,>=,True,hard,physical
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,EMERGENCY_BASE_STREAK,2035,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,EMERGENCY_BASE_STREAK,2036,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,EMERGENCY_BASE_STREAK,2037,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.000
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,EMERGENCY_BASE_STREAK,2038,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.136
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,EMERGENCY_BASE_STREAK,2039,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.041
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,EMERGENCY_BASE_STREAK,2040,consecutive_years_with_emergency_as_base_channel,0,2.000000,<=,True,hard,базовый канал = доля Emergency в спросе > 20%; доля в этом году 0.178
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STRESS_LOSS_LIMIT,2038,losses_divided_by_throughput,0.012000,0.020000,<=,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STRESS_LOSS_LIMIT,2039,losses_divided_by_throughput,0.012000,0.020000,<=,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STRESS_LOSS_LIMIT,2040,losses_divided_by_throughput,0.012000,0.020000,<=,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STORAGE_OVERFLOW,2035,end_of_month_stock_t_in_worst_month,17.260439,70.000000,<=,True,hard,"2035-12, хранилище BASE; проверка помесячная"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,INTRA_MONTH_PEAK,2035,intra_month_peak_stock_t_in_worst_month,25.593772,70.000000,<=,True,hard,"2035-12, хранилище BASE; поставка одной партией в начале месяца"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,LEAD_TIME_VIOLATED,2035,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,SOURCE_NOT_AVAILABLE,2035,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STORAGE_OVERFLOW,2036,end_of_month_stock_t_in_worst_month,23.424908,70.000000,<=,True,hard,"2036-12, хранилище BASE; проверка помесячная"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,INTRA_MONTH_PEAK,2036,intra_month_peak_stock_t_in_worst_month,35.091575,70.000000,<=,True,hard,"2036-12, хранилище BASE; поставка одной партией в начале месяца"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2036,reserved_A_t_per_year,153.052000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2036,ordered_A_t,153.051800,153.052000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,LEAD_TIME_VIOLATED,2036,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,SOURCE_NOT_AVAILABLE,2036,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STORAGE_OVERFLOW,2037,end_of_month_stock_t_in_worst_month,25.447274,70.000000,<=,True,hard,"2037-06, хранилище BASE; проверка помесячная"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,INTRA_MONTH_PEAK,2037,intra_month_peak_stock_t_in_worst_month,41.280607,70.000000,<=,True,hard,"2037-06, хранилище BASE; поставка одной партией в начале месяца"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2037,reserved_B_t_per_year,13.189000,110.000000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2037,ordered_B_t,13.188200,13.189000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STORAGE_OVERFLOW,2038,end_of_month_stock_t_in_worst_month,51.175731,120.000000,<=,True,hard,"2038-12, хранилище ZBO; проверка помесячная"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,INTRA_MONTH_PEAK,2038,intra_month_peak_stock_t_in_worst_month,75.134064,120.000000,<=,True,hard,"2038-12, хранилище ZBO; поставка одной партией в начале месяца"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,161.772000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,161.771400,161.772000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2038,reserved_B_t_per_year,110.000000,110.000000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2038,ordered_B_t,54.744300,110.000000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2038,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2038,ordered_D_t,100.000000,100.000000,<=,True,hard,Lunar-ISRU
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2038,reserved_E_t_per_year,80.000000,80.000000,<=,True,hard,Emergency
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2038,ordered_E_t,39.200000,80.000000,<=,True,hard,Emergency
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STORAGE_OVERFLOW,2039,end_of_month_stock_t_in_worst_month,55.302571,120.000000,<=,True,hard,"2039-12, хранилище ZBO; проверка помесячная"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,INTRA_MONTH_PEAK,2039,intra_month_peak_stock_t_in_worst_month,85.969238,120.000000,<=,True,hard,"2039-12, хранилище ZBO; поставка одной партией в начале месяца"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2039,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2039,reserved_B_t_per_year,110.000000,110.000000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2039,ordered_B_t,105.508400,110.000000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2039,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2039,ordered_D_t,120.000000,120.000000,<=,True,hard,Lunar-ISRU
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2039,reserved_E_t_per_year,80.000000,80.000000,<=,True,hard,Emergency
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2039,ordered_E_t,15.138200,80.000000,<=,True,hard,Emergency
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,SOURCE_NOT_AVAILABLE,2039,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,STORAGE_OVERFLOW,2040,end_of_month_stock_t_in_worst_month,54.648106,120.000000,<=,True,hard,"2040-01, хранилище ZBO; проверка помесячная"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,INTRA_MONTH_PEAK,2040,intra_month_peak_stock_t_in_worst_month,92.023106,120.000000,<=,True,hard,"2040-01, хранилище ZBO; поставка одной партией в начале месяца"
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2040,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2040,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2040,reserved_B_t_per_year,110.000000,110.000000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2040,ordered_B_t,109.999200,110.000000,<=,True,hard,Earth-Flex
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2040,reserved_D_t_per_year,120.000000,120.000000,<=,True,hard,Lunar-ISRU
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2040,ordered_D_t,120.000000,120.000000,<=,True,hard,Lunar-ISRU
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,CAPACITY_EXCEEDED,2040,reserved_E_t_per_year,80.000000,80.000000,<=,True,hard,Emergency
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,ORDER_EXCEEDS_RESERVATION,2040,ordered_E_t,79.999200,80.000000,<=,True,hard,Emergency
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,LEAD_TIME_VIOLATED,2040,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
+TEAM_TRAJ_T2_NO_RECOVERY,P3_isru_zbo_policy_T2_no_recovery,SOURCE_NOT_AVAILABLE,2040,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,

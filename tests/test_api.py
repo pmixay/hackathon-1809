@@ -13,7 +13,7 @@ def test_run_plan_from_file_and_dict_agree(root):
     plan_dict = json.loads((root / "configs/plans/P3_isru_zbo.json").read_text(encoding="utf-8"))
     r2 = api.run_plan(plan_dict, "BASE", case=root / "data/case", assumptions=root / "configs/assumptions.yaml", scenarios_dir=root / "configs/scenarios")
     assert r2["kpi"] == r1["kpi"]
-    assert r1["kpi"]["pv_cost_mln"] == pytest.approx(8638.857, abs=1e-3)
+    assert r1["kpi"]["pv_cost_mln"] == pytest.approx(8639.227, abs=1e-3)
 
 
 def test_run_plan_stress_reports_violations_with_year_value_reason(root):

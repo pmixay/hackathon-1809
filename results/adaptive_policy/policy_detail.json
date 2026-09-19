@@ -1,0 +1,126 @@
+{
+  "T1_mandatory_stress": {
+    "label": "T1 обязательный стресс (сценарий организатора)",
+    "shares": {
+      "2038": 0.55,
+      "2039": 0.75,
+      "2040": 1.0
+    },
+    "reach": "2038-05",
+    "in_reach": [],
+    "out_of_reach": [
+      "RESERVE_45D@2038-01"
+    ],
+    "policy": {
+      "feasible": false,
+      "pv": 11176.041533822352,
+      "shortage": 0.8663746333333506,
+      "min_sl": 0.9969865230144929,
+      "hard": 1
+    },
+    "oracle": {
+      "feasible": false,
+      "pv": 11187.085370082625,
+      "shortage": 0.8663746333333506
+    },
+    "no_reaction": {
+      "feasible": false,
+      "pv": 9119.170218683794,
+      "shortage": 170.01741449999983
+    },
+    "decisions": 48
+  },
+  "T2_no_recovery": {
+    "label": "T2 без восстановления ISRU",
+    "shares": {
+      "2038": 0.55,
+      "2039": 0.55,
+      "2040": 0.55
+    },
+    "reach": "2038-05",
+    "in_reach": [],
+    "out_of_reach": [
+      "RESERVE_45D@2038-01"
+    ],
+    "policy": {
+      "feasible": false,
+      "pv": 11828.867091906019,
+      "shortage": 0.8663746333333506,
+      "min_sl": 0.9969865230144929,
+      "hard": 1
+    },
+    "oracle": {
+      "feasible": false,
+      "pv": 11828.867091906019,
+      "shortage": 0.8663746333333506
+    },
+    "no_reaction": {
+      "feasible": false,
+      "pv": 9119.170218683794,
+      "shortage": 247.08141449999985
+    },
+    "decisions": 59
+  },
+  "T3_slow_recovery": {
+    "label": "T3 медленное восстановление ISRU",
+    "shares": {
+      "2038": 0.55,
+      "2039": 0.65,
+      "2040": 0.8
+    },
+    "reach": "2038-05",
+    "in_reach": [],
+    "out_of_reach": [
+      "RESERVE_45D@2038-01"
+    ],
+    "policy": {
+      "feasible": false,
+      "pv": 11504.104454620083,
+      "shortage": 0.8663746333333506,
+      "min_sl": 0.9969865230144929,
+      "hard": 1
+    },
+    "oracle": {
+      "feasible": false,
+      "pv": 11507.334705536145,
+      "shortage": 0.8663746333333506
+    },
+    "no_reaction": {
+      "feasible": false,
+      "pv": 9119.170218683794,
+      "shortage": 205.58541449999987
+    },
+    "decisions": 56
+  },
+  "T4_fast_recovery": {
+    "label": "T4 быстрое восстановление ISRU",
+    "shares": {
+      "2038": 0.55,
+      "2039": 0.9,
+      "2040": 1.0
+    },
+    "reach": "2038-05",
+    "in_reach": [],
+    "out_of_reach": [
+      "RESERVE_45D@2038-01"
+    ],
+    "policy": {
+      "feasible": false,
+      "pv": 11029.542206872527,
+      "shortage": 0.8663746333333506,
+      "min_sl": 0.9969865230144929,
+      "hard": 1
+    },
+    "oracle": {
+      "feasible": false,
+      "pv": 11034.546660719605,
+      "shortage": 0.8663746333333506
+    },
+    "no_reaction": {
+      "feasible": false,
+      "pv": 9119.170218683794,
+      "shortage": 152.23341449999984
+    },
+    "decisions": 47
+  }
+}

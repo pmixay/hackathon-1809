@@ -73,8 +73,13 @@ def result_tables(res: Result) -> dict[str, list[dict]]:
                         range=json.dumps(v.get("range"), ensure_ascii=False), justification=v.get("justification", "")) for k, v in res.assumptions.items()]
     matrix = [dict(tag, **m) for m in res.check_matrix]
     deliveries = [dict(tag, **d) for d in res.deliveries]
+    prep = [dict(tag, **row) for row in res.preparatory_period]
+    proof = [dict(tag, year=pf["year"], proven=pf["proven"], check=c["check"], ok=c["ok"],
+                  actual=c["actual"], limit=c["limit"], operator=c["operator"], note=c["note"])
+             for pf in res.contract_reserve_proof for c in pf["checks"]]
     return {"yearly_balance": years, "inventory_trace": months, "source_schedule": src, "financial_breakdown": fin,
-            "constraint_checks": checks, "constraint_matrix": matrix, "delivery_schedule": deliveries, "kpi": kpi, "investments": inv, "assumptions": assumptions}
+            "constraint_checks": checks, "constraint_matrix": matrix, "delivery_schedule": deliveries, "kpi": kpi,
+            "investments": inv, "assumptions": assumptions, "preparatory_period": prep, "contract_reserve_proof": proof}
 
 
 def export_envelope(res: Result, risk_register: list[dict] | None = None) -> dict:
@@ -240,6 +245,7 @@ def result_from_dict(d: dict) -> Result:
         investments=[InvestmentRecord(**i) for i in d["investments"]], violations=[Violation(**v) for v in d["violations"]],
         kpi=d["kpi"], assumptions=d["assumptions"], scenario=d["scenario"], plan=d["plan"], units=d.get("units", {}),
         check_matrix=d.get("check_matrix", []), deliveries=d.get("deliveries", []),
+        contract_reserve_proof=d.get("contract_reserve_proof", []), preparatory_period=d.get("preparatory_period", []),
     )
 
 

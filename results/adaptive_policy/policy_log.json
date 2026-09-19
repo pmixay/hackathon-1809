@@ -1,0 +1,2110 @@
+{
+  "T1_mandatory_stress": [
+    {
+      "decided_in": "2038-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-07",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-05",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 39.5905
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-08",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-06",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 40.4175
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-09",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 5.2609,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-07",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 6.6145,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-10",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 15.6991,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-08",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 17.0527,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-11",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 26.1373,
+      "target_t": 44.5528
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-09",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 27.4909,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-12",
+      "added_t": 8.911371,
+      "forecast_isru_share": 0.55,
+      "projected_t": 36.5754,
+      "target_t": 45.3799
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-10",
+      "added_t": 5.867087,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9291,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-01",
+      "added_t": 2.790683,
+      "forecast_isru_share": 0.55,
+      "projected_t": 43.4497,
+      "target_t": 46.2069
+    },
+    {
+      "decided_in": "2038-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-02",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 38.4801,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2038-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-03",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9474,
+      "target_t": 47.861
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-04",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.4148,
+      "target_t": 48.6881
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-02",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 45.6743,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2039-01",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-05",
+      "added_t": 1.410242,
+      "forecast_isru_share": 0.75,
+      "projected_t": 48.1218,
+      "target_t": 49.5151
+    },
+    {
+      "decided_in": "2039-02",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-06",
+      "added_t": 6.65777,
+      "forecast_isru_share": 0.75,
+      "projected_t": 43.7643,
+      "target_t": 50.3422
+    },
+    {
+      "decided_in": "2039-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-07",
+      "added_t": 6.65777,
+      "forecast_isru_share": 0.75,
+      "projected_t": 44.5914,
+      "target_t": 51.1692
+    },
+    {
+      "decided_in": "2039-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-08",
+      "added_t": 6.65777,
+      "forecast_isru_share": 0.75,
+      "projected_t": 45.4184,
+      "target_t": 51.9963
+    },
+    {
+      "decided_in": "2039-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-09",
+      "added_t": 6.65777,
+      "forecast_isru_share": 0.75,
+      "projected_t": 46.2455,
+      "target_t": 52.8234
+    },
+    {
+      "decided_in": "2039-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-10",
+      "added_t": 6.65777,
+      "forecast_isru_share": 0.75,
+      "projected_t": 47.0725,
+      "target_t": 53.6504
+    },
+    {
+      "decided_in": "2039-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-11",
+      "added_t": 6.65777,
+      "forecast_isru_share": 0.75,
+      "projected_t": 47.8996,
+      "target_t": 54.4775
+    },
+    {
+      "decided_in": "2039-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-12",
+      "added_t": 6.65777,
+      "forecast_isru_share": 0.75,
+      "projected_t": 48.7266,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-01",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.75,
+      "projected_t": 47.9595,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-02",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.75,
+      "projected_t": 42.6945,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-03",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.75,
+      "projected_t": 37.4295,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-01",
+      "added_t": 5.328947,
+      "forecast_isru_share": 0.75,
+      "projected_t": 50.0395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-04",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.75,
+      "projected_t": 37.4295,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-02",
+      "added_t": 5.328947,
+      "forecast_isru_share": 0.75,
+      "projected_t": 50.0395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-01",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-05",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 49.7795,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-06",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 46.9845,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-04",
+      "added_t": 0.657895,
+      "forecast_isru_share": 1.0,
+      "projected_t": 54.6545,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-07",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-05",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-08",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-06",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-09",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-07",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-10",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-08",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-11",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-09",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-12",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-10",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-09",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-11",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-10",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-12",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    }
+  ],
+  "T2_no_recovery": [
+    {
+      "decided_in": "2038-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-07",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-05",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 39.5905
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-08",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-06",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 40.4175
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-09",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 5.2609,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-07",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 6.6145,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-10",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 15.6991,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-08",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 17.0527,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-11",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 26.1373,
+      "target_t": 44.5528
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-09",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 27.4909,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-12",
+      "added_t": 8.911371,
+      "forecast_isru_share": 0.55,
+      "projected_t": 36.5754,
+      "target_t": 45.3799
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-10",
+      "added_t": 5.867087,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9291,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-01",
+      "added_t": 2.790683,
+      "forecast_isru_share": 0.55,
+      "projected_t": 43.4497,
+      "target_t": 46.2069
+    },
+    {
+      "decided_in": "2038-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-02",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 38.4801,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2038-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-03",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9474,
+      "target_t": 47.861
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-04",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.4148,
+      "target_t": 48.6881
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-02",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 45.6743,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2039-01",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-05",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 38.2418,
+      "target_t": 49.5151
+    },
+    {
+      "decided_in": "2039-01",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-03",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 46.5013,
+      "target_t": 47.861
+    },
+    {
+      "decided_in": "2039-02",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-06",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 39.0689,
+      "target_t": 50.3422
+    },
+    {
+      "decided_in": "2039-02",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-04",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 47.3284,
+      "target_t": 48.6881
+    },
+    {
+      "decided_in": "2039-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-07",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 39.8959,
+      "target_t": 51.1692
+    },
+    {
+      "decided_in": "2039-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-05",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 48.1554,
+      "target_t": 49.5151
+    },
+    {
+      "decided_in": "2039-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-08",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 40.723,
+      "target_t": 51.9963
+    },
+    {
+      "decided_in": "2039-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-06",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 48.9825,
+      "target_t": 50.3422
+    },
+    {
+      "decided_in": "2039-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-09",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 41.55,
+      "target_t": 52.8234
+    },
+    {
+      "decided_in": "2039-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-07",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 49.8095,
+      "target_t": 51.1692
+    },
+    {
+      "decided_in": "2039-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-10",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 42.3771,
+      "target_t": 53.6504
+    },
+    {
+      "decided_in": "2039-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-08",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 50.6366,
+      "target_t": 51.9963
+    },
+    {
+      "decided_in": "2039-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-11",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 43.2041,
+      "target_t": 54.4775
+    },
+    {
+      "decided_in": "2039-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-09",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 51.4636,
+      "target_t": 52.8234
+    },
+    {
+      "decided_in": "2039-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-12",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 44.0312,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-10",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 52.2907,
+      "target_t": 53.6504
+    },
+    {
+      "decided_in": "2039-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-01",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 43.2641,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-09",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-11",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 53.1177,
+      "target_t": 54.4775
+    },
+    {
+      "decided_in": "2039-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-02",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.3828,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-10",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-12",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 53.9448,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-03",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 31.5015,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-01",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 48.0635,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-04",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 30.8472,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-02",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 47.4092,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-01",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-05",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 30.1929,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-01",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-03",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 46.7549,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-06",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 29.5385,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-04",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 46.1005,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-07",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 28.8842,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-05",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 45.4462,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-08",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 28.2299,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-06",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 44.7919,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-09",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 27.5755,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-07",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 44.1375,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-10",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 26.9212,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-08",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 43.4832,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-11",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 26.2669,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-09",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 42.8289,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-12",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.55,
+      "projected_t": 25.6125,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-10",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 42.1745,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-09",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-11",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 41.5202,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-10",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-12",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 40.8659,
+      "target_t": 55.3045
+    }
+  ],
+  "T3_slow_recovery": [
+    {
+      "decided_in": "2038-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-07",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-05",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 39.5905
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-08",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-06",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 40.4175
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-09",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 5.2609,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-07",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 6.6145,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-10",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 15.6991,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-08",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 17.0527,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-11",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 26.1373,
+      "target_t": 44.5528
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-09",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 27.4909,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-12",
+      "added_t": 8.911371,
+      "forecast_isru_share": 0.55,
+      "projected_t": 36.5754,
+      "target_t": 45.3799
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-10",
+      "added_t": 5.867087,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9291,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-01",
+      "added_t": 2.790683,
+      "forecast_isru_share": 0.55,
+      "projected_t": 43.4497,
+      "target_t": 46.2069
+    },
+    {
+      "decided_in": "2038-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-02",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 38.4801,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2038-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-03",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9474,
+      "target_t": 47.861
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-04",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.4148,
+      "target_t": 48.6881
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-02",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 45.6743,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2039-01",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-05",
+      "added_t": 6.410242,
+      "forecast_isru_share": 0.65,
+      "projected_t": 43.1818,
+      "target_t": 49.5151
+    },
+    {
+      "decided_in": "2039-02",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-06",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.65,
+      "projected_t": 42.7763,
+      "target_t": 50.3422
+    },
+    {
+      "decided_in": "2039-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-07",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.65,
+      "projected_t": 43.2316,
+      "target_t": 51.1692
+    },
+    {
+      "decided_in": "2039-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-08",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.65,
+      "projected_t": 43.687,
+      "target_t": 51.9963
+    },
+    {
+      "decided_in": "2039-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-06",
+      "added_t": 0.376236,
+      "forecast_isru_share": 0.65,
+      "projected_t": 49.9705,
+      "target_t": 50.3422
+    },
+    {
+      "decided_in": "2039-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-09",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.65,
+      "projected_t": 44.514,
+      "target_t": 52.8234
+    },
+    {
+      "decided_in": "2039-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-07",
+      "added_t": 0.376236,
+      "forecast_isru_share": 0.65,
+      "projected_t": 50.7975,
+      "target_t": 51.1692
+    },
+    {
+      "decided_in": "2039-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-10",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.65,
+      "projected_t": 45.3411,
+      "target_t": 53.6504
+    },
+    {
+      "decided_in": "2039-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-08",
+      "added_t": 0.376236,
+      "forecast_isru_share": 0.65,
+      "projected_t": 51.6246,
+      "target_t": 51.9963
+    },
+    {
+      "decided_in": "2039-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-11",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.65,
+      "projected_t": 46.1681,
+      "target_t": 54.4775
+    },
+    {
+      "decided_in": "2039-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-09",
+      "added_t": 0.376236,
+      "forecast_isru_share": 0.65,
+      "projected_t": 52.4516,
+      "target_t": 52.8234
+    },
+    {
+      "decided_in": "2039-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-12",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.65,
+      "projected_t": 46.9952,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-10",
+      "added_t": 0.376236,
+      "forecast_isru_share": 0.65,
+      "projected_t": 53.2787,
+      "target_t": 53.6504
+    },
+    {
+      "decided_in": "2039-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-01",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.65,
+      "projected_t": 46.2281,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-09",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-11",
+      "added_t": 0.376236,
+      "forecast_isru_share": 0.65,
+      "projected_t": 54.1057,
+      "target_t": 54.4775
+    },
+    {
+      "decided_in": "2039-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-02",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.65,
+      "projected_t": 40.3468,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-10",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-12",
+      "added_t": 0.376236,
+      "forecast_isru_share": 0.65,
+      "projected_t": 54.9328,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-03",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.65,
+      "projected_t": 34.4655,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-01",
+      "added_t": 6.328947,
+      "forecast_isru_share": 0.65,
+      "projected_t": 49.0515,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-04",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.65,
+      "projected_t": 34.4655,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-02",
+      "added_t": 6.328947,
+      "forecast_isru_share": 0.65,
+      "projected_t": 49.0515,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-01",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-05",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 41.8755,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-01",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-03",
+      "added_t": 1.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 53.4975,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-06",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 38.9115,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-04",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-07",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 38.9115,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-05",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-08",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 38.9115,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-06",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-09",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 38.9115,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-07",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-10",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 38.9115,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-08",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-11",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 38.9115,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-09",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-12",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.8,
+      "projected_t": 38.9115,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-10",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-09",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-11",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-10",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-12",
+      "added_t": 4.828947,
+      "forecast_isru_share": 0.8,
+      "projected_t": 50.5335,
+      "target_t": 55.3045
+    }
+  ],
+  "T4_fast_recovery": [
+    {
+      "decided_in": "2038-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-07",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-05",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 39.5905
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-08",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-06",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 0.0,
+      "target_t": 40.4175
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-09",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 5.2609,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-07",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 6.6145,
+      "target_t": 41.2446
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-10",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 15.6991,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-08",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 17.0527,
+      "target_t": 42.0716
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-11",
+      "added_t": 9.166667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 26.1373,
+      "target_t": 44.5528
+    },
+    {
+      "decided_in": "2038-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-09",
+      "added_t": 6.666667,
+      "forecast_isru_share": 0.55,
+      "projected_t": 27.4909,
+      "target_t": 42.8987
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2038-12",
+      "added_t": 8.911371,
+      "forecast_isru_share": 0.55,
+      "projected_t": 36.5754,
+      "target_t": 45.3799
+    },
+    {
+      "decided_in": "2038-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2038-10",
+      "added_t": 5.867087,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9291,
+      "target_t": 43.7258
+    },
+    {
+      "decided_in": "2038-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-01",
+      "added_t": 2.790683,
+      "forecast_isru_share": 0.55,
+      "projected_t": 43.4497,
+      "target_t": 46.2069
+    },
+    {
+      "decided_in": "2038-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-02",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 38.4801,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2038-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-03",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.9474,
+      "target_t": 47.861
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-04",
+      "added_t": 7.281533,
+      "forecast_isru_share": 0.55,
+      "projected_t": 37.4148,
+      "target_t": 48.6881
+    },
+    {
+      "decided_in": "2038-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2039-02",
+      "added_t": 1.376236,
+      "forecast_isru_share": 0.55,
+      "projected_t": 45.6743,
+      "target_t": 47.034
+    },
+    {
+      "decided_in": "2039-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-07",
+      "added_t": 4.225781,
+      "forecast_isru_share": 0.9,
+      "projected_t": 46.9942,
+      "target_t": 51.1692
+    },
+    {
+      "decided_in": "2039-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-08",
+      "added_t": 5.15777,
+      "forecast_isru_share": 0.9,
+      "projected_t": 46.9004,
+      "target_t": 51.9963
+    },
+    {
+      "decided_in": "2039-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-09",
+      "added_t": 5.15777,
+      "forecast_isru_share": 0.9,
+      "projected_t": 47.7275,
+      "target_t": 52.8234
+    },
+    {
+      "decided_in": "2039-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-10",
+      "added_t": 5.15777,
+      "forecast_isru_share": 0.9,
+      "projected_t": 48.5545,
+      "target_t": 53.6504
+    },
+    {
+      "decided_in": "2039-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-11",
+      "added_t": 5.15777,
+      "forecast_isru_share": 0.9,
+      "projected_t": 49.3816,
+      "target_t": 54.4775
+    },
+    {
+      "decided_in": "2039-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2039-12",
+      "added_t": 5.15777,
+      "forecast_isru_share": 0.9,
+      "projected_t": 50.2086,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-09",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-01",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.9,
+      "projected_t": 49.4415,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-10",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-02",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.9,
+      "projected_t": 45.6585,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-03",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.9,
+      "projected_t": 41.8755,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-11",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-01",
+      "added_t": 3.828947,
+      "forecast_isru_share": 0.9,
+      "projected_t": 51.5215,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-04",
+      "added_t": 2.105258,
+      "forecast_isru_share": 0.9,
+      "projected_t": 41.8755,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2039-12",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-02",
+      "added_t": 3.828947,
+      "forecast_isru_share": 0.9,
+      "projected_t": 51.5215,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-01",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-05",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 46.8155,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-01",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-03",
+      "added_t": 0.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 54.4855,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-06",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-02",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-04",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-07",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-03",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-05",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-08",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-04",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-06",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-09",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-05",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-07",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-10",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-06",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-08",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-11",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-07",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-09",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Earth-Flex",
+      "source_id": "B",
+      "delivery_month": "2040-12",
+      "added_t": 2.105258,
+      "forecast_isru_share": 1.0,
+      "projected_t": 44.8395,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-08",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-10",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-09",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-11",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    },
+    {
+      "decided_in": "2040-10",
+      "source": "Emergency",
+      "source_id": "E",
+      "delivery_month": "2040-12",
+      "added_t": 2.828947,
+      "forecast_isru_share": 1.0,
+      "projected_t": 52.5095,
+      "target_t": 55.3045
+    }
+  ]
+}

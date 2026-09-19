@@ -24,6 +24,8 @@
     "enabled": false
   },
   "demand_variant": "base",
+  "rule_scenario_id": "BASE",
+  "rule_set_id": "BASE",
   "enforce_service_thresholds": true,
   "notes": [
     "TEAM illustration, not an empirically calibrated geopolitical forecast or probability.",

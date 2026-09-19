@@ -36,16 +36,19 @@ MANDATORY_STRESS,P1_earth_only,STRESS_LOSS_LIMIT,2038,losses_divided_by_throughp
 MANDATORY_STRESS,P1_earth_only,STRESS_LOSS_LIMIT,2039,losses_divided_by_throughput,0.045000,0.020000,<=,False,hard,
 MANDATORY_STRESS,P1_earth_only,STRESS_LOSS_LIMIT,2040,losses_divided_by_throughput,0.045000,0.020000,<=,False,hard,
 MANDATORY_STRESS,P1_earth_only,STORAGE_OVERFLOW,2035,end_of_month_stock_t_in_worst_month,17.260439,70.000000,<=,True,hard,"2035-12, хранилище BASE; проверка помесячная"
+MANDATORY_STRESS,P1_earth_only,INTRA_MONTH_PEAK,2035,intra_month_peak_stock_t_in_worst_month,25.593772,70.000000,<=,True,hard,"2035-12, хранилище BASE; поставка одной партией в начале месяца"
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2035,reserved_A_t_per_year,109.876000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2035,ordered_A_t,109.876000,109.876000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,LEAD_TIME_VIOLATED,2035,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,SOURCE_NOT_AVAILABLE,2035,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,STORAGE_OVERFLOW,2036,end_of_month_stock_t_in_worst_month,23.424908,70.000000,<=,True,hard,"2036-12, хранилище BASE; проверка помесячная"
+MANDATORY_STRESS,P1_earth_only,INTRA_MONTH_PEAK,2036,intra_month_peak_stock_t_in_worst_month,35.091575,70.000000,<=,True,hard,"2036-12, хранилище BASE; поставка одной партией в начале месяца"
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2036,reserved_A_t_per_year,153.052000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2036,ordered_A_t,153.051800,153.052000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,LEAD_TIME_VIOLATED,2036,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,SOURCE_NOT_AVAILABLE,2036,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,STORAGE_OVERFLOW,2037,end_of_month_stock_t_in_worst_month,30.822262,70.000000,<=,True,hard,"2037-12, хранилище BASE; проверка помесячная"
+MANDATORY_STRESS,P1_earth_only,INTRA_MONTH_PEAK,2037,intra_month_peak_stock_t_in_worst_month,46.655595,70.000000,<=,True,hard,"2037-12, хранилище BASE; поставка одной партией в начале месяца"
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2037,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2037,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2037,reserved_B_t_per_year,16.699000,110.000000,<=,True,hard,Earth-Flex
@@ -53,6 +56,7 @@ MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2037,ordered_B_t,16.698
 MANDATORY_STRESS,P1_earth_only,LEAD_TIME_VIOLATED,2037,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,SOURCE_NOT_AVAILABLE,2037,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,STORAGE_OVERFLOW,2038,end_of_month_stock_t_in_worst_month,28.416440,70.000000,<=,True,hard,"2038-01, хранилище BASE; проверка помесячная"
+MANDATORY_STRESS,P1_earth_only,INTRA_MONTH_PEAK,2038,intra_month_peak_stock_t_in_worst_month,52.374774,70.000000,<=,True,hard,"2038-01, хранилище BASE; поставка одной партией в начале месяца"
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2038,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2038,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2038,reserved_B_t_per_year,80.817000,110.000000,<=,True,hard,Earth-Flex
@@ -60,6 +64,7 @@ MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2038,ordered_B_t,80.816
 MANDATORY_STRESS,P1_earth_only,LEAD_TIME_VIOLATED,2038,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,SOURCE_NOT_AVAILABLE,2038,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,STORAGE_OVERFLOW,2039,end_of_month_stock_t_in_worst_month,0.000000,70.000000,<=,True,hard,"2039-01, хранилище BASE; проверка помесячная"
+MANDATORY_STRESS,P1_earth_only,INTRA_MONTH_PEAK,2039,intra_month_peak_stock_t_in_worst_month,25.827402,70.000000,<=,True,hard,"2039-01, хранилище BASE; поставка одной партией в начале месяца"
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2039,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2039,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2039,reserved_B_t_per_year,110.000000,110.000000,<=,True,hard,Earth-Flex
@@ -67,6 +72,7 @@ MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2039,ordered_B_t,110.00
 MANDATORY_STRESS,P1_earth_only,LEAD_TIME_VIOLATED,2039,all_deliveries_ordered_within_lead_time,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,SOURCE_NOT_AVAILABLE,2039,all_orders_from_available_sources,1.000000,1.000000,==,True,hard,
 MANDATORY_STRESS,P1_earth_only,STORAGE_OVERFLOW,2040,end_of_month_stock_t_in_worst_month,0.000000,70.000000,<=,True,hard,"2040-01, хранилище BASE; проверка помесячная"
+MANDATORY_STRESS,P1_earth_only,INTRA_MONTH_PEAK,2040,intra_month_peak_stock_t_in_worst_month,23.875000,70.000000,<=,True,hard,"2040-01, хранилище BASE; поставка одной партией в начале месяца"
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2040,reserved_A_t_per_year,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,ORDER_EXCEEDS_RESERVATION,2040,ordered_A_t,190.000000,190.000000,<=,True,hard,Earth-Core
 MANDATORY_STRESS,P1_earth_only,CAPACITY_EXCEEDED,2040,reserved_B_t_per_year,110.000000,110.000000,<=,True,hard,Earth-Flex

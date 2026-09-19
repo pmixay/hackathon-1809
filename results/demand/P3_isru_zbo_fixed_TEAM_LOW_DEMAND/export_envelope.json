@@ -179,19 +179,30 @@
    },
    "storage_capacity_check": {
     "scope": "блок 5 «Проверки»: ёмкость хранилища",
-    "value": "end_of_month_hard_peak_warning",
+    "value": "end_of_month_and_intra_month_peak_hard",
     "unit": "перечисление",
     "status": "TEAM_ASSUMPTION",
     "range": null,
-    "justification": "Жёсткое нарушение, если запас на конец месяца > ёмкости; предупреждение, если запас после поступления (до выдачи) > ёмкости."
+    "justification": "Оба превышения ёмкости — жёсткие нарушения. Проверяется запас на конец месяца и расчётный пик внутри месяца при заявленном дроблении поставок (intra_month_delivery_batches): физическая исполнимость плана доказывается графиком поступлений, а не пометкой допущения."
+   },
+   "intra_month_delivery_batches": {
+    "scope": "блок 3 «Помесячный баланс» и блок 5 «Проверки»: дробление месячной поставки внутри месяца",
+    "value": 1,
+    "unit": "партий в месяц",
+    "status": "TEAM_ASSUMPTION",
+    "range": [
+     1,
+     4
+    ],
+    "justification": "Месячный объём канала приходит N равными партиями, равномерно распределёнными по месяцу, при равномерной выдаче потребителям (конвенция организатора). Пик запаса после партии j равен I_нач + (j·нетто − (j−1)·выдача)/N, максимум берётся по j = 1..N. При N = 1 это запас сразу после единственного поступления, до выдачи, — консервативный край без допущения о внутримесячной синхронизации поставок и выдачи. При N → ∞ пик стремится к max(запас на начало, запас на конец). Выбрано N = 1: организатор не задаёт размер отдельной партии, и ни один принятый план команды не нуждается в дроблении. Чувствительность к N = 2 и N = 4 показана в results/intra_month/intra_month_capacity.md."
    },
    "emergency_reserve_equivalence": {
     "scope": "блок 5 «Проверки»: эквивалентность контрактного резерва физическому",
-    "value": "stock_covers_lead_time_and_reserved_capacity_covers_45d",
+    "value": "contracted_batch_schedule_and_waiting_cover",
     "unit": "правило",
     "status": "TEAM_ASSUMPTION",
     "range": null,
-    "justification": "Контрактный резерв Emergency засчитывается, только если физический запас покрывает спрос за 6 недель срока поставки И зарезервированная мощность Emergency >= R_y."
+    "justification": "Договорный аварийный резерв засчитывается только при одновременном выполнении пяти условий, каждое из которых печатается отдельной строкой в contract_reserve_proof: (1) канал доступен в этом году; (2) договорный срок исполнения партии не быстрее срока поставки канала по данным организатора; (3) нетто-объём гарантированной партии после потерь хранилища >= R_y; (4) зарезервированная мощность канала за вычетом обычных заказов года >= партия × число активаций; (5) физический запас на начало года покрывает спрос за время активации плюс срок исполнения. Сам по себе лимит мощности канала (80 т/год) эквивалентности не доказывает. Если блок inventory_policy.emergency_contract не задан, эквивалентность не доказана и действует физический резерв. Правило следует кейсу, §«Начальный запас и резерв»."
    },
    "opening_stock_reservation_years": {
     "scope": "блок 4 «Контракты и финансы»: плата за резерв подготовительного периода",
@@ -205,15 +216,15 @@
     "justification": "Закупка подготовительного периода оплачивает ставку резервирования источника на купленный тоннаж за один год; учитывается в 2035 году."
    },
    "prep_period_holding_charged": {
-    "scope": "блок 3 «Помесячный баланс»: начало начисления хранения",
-    "value": false,
+    "scope": "блок 3 «Помесячный баланс» и блок 4: хранение начального запаса в подготовительном периоде",
+    "value": true,
     "unit": "логическое",
     "status": "TEAM_ASSUMPTION",
     "range": [
      true,
      false
     ],
-    "justification": "Стоимость хранения начисляется с 2035-01; время хранения в подготовительном периоде (< 1 месяца) не оплачивается."
+    "justification": "Хранение начального запаса начисляется с фактического месяца поставки, а не с 2035-01: ранняя поставка начального запаса не хранится бесплатно. Правило то же, что и в основном периоде (трапеция): в месяц поставки средний запас равен половине поступления, в каждый последующий месяц подготовительного периода — полному нетто-запасу. Расход относится на первый финансовый год (2035), как закупка и плата за резерв подготовительного периода. Значение false выключает начисление и оставлено только для сопоставления с прежней версией расчёта."
    },
    "intra_year_demand_profile": {
     "scope": "блок 3 «Помесячный баланс»: распределение спроса внутри года",
@@ -1197,6 +1208,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 14.40649066666667,
    "holding_cost_mln": 0.8020604900000001,
+   "peak_stock_t": 21.073157333333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1220,6 +1233,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 16.48412233333334,
    "holding_cost_mln": 0.9267183900000003,
+   "peak_stock_t": 23.150789000000003,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1243,6 +1258,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 18.561754000000008,
    "holding_cost_mln": 1.0513762900000003,
+   "peak_stock_t": 25.228420666666672,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1266,6 +1283,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 20.639385666666676,
    "holding_cost_mln": 1.1760341900000004,
+   "peak_stock_t": 27.30605233333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1289,6 +1308,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 22.717017333333345,
    "holding_cost_mln": 1.3006920900000007,
+   "peak_stock_t": 29.38368400000001,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1312,6 +1333,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 24.794649000000014,
    "holding_cost_mln": 1.4253499900000008,
+   "peak_stock_t": 31.46131566666668,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1335,6 +1358,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 26.87228066666668,
    "holding_cost_mln": 1.5500078900000007,
+   "peak_stock_t": 33.53894733333335,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1358,6 +1383,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 28.94991233333334,
    "holding_cost_mln": 1.6746657900000006,
+   "peak_stock_t": 35.616579000000016,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1381,6 +1408,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 31.027544000000002,
    "holding_cost_mln": 1.7993236900000003,
+   "peak_stock_t": 37.69421066666668,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1404,6 +1433,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 33.10517566666667,
    "holding_cost_mln": 1.9239815900000001,
+   "peak_stock_t": 39.77184233333334,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1427,6 +1458,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 35.182807333333336,
    "holding_cost_mln": 2.04863949,
+   "peak_stock_t": 41.849474,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1450,6 +1483,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 37.260439000000005,
    "holding_cost_mln": 2.1732973900000006,
+   "peak_stock_t": 43.92710566666667,
+   "delivery_batches": 1,
    "inflow_A_t": 9.156333333333334
   },
   {
@@ -1473,6 +1508,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 40.10747808333334,
    "holding_cost_mln": 2.3210375125,
+   "peak_stock_t": 49.44081141666667,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1496,6 +1533,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 42.954517166666676,
    "holding_cost_mln": 2.4918598575000006,
+   "peak_stock_t": 52.287850500000005,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1519,6 +1558,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 45.80155625000001,
    "holding_cost_mln": 2.6626822025000005,
+   "peak_stock_t": 55.13488958333334,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1542,6 +1583,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 48.64859533333335,
    "holding_cost_mln": 2.833504547500001,
+   "peak_stock_t": 57.981928666666676,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1565,6 +1608,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 51.49563441666668,
    "holding_cost_mln": 3.0043268925000004,
+   "peak_stock_t": 60.82896775000001,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1588,6 +1633,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 54.34267350000001,
    "holding_cost_mln": 3.1751492375000008,
+   "peak_stock_t": 63.676006833333346,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1611,6 +1658,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 57.18971258333334,
    "holding_cost_mln": 3.3459715825000003,
+   "peak_stock_t": 66.52304591666667,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1634,6 +1683,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 60.03675166666667,
    "holding_cost_mln": 3.5167939275,
+   "peak_stock_t": 69.370085,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1657,6 +1708,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 62.883790749999996,
    "holding_cost_mln": 3.6876162724999997,
+   "peak_stock_t": 72.21712408333333,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1680,6 +1733,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 65.73082983333333,
    "holding_cost_mln": 3.8584386174999996,
+   "peak_stock_t": 75.06416316666666,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1703,6 +1758,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 68.57786891666667,
    "holding_cost_mln": 4.0292609625,
+   "peak_stock_t": 77.91120225,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1726,6 +1783,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 71.42490800000002,
    "holding_cost_mln": 4.2000833075,
+   "peak_stock_t": 80.75824133333334,
+   "delivery_batches": 1,
    "inflow_A_t": 12.754316666666666
   },
   {
@@ -1749,6 +1808,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 74.92863558333335,
    "holding_cost_mln": 4.390606307500001,
+   "peak_stock_t": 87.59530225000002,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1773,6 +1834,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 78.43236316666668,
    "holding_cost_mln": 4.600829962500001,
+   "peak_stock_t": 91.09902983333335,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1797,6 +1860,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 81.93609075,
    "holding_cost_mln": 4.8110536175,
+   "peak_stock_t": 94.60275741666668,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1821,6 +1886,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 85.43981833333333,
    "holding_cost_mln": 5.0212772725,
+   "peak_stock_t": 98.106485,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1845,6 +1912,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 88.94354591666666,
    "holding_cost_mln": 5.2315009275,
+   "peak_stock_t": 101.61021258333334,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1869,6 +1938,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 92.4472735,
    "holding_cost_mln": 5.4417245825,
+   "peak_stock_t": 105.11394016666667,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1893,6 +1964,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 96.50976863333332,
    "holding_cost_mln": 5.668711263999999,
+   "peak_stock_t": 109.1764353,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1917,6 +1990,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 100.57226376666665,
    "holding_cost_mln": 5.912460971999999,
+   "peak_stock_t": 113.23893043333332,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1941,6 +2016,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 104.63475889999998,
    "holding_cost_mln": 6.156210679999998,
+   "peak_stock_t": 117.30142556666665,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1965,6 +2042,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 108.69725403333331,
    "holding_cost_mln": 6.399960387999998,
+   "peak_stock_t": 121.36392069999998,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -1989,6 +2068,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 112.75974916666664,
    "holding_cost_mln": 6.643710095999999,
+   "peak_stock_t": 125.42641583333331,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -2013,6 +2094,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 116.82224429999998,
    "holding_cost_mln": 6.887459803999999,
+   "peak_stock_t": 129.48891096666665,
+   "delivery_batches": 1,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.0990166666666668
   },
@@ -2037,6 +2120,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 113.47475623333331,
    "holding_cost_mln": 6.908910015999999,
+   "peak_stock_t": 130.14142289999998,
+   "delivery_batches": 1,
    "inflow_A_t": 13.48095
   },
   {
@@ -2060,6 +2145,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 110.12726816666662,
    "holding_cost_mln": 6.708060731999999,
+   "peak_stock_t": 126.79393483333331,
+   "delivery_batches": 1,
    "inflow_A_t": 13.48095
   },
   {
@@ -2083,6 +2170,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 116.65978009999996,
    "holding_cost_mln": 6.803611447999998,
+   "peak_stock_t": 133.32644676666663,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2107,6 +2196,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 123.19229203333329,
    "holding_cost_mln": 7.195562163999997,
+   "peak_stock_t": 139.85895869999996,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2131,6 +2222,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 129.72480396666663,
    "holding_cost_mln": 7.587512879999998,
+   "peak_stock_t": 146.39147063333328,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2155,6 +2248,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 136.25731589999998,
    "holding_cost_mln": 7.979463595999998,
+   "peak_stock_t": 152.92398256666664,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2179,6 +2274,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 142.78982783333333,
    "holding_cost_mln": 8.371414311999999,
+   "peak_stock_t": 159.4564945,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2203,6 +2300,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 149.3223397666667,
    "holding_cost_mln": 8.763365028,
+   "peak_stock_t": 165.98900643333334,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2227,6 +2326,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 155.85485170000004,
    "holding_cost_mln": 9.155315744000001,
+   "peak_stock_t": 172.5215183666667,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2251,6 +2352,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 162.3873636333334,
    "holding_cost_mln": 9.547266460000003,
+   "peak_stock_t": 179.05403030000005,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2275,6 +2378,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 168.91987556666675,
    "holding_cost_mln": 9.939217176000005,
+   "peak_stock_t": 185.5865422333334,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2299,6 +2404,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 175.4523875000001,
    "holding_cost_mln": 10.331167892000005,
+   "peak_stock_t": 192.11905416666676,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 13.48095
   },
@@ -2323,6 +2430,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 181.50489923333342,
    "holding_cost_mln": 10.708718602000005,
+   "peak_stock_t": 202.83823256666676,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2348,6 +2457,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 187.55741096666674,
    "holding_cost_mln": 11.071869306000005,
+   "peak_stock_t": 208.89074430000008,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2373,6 +2484,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 193.60992270000006,
    "holding_cost_mln": 11.435020010000002,
+   "peak_stock_t": 214.9432560333334,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2398,6 +2511,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 199.66243443333337,
    "holding_cost_mln": 11.798170714000003,
+   "peak_stock_t": 220.99576776666672,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2423,6 +2538,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 205.7149461666667,
    "holding_cost_mln": 12.161321418,
+   "peak_stock_t": 227.04827950000004,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2448,6 +2565,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 211.7674579,
    "holding_cost_mln": 12.524472122,
+   "peak_stock_t": 233.10079123333335,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2473,6 +2592,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 217.81996963333333,
    "holding_cost_mln": 12.887622826,
+   "peak_stock_t": 239.15330296666667,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2498,6 +2619,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 223.87248136666665,
    "holding_cost_mln": 13.250773529999998,
+   "peak_stock_t": 245.2058147,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2523,6 +2646,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 229.92499309999997,
    "holding_cost_mln": 13.613924233999997,
+   "peak_stock_t": 251.2583264333333,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2548,6 +2673,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 235.9775048333333,
    "holding_cost_mln": 13.977074938,
+   "peak_stock_t": 257.31083816666666,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2573,6 +2700,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 242.03001656666666,
    "holding_cost_mln": 14.340225641999998,
+   "peak_stock_t": 263.3633499,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2598,6 +2727,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 248.0825283,
    "holding_cost_mln": 14.703376345999999,
+   "peak_stock_t": 269.41586163333335,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 1.8851333333333333
@@ -2623,6 +2754,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 254.58253306666666,
    "holding_cost_mln": 15.079951841000002,
+   "peak_stock_t": 280.58253306666666,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2648,6 +2781,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 261.08253783333333,
    "holding_cost_mln": 15.469952127,
+   "peak_stock_t": 287.08253783333333,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2673,6 +2808,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 267.5825426,
    "holding_cost_mln": 15.859952412999997,
+   "peak_stock_t": 293.5825426,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2698,6 +2835,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 274.0825473666667,
    "holding_cost_mln": 16.249952699,
+   "peak_stock_t": 300.0825473666667,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2723,6 +2862,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 280.58255213333337,
    "holding_cost_mln": 16.639952984999997,
+   "peak_stock_t": 306.58255213333337,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2748,6 +2889,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 287.08255690000004,
    "holding_cost_mln": 17.029953271000004,
+   "peak_stock_t": 313.08255690000004,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2773,6 +2916,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 293.5825616666667,
    "holding_cost_mln": 17.419953557,
+   "peak_stock_t": 319.5825616666667,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2798,6 +2943,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 300.0825664333334,
    "holding_cost_mln": 17.809953843000006,
+   "peak_stock_t": 326.0825664333334,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2823,6 +2970,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 306.5825712000001,
    "holding_cost_mln": 18.199954129,
+   "peak_stock_t": 332.5825712000001,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2848,6 +2997,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 313.08257596666675,
    "holding_cost_mln": 18.589954415000005,
+   "peak_stock_t": 339.08257596666675,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2873,6 +3024,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 319.58258073333343,
    "holding_cost_mln": 18.979954701000004,
+   "peak_stock_t": 345.58258073333343,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2898,6 +3051,8 @@
    "shortage_critical_t": 0.0,
    "closing_t": 326.0825855000001,
    "holding_cost_mln": 19.369954987000007,
+   "peak_stock_t": 352.0825855000001,
+   "delivery_batches": 1,
    "inflow_D_t": 10.0,
    "inflow_A_t": 15.833333333333334,
    "inflow_B_t": 7.0614083333333335
@@ -2910,12 +3065,12 @@
    "year": 2035,
    "procurement_mln": 796.12842,
    "reservation_mln": 51.38067,
-   "holding_mln": 17.852147280000004,
+   "holding_mln": 18.222013050000005,
    "fixed_opex_mln": 0.0,
    "capex_mln": 0.0,
-   "total_mln": 865.3612372800001,
+   "total_mln": 865.73110305,
    "discount_factor": 1.0,
-   "pv_total_mln": 865.3612372800001,
+   "pv_total_mln": 865.73110305,
    "cumulative_capex_mln": 0.0,
    "take_or_pay_topup_mln": 0.0
   },
@@ -3000,8 +3155,8 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 72.217 т превышает ёмкость хранилища Base storage 70.0 т внутри 2036-09 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 72.217 т превышает ёмкость хранилища Base storage 70.0 т в 2036-09 (поставка одной партией в начале месяца; запас на начало 60.037 т, нетто-поступление 12.180 т, выдача 9.333 т)",
    "year": 2036,
    "month": 9,
    "source_id": null,
@@ -3013,8 +3168,8 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 75.064 т превышает ёмкость хранилища Base storage 70.0 т внутри 2036-10 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 75.064 т превышает ёмкость хранилища Base storage 70.0 т в 2036-10 (поставка одной партией в начале месяца; запас на начало 62.884 т, нетто-поступление 12.180 т, выдача 9.333 т)",
    "year": 2036,
    "month": 10,
    "source_id": null,
@@ -3026,8 +3181,8 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 77.911 т превышает ёмкость хранилища Base storage 70.0 т внутри 2036-11 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 77.911 т превышает ёмкость хранилища Base storage 70.0 т в 2036-11 (поставка одной партией в начале месяца; запас на начало 65.731 т, нетто-поступление 12.180 т, выдача 9.333 т)",
    "year": 2036,
    "month": 11,
    "source_id": null,
@@ -3051,6 +3206,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 80.758 т превышает ёмкость хранилища Base storage 70.0 т в 2036-12 (поставка одной партией в начале месяца; запас на начало 68.578 т, нетто-поступление 12.180 т, выдача 9.333 т)",
+   "year": 2036,
+   "month": 12,
+   "source_id": null,
+   "actual": 80.75824133333334,
+   "limit": 70.0,
+   "excess": 10.758241333333345
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 74.929 т превышает ёмкость хранилища Base storage 70.0 т в 2037-01",
@@ -3060,6 +3228,19 @@
    "actual": 74.92863558333335,
    "limit": 70.0,
    "excess": 4.928635583333346
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 87.595 т превышает ёмкость хранилища Base storage 70.0 т в 2037-01 (поставка одной партией в начале месяца; запас на начало 71.425 т, нетто-поступление 16.170 т, выдача 12.667 т)",
+   "year": 2037,
+   "month": 1,
+   "source_id": null,
+   "actual": 87.59530225000002,
+   "limit": 70.0,
+   "excess": 17.595302250000017
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3077,6 +3258,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 91.099 т превышает ёмкость хранилища Base storage 70.0 т в 2037-02 (поставка одной партией в начале месяца; запас на начало 74.929 т, нетто-поступление 16.170 т, выдача 12.667 т)",
+   "year": 2037,
+   "month": 2,
+   "source_id": null,
+   "actual": 91.09902983333335,
+   "limit": 70.0,
+   "excess": 21.099029833333347
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 81.936 т превышает ёмкость хранилища Base storage 70.0 т в 2037-03",
@@ -3086,6 +3280,19 @@
    "actual": 81.93609075,
    "limit": 70.0,
    "excess": 11.936090750000005
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 94.603 т превышает ёмкость хранилища Base storage 70.0 т в 2037-03 (поставка одной партией в начале месяца; запас на начало 78.432 т, нетто-поступление 16.170 т, выдача 12.667 т)",
+   "year": 2037,
+   "month": 3,
+   "source_id": null,
+   "actual": 94.60275741666668,
+   "limit": 70.0,
+   "excess": 24.602757416666677
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3103,6 +3310,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 98.106 т превышает ёмкость хранилища Base storage 70.0 т в 2037-04 (поставка одной партией в начале месяца; запас на начало 81.936 т, нетто-поступление 16.170 т, выдача 12.667 т)",
+   "year": 2037,
+   "month": 4,
+   "source_id": null,
+   "actual": 98.106485,
+   "limit": 70.0,
+   "excess": 28.106485000000006
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 88.944 т превышает ёмкость хранилища Base storage 70.0 т в 2037-05",
@@ -3112,6 +3332,19 @@
    "actual": 88.94354591666666,
    "limit": 70.0,
    "excess": 18.943545916666665
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 101.610 т превышает ёмкость хранилища Base storage 70.0 т в 2037-05 (поставка одной партией в начале месяца; запас на начало 85.440 т, нетто-поступление 16.170 т, выдача 12.667 т)",
+   "year": 2037,
+   "month": 5,
+   "source_id": null,
+   "actual": 101.61021258333334,
+   "limit": 70.0,
+   "excess": 31.610212583333336
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3130,8 +3363,21 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 121.364 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2037-10 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 105.114 т превышает ёмкость хранилища Base storage 70.0 т в 2037-06 (поставка одной партией в начале месяца; запас на начало 88.944 т, нетто-поступление 16.170 т, выдача 12.667 т)",
+   "year": 2037,
+   "month": 6,
+   "source_id": null,
+   "actual": 105.11394016666667,
+   "limit": 70.0,
+   "excess": 35.113940166666666
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 121.364 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2037-10 (поставка одной партией в начале месяца; запас на начало 104.635 т, нетто-поступление 16.729 т, выдача 12.667 т)",
    "year": 2037,
    "month": 10,
    "source_id": null,
@@ -3143,8 +3389,8 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 125.426 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2037-11 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 125.426 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2037-11 (поставка одной партией в начале месяца; запас на начало 108.697 т, нетто-поступление 16.729 т, выдача 12.667 т)",
    "year": 2037,
    "month": 11,
    "source_id": null,
@@ -3156,8 +3402,8 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 129.489 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2037-12 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 129.489 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2037-12 (поставка одной партией в начале месяца; запас на начало 112.760 т, нетто-поступление 16.729 т, выдача 12.667 т)",
    "year": 2037,
    "month": 12,
    "source_id": null,
@@ -3169,8 +3415,8 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 130.141 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2038-01 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 130.141 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-01 (поставка одной партией в начале месяца; запас на начало 116.822 т, нетто-поступление 13.319 т, выдача 16.667 т)",
    "year": 2038,
    "month": 1,
    "source_id": null,
@@ -3182,21 +3428,21 @@
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 126.794 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2038-02 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 126.794 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-02 (поставка одной партией в начале месяца; запас на начало 113.475 т, нетто-поступление 13.319 т, выдача 16.667 т)",
    "year": 2038,
    "month": 2,
    "source_id": null,
-   "actual": 126.7939348333333,
+   "actual": 126.79393483333331,
    "limit": 120.0,
-   "excess": 6.793934833333296
+   "excess": 6.79393483333331
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
    "rule_id": "INTRA_MONTH_PEAK",
-   "severity": "warning",
-   "message": "запас после поступления 133.326 т превышает ёмкость хранилища ZBO modernization 120.0 т внутри 2038-03 (до выдачи потребителям)",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 133.326 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-03 (поставка одной партией в начале месяца; запас на начало 110.127 т, нетто-поступление 23.199 т, выдача 16.667 т)",
    "year": 2038,
    "month": 3,
    "source_id": null,
@@ -3220,6 +3466,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 139.859 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-04 (поставка одной партией в начале месяца; запас на начало 116.660 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 4,
+   "source_id": null,
+   "actual": 139.85895869999996,
+   "limit": 120.0,
+   "excess": 19.85895869999996
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 129.725 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-05",
@@ -3229,6 +3488,19 @@
    "actual": 129.72480396666663,
    "limit": 120.0,
    "excess": 9.724803966666627
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 146.391 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-05 (поставка одной партией в начале месяца; запас на начало 123.192 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 5,
+   "source_id": null,
+   "actual": 146.39147063333328,
+   "limit": 120.0,
+   "excess": 26.391470633333284
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3246,6 +3518,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 152.924 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-06 (поставка одной партией в начале месяца; запас на начало 129.725 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 6,
+   "source_id": null,
+   "actual": 152.92398256666664,
+   "limit": 120.0,
+   "excess": 32.92398256666664
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 142.790 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-07",
@@ -3255,6 +3540,19 @@
    "actual": 142.78982783333333,
    "limit": 120.0,
    "excess": 22.789827833333334
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 159.456 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-07 (поставка одной партией в начале месяца; запас на начало 136.257 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 7,
+   "source_id": null,
+   "actual": 159.4564945,
+   "limit": 120.0,
+   "excess": 39.45649449999999
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3272,6 +3570,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 165.989 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-08 (поставка одной партией в начале месяца; запас на начало 142.790 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 8,
+   "source_id": null,
+   "actual": 165.98900643333334,
+   "limit": 120.0,
+   "excess": 45.989006433333344
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 155.855 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-09",
@@ -3281,6 +3592,19 @@
    "actual": 155.85485170000004,
    "limit": 120.0,
    "excess": 35.85485170000004
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 172.522 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-09 (поставка одной партией в начале месяца; запас на начало 149.322 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 9,
+   "source_id": null,
+   "actual": 172.5215183666667,
+   "limit": 120.0,
+   "excess": 52.5215183666667
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3298,6 +3622,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 179.054 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-10 (поставка одной партией в начале месяца; запас на начало 155.855 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 10,
+   "source_id": null,
+   "actual": 179.05403030000005,
+   "limit": 120.0,
+   "excess": 59.05403030000005
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 168.920 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-11",
@@ -3307,6 +3644,19 @@
    "actual": 168.91987556666675,
    "limit": 120.0,
    "excess": 48.91987556666675
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 185.587 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-11 (поставка одной партией в начале месяца; запас на начало 162.387 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 11,
+   "source_id": null,
+   "actual": 185.5865422333334,
+   "limit": 120.0,
+   "excess": 65.5865422333334
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3324,6 +3674,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 192.119 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2038-12 (поставка одной партией в начале месяца; запас на начало 168.920 т, нетто-поступление 23.199 т, выдача 16.667 т)",
+   "year": 2038,
+   "month": 12,
+   "source_id": null,
+   "actual": 192.11905416666676,
+   "limit": 120.0,
+   "excess": 72.11905416666676
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 181.505 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-01",
@@ -3333,6 +3696,19 @@
    "actual": 181.50489923333342,
    "limit": 120.0,
    "excess": 61.50489923333342
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 202.838 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-01 (поставка одной партией в начале месяца; запас на начало 175.452 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 1,
+   "source_id": null,
+   "actual": 202.83823256666676,
+   "limit": 120.0,
+   "excess": 82.83823256666676
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3350,6 +3726,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 208.891 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-02 (поставка одной партией в начале месяца; запас на начало 181.505 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 2,
+   "source_id": null,
+   "actual": 208.89074430000008,
+   "limit": 120.0,
+   "excess": 88.89074430000008
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 193.610 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-03",
@@ -3359,6 +3748,19 @@
    "actual": 193.60992270000006,
    "limit": 120.0,
    "excess": 73.60992270000006
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 214.943 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-03 (поставка одной партией в начале месяца; запас на начало 187.557 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 3,
+   "source_id": null,
+   "actual": 214.9432560333334,
+   "limit": 120.0,
+   "excess": 94.9432560333334
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3376,6 +3778,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 220.996 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-04 (поставка одной партией в начале месяца; запас на начало 193.610 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 4,
+   "source_id": null,
+   "actual": 220.99576776666672,
+   "limit": 120.0,
+   "excess": 100.99576776666672
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 205.715 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-05",
@@ -3385,6 +3800,19 @@
    "actual": 205.7149461666667,
    "limit": 120.0,
    "excess": 85.71494616666669
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 227.048 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-05 (поставка одной партией в начале месяца; запас на начало 199.662 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 5,
+   "source_id": null,
+   "actual": 227.04827950000004,
+   "limit": 120.0,
+   "excess": 107.04827950000004
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3402,6 +3830,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 233.101 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-06 (поставка одной партией в начале месяца; запас на начало 205.715 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 6,
+   "source_id": null,
+   "actual": 233.10079123333335,
+   "limit": 120.0,
+   "excess": 113.10079123333335
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 217.820 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-07",
@@ -3411,6 +3852,19 @@
    "actual": 217.81996963333333,
    "limit": 120.0,
    "excess": 97.81996963333333
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 239.153 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-07 (поставка одной партией в начале месяца; запас на начало 211.767 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 7,
+   "source_id": null,
+   "actual": 239.15330296666667,
+   "limit": 120.0,
+   "excess": 119.15330296666667
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3428,6 +3882,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 245.206 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-08 (поставка одной партией в начале месяца; запас на начало 217.820 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 8,
+   "source_id": null,
+   "actual": 245.2058147,
+   "limit": 120.0,
+   "excess": 125.20581469999999
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 229.925 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-09",
@@ -3437,6 +3904,19 @@
    "actual": 229.92499309999997,
    "limit": 120.0,
    "excess": 109.92499309999997
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 251.258 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-09 (поставка одной партией в начале месяца; запас на начало 223.872 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 9,
+   "source_id": null,
+   "actual": 251.2583264333333,
+   "limit": 120.0,
+   "excess": 131.2583264333333
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3454,6 +3934,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 257.311 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-10 (поставка одной партией в начале месяца; запас на начало 229.925 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 10,
+   "source_id": null,
+   "actual": 257.31083816666666,
+   "limit": 120.0,
+   "excess": 137.31083816666666
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 242.030 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-11",
@@ -3463,6 +3956,19 @@
    "actual": 242.03001656666666,
    "limit": 120.0,
    "excess": 122.03001656666666
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 263.363 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-11 (поставка одной партией в начале месяца; запас на начало 235.978 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 11,
+   "source_id": null,
+   "actual": 263.3633499,
+   "limit": 120.0,
+   "excess": 143.3633499
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3480,6 +3986,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 269.416 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2039-12 (поставка одной партией в начале месяца; запас на начало 242.030 т, нетто-поступление 27.386 т, выдача 21.333 т)",
+   "year": 2039,
+   "month": 12,
+   "source_id": null,
+   "actual": 269.41586163333335,
+   "limit": 120.0,
+   "excess": 149.41586163333335
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 254.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-01",
@@ -3489,6 +4008,19 @@
    "actual": 254.58253306666666,
    "limit": 120.0,
    "excess": 134.58253306666666
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 280.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-01 (поставка одной партией в начале месяца; запас на начало 248.083 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 1,
+   "source_id": null,
+   "actual": 280.58253306666666,
+   "limit": 120.0,
+   "excess": 160.58253306666666
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3506,6 +4038,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 287.083 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-02 (поставка одной партией в начале месяца; запас на начало 254.583 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 2,
+   "source_id": null,
+   "actual": 287.08253783333333,
+   "limit": 120.0,
+   "excess": 167.08253783333333
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 267.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-03",
@@ -3515,6 +4060,19 @@
    "actual": 267.5825426,
    "limit": 120.0,
    "excess": 147.5825426
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 293.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-03 (поставка одной партией в начале месяца; запас на начало 261.083 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 3,
+   "source_id": null,
+   "actual": 293.5825426,
+   "limit": 120.0,
+   "excess": 173.5825426
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3532,6 +4090,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 300.083 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-04 (поставка одной партией в начале месяца; запас на начало 267.583 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 4,
+   "source_id": null,
+   "actual": 300.0825473666667,
+   "limit": 120.0,
+   "excess": 180.0825473666667
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 280.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-05",
@@ -3541,6 +4112,19 @@
    "actual": 280.58255213333337,
    "limit": 120.0,
    "excess": 160.58255213333337
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 306.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-05 (поставка одной партией в начале месяца; запас на начало 274.083 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 5,
+   "source_id": null,
+   "actual": 306.58255213333337,
+   "limit": 120.0,
+   "excess": 186.58255213333337
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3558,6 +4142,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 313.083 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-06 (поставка одной партией в начале месяца; запас на начало 280.583 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 6,
+   "source_id": null,
+   "actual": 313.08255690000004,
+   "limit": 120.0,
+   "excess": 193.08255690000004
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 293.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-07",
@@ -3567,6 +4164,19 @@
    "actual": 293.5825616666667,
    "limit": 120.0,
    "excess": 173.58256166666672
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 319.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-07 (поставка одной партией в начале месяца; запас на начало 287.083 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 7,
+   "source_id": null,
+   "actual": 319.5825616666667,
+   "limit": 120.0,
+   "excess": 199.58256166666672
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3584,6 +4194,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 326.083 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-08 (поставка одной партией в начале месяца; запас на начало 293.583 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 8,
+   "source_id": null,
+   "actual": 326.0825664333334,
+   "limit": 120.0,
+   "excess": 206.0825664333334
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 306.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-09",
@@ -3593,6 +4216,19 @@
    "actual": 306.5825712000001,
    "limit": 120.0,
    "excess": 186.58257120000007
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 332.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-09 (поставка одной партией в начале месяца; запас на начало 300.083 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 9,
+   "source_id": null,
+   "actual": 332.5825712000001,
+   "limit": 120.0,
+   "excess": 212.58257120000007
   },
   {
    "scenario_id": "TEAM_LOW_DEMAND",
@@ -3610,6 +4246,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 339.083 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-10 (поставка одной партией в начале месяца; запас на начало 306.583 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 10,
+   "source_id": null,
+   "actual": 339.08257596666675,
+   "limit": 120.0,
+   "excess": 219.08257596666675
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 319.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-11",
@@ -3623,6 +4272,19 @@
   {
    "scenario_id": "TEAM_LOW_DEMAND",
    "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 345.583 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-11 (поставка одной партией в начале месяца; запас на начало 313.083 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 11,
+   "source_id": null,
+   "actual": 345.58258073333343,
+   "limit": 120.0,
+   "excess": 225.58258073333343
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
    "rule_id": "STORAGE_OVERFLOW",
    "severity": "hard",
    "message": "запас на конец месяца 326.083 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-12",
@@ -3632,20 +4294,33 @@
    "actual": 326.0825855000001,
    "limit": 120.0,
    "excess": 206.0825855000001
+  },
+  {
+   "scenario_id": "TEAM_LOW_DEMAND",
+   "plan_id": "P3_isru_zbo",
+   "rule_id": "INTRA_MONTH_PEAK",
+   "severity": "hard",
+   "message": "пик запаса внутри месяца 352.083 т превышает ёмкость хранилища ZBO modernization 120.0 т в 2040-12 (поставка одной партией в начале месяца; запас на начало 319.583 т, нетто-поступление 32.500 т, выдача 26.000 т)",
+   "year": 2040,
+   "month": 12,
+   "source_id": null,
+   "actual": 352.0825855000001,
+   "limit": 120.0,
+   "excess": 232.0825855000001
   }
  ],
  "risk_register": [],
  "kpi": {
-  "total_cost_mln": 11107.138816178,
-  "pv_cost_mln": 8979.548667767933,
+  "total_cost_mln": 11107.508681948,
+  "pv_cost_mln": 8979.918533537933,
   "discount_rate_real": 0.08,
   "demand_total_t": 1112.0,
   "served_total_t": 1112.0,
   "served_critical_t": 760.0,
   "shortage_total_t": 0.0,
   "shortage_critical_t": 2.842170943040401e-14,
-  "cost_per_served_t_mln": 9.988434187210432,
-  "pv_cost_per_served_t_mln": 8.07513369403591,
+  "cost_per_served_t_mln": 9.98876680031295,
+  "pv_cost_per_served_t_mln": 8.075466307138429,
   "min_service_level_total": 1.0,
   "min_service_level_critical": 0.9999999999999999,
   "losses_total_t": 29.4921735,
@@ -3653,18 +4328,20 @@
   "capex_total_mln": 1430.0,
   "procurement_total_mln": 8374.89789,
   "reservation_total_mln": 467.63367,
-  "holding_total_mln": 582.6072561780001,
+  "holding_total_mln": 582.9771219480001,
   "fixed_opex_total_mln": 252.0,
   "take_or_pay_idle_t": 0.0,
   "take_or_pay_topup_mln": 0.0,
   "opening_inventory_t": 12.328859000000001,
   "closing_inventory_t": 326.0825855000001,
-  "hard_violations": 40,
+  "prep_holding_mln": 0.36986577000000004,
+  "prep_holding_months": 1,
+  "hard_violations": 89,
   "guideline_violations": 0,
-  "warnings": 9,
+  "warnings": 0,
   "feasible": false,
-  "checks_total": 75,
-  "checks_passed": 70
+  "checks_total": 81,
+  "checks_passed": 71
  },
  "investments": [
   {
@@ -3694,6 +4371,6 @@
    "note": ""
   }
  ],
- "generated_at": "2026-09-19T18:13:37+00:00",
+ "generated_at": "2026-09-19T19:22:57+00:00",
  "terraplan_version": "0.1.0"
 }

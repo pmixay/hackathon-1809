@@ -16,6 +16,8 @@
     "enabled": false
   },
   "demand_variant": "base",
+  "rule_scenario_id": null,
+  "rule_set_id": "BASE",
   "enforce_service_thresholds": null,
   "notes": [
     "BASE does not apply reliability as an automatic delivery multiplier."

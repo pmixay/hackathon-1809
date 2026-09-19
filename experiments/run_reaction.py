@@ -7,9 +7,13 @@ each after its own lead time: Earth-Flex (4 months -> extra deliveries from 2038
 (6 weeks = 2 months -> from 2038-05). Core is unchanged (already at capacity in 2040).
 Reaction rule: each month from the reaction date, add the cheapest available extra delivery so that the
 end-of-month stock follows the stress reserve trajectory (linear path to next year's 45-day reserve).
-Sizing uses the FULL future stress trace, not an information-at-order-date policy. The final-year
-target retains 55.295 t, versus 21.755 t in the capacity-limited adapted comparison plan; the PV
-difference is therefore not a pure value-of-information estimate. See experiments/README.md.
+Sizing uses the FULL future stress trace, not an information-at-order-date policy, so this experiment
+establishes CALENDAR feasibility of the response only — that every changed order can still be placed
+after the event is observed. It does NOT establish that the volumes could have been chosen without
+knowing the future. The closed-loop policy whose decisions are computed only from observations
+available at the order date is EXP-14 (experiments/run_adaptive_policy.py). The final-year target
+retains 55.295 t, versus 21.755 t in the capacity-limited adapted comparison plan; the PV difference
+is therefore not a pure value-of-information estimate. See experiments/README.md.
 Reactive orders carry reactive=True and the plan carries observation_month=2038-03, so the engine
 itself checks that no reactive delivery is ordered before the observation (LEAD_TIME_VIOLATED otherwise).
 Outputs: results/reaction/ (fixed, reactive, pre-committed adapted runs + comparison + summary).
@@ -33,18 +37,26 @@ ROUND_MARGIN_T = 0.01            # technical margin (t) on the target stock traj
 
 
 def write_response_rule_check(fixed: Plan, reactive: Plan, case, a) -> None:
-    """Независимая проверка правила реакции: ни одно изменение не опережает наблюдение события.
+    """Независимая проверка КАЛЕНДАРНОЙ выполнимости реакции: ни одно изменение не опережает наблюдение.
 
-    Отчёт сохраняется рядом с результатами, чтобы вывод «план реагирует, а не предвидит»
-    можно было проверить, не читая код эксперимента. Нарушение останавливает эксперимент.
+    Проверяется ровно одно: каждое изменённое решение можно разместить после месяца наблюдения
+    (месяц заказа = месяц поставки − срок поставки >= месяц наблюдения), инвестиции и начальный
+    запас не переписаны, изменены только заявленные каналы. Проверка НЕ утверждает, что объёмы
+    можно было выбрать, не зная будущей траектории: в EXP-06 они подобраны по всей стрессовой
+    трассе. Политика, решения которой считаются только по наблюдениям на дату заказа, — EXP-14
+    (results/adaptive_policy/). Нарушение календарного правила останавливает эксперимент.
     """
     viol, rows = check_response_rule(fixed, reactive, case, a, [sid for sid, _ in LEVERS], reactive.observation_month)
-    lines = [f"# Проверка правила реакции — {reactive.plan_id}", "",
+    lines = [f"# Проверка календарной выполнимости реакции — {reactive.plan_id}", "",
              f"Событие наблюдается {reactive.observation_month}. Рычаги реакции: "
              + ", ".join(f"{case.sources[sid].name} ({lt} мес.)" for sid, lt in LEVERS) + ".", "",
-             "Правило: инвестиции и начальный запас неизменны; каждое изменённое решение должно быть выполнимо "
+             "**Что проверяется.** Инвестиции и начальный запас неизменны; каждое изменённое решение выполнимо "
              "после наблюдения — месяц размещения заказа (месяц поставки минус срок поставки) не раньше месяца наблюдения; "
-             "договорной объём года, закончившегося до наблюдения, не пересматривается.", "",
+             "договорной объём года, закончившегося до наблюдения, не пересматривается; изменены только заявленные каналы.", "",
+             "**Что НЕ проверяется.** Информационная допустимость самих объёмов. В EXP-06 они подобраны по всей "
+             "будущей стрессовой траектории, поэтому этот отчёт доказывает только календарную выполнимость реакции. "
+             "Замкнутая политика, объёмы которой вычисляются по наблюдениям на дату заказа и проверяются на четырёх "
+             "будущих траекториях с общей историей, — EXP-14, `results/adaptive_policy/`.", "",
              "| Канал | Период | Было, т | Стало, т | Изменение, т | Заказать до | Доступно после наблюдения |",
              "|---|---|---:|---:|---:|---|:---:|"]
     for r in sorted(rows, key=lambda r: (r["year"], r["month"], r["source_id"])):
@@ -54,8 +66,10 @@ def write_response_rule_check(fixed: Plan, reactive: Plan, case, a) -> None:
     if viol:
         lines += ["", "## Нарушения", ""] + [f"- [{v['rule']}] {v['what']}: {v['why']}" for v in viol]
     else:
-        lines += ["", "Все изменения выполнимы после наблюдения события: план реагирует на наблюдаемую недопоставку, "
-                  "а не использует знание сценария заранее."]
+        lines += ["", "Все изменения календарно выполнимы после наблюдения события: ни один изменённый заказ "
+                  "не требуется разместить раньше, чем недопоставка становится видимой. "
+                  "Это утверждение о сроках, а не об объёмах: объёмы EXP-06 подобраны по всей будущей траектории "
+                  "(см. EXP-14 для политики, не использующей знание будущего)."]
     out = RESULTS / "reaction" / "response_rule_check.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
