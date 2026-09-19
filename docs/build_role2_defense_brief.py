@@ -171,11 +171,16 @@ def main() -> None:
     body = ParagraphStyle("body", parent=base["BodyText"], fontName="Arial", fontSize=8.8,
                           leading=11.8, textColor=TEXT, spaceAfter=4)
     small = ParagraphStyle("small", parent=body, fontSize=7.3, leading=9.3, textColor=MUTED)
+    compact = ParagraphStyle("compact", parent=body, fontSize=8.0, leading=10.1, spaceAfter=2)
+    qa_body = ParagraphStyle("qa-body", parent=body, fontSize=8.1, leading=10.2, spaceAfter=2)
     callout = ParagraphStyle("callout", parent=body, fontName="Arial-Bold", fontSize=11.3,
                              leading=14, textColor=NAVY, borderColor=TEAL, borderWidth=1,
                              borderPadding=7, backColor=PALE_TEAL, spaceAfter=8)
+    final_callout = ParagraphStyle("final-callout", parent=callout, fontSize=10.4, leading=12.7,
+                                   borderPadding=6, spaceAfter=3)
     q = ParagraphStyle("q", parent=body, fontName="Arial-Bold", fontSize=8.8, leading=11, textColor=NAVY,
                        spaceBefore=3, spaceAfter=1)
+    qa_q = ParagraphStyle("qa-q", parent=q, fontSize=8.3, leading=10.2, spaceBefore=2, spaceAfter=0.5)
 
     story = []
     story += [Spacer(1, 3 * mm), p("Финальная стратегия TerraPlan", title),
@@ -221,9 +226,9 @@ def main() -> None:
 
     story.append(PageBreak())
     story += [Spacer(1, 2 * mm), p("MCDA: решение можно пересчитать", h1), p(
-        "Сначала жёсткий фильтр: BASE и адаптированный обязательный стресс должны быть исполнимы. "
-        "P1/P2 не оцениваются. P2z/P3/P4 после адаптации дают 100% общего и критического сервиса; "
-        "веса не могут компенсировать нарушение сервиса или 45-дневного резерва.", body)]
+        "До взвешивания действует фильтр допуска: BASE проходит hard-ограничения, а адаптированный "
+        "обязательный стресс не имеет hard-нарушений. В стрессе сервис 97%/99% имеет статус guideline; "
+        "R2 отдельно требует 100% общего и критического сервиса. P1/P2 не оцениваются.", body)]
 
     metrics = [
         ["Архитектура", "BASE PV", "Стресс PV", "CAPEX", "Дефицит без пересмотра", "Без TOP", "Мощность"],
@@ -269,10 +274,13 @@ def main() -> None:
         "Баллы не доказывают абсолютный оптимум и не являются вероятностями. Они показывают, что вывод не "
         "держится на одном удобном наборе весов: P2z лидирует у оператора, потребителей, финансиста и в "
         "сбалансированном профиле. Сильные стороны соперников не скрыты: P3 лучше в BASE и гибкости, P4 - "
-        "в мощности. Исходники: configs/mcda_profiles.yaml, experiments/run_mcda.py, results/strategy/.", body)]
+        "в мощности. Исходники: configs/mcda_profiles.yaml, experiments/run_mcda.py, "
+        "results/strategy/summary.md и results/stress/summary.md.", compact)]
 
     story.append(PageBreak())
     story += [Spacer(1, 2 * mm), p("Контракт: кто несёт какой риск", h1), p(
+        "Все предлагаемые remedies, cap/collar, приёмочные ворота и распределение остаточного риска - "
+        "TEAM_ASSUMPTION; TOP, сроки, мощности и CAPEX организатора остаются CASE_INPUT. "
         "Главный принцип: TOP платится, когда поставщик реально сделал мощность доступной, но оператор не выбрал "
         "объём. Если мощность недоступна по вине поставщика, этот объём исключается из TOP и включается remedy.", callout)]
 
@@ -290,7 +298,7 @@ def main() -> None:
     story += [Spacer(1, 4 * mm), p("Критерии 17-18: интересы и адаптация", h2)]
     adapt = [
         ["Сторона", "Что защищаем", "Что меняется при риске"],
-        ["Критические потребители", "99% сервис + приоритет + 45 дней", "Это hard gate: весами ухудшение не компенсируется."],
+        ["Критические потребители", "99% guideline в стрессе; приоритет; hard-резерв", "R2 требует 100% сервиса до MCDA; веса его не компенсируют."],
         ["Коммерческие", "97% общий сервис и предсказуемая цена", "Адаптация убирает 95,917 т дефицита; без неё shortage ложится первым на них."],
         ["Оператор", "Минимум PV при 0 hard violations", "Платит гибкость/буфер, но получает remedies за supplier fault."],
         ["Финансист", "Лимит CAPEX и stage gates", "540 млн CAPEX и 1 260 млн headroom вместо 1 430/1 790."],
@@ -302,33 +310,34 @@ def main() -> None:
     story += [Spacer(1, 4 * mm), p("Критические триггеры", h2), p(
         "Stress outlook до 2038 -> перейти на tested adapted P2z. Низкий спрос -> резать no-TOP раньше TOP. "
         "Milestone slip C -> substitute B/E + физический буфер + clause 4 claim. Reserve forecast близок к 45 "
-        "дням -> запас имеет приоритет над баллом MCDA. Post-2040 growth -> новая оценка ISRU/P4.", body)]
+        "дням -> запас имеет приоритет над баллом MCDA. Порога 'ждать +5%' нет: любое изменение прогноза "
+        "запускает пересчёт P2z. Post-2040 growth -> новая оценка ISRU/P4.", body)]
 
     story.append(PageBreak())
     story += [Spacer(1, 2 * mm), p("Ответы на вероятные вопросы жюри", h1)]
 
     qa = [
-        ("Почему не P3, если он самый дешёвый?", f"Он дешевле только в BASE на {fmt(base_gap, 3)} млн PV. В адаптированном обязательном стрессе P3 дороже на {fmt(stress_saving, 3)} млн PV и требует +{fmt(capex_saving, 0)} млн CAPEX. Мы покупаем устойчивость к заданному риску почти без потери BASE-экономики."),
+        ("Почему P2z, если P3 дешевле в BASE?", f"P3 экономит только {fmt(base_gap, 3)} млн PV в BASE. В проверенной адаптации к обязательному стрессу P2z дешевле на {fmt(stress_saving, 3)} млн PV и требует на {fmt(capex_saving, 0)} млн меньше необратимого CAPEX. Поэтому P2z - минимальная проверенная стоимость заблаговременной адаптации при меньшем капитале."),
         ("Почему не P4 - максимальная диверсификация?", "P4 даёт 550 т/год обычной мощности, но CAPEX 1 790 оставляет 10 млн до лимита 2037 и всё равно требует адаптации. Его стресс-PV выше P2z на 480,756 млн."),
         ("Вы называете P2z робастным?", "Нет. Мы защищаем архитектуру и правило адаптации, не один заказной план. Exact adapted P2z проходит стресс, но имеет лишь 0,000469 т запаса над резервом января 2040; в BASE тот же график даёт 17 overflow violations."),
         ("Что если Earth-New опоздает?", "EXP-09: задержки 3/6/12 месяцев не создают дефицит, но нарушают резерв 2038-2040. Поэтому milestone/acceptance/LD, ранний физический buffer и своевременные B/E call-offs являются частью стратегии."),
         ("Почему контрактный резерв не равен физическому?", "Emergency требует 6 недель. Контракт считается эквивалентом только если физический запас покрывает ожидание и зарезервированная E-мощность не меньше нормы. Иначе RESERVE_45D нарушен."),
         ("Где прибыль и окупаемость?", "Их нет в выводе: организатор не дал выручку или цену срыва миссии. Мы сравниваем PV стоимости обеспечения, CAPEX, сервис и риск, а не заявляем NPV бизнеса."),
-        ("Не подобраны ли веса под P2z?", "Веса раскрыты до результата в четырёх профилях. P2z выигрывает во всех. Hard gates применены до MCDA, а преимущества P3/P4 показаны отдельно. Скрипт воспроизводим."),
+        ("Не подобраны ли веса под P2z?", "Веса раскрыты в четырёх профилях. P2z выигрывает во всех. Hard-ограничения применены до MCDA; сервис 97%/99% в стрессе остаётся guideline, а R2 отдельно требует 100%. Преимущества P3/P4 показаны отдельно."),
         ("Что реально доказали внешние источники?", "Метод: stage gates, capacity options, quantity flexibility, TOP risk allocation и ZBO acceptance. Они не доказывают ни цены, ни CAPEX, ни 1,2% потерь кейса - эти числа только CASE_INPUT."),
         ("Как меняется решение после 2040?", "Пока никак: это граница данных. В 2040 открываем новый gate и сравниваем ISRU/P4 с расширенным спросом, зрелостью технологии и новой контрактной ценой."),
     ]
     for question, answer in qa:
-        story.append(KeepTogether([p(question, q), p(answer, body)]))
+        story.append(KeepTogether([p(question, qa_q), p(answer, qa_body)]))
 
-    story += [Spacer(1, 3 * mm), p("Где проверять", h2), p(
-        "Решение и аргумент: docs/management_note.md. MCDA: results/strategy/summary.md. Контракт: "
-        "docs/contract_strategy.md. Критерии 17-18: docs/stakeholders.md. Числа: "
-        "results/alternatives/summary.csv и results/stress/summary.csv. Источники и ограничения: docs/sources.md.", small)]
+    story += [Spacer(1, 1.5 * mm), p("Где проверять", h2), p(
+        "Решение и аргумент: docs/management_note.md. MCDA: results/strategy/summary.md. Экономика стресса: "
+        "results/stress/summary.md. Договорные TEAM_ASSUMPTION: docs/contract_strategy.md. "
+        "Критерии 17-18: docs/stakeholders.md. Источники и ограничения: docs/sources.md.", small)]
     story += [p(
         "Финальная фраза: P2z - не самая модная технология и не самый дешёвый BASE. Это минимальная проверенная "
         "стоимость полного исполнения обязательного стресса при существенно меньшем необратимом капитале, "
-        "с явным владельцем каждого остаточного риска.", callout)]
+        "с явным владельцем каждого остаточного риска.", final_callout)]
 
     doc.build(story)
     print(OUT)
