@@ -32,13 +32,19 @@
 
 <header id="hdr">
   <a class="mark" href="#top" aria-label="TerraPlan">TERRA<span>PLAN</span></a>
-  <nav class="nav">
-    <a href="#chainPin">Задача</a>
-    <a href="#demandPin">Спрос</a>
-    <a href="#plansPin">Решение</a>
-    <a href="#tankPin">Кризис</a>
-    <a href="#faq">Ответы</a>
-  </nav>
+  <div class="hright">
+    <nav class="nav">
+      <a href="#chainPin">Задача</a>
+      <a href="#demandPin">Спрос</a>
+      <a href="#plansPin">Решение</a>
+      <a href="#tankPin">Кризис</a>
+      <a href="#faq">Ответы</a>
+    </nav>
+    <a class="gv" href="https://gitverse.ru/hackrus.experts/kosmo-piter_molotok_90" target="_blank" rel="noopener noreferrer">
+      <img src="assets/img/gitverse.svg" alt="" width="22" height="22" aria-hidden="true">
+      <span>GitVerse</span>
+    </a>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -103,12 +109,12 @@
       <path d="M28 58h8l-4 10-4-10Z" fill="#3FE096"/>
     </svg>
     <div class="chip" id="ch1" style="left:262px;top:6px">12 месяцев в пути</div>
-    <div class="chip" id="ch2" style="left:calc(50% - 108px);top:344px">−4,5 % запаса в год</div>
+    <div class="chip" id="ch2" style="left:calc(50% - 116px);top:344px">−4,5 % от каждой партии</div>
     <div class="chip" id="ch3" style="right:190px;top:6px">спрос растёт вчетверо</div>
   </div>
   <div class="chainCap" id="chainCap">
     <div><h3>Заказ уходит за год до старта</h3><p>Партия с Земли идёт двенадцать месяцев, новый канал строится два года.</p></div>
-    <div><h3>На складе топливо испаряется</h3><p>Часть запаса исчезает сама, поэтому покупать нужно с запасом на потери.</p></div>
+    <div><h3>На складе топливо испаряется</h3><p>Из каждой партии 4,5 % теряется при закачке, поэтому покупать нужно с запасом.</p></div>
     <div><h3>Миссии ждать не могут</h3><p>Спрос растёт с 100 до 390 тонн в год, и отменить его нельзя.</p></div>
   </div>
 </div></div>
@@ -210,7 +216,7 @@
     <div class="kicker rv">Коротко о главном</div>
     <h2 class="rv">Ответы на вопросы, которые задаст жюри</h2>
     <div class="keyrow">
-      <div class="rv"><b>100</b><p>баллов рубрики закрыты</p></div>
+      <div class="rv"><b>100</b><p>баллов рубрики разобраны</p></div>
       <div class="rv"><b>6</b><p>групп критериев</p></div>
       <div class="rv"><b>291</b><p>проверка при запуске</p></div>
       <div class="rv"><b>68</b><p>расчётов пересчитаны</p></div>
@@ -218,7 +224,7 @@
     <div class="faq">
       <div class="qa rv"><div class="q"><b>01</b><h3>Откуда взяты все числа?</h3></div>
         <p>Из данных организатора. Баланс считается по каждому месяцу с 2035 по 2040 год, контрольные примеры проходят.</p>
-        <span class="pts">Модель и расчёт · 25</span></div>
+        <span class="pts">Надёжность модели · 25</span></div>
       <div class="qa rv"><div class="q"><b>02</b><h3>Почему выбран именно P2z?</h3></div>
         <p>Четыре плана посчитаны на одной базе. P2z дороже на 90 млн сейчас и дешевле на 539 млн в кризисе.</p>
         <span class="pts">Архитектура и стратегия · 20</span></div>
@@ -227,7 +233,7 @@
         <span class="pts">Стресс-тесты · 20</span></div>
       <div class="qa rv"><div class="q"><b>04</b><h3>Как проверить, что расчёт верный?</h3></div>
         <p>Отдельная команда берёт выгрузку, считает всё заново и сравнивает. Так проверены все 68 расчётов.</p>
-        <span class="pts">Проверяемость · 25</span></div>
+        <span class="pts pale">Надёжность модели · критерий 5</span></div>
       <div class="qa rv"><div class="q"><b>05</b><h3>Какие риски вы видите у себя?</h3></div>
         <p>Реестр рисков именно нашего плана: событие, причина, цена последствий, стоимость меры и остаток риска.</p>
         <span class="pts">Оценка рисков · 15</span></div>
@@ -264,6 +270,14 @@
   <h2 class="rv">Откройте и проверьте сами</h2>
   <p class="closing rv">Открытый расчёт, воспроизводимый результат и названные границы применимости.
   Любое число на этой странице можно пересчитать заново.</p>
+  <a class="gvcta rv" href="https://gitverse.ru/hackrus.experts/kosmo-piter_molotok_90" target="_blank" rel="noopener noreferrer">
+    <img src="assets/img/gitverse.svg" alt="" width="28" height="28" aria-hidden="true">
+    <span>Репозиторий на GitVerse</span>
+    <svg class="arw" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
   <div class="rule"></div>
   <div class="foot"><span>TerraPlan</span><span>Орбитальный топливный узел · 2035–2040</span></div>
 </div>
