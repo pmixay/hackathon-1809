@@ -153,9 +153,9 @@ h1{font-weight:800;font-size:clamp(50px,8.6vw,124px);line-height:.92;padding:0 .
 .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin-top:24px}
 .lg{display:inline-flex;align-items:center;gap:10px;font-size:17px;font-weight:600;color:var(--soft)}
 .lg::before{content:'';width:16px;height:16px;border-radius:5px;flex:none}
-.lg.a::before{background:#4C8DFF}
-.lg.c::before{background:#3FE096}
-.lg.b::before{background:#59C8FF}
+.lg.ch-a::before{background:#4C8DFF}
+.lg.ch-c::before{background:#3FE096}
+.lg.ch-b::before{background:#59C8FF}
 .lg.have::before{background:#3FE096}
 .lg.need::before{background:transparent;border:2px dashed #9BB8D8;border-radius:4px}
 .verdict{margin:30px auto 0;max-width:860px;font-family:'Benzin';font-weight:700;
