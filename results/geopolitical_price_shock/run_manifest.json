@@ -23,7 +23,7 @@
     "src/terraplan/api.py": "812db4d93a84045927ba9246b1fbf09b94f9c46d3a8f6e9262009fac0df11b57",
     "src/terraplan/assumptions.py": "433f6530586901ec2e1fce53c19f4da43e1e38d62ddc4b12aa1bf8a5ac2ae0cd",
     "src/terraplan/case.py": "3d045e7f349245dba8fe9b76b141cc41b1d2787a886601c2b19ba28bc0b8f49a",
-    "src/terraplan/cli.py": "8589f5f45d8e45982d8d3284c9fd5a8c224e6a5b69cfb17d7ff23474a1c682b3",
+    "src/terraplan/cli.py": "5a991cb401b23238dadb64719e95060db7e403540ce7485059543cacf2b23916",
     "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
     "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
     "src/terraplan/engine.py": "f2ab1d75383afddcc4d2ec74774122de3f01245ddeebe810d8c7f6a5067360db",
@@ -32,7 +32,7 @@
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "7acd89fa4c3ba3c62d7ff7b481b2da3055bc65099772bdbb87acf3f59294c325",
     "src/terraplan/scenario.py": "c52b4abdcf97b39f43b96b66901f355c606b1005ad445365ff5806f23a947783",
-    "src/terraplan/web.py": "f6b665e237c667059ee6f9a688f4cb5cc315a7ea422780155ad0be1002dda424",
+    "src/terraplan/web.py": "84b4cb5d9abeb1f435bccd25b8562f5ddbb373307d4d2c4c1e69e678c5dd3569",
     "experiments/provenance.py": "b93a6165b09944def59185cf8628180b4d0bc4449a6eb55109b1323bfffb22ca"
   },
   "output_sha256": {
@@ -135,7 +135,7 @@
     "comparison.csv": "31f1d043be61b015a5890ae9800278bee888ede078c468d0f8b5035c17993403",
     "price_exposure.csv": "f1edb63d451635ec291bf9005647c0bb24ae4fbf87304fa690d1186d2ec9f983",
     "price_overlay.csv": "25f643d9371703165832217c2a29593623a6dcc275a502cf240a9d157d706486",
-    "report.json": "a237dc66bd5b25b6a9c1db511580e42a3e422b872a23c0f6fcc2409248e1c364",
+    "report.json": "61721648c42c0f0fa820de86778aa0a1cf1a39eb302b9bb8b92cee69f8174eb0",
     "shock.yaml": "507456f751ca854a303e50337526fa581fff9b248569d71c2b7c6594d2ae0545",
     "summary.md": "39c103b597b5cf7d660a88623840385e450820554e91d175573c9e6c2ead91c1",
     "yearly.csv": "d960b43a8a39e5c25416d6401d396173e400e85618d26904df774592f232d6af"

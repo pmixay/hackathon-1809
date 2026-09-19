@@ -5,6 +5,7 @@ import csv
 import io
 import json
 import math
+import os
 import tempfile
 import uuid
 import zipfile
@@ -268,7 +269,29 @@ def site_file(site, path):
     return (target, kind) if kind else None
 
 
-def make_server(root, port=8765):
+def allowed_host_set(port, allowed_hosts=()):
+    """Множество допустимых значений заголовка Host.
+
+    По умолчанию — только loopback: интерфейс рассчитан на одного локального оператора.
+    Публичный адрес добавляется явно (`--allow-host`, переменная TERRAPLAN_ALLOWED_HOSTS),
+    иначе сервер за доменом отвечал бы 403 на каждый запрос. Имя принимается и с портом,
+    и без него: за обратным прокси клиент видит 443, а сервер — свой внутренний порт.
+    """
+    hosts = {f"127.0.0.1:{port}", f"localhost:{port}", "127.0.0.1", "localhost"}
+    env = os.environ.get("TERRAPLAN_ALLOWED_HOSTS", "")
+    for item in list(allowed_hosts) + [x for x in env.split(",")]:
+        name = item.strip().lower()
+        if not name:
+            continue
+        hosts.add(name)
+        if ":" not in name:                      # то же имя с явным портом
+            hosts.add(f"{name}:{port}")
+            hosts.add(f"{name}:80")
+            hosts.add(f"{name}:443")
+    return hosts
+
+
+def make_server(root, port=8765, allowed_hosts=(), bind="127.0.0.1"):
     workspace = Workspace(root)
     assets = Path(__file__).with_name("static")
     site = Path(root).resolve() / "site"
@@ -290,12 +313,13 @@ def make_server(root, port=8765):
             self.wfile.write(body)
 
         def local_request(self):
-            expected = {f"127.0.0.1:{self.server.server_port}", f"localhost:{self.server.server_port}"}
-            if self.headers.get("Host") not in expected:
-                self.reply(403, {"error": "Откройте интерфейс по локальному адресу TerraPlan."})
+            hosts = self.server.allowed_hosts
+            origins = self.server.allowed_origins
+            if (self.headers.get("Host") or "").lower() not in hosts:
+                self.reply(403, {"error": "Откройте интерфейс по разрешённому адресу TerraPlan."})
                 return False
             origin = self.headers.get("Origin")
-            if origin and origin not in {f"http://{host}" for host in expected}:
+            if origin and origin.lower() not in origins:
                 self.reply(403, {"error": "Запросы с других сайтов не допускаются."})
                 return False
             return True
@@ -359,14 +383,24 @@ def make_server(root, port=8765):
                     body["error"] = f"Ошибочный ввод: найдено проблем — {len(details)}"
                 self.reply(400, body)
 
-    return HTTPServer(("127.0.0.1", port), Handler)
+    server = HTTPServer((bind, port), Handler)
+    # порт известен только после привязки: при port=0 его выбирает ОС
+    server.allowed_hosts = allowed_host_set(server.server_port, allowed_hosts)
+    server.allowed_origins = {f"{scheme}://{h}" for h in server.allowed_hosts for scheme in ("http", "https")}
+    return server
 
 
-def serve(root=".", port=8765):
-    server = make_server(root, port)
-    address = f"http://127.0.0.1:{server.server_port}"
+def serve(root=".", port=8765, allowed_hosts=(), bind="127.0.0.1"):
+    server = make_server(root, port, allowed_hosts, bind)
+    address = f"http://{'127.0.0.1' if bind in ('127.0.0.1', '') else bind}:{server.server_port}"
     print(f"TerraPlan: {address} — страница решения, {address}/console — пульт оператора "
           f"(остановка — Ctrl+C)", flush=True)
+    public = [h for h in server.allowed_hosts if not h.startswith(("127.0.0.1", "localhost"))]
+    if public:
+        print("ВНИМАНИЕ: разрешён внешний адрес " + ", ".join(sorted(public)[:3])
+              + ". У пульта оператора нет аутентификации: любой, кто откроет адрес, считает и "
+              "выгружает наравне с вами, последние 12 расчётов общие. Данные репозитория не "
+              "изменяются — расчёт идёт во временном каталоге.", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

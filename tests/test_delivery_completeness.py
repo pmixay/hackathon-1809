@@ -124,13 +124,19 @@ def test_live_stand_address_is_stated(path):
         f"в {path} не указан адрес живого стенда"
 
 
-def test_live_stand_claim_does_not_promise_a_hosted_calculator():
-    """На статическом хостинге работает только страница; пульт оператора запускается локально.
+def test_live_stand_always_offers_a_local_fallback():
+    """Жюри не должно зависеть от доступности стенда: локальный запуск описан рядом с адресом.
 
-    Обещать жюри расчёт по ссылке, которой там нет, — та же ошибка «утверждение сильнее
-    доказательства», за которую снимал баллы аудит.
+    Утверждение о стенде проверяется не текстом, а командой `python scripts/check_live.py`,
+    которая опрашивает реальные маршруты. Так документ не содержит хрупкого обещания.
     """
-    for path in ("README.md", "site/README.md"):
+    for path in ("README.md", "site/README.md", "docs/operator_guide.md"):
         text = (ROOT / path).read_text(encoding="utf-8")
-        assert "локально" in text, f"{path}: не сказано, что расчёт запускается локально"
-    assert "404" in (ROOT / "site" / "README.md").read_text(encoding="utf-8")
+        assert "python -m terraplan ui" in text, f"{path}: рядом с адресом стенда нет локального запуска"
+
+
+def test_publishing_behind_a_domain_is_documented():
+    """Сервер за доменом без --allow-host отвечает 403 — это обязано быть в инструкции."""
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "--allow-host" in readme and "403" in readme
+    assert "--allow-host" in (ROOT / "site" / "README.md").read_text(encoding="utf-8")
