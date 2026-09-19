@@ -1,0 +1,212 @@
+{
+  "plan_id": "P2z_earth_new_zbo_adapted",
+  "scenario_id": "MANDATORY_STRESS",
+  "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling) — перепланирован под MANDATORY_STRESS",
+  "decisions": {
+    "capacity_reservations": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "reserved_capacity_t": 109.876
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "reserved_capacity_t": 153.052
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "reserved_capacity_t": 17.948
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2038,
+        "reserved_capacity_t": 111.038
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "reserved_capacity_t": 130.0
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "reserved_capacity_t": 62.515
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "reserved_capacity_t": 190.0
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "reserved_capacity_t": 130.0
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "reserved_capacity_t": 110.0
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "reserved_capacity_t": 3.592776
+      }
+    ],
+    "supply_orders": [
+      {
+        "source_id": "A",
+        "year": 2035,
+        "ordered_t": 109.876,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2036,
+        "ordered_t": 153.0518,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2037,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2037,
+        "ordered_t": 17.9471,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2038,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2038,
+        "ordered_t": 111.0372,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2039,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2039,
+        "ordered_t": 130.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2039,
+        "ordered_t": 62.5149,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "A",
+        "year": 2040,
+        "ordered_t": 190.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "C",
+        "year": 2040,
+        "ordered_t": 130.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2040,
+        "ordered_t": 110.0,
+        "profile": "uniform"
+      },
+      {
+        "source_id": "B",
+        "year": 2037,
+        "ordered_t": 3.592776,
+        "profile": "monthly",
+        "monthly_t": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.449097,
+          0.449097,
+          0.449097,
+          0.449097,
+          0.449097,
+          0.449097,
+          0.449097,
+          0.449097
+        ]
+      }
+    ],
+    "investments": [
+      {
+        "investment_id": "EARTH_NEW",
+        "decision_year": 2035,
+        "decision_month": 1,
+        "option_year": 2035,
+        "option_month": 1
+      },
+      {
+        "investment_id": "ZBO",
+        "decision_year": 2037,
+        "decision_month": 7
+      }
+    ],
+    "inventory_policy": {
+      "opening_stock": [
+        {
+          "source_id": "B",
+          "tons": 12.9098,
+          "delivery_year": 2034,
+          "delivery_month": 12
+        }
+      ],
+      "reserve_mode": "physical",
+      "allocation_rule": "critical_first"
+    }
+  },
+  "meta": {
+    "builder": "greedy_merit_order",
+    "strategy": {
+      "plan_id": "P2z_earth_new_zbo_adapted",
+      "description": "P2 plus ZBO modernization 2037-07 (needed for the stress loss ceiling) — перепланирован под MANDATORY_STRESS",
+      "reservation_caps": {
+        "A": 190,
+        "B": 110,
+        "C": 130
+      },
+      "stress_aware": true
+    },
+    "stress_aware": true,
+    "builder_notes": [
+      "2040: planned gross shortfall 23.95 t (available reserved capacity exhausted)"
+    ],
+    "status": "TEAM_DECISION"
+  }
+}

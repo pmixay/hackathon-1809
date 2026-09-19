@@ -10,19 +10,23 @@ ZBO), потери хранения, экономика (CAPEX/OPEX, закуп�
 оператор и жюри (интерфейс, вывод команд, сводки, тексты нарушений и ошибок, документы), — на русском языке;
 идентификаторы правил, имена файлов и колонок — как в форматах организатора.
 
-**Итоговое решение — P2z (Earth-Core + Earth-Flex + Earth-New + ZBO):** PV затрат 8 729,404 млн в BASE (дефицит 0,
+**Итоговое решение — P2z (Earth-Core + Earth-Flex + Earth-New + ZBO):** PV затрат 8 729,774 млн в BASE (дефицит 0,
 все проверки выполнены); в обязательном стрессе без изменения заказов — дефицит 95,917 т и нарушения 45-дневного
-резерва в 2038–2040; после заблаговременной адаптации заказов — PV 10 097,472 млн, дефицит 0, нарушений 0.
-Управленческая записка: [docs/management_note.md](docs/management_note.md); одностраничное резюме сценариев:
-[docs/one_pager_scenarios.md](docs/one_pager_scenarios.md); презентация (12 слайдов):
-[docs/presentation/TerraPlan.pptx](docs/presentation/TerraPlan.pptx).
+резерва в 2038–2040; после заблаговременной адаптации заказов — PV 10 097,842 млн, дефицит 0, нарушений 0.
+Управленческая записка: [docs/management_note.md](docs/management_note.md) — **10 страниц** в фиксированной
+вёрстке (требование кейса 8–12), приложения отдельным файлом; одностраничное резюме сценариев:
+[docs/one_pager_scenarios.md](docs/one_pager_scenarios.md) — **ровно 1 страница**. Финальные документы для печати
+собираются командой `python docs/build_note.py`, которая печатает число страниц и проверяет его
+(`--check` возвращает ненулевой код при выходе за границы); готовые файлы — `docs/build/`.
+Презентация (12 слайдов): [docs/presentation/TerraPlan.pptx](docs/presentation/TerraPlan.pptx).
+Ответ на независимый аудит 19.09.2026: [docs/audit_response.md](docs/audit_response.md).
 
 ## Быстрый старт
 
 ```bash
 python -m pip install -e ".[dev]"                # Python ≥ 3.10; зависимости: pyyaml, openpyxl, pytest
 python -m terraplan ui                          # интерфейс оператора: http://127.0.0.1:8765 (офлайн), остановка Ctrl+C
-python -m pytest -q                             # 291 тест: контрольные примеры V01–V10, движок, ошибочный ввод, границы, API, UI, verify всех результатов
+python -m pytest -q                             # 335 тестов: контрольные примеры V01–V10, движок, ошибочный ввод, границы, API, UI, verify всех результатов
 python -m terraplan control-cases               # V01–V10: ПРОЙДЕН / НЕ ПРОЙДЕН
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario BASE             --out results/demo_BASE
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
@@ -30,7 +34,8 @@ python -m terraplan run --plan configs/plans/P2z_earth_new_zbo_adapted.json --sc
 python -m terraplan compare results/demo_BASE results/demo_STRESS --out results/demo_compare
 python -m terraplan verify results/demo_BASE           # воспроизводимость: пересчёт и сравнение с выгрузкой
 python tests/independent_recalc.py results/demo_BASE    # независимый пересчёт только по CSV, без движка
-python experiments/run_all.py                   # EXP-01 … EXP-13 и сводка рисков, перегенерирует results/ (EXP-10 — с зерном 203510)
+python experiments/run_all.py                   # EXP-01 … EXP-17 и сводка рисков, перегенерирует results/ (EXP-10 — с зерном 203510)
+python docs/build_note.py                       # финальные документы: записка 8–12 страниц и одностраничное резюме, с проверкой объёма
 python experiments/run_p2z_resilience.py        # EXP-12: защита, чувствительность и обратный стресс выбранного P2z
 python experiments/run_mcda.py                  # многокритериальный выбор стратегии и четыре профиля интересов
 ```
@@ -81,7 +86,8 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | [docs/presentation/TerraPlan.pptx](docs/presentation/TerraPlan.pptx) | презентация, 12 слайдов; собирается из результатов скриптом `docs/presentation/build_deck.py` |
 | [docs/architecture.md](docs/architecture.md) | схема цепочки поставок, блоки расчёта (входы, выходы, формулы, границы), контрактно-финансовая архитектура, реализация, верификация |
 | [docs/constraints_catalogue.md](docs/constraints_catalogue.md) | каталог всех проверяемых правил |
-| [docs/stress_test_protocol.md](docs/stress_test_protocol.md) | методики и протоколы стресс-тестов EXP-01…EXP-13 с результатами |
+| [docs/stress_test_protocol.md](docs/stress_test_protocol.md) | методики и протоколы стресс-тестов EXP-01…EXP-17 с результатами |
+| [docs/audit_response.md](docs/audit_response.md) | ответ на независимый аудит 19.09.2026: что воспроизведено, что исправлено и чем проверяется |
 | [docs/risk_register.md](docs/risk_register.md) | реестр ключевых рисков с рассчитанными последствиями, мерами, их стоимостью и остаточным риском |
 | [docs/stakeholders.md](docs/stakeholders.md) | интересы сторон, метрики, обязательства, адаптация при изменении рисков, раскрытые веса MCDA |
 | [docs/contract_strategy.md](docs/contract_strategy.md) | контрактно-финансовая архитектура: резервирование, take-or-pay, меры, опционы, пересмотр |
@@ -100,9 +106,9 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | `configs/scenarios/` | `base.yaml`, `mandatory_stress.yaml` (CASE_INPUT), `team_low_demand.yaml`, `team_high_demand.yaml`, `team_geopolitical_price_shock.yaml` (исследовательские) |
 | `configs/plans/` | сохранённые планы для обоих сценариев (JSON по схеме организатора): P1…P4, P2z и адаптированные к стрессу варианты |
 | `configs/assumptions.yaml`, `configs/mcda_profiles.yaml` | реестр допущений (смысл, единица, статус, диапазон, обоснование); профили и веса MCDA |
-| `experiments/` | скрипты и протоколы EXP-01…EXP-13, переносимая проверка происхождения `provenance.py` |
+| `experiments/` | скрипты и протоколы EXP-01…EXP-17, переносимая проверка происхождения `provenance.py` |
 | `results/` | выгрузки всех экспериментов: CSV, XLSX, JSON, `summary.md`, `run_manifest.json` с хешами (`results/README.md`) |
-| `tests/` | pytest (291): V01–V10, движок, ошибочный ввод, границы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, матрица проверок, календарь Earth-New, реактивные заказы, контрактный резерв, API, интерфейс и геополитический блок, EXP-07…EXP-13, `verify` + независимый пересчёт каждого каталога результатов; `ui_smoke.cjs` — проверка в реальном браузере |
+| `tests/` | pytest (335): V01–V10, движок, ошибочный ввод, границы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, матрица проверок, календарь Earth-New, реактивные заказы, контрактный резерв, API, интерфейс и геополитический блок, EXP-07…EXP-13, `verify` + независимый пересчёт каждого каталога результатов; `ui_smoke.cjs` — проверка в реальном браузере |
 | `schemas/` | JSON-схемы организатора (план, выгрузка, сценарий, данные) |
 | `docs/` | документы для жюри (таблица выше), `organizer/` (PDF кейса и снимок справочного репозитория), `literature/` (8 статей и конспекты), `presentation/` |
 
@@ -139,9 +145,13 @@ P2z дороже P3 в BASE на 90,547 млн PV, но дешевле адап�
 Интерфейс обслуживает одного локального оператора (loopback), хранит последние 12 расчётов до остановки сервера и
 сохраняет работу через скачиваемые файлы. Оптимизатора нет (жадный построитель по порядку цен, движок проверяет всё
 заново). Шаг — месяц (6 недель Emergency = 2 месяца в календаре, 42 дня при проверке покрытия). Распределения
-Монте-Карло и сценарные задержки — допущения команды без калибровки. Не рассчитаны: буфер P2z против совместных малых
-отклонений, цена задержки ZBO для P2z, стоимость договорных гарантий, экономика 2041+. Секретов и внешних сервисов
-нет; всё работает офлайн.
+Монте-Карло и сценарные задержки — допущения команды без калибровки.
+
+Посчитано: буфер P2z против совместных малых отклонений (EXP-12 — физический запас Earth-Flex 3,2 т нетто
+за +31,136 млн PV расширяет границу совместного шока с ≈ 0,0000413 % до ≈ 0,39 %) и цена задержки ввода ZBO
+для P2z с мерами и остаточным риском (EXP-17). Не рассчитаны: стоимость договорных гарантий и cap/collar,
+задержка Earth-New свыше 12 месяцев, совместное действие задержки и роста спроса, экономика 2041+.
+Секретов и внешних сервисов нет; всё работает офлайн.
 
 ## Передача решения
 
@@ -157,5 +167,17 @@ python -m terraplan verify results/stress/P2z_earth_new_zbo_adapted_MANDATORY_ST
 python -m terraplan ui
 ```
 
-Публикация: `git remote add gitverse <адрес-репозитория-команды>` и `git push gitverse main`; после публикации
-проверить доступ жюри к репозиторию и презентации из другой учётной записи. Пароли, токены и ключи в репозиторий не включаются.
+### Публикация на GitVerse
+
+**Статус: не выполнена в этой поставке.** В репозитории настроен только GitHub `origin`; публикация на GitVerse
+и доступ жюри из другой учётной записи из этой среды подтвердить нельзя. Это организационный шаг команды,
+и до его выполнения ссылки на GitVerse в материалах нет. Порядок:
+
+```bash
+git remote add gitverse <адрес-репозитория-команды>
+git push gitverse main
+```
+
+После публикации: открыть репозиторий и презентацию из другой учётной записи и убедиться, что доступны
+`README.md`, `docs/`, `configs/`, `data/`, `results/` и файлы `docs/build/`. Пароли, токены и ключи
+в репозиторий не включаются.

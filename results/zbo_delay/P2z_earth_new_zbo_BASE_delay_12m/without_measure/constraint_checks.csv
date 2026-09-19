@@ -1,0 +1,4 @@
+scenario_id,plan_id,rule_id,severity,message,year,month,source_id,actual,limit,excess
+BASE,P2z_earth_new_zbo,RESERVE_45D,hard,2038-01: физический запас 27.470 т < 45-дневного резерва 30.822 т,2038,1,,27.469639,30.821918,3.352279
+BASE,P2z_earth_new_zbo,RESERVE_45D,hard,2039-01: физический запас 31.781 т < 45-дневного резерва 39.452 т,2039,1,,31.780554,39.452055,7.671501
+BASE,P2z_earth_new_zbo,RESERVE_45D,hard,2040-01: физический запас 40.411 т < 45-дневного резерва 48.082 т,2040,1,,40.410695,48.082192,7.671497
