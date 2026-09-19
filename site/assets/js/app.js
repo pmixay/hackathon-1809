@@ -23,25 +23,6 @@ var seed=20250919;function rnd(){seed=(seed*1664525+1013904223)%4294967296;retur
     frag.appendChild(d);}
   host.appendChild(frag);});
 
-/* ---------- бегущая лента горизонта ---------- */
-(function(){
-  var track=document.getElementById('track');if(!track)return;
-  var years=['2035','2036','2037','2038','2039','2040'];
-  var phrase='Шесть лет · семьдесят два месяца · ни одной тонны наугад';
-  var frag=document.createDocumentFragment();
-  function fill(){
-    for(var r=0;r<2;r++){
-      years.forEach(function(y){
-        var s1=document.createElement('span');s1.textContent=y;frag.appendChild(s1);
-        var d=document.createElement('em');d.textContent='◆';frag.appendChild(d);});
-      var say=document.createElement('span');say.className='say';say.textContent=phrase;
-      frag.appendChild(say);
-      var d2=document.createElement('em');d2.textContent='◆';frag.appendChild(d2);}
-  }
-  fill();fill();            /* две одинаковые половины: -50% замыкает ленту без стыка */
-  track.appendChild(frag);
-})();
-
 /* ---------- reveal + counters ---------- */
 function count(node){
   if(node.dataset.done)return;node.dataset.done='1';
