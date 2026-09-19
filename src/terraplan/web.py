@@ -322,7 +322,13 @@ def make_server(root, port=8765):
                 else:
                     self.reply(404, {"error": "Страница не найдена"})
             except (ValueError, TypeError, KeyError, AttributeError, OverflowError) as exc:
-                self.reply(400, {"error": f"Ошибочный ввод: {exc}"})
+                # input errors report every problem found, not only the first, so one pass is enough to fix a plan
+                details = [d for d in getattr(exc, "details", []) if d.get("message")]
+                body = {"error": f"Ошибочный ввод: {exc}"}
+                if len(details) > 1:
+                    body["details"] = details
+                    body["error"] = f"Ошибочный ввод: найдено проблем — {len(details)}"
+                self.reply(400, body)
 
     return HTTPServer(("127.0.0.1", port), Handler)
 

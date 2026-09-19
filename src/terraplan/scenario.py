@@ -11,10 +11,10 @@ from typing import Any, Optional
 
 import yaml
 
-from .case import Source
+from .case import InputError, Source
 
 
-class ScenarioError(ValueError):
+class ScenarioError(InputError):
     """Raised for malformed scenario files (missing id, bad multipliers)."""
 
 

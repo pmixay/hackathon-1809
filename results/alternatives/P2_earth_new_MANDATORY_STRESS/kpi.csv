@@ -19,6 +19,7 @@ MANDATORY_STRESS,P2_earth_new,reservation_total_mln,586.382820
 MANDATORY_STRESS,P2_earth_new,holding_total_mln,56.685304
 MANDATORY_STRESS,P2_earth_new,fixed_opex_total_mln,0.000000
 MANDATORY_STRESS,P2_earth_new,take_or_pay_idle_t,0.000000
+MANDATORY_STRESS,P2_earth_new,take_or_pay_topup_mln,0.000000
 MANDATORY_STRESS,P2_earth_new,opening_inventory_t,12.328859
 MANDATORY_STRESS,P2_earth_new,closing_inventory_t,0.000000
 MANDATORY_STRESS,P2_earth_new,hard_violations,6

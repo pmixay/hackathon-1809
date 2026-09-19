@@ -108,6 +108,7 @@ class SourceYearRecord:
     take_or_pay_idle_t: float
     procurement_mln: float
     reservation_payment_mln: float
+    take_or_pay_topup_mln: float      # part of procurement_mln paid for volume not ordered
 
 
 @dataclass
@@ -122,6 +123,7 @@ class FinanceYear:
     discount_factor: float
     pv_total_mln: float
     cumulative_capex_mln: float
+    take_or_pay_topup_mln: float      # part of procurement_mln paid for volume not ordered
 
 
 @dataclass
@@ -439,7 +441,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         prep_reservation += resv
         prep_records.append(SourceYearRecord(s.source_id, s.name, st.delivery_year, "prep", 1, float(a.opening_stock_reservation_years),
                                              s.capacity_t_per_year, st.tons, st.tons, st.tons, st.tons, st.tons - losses, 1.0, price,
-                                             scenario.price_mult(s, y0), st.tons, 0.0, proc, resv))
+                                             scenario.price_mult(s, y0), st.tons, 0.0, proc, resv, 0.0))
     cap0 = storage_at(start_idx).capacity_t
     if opening_inventory > cap0 + EPS:
         add("STORAGE_OVERFLOW", "hard", f"начальный запас {opening_inventory:.3f} т превышает ёмкость хранилища {cap0:.1f} т на {y0}-01",
@@ -530,7 +532,8 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
             q_pay = rules.take_or_pay_volume(pay_base, reserved_period, s.take_or_pay_share)
             source_years.append(SourceYearRecord(k, s.name, y, "year", n_avail, f, s.capacity_t_per_year, reserved, reserved_period, ordered,
                                                  planned_del, actual_del, share, price, pm, q_pay, q_pay - pay_base, price * q_pay,
-                                                 rules.reservation_payment(s.reservation_rate_mln_per_t_year, reserved, f)))
+                                                 rules.reservation_payment(s.reservation_rate_mln_per_t_year, reserved, f),
+                                                 rules.take_or_pay_topup_payment(price, pay_base, reserved_period, s.take_or_pay_share)))
 
     # ---- finance -----------------------------------------------------------------
     r = float(a.discount_rate_real)
@@ -544,6 +547,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         if y == y0:
             proc += prep_procurement
             resv += prep_reservation
+        topup = fsum(sy.take_or_pay_topup_mln for sy in source_years if sy.year == y and sy.period == "year")
         hold = fsum(m.holding_cost_mln for m in months if m.year == y)
         opex = 0.0
         for from_idx, per_year, _ in opex_streams:
@@ -553,7 +557,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         cum_capex += capex
         total = proc + resv + hold + opex + capex
         df = 1.0 / (1.0 + r) ** (y - t0 + timing_offset)
-        finance.append(FinanceYear(y, proc, resv, hold, opex, capex, total, df, total * df, cum_capex))
+        finance.append(FinanceYear(y, proc, resv, hold, opex, capex, total, df, total * df, cum_capex, topup))
     for i, amt, inv_id, label in capex_events:
         if ym(i)[0] < y0 or ym(i)[0] > yN:
             add("INVESTMENT_TIMING", "hard", f"{inv_id}: {label} {amt:.1f} млн датирован {ym_str(i)}, вне горизонта {y0}–{yN}", year=ym(i)[0], actual=amt)
@@ -687,6 +691,7 @@ def simulate(case: Case, plan: Plan, scenario: Scenario, assumptions: Optional[A
         "reservation_total_mln": fsum(f_.reservation_mln for f_ in finance), "holding_total_mln": fsum(f_.holding_mln for f_ in finance),
         "fixed_opex_total_mln": fsum(f_.fixed_opex_mln for f_ in finance),
         "take_or_pay_idle_t": fsum(sy.take_or_pay_idle_t for sy in source_years if sy.period == "year"),
+        "take_or_pay_topup_mln": fsum(f_.take_or_pay_topup_mln for f_ in finance),
         "opening_inventory_t": opening_inventory, "closing_inventory_t": months[-1].closing_t,
         "hard_violations": sum(1 for v in viol if v.severity == "hard"),
         "guideline_violations": sum(1 for v in viol if v.severity == "guideline"),

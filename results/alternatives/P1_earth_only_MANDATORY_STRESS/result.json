@@ -32,6 +32,7 @@
   "holding_total_mln": 56.685304305000095,
   "fixed_opex_total_mln": 0.0,
   "take_or_pay_idle_t": 0.0,
+  "take_or_pay_topup_mln": 0.0,
   "opening_inventory_t": 12.328859000000001,
   "closing_inventory_t": 0.0,
   "hard_violations": 6,
@@ -1914,7 +1915,8 @@
    "payable_volume_t": 12.9098,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 114.89722,
-   "reservation_payment_mln": 1.93647
+   "reservation_payment_mln": 1.93647,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -1935,7 +1937,8 @@
    "payable_volume_t": 109.876,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 681.2312000000001,
-   "reservation_payment_mln": 49.4442
+   "reservation_payment_mln": 49.4442,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -1956,7 +1959,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -1977,7 +1981,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -1998,7 +2003,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2019,7 +2025,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2040,7 +2047,8 @@
    "payable_volume_t": 153.0518,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 948.92116,
-   "reservation_payment_mln": 68.8734
+   "reservation_payment_mln": 68.8734,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2061,7 +2069,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2082,7 +2091,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2103,7 +2113,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2124,7 +2135,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2145,7 +2157,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1178.0,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2166,7 +2179,8 @@
    "payable_volume_t": 16.6988,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 148.61932,
-   "reservation_payment_mln": 2.5048500000000002
+   "reservation_payment_mln": 2.5048500000000002,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2187,7 +2201,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2208,7 +2223,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2229,7 +2245,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2250,7 +2267,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1472.5,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2271,7 +2289,8 @@
    "payable_volume_t": 80.8169,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 899.0880125,
-   "reservation_payment_mln": 12.122549999999999
+   "reservation_payment_mln": 12.122549999999999,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2292,7 +2311,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2313,7 +2333,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2334,7 +2355,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2355,7 +2377,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1472.5,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2376,7 +2399,8 @@
    "payable_volume_t": 110.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1223.75,
-   "reservation_payment_mln": 16.5
+   "reservation_payment_mln": 16.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2397,7 +2421,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2418,7 +2443,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2439,7 +2465,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "A",
@@ -2460,7 +2487,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1178.0,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "B",
@@ -2481,7 +2509,8 @@
    "payable_volume_t": 110.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 979.0,
-   "reservation_payment_mln": 16.5
+   "reservation_payment_mln": 16.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "C",
@@ -2502,7 +2531,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "D",
@@ -2523,7 +2553,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "source_id": "E",
@@ -2544,7 +2575,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   }
  ],
  "finance": [
@@ -2558,7 +2590,8 @@
    "total_mln": 858.16123728,
    "discount_factor": 1.0,
    "pv_total_mln": 858.16123728,
-   "cumulative_capex_mln": 0.0
+   "cumulative_capex_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2036,
@@ -2570,7 +2603,8 @@
    "total_mln": 1032.44128492,
    "discount_factor": 0.9259259259259258,
    "pv_total_mln": 955.9641527037037,
-   "cumulative_capex_mln": 0.0
+   "cumulative_capex_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2037,
@@ -2582,7 +2616,8 @@
    "total_mln": 1434.1531512000001,
    "discount_factor": 0.8573388203017832,
    "pv_total_mln": 1229.5551707818931,
-   "cumulative_capex_mln": 0.0
+   "cumulative_capex_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2038,
@@ -2594,7 +2629,8 @@
    "total_mln": 2481.00944136,
    "discount_factor": 0.7938322410201696,
    "pv_total_mln": 1969.5052848270077,
-   "cumulative_capex_mln": 0.0
+   "cumulative_capex_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2039,
@@ -2606,7 +2642,8 @@
    "total_mln": 2798.308572045,
    "discount_factor": 0.7350298527964533,
    "pv_total_mln": 2056.8403377892896,
-   "cumulative_capex_mln": 0.0
+   "cumulative_capex_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "year": 2040,
@@ -2618,7 +2655,8 @@
    "total_mln": 2259.0,
    "discount_factor": 0.6805831970337529,
    "pv_total_mln": 1537.4374420992478,
-   "cumulative_capex_mln": 0.0
+   "cumulative_capex_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   }
  ],
  "investments": [],

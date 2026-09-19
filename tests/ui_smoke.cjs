@@ -30,11 +30,34 @@ const fs=require('node:fs/promises');
  assert.match(await page.locator('#result-title').innerText(),/P2z_earth_new_zbo_adapted/);
  await page.locator('[data-tab=editor]').click();const first=page.locator('#orders tbody input[type=number]').nth(1);await first.fill('-1');
  await page.locator('#run').click();await page.waitForSelector('#error:not([hidden])');assert.match(await page.locator('#error').innerText(),/ordered_t/);
+ // несколько ошибок сразу: оператор получает список, а не первую попавшуюся
+ const second=page.locator('#reservations tbody input[type=number]').nth(1);await second.fill('-5');
+ await page.locator('#run').click();await page.waitForSelector('#error li');
+ const problems=await page.locator('#error li').allInnerTexts();
+ assert.ok(problems.length>=2,'ожидался список из нескольких проблем ввода');
+ assert.ok(problems.some(t=>/ordered_t/.test(t))&&problems.some(t=>/reserved_capacity_t/.test(t)));
  await page.locator('#open').setInputFiles('build/r4/browser/workspace.json');await run();
+ // блок геополитики: шок цены применяется и снимается на копии сценария
+ await page.locator('[data-tab=geo]').click();
+ await page.locator('#geo-label').fill('ограничение экспорта');
+ await page.locator('#geo-pct').fill('25');
+ await page.locator('#geo-just').fill('условный сценарий команды, не прогноз');
+ await page.locator('#geo-enabled').check();
+ await page.locator('#geo-apply').click();
+ await page.waitForFunction(()=>document.getElementById('status').textContent.includes('ценовым шоком завершён'));
+ assert.match(await page.locator('#geo-state').innerText(),/приме/i);
+ assert.match(await page.locator('#geo-overlay').innerText(),/\d/);
+ await page.locator('#geo-compare').click();await page.waitForSelector('#geo-comparison table');
+ assert.match(await page.locator('#geo-comparison').innerText(),/PV расходов/);
+ await page.screenshot({path:'build/r4/browser/geopolitics.png',fullPage:true});
+ await page.locator('#geo-restore').click();
+ await page.waitForFunction(()=>document.getElementById('status').textContent.includes('исходными ценами завершён'));
+ assert.match(await page.locator('#geo-state').innerText(),/не примен/i);
+ await page.locator('[data-tab=dashboard]').click();
  await page.locator('[data-tab=dashboard]').click();const zipPromise=page.waitForEvent('download');await page.locator('#zip').click();const zip=await zipPromise;await zip.saveAs('build/r4/browser/results.zip');
  assert.equal((await fs.readFile('build/r4/browser/results.zip')).subarray(0,2).toString(),'PK');
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:'build/r4/browser/mobile.png',fullPage:true});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);
- assert.deepEqual(errors,[]);console.log('PASS: BASE, stress, compare, adapted, save/reopen, Source-X/2041, invalid input, ZIP, mobile layout.');
+ assert.deepEqual(errors,[]);console.log('PASS: BASE, stress, compare, adapted, save/reopen, Source-X/2041, invalid input (list), geopolitics on/off, ZIP, mobile layout.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

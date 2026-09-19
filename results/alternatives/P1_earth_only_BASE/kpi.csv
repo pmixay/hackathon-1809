@@ -19,6 +19,7 @@ BASE,P1_earth_only,reservation_total_mln,509.881470
 BASE,P1_earth_only,holding_total_mln,86.651033
 BASE,P1_earth_only,fixed_opex_total_mln,0.000000
 BASE,P1_earth_only,take_or_pay_idle_t,0.000000
+BASE,P1_earth_only,take_or_pay_topup_mln,0.000000
 BASE,P1_earth_only,opening_inventory_t,12.328859
 BASE,P1_earth_only,closing_inventory_t,0.000000
 BASE,P1_earth_only,hard_violations,2

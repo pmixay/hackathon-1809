@@ -19,6 +19,7 @@ TEAM_LOW_DEMAND,P3_isru_zbo,reservation_total_mln,467.633670
 TEAM_LOW_DEMAND,P3_isru_zbo,holding_total_mln,582.607256
 TEAM_LOW_DEMAND,P3_isru_zbo,fixed_opex_total_mln,252.000000
 TEAM_LOW_DEMAND,P3_isru_zbo,take_or_pay_idle_t,0.000000
+TEAM_LOW_DEMAND,P3_isru_zbo,take_or_pay_topup_mln,0.000000
 TEAM_LOW_DEMAND,P3_isru_zbo,opening_inventory_t,12.328859
 TEAM_LOW_DEMAND,P3_isru_zbo,closing_inventory_t,326.082586
 TEAM_LOW_DEMAND,P3_isru_zbo,hard_violations,40

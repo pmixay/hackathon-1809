@@ -41,6 +41,14 @@ def variable_payment(price_mln_per_t: float, ordered_t: float, reserved_period_t
     return price_mln_per_t * take_or_pay_volume(ordered_t, reserved_period_t, top_share)
 
 
+def take_or_pay_topup_payment(price_mln_per_t: float, ordered_t: float, reserved_period_t: float, top_share: float) -> float:
+    """Premium share of the variable payment: price * (Q_pay - Q_order), i.e. volume paid but not ordered.
+
+    This is a decomposition of `variable_payment`, not an extra charge: payment = price*Q_order + this premium.
+    """
+    return price_mln_per_t * max(0.0, take_or_pay_volume(ordered_t, reserved_period_t, top_share) - ordered_t)
+
+
 def reservation_payment(rate_mln_per_t_year: float, annual_reserved_capacity_t: float, period_fraction: float) -> float:
     """ReservationPayment = rate * annual_reserved_capacity * period_fraction (V05)."""
     return rate_mln_per_t_year * annual_reserved_capacity_t * period_fraction

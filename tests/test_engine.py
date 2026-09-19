@@ -101,6 +101,35 @@ def test_take_or_pay_and_reservation_payments(case, base, assumptions):
     assert abs(s.take_or_pay_idle_t - 20) < 1e-9
     assert abs(s.reservation_payment_mln - 0.45 * 100) < 1e-9
     assert res.finance[0].procurement_mln == pytest.approx(6.2 * 70)
+    # the premium is the part of the same payment charged for the 20 t paid but not ordered
+    assert s.take_or_pay_topup_mln == pytest.approx(6.2 * 20)
+    assert s.procurement_mln - s.take_or_pay_topup_mln == pytest.approx(6.2 * 50)
+    assert res.finance[0].take_or_pay_topup_mln == pytest.approx(6.2 * 20)
+    assert res.kpi["take_or_pay_topup_mln"] == pytest.approx(6.2 * 20)
+
+
+def test_take_or_pay_premium_is_zero_when_orders_cover_the_minimum(case, base, assumptions):
+    # order 80 t against the same 100 t reservation: 80 > 70 t minimum, so nothing is paid idle
+    d = {"plan_id": "no_top", "decisions": {
+        "capacity_reservations": [{"source_id": "A", "year": 2035, "reserved_capacity_t": 100}],
+        "supply_orders": [{"source_id": "A", "year": 2035, "ordered_t": 80}],
+        "investments": [], "inventory_policy": {}}}
+    res = simulate(case, plan_from_dict(d), base, assumptions)
+    s = next(x for x in res.source_years if x.source_id == "A" and x.year == 2035)
+    assert s.payable_volume_t == pytest.approx(80)
+    assert s.take_or_pay_topup_mln == pytest.approx(0.0)
+    assert s.procurement_mln == pytest.approx(6.2 * 80)
+
+
+def test_take_or_pay_premium_never_exceeds_procurement(case, plan, base, stress, assumptions):
+    for scen in (base, stress):
+        res = simulate(case, plan, scen, assumptions)
+        for f in res.finance:
+            assert 0.0 <= f.take_or_pay_topup_mln <= f.procurement_mln + 1e-9
+        # the premium is a decomposition of procurement, not an extra charge on top of the total
+        assert sum(f.total_mln for f in res.finance) == pytest.approx(res.kpi["total_cost_mln"])
+        assert res.kpi["take_or_pay_topup_mln"] == pytest.approx(
+            sum(s.take_or_pay_topup_mln for s in res.source_years if s.period == "year"))
 
 
 def test_partial_year_reservation_is_prorated(case, base, assumptions):

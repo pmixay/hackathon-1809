@@ -11,7 +11,28 @@ from pathlib import Path
 from typing import Optional
 
 
-class CaseError(ValueError):
+class InputError(ValueError):
+    """Base class for input errors that can report every problem found, not only the first.
+
+    `details` is a list of {"path", "message"}: the operator sees the whole list of things to fix in
+    one pass instead of rerunning the check after each correction. `str(error)` stays the first
+    message, so existing callers and log lines are unchanged.
+    """
+
+    def __init__(self, message: str, details: Optional[list[dict]] = None):
+        super().__init__(message)
+        self.details: list[dict] = list(details) if details else [{"path": "", "message": str(message)}]
+
+    @classmethod
+    def from_problems(cls, problems: list[dict], summary: str = ""):
+        """Build one error from several collected problems; the message names how many there are."""
+        head = problems[0]["message"]
+        if len(problems) > 1:
+            head = f"{head} (и ещё {len(problems) - 1}: " + "; ".join(p["message"] for p in problems[1:]) + ")"
+        return cls(f"{summary}{head}" if summary else head, problems)
+
+
+class CaseError(InputError):
     """Raised when CASE_INPUT files are missing, malformed or internally inconsistent."""
 
 

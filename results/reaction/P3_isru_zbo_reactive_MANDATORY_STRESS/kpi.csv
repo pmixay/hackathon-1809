@@ -19,6 +19,7 @@ MANDATORY_STRESS,P3_isru_zbo_reactive,reservation_total_mln,539.789020
 MANDATORY_STRESS,P3_isru_zbo_reactive,holding_total_mln,134.418587
 MANDATORY_STRESS,P3_isru_zbo_reactive,fixed_opex_total_mln,252.000000
 MANDATORY_STRESS,P3_isru_zbo_reactive,take_or_pay_idle_t,0.000000
+MANDATORY_STRESS,P3_isru_zbo_reactive,take_or_pay_topup_mln,0.000000
 MANDATORY_STRESS,P3_isru_zbo_reactive,opening_inventory_t,12.328859
 MANDATORY_STRESS,P3_isru_zbo_reactive,closing_inventory_t,55.302306
 MANDATORY_STRESS,P3_isru_zbo_reactive,hard_violations,1

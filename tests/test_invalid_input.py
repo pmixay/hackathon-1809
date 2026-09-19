@@ -87,3 +87,59 @@ def test_cli_reports_input_error_with_exit_code_3(tmp_path, capsys, root):
                "--assumptions", str(root / "configs/assumptions.yaml"), "--scenarios-dir", str(root / "configs/scenarios")])
     err = capsys.readouterr().err
     assert rc == 3 and "ОШИБКА ВВОДА" in err and "reserved_capacity_t" in err and "-5" in err
+
+
+def _plan(orders=None, reservations=None, investments=None, policy=None) -> dict:
+    return {"plan_id": "multi", "decisions": {"capacity_reservations": reservations or [], "supply_orders": orders or [],
+                                              "investments": investments or [], "inventory_policy": policy or {}}}
+
+
+def test_all_problems_of_a_plan_are_reported_in_one_pass():
+    """Оператор должен увидеть все ошибки сразу, а не исправлять их по одной."""
+    with pytest.raises(PlanError) as e:
+        plan_from_dict(_plan(
+            reservations=[{"source_id": "A", "year": 2035, "reserved_capacity_t": -5}],
+            orders=[{"source_id": "B", "year": 2036, "ordered_t": -1},
+                    {"source_id": "A", "year": 2037, "profile": "quarterly", "ordered_t": 10}],
+            policy={"reserve_mode": "wishful", "allocation_rule": "random"}))
+    details = e.value.details
+    assert len(details) == 5, [d["message"] for d in details]
+    joined = " | ".join(d["message"] for d in details)
+    for fragment in ("reserved_capacity_t", "ordered_t", "quarterly", "reserve_mode", "allocation_rule"):
+        assert fragment in joined
+    assert all(d["path"] for d in details)
+    # первое сообщение остаётся заголовком ошибки, поэтому старые обработчики продолжают работать
+    assert details[0]["message"] in str(e.value)
+    assert "и ещё 4" in str(e.value)
+
+
+def test_cross_check_reports_every_mismatch_with_the_case(case):
+    from terraplan.plan import validate_plan
+    plan = plan_from_dict(_plan(
+        reservations=[{"source_id": "NOPE", "year": 2035, "reserved_capacity_t": 10},
+                      {"source_id": "A", "year": 2099, "reserved_capacity_t": 10}],
+        orders=[{"source_id": "A", "year": 2035, "ordered_t": 1}, {"source_id": "A", "year": 2035, "ordered_t": 2}],
+        investments=[{"investment_id": "UNKNOWN_OPTION", "decision_year": 2035}]))
+    with pytest.raises(PlanError) as e:
+        validate_plan(plan, case)
+    messages = [d["message"] for d in e.value.details]
+    assert len(messages) == 4, messages
+    assert any("NOPE" in m for m in messages) and any("2099" in m for m in messages)
+    assert any("повторный заказ" in m for m in messages) and any("UNKNOWN_OPTION" in m for m in messages)
+
+
+def test_a_single_problem_still_reads_as_one_message():
+    with pytest.raises(PlanError) as e:
+        plan_from_dict(_plan(orders=[{"source_id": "A", "year": 2035, "ordered_t": -3}]))
+    assert len(e.value.details) == 1
+    assert "и ещё" not in str(e.value)
+    assert str(e.value) == e.value.details[0]["message"]
+
+
+def test_case_and_scenario_errors_expose_the_same_details_field(root, tmp_path):
+    with pytest.raises(ScenarioError) as e:
+        load_scenario(root / "tests/fixtures/invalid_plan_examples/malformed_scenario.json")
+    assert e.value.details and e.value.details[0]["message"] == str(e.value)
+    with pytest.raises(CaseError) as e:
+        load_case(tmp_path / "missing_case_dir")
+    assert e.value.details and e.value.details[0]["message"] == str(e.value)

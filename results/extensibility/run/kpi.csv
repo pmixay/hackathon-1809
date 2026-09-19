@@ -19,6 +19,7 @@ TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,reservation_total_mln,573.863220
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,holding_total_mln,172.335758
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,fixed_opex_total_mln,334.000000
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,take_or_pay_idle_t,0.000000
+TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,take_or_pay_topup_mln,0.000000
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,opening_inventory_t,12.328859
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,closing_inventory_t,55.479853
 TEAM_2041_SOURCE_X,P3_isru_zbo_ext2041,hard_violations,0

@@ -113,6 +113,19 @@ def test_http_routes_errors_and_origin(root, payload):
                 urllib.request.urlopen(req)
             assert error.value.code == 400
             assert "error" in json.load(error.value)
+        # план с несколькими ошибками: оператор получает весь список за один запрос
+        broken = json.loads(json.dumps(payload))
+        broken["plan"]["decisions"]["capacity_reservations"] = [{"source_id": "A", "year": 2035, "reserved_capacity_t": -1}]
+        broken["plan"]["decisions"]["inventory_policy"] = {"reserve_mode": "wishful", "allocation_rule": "random"}
+        req = urllib.request.Request(url + "/api/run", json.dumps(broken).encode(), {"Content-Type": "application/json"})
+        with pytest.raises(urllib.error.HTTPError) as error:
+            urllib.request.urlopen(req)
+        body = json.load(error.value)
+        assert error.value.code == 400
+        assert len(body["details"]) == 3, body["details"]
+        assert "найдено проблем — 3" in body["error"]
+        assert {"reserved_capacity_t", "reserve_mode", "allocation_rule"} <= {w for d in body["details"] for w in d["message"].split()} or \
+               all(any(k in d["message"] for d in body["details"]) for k in ("reserved_capacity_t", "reserve_mode", "allocation_rule"))
         req = urllib.request.Request(url + "/api/run", b"{}", {"Content-Type": "application/json", "Origin": "https://example.invalid"})
         with pytest.raises(urllib.error.HTTPError) as error:
             urllib.request.urlopen(req)

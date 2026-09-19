@@ -19,6 +19,7 @@ TEAM_HIGH_DEMAND,P4_full,reservation_total_mln,485.715870
 TEAM_HIGH_DEMAND,P4_full,holding_total_mln,9.476125
 TEAM_HIGH_DEMAND,P4_full,fixed_opex_total_mln,252.000000
 TEAM_HIGH_DEMAND,P4_full,take_or_pay_idle_t,0.000000
+TEAM_HIGH_DEMAND,P4_full,take_or_pay_topup_mln,0.000000
 TEAM_HIGH_DEMAND,P4_full,opening_inventory_t,12.328859
 TEAM_HIGH_DEMAND,P4_full,closing_inventory_t,0.000000
 TEAM_HIGH_DEMAND,P4_full,hard_violations,6

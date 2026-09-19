@@ -167,6 +167,7 @@ KPI_LABELS = {
     "capex_total_mln": "CAPEX, млн", "procurement_total_mln": "Закупка, млн", "reservation_total_mln": "Резервирование мощности, млн",
     "holding_total_mln": "Хранение, млн", "fixed_opex_total_mln": "Постоянный OPEX, млн",
     "take_or_pay_idle_t": "Оплачено по take-or-pay сверх заказа, т",
+    "take_or_pay_topup_mln": "Премия take-or-pay (оплата незаказанного объёма), млн",
 }
 SEVERITY_RU = {"hard": "жёсткое", "guideline": "ориентир", "warning": "предупреждение"}
 
@@ -183,7 +184,7 @@ def _write_summary_md(res: Result, path: Path) -> None:
              "## Итоговые показатели", "", "| Показатель | Ключ | Значение |", "|---|---|---:|"]
     for key in ("total_cost_mln", "pv_cost_mln", "cost_per_served_t_mln", "pv_cost_per_served_t_mln", "served_total_t", "demand_total_t",
                 "shortage_total_t", "shortage_critical_t", "min_service_level_total", "min_service_level_critical", "losses_total_t",
-                "capex_total_mln", "procurement_total_mln", "reservation_total_mln", "holding_total_mln", "fixed_opex_total_mln", "take_or_pay_idle_t"):
+                "capex_total_mln", "procurement_total_mln", "reservation_total_mln", "holding_total_mln", "fixed_opex_total_mln", "take_or_pay_idle_t", "take_or_pay_topup_mln"):
         lines.append(f"| {KPI_LABELS.get(key, key)} | `{key}` | {k[key]:,.3f} |")
     lines += ["", "## Годовой баланс (т)", "",
               "| Год | Спрос | в т.ч. критич. | Обслужено | УС общий | УС критич. | Дефицит | Поступление (факт) | Потери | Запас на начало | Запас на конец | R45 | Резерв на начало года | Хранилище |",
@@ -194,9 +195,11 @@ def _write_summary_md(res: Result, path: Path) -> None:
                      f"{'выполнен' if y.reserve_ok else 'НЕ ВЫПОЛНЕН'} | {y.storage_mode_end} |")
     lines += ["", "УС — уровень сервиса (обслужено / спрос); R45 — 45-дневный резерв `D_y × 45 / 365`, проверяется по физическому запасу на начало года.", "",
               "## Финансы (млн у.е., постоянные цены 2035 г.)", "",
-              "| Год | Закупка | Резервирование | Хранение | Пост. OPEX | CAPEX | Итого | PV |", "|---:|---:|---:|---:|---:|---:|---:|---:|"]
+              "| Год | Закупка | в т.ч. премия TOP | Резервирование | Хранение | Пост. OPEX | CAPEX | Итого | PV |", "|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for f in res.finance:
-        lines.append(f"| {f.year} | {f.procurement_mln:.1f} | {f.reservation_mln:.1f} | {f.holding_mln:.1f} | {f.fixed_opex_mln:.1f} | {f.capex_mln:.1f} | {f.total_mln:.1f} | {f.pv_total_mln:.1f} |")
+        lines.append(f"| {f.year} | {f.procurement_mln:.1f} | {f.take_or_pay_topup_mln:.1f} | {f.reservation_mln:.1f} | {f.holding_mln:.1f} | {f.fixed_opex_mln:.1f} | {f.capex_mln:.1f} | {f.total_mln:.1f} | {f.pv_total_mln:.1f} |")
+    lines += ["", "«Премия TOP» — часть строки «Закупка», оплаченная за объём сверх заказанного по условию take-or-pay; "
+              "это разложение платежа, а не дополнительный платёж."]
     if res.investments:
         lines += ["", "## Инвестиции", "", "| Инвестиция | Плата за опцион, млн | Дата опциона | Реализация / CAPEX, млн | Дата решения | Ввод в строй | Пост. OPEX, млн/год | Примечание |",
                   "|---|---:|---|---:|---|---|---:|---|"]
@@ -204,12 +207,12 @@ def _write_summary_md(res: Result, path: Path) -> None:
             lines.append(f"| {i.name} ({i.investment_id}) | {i.option_fee_mln:.0f} | {i.option_date or '—'} | {i.exercise_cost_mln:.0f} | {i.exercise_date} | "
                          f"{i.commissioning_date or '—'} | {i.fixed_opex_mln_per_year:.0f} | {i.note} |")
     lines += ["", "## График по источникам (т)", "",
-              "| Год | Источник | Резерв, т/год | Заказано | Поставлено (факт) | Цена, млн/т | Оплачиваемый объём | Закупка, млн | Резервирование, млн |",
-              "|---:|---|---:|---:|---:|---:|---:|---:|---:|"]
+              "| Год | Источник | Резерв, т/год | Заказано | Поставлено (факт) | Цена, млн/т | Оплачиваемый объём | Закупка, млн | в т.ч. премия TOP, млн | Резервирование, млн |",
+              "|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for s in res.source_years:
         if s.period != "year" or (s.reserved_capacity_t <= 0 and s.ordered_t <= 0):
             continue
-        lines.append(f"| {s.year} | {s.name} | {s.reserved_capacity_t:.1f} | {s.ordered_t:.1f} | {s.actual_delivery_t:.1f} | {s.price_mln_per_t:.2f} | {s.payable_volume_t:.1f} | {s.procurement_mln:.1f} | {s.reservation_payment_mln:.1f} |")
+        lines.append(f"| {s.year} | {s.name} | {s.reserved_capacity_t:.1f} | {s.ordered_t:.1f} | {s.actual_delivery_t:.1f} | {s.price_mln_per_t:.2f} | {s.payable_volume_t:.1f} | {s.procurement_mln:.1f} | {s.take_or_pay_topup_mln:.1f} | {s.reservation_payment_mln:.1f} |")
     lines += ["", "Оплачиваемый объём = max(заказ, take-or-pay × резерв × доля года); начальный запас подготовительного периода учтён в закупке первого года.", "",
               "## Матрица проверок (каждое правило × год, включая выполненные)", "",
               "| Правило | Год | Метрика | Факт | Лимит | Оп. | Результат | Строгость |", "|---|---:|---|---:|---:|---|:---:|---|"]

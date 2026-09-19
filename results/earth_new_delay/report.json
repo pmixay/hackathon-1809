@@ -20,17 +20,17 @@
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
     "src/terraplan/api.py": "812db4d93a84045927ba9246b1fbf09b94f9c46d3a8f6e9262009fac0df11b57",
     "src/terraplan/assumptions.py": "0c2582f900eff3e7d6dedf3461a5e456aacbb0b8570f6777cd0bbc2a1782f1e2",
-    "src/terraplan/case.py": "4681e2e330ebbc8971fd7789990e65097b5f1b4f842876fe7927ae5b43cd305a",
+    "src/terraplan/case.py": "33bb8ccb1b2e1042a64bd896d4cbcb30b320182ad41d7690c65197e60bea0c31",
     "src/terraplan/cli.py": "8589f5f45d8e45982d8d3284c9fd5a8c224e6a5b69cfb17d7ff23474a1c682b3",
     "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
     "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
-    "src/terraplan/engine.py": "cd5fdfb8877ea8b8107f264ce6c9f9187cf376621c98f9ae1dfa0b6cca6d7d2c",
-    "src/terraplan/export.py": "35c9ccaab1dcc1c8348b3a9d634d90b828800c2cd4bf618e5a267ce90a748b8e",
-    "src/terraplan/plan.py": "ef17dc37379d34d0d61fa1e1141d72fa4e8b150527a4e87618231c52c73e2f4d",
+    "src/terraplan/engine.py": "993676cb0dc5a438441df28c4a3d86514c046cfd660dcb47888be145bf6c74eb",
+    "src/terraplan/export.py": "60c0e40f406bfc41b10ab7559fd304081bd88d865a22bc870392dadfeeef9b14",
+    "src/terraplan/plan.py": "bccf0136788235e9930623e39f11aa58a5a123f34d324ed8d518089443d9b3ba",
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
-    "src/terraplan/rules.py": "3c637c332eeb0dd41f0e453cd3ac8be4d4b773d33f78e2ed4b672469c7ff3c36",
-    "src/terraplan/scenario.py": "bedcf66b97e435e8e8ff3bee4c9b5d2a4b9b2b05858901d649acb6b58f0d1c6a",
-    "src/terraplan/web.py": "2ab2fc8dc37b3b96ca9fa09b3dbf03959cc80d4c11861cf84e6405a0d7ac66cd",
+    "src/terraplan/rules.py": "7acd89fa4c3ba3c62d7ff7b481b2da3055bc65099772bdbb87acf3f59294c325",
+    "src/terraplan/scenario.py": "e86417faa9989d9fee44a62c839dd1890526cb0f35a84f74e506130ae8aa7b87",
+    "src/terraplan/web.py": "3bc05e43c11d7576b909634ccd1e9899d1a0ac2182ababa8d824f1958f175c21",
     "experiments/provenance.py": "b93a6165b09944def59185cf8628180b4d0bc4449a6eb55109b1323bfffb22ca"
   },
   "method": {
@@ -499,6 +499,7 @@
     "holding_total_mln": 135.65525617800043,
     "fixed_opex_total_mln": 42.0,
     "take_or_pay_idle_t": 0.0,
+    "take_or_pay_topup_mln": 0.0,
     "opening_inventory_t": 12.328859000000001,
     "closing_inventory_t": 48.082585500000306,
     "hard_violations": 0,
@@ -970,6 +971,7 @@
         "holding_total_mln": 135.65525617800043,
         "fixed_opex_total_mln": 42.0,
         "take_or_pay_idle_t": 0.0,
+        "take_or_pay_topup_mln": 0.0,
         "opening_inventory_t": 12.328859000000001,
         "closing_inventory_t": 48.082585500000306,
         "hard_violations": 0,
@@ -1290,7 +1292,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1311,7 +1314,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1332,7 +1336,8 @@
           "payable_volume_t": 13.1882,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 93.63622,
-          "reservation_payment_mln": 3.9566999999999997
+          "reservation_payment_mln": 3.9566999999999997,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1353,7 +1358,8 @@
           "payable_volume_t": 71.7714,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 509.57694,
-          "reservation_payment_mln": 21.5316
+          "reservation_payment_mln": 21.5316,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1374,7 +1380,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1395,7 +1402,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         }
       ],
       "case_sha256": {
@@ -1447,6 +1455,7 @@
         "holding_total_mln": 126.87043130550045,
         "fixed_opex_total_mln": 42.0,
         "take_or_pay_idle_t": 0.0,
+        "take_or_pay_topup_mln": 0.0,
         "opening_inventory_t": 12.328859000000001,
         "closing_inventory_t": 44.9339027500003,
         "hard_violations": 7,
@@ -1874,7 +1883,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1895,7 +1905,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1916,7 +1927,8 @@
           "payable_volume_t": 13.1882,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 93.63622,
-          "reservation_payment_mln": 2.9675249999999997
+          "reservation_payment_mln": 2.9675249999999997,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1937,7 +1949,8 @@
           "payable_volume_t": 71.7714,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 509.57694,
-          "reservation_payment_mln": 21.5316
+          "reservation_payment_mln": 21.5316,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1958,7 +1971,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -1979,7 +1993,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         }
       ],
       "case_sha256": {
@@ -2031,6 +2046,7 @@
         "holding_total_mln": 118.65236932800046,
         "fixed_opex_total_mln": 42.0,
         "take_or_pay_idle_t": 0.0,
+        "take_or_pay_topup_mln": 0.0,
         "opening_inventory_t": 12.328859000000001,
         "closing_inventory_t": 41.78522000000032,
         "hard_violations": 10,
@@ -2494,7 +2510,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -2515,7 +2532,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -2536,7 +2554,8 @@
           "payable_volume_t": 13.1882,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 93.63622,
-          "reservation_payment_mln": 1.9783499999999998
+          "reservation_payment_mln": 1.9783499999999998,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -2557,7 +2576,8 @@
           "payable_volume_t": 71.7714,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 509.57694,
-          "reservation_payment_mln": 21.5316
+          "reservation_payment_mln": 21.5316,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -2578,7 +2598,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -2599,7 +2620,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         }
       ],
       "case_sha256": {
@@ -2651,6 +2673,7 @@
         "holding_total_mln": 103.40733765600045,
         "fixed_opex_total_mln": 42.0,
         "take_or_pay_idle_t": 0.0,
+        "take_or_pay_topup_mln": 0.0,
         "opening_inventory_t": 12.328859000000001,
         "closing_inventory_t": 35.27024920000028,
         "hard_violations": 6,
@@ -3066,7 +3089,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -3087,7 +3111,8 @@
           "payable_volume_t": 0.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 0.0,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -3108,7 +3133,8 @@
           "payable_volume_t": 13.1882,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 93.63622,
-          "reservation_payment_mln": 0.0
+          "reservation_payment_mln": 0.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -3129,7 +3155,8 @@
           "payable_volume_t": 71.7714,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 509.57694,
-          "reservation_payment_mln": 21.5316
+          "reservation_payment_mln": 21.5316,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -3150,7 +3177,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         },
         {
           "source_id": "C",
@@ -3171,7 +3199,8 @@
           "payable_volume_t": 130.0,
           "take_or_pay_idle_t": 0.0,
           "procurement_mln": 923.0,
-          "reservation_payment_mln": 39.0
+          "reservation_payment_mln": 39.0,
+          "take_or_pay_topup_mln": 0.0
         }
       ],
       "case_sha256": {

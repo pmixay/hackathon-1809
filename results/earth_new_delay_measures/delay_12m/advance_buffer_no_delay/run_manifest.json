@@ -15,7 +15,7 @@
   "plan_sha256": "c10e002d44f6db28fd32f5cf284d3ff8f07531c5f377c65da1937531d431ad85",
   "scenario_sha256": "f43b63589db0c4e17b6e9b49587399a72780e852ce613fcad3bce76b8968d447",
   "assumptions_sha256": "00604e7742252cf054e012b6fcab9a0c60ca2c491e20ea72b625c01e5e81f6f9",
-  "kpi_sha256": "4a2595e87205788cf40d794c92d6995fbdd3d3ff40336b7594b2711d175ff666",
+  "kpi_sha256": "ae6f3e90ad7b47c50ae4bad508ff72030f7b87c167fa995ffb2311ffc0858325",
   "kpi_precision": 6,
   "random_seed": null,
   "note": "детерминированный расчёт; повторный запуск с теми же входами воспроизводит kpi_sha256 (показатели округляются до 6 знаков перед хешированием, что поглощает различия последнего бита при суммировании float между версиями Python)",

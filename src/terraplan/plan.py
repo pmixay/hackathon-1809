@@ -18,17 +18,44 @@ Error messages are in Russian (jury-facing) and always name the file, the field 
 from __future__ import annotations
 
 import json
+from contextlib import contextmanager
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Optional
 
-from .case import Case
+from .case import Case, InputError
 
 ORDERED_TOL_T = 1e-3   # tonnes: ordered_t may differ from sum(monthly_t) by rounding of a hand-edited 4-decimal profile
 
 
-class PlanError(ValueError):
+class PlanError(InputError):
     """Raised for structurally invalid plans (missing fields, negative values, unknown ids)."""
+
+
+class _Problems:
+    """Collect independent problems so one pass reports every broken line, not just the first.
+
+    Structural failures that make the rest unreadable (not an object, missing `decisions`) still stop
+    immediately — there is nothing left to check after them.
+    """
+
+    def __init__(self) -> None:
+        self.items: list[dict] = []
+
+    @contextmanager
+    def at(self, path: str):
+        try:
+            yield
+        except PlanError as exc:
+            for d in exc.details:
+                self.items.append({"path": d.get("path") or path, "message": d["message"]})
+
+    def add(self, path: str, message: str) -> None:
+        self.items.append({"path": path, "message": message})
+
+    def raise_if_any(self, summary: str = "") -> None:
+        if self.items:
+            raise PlanError.from_problems(self.items, summary)
 
 
 @dataclass
@@ -150,102 +177,126 @@ def plan_from_dict(data: dict, source_file: str = "") -> Plan:
         if key not in dec:
             raise PlanError(f"{ctx}: decisions.{key} обязателен (может быть пустым)")
 
+    pr = _Problems()
     reservations = []
     for i, r in enumerate(dec["capacity_reservations"]):
         c = f"{ctx}: capacity_reservations[{i}]"
-        reservations.append(Reservation(str(_req(r, "source_id", c)), _year(_req(r, "year", c), "year", c),
-                                        _nonneg(_req(r, "reserved_capacity_t", c), "reserved_capacity_t", c)))
+        with pr.at(c):
+            reservations.append(Reservation(str(_req(r, "source_id", c)), _year(_req(r, "year", c), "year", c),
+                                            _nonneg(_req(r, "reserved_capacity_t", c), "reserved_capacity_t", c)))
     orders = []
     for i, o in enumerate(dec["supply_orders"]):
         c = f"{ctx}: supply_orders[{i}]"
-        profile = str(o.get("profile", "uniform"))
-        monthly = o.get("monthly_t")
-        if profile == "monthly":
-            if not isinstance(monthly, list) or len(monthly) != 12:
-                raise PlanError(f"{c}: профиль 'monthly' требует monthly_t из 12 значений")
-            monthly = [_nonneg(v, f"monthly_t[{k}]", c) for k, v in enumerate(monthly)]
-            ordered = float(sum(monthly))          # the monthly profile is the source of truth; ordered_t is a cross-check
-            if "ordered_t" in o and abs(_nonneg(o["ordered_t"], "ordered_t", c) - ordered) > ORDERED_TOL_T:
-                raise PlanError(f"{c}: ordered_t {o['ordered_t']} не равен сумме monthly_t {ordered:.6f} (допуск {ORDERED_TOL_T} т)")
-        elif profile == "uniform":
-            ordered = _nonneg(_req(o, "ordered_t", c), "ordered_t", c)
-            monthly = None
-        else:
-            raise PlanError(f"{c}: неизвестный профиль {profile!r} (допустимо: uniform | monthly)")
-        reactive = o.get("reactive", False)
-        if not isinstance(reactive, bool):
-            raise PlanError(f"{c}: поле 'reactive' должно быть true|false, получено {reactive!r}")
-        orders.append(Order(str(_req(o, "source_id", c)), _year(_req(o, "year", c), "year", c), ordered, profile, monthly, reactive))
+        with pr.at(c):
+            profile = str(o.get("profile", "uniform"))
+            monthly = o.get("monthly_t")
+            if profile == "monthly":
+                if not isinstance(monthly, list) or len(monthly) != 12:
+                    raise PlanError(f"{c}: профиль 'monthly' требует monthly_t из 12 значений")
+                monthly = [_nonneg(v, f"monthly_t[{k}]", c) for k, v in enumerate(monthly)]
+                ordered = float(sum(monthly))      # the monthly profile is the source of truth; ordered_t is a cross-check
+                if "ordered_t" in o and abs(_nonneg(o["ordered_t"], "ordered_t", c) - ordered) > ORDERED_TOL_T:
+                    raise PlanError(f"{c}: ordered_t {o['ordered_t']} не равен сумме monthly_t {ordered:.6f} (допуск {ORDERED_TOL_T} т)")
+            elif profile == "uniform":
+                ordered = _nonneg(_req(o, "ordered_t", c), "ordered_t", c)
+                monthly = None
+            else:
+                raise PlanError(f"{c}: неизвестный профиль {profile!r} (допустимо: uniform | monthly)")
+            reactive = o.get("reactive", False)
+            if not isinstance(reactive, bool):
+                raise PlanError(f"{c}: поле 'reactive' должно быть true|false, получено {reactive!r}")
+            orders.append(Order(str(_req(o, "source_id", c)), _year(_req(o, "year", c), "year", c), ordered, profile, monthly, reactive))
     investments = []
     for i, inv in enumerate(dec["investments"]):
         c = f"{ctx}: investments[{i}]"
-        investments.append(Investment(
-            str(_req(inv, "investment_id", c)), _year(_req(inv, "decision_year", c), "decision_year", c),
-            _month(inv.get("decision_month", 1), "decision_month", c),
-            _year(inv["option_year"], "option_year", c) if inv.get("option_year") is not None else None,
-            _month(inv.get("option_month", 1), "option_month", c) if inv.get("option_year") is not None else None,
-        ))
+        with pr.at(c):
+            investments.append(Investment(
+                str(_req(inv, "investment_id", c)), _year(_req(inv, "decision_year", c), "decision_year", c),
+                _month(inv.get("decision_month", 1), "decision_month", c),
+                _year(inv["option_year"], "option_year", c) if inv.get("option_year") is not None else None,
+                _month(inv.get("option_month", 1), "option_month", c) if inv.get("option_year") is not None else None,
+            ))
     pol = dec["inventory_policy"] or {}
     opening = []
     for i, s in enumerate(pol.get("opening_stock", []) or []):
         c = f"{ctx}: inventory_policy.opening_stock[{i}]"
-        opening.append(OpeningStock(str(_req(s, "source_id", c)), _nonneg(_req(s, "tons", c), "tons", c),
-                                    _year(_req(s, "delivery_year", c), "delivery_year", c),
-                                    _month(_req(s, "delivery_month", c), "delivery_month", c)))
+        with pr.at(c):
+            opening.append(OpeningStock(str(_req(s, "source_id", c)), _nonneg(_req(s, "tons", c), "tons", c),
+                                        _year(_req(s, "delivery_year", c), "delivery_year", c),
+                                        _month(_req(s, "delivery_month", c), "delivery_month", c)))
     reserve_mode = str(pol.get("reserve_mode", "physical"))
     if reserve_mode not in ("physical", "emergency_contract"):
-        raise PlanError(f"{ctx}: inventory_policy.reserve_mode должен быть physical | emergency_contract, получено {reserve_mode!r}")
+        pr.add(f"{ctx}: inventory_policy.reserve_mode",
+               f"{ctx}: inventory_policy.reserve_mode должен быть physical | emergency_contract, получено {reserve_mode!r}")
+        reserve_mode = "physical"
     alloc = str(pol.get("allocation_rule", "critical_first"))
     if alloc not in ("critical_first", "proportional"):
-        raise PlanError(f"{ctx}: inventory_policy.allocation_rule должен быть critical_first | proportional, получено {alloc!r}")
+        pr.add(f"{ctx}: inventory_policy.allocation_rule",
+               f"{ctx}: inventory_policy.allocation_rule должен быть critical_first | proportional, получено {alloc!r}")
+        alloc = "critical_first"
     obs = pol.get("observation_month")
     if obs is not None:
         obs = str(obs)
         parts = obs.split("-")
         if len(parts) != 2 or not (parts[0].isdigit() and parts[1].isdigit() and 1 <= int(parts[1]) <= 12):
-            raise PlanError(f"{ctx}: inventory_policy.observation_month должен иметь вид ГГГГ-ММ, получено {obs!r}")
+            pr.add(f"{ctx}: inventory_policy.observation_month",
+                   f"{ctx}: inventory_policy.observation_month должен иметь вид ГГГГ-ММ, получено {obs!r}")
+            obs = None
     if any(o.reactive for o in orders) and obs is None:
-        raise PlanError(f"{ctx}: заказы с reactive=true требуют inventory_policy.observation_month (месяц наблюдения события)")
+        pr.add(f"{ctx}: inventory_policy.observation_month",
+               f"{ctx}: заказы с reactive=true требуют inventory_policy.observation_month (месяц наблюдения события)")
+    pr.raise_if_any()
     return Plan(plan_id=plan_id, scenario_id=str(data.get("scenario_id", "BASE")), description=str(data.get("description", "")),
                 reservations=reservations, orders=orders, investments=investments, opening_stock=opening,
                 reserve_mode=reserve_mode, allocation_rule=alloc, observation_month=obs, meta=dict(data.get("meta") or {}))
 
 
 def validate_plan(plan: Plan, case: Case) -> None:
-    """Cross-check plan against the case: known ids, years inside horizon, no duplicate lines."""
+    """Cross-check plan against the case: known ids, years inside horizon, no duplicate lines.
+
+    Every problem found is reported in one pass (PlanError.details), so an operator fixing a plan by
+    hand does not have to rerun the check once per mistake.
+    """
     years = set(case.years)
     horizon = f"{case.first_year}–{case.last_year}"
+    pr = _Problems()
+    ctx = f"план {plan.plan_id}"
     seen_r, seen_o = set(), set()
-    for r in plan.reservations:
+    for i, r in enumerate(plan.reservations):
+        path = f"{ctx}: capacity_reservations[{i}]"
         if r.source_id not in case.sources:
-            raise PlanError(f"план {plan.plan_id}: резервирование ссылается на неизвестный source_id {r.source_id!r} (известные: {sorted(case.sources)})")
+            pr.add(path, f"{ctx}: резервирование ссылается на неизвестный source_id {r.source_id!r} (известные: {sorted(case.sources)})")
         if r.year not in years:
-            raise PlanError(f"план {plan.plan_id}: год резервирования {r.year} вне горизонта {horizon}")
+            pr.add(path, f"{ctx}: год резервирования {r.year} вне горизонта {horizon}")
         if (r.source_id, r.year) in seen_r:
-            raise PlanError(f"план {plan.plan_id}: повторное резервирование для {r.source_id} {r.year}")
+            pr.add(path, f"{ctx}: повторное резервирование для {r.source_id} {r.year}")
         seen_r.add((r.source_id, r.year))
-    for o in plan.orders:
+    for i, o in enumerate(plan.orders):
+        path = f"{ctx}: supply_orders[{i}]"
         if o.source_id not in case.sources:
-            raise PlanError(f"план {plan.plan_id}: заказ ссылается на неизвестный source_id {o.source_id!r} (известные: {sorted(case.sources)})")
+            pr.add(path, f"{ctx}: заказ ссылается на неизвестный source_id {o.source_id!r} (известные: {sorted(case.sources)})")
         if o.year not in years:
-            raise PlanError(f"план {plan.plan_id}: год заказа {o.year} вне горизонта {horizon}")
+            pr.add(path, f"{ctx}: год заказа {o.year} вне горизонта {horizon}")
         if (o.source_id, o.year) in seen_o:
-            raise PlanError(f"план {plan.plan_id}: повторный заказ для {o.source_id} {o.year}")
+            pr.add(path, f"{ctx}: повторный заказ для {o.source_id} {o.year}")
         seen_o.add((o.source_id, o.year))
     seen_i = set()
-    for inv in plan.investments:
+    for i, inv in enumerate(plan.investments):
+        path = f"{ctx}: investments[{i}]"
         if inv.investment_id not in case.investments:
-            raise PlanError(f"план {plan.plan_id}: неизвестный investment_id {inv.investment_id!r} (известные: {sorted(case.investments)})")
+            pr.add(path, f"{ctx}: неизвестный investment_id {inv.investment_id!r} (известные: {sorted(case.investments)})")
         if inv.investment_id in seen_i:
-            raise PlanError(f"план {plan.plan_id}: инвестиция {inv.investment_id} указана дважды")
+            pr.add(path, f"{ctx}: инвестиция {inv.investment_id} указана дважды")
         seen_i.add(inv.investment_id)
         if inv.option_year is not None and (inv.option_year, inv.option_month) > (inv.decision_year, inv.decision_month):
-            raise PlanError(f"план {plan.plan_id}: {inv.investment_id}: дата платы за опцион позже даты реализации")
-    for s in plan.opening_stock:
-        if s.source_id not in case.sources:
-            raise PlanError(f"план {plan.plan_id}: начальный запас ссылается на неизвестный source_id {s.source_id!r}")
-        if (s.delivery_year, s.delivery_month) >= (case.first_year, 1):
-            raise PlanError(f"план {plan.plan_id}: начальный запас должен быть поставлен до {case.first_year}-01 (подготовительный период)")
+            pr.add(path, f"{ctx}: {inv.investment_id}: дата платы за опцион позже даты реализации")
+    for i, s_ in enumerate(plan.opening_stock):
+        path = f"{ctx}: inventory_policy.opening_stock[{i}]"
+        if s_.source_id not in case.sources:
+            pr.add(path, f"{ctx}: начальный запас ссылается на неизвестный source_id {s_.source_id!r}")
+        if (s_.delivery_year, s_.delivery_month) >= (case.first_year, 1):
+            pr.add(path, f"{ctx}: начальный запас должен быть поставлен до {case.first_year}-01 (подготовительный период)")
+    pr.raise_if_any()
 
 
 def load_plan(path: str | Path, case: Optional[Case] = None) -> Plan:

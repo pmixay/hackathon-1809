@@ -427,7 +427,8 @@
    "payable_volume_t": 12.9098,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 114.89722,
-   "reservation_payment_mln": 1.93647
+   "reservation_payment_mln": 1.93647,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -450,7 +451,8 @@
    "payable_volume_t": 109.876,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 681.2312000000001,
-   "reservation_payment_mln": 49.4442
+   "reservation_payment_mln": 49.4442,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -473,7 +475,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -496,7 +499,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -519,7 +523,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -542,7 +547,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -565,7 +571,8 @@
    "payable_volume_t": 153.0518,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 948.92116,
-   "reservation_payment_mln": 68.8734
+   "reservation_payment_mln": 68.8734,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -588,7 +595,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -611,7 +619,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -634,7 +643,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -657,7 +667,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -680,7 +691,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1178.0,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -703,7 +715,8 @@
    "payable_volume_t": 17.9471,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 159.72919,
-   "reservation_payment_mln": 2.6922
+   "reservation_payment_mln": 2.6922,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -726,7 +739,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -749,7 +763,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -772,7 +787,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -795,7 +811,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1472.5,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -818,7 +835,8 @@
    "payable_volume_t": 56.0372,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 623.41385,
-   "reservation_payment_mln": 8.4057
+   "reservation_payment_mln": 8.4057,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -841,7 +859,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -864,7 +883,8 @@
    "payable_volume_t": 100.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 300.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -887,7 +907,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -910,7 +931,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1472.5,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -933,7 +955,8 @@
    "payable_volume_t": 102.5149,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1140.4782625,
-   "reservation_payment_mln": 15.37725
+   "reservation_payment_mln": 15.37725,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -956,7 +979,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -979,7 +1003,8 @@
    "payable_volume_t": 120.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 360.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -1002,7 +1027,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -1025,7 +1051,8 @@
    "payable_volume_t": 190.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 1178.0,
-   "reservation_payment_mln": 85.5
+   "reservation_payment_mln": 85.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -1048,7 +1075,8 @@
    "payable_volume_t": 110.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 979.0,
-   "reservation_payment_mln": 16.5
+   "reservation_payment_mln": 16.5,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -1071,7 +1099,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -1094,7 +1123,8 @@
    "payable_volume_t": 120.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 360.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -1117,7 +1147,8 @@
    "payable_volume_t": 0.0,
    "take_or_pay_idle_t": 0.0,
    "procurement_mln": 0.0,
-   "reservation_payment_mln": 0.0
+   "reservation_payment_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   }
  ],
  "inventory_trace": [
@@ -2873,7 +2904,8 @@
    "total_mln": 858.16123728,
    "discount_factor": 1.0,
    "pv_total_mln": 858.16123728,
-   "cumulative_capex_mln": 0.0
+   "cumulative_capex_mln": 0.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -2887,7 +2919,8 @@
    "total_mln": 2282.44128492,
    "discount_factor": 0.9259259259259258,
    "pv_total_mln": 2113.3715601111107,
-   "cumulative_capex_mln": 1250.0
+   "cumulative_capex_mln": 1250.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -2901,7 +2934,8 @@
    "total_mln": 1632.497139627,
    "discount_factor": 0.8573388203017832,
    "pv_total_mln": 1399.6031718338477,
-   "cumulative_capex_mln": 1430.0
+   "cumulative_capex_mln": 1430.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -2915,7 +2949,8 @@
    "total_mln": 2597.6528325639997,
    "discount_factor": 0.7938322410201696,
    "pv_total_mln": 2062.1005694666715,
-   "cumulative_capex_mln": 1430.0
+   "cumulative_capex_mln": 1430.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -2929,7 +2964,8 @@
    "total_mln": 3192.0950059919996,
    "discount_factor": 0.7350298527964533,
    "pv_total_mln": 2346.285122366593,
-   "cumulative_capex_mln": 1430.0
+   "cumulative_capex_mln": 1430.0,
+   "take_or_pay_topup_mln": 0.0
   },
   {
    "scenario_id": "MANDATORY_STRESS",
@@ -2943,7 +2979,8 @@
    "total_mln": 2728.737993124,
    "discount_factor": 0.6805831970337529,
    "pv_total_mln": 1857.1332272277987,
-   "cumulative_capex_mln": 1430.0
+   "cumulative_capex_mln": 1430.0,
+   "take_or_pay_topup_mln": 0.0
   }
  ],
  "constraint_checks": [],
@@ -2969,6 +3006,7 @@
   "holding_total_mln": 135.6853910070001,
   "fixed_opex_total_mln": 252.0,
   "take_or_pay_idle_t": 0.0,
+  "take_or_pay_topup_mln": 0.0,
   "opening_inventory_t": 12.328859000000001,
   "closing_inventory_t": 21.754990450000015,
   "hard_violations": 0,
@@ -3006,6 +3044,6 @@
    "note": ""
   }
  ],
- "generated_at": "2026-09-19T17:31:22+00:00",
+ "generated_at": "2026-09-19T18:01:20+00:00",
  "terraplan_version": "0.1.0"
 }
