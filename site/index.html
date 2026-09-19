@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TerraPlan — топливо для орбиты, посчитанное до тонны</title>
+<meta name="description" content="TerraPlan — помесячный расчёт топливного снабжения орбитального узла с 2035 по 2040 год: сравнение планов, проверка кризисом и воспроизводимый результат.">
+<meta name="theme-color" content="#04070e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TerraPlan — топливо для орбиты, посчитанное до тонны">
+<meta property="og:description" content="Помесячный расчёт топливного снабжения орбитального узла 2035–2040: сравнение планов, проверка кризисом, воспроизводимый результат.">
+<meta property="og:image" content="assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/benzin-extrabold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="prog"></div>
+
+<div class="sky">
+  <div class="neb n1"></div><div class="neb n2"></div><div class="neb n3"></div>
+  <div class="starlayer" id="s1"></div>
+  <div class="starlayer" id="s2"></div>
+  <div class="starlayer" id="s3"></div>
+</div>
+
+<header id="hdr">
+  <a class="mark" href="#top">TERRA<span>PLAN</span></a>
+  <div class="hright">
+    <nav class="nav">
+      <a href="#task">Задача</a>
+      <a href="#supply">Топливо</a>
+      <a href="#plans">Планы</a>
+      <a href="#crisis">Кризис</a>
+      <a href="#jury">Жюри</a>
+    </nav>
+    <a class="btn small" href="/console">Открыть расчёт</a>
+  </div>
+</header>
+
+<!-- ГЛАВНОЕ -->
+<section class="hero" id="top">
+  <div class="earth globe"><div class="tex"></div><div class="cld"></div><div class="shd"></div></div>
+  <div class="heroFade"></div>
+  <div class="heroInner">
+    <h1>TerraPlan</h1>
+    <p class="sub">Топливо для орбиты, посчитанное до тонны</p>
+    <p class="lead">Сколько купить, когда привезти и что делать, если поставка сорвётся.
+      Шесть лет, семьдесят два месяца, ни одной тонны наугад.</p>
+    <div class="cta">
+      <a class="btn primary" href="/console">Открыть расчёт<svg class="arw" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn ghost" href="#task">Как это устроено</a>
+    </div>
+    <div class="heroStats">
+      <div><b><span class="cnt" data-to="8729" data-sep="1">0</span></b><span>млн — цена нашего плана</span></div>
+      <div><b><span class="cnt" data-to="0">0</span></b><span>тонн нехватки топлива</span></div>
+      <div><b><span class="cnt" data-to="291">0</span></b><span>проверок при запуске</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗАДАЧА -->
+<section id="task">
+  <div class="inner">
+    <div class="kicker rv">Задача</div>
+    <h2 class="rv">Топливо нельзя купить тогда, когда оно понадобилось</h2>
+    <p class="say rv">Между решением и первой тонной на орбите проходит год. Всё, что можно сделать,
+      делается заранее.</p>
+
+    <div class="flow rv">
+      <div class="fnode">
+        <div class="ico globe"><div class="tex"></div><div class="cld"></div><div class="shd"></div></div>
+        <b>Земля</b><span>четыре канала поставки</span>
+      </div>
+      <div class="fstep"><em>12 месяцев в пути</em><i></i></div>
+      <div class="fnode">
+        <div class="ico">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#9BD9FF" stroke-width="2.6" aria-hidden="true">
+            <rect x="22" y="14" width="20" height="36" rx="9"/><path d="M22 26h20M22 38h20"/>
+            <path d="M22 32H6M42 32h16M6 24v16M58 24v16"/></svg>
+        </div>
+        <b>Орбитальный склад</b><span>ёмкость 120 тонн</span>
+      </div>
+      <div class="fstep"><em>−4,5 % от каждой партии</em><i></i></div>
+      <div class="fnode">
+        <div class="ico g">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#7BF0BC" stroke-width="2.6" aria-hidden="true">
+            <path d="M32 6c9 8 13 18 13 29l-6 9H25l-6-9C19 24 23 14 32 6Z"/>
+            <path d="M25 44l-6 12 9-5 4 7 4-7 9 5-6-12"/><circle cx="32" cy="27" r="5"/></svg>
+        </div>
+        <b>Миссии</b><span>390 тонн в 2040 году</span>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card rv"><b>Год ожидания</b>
+        <p>Партия с Земли идёт двенадцать месяцев, а новый канал строится два года. Заказ на 2038 год
+          подписывают в 2037-м.</p></div>
+      <div class="card rv"><b>Потери в баке</b>
+        <p>Из каждой привезённой партии 4,5 % теряется при закачке в хранилище. Покупать приходится
+          с запасом на потери.</p></div>
+      <div class="card rv"><b>Спрос не отменить</b>
+        <p>За шесть лет он вырастет со 100 до 390 тонн в год, и часть его критическая: её нельзя отложить.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ТОПЛИВО -->
+<section id="supply">
+  <div class="inner">
+    <div class="kicker rv">Откуда топливо</div>
+    <h2 class="rv">Старый канал упирается в потолок, новый закрывает рост</h2>
+    <p class="say rv">Основной канал даёт максимум 190 тонн в год. С 2037 года разницу забирает новый канал,
+      гибкий добирает остаток.</p>
+
+    <figure class="fig rv">
+      <svg class="chart" id="supplyChart" viewBox="0 0 1180 500" fill="none" role="img"
+        aria-label="Спрос и поставки по годам с 2035 по 2040"></svg>
+      <figcaption class="legend">
+        <span class="lg need">Сколько нужно</span>
+        <span class="lg a">Основной канал</span>
+        <span class="lg c">Новый канал</span>
+        <span class="lg b">Гибкий канал</span>
+      </figcaption>
+    </figure>
+    <p class="note rv">Привозим больше, чем нужно в тот же год: часть уходит в потери,
+      часть — в запас на будущий год.</p>
+  </div>
+</section>
+
+<!-- ПЛАНЫ -->
+<section id="plans">
+  <div class="inner">
+    <div class="kicker rv">Сравнение</div>
+    <h2 class="rv">Четыре плана, посчитанные на одних данных</h2>
+    <p class="say rv">В обычных условиях они стоят почти одинаково. Разницу видно только в кризисе.</p>
+
+    <div class="plans">
+      <div class="prow rv">
+        <div class="pname"><b>Только базовые поставки</b><span>план 1</span></div>
+        <div class="pbars">
+          <div class="pb"><i class="fill norm" data-w="74"></i><em>7 857</em></div>
+          <div class="pb"><i class="fill crisis" data-w="0"></i><em class="off">не выдержит</em></div>
+        </div>
+        <p class="pverdict">Мощности не хватает уже в 2040 году.</p>
+      </div>
+      <div class="prow win rv">
+        <div class="pname"><b>Новый канал плюс хранение без потерь</b><span>наш выбор · P2z</span></div>
+        <div class="pbars">
+          <div class="pb"><i class="fill norm" data-w="82"></i><em>8 729</em></div>
+          <div class="pb"><i class="fill crisis" data-w="95"></i><em>10 097</em></div>
+        </div>
+        <p class="pverdict">Дешевле всех именно тогда, когда тяжело.</p>
+      </div>
+      <div class="prow rv">
+        <div class="pname"><b>Добыча на Луне и хранение</b><span>план 3</span></div>
+        <div class="pbars">
+          <div class="pb"><i class="fill norm" data-w="81"></i><em>8 639</em></div>
+          <div class="pb"><i class="fill crisis" data-w="100"></i><em>10 637</em></div>
+        </div>
+        <p class="pverdict">Дешевле на 90 млн сейчас, дороже на 539 млн потом.</p>
+      </div>
+      <div class="prow rv">
+        <div class="pname"><b>Всё сразу</b><span>план 4</span></div>
+        <div class="pbars">
+          <div class="pb"><i class="fill norm" data-w="83"></i><em>8 858</em></div>
+          <div class="pb"><i class="fill crisis" data-w="99"></i><em>10 578</em></div>
+        </div>
+        <p class="pverdict">Связывает 1 790 млн вложений, которые не вернуть.</p>
+      </div>
+      <div class="plegend rv">
+        <span class="lg norm">Обычные условия</span>
+        <span class="lg crisis">Кризис</span>
+        <span class="unit">млн условных единиц</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КРИЗИС -->
+<section id="crisis">
+  <div class="inner">
+    <div class="kicker rv">Проверка кризисом</div>
+    <h2 class="rv">С 2038 года спрос выше на 15 %, цены — на 25 %</h2>
+    <p class="say rv">Держать на 1 января запас на 45 дней — жёсткое требование. Вот что с ним происходит.</p>
+
+    <div class="switch rv" role="group" aria-label="Что сделал оператор">
+      <button type="button" id="mA" class="on" aria-pressed="true">Заказы не меняли</button>
+      <button type="button" id="mB" aria-pressed="false">Изменили заранее</button>
+    </div>
+
+    <figure class="fig rv">
+      <svg class="chart" id="crisisChart" viewBox="0 0 1180 470" fill="none" role="img"
+        aria-label="Запас на 1 января против нормы в 2038, 2039 и 2040 годах"></svg>
+      <figcaption class="legend">
+        <span class="lg have">Запас на 1 января</span>
+        <span class="lg need">Норма 45 дней</span>
+      </figcaption>
+    </figure>
+    <p class="verdict bad" id="crisisVerdict">Норма нарушена три года подряд.</p>
+    <p class="note rv">Запас на 1 января набирается заказами прошлых лет: в сам кризисный год решать уже поздно.
+      Заказы меняют заранее, и это стоит 955 млн.</p>
+  </div>
+</section>
+
+<!-- ЖЮРИ -->
+<section id="jury">
+  <div class="inner">
+    <div class="kicker rv">Оценка</div>
+    <h2 class="rv">Шесть групп критериев и чем закрыта каждая</h2>
+
+    <div class="keyrow rv">
+      <div><b>100</b><p>баллов рубрики разобраны</p></div>
+      <div><b>291</b><p>проверка при запуске</p></div>
+      <div><b>68</b><p>расчётов пересчитаны заново</p></div>
+      <div><b>13</b><p>собственных стресс-тестов</p></div>
+    </div>
+
+    <div class="crit">
+      <div class="c rv"><span class="pts">25</span><b>Надёжность и корректность модели</b>
+        <p>Баланс сходится по каждому месяцу, контрольные примеры организатора проходят,
+          а любую выгрузку можно пересчитать заново и сравнить.</p></div>
+      <div class="c rv"><span class="pts">20</span><b>Архитектура и обоснование стратегии</b>
+        <p>Четыре плана на одной базе. Видно, откуда берётся каждое число и почему выбран именно наш.</p></div>
+      <div class="c rv"><span class="pts">20</span><b>Стресс-тестирование</b>
+        <p>Обязательный кризис плюс тринадцать наших испытаний: где план рвётся и сколько стоит защита.</p></div>
+      <div class="c rv"><span class="pts">15</span><b>Оценка рисков</b>
+        <p>Реестр рисков именно нашего плана: событие, причина, цена последствий, стоимость меры и остаток.</p></div>
+      <div class="c rv"><span class="pts">10</span><b>Интересы сторон</b>
+        <p>Оператор, критические и коммерческие потребители, поставщики и финансирующая сторона —
+          у каждого свой показатель.</p></div>
+      <div class="c rv"><span class="pts">10</span><b>Цифровой контур</b>
+        <p>Жюри само меняет данные и условия контрактов, пересчитывает, сравнивает сценарии,
+          сохраняет и выгружает.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ПОЧЕМУ МЫ -->
+<section id="why">
+  <div class="inner">
+    <div class="kicker rv">Почему мы</div>
+    <h2 class="rv">Решение, которое можно проверить</h2>
+    <div class="uq">
+      <div class="u rv"><span>01</span><b>Каждое число пересчитывается заново</b></div>
+      <div class="u rv"><span>02</span><b>Мы сами называем, где план ломается</b></div>
+      <div class="u rv"><span>03</span><b>Ответ — не график, а правило пересмотра</b></div>
+      <div class="u rv"><span>04</span><b>Работает на ноутбуке жюри без интернета</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="final">
+  <h2 class="rv">Откройте и проверьте сами</h2>
+  <p class="closing rv">Тот же расчёт, что стоит за каждым числом на этой странице.
+    Меняйте данные и условия контрактов, пересчитывайте, сравнивайте сценарии.</p>
+  <a class="btn primary big rv" href="/console">Открыть расчёт<svg class="arw" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <div class="rule"></div>
+  <div class="foot"><span>TerraPlan</span><span>Орбитальный топливный узел · 2035–2040</span></div>
+</div>
+
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>

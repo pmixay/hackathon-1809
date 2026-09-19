@@ -14,7 +14,7 @@
   },
   "plan_sha256": "41dc6a96f4e233c8f6684d65a9f0240e1c025ac2fa28261297a90d4392c82a22",
   "scenario_sha256": "8fc2f4dc8c7dca73663720633cb0413fc02e2ca9f54fefb09863bcda0b28d5b6",
-  "assumptions_sha256": "3272b90fafed759f7bf7652e8e51bfee9dcf1a3e8776b53f609b332ceedc8655",
+  "assumptions_sha256": "ee8376ca79ddc315fa7a28e1f0a3476e7def07b9051d6658073f8b4991312b20",
   "kpi_sha256": "e46b0f33e8a9a63a8b754ae0dc41cbf94b2bb410b1a99d8ebf74cfd709e54623",
   "kpi_precision": 6,
   "random_seed": null,

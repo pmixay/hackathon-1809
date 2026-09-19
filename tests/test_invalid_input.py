@@ -188,3 +188,38 @@ def test_case_and_scenario_errors_expose_the_same_details_field(root, tmp_path):
     with pytest.raises(CaseError) as e:
         load_case(tmp_path / "missing_case_dir")
     assert e.value.details and e.value.details[0]["message"] == str(e.value)
+
+
+# Собственная проверка после аудита: диапазон объявлен почти у каждого допущения,
+# но раньше не проверялся — значение вне диапазона молча применялось или молча приводилось к краю.
+@pytest.mark.parametrize("key,value,expect", [
+    ("intra_month_delivery_batches", 0, "вне объявленного диапазона"),
+    ("intra_month_delivery_batches", 13, "вне объявленного диапазона"),
+    ("discount_rate_real", -0.05, "вне объявленного диапазона"),
+    ("discount_rate_real", 0.9, "вне объявленного диапазона"),
+    ("emergency_base_share_threshold", 0.9, "вне объявленного диапазона"),
+    ("discount_timing", "middle", "вне объявленного списка"),
+    ("lead_time_policy", "median", "вне объявленного списка"),
+    ("prep_period_start", "2030-01", "вне объявленного диапазона"),
+])
+def test_assumption_outside_its_declared_range_is_rejected(assumptions, key, value, expect):
+    from terraplan.assumptions import AssumptionError
+    with pytest.raises(AssumptionError) as e:
+        assumptions.with_overrides(**{key: value})
+    assert expect in str(e.value) and key in str(e.value)
+
+
+@pytest.mark.parametrize("key,value", [
+    ("intra_month_delivery_batches", 12), ("intra_month_delivery_batches", 1),
+    ("zbo_commissioning_lag_months", 12), ("discount_rate_real", 0.12),
+    ("discount_timing", "end"), ("prep_period_start", "2034-06"),
+    ("prep_period_holding_charged", False), ("undelivered_volume_paid", False),
+])
+def test_assumption_inside_its_declared_range_is_accepted(assumptions, key, value):
+    """Границы объявлены так, чтобы покрывать всё, что реально исследуют эксперименты."""
+    assert assumptions.with_overrides(**{key: value}).get(key) == value
+
+
+def test_every_assumption_in_the_registry_is_inside_its_own_declared_range(assumptions):
+    assumptions.check_ranges()          # штатный реестр обязан проходить собственную проверку
+    assert any(e.get("range") for e in assumptions.entries.values())

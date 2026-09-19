@@ -6,7 +6,7 @@
   "hash_format": "sha256-utf8-lf-v1",
   "input_sha256": {
     "configs/plans/P3_isru_zbo_adapted.json": "8e0e7163c5308f4c6f41fed9dca5844ef9240c6c81736393b858adaab2f6f11b",
-    "configs/assumptions.yaml": "2f3a165d14c317b76ed739b6d5d973c389606719e92561a231033fc4c1b321c5",
+    "configs/assumptions.yaml": "aa3db1c0fff1b5a4e6154f1745e35c535547edd6ef1a4302c0c12adb844c089c",
     "configs/scenarios/mandatory_stress.yaml": "312b097486d7940c92f70f9180b5d32141d27f1a9a7294f166f6bfeb5ca6a7f7",
     "experiments/run_protection_measures.py": "fc2c277d7632fafc7039c4c91574abd4d12087632ccf7e9af9015ae38a0481ee",
     "experiments/run_reverse_stress.py": "cf072f0ede6e88b42538fdace9fd7e0bd435f30361c0c19649359883cd980186",
@@ -19,7 +19,7 @@
     "src/terraplan/__init__.py": "fad02811b53f8d67167c0d53709140462ce5ef165cd8cd11509b8407e502bdcf",
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
     "src/terraplan/api.py": "812db4d93a84045927ba9246b1fbf09b94f9c46d3a8f6e9262009fac0df11b57",
-    "src/terraplan/assumptions.py": "b87ad023a70fd5d77efc664c2af4d4a559baa7d0ac4976045e64092ecbda90e0",
+    "src/terraplan/assumptions.py": "433f6530586901ec2e1fce53c19f4da43e1e38d62ddc4b12aa1bf8a5ac2ae0cd",
     "src/terraplan/case.py": "3d045e7f349245dba8fe9b76b141cc41b1d2787a886601c2b19ba28bc0b8f49a",
     "src/terraplan/cli.py": "8589f5f45d8e45982d8d3284c9fd5a8c224e6a5b69cfb17d7ff23474a1c682b3",
     "src/terraplan/compare.py": "3e345ab4c4ee5f66f0a6d4181337b4faeb16f439ff4d08e0acc4c087b181e607",
@@ -30,7 +30,7 @@
     "src/terraplan/planner.py": "057d7cbca7a337f40e6010a586a2db340fcb95c9d2f5b55f04fd048fe2b9f48c",
     "src/terraplan/rules.py": "7acd89fa4c3ba3c62d7ff7b481b2da3055bc65099772bdbb87acf3f59294c325",
     "src/terraplan/scenario.py": "c52b4abdcf97b39f43b96b66901f355c606b1005ad445365ff5806f23a947783",
-    "src/terraplan/web.py": "7f52021716d8d6f9353164fc2292dfd7461d6c9a6cbec3eea13cc813e0bd82d1",
+    "src/terraplan/web.py": "f6b665e237c667059ee6f9a688f4cb5cc315a7ea422780155ad0be1002dda424",
     "experiments/provenance.py": "b93a6165b09944def59185cf8628180b4d0bc4449a6eb55109b1323bfffb22ca"
   },
   "method": {
@@ -234,7 +234,7 @@
       "status": "TEAM_ASSUMPTION",
       "range": [
         0.0,
-        0.15
+        0.2
       ],
       "justification": "Реальная ставка дисконтирования для долгоживущей инфраструктуры с технологическим риском. Организатором не задана. Применяется одинаково ко всем альтернативам; чувствительность 0–12 % в experiments/run_sensitivity.py.\n"
     },
@@ -407,7 +407,7 @@
       "status": "TEAM_ASSUMPTION",
       "range": [
         1,
-        4
+        12
       ],
       "justification": "Месячный объём канала приходит N равными партиями, равномерно распределёнными по месяцу, при равномерной выдаче потребителям (конвенция организатора). Пик запаса после партии j равен I_нач + (j·нетто − (j−1)·выдача)/N, максимум берётся по j = 1..N. При N = 1 это запас сразу после единственного поступления, до выдачи, — консервативный край без допущения о внутримесячной синхронизации поставок и выдачи. При N → ∞ пик стремится к max(запас на начало, запас на конец). Выбрано N = 1: организатор не задаёт размер отдельной партии, и ни один принятый план команды не нуждается в дроблении. Чувствительность к N = 2 и N = 4 показана в results/intra_month/intra_month_capacity.md."
     },

@@ -25,8 +25,8 @@ ZBO), потери хранения, экономика (CAPEX/OPEX, закуп�
 
 ```bash
 python -m pip install -e ".[dev]"                # Python ≥ 3.10; зависимости: pyyaml, openpyxl, pytest
-python -m terraplan ui                          # интерфейс оператора: http://127.0.0.1:8765 (офлайн), остановка Ctrl+C
-python -m pytest -q                             # 335 тестов: контрольные примеры V01–V10, движок, ошибочный ввод, границы, API, UI, verify всех результатов
+python -m terraplan ui                          # http://127.0.0.1:8765 — страница решения, /console — пульт оператора (офлайн), остановка Ctrl+C
+python -m pytest -q                             # 352 теста: контрольные примеры V01–V10, движок, ошибочный ввод, границы, API, UI, verify всех результатов
 python -m terraplan control-cases               # V01–V10: ПРОЙДЕН / НЕ ПРОЙДЕН
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario BASE             --out results/demo_BASE
 python -m terraplan run --plan configs/plans/P2z_earth_new_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
@@ -108,9 +108,10 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | `configs/assumptions.yaml`, `configs/mcda_profiles.yaml` | реестр допущений (смысл, единица, статус, диапазон, обоснование); профили и веса MCDA |
 | `experiments/` | скрипты и протоколы EXP-01…EXP-17, переносимая проверка происхождения `provenance.py` |
 | `results/` | выгрузки всех экспериментов: CSV, XLSX, JSON, `summary.md`, `run_manifest.json` с хешами (`results/README.md`) |
-| `tests/` | pytest (335): V01–V10, движок, ошибочный ввод, границы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, матрица проверок, календарь Earth-New, реактивные заказы, контрактный резерв, API, интерфейс и геополитический блок, EXP-07…EXP-13, `verify` + независимый пересчёт каждого каталога результатов; `ui_smoke.cjs` — проверка в реальном браузере |
+| `tests/` | pytest (352): V01–V10, движок, ошибочный ввод, границы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, матрица проверок, календарь Earth-New, реактивные заказы, контрактный резерв, API, интерфейс и геополитический блок, EXP-07…EXP-13, `verify` + независимый пересчёт каждого каталога результатов; `ui_smoke.cjs` — проверка в реальном браузере |
 | `schemas/` | JSON-схемы организатора (план, выгрузка, сценарий, данные) |
 | `docs/` | документы для жюри (таблица выше), `organizer/` (PDF кейса и снимок справочного репозитория), `literature/` (8 статей и конспекты), `presentation/` |
+| `site/` | презентационная страница решения: тот же сервер отдаёт её на `/`, пульт оператора — на `/console`; отдельно публикуется как статический сайт без сборки и внешних запросов (`site/README.md`) |
 
 ## Модель в двух словах
 
