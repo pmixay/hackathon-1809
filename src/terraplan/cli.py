@@ -164,9 +164,15 @@ def main(argv: list[str] | None = None) -> int:
     ui = sub.add_parser("ui", help="запустить офлайн-интерфейс оператора на localhost")
     ui.add_argument("--root", default=".", help="корень проекта с data/ и configs/")
     ui.add_argument("--port", type=int, default=8765)
+    ui.add_argument("--allow-host", action="append", default=[], metavar="ИМЯ",
+                    help="разрешить внешнее имя узла (например terra.arbuz.lol) — нужно при публикации за доменом; "
+                         "по умолчанию принимается только localhost. Можно повторять; то же делает "
+                         "переменная окружения TERRAPLAN_ALLOWED_HOSTS (через запятую)")
+    ui.add_argument("--bind", default="127.0.0.1", metavar="АДРЕС",
+                    help="адрес прослушивания (по умолчанию 127.0.0.1; 0.0.0.0 — за обратным прокси или в контейнере)")
     def cmd_ui(args):
         from .web import serve
-        serve(args.root, args.port)
+        serve(args.root, args.port, args.allow_host, args.bind)
         return 0
     ui.set_defaults(fn=cmd_ui)
     r = sub.add_parser("run", help="рассчитать план в сценарии и выгрузить результаты")

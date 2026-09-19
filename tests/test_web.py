@@ -296,3 +296,67 @@ def test_price_shock_invalid_input_names_the_field(workspace, payload, bad, fiel
     payload["price_shock"] = _shock(**bad)
     with pytest.raises(ValueError, match=field):
         workspace.run(payload)
+
+
+# Публикация за доменом: по умолчанию принимается только localhost, внешнее имя добавляется явно.
+# Без этого сервер за обратным прокси отвечал бы 403 на каждый запрос.
+def _probe(server, host, origin=None, path="/api/bootstrap"):
+    headers = {"Host": host}
+    if origin:
+        headers["Origin"] = origin
+    request = urllib.request.Request(f"http://127.0.0.1:{server.server_port}{path}", headers=headers)
+    try:
+        return urllib.request.urlopen(request, timeout=5).status
+    except urllib.error.HTTPError as exc:
+        return exc.code
+
+
+@pytest.fixture
+def running_server(root):
+    servers = []
+
+    def start(**kwargs):
+        server = make_server(root, 0, **kwargs)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        servers.append(server)
+        return server
+
+    yield start
+    for server in servers:
+        server.shutdown()
+
+
+def test_by_default_only_loopback_is_accepted(running_server):
+    server = running_server()
+    assert _probe(server, f"127.0.0.1:{server.server_port}") == 200
+    assert _probe(server, f"localhost:{server.server_port}") == 200
+    assert _probe(server, "terra.arbuz.lol") == 403          # публикация не разрешена по умолчанию
+    assert _probe(server, "evil.example") == 403
+
+
+def test_allowed_host_opens_the_published_address_only(running_server):
+    server = running_server(allowed_hosts=["terra.arbuz.lol"])
+    assert _probe(server, f"127.0.0.1:{server.server_port}") == 200      # локальный доступ сохраняется
+    for host in ("terra.arbuz.lol", "terra.arbuz.lol:443", "TERRA.ARBUZ.LOL"):
+        assert _probe(server, host) == 200, host
+    assert _probe(server, "evil.example") == 403
+    assert _probe(server, "terra.arbuz.lol", "https://terra.arbuz.lol") == 200
+    assert _probe(server, "terra.arbuz.lol", "https://evil.example") == 403   # защита от чужого источника
+
+
+def test_allowed_hosts_can_come_from_the_environment(running_server, monkeypatch):
+    monkeypatch.setenv("TERRAPLAN_ALLOWED_HOSTS", "terra.arbuz.lol, spare.example")
+    server = running_server()
+    assert _probe(server, "terra.arbuz.lol") == 200
+    assert _probe(server, "spare.example") == 200
+    assert _probe(server, "evil.example") == 403
+
+
+def test_allowlist_uses_the_port_actually_bound(root):
+    """При port=0 порт назначает ОС: множество допустимых Host должно строиться после привязки."""
+    server = make_server(root, 0)
+    try:
+        assert f"127.0.0.1:{server.server_port}" in server.allowed_hosts
+        assert "127.0.0.1:0" not in server.allowed_hosts
+    finally:
+        server.server_close()
