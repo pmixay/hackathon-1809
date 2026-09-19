@@ -29,10 +29,13 @@ jobs:
           python - <<'PY'
           import json, subprocess, sys
           from pathlib import Path
-          dirs = sorted(p.parent for p in Path("results").rglob("run_manifest.json"))
+          # core export layout only (result.json + plan.json); EXP-07..10 use experiments/provenance.py, checked by pytest
+          dirs = sorted(p.parent for p in Path("results").rglob("run_manifest.json")
+                        if (p.parent / "result.json").exists() and (p.parent / "plan.json").exists())
           bad = 0
           for d in dirs:
-              case = json.loads((d / "run_manifest.json").read_text(encoding="utf-8")).get("case_dir", "data/case")
+              rel = json.loads((d / "run_manifest.json").read_text(encoding="utf-8")).get("case_dir", "data/case")
+              case = next((str(c) for c in (Path(rel), d / rel) if (c / "demand.csv").exists()), "data/case")
               for cmd in ([sys.executable, "-m", "terraplan", "verify", str(d), "--case", case],
                           [sys.executable, "tests/independent_recalc.py", str(d), case]):
                   r = subprocess.run(cmd, capture_output=True, text=True)
