@@ -20,7 +20,7 @@
     "src/terraplan/__main__.py": "6ce05b79ee1666025af142adc913f1d468781e77af67ae431fe163472a52fb3a",
     "src/terraplan/assumptions.py": "2ca192cd3f1eb5ae139e8e3bb8de51849ef16bda6175bf265dd6f83fb3346c87",
     "src/terraplan/case.py": "337fc16f805fd4a7f643cb9b3aae223a3b951ad2266d3507a17d1edd3c4edfed",
-    "src/terraplan/cli.py": "7b68e7267a7adf04177474c7568e79de0616ecd76e6339cdf24cbcdd71be2a93",
+    "src/terraplan/cli.py": "b36c5134bea8ddcad23c0496951c28f19f70ec34400f84bd5a30c183cd5308b5",
     "src/terraplan/compare.py": "8117c371f5632965e9b50eb1d62f3947a5e5abdbe2e10968e0616ed391b81e18",
     "src/terraplan/control_cases.py": "1300d8749a65682eec165d312577b6e6ca7395ef9e5e01c4d808d883e4754a75",
     "src/terraplan/engine.py": "6e0e4a1cc7b80cb299aea8da19e8d7f89ff573f080259ea680422dd8e1a3493a",
@@ -3140,5 +3140,6 @@
         "supply_sources.csv": "7240d9056e2cb75092093ba47b3bb9e688582572db94cb72328e619a42b33205"
       }
     }
-  ]
+  ],
+  "integration_note": "R4 adds the local UI CLI command only; simulation and experiment inputs unchanged. Updated CLI source provenance after integration."
 }
