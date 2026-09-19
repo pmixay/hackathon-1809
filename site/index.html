@@ -26,6 +26,7 @@
   <div class="starlayer" id="s1"></div>
   <div class="starlayer" id="s2"></div>
   <div class="starlayer" id="s3"></div>
+  <i class="sh sh1"></i><i class="sh sh2"></i><i class="sh sh3"></i>
 </div>
 
 <header id="hdr">
@@ -64,6 +65,8 @@
   </div>
 </section>
 
+<div class="strip" aria-hidden="true"><div class="track" id="track"></div></div>
+
 <!-- ЗАДАЧА -->
 <section id="task">
   <div class="inner">
@@ -73,11 +76,19 @@
       делается заранее.</p>
 
     <div class="flow rv">
+      <div class="rocket" id="rocket" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none">
+          <path d="M32 4c10 9 15 20 15 32l-7 10H24l-7-10C17 24 22 13 32 4Z" fill="#EAF4FF"/>
+          <circle cx="32" cy="26" r="6" fill="#1B4D8F"/>
+          <path d="M24 46l-8 14 11-6 5 8 5-8 11 6-8-14" fill="#4C8DFF"/>
+          <path d="M28 58h8l-4 10-4-10Z" fill="#3FE096"/>
+        </svg>
+      </div>
       <div class="fnode">
         <div class="ico globe"><div class="tex"></div><div class="cld"></div><div class="shd"></div></div>
         <b>Земля</b><span>четыре канала поставки</span>
       </div>
-      <div class="fstep"><em>12 месяцев в пути</em><i></i></div>
+      <div class="fstep"><em>12 месяцев в пути</em><i><b></b></i></div>
       <div class="fnode">
         <div class="ico">
           <svg viewBox="0 0 64 64" fill="none" stroke="#9BD9FF" stroke-width="2.6" aria-hidden="true">
@@ -86,7 +97,7 @@
         </div>
         <b>Орбитальный склад</b><span>ёмкость 120 тонн</span>
       </div>
-      <div class="fstep"><em>−4,5 % от каждой партии</em><i></i></div>
+      <div class="fstep"><em>−4,5 % от каждой партии</em><i><b></b></i></div>
       <div class="fnode">
         <div class="ico g">
           <svg viewBox="0 0 64 64" fill="none" stroke="#7BF0BC" stroke-width="2.6" aria-hidden="true">
@@ -121,6 +132,7 @@
     <figure class="fig rv">
       <svg class="chart" id="supplyChart" viewBox="0 0 1180 500" fill="none" role="img"
         aria-label="Спрос и поставки по годам с 2035 по 2040"></svg>
+      <div class="readout" id="supplyRead" aria-live="polite"><span class="hint">Наведите на год, чтобы увидеть разбор</span></div>
       <figcaption class="legend">
         <span class="lg need">Сколько нужно</span>
         <span class="lg a">Основной канал</span>
@@ -195,7 +207,7 @@
     </div>
 
     <figure class="fig rv">
-      <svg class="chart" id="crisisChart" viewBox="0 0 1180 470" fill="none" role="img"
+      <svg class="chart" id="crisisChart" viewBox="0 0 1180 510" fill="none" role="img"
         aria-label="Запас на 1 января против нормы в 2038, 2039 и 2040 годах"></svg>
       <figcaption class="legend">
         <span class="lg have">Запас на 1 января</span>
