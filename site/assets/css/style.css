@@ -266,3 +266,11 @@ h1{font-weight:800;font-size:clamp(50px,8.6vw,124px);line-height:.92;padding:0 .
   .neb,.globe .tex,.globe .cld{animation:none}
   .btn,.pb .fill{transition:none}
 }
+
+/* ---------- вторичная кнопка со значком (GitVerse) ---------- */
+.btn.ghost{display:inline-flex;align-items:center;gap:10px;color:#E2F0FF;background:rgba(12,24,44,.5);
+  border:1.5px solid var(--line);backdrop-filter:blur(10px);white-space:nowrap}
+.btn.ghost img{flex:none}
+.btn.ghost:hover{border-color:rgba(91,232,172,.6);background:rgba(18,44,58,.7)}
+.final .btn.ghost{margin-left:14px}
+@media(max-width:760px){.final .btn.ghost{margin:16px 0 0}}

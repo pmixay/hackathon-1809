@@ -1,5 +1,6 @@
 // Optional real-browser acceptance. Start `python -m terraplan ui` first.
 // npm's Playwright must be available; set PLAYWRIGHT_MODULE to a local module if needed.
+// The operator console lives at /console: "/" serves the solution landing page (site/index.html).
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs/promises');
@@ -8,7 +9,13 @@ const fs=require('node:fs/promises');
  try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(process.env.TERRAPLAN_URL||'http://127.0.0.1:8765');
+ const origin=(process.env.TERRAPLAN_URL||'http://127.0.0.1:8765').replace(/\/+$/,'');
+ await page.goto(origin+'/console');
+ // landing page is served at the root and links to the console
+ const landing=await browser.newPage();await landing.goto(origin+'/');
+ assert.match(await landing.title(),/TerraPlan/i);
+ assert.ok(await landing.locator('a[href*="console"]').count()>0,'на странице решения нет ссылки на пульт оператора');
+ await landing.close();
  assert.equal(await page.locator('#preset').inputValue(),'P2z_earth_new_zbo');
  const run=async()=>{await page.locator('#run').click();await page.waitForFunction(()=>document.getElementById('status').textContent.startsWith('Расчёт завершён'));};
  await run();assert.match(await page.locator('#result-title').innerText(),/Все жёсткие/);
@@ -70,6 +77,6 @@ const fs=require('node:fs/promises');
  assert.equal((await fs.readFile('build/r4/browser/results.zip')).subarray(0,2).toString(),'PK');
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:'build/r4/browser/mobile.png',fullPage:true});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);
- assert.deepEqual(errors,[]);console.log('PASS: BASE, stress, compare, adapted, save/reopen, Source-X/2041, invalid input (list), contract-field edit, geopolitics on/off, ZIP, mobile layout.');
+ assert.deepEqual(errors,[]);console.log('PASS: landing page + console route, BASE, stress, compare, adapted, save/reopen, Source-X/2041, invalid input (list), contract-field edit, geopolitics on/off, ZIP, mobile layout.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
