@@ -2,7 +2,7 @@
  "plan_id": "P2z_earth_new_zbo",
  "scenario_id": "BASE",
  "scenario_label": "Стандартный сценарий",
- "case_dir": "/home/user/hackathon-1809/results/geopolitical_price_shock/case",
+ "case_dir": "/home/claude/hackathon-1809/results/geopolitical_price_shock/case",
  "units": {
   "fuel": "т",
   "money": "млн у.е., постоянные цены 2035 г.",

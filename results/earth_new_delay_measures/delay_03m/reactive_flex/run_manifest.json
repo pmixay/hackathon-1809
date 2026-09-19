@@ -4,7 +4,7 @@
   "plan_id": "P2z_delay03m_reactive_flex",
   "scenario_id": "TEAM_EXP13_DELAY_03M",
   "case_dir": "results/earth_new_delay_measures/delay_03m/reactive_flex/case",
-  "case_dir_absolute_at_run": "/home/user/hackathon-1809/results/earth_new_delay_measures/delay_03m/reactive_flex/case",
+  "case_dir_absolute_at_run": "/home/claude/hackathon-1809/results/earth_new_delay_measures/delay_03m/reactive_flex/case",
   "case_file_sha256": {
     "constraints.csv": "9af0a70b445ee1c451b5dc368237b7727ed2923b89565f357dff61a21d4f4dc8",
     "demand.csv": "a3049bd3ff3b9e7102858be94476a0f356be3027790382d3761be7745f82a1c1",

@@ -22,6 +22,10 @@ from .plan import plan_from_dict
 from .scenario import resolve_scenario
 
 CASE_FILES = ("demand.csv", "supply_sources.csv", "storage_options.csv", "investment_options.csv", "constraints.csv")
+# презентационная страница решения обслуживается тем же сервером: "/" — страница, "/console" — пульт оператора
+SITE_TYPES = {".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",
+              ".js": "text/javascript; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png",
+              ".jpg": "image/jpeg", ".woff2": "font/woff2", ".txt": "text/plain; charset=utf-8"}
 SHOCK_COMBINE_RULES = ("replace", "multiply")
 EXTENSION_NOTE = ("TEAM_ASSUMPTION: Source-X — 60 т/год, цена 5,5 млн/т, резерв 0,2 млн за т/год, take-or-pay 30 %, "
                   "срок поставки 3 месяца, доступен с 2039 года. Спрос 2041: 450/290 т (общий/критический), низкий 360, "
@@ -247,9 +251,26 @@ class Workspace:
         return compare_results(self.runs[a][0], self.runs[b][0])
 
 
+def site_file(site, path):
+    """Файл презентационной страницы по запрошенному пути; None — если его нельзя отдавать.
+
+    Каталог `site/` лежит рядом с расчётным ядром и публикуется отдельно как статический сайт,
+    поэтому здесь проверяются и выход за пределы каталога, и расширение файла.
+    """
+    if site is None:
+        return None
+    target = (site / path.lstrip("/")).resolve()
+    if not target.is_file() or site not in target.parents:
+        return None
+    kind = SITE_TYPES.get(target.suffix.lower())
+    return (target, kind) if kind else None
+
+
 def make_server(root, port=8765):
     workspace = Workspace(root)
     assets = Path(__file__).with_name("static")
+    site = Path(root).resolve() / "site"
+    site = site if (site / "index.html").is_file() else None
 
     class Handler(BaseHTTPRequestHandler):
         def reply(self, status, body, kind="application/json; charset=utf-8", filename=None):
@@ -283,9 +304,15 @@ def make_server(root, port=8765):
             path = urlsplit(self.path).path
             if path == "/api/bootstrap":
                 self.reply(200, workspace.bootstrap())
-            elif path in ("/", "/app.js", "/style.css"):
-                name, kind = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css")}[path]
+            elif path in ("/console", "/app.js", "/style.css") or (path == "/" and site is None):
+                name, kind = {"/": ("index.html", "text/html"), "/console": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"), "/style.css": ("style.css", "text/css")}[path]
                 self.reply(200, (assets / name).read_bytes(), kind + "; charset=utf-8")
+            elif path == "/" or path.startswith("/assets/"):
+                found = site_file(site, "index.html" if path == "/" else path)
+                if found is None:
+                    self.reply(404, {"error": "Страница не найдена"})
+                else:
+                    self.reply(200, found[0].read_bytes(), found[1])
             elif path.startswith("/download/"):
                 parts = path.split("/")
                 if len(parts) != 4 or parts[2] not in workspace.runs or parts[3] not in ("results.zip", "results.xlsx"):
@@ -335,7 +362,9 @@ def make_server(root, port=8765):
 
 def serve(root=".", port=8765):
     server = make_server(root, port)
-    print(f"Интерфейс оператора TerraPlan: http://127.0.0.1:{server.server_port} (остановка — Ctrl+C)", flush=True)
+    address = f"http://127.0.0.1:{server.server_port}"
+    print(f"TerraPlan: {address} — страница решения, {address}/console — пульт оператора "
+          f"(остановка — Ctrl+C)", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

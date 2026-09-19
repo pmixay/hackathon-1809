@@ -2,7 +2,7 @@
  "plan_id": "P2z_stock_3.2t",
  "scenario_id": "TEAM_EARTH_NEW_DELAY_06M",
  "scenario_label": "EXP-12: задержка Earth-New на копии данных",
- "case_dir": "/home/user/hackathon-1809/results/p2z_resilience/cases/delay_06m",
+ "case_dir": "/home/claude/hackathon-1809/results/p2z_resilience/cases/delay_06m",
  "units": {
   "fuel": "т",
   "money": "млн у.е., постоянные цены 2035 г.",
