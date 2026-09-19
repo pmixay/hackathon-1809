@@ -19,7 +19,7 @@ constraint checks for the 2035–2040 orbital-depot supply case. Everything is d
 ```bash
 python -m pip install -e ".[dev]"                # Python ≥ 3.10; pyyaml, openpyxl, pytest
 python -m terraplan ui                          # интерфейс оператора: http://127.0.0.1:8765, остановка Ctrl+C
-python -m pytest -q                             # 84 теста, включая контрольные примеры организатора V01–V10 и verify всех каталогов results/
+python -m pytest -q                             # 167 тестов, включая контрольные примеры организатора V01–V10 и verify всех каталогов results/
 python -m terraplan control-cases               # V01–V10: ПРОЙДЕН / НЕ ПРОЙДЕН
 python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario BASE             --out results/demo_BASE
 python -m terraplan run --plan configs/plans/P3_isru_zbo.json --scenario MANDATORY_STRESS --out results/demo_STRESS
@@ -62,7 +62,7 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
    расширяемость на копии данных с Source-X и 2041 годом (`results/extensibility/`), тесты ошибочного ввода и граничные тесты (`tests/`).
 5. **Сравнение и выгрузка** — `results/*/summary.csv`, `results/stress/compare_*.csv`; в каждом каталоге результатов CSV + XLSX + JSON;
    планы открываются повторно: `python -m terraplan run --plan results/<каталог>/plan.json ...`; `python -m terraplan verify results/<каталог>`
-   пересчитывает каталог и сравнивает с выгрузкой (в CI — для всех 34 каталогов).
+   пересчитывает каталог и сравнивает с выгрузкой (в тестах и CI — для всех 38 каталогов результатов, включая EXP-09).
 
 Протоколы экспериментов: `experiments/README.md`. Методы и формулы: `docs/architecture.md`. Каталог правил: `docs/constraints_catalogue.md`.
 Ручная проверка: `docs/manual_check.md`.
@@ -78,7 +78,7 @@ run_plan({"plan_id": "x", "decisions": {}}, "BASE")["error"]               # {"c
 | `configs/assumptions.yaml` | каждое допущение команды: смысл, единица, статус, диапазон, обоснование |
 | `experiments/` | скрипты и протоколы EXP-01…10 (`README.md`), переносимая провенанс-проверка `provenance.py` |
 | `results/` | выгрузки всех экспериментов (CSV, XLSX, JSON, `summary.md`, `run_manifest.json` с хешами) |
-| `tests/` | pytest (84): V01–V10, интеграция движка, ошибочный ввод, граничные планы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, согласованность матрицы проверок и списка нарушений, календарь Earth-New, реактивные заказы и месяц наблюдения, контрактный резерв, API, `verify` + независимый пересчёт каждого каталога `results/` |
+| `tests/` | pytest (167): V01–V10, интеграция движка, ошибочный ввод, граничные планы, расширяемость, паритет выгрузок, эталонные значения, ручная проверка, согласованность матрицы проверок и списка нарушений, календарь Earth-New, реактивные заказы и месяц наблюдения, контрактный резерв, API, `verify` + независимый пересчёт каждого каталога `results/` |
 | `schemas/` | JSON-схемы организатора (план, выгрузка, сценарий, данные) |
 | `docs/` | `CASE_SUMMARY.md`, `TEAM.md`, `architecture.md`, `management_note.md`, `one_pager_scenarios.md`, `stress_test_protocol.md`, `risk_register.md`, `stakeholders.md`, `roadmap_budget.md`, `sources.md`, `operator_guide.md`, `HANDOVER.md`, `ui_mockups/` (исторический макет), `organizer/` (PDF кейса + снимок справочного репозитория), `literature/` (8 статей + конспекты), `presentation/` (`TerraPlan.pptx`, 12 слайдов) |
 
