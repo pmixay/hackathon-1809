@@ -1,13 +1,13 @@
 profile,rank,plan_id,score_0_100
-balanced_defense,1,P2z_earth_new_zbo,74.560363
+balanced_defense,1,P2z_earth_new_zbo,74.560370
 balanced_defense,2,P3_isru_zbo,30.760000
 balanced_defense,3,P4_full,18.273310
-operator_cost,1,P2z_earth_new_zbo,72.490740
+operator_cost,1,P2z_earth_new_zbo,72.490749
 operator_cost,2,P3_isru_zbo,34.320000
 operator_cost,3,P4_full,18.815120
-critical_continuity,1,P2z_earth_new_zbo,64.468839
+critical_continuity,1,P2z_earth_new_zbo,64.468841
 critical_continuity,2,P4_full,29.430007
 critical_continuity,3,P3_isru_zbo,21.440000
-financier,1,P2z_earth_new_zbo,77.106125
+financier,1,P2z_earth_new_zbo,77.106134
 financier,2,P3_isru_zbo,41.520000
 financier,3,P4_full,12.189689
